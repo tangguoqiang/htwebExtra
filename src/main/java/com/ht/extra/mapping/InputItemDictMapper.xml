@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.InputItemDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.InputItemDict" >
+    <id column="DICT_NAME" property="dictName" jdbcType="VARCHAR" />
+    <id column="INPUT_ITEM_NAME" property="inputItemName" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="INPUT_ITEM_CODE" property="inputItemCode" jdbcType="VARCHAR" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+    <result column="USER_DEFINE" property="userDefine" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    DICT_NAME, INPUT_ITEM_NAME, SERIAL_NO, INPUT_ITEM_CODE, INPUT_CODE, USER_DEFINE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.InputItemDictKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.INPUT_ITEM_DICT
+    where DICT_NAME = #{dictName,jdbcType=VARCHAR}
+      and INPUT_ITEM_NAME = #{inputItemName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.InputItemDictKey" >
+    delete from COMM.INPUT_ITEM_DICT
+    where DICT_NAME = #{dictName,jdbcType=VARCHAR}
+      and INPUT_ITEM_NAME = #{inputItemName,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.InputItemDict" >
+    insert into COMM.INPUT_ITEM_DICT (DICT_NAME, INPUT_ITEM_NAME, SERIAL_NO, 
+      INPUT_ITEM_CODE, INPUT_CODE, USER_DEFINE
+      )
+    values (#{dictName,jdbcType=VARCHAR}, #{inputItemName,jdbcType=VARCHAR}, #{serialNo,jdbcType=DECIMAL}, 
+      #{inputItemCode,jdbcType=VARCHAR}, #{inputCode,jdbcType=VARCHAR}, #{userDefine,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.InputItemDict" >
+    insert into COMM.INPUT_ITEM_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dictName != null" >
+        DICT_NAME,
+      </if>
+      <if test="inputItemName != null" >
+        INPUT_ITEM_NAME,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="inputItemCode != null" >
+        INPUT_ITEM_CODE,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+      <if test="userDefine != null" >
+        USER_DEFINE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dictName != null" >
+        #{dictName,jdbcType=VARCHAR},
+      </if>
+      <if test="inputItemName != null" >
+        #{inputItemName,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="inputItemCode != null" >
+        #{inputItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userDefine != null" >
+        #{userDefine,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.InputItemDict" >
+    update COMM.INPUT_ITEM_DICT
+    <set >
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="inputItemCode != null" >
+        INPUT_ITEM_CODE = #{inputItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userDefine != null" >
+        USER_DEFINE = #{userDefine,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where DICT_NAME = #{dictName,jdbcType=VARCHAR}
+      and INPUT_ITEM_NAME = #{inputItemName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.InputItemDict" >
+    update COMM.INPUT_ITEM_DICT
+    set SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      INPUT_ITEM_CODE = #{inputItemCode,jdbcType=VARCHAR},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      USER_DEFINE = #{userDefine,jdbcType=DECIMAL}
+    where DICT_NAME = #{dictName,jdbcType=VARCHAR}
+      and INPUT_ITEM_NAME = #{inputItemName,jdbcType=VARCHAR}
+  </update>
+</mapper>

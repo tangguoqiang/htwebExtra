@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.OnlineDataMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.lab.OnlineData" >
+    <id column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="INST_ID" property="instId" jdbcType="VARCHAR" />
+    <result column="SAMPLE_ID" property="sampleId" jdbcType="DECIMAL" />
+    <result column="ITEM_ID" property="itemId" jdbcType="VARCHAR" />
+    <result column="ASSAY_RESULT" property="assayResult" jdbcType="VARCHAR" />
+    <result column="ASSAY_DATE" property="assayDate" jdbcType="DATE" />
+    <result column="SAMPLE_TYPE" property="sampleType" jdbcType="DECIMAL" />
+    <result column="RESULT_STATUS" property="resultStatus" jdbcType="DECIMAL" />
+    <result column="STATUS_COMMENT" property="statusComment" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SERIAL_NO, INST_ID, SAMPLE_ID, ITEM_ID, ASSAY_RESULT, ASSAY_DATE, SAMPLE_TYPE, RESULT_STATUS, 
+    STATUS_COMMENT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from LAB.ONLINE_DATA
+    where SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from LAB.ONLINE_DATA
+    where SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.lab.OnlineData" >
+    insert into LAB.ONLINE_DATA (SERIAL_NO, INST_ID, SAMPLE_ID, 
+      ITEM_ID, ASSAY_RESULT, ASSAY_DATE, 
+      SAMPLE_TYPE, RESULT_STATUS, STATUS_COMMENT
+      )
+    values (#{serialNo,jdbcType=DECIMAL}, #{instId,jdbcType=VARCHAR}, #{sampleId,jdbcType=DECIMAL}, 
+      #{itemId,jdbcType=VARCHAR}, #{assayResult,jdbcType=VARCHAR}, #{assayDate,jdbcType=DATE}, 
+      #{sampleType,jdbcType=DECIMAL}, #{resultStatus,jdbcType=DECIMAL}, #{statusComment,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.lab.OnlineData" >
+    insert into LAB.ONLINE_DATA
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="instId != null" >
+        INST_ID,
+      </if>
+      <if test="sampleId != null" >
+        SAMPLE_ID,
+      </if>
+      <if test="itemId != null" >
+        ITEM_ID,
+      </if>
+      <if test="assayResult != null" >
+        ASSAY_RESULT,
+      </if>
+      <if test="assayDate != null" >
+        ASSAY_DATE,
+      </if>
+      <if test="sampleType != null" >
+        SAMPLE_TYPE,
+      </if>
+      <if test="resultStatus != null" >
+        RESULT_STATUS,
+      </if>
+      <if test="statusComment != null" >
+        STATUS_COMMENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="instId != null" >
+        #{instId,jdbcType=VARCHAR},
+      </if>
+      <if test="sampleId != null" >
+        #{sampleId,jdbcType=DECIMAL},
+      </if>
+      <if test="itemId != null" >
+        #{itemId,jdbcType=VARCHAR},
+      </if>
+      <if test="assayResult != null" >
+        #{assayResult,jdbcType=VARCHAR},
+      </if>
+      <if test="assayDate != null" >
+        #{assayDate,jdbcType=DATE},
+      </if>
+      <if test="sampleType != null" >
+        #{sampleType,jdbcType=DECIMAL},
+      </if>
+      <if test="resultStatus != null" >
+        #{resultStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="statusComment != null" >
+        #{statusComment,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.lab.OnlineData" >
+    update LAB.ONLINE_DATA
+    <set >
+      <if test="instId != null" >
+        INST_ID = #{instId,jdbcType=VARCHAR},
+      </if>
+      <if test="sampleId != null" >
+        SAMPLE_ID = #{sampleId,jdbcType=DECIMAL},
+      </if>
+      <if test="itemId != null" >
+        ITEM_ID = #{itemId,jdbcType=VARCHAR},
+      </if>
+      <if test="assayResult != null" >
+        ASSAY_RESULT = #{assayResult,jdbcType=VARCHAR},
+      </if>
+      <if test="assayDate != null" >
+        ASSAY_DATE = #{assayDate,jdbcType=DATE},
+      </if>
+      <if test="sampleType != null" >
+        SAMPLE_TYPE = #{sampleType,jdbcType=DECIMAL},
+      </if>
+      <if test="resultStatus != null" >
+        RESULT_STATUS = #{resultStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="statusComment != null" >
+        STATUS_COMMENT = #{statusComment,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.lab.OnlineData" >
+    update LAB.ONLINE_DATA
+    set INST_ID = #{instId,jdbcType=VARCHAR},
+      SAMPLE_ID = #{sampleId,jdbcType=DECIMAL},
+      ITEM_ID = #{itemId,jdbcType=VARCHAR},
+      ASSAY_RESULT = #{assayResult,jdbcType=VARCHAR},
+      ASSAY_DATE = #{assayDate,jdbcType=DATE},
+      SAMPLE_TYPE = #{sampleType,jdbcType=DECIMAL},
+      RESULT_STATUS = #{resultStatus,jdbcType=DECIMAL},
+      STATUS_COMMENT = #{statusComment,jdbcType=VARCHAR}
+    where SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+  </update>
+</mapper>

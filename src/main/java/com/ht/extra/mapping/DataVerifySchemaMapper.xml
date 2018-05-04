@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.DataVerifySchemaMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.DataVerifySchema" >
+    <id column="SCHEMA_CODE" property="schemaCode" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="SCHEMA_NAME" property="schemaName" jdbcType="VARCHAR" />
+    <result column="SCHEMA_SOURCE" property="schemaSource" jdbcType="VARCHAR" />
+    <result column="SCHEMA_SOURCE_EXT1" property="schemaSourceExt1" jdbcType="VARCHAR" />
+    <result column="SCHEMA_SOURCE_EXT2" property="schemaSourceExt2" jdbcType="VARCHAR" />
+    <result column="FATAL_ERROR_LEVELS" property="fatalErrorLevels" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SCHEMA_CODE, SERIAL_NO, SCHEMA_NAME, SCHEMA_SOURCE, SCHEMA_SOURCE_EXT1, SCHEMA_SOURCE_EXT2, 
+    FATAL_ERROR_LEVELS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.DATA_VERIFY_SCHEMA
+    where SCHEMA_CODE = #{schemaCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.DATA_VERIFY_SCHEMA
+    where SCHEMA_CODE = #{schemaCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.DataVerifySchema" >
+    insert into COMM.DATA_VERIFY_SCHEMA (SCHEMA_CODE, SERIAL_NO, SCHEMA_NAME, 
+      SCHEMA_SOURCE, SCHEMA_SOURCE_EXT1, SCHEMA_SOURCE_EXT2, 
+      FATAL_ERROR_LEVELS)
+    values (#{schemaCode,jdbcType=VARCHAR}, #{serialNo,jdbcType=DECIMAL}, #{schemaName,jdbcType=VARCHAR}, 
+      #{schemaSource,jdbcType=VARCHAR}, #{schemaSourceExt1,jdbcType=VARCHAR}, #{schemaSourceExt2,jdbcType=VARCHAR}, 
+      #{fatalErrorLevels,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.DataVerifySchema" >
+    insert into COMM.DATA_VERIFY_SCHEMA
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="schemaCode != null" >
+        SCHEMA_CODE,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="schemaName != null" >
+        SCHEMA_NAME,
+      </if>
+      <if test="schemaSource != null" >
+        SCHEMA_SOURCE,
+      </if>
+      <if test="schemaSourceExt1 != null" >
+        SCHEMA_SOURCE_EXT1,
+      </if>
+      <if test="schemaSourceExt2 != null" >
+        SCHEMA_SOURCE_EXT2,
+      </if>
+      <if test="fatalErrorLevels != null" >
+        FATAL_ERROR_LEVELS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="schemaCode != null" >
+        #{schemaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="schemaName != null" >
+        #{schemaName,jdbcType=VARCHAR},
+      </if>
+      <if test="schemaSource != null" >
+        #{schemaSource,jdbcType=VARCHAR},
+      </if>
+      <if test="schemaSourceExt1 != null" >
+        #{schemaSourceExt1,jdbcType=VARCHAR},
+      </if>
+      <if test="schemaSourceExt2 != null" >
+        #{schemaSourceExt2,jdbcType=VARCHAR},
+      </if>
+      <if test="fatalErrorLevels != null" >
+        #{fatalErrorLevels,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.DataVerifySchema" >
+    update COMM.DATA_VERIFY_SCHEMA
+    <set >
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="schemaName != null" >
+        SCHEMA_NAME = #{schemaName,jdbcType=VARCHAR},
+      </if>
+      <if test="schemaSource != null" >
+        SCHEMA_SOURCE = #{schemaSource,jdbcType=VARCHAR},
+      </if>
+      <if test="schemaSourceExt1 != null" >
+        SCHEMA_SOURCE_EXT1 = #{schemaSourceExt1,jdbcType=VARCHAR},
+      </if>
+      <if test="schemaSourceExt2 != null" >
+        SCHEMA_SOURCE_EXT2 = #{schemaSourceExt2,jdbcType=VARCHAR},
+      </if>
+      <if test="fatalErrorLevels != null" >
+        FATAL_ERROR_LEVELS = #{fatalErrorLevels,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SCHEMA_CODE = #{schemaCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.DataVerifySchema" >
+    update COMM.DATA_VERIFY_SCHEMA
+    set SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      SCHEMA_NAME = #{schemaName,jdbcType=VARCHAR},
+      SCHEMA_SOURCE = #{schemaSource,jdbcType=VARCHAR},
+      SCHEMA_SOURCE_EXT1 = #{schemaSourceExt1,jdbcType=VARCHAR},
+      SCHEMA_SOURCE_EXT2 = #{schemaSourceExt2,jdbcType=VARCHAR},
+      FATAL_ERROR_LEVELS = #{fatalErrorLevels,jdbcType=VARCHAR}
+    where SCHEMA_CODE = #{schemaCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

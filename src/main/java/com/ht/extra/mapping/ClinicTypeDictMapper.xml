@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.ClinicTypeDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.outpadm.ClinicTypeDict" >
+    <id column="CLINIC_TYPE" property="clinicType" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="PRICE" property="price" jdbcType="DECIMAL" />
+    <result column="CLINIC_TYPE_NAME" property="clinicTypeName" jdbcType="VARCHAR" />
+    <result column="CLINIC_TYPE_CODE" property="clinicTypeCode" jdbcType="VARCHAR" />
+    <result column="CHARGE_ITEM" property="chargeItem" jdbcType="VARCHAR" />
+    <result column="PRICE_ITEM" property="priceItem" jdbcType="VARCHAR" />
+    <result column="CLINIC_ITEM_SPEC" property="clinicItemSpec" jdbcType="VARCHAR" />
+    <result column="CLINIC_ITEM_UNITS" property="clinicItemUnits" jdbcType="VARCHAR" />
+    <result column="PRICE_ITEM_SPEC" property="priceItemSpec" jdbcType="VARCHAR" />
+    <result column="PRICE_ITEM_UNITS" property="priceItemUnits" jdbcType="VARCHAR" />
+    <result column="CLINIC_TYPE_UNITS" property="clinicTypeUnits" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    CLINIC_TYPE, SERIAL_NO, PRICE, CLINIC_TYPE_NAME, CLINIC_TYPE_CODE, CHARGE_ITEM, PRICE_ITEM, 
+    CLINIC_ITEM_SPEC, CLINIC_ITEM_UNITS, PRICE_ITEM_SPEC, PRICE_ITEM_UNITS, CLINIC_TYPE_UNITS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from OUTPADM.CLINIC_TYPE_DICT
+    where CLINIC_TYPE = #{clinicType,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from OUTPADM.CLINIC_TYPE_DICT
+    where CLINIC_TYPE = #{clinicType,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.outpadm.ClinicTypeDict" >
+    insert into OUTPADM.CLINIC_TYPE_DICT (CLINIC_TYPE, SERIAL_NO, PRICE, 
+      CLINIC_TYPE_NAME, CLINIC_TYPE_CODE, CHARGE_ITEM, 
+      PRICE_ITEM, CLINIC_ITEM_SPEC, CLINIC_ITEM_UNITS, 
+      PRICE_ITEM_SPEC, PRICE_ITEM_UNITS, CLINIC_TYPE_UNITS
+      )
+    values (#{clinicType,jdbcType=VARCHAR}, #{serialNo,jdbcType=DECIMAL}, #{price,jdbcType=DECIMAL}, 
+      #{clinicTypeName,jdbcType=VARCHAR}, #{clinicTypeCode,jdbcType=VARCHAR}, #{chargeItem,jdbcType=VARCHAR}, 
+      #{priceItem,jdbcType=VARCHAR}, #{clinicItemSpec,jdbcType=VARCHAR}, #{clinicItemUnits,jdbcType=VARCHAR}, 
+      #{priceItemSpec,jdbcType=VARCHAR}, #{priceItemUnits,jdbcType=VARCHAR}, #{clinicTypeUnits,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.outpadm.ClinicTypeDict" >
+    insert into OUTPADM.CLINIC_TYPE_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="clinicType != null" >
+        CLINIC_TYPE,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="price != null" >
+        PRICE,
+      </if>
+      <if test="clinicTypeName != null" >
+        CLINIC_TYPE_NAME,
+      </if>
+      <if test="clinicTypeCode != null" >
+        CLINIC_TYPE_CODE,
+      </if>
+      <if test="chargeItem != null" >
+        CHARGE_ITEM,
+      </if>
+      <if test="priceItem != null" >
+        PRICE_ITEM,
+      </if>
+      <if test="clinicItemSpec != null" >
+        CLINIC_ITEM_SPEC,
+      </if>
+      <if test="clinicItemUnits != null" >
+        CLINIC_ITEM_UNITS,
+      </if>
+      <if test="priceItemSpec != null" >
+        PRICE_ITEM_SPEC,
+      </if>
+      <if test="priceItemUnits != null" >
+        PRICE_ITEM_UNITS,
+      </if>
+      <if test="clinicTypeUnits != null" >
+        CLINIC_TYPE_UNITS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="clinicType != null" >
+        #{clinicType,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="clinicTypeName != null" >
+        #{clinicTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="clinicTypeCode != null" >
+        #{clinicTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeItem != null" >
+        #{chargeItem,jdbcType=VARCHAR},
+      </if>
+      <if test="priceItem != null" >
+        #{priceItem,jdbcType=VARCHAR},
+      </if>
+      <if test="clinicItemSpec != null" >
+        #{clinicItemSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="clinicItemUnits != null" >
+        #{clinicItemUnits,jdbcType=VARCHAR},
+      </if>
+      <if test="priceItemSpec != null" >
+        #{priceItemSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="priceItemUnits != null" >
+        #{priceItemUnits,jdbcType=VARCHAR},
+      </if>
+      <if test="clinicTypeUnits != null" >
+        #{clinicTypeUnits,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.outpadm.ClinicTypeDict" >
+    update OUTPADM.CLINIC_TYPE_DICT
+    <set >
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="price != null" >
+        PRICE = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="clinicTypeName != null" >
+        CLINIC_TYPE_NAME = #{clinicTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="clinicTypeCode != null" >
+        CLINIC_TYPE_CODE = #{clinicTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeItem != null" >
+        CHARGE_ITEM = #{chargeItem,jdbcType=VARCHAR},
+      </if>
+      <if test="priceItem != null" >
+        PRICE_ITEM = #{priceItem,jdbcType=VARCHAR},
+      </if>
+      <if test="clinicItemSpec != null" >
+        CLINIC_ITEM_SPEC = #{clinicItemSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="clinicItemUnits != null" >
+        CLINIC_ITEM_UNITS = #{clinicItemUnits,jdbcType=VARCHAR},
+      </if>
+      <if test="priceItemSpec != null" >
+        PRICE_ITEM_SPEC = #{priceItemSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="priceItemUnits != null" >
+        PRICE_ITEM_UNITS = #{priceItemUnits,jdbcType=VARCHAR},
+      </if>
+      <if test="clinicTypeUnits != null" >
+        CLINIC_TYPE_UNITS = #{clinicTypeUnits,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CLINIC_TYPE = #{clinicType,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.outpadm.ClinicTypeDict" >
+    update OUTPADM.CLINIC_TYPE_DICT
+    set SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      PRICE = #{price,jdbcType=DECIMAL},
+      CLINIC_TYPE_NAME = #{clinicTypeName,jdbcType=VARCHAR},
+      CLINIC_TYPE_CODE = #{clinicTypeCode,jdbcType=VARCHAR},
+      CHARGE_ITEM = #{chargeItem,jdbcType=VARCHAR},
+      PRICE_ITEM = #{priceItem,jdbcType=VARCHAR},
+      CLINIC_ITEM_SPEC = #{clinicItemSpec,jdbcType=VARCHAR},
+      CLINIC_ITEM_UNITS = #{clinicItemUnits,jdbcType=VARCHAR},
+      PRICE_ITEM_SPEC = #{priceItemSpec,jdbcType=VARCHAR},
+      PRICE_ITEM_UNITS = #{priceItemUnits,jdbcType=VARCHAR},
+      CLINIC_TYPE_UNITS = #{clinicTypeUnits,jdbcType=VARCHAR}
+    where CLINIC_TYPE = #{clinicType,jdbcType=VARCHAR}
+  </update>
+</mapper>

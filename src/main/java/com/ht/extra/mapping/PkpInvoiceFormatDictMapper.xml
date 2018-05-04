@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.PkpInvoiceFormatDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.PkpInvoiceFormatDict" >
+    <id column="INVOICE_TYPE" property="invoiceType" jdbcType="VARCHAR" />
+    <id column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <id column="FIELD_NAME" property="fieldName" jdbcType="VARCHAR" />
+    <result column="STORE_FORMAT" property="storeFormat" jdbcType="VARCHAR" />
+    <result column="LIMITATION_OF_LENGTH" property="limitationOfLength" jdbcType="VARCHAR" />
+    <result column="LENGTH" property="length" jdbcType="VARCHAR" />
+    <result column="PREFIX_LENGTH" property="prefixLength" jdbcType="VARCHAR" />
+    <result column="CONVERT_WAY" property="convertWay" jdbcType="VARCHAR" />
+    <result column="TAX_CODE_OPERATION" property="taxCodeOperation" jdbcType="VARCHAR" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    INVOICE_TYPE, SERIAL_NO, FIELD_NAME, STORE_FORMAT, LIMITATION_OF_LENGTH, LENGTH, 
+    PREFIX_LENGTH, CONVERT_WAY, TAX_CODE_OPERATION, MEMO
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.PkpInvoiceFormatDictKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.PKP_INVOICE_FORMAT_DICT
+    where INVOICE_TYPE = #{invoiceType,jdbcType=VARCHAR}
+      and SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+      and FIELD_NAME = #{fieldName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.PkpInvoiceFormatDictKey" >
+    delete from COMM.PKP_INVOICE_FORMAT_DICT
+    where INVOICE_TYPE = #{invoiceType,jdbcType=VARCHAR}
+      and SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+      and FIELD_NAME = #{fieldName,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.PkpInvoiceFormatDict" >
+    insert into COMM.PKP_INVOICE_FORMAT_DICT (INVOICE_TYPE, SERIAL_NO, FIELD_NAME, 
+      STORE_FORMAT, LIMITATION_OF_LENGTH, LENGTH, 
+      PREFIX_LENGTH, CONVERT_WAY, TAX_CODE_OPERATION, 
+      MEMO)
+    values (#{invoiceType,jdbcType=VARCHAR}, #{serialNo,jdbcType=DECIMAL}, #{fieldName,jdbcType=VARCHAR}, 
+      #{storeFormat,jdbcType=VARCHAR}, #{limitationOfLength,jdbcType=VARCHAR}, #{length,jdbcType=VARCHAR}, 
+      #{prefixLength,jdbcType=VARCHAR}, #{convertWay,jdbcType=VARCHAR}, #{taxCodeOperation,jdbcType=VARCHAR}, 
+      #{memo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.PkpInvoiceFormatDict" >
+    insert into COMM.PKP_INVOICE_FORMAT_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="invoiceType != null" >
+        INVOICE_TYPE,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="fieldName != null" >
+        FIELD_NAME,
+      </if>
+      <if test="storeFormat != null" >
+        STORE_FORMAT,
+      </if>
+      <if test="limitationOfLength != null" >
+        LIMITATION_OF_LENGTH,
+      </if>
+      <if test="length != null" >
+        LENGTH,
+      </if>
+      <if test="prefixLength != null" >
+        PREFIX_LENGTH,
+      </if>
+      <if test="convertWay != null" >
+        CONVERT_WAY,
+      </if>
+      <if test="taxCodeOperation != null" >
+        TAX_CODE_OPERATION,
+      </if>
+      <if test="memo != null" >
+        MEMO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="invoiceType != null" >
+        #{invoiceType,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="fieldName != null" >
+        #{fieldName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeFormat != null" >
+        #{storeFormat,jdbcType=VARCHAR},
+      </if>
+      <if test="limitationOfLength != null" >
+        #{limitationOfLength,jdbcType=VARCHAR},
+      </if>
+      <if test="length != null" >
+        #{length,jdbcType=VARCHAR},
+      </if>
+      <if test="prefixLength != null" >
+        #{prefixLength,jdbcType=VARCHAR},
+      </if>
+      <if test="convertWay != null" >
+        #{convertWay,jdbcType=VARCHAR},
+      </if>
+      <if test="taxCodeOperation != null" >
+        #{taxCodeOperation,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.PkpInvoiceFormatDict" >
+    update COMM.PKP_INVOICE_FORMAT_DICT
+    <set >
+      <if test="storeFormat != null" >
+        STORE_FORMAT = #{storeFormat,jdbcType=VARCHAR},
+      </if>
+      <if test="limitationOfLength != null" >
+        LIMITATION_OF_LENGTH = #{limitationOfLength,jdbcType=VARCHAR},
+      </if>
+      <if test="length != null" >
+        LENGTH = #{length,jdbcType=VARCHAR},
+      </if>
+      <if test="prefixLength != null" >
+        PREFIX_LENGTH = #{prefixLength,jdbcType=VARCHAR},
+      </if>
+      <if test="convertWay != null" >
+        CONVERT_WAY = #{convertWay,jdbcType=VARCHAR},
+      </if>
+      <if test="taxCodeOperation != null" >
+        TAX_CODE_OPERATION = #{taxCodeOperation,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        MEMO = #{memo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where INVOICE_TYPE = #{invoiceType,jdbcType=VARCHAR}
+      and SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+      and FIELD_NAME = #{fieldName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.PkpInvoiceFormatDict" >
+    update COMM.PKP_INVOICE_FORMAT_DICT
+    set STORE_FORMAT = #{storeFormat,jdbcType=VARCHAR},
+      LIMITATION_OF_LENGTH = #{limitationOfLength,jdbcType=VARCHAR},
+      LENGTH = #{length,jdbcType=VARCHAR},
+      PREFIX_LENGTH = #{prefixLength,jdbcType=VARCHAR},
+      CONVERT_WAY = #{convertWay,jdbcType=VARCHAR},
+      TAX_CODE_OPERATION = #{taxCodeOperation,jdbcType=VARCHAR},
+      MEMO = #{memo,jdbcType=VARCHAR}
+    where INVOICE_TYPE = #{invoiceType,jdbcType=VARCHAR}
+      and SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+      and FIELD_NAME = #{fieldName,jdbcType=VARCHAR}
+  </update>
+</mapper>

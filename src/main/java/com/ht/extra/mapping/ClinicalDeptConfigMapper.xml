@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.ClinicalDeptConfigMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.ClinicalDeptConfig" >
+    <id column="DEPT_CODE" property="deptCode" jdbcType="VARCHAR" />
+    <result column="BED_NUMBER" property="bedNumber" jdbcType="DECIMAL" />
+    <result column="CHIEF_PHYSICIAN_NUM" property="chiefPhysicianNum" jdbcType="DECIMAL" />
+    <result column="ATTENDING_DOCTOR_NUM" property="attendingDoctorNum" jdbcType="DECIMAL" />
+    <result column="RESIDENT_NUM" property="residentNum" jdbcType="DECIMAL" />
+    <result column="NURSE_NUM" property="nurseNum" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    DEPT_CODE, BED_NUMBER, CHIEF_PHYSICIAN_NUM, ATTENDING_DOCTOR_NUM, RESIDENT_NUM, NURSE_NUM
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.CLINICAL_DEPT_CONFIG
+    where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.CLINICAL_DEPT_CONFIG
+    where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.ClinicalDeptConfig" >
+    insert into COMM.CLINICAL_DEPT_CONFIG (DEPT_CODE, BED_NUMBER, CHIEF_PHYSICIAN_NUM, 
+      ATTENDING_DOCTOR_NUM, RESIDENT_NUM, NURSE_NUM
+      )
+    values (#{deptCode,jdbcType=VARCHAR}, #{bedNumber,jdbcType=DECIMAL}, #{chiefPhysicianNum,jdbcType=DECIMAL}, 
+      #{attendingDoctorNum,jdbcType=DECIMAL}, #{residentNum,jdbcType=DECIMAL}, #{nurseNum,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.ClinicalDeptConfig" >
+    insert into COMM.CLINICAL_DEPT_CONFIG
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="deptCode != null" >
+        DEPT_CODE,
+      </if>
+      <if test="bedNumber != null" >
+        BED_NUMBER,
+      </if>
+      <if test="chiefPhysicianNum != null" >
+        CHIEF_PHYSICIAN_NUM,
+      </if>
+      <if test="attendingDoctorNum != null" >
+        ATTENDING_DOCTOR_NUM,
+      </if>
+      <if test="residentNum != null" >
+        RESIDENT_NUM,
+      </if>
+      <if test="nurseNum != null" >
+        NURSE_NUM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="deptCode != null" >
+        #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bedNumber != null" >
+        #{bedNumber,jdbcType=DECIMAL},
+      </if>
+      <if test="chiefPhysicianNum != null" >
+        #{chiefPhysicianNum,jdbcType=DECIMAL},
+      </if>
+      <if test="attendingDoctorNum != null" >
+        #{attendingDoctorNum,jdbcType=DECIMAL},
+      </if>
+      <if test="residentNum != null" >
+        #{residentNum,jdbcType=DECIMAL},
+      </if>
+      <if test="nurseNum != null" >
+        #{nurseNum,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.ClinicalDeptConfig" >
+    update COMM.CLINICAL_DEPT_CONFIG
+    <set >
+      <if test="bedNumber != null" >
+        BED_NUMBER = #{bedNumber,jdbcType=DECIMAL},
+      </if>
+      <if test="chiefPhysicianNum != null" >
+        CHIEF_PHYSICIAN_NUM = #{chiefPhysicianNum,jdbcType=DECIMAL},
+      </if>
+      <if test="attendingDoctorNum != null" >
+        ATTENDING_DOCTOR_NUM = #{attendingDoctorNum,jdbcType=DECIMAL},
+      </if>
+      <if test="residentNum != null" >
+        RESIDENT_NUM = #{residentNum,jdbcType=DECIMAL},
+      </if>
+      <if test="nurseNum != null" >
+        NURSE_NUM = #{nurseNum,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.ClinicalDeptConfig" >
+    update COMM.CLINICAL_DEPT_CONFIG
+    set BED_NUMBER = #{bedNumber,jdbcType=DECIMAL},
+      CHIEF_PHYSICIAN_NUM = #{chiefPhysicianNum,jdbcType=DECIMAL},
+      ATTENDING_DOCTOR_NUM = #{attendingDoctorNum,jdbcType=DECIMAL},
+      RESIDENT_NUM = #{residentNum,jdbcType=DECIMAL},
+      NURSE_NUM = #{nurseNum,jdbcType=DECIMAL}
+    where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

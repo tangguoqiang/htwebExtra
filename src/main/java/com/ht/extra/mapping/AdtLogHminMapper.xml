@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.AdtLogHminMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.inpadm.AdtLogHmin" >
+    <id column="WARD_CODE" property="wardCode" jdbcType="VARCHAR" />
+    <id column="LOG_DATE_TIME" property="logDateTime" jdbcType="DATE" />
+    <id column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <id column="VISIT_ID" property="visitId" jdbcType="DECIMAL" />
+    <id column="ACTION" property="action" jdbcType="VARCHAR" />
+    <id column="CHANGE_DATE_TIME" property="changeDateTime" jdbcType="DATE" />
+    <result column="DEPT_CODE" property="deptCode" jdbcType="VARCHAR" />
+    <result column="DB_USER" property="dbUser" jdbcType="VARCHAR" />
+    <result column="LOG_DATE_TIME_AGAIN" property="logDateTimeAgain" jdbcType="DATE" />
+    <result column="INSERT_USER" property="insertUser" jdbcType="VARCHAR" />
+    <result column="INSERT_DATE_TIME" property="insertDateTime" jdbcType="DATE" />
+    <result column="DIFF_DAY_SIGN" property="diffDaySign" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    WARD_CODE, LOG_DATE_TIME, PATIENT_ID, VISIT_ID, ACTION, CHANGE_DATE_TIME, DEPT_CODE, 
+    DB_USER, LOG_DATE_TIME_AGAIN, INSERT_USER, INSERT_DATE_TIME, DIFF_DAY_SIGN
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.inpadm.AdtLogHminKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from INPADM.ADT_LOG_HMIN
+    where WARD_CODE = #{wardCode,jdbcType=VARCHAR}
+      and LOG_DATE_TIME = #{logDateTime,jdbcType=DATE}
+      and PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and ACTION = #{action,jdbcType=VARCHAR}
+      and CHANGE_DATE_TIME = #{changeDateTime,jdbcType=DATE}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.inpadm.AdtLogHminKey" >
+    delete from INPADM.ADT_LOG_HMIN
+    where WARD_CODE = #{wardCode,jdbcType=VARCHAR}
+      and LOG_DATE_TIME = #{logDateTime,jdbcType=DATE}
+      and PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and ACTION = #{action,jdbcType=VARCHAR}
+      and CHANGE_DATE_TIME = #{changeDateTime,jdbcType=DATE}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.inpadm.AdtLogHmin" >
+    insert into INPADM.ADT_LOG_HMIN (WARD_CODE, LOG_DATE_TIME, PATIENT_ID, 
+      VISIT_ID, ACTION, CHANGE_DATE_TIME, 
+      DEPT_CODE, DB_USER, LOG_DATE_TIME_AGAIN, 
+      INSERT_USER, INSERT_DATE_TIME, DIFF_DAY_SIGN
+      )
+    values (#{wardCode,jdbcType=VARCHAR}, #{logDateTime,jdbcType=DATE}, #{patientId,jdbcType=VARCHAR}, 
+      #{visitId,jdbcType=DECIMAL}, #{action,jdbcType=VARCHAR}, #{changeDateTime,jdbcType=DATE}, 
+      #{deptCode,jdbcType=VARCHAR}, #{dbUser,jdbcType=VARCHAR}, #{logDateTimeAgain,jdbcType=DATE}, 
+      #{insertUser,jdbcType=VARCHAR}, #{insertDateTime,jdbcType=DATE}, #{diffDaySign,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.inpadm.AdtLogHmin" >
+    insert into INPADM.ADT_LOG_HMIN
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="wardCode != null" >
+        WARD_CODE,
+      </if>
+      <if test="logDateTime != null" >
+        LOG_DATE_TIME,
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="visitId != null" >
+        VISIT_ID,
+      </if>
+      <if test="action != null" >
+        ACTION,
+      </if>
+      <if test="changeDateTime != null" >
+        CHANGE_DATE_TIME,
+      </if>
+      <if test="deptCode != null" >
+        DEPT_CODE,
+      </if>
+      <if test="dbUser != null" >
+        DB_USER,
+      </if>
+      <if test="logDateTimeAgain != null" >
+        LOG_DATE_TIME_AGAIN,
+      </if>
+      <if test="insertUser != null" >
+        INSERT_USER,
+      </if>
+      <if test="insertDateTime != null" >
+        INSERT_DATE_TIME,
+      </if>
+      <if test="diffDaySign != null" >
+        DIFF_DAY_SIGN,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="wardCode != null" >
+        #{wardCode,jdbcType=VARCHAR},
+      </if>
+      <if test="logDateTime != null" >
+        #{logDateTime,jdbcType=DATE},
+      </if>
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitId != null" >
+        #{visitId,jdbcType=DECIMAL},
+      </if>
+      <if test="action != null" >
+        #{action,jdbcType=VARCHAR},
+      </if>
+      <if test="changeDateTime != null" >
+        #{changeDateTime,jdbcType=DATE},
+      </if>
+      <if test="deptCode != null" >
+        #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dbUser != null" >
+        #{dbUser,jdbcType=VARCHAR},
+      </if>
+      <if test="logDateTimeAgain != null" >
+        #{logDateTimeAgain,jdbcType=DATE},
+      </if>
+      <if test="insertUser != null" >
+        #{insertUser,jdbcType=VARCHAR},
+      </if>
+      <if test="insertDateTime != null" >
+        #{insertDateTime,jdbcType=DATE},
+      </if>
+      <if test="diffDaySign != null" >
+        #{diffDaySign,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.inpadm.AdtLogHmin" >
+    update INPADM.ADT_LOG_HMIN
+    <set >
+      <if test="deptCode != null" >
+        DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dbUser != null" >
+        DB_USER = #{dbUser,jdbcType=VARCHAR},
+      </if>
+      <if test="logDateTimeAgain != null" >
+        LOG_DATE_TIME_AGAIN = #{logDateTimeAgain,jdbcType=DATE},
+      </if>
+      <if test="insertUser != null" >
+        INSERT_USER = #{insertUser,jdbcType=VARCHAR},
+      </if>
+      <if test="insertDateTime != null" >
+        INSERT_DATE_TIME = #{insertDateTime,jdbcType=DATE},
+      </if>
+      <if test="diffDaySign != null" >
+        DIFF_DAY_SIGN = #{diffDaySign,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where WARD_CODE = #{wardCode,jdbcType=VARCHAR}
+      and LOG_DATE_TIME = #{logDateTime,jdbcType=DATE}
+      and PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and ACTION = #{action,jdbcType=VARCHAR}
+      and CHANGE_DATE_TIME = #{changeDateTime,jdbcType=DATE}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.inpadm.AdtLogHmin" >
+    update INPADM.ADT_LOG_HMIN
+    set DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+      DB_USER = #{dbUser,jdbcType=VARCHAR},
+      LOG_DATE_TIME_AGAIN = #{logDateTimeAgain,jdbcType=DATE},
+      INSERT_USER = #{insertUser,jdbcType=VARCHAR},
+      INSERT_DATE_TIME = #{insertDateTime,jdbcType=DATE},
+      DIFF_DAY_SIGN = #{diffDaySign,jdbcType=VARCHAR}
+    where WARD_CODE = #{wardCode,jdbcType=VARCHAR}
+      and LOG_DATE_TIME = #{logDateTime,jdbcType=DATE}
+      and PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and ACTION = #{action,jdbcType=VARCHAR}
+      and CHANGE_DATE_TIME = #{changeDateTime,jdbcType=DATE}
+  </update>
+</mapper>

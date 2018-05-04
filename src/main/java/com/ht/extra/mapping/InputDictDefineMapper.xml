@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.InputDictDefineMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.InputDictDefine" >
+    <id column="CATALOG" property="catalog" jdbcType="VARCHAR" />
+    <id column="DICT_NAME" property="dictName" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="APPLICATION" property="application" jdbcType="VARCHAR" />
+    <result column="DICT_TYPE" property="dictType" jdbcType="VARCHAR" />
+    <result column="ITEM_WIDTH" property="itemWidth" jdbcType="DECIMAL" />
+    <result column="ALLOW_EDIT" property="allowEdit" jdbcType="DECIMAL" />
+    <result column="USER_DEFINE" property="userDefine" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    CATALOG, DICT_NAME, SERIAL_NO, APPLICATION, DICT_TYPE, ITEM_WIDTH, ALLOW_EDIT, USER_DEFINE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.InputDictDefineKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.INPUT_DICT_DEFINE
+    where CATALOG = #{catalog,jdbcType=VARCHAR}
+      and DICT_NAME = #{dictName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.InputDictDefineKey" >
+    delete from COMM.INPUT_DICT_DEFINE
+    where CATALOG = #{catalog,jdbcType=VARCHAR}
+      and DICT_NAME = #{dictName,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.InputDictDefine" >
+    insert into COMM.INPUT_DICT_DEFINE (CATALOG, DICT_NAME, SERIAL_NO, 
+      APPLICATION, DICT_TYPE, ITEM_WIDTH, 
+      ALLOW_EDIT, USER_DEFINE)
+    values (#{catalog,jdbcType=VARCHAR}, #{dictName,jdbcType=VARCHAR}, #{serialNo,jdbcType=DECIMAL}, 
+      #{application,jdbcType=VARCHAR}, #{dictType,jdbcType=VARCHAR}, #{itemWidth,jdbcType=DECIMAL}, 
+      #{allowEdit,jdbcType=DECIMAL}, #{userDefine,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.InputDictDefine" >
+    insert into COMM.INPUT_DICT_DEFINE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="catalog != null" >
+        CATALOG,
+      </if>
+      <if test="dictName != null" >
+        DICT_NAME,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="application != null" >
+        APPLICATION,
+      </if>
+      <if test="dictType != null" >
+        DICT_TYPE,
+      </if>
+      <if test="itemWidth != null" >
+        ITEM_WIDTH,
+      </if>
+      <if test="allowEdit != null" >
+        ALLOW_EDIT,
+      </if>
+      <if test="userDefine != null" >
+        USER_DEFINE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="catalog != null" >
+        #{catalog,jdbcType=VARCHAR},
+      </if>
+      <if test="dictName != null" >
+        #{dictName,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="application != null" >
+        #{application,jdbcType=VARCHAR},
+      </if>
+      <if test="dictType != null" >
+        #{dictType,jdbcType=VARCHAR},
+      </if>
+      <if test="itemWidth != null" >
+        #{itemWidth,jdbcType=DECIMAL},
+      </if>
+      <if test="allowEdit != null" >
+        #{allowEdit,jdbcType=DECIMAL},
+      </if>
+      <if test="userDefine != null" >
+        #{userDefine,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.InputDictDefine" >
+    update COMM.INPUT_DICT_DEFINE
+    <set >
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="application != null" >
+        APPLICATION = #{application,jdbcType=VARCHAR},
+      </if>
+      <if test="dictType != null" >
+        DICT_TYPE = #{dictType,jdbcType=VARCHAR},
+      </if>
+      <if test="itemWidth != null" >
+        ITEM_WIDTH = #{itemWidth,jdbcType=DECIMAL},
+      </if>
+      <if test="allowEdit != null" >
+        ALLOW_EDIT = #{allowEdit,jdbcType=DECIMAL},
+      </if>
+      <if test="userDefine != null" >
+        USER_DEFINE = #{userDefine,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where CATALOG = #{catalog,jdbcType=VARCHAR}
+      and DICT_NAME = #{dictName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.InputDictDefine" >
+    update COMM.INPUT_DICT_DEFINE
+    set SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      APPLICATION = #{application,jdbcType=VARCHAR},
+      DICT_TYPE = #{dictType,jdbcType=VARCHAR},
+      ITEM_WIDTH = #{itemWidth,jdbcType=DECIMAL},
+      ALLOW_EDIT = #{allowEdit,jdbcType=DECIMAL},
+      USER_DEFINE = #{userDefine,jdbcType=DECIMAL}
+    where CATALOG = #{catalog,jdbcType=VARCHAR}
+      and DICT_NAME = #{dictName,jdbcType=VARCHAR}
+  </update>
+</mapper>

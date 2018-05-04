@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.CheckLabelDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.CheckLabelDict" >
+    <id column="CHECK_LABEL_CODE" property="checkLabelCode" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="CHECK_LABEL_NAME" property="checkLabelName" jdbcType="VARCHAR" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    CHECK_LABEL_CODE, SERIAL_NO, CHECK_LABEL_NAME, INPUT_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.CHECK_LABEL_DICT
+    where CHECK_LABEL_CODE = #{checkLabelCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.CHECK_LABEL_DICT
+    where CHECK_LABEL_CODE = #{checkLabelCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.CheckLabelDict" >
+    insert into COMM.CHECK_LABEL_DICT (CHECK_LABEL_CODE, SERIAL_NO, CHECK_LABEL_NAME, 
+      INPUT_CODE)
+    values (#{checkLabelCode,jdbcType=VARCHAR}, #{serialNo,jdbcType=DECIMAL}, #{checkLabelName,jdbcType=VARCHAR}, 
+      #{inputCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.CheckLabelDict" >
+    insert into COMM.CHECK_LABEL_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="checkLabelCode != null" >
+        CHECK_LABEL_CODE,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="checkLabelName != null" >
+        CHECK_LABEL_NAME,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="checkLabelCode != null" >
+        #{checkLabelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="checkLabelName != null" >
+        #{checkLabelName,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.CheckLabelDict" >
+    update COMM.CHECK_LABEL_DICT
+    <set >
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="checkLabelName != null" >
+        CHECK_LABEL_NAME = #{checkLabelName,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CHECK_LABEL_CODE = #{checkLabelCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.CheckLabelDict" >
+    update COMM.CHECK_LABEL_DICT
+    set SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      CHECK_LABEL_NAME = #{checkLabelName,jdbcType=VARCHAR},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR}
+    where CHECK_LABEL_CODE = #{checkLabelCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

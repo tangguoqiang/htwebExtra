@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.MrPaperDescMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.medrec.MrPaperDesc" >
+    <id column="PAPER_SIZE" property="paperSize" jdbcType="VARCHAR" />
+    <id column="BIND_POSITION" property="bindPosition" jdbcType="VARCHAR" />
+    <result column="HEIGHT" property="height" jdbcType="DECIMAL" />
+    <result column="WIDTH" property="width" jdbcType="DECIMAL" />
+    <result column="LEFT_MARGIN" property="leftMargin" jdbcType="DECIMAL" />
+    <result column="TOP_MARGIN" property="topMargin" jdbcType="DECIMAL" />
+    <result column="ORDER_LINES" property="orderLines" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PAPER_SIZE, BIND_POSITION, HEIGHT, WIDTH, LEFT_MARGIN, TOP_MARGIN, ORDER_LINES
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.medrec.MrPaperDescKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from MEDREC.MR_PAPER_DESC
+    where PAPER_SIZE = #{paperSize,jdbcType=VARCHAR}
+      and BIND_POSITION = #{bindPosition,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.medrec.MrPaperDescKey" >
+    delete from MEDREC.MR_PAPER_DESC
+    where PAPER_SIZE = #{paperSize,jdbcType=VARCHAR}
+      and BIND_POSITION = #{bindPosition,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.medrec.MrPaperDesc" >
+    insert into MEDREC.MR_PAPER_DESC (PAPER_SIZE, BIND_POSITION, HEIGHT, 
+      WIDTH, LEFT_MARGIN, TOP_MARGIN, 
+      ORDER_LINES)
+    values (#{paperSize,jdbcType=VARCHAR}, #{bindPosition,jdbcType=VARCHAR}, #{height,jdbcType=DECIMAL}, 
+      #{width,jdbcType=DECIMAL}, #{leftMargin,jdbcType=DECIMAL}, #{topMargin,jdbcType=DECIMAL}, 
+      #{orderLines,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.medrec.MrPaperDesc" >
+    insert into MEDREC.MR_PAPER_DESC
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="paperSize != null" >
+        PAPER_SIZE,
+      </if>
+      <if test="bindPosition != null" >
+        BIND_POSITION,
+      </if>
+      <if test="height != null" >
+        HEIGHT,
+      </if>
+      <if test="width != null" >
+        WIDTH,
+      </if>
+      <if test="leftMargin != null" >
+        LEFT_MARGIN,
+      </if>
+      <if test="topMargin != null" >
+        TOP_MARGIN,
+      </if>
+      <if test="orderLines != null" >
+        ORDER_LINES,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="paperSize != null" >
+        #{paperSize,jdbcType=VARCHAR},
+      </if>
+      <if test="bindPosition != null" >
+        #{bindPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="height != null" >
+        #{height,jdbcType=DECIMAL},
+      </if>
+      <if test="width != null" >
+        #{width,jdbcType=DECIMAL},
+      </if>
+      <if test="leftMargin != null" >
+        #{leftMargin,jdbcType=DECIMAL},
+      </if>
+      <if test="topMargin != null" >
+        #{topMargin,jdbcType=DECIMAL},
+      </if>
+      <if test="orderLines != null" >
+        #{orderLines,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.medrec.MrPaperDesc" >
+    update MEDREC.MR_PAPER_DESC
+    <set >
+      <if test="height != null" >
+        HEIGHT = #{height,jdbcType=DECIMAL},
+      </if>
+      <if test="width != null" >
+        WIDTH = #{width,jdbcType=DECIMAL},
+      </if>
+      <if test="leftMargin != null" >
+        LEFT_MARGIN = #{leftMargin,jdbcType=DECIMAL},
+      </if>
+      <if test="topMargin != null" >
+        TOP_MARGIN = #{topMargin,jdbcType=DECIMAL},
+      </if>
+      <if test="orderLines != null" >
+        ORDER_LINES = #{orderLines,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where PAPER_SIZE = #{paperSize,jdbcType=VARCHAR}
+      and BIND_POSITION = #{bindPosition,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.medrec.MrPaperDesc" >
+    update MEDREC.MR_PAPER_DESC
+    set HEIGHT = #{height,jdbcType=DECIMAL},
+      WIDTH = #{width,jdbcType=DECIMAL},
+      LEFT_MARGIN = #{leftMargin,jdbcType=DECIMAL},
+      TOP_MARGIN = #{topMargin,jdbcType=DECIMAL},
+      ORDER_LINES = #{orderLines,jdbcType=DECIMAL}
+    where PAPER_SIZE = #{paperSize,jdbcType=VARCHAR}
+      and BIND_POSITION = #{bindPosition,jdbcType=VARCHAR}
+  </update>
+</mapper>

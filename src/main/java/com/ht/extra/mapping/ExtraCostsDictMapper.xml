@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.ExtraCostsDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.ExtraCostsDict" >
+    <id column="ORDER_CONT" property="orderCont" jdbcType="VARCHAR" />
+    <id column="EXTRA_ITEM_NO" property="extraItemNo" jdbcType="DECIMAL" />
+    <result column="EXTRA_ITEM_CLASS" property="extraItemClass" jdbcType="VARCHAR" />
+    <result column="EXTRA_ITEM_CODE" property="extraItemCode" jdbcType="VARCHAR" />
+    <result column="EXTRA_ITEM_SPEC" property="extraItemSpec" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ORDER_CONT, EXTRA_ITEM_NO, EXTRA_ITEM_CLASS, EXTRA_ITEM_CODE, EXTRA_ITEM_SPEC
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.ExtraCostsDictKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.EXTRA_COSTS_DICT
+    where ORDER_CONT = #{orderCont,jdbcType=VARCHAR}
+      and EXTRA_ITEM_NO = #{extraItemNo,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.ExtraCostsDictKey" >
+    delete from COMM.EXTRA_COSTS_DICT
+    where ORDER_CONT = #{orderCont,jdbcType=VARCHAR}
+      and EXTRA_ITEM_NO = #{extraItemNo,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.ExtraCostsDict" >
+    insert into COMM.EXTRA_COSTS_DICT (ORDER_CONT, EXTRA_ITEM_NO, EXTRA_ITEM_CLASS, 
+      EXTRA_ITEM_CODE, EXTRA_ITEM_SPEC)
+    values (#{orderCont,jdbcType=VARCHAR}, #{extraItemNo,jdbcType=DECIMAL}, #{extraItemClass,jdbcType=VARCHAR}, 
+      #{extraItemCode,jdbcType=VARCHAR}, #{extraItemSpec,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.ExtraCostsDict" >
+    insert into COMM.EXTRA_COSTS_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderCont != null" >
+        ORDER_CONT,
+      </if>
+      <if test="extraItemNo != null" >
+        EXTRA_ITEM_NO,
+      </if>
+      <if test="extraItemClass != null" >
+        EXTRA_ITEM_CLASS,
+      </if>
+      <if test="extraItemCode != null" >
+        EXTRA_ITEM_CODE,
+      </if>
+      <if test="extraItemSpec != null" >
+        EXTRA_ITEM_SPEC,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderCont != null" >
+        #{orderCont,jdbcType=VARCHAR},
+      </if>
+      <if test="extraItemNo != null" >
+        #{extraItemNo,jdbcType=DECIMAL},
+      </if>
+      <if test="extraItemClass != null" >
+        #{extraItemClass,jdbcType=VARCHAR},
+      </if>
+      <if test="extraItemCode != null" >
+        #{extraItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="extraItemSpec != null" >
+        #{extraItemSpec,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.ExtraCostsDict" >
+    update COMM.EXTRA_COSTS_DICT
+    <set >
+      <if test="extraItemClass != null" >
+        EXTRA_ITEM_CLASS = #{extraItemClass,jdbcType=VARCHAR},
+      </if>
+      <if test="extraItemCode != null" >
+        EXTRA_ITEM_CODE = #{extraItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="extraItemSpec != null" >
+        EXTRA_ITEM_SPEC = #{extraItemSpec,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ORDER_CONT = #{orderCont,jdbcType=VARCHAR}
+      and EXTRA_ITEM_NO = #{extraItemNo,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.ExtraCostsDict" >
+    update COMM.EXTRA_COSTS_DICT
+    set EXTRA_ITEM_CLASS = #{extraItemClass,jdbcType=VARCHAR},
+      EXTRA_ITEM_CODE = #{extraItemCode,jdbcType=VARCHAR},
+      EXTRA_ITEM_SPEC = #{extraItemSpec,jdbcType=VARCHAR}
+    where ORDER_CONT = #{orderCont,jdbcType=VARCHAR}
+      and EXTRA_ITEM_NO = #{extraItemNo,jdbcType=DECIMAL}
+  </update>
+</mapper>

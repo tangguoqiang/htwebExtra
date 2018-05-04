@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.StaffDictBackupMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.StaffDictBackup" >
+    <id column="EMP_NO" property="empNo" jdbcType="VARCHAR" />
+    <result column="DEPT_CODE" property="deptCode" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+    <result column="JOB" property="job" jdbcType="VARCHAR" />
+    <result column="TITLE" property="title" jdbcType="VARCHAR" />
+    <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    EMP_NO, DEPT_CODE, NAME, INPUT_CODE, JOB, TITLE, USER_NAME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.STAFF_DICT_BACKUP
+    where EMP_NO = #{empNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.STAFF_DICT_BACKUP
+    where EMP_NO = #{empNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.StaffDictBackup" >
+    insert into COMM.STAFF_DICT_BACKUP (EMP_NO, DEPT_CODE, NAME, 
+      INPUT_CODE, JOB, TITLE, 
+      USER_NAME)
+    values (#{empNo,jdbcType=VARCHAR}, #{deptCode,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{inputCode,jdbcType=VARCHAR}, #{job,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{userName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.StaffDictBackup" >
+    insert into COMM.STAFF_DICT_BACKUP
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="empNo != null" >
+        EMP_NO,
+      </if>
+      <if test="deptCode != null" >
+        DEPT_CODE,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+      <if test="job != null" >
+        JOB,
+      </if>
+      <if test="title != null" >
+        TITLE,
+      </if>
+      <if test="userName != null" >
+        USER_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="empNo != null" >
+        #{empNo,jdbcType=VARCHAR},
+      </if>
+      <if test="deptCode != null" >
+        #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null" >
+        #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.StaffDictBackup" >
+    update COMM.STAFF_DICT_BACKUP
+    <set >
+      <if test="deptCode != null" >
+        DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null" >
+        JOB = #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        TITLE = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where EMP_NO = #{empNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.StaffDictBackup" >
+    update COMM.STAFF_DICT_BACKUP
+    set DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      JOB = #{job,jdbcType=VARCHAR},
+      TITLE = #{title,jdbcType=VARCHAR},
+      USER_NAME = #{userName,jdbcType=VARCHAR}
+    where EMP_NO = #{empNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

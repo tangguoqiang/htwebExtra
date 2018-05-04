@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.BillMiscItemMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.inpbill.BillMiscItem" >
+    <id column="ITEM_CLASS" property="itemClass" jdbcType="VARCHAR" />
+    <id column="ITEM_CODE" property="itemCode" jdbcType="VARCHAR" />
+    <id column="ITEM_SPEC" property="itemSpec" jdbcType="VARCHAR" />
+    <result column="ITEM_NO" property="itemNo" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ITEM_CLASS, ITEM_CODE, ITEM_SPEC, ITEM_NO
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.inpbill.BillMiscItemKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from INPBILL.BILL_MISC_ITEM
+    where ITEM_CLASS = #{itemClass,jdbcType=VARCHAR}
+      and ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+      and ITEM_SPEC = #{itemSpec,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.inpbill.BillMiscItemKey" >
+    delete from INPBILL.BILL_MISC_ITEM
+    where ITEM_CLASS = #{itemClass,jdbcType=VARCHAR}
+      and ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+      and ITEM_SPEC = #{itemSpec,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.inpbill.BillMiscItem" >
+    insert into INPBILL.BILL_MISC_ITEM (ITEM_CLASS, ITEM_CODE, ITEM_SPEC, 
+      ITEM_NO)
+    values (#{itemClass,jdbcType=VARCHAR}, #{itemCode,jdbcType=VARCHAR}, #{itemSpec,jdbcType=VARCHAR}, 
+      #{itemNo,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.inpbill.BillMiscItem" >
+    insert into INPBILL.BILL_MISC_ITEM
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="itemClass != null" >
+        ITEM_CLASS,
+      </if>
+      <if test="itemCode != null" >
+        ITEM_CODE,
+      </if>
+      <if test="itemSpec != null" >
+        ITEM_SPEC,
+      </if>
+      <if test="itemNo != null" >
+        ITEM_NO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="itemClass != null" >
+        #{itemClass,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode != null" >
+        #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemSpec != null" >
+        #{itemSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="itemNo != null" >
+        #{itemNo,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.inpbill.BillMiscItem" >
+    update INPBILL.BILL_MISC_ITEM
+    <set >
+      <if test="itemNo != null" >
+        ITEM_NO = #{itemNo,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ITEM_CLASS = #{itemClass,jdbcType=VARCHAR}
+      and ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+      and ITEM_SPEC = #{itemSpec,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.inpbill.BillMiscItem" >
+    update INPBILL.BILL_MISC_ITEM
+    set ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+    where ITEM_CLASS = #{itemClass,jdbcType=VARCHAR}
+      and ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+      and ITEM_SPEC = #{itemSpec,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.OlHintsMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.outln.OlHints" >
+    <result column="OL_NAME" property="olName" jdbcType="VARCHAR" />
+    <result column="HINT#" property="hint" jdbcType="DECIMAL" />
+    <result column="CATEGORY" property="category" jdbcType="VARCHAR" />
+    <result column="HINT_TYPE" property="hintType" jdbcType="DECIMAL" />
+    <result column="HINT_TEXT" property="hintText" jdbcType="VARCHAR" />
+    <result column="STAGE#" property="stage" jdbcType="DECIMAL" />
+    <result column="NODE#" property="node" jdbcType="DECIMAL" />
+    <result column="TABLE_NAME" property="tableName" jdbcType="VARCHAR" />
+    <result column="TABLE_TIN" property="tableTin" jdbcType="DECIMAL" />
+    <result column="TABLE_POS" property="tablePos" jdbcType="DECIMAL" />
+    <result column="REF_ID" property="refId" jdbcType="DECIMAL" />
+    <result column="USER_TABLE_NAME" property="userTableName" jdbcType="VARCHAR" />
+    <result column="COST" property="cost" jdbcType="FLOAT" />
+    <result column="CARDINALITY" property="cardinality" jdbcType="FLOAT" />
+    <result column="BYTES" property="bytes" jdbcType="FLOAT" />
+    <result column="HINT_TEXTOFF" property="hintTextoff" jdbcType="DECIMAL" />
+    <result column="HINT_TEXTLEN" property="hintTextlen" jdbcType="DECIMAL" />
+    <result column="JOIN_PRED" property="joinPred" jdbcType="VARCHAR" />
+    <result column="SPARE1" property="spare1" jdbcType="DECIMAL" />
+    <result column="SPARE2" property="spare2" jdbcType="DECIMAL" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.ht.extra.pojo.outln.OlHints" extends="BaseResultMap" >
+    <result column="HINT_STRING" property="hintString" jdbcType="CLOB" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    HINT_STRING
+  </sql>
+  <insert id="insert" parameterType="com.ht.extra.pojo.outln.OlHints" >
+    insert into OUTLN.OL$HINTS (OL_NAME, HINT#, CATEGORY, 
+      HINT_TYPE, HINT_TEXT, STAGE#, 
+      NODE#, TABLE_NAME, TABLE_TIN, 
+      TABLE_POS, REF_ID, USER_TABLE_NAME, 
+      COST, CARDINALITY, BYTES, 
+      HINT_TEXTOFF, HINT_TEXTLEN, JOIN_PRED, 
+      SPARE1, SPARE2, HINT_STRING
+      )
+    values (#{olName,jdbcType=VARCHAR}, #{hint,jdbcType=DECIMAL}, #{category,jdbcType=VARCHAR}, 
+      #{hintType,jdbcType=DECIMAL}, #{hintText,jdbcType=VARCHAR}, #{stage,jdbcType=DECIMAL}, 
+      #{node,jdbcType=DECIMAL}, #{tableName,jdbcType=VARCHAR}, #{tableTin,jdbcType=DECIMAL}, 
+      #{tablePos,jdbcType=DECIMAL}, #{refId,jdbcType=DECIMAL}, #{userTableName,jdbcType=VARCHAR}, 
+      #{cost,jdbcType=FLOAT}, #{cardinality,jdbcType=FLOAT}, #{bytes,jdbcType=FLOAT}, 
+      #{hintTextoff,jdbcType=DECIMAL}, #{hintTextlen,jdbcType=DECIMAL}, #{joinPred,jdbcType=VARCHAR}, 
+      #{spare1,jdbcType=DECIMAL}, #{spare2,jdbcType=DECIMAL}, #{hintString,jdbcType=CLOB}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.outln.OlHints" >
+    insert into OUTLN.OL$HINTS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="olName != null" >
+        OL_NAME,
+      </if>
+      <if test="hint != null" >
+        HINT#,
+      </if>
+      <if test="category != null" >
+        CATEGORY,
+      </if>
+      <if test="hintType != null" >
+        HINT_TYPE,
+      </if>
+      <if test="hintText != null" >
+        HINT_TEXT,
+      </if>
+      <if test="stage != null" >
+        STAGE#,
+      </if>
+      <if test="node != null" >
+        NODE#,
+      </if>
+      <if test="tableName != null" >
+        TABLE_NAME,
+      </if>
+      <if test="tableTin != null" >
+        TABLE_TIN,
+      </if>
+      <if test="tablePos != null" >
+        TABLE_POS,
+      </if>
+      <if test="refId != null" >
+        REF_ID,
+      </if>
+      <if test="userTableName != null" >
+        USER_TABLE_NAME,
+      </if>
+      <if test="cost != null" >
+        COST,
+      </if>
+      <if test="cardinality != null" >
+        CARDINALITY,
+      </if>
+      <if test="bytes != null" >
+        BYTES,
+      </if>
+      <if test="hintTextoff != null" >
+        HINT_TEXTOFF,
+      </if>
+      <if test="hintTextlen != null" >
+        HINT_TEXTLEN,
+      </if>
+      <if test="joinPred != null" >
+        JOIN_PRED,
+      </if>
+      <if test="spare1 != null" >
+        SPARE1,
+      </if>
+      <if test="spare2 != null" >
+        SPARE2,
+      </if>
+      <if test="hintString != null" >
+        HINT_STRING,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="olName != null" >
+        #{olName,jdbcType=VARCHAR},
+      </if>
+      <if test="hint != null" >
+        #{hint,jdbcType=DECIMAL},
+      </if>
+      <if test="category != null" >
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="hintType != null" >
+        #{hintType,jdbcType=DECIMAL},
+      </if>
+      <if test="hintText != null" >
+        #{hintText,jdbcType=VARCHAR},
+      </if>
+      <if test="stage != null" >
+        #{stage,jdbcType=DECIMAL},
+      </if>
+      <if test="node != null" >
+        #{node,jdbcType=DECIMAL},
+      </if>
+      <if test="tableName != null" >
+        #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="tableTin != null" >
+        #{tableTin,jdbcType=DECIMAL},
+      </if>
+      <if test="tablePos != null" >
+        #{tablePos,jdbcType=DECIMAL},
+      </if>
+      <if test="refId != null" >
+        #{refId,jdbcType=DECIMAL},
+      </if>
+      <if test="userTableName != null" >
+        #{userTableName,jdbcType=VARCHAR},
+      </if>
+      <if test="cost != null" >
+        #{cost,jdbcType=FLOAT},
+      </if>
+      <if test="cardinality != null" >
+        #{cardinality,jdbcType=FLOAT},
+      </if>
+      <if test="bytes != null" >
+        #{bytes,jdbcType=FLOAT},
+      </if>
+      <if test="hintTextoff != null" >
+        #{hintTextoff,jdbcType=DECIMAL},
+      </if>
+      <if test="hintTextlen != null" >
+        #{hintTextlen,jdbcType=DECIMAL},
+      </if>
+      <if test="joinPred != null" >
+        #{joinPred,jdbcType=VARCHAR},
+      </if>
+      <if test="spare1 != null" >
+        #{spare1,jdbcType=DECIMAL},
+      </if>
+      <if test="spare2 != null" >
+        #{spare2,jdbcType=DECIMAL},
+      </if>
+      <if test="hintString != null" >
+        #{hintString,jdbcType=CLOB},
+      </if>
+    </trim>
+  </insert>
+</mapper>

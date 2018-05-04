@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.DrugIncompatibilityMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.DrugIncompatibility" >
+    <id column="DRUG_A_CODE" property="drugACode" jdbcType="VARCHAR" />
+    <id column="DRUG_B_CODE" property="drugBCode" jdbcType="VARCHAR" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    DRUG_A_CODE, DRUG_B_CODE, DESCRIPTION
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.DrugIncompatibilityKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.DRUG_INCOMPATIBILITY
+    where DRUG_A_CODE = #{drugACode,jdbcType=VARCHAR}
+      and DRUG_B_CODE = #{drugBCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.DrugIncompatibilityKey" >
+    delete from COMM.DRUG_INCOMPATIBILITY
+    where DRUG_A_CODE = #{drugACode,jdbcType=VARCHAR}
+      and DRUG_B_CODE = #{drugBCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.DrugIncompatibility" >
+    insert into COMM.DRUG_INCOMPATIBILITY (DRUG_A_CODE, DRUG_B_CODE, DESCRIPTION
+      )
+    values (#{drugACode,jdbcType=VARCHAR}, #{drugBCode,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.DrugIncompatibility" >
+    insert into COMM.DRUG_INCOMPATIBILITY
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="drugACode != null" >
+        DRUG_A_CODE,
+      </if>
+      <if test="drugBCode != null" >
+        DRUG_B_CODE,
+      </if>
+      <if test="description != null" >
+        DESCRIPTION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="drugACode != null" >
+        #{drugACode,jdbcType=VARCHAR},
+      </if>
+      <if test="drugBCode != null" >
+        #{drugBCode,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.DrugIncompatibility" >
+    update COMM.DRUG_INCOMPATIBILITY
+    <set >
+      <if test="description != null" >
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DRUG_A_CODE = #{drugACode,jdbcType=VARCHAR}
+      and DRUG_B_CODE = #{drugBCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.DrugIncompatibility" >
+    update COMM.DRUG_INCOMPATIBILITY
+    set DESCRIPTION = #{description,jdbcType=VARCHAR}
+    where DRUG_A_CODE = #{drugACode,jdbcType=VARCHAR}
+      and DRUG_B_CODE = #{drugBCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.DeptCodeReckMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.DeptCodeReck" >
+    <id column="DEPT_CODE" property="deptCode" jdbcType="VARCHAR" />
+    <id column="DEPT_NAME" property="deptName" jdbcType="VARCHAR" />
+    <result column="SCEP_NO" property="scepNo" jdbcType="CHAR" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+    <result column="DEPT_TCBL" property="deptTcbl" jdbcType="DECIMAL" />
+    <result column="JMBL" property="jmbl" jdbcType="DECIMAL" />
+    <result column="ATTR_ON_HS" property="attrOnHs" jdbcType="CHAR" />
+    <result column="ATTR_ON_CB" property="attrOnCb" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    DEPT_CODE, DEPT_NAME, SCEP_NO, INPUT_CODE, DEPT_TCBL, JMBL, ATTR_ON_HS, ATTR_ON_CB
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.DeptCodeReckKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.DEPT_CODE_RECK
+    where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+      and DEPT_NAME = #{deptName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.DeptCodeReckKey" >
+    delete from COMM.DEPT_CODE_RECK
+    where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+      and DEPT_NAME = #{deptName,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.DeptCodeReck" >
+    insert into COMM.DEPT_CODE_RECK (DEPT_CODE, DEPT_NAME, SCEP_NO, 
+      INPUT_CODE, DEPT_TCBL, JMBL, 
+      ATTR_ON_HS, ATTR_ON_CB)
+    values (#{deptCode,jdbcType=VARCHAR}, #{deptName,jdbcType=VARCHAR}, #{scepNo,jdbcType=CHAR}, 
+      #{inputCode,jdbcType=VARCHAR}, #{deptTcbl,jdbcType=DECIMAL}, #{jmbl,jdbcType=DECIMAL}, 
+      #{attrOnHs,jdbcType=CHAR}, #{attrOnCb,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.DeptCodeReck" >
+    insert into COMM.DEPT_CODE_RECK
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="deptCode != null" >
+        DEPT_CODE,
+      </if>
+      <if test="deptName != null" >
+        DEPT_NAME,
+      </if>
+      <if test="scepNo != null" >
+        SCEP_NO,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+      <if test="deptTcbl != null" >
+        DEPT_TCBL,
+      </if>
+      <if test="jmbl != null" >
+        JMBL,
+      </if>
+      <if test="attrOnHs != null" >
+        ATTR_ON_HS,
+      </if>
+      <if test="attrOnCb != null" >
+        ATTR_ON_CB,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="deptCode != null" >
+        #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null" >
+        #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="scepNo != null" >
+        #{scepNo,jdbcType=CHAR},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptTcbl != null" >
+        #{deptTcbl,jdbcType=DECIMAL},
+      </if>
+      <if test="jmbl != null" >
+        #{jmbl,jdbcType=DECIMAL},
+      </if>
+      <if test="attrOnHs != null" >
+        #{attrOnHs,jdbcType=CHAR},
+      </if>
+      <if test="attrOnCb != null" >
+        #{attrOnCb,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.DeptCodeReck" >
+    update COMM.DEPT_CODE_RECK
+    <set >
+      <if test="scepNo != null" >
+        SCEP_NO = #{scepNo,jdbcType=CHAR},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptTcbl != null" >
+        DEPT_TCBL = #{deptTcbl,jdbcType=DECIMAL},
+      </if>
+      <if test="jmbl != null" >
+        JMBL = #{jmbl,jdbcType=DECIMAL},
+      </if>
+      <if test="attrOnHs != null" >
+        ATTR_ON_HS = #{attrOnHs,jdbcType=CHAR},
+      </if>
+      <if test="attrOnCb != null" >
+        ATTR_ON_CB = #{attrOnCb,jdbcType=CHAR},
+      </if>
+    </set>
+    where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+      and DEPT_NAME = #{deptName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.DeptCodeReck" >
+    update COMM.DEPT_CODE_RECK
+    set SCEP_NO = #{scepNo,jdbcType=CHAR},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      DEPT_TCBL = #{deptTcbl,jdbcType=DECIMAL},
+      JMBL = #{jmbl,jdbcType=DECIMAL},
+      ATTR_ON_HS = #{attrOnHs,jdbcType=CHAR},
+      ATTR_ON_CB = #{attrOnCb,jdbcType=CHAR}
+    where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+      and DEPT_NAME = #{deptName,jdbcType=VARCHAR}
+  </update>
+</mapper>

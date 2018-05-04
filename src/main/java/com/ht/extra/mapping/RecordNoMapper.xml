@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.RecordNoMapper">
+    <resultMap id="BaseMap" type="com.ht.extra.pojo.RecordNo">
+        <result column="RECORD" property="recordNo" jdbcType="VARCHAR" />
+    </resultMap>
+    <select id="selectPerformedByListForSG" resultMap="BaseMap">
+      select distinct (l.tubecolor) RECORD from LAB.LIS_MACHINEHISITEM l
+       where l.hisitemcode in
+      (select o.item_code from OUTPDOCT.OUTP_TREAT_REC o WHERE  o.visit_date=#{1} and o.visit_no=#{0} and o.item_class='C' and o.charge_indicator=0)
+    </select>
+</mapper>

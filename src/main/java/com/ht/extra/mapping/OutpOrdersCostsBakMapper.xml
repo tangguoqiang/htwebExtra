@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.OutpOrdersCostsBakMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.outpdoct.OutpOrdersCostsBak" >
+    <id column="SERIAL_NO" property="serialNo" jdbcType="VARCHAR" />
+    <id column="ORDER_CLASS" property="orderClass" jdbcType="VARCHAR" />
+    <id column="ORDER_NO" property="orderNo" jdbcType="DECIMAL" />
+    <id column="ITEM_NO" property="itemNo" jdbcType="DECIMAL" />
+    <result column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <result column="VISIT_DATE" property="visitDate" jdbcType="DATE" />
+    <result column="VISIT_NO" property="visitNo" jdbcType="DECIMAL" />
+    <result column="ORDER_SUB_NO" property="orderSubNo" jdbcType="DECIMAL" />
+    <result column="ITEM_CLASS" property="itemClass" jdbcType="VARCHAR" />
+    <result column="ITEM_NAME" property="itemName" jdbcType="VARCHAR" />
+    <result column="ITEM_CODE" property="itemCode" jdbcType="VARCHAR" />
+    <result column="ITEM_SPEC" property="itemSpec" jdbcType="VARCHAR" />
+    <result column="UNITS" property="units" jdbcType="VARCHAR" />
+    <result column="REPETITION" property="repetition" jdbcType="DECIMAL" />
+    <result column="AMOUNT" property="amount" jdbcType="DECIMAL" />
+    <result column="ORDERED_BY_DEPT" property="orderedByDept" jdbcType="VARCHAR" />
+    <result column="ORDERED_BY_DOCTOR" property="orderedByDoctor" jdbcType="VARCHAR" />
+    <result column="PERFORMED_BY" property="performedBy" jdbcType="VARCHAR" />
+    <result column="CLASS_ON_RCPT" property="classOnRcpt" jdbcType="VARCHAR" />
+    <result column="COSTS" property="costs" jdbcType="DECIMAL" />
+    <result column="CHARGES" property="charges" jdbcType="DECIMAL" />
+    <result column="RCPT_NO" property="rcptNo" jdbcType="VARCHAR" />
+    <result column="BILL_DESC_NO" property="billDescNo" jdbcType="DECIMAL" />
+    <result column="BILL_ITEM_NO" property="billItemNo" jdbcType="DECIMAL" />
+    <result column="CHARGE_INDICATOR" property="chargeIndicator" jdbcType="DECIMAL" />
+    <result column="APPOINT_NO" property="appointNo" jdbcType="VARCHAR" />
+    <result column="RECIPETYPE" property="recipetype" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SERIAL_NO, ORDER_CLASS, ORDER_NO, ITEM_NO, PATIENT_ID, VISIT_DATE, VISIT_NO, ORDER_SUB_NO, 
+    ITEM_CLASS, ITEM_NAME, ITEM_CODE, ITEM_SPEC, UNITS, REPETITION, AMOUNT, ORDERED_BY_DEPT, 
+    ORDERED_BY_DOCTOR, PERFORMED_BY, CLASS_ON_RCPT, COSTS, CHARGES, RCPT_NO, BILL_DESC_NO, 
+    BILL_ITEM_NO, CHARGE_INDICATOR, APPOINT_NO, RECIPETYPE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.outpdoct.OutpOrdersCostsBakKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from OUTPDOCT.OUTP_ORDERS_COSTS_BAK
+    where SERIAL_NO = #{serialNo,jdbcType=VARCHAR}
+      and ORDER_CLASS = #{orderClass,jdbcType=VARCHAR}
+      and ORDER_NO = #{orderNo,jdbcType=DECIMAL}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.outpdoct.OutpOrdersCostsBakKey" >
+    delete from OUTPDOCT.OUTP_ORDERS_COSTS_BAK
+    where SERIAL_NO = #{serialNo,jdbcType=VARCHAR}
+      and ORDER_CLASS = #{orderClass,jdbcType=VARCHAR}
+      and ORDER_NO = #{orderNo,jdbcType=DECIMAL}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.outpdoct.OutpOrdersCostsBak" >
+    insert into OUTPDOCT.OUTP_ORDERS_COSTS_BAK (SERIAL_NO, ORDER_CLASS, ORDER_NO, 
+      ITEM_NO, PATIENT_ID, VISIT_DATE, 
+      VISIT_NO, ORDER_SUB_NO, ITEM_CLASS, 
+      ITEM_NAME, ITEM_CODE, ITEM_SPEC, 
+      UNITS, REPETITION, AMOUNT, 
+      ORDERED_BY_DEPT, ORDERED_BY_DOCTOR, PERFORMED_BY, 
+      CLASS_ON_RCPT, COSTS, CHARGES, 
+      RCPT_NO, BILL_DESC_NO, BILL_ITEM_NO, 
+      CHARGE_INDICATOR, APPOINT_NO, RECIPETYPE
+      )
+    values (#{serialNo,jdbcType=VARCHAR}, #{orderClass,jdbcType=VARCHAR}, #{orderNo,jdbcType=DECIMAL}, 
+      #{itemNo,jdbcType=DECIMAL}, #{patientId,jdbcType=VARCHAR}, #{visitDate,jdbcType=DATE}, 
+      #{visitNo,jdbcType=DECIMAL}, #{orderSubNo,jdbcType=DECIMAL}, #{itemClass,jdbcType=VARCHAR}, 
+      #{itemName,jdbcType=VARCHAR}, #{itemCode,jdbcType=VARCHAR}, #{itemSpec,jdbcType=VARCHAR}, 
+      #{units,jdbcType=VARCHAR}, #{repetition,jdbcType=DECIMAL}, #{amount,jdbcType=DECIMAL}, 
+      #{orderedByDept,jdbcType=VARCHAR}, #{orderedByDoctor,jdbcType=VARCHAR}, #{performedBy,jdbcType=VARCHAR}, 
+      #{classOnRcpt,jdbcType=VARCHAR}, #{costs,jdbcType=DECIMAL}, #{charges,jdbcType=DECIMAL}, 
+      #{rcptNo,jdbcType=VARCHAR}, #{billDescNo,jdbcType=DECIMAL}, #{billItemNo,jdbcType=DECIMAL}, 
+      #{chargeIndicator,jdbcType=DECIMAL}, #{appointNo,jdbcType=VARCHAR}, #{recipetype,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.outpdoct.OutpOrdersCostsBak" >
+    insert into OUTPDOCT.OUTP_ORDERS_COSTS_BAK
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="orderClass != null" >
+        ORDER_CLASS,
+      </if>
+      <if test="orderNo != null" >
+        ORDER_NO,
+      </if>
+      <if test="itemNo != null" >
+        ITEM_NO,
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="visitDate != null" >
+        VISIT_DATE,
+      </if>
+      <if test="visitNo != null" >
+        VISIT_NO,
+      </if>
+      <if test="orderSubNo != null" >
+        ORDER_SUB_NO,
+      </if>
+      <if test="itemClass != null" >
+        ITEM_CLASS,
+      </if>
+      <if test="itemName != null" >
+        ITEM_NAME,
+      </if>
+      <if test="itemCode != null" >
+        ITEM_CODE,
+      </if>
+      <if test="itemSpec != null" >
+        ITEM_SPEC,
+      </if>
+      <if test="units != null" >
+        UNITS,
+      </if>
+      <if test="repetition != null" >
+        REPETITION,
+      </if>
+      <if test="amount != null" >
+        AMOUNT,
+      </if>
+      <if test="orderedByDept != null" >
+        ORDERED_BY_DEPT,
+      </if>
+      <if test="orderedByDoctor != null" >
+        ORDERED_BY_DOCTOR,
+      </if>
+      <if test="performedBy != null" >
+        PERFORMED_BY,
+      </if>
+      <if test="classOnRcpt != null" >
+        CLASS_ON_RCPT,
+      </if>
+      <if test="costs != null" >
+        COSTS,
+      </if>
+      <if test="charges != null" >
+        CHARGES,
+      </if>
+      <if test="rcptNo != null" >
+        RCPT_NO,
+      </if>
+      <if test="billDescNo != null" >
+        BILL_DESC_NO,
+      </if>
+      <if test="billItemNo != null" >
+        BILL_ITEM_NO,
+      </if>
+      <if test="chargeIndicator != null" >
+        CHARGE_INDICATOR,
+      </if>
+      <if test="appointNo != null" >
+        APPOINT_NO,
+      </if>
+      <if test="recipetype != null" >
+        RECIPETYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderClass != null" >
+        #{orderClass,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=DECIMAL},
+      </if>
+      <if test="itemNo != null" >
+        #{itemNo,jdbcType=DECIMAL},
+      </if>
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitDate != null" >
+        #{visitDate,jdbcType=DATE},
+      </if>
+      <if test="visitNo != null" >
+        #{visitNo,jdbcType=DECIMAL},
+      </if>
+      <if test="orderSubNo != null" >
+        #{orderSubNo,jdbcType=DECIMAL},
+      </if>
+      <if test="itemClass != null" >
+        #{itemClass,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode != null" >
+        #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemSpec != null" >
+        #{itemSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="units != null" >
+        #{units,jdbcType=VARCHAR},
+      </if>
+      <if test="repetition != null" >
+        #{repetition,jdbcType=DECIMAL},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="orderedByDept != null" >
+        #{orderedByDept,jdbcType=VARCHAR},
+      </if>
+      <if test="orderedByDoctor != null" >
+        #{orderedByDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="performedBy != null" >
+        #{performedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="classOnRcpt != null" >
+        #{classOnRcpt,jdbcType=VARCHAR},
+      </if>
+      <if test="costs != null" >
+        #{costs,jdbcType=DECIMAL},
+      </if>
+      <if test="charges != null" >
+        #{charges,jdbcType=DECIMAL},
+      </if>
+      <if test="rcptNo != null" >
+        #{rcptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="billDescNo != null" >
+        #{billDescNo,jdbcType=DECIMAL},
+      </if>
+      <if test="billItemNo != null" >
+        #{billItemNo,jdbcType=DECIMAL},
+      </if>
+      <if test="chargeIndicator != null" >
+        #{chargeIndicator,jdbcType=DECIMAL},
+      </if>
+      <if test="appointNo != null" >
+        #{appointNo,jdbcType=VARCHAR},
+      </if>
+      <if test="recipetype != null" >
+        #{recipetype,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.outpdoct.OutpOrdersCostsBak" >
+    update OUTPDOCT.OUTP_ORDERS_COSTS_BAK
+    <set >
+      <if test="patientId != null" >
+        PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitDate != null" >
+        VISIT_DATE = #{visitDate,jdbcType=DATE},
+      </if>
+      <if test="visitNo != null" >
+        VISIT_NO = #{visitNo,jdbcType=DECIMAL},
+      </if>
+      <if test="orderSubNo != null" >
+        ORDER_SUB_NO = #{orderSubNo,jdbcType=DECIMAL},
+      </if>
+      <if test="itemClass != null" >
+        ITEM_CLASS = #{itemClass,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        ITEM_NAME = #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode != null" >
+        ITEM_CODE = #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemSpec != null" >
+        ITEM_SPEC = #{itemSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="units != null" >
+        UNITS = #{units,jdbcType=VARCHAR},
+      </if>
+      <if test="repetition != null" >
+        REPETITION = #{repetition,jdbcType=DECIMAL},
+      </if>
+      <if test="amount != null" >
+        AMOUNT = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="orderedByDept != null" >
+        ORDERED_BY_DEPT = #{orderedByDept,jdbcType=VARCHAR},
+      </if>
+      <if test="orderedByDoctor != null" >
+        ORDERED_BY_DOCTOR = #{orderedByDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="performedBy != null" >
+        PERFORMED_BY = #{performedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="classOnRcpt != null" >
+        CLASS_ON_RCPT = #{classOnRcpt,jdbcType=VARCHAR},
+      </if>
+      <if test="costs != null" >
+        COSTS = #{costs,jdbcType=DECIMAL},
+      </if>
+      <if test="charges != null" >
+        CHARGES = #{charges,jdbcType=DECIMAL},
+      </if>
+      <if test="rcptNo != null" >
+        RCPT_NO = #{rcptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="billDescNo != null" >
+        BILL_DESC_NO = #{billDescNo,jdbcType=DECIMAL},
+      </if>
+      <if test="billItemNo != null" >
+        BILL_ITEM_NO = #{billItemNo,jdbcType=DECIMAL},
+      </if>
+      <if test="chargeIndicator != null" >
+        CHARGE_INDICATOR = #{chargeIndicator,jdbcType=DECIMAL},
+      </if>
+      <if test="appointNo != null" >
+        APPOINT_NO = #{appointNo,jdbcType=VARCHAR},
+      </if>
+      <if test="recipetype != null" >
+        RECIPETYPE = #{recipetype,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SERIAL_NO = #{serialNo,jdbcType=VARCHAR}
+      and ORDER_CLASS = #{orderClass,jdbcType=VARCHAR}
+      and ORDER_NO = #{orderNo,jdbcType=DECIMAL}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.outpdoct.OutpOrdersCostsBak" >
+    update OUTPDOCT.OUTP_ORDERS_COSTS_BAK
+    set PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      VISIT_DATE = #{visitDate,jdbcType=DATE},
+      VISIT_NO = #{visitNo,jdbcType=DECIMAL},
+      ORDER_SUB_NO = #{orderSubNo,jdbcType=DECIMAL},
+      ITEM_CLASS = #{itemClass,jdbcType=VARCHAR},
+      ITEM_NAME = #{itemName,jdbcType=VARCHAR},
+      ITEM_CODE = #{itemCode,jdbcType=VARCHAR},
+      ITEM_SPEC = #{itemSpec,jdbcType=VARCHAR},
+      UNITS = #{units,jdbcType=VARCHAR},
+      REPETITION = #{repetition,jdbcType=DECIMAL},
+      AMOUNT = #{amount,jdbcType=DECIMAL},
+      ORDERED_BY_DEPT = #{orderedByDept,jdbcType=VARCHAR},
+      ORDERED_BY_DOCTOR = #{orderedByDoctor,jdbcType=VARCHAR},
+      PERFORMED_BY = #{performedBy,jdbcType=VARCHAR},
+      CLASS_ON_RCPT = #{classOnRcpt,jdbcType=VARCHAR},
+      COSTS = #{costs,jdbcType=DECIMAL},
+      CHARGES = #{charges,jdbcType=DECIMAL},
+      RCPT_NO = #{rcptNo,jdbcType=VARCHAR},
+      BILL_DESC_NO = #{billDescNo,jdbcType=DECIMAL},
+      BILL_ITEM_NO = #{billItemNo,jdbcType=DECIMAL},
+      CHARGE_INDICATOR = #{chargeIndicator,jdbcType=DECIMAL},
+      APPOINT_NO = #{appointNo,jdbcType=VARCHAR},
+      RECIPETYPE = #{recipetype,jdbcType=VARCHAR}
+    where SERIAL_NO = #{serialNo,jdbcType=VARCHAR}
+      and ORDER_CLASS = #{orderClass,jdbcType=VARCHAR}
+      and ORDER_NO = #{orderNo,jdbcType=DECIMAL}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+  </update>
+</mapper>

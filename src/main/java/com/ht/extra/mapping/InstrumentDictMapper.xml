@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.InstrumentDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.lab.InstrumentDict" >
+    <id column="INST_ID" property="instId" jdbcType="VARCHAR" />
+    <result column="INST_NAME" property="instName" jdbcType="VARCHAR" />
+    <result column="INST_NO" property="instNo" jdbcType="VARCHAR" />
+    <result column="DUPLEX_FLAG" property="duplexFlag" jdbcType="DECIMAL" />
+    <result column="DILUTE_FLAG" property="diluteFlag" jdbcType="VARCHAR" />
+    <result column="AUTOIN_FLAG" property="autoinFlag" jdbcType="VARCHAR" />
+    <result column="COMM_PORT" property="commPort" jdbcType="VARCHAR" />
+    <result column="BAUD_RATE" property="baudRate" jdbcType="DECIMAL" />
+    <result column="BYTE_SIZE" property="byteSize" jdbcType="DECIMAL" />
+    <result column="PARITY" property="parity" jdbcType="DECIMAL" />
+    <result column="STOP_BITS" property="stopBits" jdbcType="DECIMAL" />
+    <result column="F_OUTX" property="fOutx" jdbcType="DECIMAL" />
+    <result column="F_INX" property="fInx" jdbcType="DECIMAL" />
+    <result column="F_HARDWARE" property="fHardware" jdbcType="DECIMAL" />
+    <result column="TX_QUEUESIZE" property="txQueuesize" jdbcType="DECIMAL" />
+    <result column="RX_QUEUESIZE" property="rxQueuesize" jdbcType="DECIMAL" />
+    <result column="XON_LIM" property="xonLim" jdbcType="DECIMAL" />
+    <result column="XOFF_LIM" property="xoffLim" jdbcType="DECIMAL" />
+    <result column="XON_CHAR" property="xonChar" jdbcType="VARCHAR" />
+    <result column="XOFF_CHAR" property="xoffChar" jdbcType="VARCHAR" />
+    <result column="ERROR_CHAR" property="errorChar" jdbcType="VARCHAR" />
+    <result column="EVENT_CHAR" property="eventChar" jdbcType="VARCHAR" />
+    <result column="DRIVER_PROG" property="driverProg" jdbcType="VARCHAR" />
+    <result column="PRIORITY" property="priority" jdbcType="DECIMAL" />
+    <result column="SERVE_STATUS" property="serveStatus" jdbcType="VARCHAR" />
+    <result column="ITEM_TYPE" property="itemType" jdbcType="VARCHAR" />
+    <result column="FACTORY" property="factory" jdbcType="VARCHAR" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="CONNECT_DATE" property="connectDate" jdbcType="DATE" />
+    <result column="COMPUTER_NAME" property="computerName" jdbcType="VARCHAR" />
+    <result column="AUTO_LOAD" property="autoLoad" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    INST_ID, INST_NAME, INST_NO, DUPLEX_FLAG, DILUTE_FLAG, AUTOIN_FLAG, COMM_PORT, BAUD_RATE, 
+    BYTE_SIZE, PARITY, STOP_BITS, F_OUTX, F_INX, F_HARDWARE, TX_QUEUESIZE, RX_QUEUESIZE, 
+    XON_LIM, XOFF_LIM, XON_CHAR, XOFF_CHAR, ERROR_CHAR, EVENT_CHAR, DRIVER_PROG, PRIORITY, 
+    SERVE_STATUS, ITEM_TYPE, FACTORY, DESCRIPTION, CONNECT_DATE, COMPUTER_NAME, AUTO_LOAD
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from LAB.INSTRUMENT_DICT
+    where INST_ID = #{instId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from LAB.INSTRUMENT_DICT
+    where INST_ID = #{instId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.lab.InstrumentDict" >
+    insert into LAB.INSTRUMENT_DICT (INST_ID, INST_NAME, INST_NO, 
+      DUPLEX_FLAG, DILUTE_FLAG, AUTOIN_FLAG, 
+      COMM_PORT, BAUD_RATE, BYTE_SIZE, 
+      PARITY, STOP_BITS, F_OUTX, 
+      F_INX, F_HARDWARE, TX_QUEUESIZE, 
+      RX_QUEUESIZE, XON_LIM, XOFF_LIM, 
+      XON_CHAR, XOFF_CHAR, ERROR_CHAR, 
+      EVENT_CHAR, DRIVER_PROG, PRIORITY, 
+      SERVE_STATUS, ITEM_TYPE, FACTORY, 
+      DESCRIPTION, CONNECT_DATE, COMPUTER_NAME, 
+      AUTO_LOAD)
+    values (#{instId,jdbcType=VARCHAR}, #{instName,jdbcType=VARCHAR}, #{instNo,jdbcType=VARCHAR}, 
+      #{duplexFlag,jdbcType=DECIMAL}, #{diluteFlag,jdbcType=VARCHAR}, #{autoinFlag,jdbcType=VARCHAR}, 
+      #{commPort,jdbcType=VARCHAR}, #{baudRate,jdbcType=DECIMAL}, #{byteSize,jdbcType=DECIMAL}, 
+      #{parity,jdbcType=DECIMAL}, #{stopBits,jdbcType=DECIMAL}, #{fOutx,jdbcType=DECIMAL}, 
+      #{fInx,jdbcType=DECIMAL}, #{fHardware,jdbcType=DECIMAL}, #{txQueuesize,jdbcType=DECIMAL}, 
+      #{rxQueuesize,jdbcType=DECIMAL}, #{xonLim,jdbcType=DECIMAL}, #{xoffLim,jdbcType=DECIMAL}, 
+      #{xonChar,jdbcType=VARCHAR}, #{xoffChar,jdbcType=VARCHAR}, #{errorChar,jdbcType=VARCHAR}, 
+      #{eventChar,jdbcType=VARCHAR}, #{driverProg,jdbcType=VARCHAR}, #{priority,jdbcType=DECIMAL}, 
+      #{serveStatus,jdbcType=VARCHAR}, #{itemType,jdbcType=VARCHAR}, #{factory,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{connectDate,jdbcType=DATE}, #{computerName,jdbcType=VARCHAR}, 
+      #{autoLoad,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.lab.InstrumentDict" >
+    insert into LAB.INSTRUMENT_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="instId != null" >
+        INST_ID,
+      </if>
+      <if test="instName != null" >
+        INST_NAME,
+      </if>
+      <if test="instNo != null" >
+        INST_NO,
+      </if>
+      <if test="duplexFlag != null" >
+        DUPLEX_FLAG,
+      </if>
+      <if test="diluteFlag != null" >
+        DILUTE_FLAG,
+      </if>
+      <if test="autoinFlag != null" >
+        AUTOIN_FLAG,
+      </if>
+      <if test="commPort != null" >
+        COMM_PORT,
+      </if>
+      <if test="baudRate != null" >
+        BAUD_RATE,
+      </if>
+      <if test="byteSize != null" >
+        BYTE_SIZE,
+      </if>
+      <if test="parity != null" >
+        PARITY,
+      </if>
+      <if test="stopBits != null" >
+        STOP_BITS,
+      </if>
+      <if test="fOutx != null" >
+        F_OUTX,
+      </if>
+      <if test="fInx != null" >
+        F_INX,
+      </if>
+      <if test="fHardware != null" >
+        F_HARDWARE,
+      </if>
+      <if test="txQueuesize != null" >
+        TX_QUEUESIZE,
+      </if>
+      <if test="rxQueuesize != null" >
+        RX_QUEUESIZE,
+      </if>
+      <if test="xonLim != null" >
+        XON_LIM,
+      </if>
+      <if test="xoffLim != null" >
+        XOFF_LIM,
+      </if>
+      <if test="xonChar != null" >
+        XON_CHAR,
+      </if>
+      <if test="xoffChar != null" >
+        XOFF_CHAR,
+      </if>
+      <if test="errorChar != null" >
+        ERROR_CHAR,
+      </if>
+      <if test="eventChar != null" >
+        EVENT_CHAR,
+      </if>
+      <if test="driverProg != null" >
+        DRIVER_PROG,
+      </if>
+      <if test="priority != null" >
+        PRIORITY,
+      </if>
+      <if test="serveStatus != null" >
+        SERVE_STATUS,
+      </if>
+      <if test="itemType != null" >
+        ITEM_TYPE,
+      </if>
+      <if test="factory != null" >
+        FACTORY,
+      </if>
+      <if test="description != null" >
+        DESCRIPTION,
+      </if>
+      <if test="connectDate != null" >
+        CONNECT_DATE,
+      </if>
+      <if test="computerName != null" >
+        COMPUTER_NAME,
+      </if>
+      <if test="autoLoad != null" >
+        AUTO_LOAD,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="instId != null" >
+        #{instId,jdbcType=VARCHAR},
+      </if>
+      <if test="instName != null" >
+        #{instName,jdbcType=VARCHAR},
+      </if>
+      <if test="instNo != null" >
+        #{instNo,jdbcType=VARCHAR},
+      </if>
+      <if test="duplexFlag != null" >
+        #{duplexFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="diluteFlag != null" >
+        #{diluteFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="autoinFlag != null" >
+        #{autoinFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="commPort != null" >
+        #{commPort,jdbcType=VARCHAR},
+      </if>
+      <if test="baudRate != null" >
+        #{baudRate,jdbcType=DECIMAL},
+      </if>
+      <if test="byteSize != null" >
+        #{byteSize,jdbcType=DECIMAL},
+      </if>
+      <if test="parity != null" >
+        #{parity,jdbcType=DECIMAL},
+      </if>
+      <if test="stopBits != null" >
+        #{stopBits,jdbcType=DECIMAL},
+      </if>
+      <if test="fOutx != null" >
+        #{fOutx,jdbcType=DECIMAL},
+      </if>
+      <if test="fInx != null" >
+        #{fInx,jdbcType=DECIMAL},
+      </if>
+      <if test="fHardware != null" >
+        #{fHardware,jdbcType=DECIMAL},
+      </if>
+      <if test="txQueuesize != null" >
+        #{txQueuesize,jdbcType=DECIMAL},
+      </if>
+      <if test="rxQueuesize != null" >
+        #{rxQueuesize,jdbcType=DECIMAL},
+      </if>
+      <if test="xonLim != null" >
+        #{xonLim,jdbcType=DECIMAL},
+      </if>
+      <if test="xoffLim != null" >
+        #{xoffLim,jdbcType=DECIMAL},
+      </if>
+      <if test="xonChar != null" >
+        #{xonChar,jdbcType=VARCHAR},
+      </if>
+      <if test="xoffChar != null" >
+        #{xoffChar,jdbcType=VARCHAR},
+      </if>
+      <if test="errorChar != null" >
+        #{errorChar,jdbcType=VARCHAR},
+      </if>
+      <if test="eventChar != null" >
+        #{eventChar,jdbcType=VARCHAR},
+      </if>
+      <if test="driverProg != null" >
+        #{driverProg,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null" >
+        #{priority,jdbcType=DECIMAL},
+      </if>
+      <if test="serveStatus != null" >
+        #{serveStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="itemType != null" >
+        #{itemType,jdbcType=VARCHAR},
+      </if>
+      <if test="factory != null" >
+        #{factory,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="connectDate != null" >
+        #{connectDate,jdbcType=DATE},
+      </if>
+      <if test="computerName != null" >
+        #{computerName,jdbcType=VARCHAR},
+      </if>
+      <if test="autoLoad != null" >
+        #{autoLoad,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.lab.InstrumentDict" >
+    update LAB.INSTRUMENT_DICT
+    <set >
+      <if test="instName != null" >
+        INST_NAME = #{instName,jdbcType=VARCHAR},
+      </if>
+      <if test="instNo != null" >
+        INST_NO = #{instNo,jdbcType=VARCHAR},
+      </if>
+      <if test="duplexFlag != null" >
+        DUPLEX_FLAG = #{duplexFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="diluteFlag != null" >
+        DILUTE_FLAG = #{diluteFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="autoinFlag != null" >
+        AUTOIN_FLAG = #{autoinFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="commPort != null" >
+        COMM_PORT = #{commPort,jdbcType=VARCHAR},
+      </if>
+      <if test="baudRate != null" >
+        BAUD_RATE = #{baudRate,jdbcType=DECIMAL},
+      </if>
+      <if test="byteSize != null" >
+        BYTE_SIZE = #{byteSize,jdbcType=DECIMAL},
+      </if>
+      <if test="parity != null" >
+        PARITY = #{parity,jdbcType=DECIMAL},
+      </if>
+      <if test="stopBits != null" >
+        STOP_BITS = #{stopBits,jdbcType=DECIMAL},
+      </if>
+      <if test="fOutx != null" >
+        F_OUTX = #{fOutx,jdbcType=DECIMAL},
+      </if>
+      <if test="fInx != null" >
+        F_INX = #{fInx,jdbcType=DECIMAL},
+      </if>
+      <if test="fHardware != null" >
+        F_HARDWARE = #{fHardware,jdbcType=DECIMAL},
+      </if>
+      <if test="txQueuesize != null" >
+        TX_QUEUESIZE = #{txQueuesize,jdbcType=DECIMAL},
+      </if>
+      <if test="rxQueuesize != null" >
+        RX_QUEUESIZE = #{rxQueuesize,jdbcType=DECIMAL},
+      </if>
+      <if test="xonLim != null" >
+        XON_LIM = #{xonLim,jdbcType=DECIMAL},
+      </if>
+      <if test="xoffLim != null" >
+        XOFF_LIM = #{xoffLim,jdbcType=DECIMAL},
+      </if>
+      <if test="xonChar != null" >
+        XON_CHAR = #{xonChar,jdbcType=VARCHAR},
+      </if>
+      <if test="xoffChar != null" >
+        XOFF_CHAR = #{xoffChar,jdbcType=VARCHAR},
+      </if>
+      <if test="errorChar != null" >
+        ERROR_CHAR = #{errorChar,jdbcType=VARCHAR},
+      </if>
+      <if test="eventChar != null" >
+        EVENT_CHAR = #{eventChar,jdbcType=VARCHAR},
+      </if>
+      <if test="driverProg != null" >
+        DRIVER_PROG = #{driverProg,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null" >
+        PRIORITY = #{priority,jdbcType=DECIMAL},
+      </if>
+      <if test="serveStatus != null" >
+        SERVE_STATUS = #{serveStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="itemType != null" >
+        ITEM_TYPE = #{itemType,jdbcType=VARCHAR},
+      </if>
+      <if test="factory != null" >
+        FACTORY = #{factory,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="connectDate != null" >
+        CONNECT_DATE = #{connectDate,jdbcType=DATE},
+      </if>
+      <if test="computerName != null" >
+        COMPUTER_NAME = #{computerName,jdbcType=VARCHAR},
+      </if>
+      <if test="autoLoad != null" >
+        AUTO_LOAD = #{autoLoad,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where INST_ID = #{instId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.lab.InstrumentDict" >
+    update LAB.INSTRUMENT_DICT
+    set INST_NAME = #{instName,jdbcType=VARCHAR},
+      INST_NO = #{instNo,jdbcType=VARCHAR},
+      DUPLEX_FLAG = #{duplexFlag,jdbcType=DECIMAL},
+      DILUTE_FLAG = #{diluteFlag,jdbcType=VARCHAR},
+      AUTOIN_FLAG = #{autoinFlag,jdbcType=VARCHAR},
+      COMM_PORT = #{commPort,jdbcType=VARCHAR},
+      BAUD_RATE = #{baudRate,jdbcType=DECIMAL},
+      BYTE_SIZE = #{byteSize,jdbcType=DECIMAL},
+      PARITY = #{parity,jdbcType=DECIMAL},
+      STOP_BITS = #{stopBits,jdbcType=DECIMAL},
+      F_OUTX = #{fOutx,jdbcType=DECIMAL},
+      F_INX = #{fInx,jdbcType=DECIMAL},
+      F_HARDWARE = #{fHardware,jdbcType=DECIMAL},
+      TX_QUEUESIZE = #{txQueuesize,jdbcType=DECIMAL},
+      RX_QUEUESIZE = #{rxQueuesize,jdbcType=DECIMAL},
+      XON_LIM = #{xonLim,jdbcType=DECIMAL},
+      XOFF_LIM = #{xoffLim,jdbcType=DECIMAL},
+      XON_CHAR = #{xonChar,jdbcType=VARCHAR},
+      XOFF_CHAR = #{xoffChar,jdbcType=VARCHAR},
+      ERROR_CHAR = #{errorChar,jdbcType=VARCHAR},
+      EVENT_CHAR = #{eventChar,jdbcType=VARCHAR},
+      DRIVER_PROG = #{driverProg,jdbcType=VARCHAR},
+      PRIORITY = #{priority,jdbcType=DECIMAL},
+      SERVE_STATUS = #{serveStatus,jdbcType=VARCHAR},
+      ITEM_TYPE = #{itemType,jdbcType=VARCHAR},
+      FACTORY = #{factory,jdbcType=VARCHAR},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      CONNECT_DATE = #{connectDate,jdbcType=DATE},
+      COMPUTER_NAME = #{computerName,jdbcType=VARCHAR},
+      AUTO_LOAD = #{autoLoad,jdbcType=DECIMAL}
+    where INST_ID = #{instId,jdbcType=VARCHAR}
+  </update>
+</mapper>

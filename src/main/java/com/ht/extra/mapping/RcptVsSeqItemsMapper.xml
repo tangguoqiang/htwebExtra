@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.RcptVsSeqItemsMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.outpbill.RcptVsSeqItems" >
+    <id column="RCPT_NO" property="rcptNo" jdbcType="VARCHAR" />
+    <result column="SEQ_DATE" property="seqDate" jdbcType="DATE" />
+    <result column="SEQ_NO" property="seqNo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    RCPT_NO, SEQ_DATE, SEQ_NO
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from OUTPBILL.RCPT_VS_SEQ_ITEMS
+    where RCPT_NO = #{rcptNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from OUTPBILL.RCPT_VS_SEQ_ITEMS
+    where RCPT_NO = #{rcptNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.outpbill.RcptVsSeqItems" >
+    insert into OUTPBILL.RCPT_VS_SEQ_ITEMS (RCPT_NO, SEQ_DATE, SEQ_NO
+      )
+    values (#{rcptNo,jdbcType=VARCHAR}, #{seqDate,jdbcType=DATE}, #{seqNo,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.outpbill.RcptVsSeqItems" >
+    insert into OUTPBILL.RCPT_VS_SEQ_ITEMS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rcptNo != null" >
+        RCPT_NO,
+      </if>
+      <if test="seqDate != null" >
+        SEQ_DATE,
+      </if>
+      <if test="seqNo != null" >
+        SEQ_NO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rcptNo != null" >
+        #{rcptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="seqDate != null" >
+        #{seqDate,jdbcType=DATE},
+      </if>
+      <if test="seqNo != null" >
+        #{seqNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.outpbill.RcptVsSeqItems" >
+    update OUTPBILL.RCPT_VS_SEQ_ITEMS
+    <set >
+      <if test="seqDate != null" >
+        SEQ_DATE = #{seqDate,jdbcType=DATE},
+      </if>
+      <if test="seqNo != null" >
+        SEQ_NO = #{seqNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where RCPT_NO = #{rcptNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.outpbill.RcptVsSeqItems" >
+    update OUTPBILL.RCPT_VS_SEQ_ITEMS
+    set SEQ_DATE = #{seqDate,jdbcType=DATE},
+      SEQ_NO = #{seqNo,jdbcType=VARCHAR}
+    where RCPT_NO = #{rcptNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

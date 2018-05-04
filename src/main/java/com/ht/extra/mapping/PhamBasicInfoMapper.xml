@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.PhamBasicInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.PhamBasicInfo" >
+    <id column="PHAM_STD_CODE" property="phamStdCode" jdbcType="VARCHAR" />
+    <result column="PHAM_NAME" property="phamName" jdbcType="VARCHAR" />
+    <result column="PHAM_CODE" property="phamCode" jdbcType="VARCHAR" />
+    <result column="PHAM_SPEC" property="phamSpec" jdbcType="VARCHAR" />
+    <result column="PHAM_UNIT" property="phamUnit" jdbcType="VARCHAR" />
+    <result column="PHAM_FORM" property="phamForm" jdbcType="VARCHAR" />
+    <result column="TRADE_PRICE" property="tradePrice" jdbcType="DECIMAL" />
+    <result column="RETAIL_PRICE" property="retailPrice" jdbcType="DECIMAL" />
+    <result column="STORAGE_NUMBER" property="storageNumber" jdbcType="VARCHAR" />
+    <result column="ALLOCATION" property="allocation" jdbcType="VARCHAR" />
+    <result column="HIGH_LIMIT" property="highLimit" jdbcType="DECIMAL" />
+    <result column="LOW_LIMIT" property="lowLimit" jdbcType="DECIMAL" />
+    <result column="TOXICOLOGY_PROPERTY" property="toxicologyProperty" jdbcType="VARCHAR" />
+    <result column="MATERIAL_PROPERTY" property="materialProperty" jdbcType="VARCHAR" />
+    <result column="MARKET_SUPPLY" property="marketSupply" jdbcType="VARCHAR" />
+    <result column="PRICE_PROPERTY" property="priceProperty" jdbcType="VARCHAR" />
+    <result column="DRUG_USE_LEVEL" property="drugUseLevel" jdbcType="VARCHAR" />
+    <result column="SUPPLY_LEVEL" property="supplyLevel" jdbcType="VARCHAR" />
+    <result column="MANAGE_LEVEL" property="manageLevel" jdbcType="VARCHAR" />
+    <result column="PRICE_RATIO" property="priceRatio" jdbcType="DECIMAL" />
+    <result column="STD_DOSE" property="stdDose" jdbcType="DECIMAL" />
+    <result column="DOSE_RATIO" property="doseRatio" jdbcType="DECIMAL" />
+    <result column="DIVIDE_PACK_DOSE" property="dividePackDose" jdbcType="DECIMAL" />
+    <result column="DOSE_PER_UNIT" property="dosePerUnit" jdbcType="DECIMAL" />
+    <result column="DOSE_UNIT" property="doseUnit" jdbcType="VARCHAR" />
+    <result column="ENTER_DATE" property="enterDate" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PHAM_STD_CODE, PHAM_NAME, PHAM_CODE, PHAM_SPEC, PHAM_UNIT, PHAM_FORM, TRADE_PRICE, 
+    RETAIL_PRICE, STORAGE_NUMBER, ALLOCATION, HIGH_LIMIT, LOW_LIMIT, TOXICOLOGY_PROPERTY, 
+    MATERIAL_PROPERTY, MARKET_SUPPLY, PRICE_PROPERTY, DRUG_USE_LEVEL, SUPPLY_LEVEL, MANAGE_LEVEL, 
+    PRICE_RATIO, STD_DOSE, DOSE_RATIO, DIVIDE_PACK_DOSE, DOSE_PER_UNIT, DOSE_UNIT, ENTER_DATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.PHAM_BASIC_INFO
+    where PHAM_STD_CODE = #{phamStdCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.PHAM_BASIC_INFO
+    where PHAM_STD_CODE = #{phamStdCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.PhamBasicInfo" >
+    insert into COMM.PHAM_BASIC_INFO (PHAM_STD_CODE, PHAM_NAME, PHAM_CODE, 
+      PHAM_SPEC, PHAM_UNIT, PHAM_FORM, 
+      TRADE_PRICE, RETAIL_PRICE, STORAGE_NUMBER, 
+      ALLOCATION, HIGH_LIMIT, LOW_LIMIT, 
+      TOXICOLOGY_PROPERTY, MATERIAL_PROPERTY, MARKET_SUPPLY, 
+      PRICE_PROPERTY, DRUG_USE_LEVEL, SUPPLY_LEVEL, 
+      MANAGE_LEVEL, PRICE_RATIO, STD_DOSE, 
+      DOSE_RATIO, DIVIDE_PACK_DOSE, DOSE_PER_UNIT, 
+      DOSE_UNIT, ENTER_DATE)
+    values (#{phamStdCode,jdbcType=VARCHAR}, #{phamName,jdbcType=VARCHAR}, #{phamCode,jdbcType=VARCHAR}, 
+      #{phamSpec,jdbcType=VARCHAR}, #{phamUnit,jdbcType=VARCHAR}, #{phamForm,jdbcType=VARCHAR}, 
+      #{tradePrice,jdbcType=DECIMAL}, #{retailPrice,jdbcType=DECIMAL}, #{storageNumber,jdbcType=VARCHAR}, 
+      #{allocation,jdbcType=VARCHAR}, #{highLimit,jdbcType=DECIMAL}, #{lowLimit,jdbcType=DECIMAL}, 
+      #{toxicologyProperty,jdbcType=VARCHAR}, #{materialProperty,jdbcType=VARCHAR}, #{marketSupply,jdbcType=VARCHAR}, 
+      #{priceProperty,jdbcType=VARCHAR}, #{drugUseLevel,jdbcType=VARCHAR}, #{supplyLevel,jdbcType=VARCHAR}, 
+      #{manageLevel,jdbcType=VARCHAR}, #{priceRatio,jdbcType=DECIMAL}, #{stdDose,jdbcType=DECIMAL}, 
+      #{doseRatio,jdbcType=DECIMAL}, #{dividePackDose,jdbcType=DECIMAL}, #{dosePerUnit,jdbcType=DECIMAL}, 
+      #{doseUnit,jdbcType=VARCHAR}, #{enterDate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.PhamBasicInfo" >
+    insert into COMM.PHAM_BASIC_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="phamStdCode != null" >
+        PHAM_STD_CODE,
+      </if>
+      <if test="phamName != null" >
+        PHAM_NAME,
+      </if>
+      <if test="phamCode != null" >
+        PHAM_CODE,
+      </if>
+      <if test="phamSpec != null" >
+        PHAM_SPEC,
+      </if>
+      <if test="phamUnit != null" >
+        PHAM_UNIT,
+      </if>
+      <if test="phamForm != null" >
+        PHAM_FORM,
+      </if>
+      <if test="tradePrice != null" >
+        TRADE_PRICE,
+      </if>
+      <if test="retailPrice != null" >
+        RETAIL_PRICE,
+      </if>
+      <if test="storageNumber != null" >
+        STORAGE_NUMBER,
+      </if>
+      <if test="allocation != null" >
+        ALLOCATION,
+      </if>
+      <if test="highLimit != null" >
+        HIGH_LIMIT,
+      </if>
+      <if test="lowLimit != null" >
+        LOW_LIMIT,
+      </if>
+      <if test="toxicologyProperty != null" >
+        TOXICOLOGY_PROPERTY,
+      </if>
+      <if test="materialProperty != null" >
+        MATERIAL_PROPERTY,
+      </if>
+      <if test="marketSupply != null" >
+        MARKET_SUPPLY,
+      </if>
+      <if test="priceProperty != null" >
+        PRICE_PROPERTY,
+      </if>
+      <if test="drugUseLevel != null" >
+        DRUG_USE_LEVEL,
+      </if>
+      <if test="supplyLevel != null" >
+        SUPPLY_LEVEL,
+      </if>
+      <if test="manageLevel != null" >
+        MANAGE_LEVEL,
+      </if>
+      <if test="priceRatio != null" >
+        PRICE_RATIO,
+      </if>
+      <if test="stdDose != null" >
+        STD_DOSE,
+      </if>
+      <if test="doseRatio != null" >
+        DOSE_RATIO,
+      </if>
+      <if test="dividePackDose != null" >
+        DIVIDE_PACK_DOSE,
+      </if>
+      <if test="dosePerUnit != null" >
+        DOSE_PER_UNIT,
+      </if>
+      <if test="doseUnit != null" >
+        DOSE_UNIT,
+      </if>
+      <if test="enterDate != null" >
+        ENTER_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="phamStdCode != null" >
+        #{phamStdCode,jdbcType=VARCHAR},
+      </if>
+      <if test="phamName != null" >
+        #{phamName,jdbcType=VARCHAR},
+      </if>
+      <if test="phamCode != null" >
+        #{phamCode,jdbcType=VARCHAR},
+      </if>
+      <if test="phamSpec != null" >
+        #{phamSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="phamUnit != null" >
+        #{phamUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="phamForm != null" >
+        #{phamForm,jdbcType=VARCHAR},
+      </if>
+      <if test="tradePrice != null" >
+        #{tradePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="retailPrice != null" >
+        #{retailPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="storageNumber != null" >
+        #{storageNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="allocation != null" >
+        #{allocation,jdbcType=VARCHAR},
+      </if>
+      <if test="highLimit != null" >
+        #{highLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="lowLimit != null" >
+        #{lowLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="toxicologyProperty != null" >
+        #{toxicologyProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="materialProperty != null" >
+        #{materialProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="marketSupply != null" >
+        #{marketSupply,jdbcType=VARCHAR},
+      </if>
+      <if test="priceProperty != null" >
+        #{priceProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="drugUseLevel != null" >
+        #{drugUseLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="supplyLevel != null" >
+        #{supplyLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="manageLevel != null" >
+        #{manageLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="priceRatio != null" >
+        #{priceRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="stdDose != null" >
+        #{stdDose,jdbcType=DECIMAL},
+      </if>
+      <if test="doseRatio != null" >
+        #{doseRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="dividePackDose != null" >
+        #{dividePackDose,jdbcType=DECIMAL},
+      </if>
+      <if test="dosePerUnit != null" >
+        #{dosePerUnit,jdbcType=DECIMAL},
+      </if>
+      <if test="doseUnit != null" >
+        #{doseUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="enterDate != null" >
+        #{enterDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.PhamBasicInfo" >
+    update COMM.PHAM_BASIC_INFO
+    <set >
+      <if test="phamName != null" >
+        PHAM_NAME = #{phamName,jdbcType=VARCHAR},
+      </if>
+      <if test="phamCode != null" >
+        PHAM_CODE = #{phamCode,jdbcType=VARCHAR},
+      </if>
+      <if test="phamSpec != null" >
+        PHAM_SPEC = #{phamSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="phamUnit != null" >
+        PHAM_UNIT = #{phamUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="phamForm != null" >
+        PHAM_FORM = #{phamForm,jdbcType=VARCHAR},
+      </if>
+      <if test="tradePrice != null" >
+        TRADE_PRICE = #{tradePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="retailPrice != null" >
+        RETAIL_PRICE = #{retailPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="storageNumber != null" >
+        STORAGE_NUMBER = #{storageNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="allocation != null" >
+        ALLOCATION = #{allocation,jdbcType=VARCHAR},
+      </if>
+      <if test="highLimit != null" >
+        HIGH_LIMIT = #{highLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="lowLimit != null" >
+        LOW_LIMIT = #{lowLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="toxicologyProperty != null" >
+        TOXICOLOGY_PROPERTY = #{toxicologyProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="materialProperty != null" >
+        MATERIAL_PROPERTY = #{materialProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="marketSupply != null" >
+        MARKET_SUPPLY = #{marketSupply,jdbcType=VARCHAR},
+      </if>
+      <if test="priceProperty != null" >
+        PRICE_PROPERTY = #{priceProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="drugUseLevel != null" >
+        DRUG_USE_LEVEL = #{drugUseLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="supplyLevel != null" >
+        SUPPLY_LEVEL = #{supplyLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="manageLevel != null" >
+        MANAGE_LEVEL = #{manageLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="priceRatio != null" >
+        PRICE_RATIO = #{priceRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="stdDose != null" >
+        STD_DOSE = #{stdDose,jdbcType=DECIMAL},
+      </if>
+      <if test="doseRatio != null" >
+        DOSE_RATIO = #{doseRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="dividePackDose != null" >
+        DIVIDE_PACK_DOSE = #{dividePackDose,jdbcType=DECIMAL},
+      </if>
+      <if test="dosePerUnit != null" >
+        DOSE_PER_UNIT = #{dosePerUnit,jdbcType=DECIMAL},
+      </if>
+      <if test="doseUnit != null" >
+        DOSE_UNIT = #{doseUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="enterDate != null" >
+        ENTER_DATE = #{enterDate,jdbcType=DATE},
+      </if>
+    </set>
+    where PHAM_STD_CODE = #{phamStdCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.PhamBasicInfo" >
+    update COMM.PHAM_BASIC_INFO
+    set PHAM_NAME = #{phamName,jdbcType=VARCHAR},
+      PHAM_CODE = #{phamCode,jdbcType=VARCHAR},
+      PHAM_SPEC = #{phamSpec,jdbcType=VARCHAR},
+      PHAM_UNIT = #{phamUnit,jdbcType=VARCHAR},
+      PHAM_FORM = #{phamForm,jdbcType=VARCHAR},
+      TRADE_PRICE = #{tradePrice,jdbcType=DECIMAL},
+      RETAIL_PRICE = #{retailPrice,jdbcType=DECIMAL},
+      STORAGE_NUMBER = #{storageNumber,jdbcType=VARCHAR},
+      ALLOCATION = #{allocation,jdbcType=VARCHAR},
+      HIGH_LIMIT = #{highLimit,jdbcType=DECIMAL},
+      LOW_LIMIT = #{lowLimit,jdbcType=DECIMAL},
+      TOXICOLOGY_PROPERTY = #{toxicologyProperty,jdbcType=VARCHAR},
+      MATERIAL_PROPERTY = #{materialProperty,jdbcType=VARCHAR},
+      MARKET_SUPPLY = #{marketSupply,jdbcType=VARCHAR},
+      PRICE_PROPERTY = #{priceProperty,jdbcType=VARCHAR},
+      DRUG_USE_LEVEL = #{drugUseLevel,jdbcType=VARCHAR},
+      SUPPLY_LEVEL = #{supplyLevel,jdbcType=VARCHAR},
+      MANAGE_LEVEL = #{manageLevel,jdbcType=VARCHAR},
+      PRICE_RATIO = #{priceRatio,jdbcType=DECIMAL},
+      STD_DOSE = #{stdDose,jdbcType=DECIMAL},
+      DOSE_RATIO = #{doseRatio,jdbcType=DECIMAL},
+      DIVIDE_PACK_DOSE = #{dividePackDose,jdbcType=DECIMAL},
+      DOSE_PER_UNIT = #{dosePerUnit,jdbcType=DECIMAL},
+      DOSE_UNIT = #{doseUnit,jdbcType=VARCHAR},
+      ENTER_DATE = #{enterDate,jdbcType=DATE}
+    where PHAM_STD_CODE = #{phamStdCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

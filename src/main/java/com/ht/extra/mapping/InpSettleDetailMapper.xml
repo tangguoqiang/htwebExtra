@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.InpSettleDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.inpbill.InpSettleDetail" >
+    <id column="RCPT_NO" property="rcptNo" jdbcType="VARCHAR" />
+    <id column="FEE_CLASS_NAME" property="feeClassName" jdbcType="VARCHAR" />
+    <result column="PAYMENTS" property="payments" jdbcType="DECIMAL" />
+    <result column="COSTS" property="costs" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    RCPT_NO, FEE_CLASS_NAME, PAYMENTS, COSTS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.inpbill.InpSettleDetailKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from INPBILL.INP_SETTLE_DETAIL
+    where RCPT_NO = #{rcptNo,jdbcType=VARCHAR}
+      and FEE_CLASS_NAME = #{feeClassName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.inpbill.InpSettleDetailKey" >
+    delete from INPBILL.INP_SETTLE_DETAIL
+    where RCPT_NO = #{rcptNo,jdbcType=VARCHAR}
+      and FEE_CLASS_NAME = #{feeClassName,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.inpbill.InpSettleDetail" >
+    insert into INPBILL.INP_SETTLE_DETAIL (RCPT_NO, FEE_CLASS_NAME, PAYMENTS, 
+      COSTS)
+    values (#{rcptNo,jdbcType=VARCHAR}, #{feeClassName,jdbcType=VARCHAR}, #{payments,jdbcType=DECIMAL}, 
+      #{costs,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.inpbill.InpSettleDetail" >
+    insert into INPBILL.INP_SETTLE_DETAIL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rcptNo != null" >
+        RCPT_NO,
+      </if>
+      <if test="feeClassName != null" >
+        FEE_CLASS_NAME,
+      </if>
+      <if test="payments != null" >
+        PAYMENTS,
+      </if>
+      <if test="costs != null" >
+        COSTS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rcptNo != null" >
+        #{rcptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="feeClassName != null" >
+        #{feeClassName,jdbcType=VARCHAR},
+      </if>
+      <if test="payments != null" >
+        #{payments,jdbcType=DECIMAL},
+      </if>
+      <if test="costs != null" >
+        #{costs,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.inpbill.InpSettleDetail" >
+    update INPBILL.INP_SETTLE_DETAIL
+    <set >
+      <if test="payments != null" >
+        PAYMENTS = #{payments,jdbcType=DECIMAL},
+      </if>
+      <if test="costs != null" >
+        COSTS = #{costs,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where RCPT_NO = #{rcptNo,jdbcType=VARCHAR}
+      and FEE_CLASS_NAME = #{feeClassName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.inpbill.InpSettleDetail" >
+    update INPBILL.INP_SETTLE_DETAIL
+    set PAYMENTS = #{payments,jdbcType=DECIMAL},
+      COSTS = #{costs,jdbcType=DECIMAL}
+    where RCPT_NO = #{rcptNo,jdbcType=VARCHAR}
+      and FEE_CLASS_NAME = #{feeClassName,jdbcType=VARCHAR}
+  </update>
+</mapper>

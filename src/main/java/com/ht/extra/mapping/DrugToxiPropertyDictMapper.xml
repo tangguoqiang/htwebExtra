@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.DrugToxiPropertyDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.DrugToxiPropertyDict" >
+    <id column="TOXI_NAME" property="toxiName" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="TOXI_CODE" property="toxiCode" jdbcType="VARCHAR" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    TOXI_NAME, SERIAL_NO, TOXI_CODE, INPUT_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.DRUG_TOXI_PROPERTY_DICT
+    where TOXI_NAME = #{toxiName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.DRUG_TOXI_PROPERTY_DICT
+    where TOXI_NAME = #{toxiName,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.DrugToxiPropertyDict" >
+    insert into COMM.DRUG_TOXI_PROPERTY_DICT (TOXI_NAME, SERIAL_NO, TOXI_CODE, 
+      INPUT_CODE)
+    values (#{toxiName,jdbcType=VARCHAR}, #{serialNo,jdbcType=DECIMAL}, #{toxiCode,jdbcType=VARCHAR}, 
+      #{inputCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.DrugToxiPropertyDict" >
+    insert into COMM.DRUG_TOXI_PROPERTY_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="toxiName != null" >
+        TOXI_NAME,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="toxiCode != null" >
+        TOXI_CODE,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="toxiName != null" >
+        #{toxiName,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="toxiCode != null" >
+        #{toxiCode,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.DrugToxiPropertyDict" >
+    update COMM.DRUG_TOXI_PROPERTY_DICT
+    <set >
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="toxiCode != null" >
+        TOXI_CODE = #{toxiCode,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where TOXI_NAME = #{toxiName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.DrugToxiPropertyDict" >
+    update COMM.DRUG_TOXI_PROPERTY_DICT
+    set SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      TOXI_CODE = #{toxiCode,jdbcType=VARCHAR},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR}
+    where TOXI_NAME = #{toxiName,jdbcType=VARCHAR}
+  </update>
+</mapper>

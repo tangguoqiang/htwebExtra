@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.UnitInContractMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.UnitInContract" >
+    <id column="UNIT_CODE" property="unitCode" jdbcType="VARCHAR" />
+    <result column="UNIT_NAME" property="unitName" jdbcType="VARCHAR" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="UNIT_TYPE" property="unitType" jdbcType="VARCHAR" />
+    <result column="SUBORDINATE_TO" property="subordinateTo" jdbcType="VARCHAR" />
+    <result column="DISTANCE_TO_HOSPITAL" property="distanceToHospital" jdbcType="DECIMAL" />
+    <result column="REGULAR_NUM" property="regularNum" jdbcType="DECIMAL" />
+    <result column="TEMP_NUM" property="tempNum" jdbcType="DECIMAL" />
+    <result column="RETIRED_NUM" property="retiredNum" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    UNIT_CODE, UNIT_NAME, INPUT_CODE, ADDRESS, UNIT_TYPE, SUBORDINATE_TO, DISTANCE_TO_HOSPITAL, 
+    REGULAR_NUM, TEMP_NUM, RETIRED_NUM
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.UNIT_IN_CONTRACT
+    where UNIT_CODE = #{unitCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.UNIT_IN_CONTRACT
+    where UNIT_CODE = #{unitCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.UnitInContract" >
+    insert into COMM.UNIT_IN_CONTRACT (UNIT_CODE, UNIT_NAME, INPUT_CODE, 
+      ADDRESS, UNIT_TYPE, SUBORDINATE_TO, 
+      DISTANCE_TO_HOSPITAL, REGULAR_NUM, TEMP_NUM, 
+      RETIRED_NUM)
+    values (#{unitCode,jdbcType=VARCHAR}, #{unitName,jdbcType=VARCHAR}, #{inputCode,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{unitType,jdbcType=VARCHAR}, #{subordinateTo,jdbcType=VARCHAR}, 
+      #{distanceToHospital,jdbcType=DECIMAL}, #{regularNum,jdbcType=DECIMAL}, #{tempNum,jdbcType=DECIMAL}, 
+      #{retiredNum,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.UnitInContract" >
+    insert into COMM.UNIT_IN_CONTRACT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="unitCode != null" >
+        UNIT_CODE,
+      </if>
+      <if test="unitName != null" >
+        UNIT_NAME,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+      <if test="address != null" >
+        ADDRESS,
+      </if>
+      <if test="unitType != null" >
+        UNIT_TYPE,
+      </if>
+      <if test="subordinateTo != null" >
+        SUBORDINATE_TO,
+      </if>
+      <if test="distanceToHospital != null" >
+        DISTANCE_TO_HOSPITAL,
+      </if>
+      <if test="regularNum != null" >
+        REGULAR_NUM,
+      </if>
+      <if test="tempNum != null" >
+        TEMP_NUM,
+      </if>
+      <if test="retiredNum != null" >
+        RETIRED_NUM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="unitCode != null" >
+        #{unitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="unitName != null" >
+        #{unitName,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="unitType != null" >
+        #{unitType,jdbcType=VARCHAR},
+      </if>
+      <if test="subordinateTo != null" >
+        #{subordinateTo,jdbcType=VARCHAR},
+      </if>
+      <if test="distanceToHospital != null" >
+        #{distanceToHospital,jdbcType=DECIMAL},
+      </if>
+      <if test="regularNum != null" >
+        #{regularNum,jdbcType=DECIMAL},
+      </if>
+      <if test="tempNum != null" >
+        #{tempNum,jdbcType=DECIMAL},
+      </if>
+      <if test="retiredNum != null" >
+        #{retiredNum,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.UnitInContract" >
+    update COMM.UNIT_IN_CONTRACT
+    <set >
+      <if test="unitName != null" >
+        UNIT_NAME = #{unitName,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="unitType != null" >
+        UNIT_TYPE = #{unitType,jdbcType=VARCHAR},
+      </if>
+      <if test="subordinateTo != null" >
+        SUBORDINATE_TO = #{subordinateTo,jdbcType=VARCHAR},
+      </if>
+      <if test="distanceToHospital != null" >
+        DISTANCE_TO_HOSPITAL = #{distanceToHospital,jdbcType=DECIMAL},
+      </if>
+      <if test="regularNum != null" >
+        REGULAR_NUM = #{regularNum,jdbcType=DECIMAL},
+      </if>
+      <if test="tempNum != null" >
+        TEMP_NUM = #{tempNum,jdbcType=DECIMAL},
+      </if>
+      <if test="retiredNum != null" >
+        RETIRED_NUM = #{retiredNum,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where UNIT_CODE = #{unitCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.UnitInContract" >
+    update COMM.UNIT_IN_CONTRACT
+    set UNIT_NAME = #{unitName,jdbcType=VARCHAR},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      UNIT_TYPE = #{unitType,jdbcType=VARCHAR},
+      SUBORDINATE_TO = #{subordinateTo,jdbcType=VARCHAR},
+      DISTANCE_TO_HOSPITAL = #{distanceToHospital,jdbcType=DECIMAL},
+      REGULAR_NUM = #{regularNum,jdbcType=DECIMAL},
+      TEMP_NUM = #{tempNum,jdbcType=DECIMAL},
+      RETIRED_NUM = #{retiredNum,jdbcType=DECIMAL}
+    where UNIT_CODE = #{unitCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

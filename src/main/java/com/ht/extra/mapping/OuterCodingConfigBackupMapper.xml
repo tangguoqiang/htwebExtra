@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.OuterCodingConfigBackupMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.OuterCodingConfigBackup" >
+    <id column="TOPIC" property="topic" jdbcType="VARCHAR" />
+    <id column="CODING_SCHM" property="codingSchm" jdbcType="VARCHAR" />
+    <result column="ITEM_CLASS" property="itemClass" jdbcType="VARCHAR" />
+    <result column="OUTER_CODE_LENGTH" property="outerCodeLength" jdbcType="DECIMAL" />
+    <result column="TEXT_LENGTH" property="textLength" jdbcType="DECIMAL" />
+    <result column="STD_CODE_LENGTH" property="stdCodeLength" jdbcType="DECIMAL" />
+    <result column="DICT_FILE_NAME" property="dictFileName" jdbcType="VARCHAR" />
+    <result column="LAST_UPDT_DATE_TIME" property="lastUpdtDateTime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    TOPIC, CODING_SCHM, ITEM_CLASS, OUTER_CODE_LENGTH, TEXT_LENGTH, STD_CODE_LENGTH, 
+    DICT_FILE_NAME, LAST_UPDT_DATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.OuterCodingConfigBackupKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.OUTER_CODING_CONFIG_BACKUP
+    where TOPIC = #{topic,jdbcType=VARCHAR}
+      and CODING_SCHM = #{codingSchm,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.OuterCodingConfigBackupKey" >
+    delete from COMM.OUTER_CODING_CONFIG_BACKUP
+    where TOPIC = #{topic,jdbcType=VARCHAR}
+      and CODING_SCHM = #{codingSchm,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.OuterCodingConfigBackup" >
+    insert into COMM.OUTER_CODING_CONFIG_BACKUP (TOPIC, CODING_SCHM, ITEM_CLASS, 
+      OUTER_CODE_LENGTH, TEXT_LENGTH, STD_CODE_LENGTH, 
+      DICT_FILE_NAME, LAST_UPDT_DATE_TIME)
+    values (#{topic,jdbcType=VARCHAR}, #{codingSchm,jdbcType=VARCHAR}, #{itemClass,jdbcType=VARCHAR}, 
+      #{outerCodeLength,jdbcType=DECIMAL}, #{textLength,jdbcType=DECIMAL}, #{stdCodeLength,jdbcType=DECIMAL}, 
+      #{dictFileName,jdbcType=VARCHAR}, #{lastUpdtDateTime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.OuterCodingConfigBackup" >
+    insert into COMM.OUTER_CODING_CONFIG_BACKUP
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="topic != null" >
+        TOPIC,
+      </if>
+      <if test="codingSchm != null" >
+        CODING_SCHM,
+      </if>
+      <if test="itemClass != null" >
+        ITEM_CLASS,
+      </if>
+      <if test="outerCodeLength != null" >
+        OUTER_CODE_LENGTH,
+      </if>
+      <if test="textLength != null" >
+        TEXT_LENGTH,
+      </if>
+      <if test="stdCodeLength != null" >
+        STD_CODE_LENGTH,
+      </if>
+      <if test="dictFileName != null" >
+        DICT_FILE_NAME,
+      </if>
+      <if test="lastUpdtDateTime != null" >
+        LAST_UPDT_DATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="topic != null" >
+        #{topic,jdbcType=VARCHAR},
+      </if>
+      <if test="codingSchm != null" >
+        #{codingSchm,jdbcType=VARCHAR},
+      </if>
+      <if test="itemClass != null" >
+        #{itemClass,jdbcType=VARCHAR},
+      </if>
+      <if test="outerCodeLength != null" >
+        #{outerCodeLength,jdbcType=DECIMAL},
+      </if>
+      <if test="textLength != null" >
+        #{textLength,jdbcType=DECIMAL},
+      </if>
+      <if test="stdCodeLength != null" >
+        #{stdCodeLength,jdbcType=DECIMAL},
+      </if>
+      <if test="dictFileName != null" >
+        #{dictFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdtDateTime != null" >
+        #{lastUpdtDateTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.OuterCodingConfigBackup" >
+    update COMM.OUTER_CODING_CONFIG_BACKUP
+    <set >
+      <if test="itemClass != null" >
+        ITEM_CLASS = #{itemClass,jdbcType=VARCHAR},
+      </if>
+      <if test="outerCodeLength != null" >
+        OUTER_CODE_LENGTH = #{outerCodeLength,jdbcType=DECIMAL},
+      </if>
+      <if test="textLength != null" >
+        TEXT_LENGTH = #{textLength,jdbcType=DECIMAL},
+      </if>
+      <if test="stdCodeLength != null" >
+        STD_CODE_LENGTH = #{stdCodeLength,jdbcType=DECIMAL},
+      </if>
+      <if test="dictFileName != null" >
+        DICT_FILE_NAME = #{dictFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdtDateTime != null" >
+        LAST_UPDT_DATE_TIME = #{lastUpdtDateTime,jdbcType=DATE},
+      </if>
+    </set>
+    where TOPIC = #{topic,jdbcType=VARCHAR}
+      and CODING_SCHM = #{codingSchm,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.OuterCodingConfigBackup" >
+    update COMM.OUTER_CODING_CONFIG_BACKUP
+    set ITEM_CLASS = #{itemClass,jdbcType=VARCHAR},
+      OUTER_CODE_LENGTH = #{outerCodeLength,jdbcType=DECIMAL},
+      TEXT_LENGTH = #{textLength,jdbcType=DECIMAL},
+      STD_CODE_LENGTH = #{stdCodeLength,jdbcType=DECIMAL},
+      DICT_FILE_NAME = #{dictFileName,jdbcType=VARCHAR},
+      LAST_UPDT_DATE_TIME = #{lastUpdtDateTime,jdbcType=DATE}
+    where TOPIC = #{topic,jdbcType=VARCHAR}
+      and CODING_SCHM = #{codingSchm,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.DrugPrescMasterTempMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.pharmacy.DrugPrescMasterTemp" >
+    <id column="PRESC_DATE" property="prescDate" jdbcType="DATE" />
+    <id column="PRESC_NO" property="prescNo" jdbcType="DECIMAL" />
+    <result column="DISPENSARY" property="dispensary" jdbcType="VARCHAR" />
+    <result column="QUEUE_ID" property="queueId" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="DECIMAL" />
+    <result column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="NAME_PHONETIC" property="namePhonetic" jdbcType="VARCHAR" />
+    <result column="IDENTITY" property="identity" jdbcType="VARCHAR" />
+    <result column="CHARGE_TYPE" property="chargeType" jdbcType="VARCHAR" />
+    <result column="UNIT_IN_CONTRACT" property="unitInContract" jdbcType="VARCHAR" />
+    <result column="PRESC_TYPE" property="prescType" jdbcType="DECIMAL" />
+    <result column="PRESC_ATTR" property="prescAttr" jdbcType="VARCHAR" />
+    <result column="PRESC_SOURCE" property="prescSource" jdbcType="DECIMAL" />
+    <result column="REPETITION" property="repetition" jdbcType="DECIMAL" />
+    <result column="COSTS" property="costs" jdbcType="DECIMAL" />
+    <result column="PAYMENTS" property="payments" jdbcType="DECIMAL" />
+    <result column="ORDERED_BY" property="orderedBy" jdbcType="VARCHAR" />
+    <result column="PRESCRIBED_BY" property="prescribedBy" jdbcType="VARCHAR" />
+    <result column="ENTERED_BY" property="enteredBy" jdbcType="VARCHAR" />
+    <result column="VISIT_ID" property="visitId" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PRESC_DATE, PRESC_NO, DISPENSARY, QUEUE_ID, STATUS, PATIENT_ID, NAME, NAME_PHONETIC, 
+    IDENTITY, CHARGE_TYPE, UNIT_IN_CONTRACT, PRESC_TYPE, PRESC_ATTR, PRESC_SOURCE, REPETITION, 
+    COSTS, PAYMENTS, ORDERED_BY, PRESCRIBED_BY, ENTERED_BY, VISIT_ID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.pharmacy.DrugPrescMasterTempKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from PHARMACY.DRUG_PRESC_MASTER_TEMP
+    where PRESC_DATE = #{prescDate,jdbcType=DATE}
+      and PRESC_NO = #{prescNo,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.pharmacy.DrugPrescMasterTempKey" >
+    delete from PHARMACY.DRUG_PRESC_MASTER_TEMP
+    where PRESC_DATE = #{prescDate,jdbcType=DATE}
+      and PRESC_NO = #{prescNo,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.pharmacy.DrugPrescMasterTemp" >
+    insert into PHARMACY.DRUG_PRESC_MASTER_TEMP (PRESC_DATE, PRESC_NO, DISPENSARY, 
+      QUEUE_ID, STATUS, PATIENT_ID, 
+      NAME, NAME_PHONETIC, IDENTITY, 
+      CHARGE_TYPE, UNIT_IN_CONTRACT, PRESC_TYPE, 
+      PRESC_ATTR, PRESC_SOURCE, REPETITION, 
+      COSTS, PAYMENTS, ORDERED_BY, 
+      PRESCRIBED_BY, ENTERED_BY, VISIT_ID
+      )
+    values (#{prescDate,jdbcType=DATE}, #{prescNo,jdbcType=DECIMAL}, #{dispensary,jdbcType=VARCHAR}, 
+      #{queueId,jdbcType=VARCHAR}, #{status,jdbcType=DECIMAL}, #{patientId,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{namePhonetic,jdbcType=VARCHAR}, #{identity,jdbcType=VARCHAR}, 
+      #{chargeType,jdbcType=VARCHAR}, #{unitInContract,jdbcType=VARCHAR}, #{prescType,jdbcType=DECIMAL}, 
+      #{prescAttr,jdbcType=VARCHAR}, #{prescSource,jdbcType=DECIMAL}, #{repetition,jdbcType=DECIMAL}, 
+      #{costs,jdbcType=DECIMAL}, #{payments,jdbcType=DECIMAL}, #{orderedBy,jdbcType=VARCHAR}, 
+      #{prescribedBy,jdbcType=VARCHAR}, #{enteredBy,jdbcType=VARCHAR}, #{visitId,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.pharmacy.DrugPrescMasterTemp" >
+    insert into PHARMACY.DRUG_PRESC_MASTER_TEMP
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="prescDate != null" >
+        PRESC_DATE,
+      </if>
+      <if test="prescNo != null" >
+        PRESC_NO,
+      </if>
+      <if test="dispensary != null" >
+        DISPENSARY,
+      </if>
+      <if test="queueId != null" >
+        QUEUE_ID,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="namePhonetic != null" >
+        NAME_PHONETIC,
+      </if>
+      <if test="identity != null" >
+        IDENTITY,
+      </if>
+      <if test="chargeType != null" >
+        CHARGE_TYPE,
+      </if>
+      <if test="unitInContract != null" >
+        UNIT_IN_CONTRACT,
+      </if>
+      <if test="prescType != null" >
+        PRESC_TYPE,
+      </if>
+      <if test="prescAttr != null" >
+        PRESC_ATTR,
+      </if>
+      <if test="prescSource != null" >
+        PRESC_SOURCE,
+      </if>
+      <if test="repetition != null" >
+        REPETITION,
+      </if>
+      <if test="costs != null" >
+        COSTS,
+      </if>
+      <if test="payments != null" >
+        PAYMENTS,
+      </if>
+      <if test="orderedBy != null" >
+        ORDERED_BY,
+      </if>
+      <if test="prescribedBy != null" >
+        PRESCRIBED_BY,
+      </if>
+      <if test="enteredBy != null" >
+        ENTERED_BY,
+      </if>
+      <if test="visitId != null" >
+        VISIT_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="prescDate != null" >
+        #{prescDate,jdbcType=DATE},
+      </if>
+      <if test="prescNo != null" >
+        #{prescNo,jdbcType=DECIMAL},
+      </if>
+      <if test="dispensary != null" >
+        #{dispensary,jdbcType=VARCHAR},
+      </if>
+      <if test="queueId != null" >
+        #{queueId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="namePhonetic != null" >
+        #{namePhonetic,jdbcType=VARCHAR},
+      </if>
+      <if test="identity != null" >
+        #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeType != null" >
+        #{chargeType,jdbcType=VARCHAR},
+      </if>
+      <if test="unitInContract != null" >
+        #{unitInContract,jdbcType=VARCHAR},
+      </if>
+      <if test="prescType != null" >
+        #{prescType,jdbcType=DECIMAL},
+      </if>
+      <if test="prescAttr != null" >
+        #{prescAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="prescSource != null" >
+        #{prescSource,jdbcType=DECIMAL},
+      </if>
+      <if test="repetition != null" >
+        #{repetition,jdbcType=DECIMAL},
+      </if>
+      <if test="costs != null" >
+        #{costs,jdbcType=DECIMAL},
+      </if>
+      <if test="payments != null" >
+        #{payments,jdbcType=DECIMAL},
+      </if>
+      <if test="orderedBy != null" >
+        #{orderedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="prescribedBy != null" >
+        #{prescribedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="enteredBy != null" >
+        #{enteredBy,jdbcType=VARCHAR},
+      </if>
+      <if test="visitId != null" >
+        #{visitId,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.pharmacy.DrugPrescMasterTemp" >
+    update PHARMACY.DRUG_PRESC_MASTER_TEMP
+    <set >
+      <if test="dispensary != null" >
+        DISPENSARY = #{dispensary,jdbcType=VARCHAR},
+      </if>
+      <if test="queueId != null" >
+        QUEUE_ID = #{queueId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="namePhonetic != null" >
+        NAME_PHONETIC = #{namePhonetic,jdbcType=VARCHAR},
+      </if>
+      <if test="identity != null" >
+        IDENTITY = #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeType != null" >
+        CHARGE_TYPE = #{chargeType,jdbcType=VARCHAR},
+      </if>
+      <if test="unitInContract != null" >
+        UNIT_IN_CONTRACT = #{unitInContract,jdbcType=VARCHAR},
+      </if>
+      <if test="prescType != null" >
+        PRESC_TYPE = #{prescType,jdbcType=DECIMAL},
+      </if>
+      <if test="prescAttr != null" >
+        PRESC_ATTR = #{prescAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="prescSource != null" >
+        PRESC_SOURCE = #{prescSource,jdbcType=DECIMAL},
+      </if>
+      <if test="repetition != null" >
+        REPETITION = #{repetition,jdbcType=DECIMAL},
+      </if>
+      <if test="costs != null" >
+        COSTS = #{costs,jdbcType=DECIMAL},
+      </if>
+      <if test="payments != null" >
+        PAYMENTS = #{payments,jdbcType=DECIMAL},
+      </if>
+      <if test="orderedBy != null" >
+        ORDERED_BY = #{orderedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="prescribedBy != null" >
+        PRESCRIBED_BY = #{prescribedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="enteredBy != null" >
+        ENTERED_BY = #{enteredBy,jdbcType=VARCHAR},
+      </if>
+      <if test="visitId != null" >
+        VISIT_ID = #{visitId,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where PRESC_DATE = #{prescDate,jdbcType=DATE}
+      and PRESC_NO = #{prescNo,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.pharmacy.DrugPrescMasterTemp" >
+    update PHARMACY.DRUG_PRESC_MASTER_TEMP
+    set DISPENSARY = #{dispensary,jdbcType=VARCHAR},
+      QUEUE_ID = #{queueId,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=DECIMAL},
+      PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      NAME_PHONETIC = #{namePhonetic,jdbcType=VARCHAR},
+      IDENTITY = #{identity,jdbcType=VARCHAR},
+      CHARGE_TYPE = #{chargeType,jdbcType=VARCHAR},
+      UNIT_IN_CONTRACT = #{unitInContract,jdbcType=VARCHAR},
+      PRESC_TYPE = #{prescType,jdbcType=DECIMAL},
+      PRESC_ATTR = #{prescAttr,jdbcType=VARCHAR},
+      PRESC_SOURCE = #{prescSource,jdbcType=DECIMAL},
+      REPETITION = #{repetition,jdbcType=DECIMAL},
+      COSTS = #{costs,jdbcType=DECIMAL},
+      PAYMENTS = #{payments,jdbcType=DECIMAL},
+      ORDERED_BY = #{orderedBy,jdbcType=VARCHAR},
+      PRESCRIBED_BY = #{prescribedBy,jdbcType=VARCHAR},
+      ENTERED_BY = #{enteredBy,jdbcType=VARCHAR},
+      VISIT_ID = #{visitId,jdbcType=DECIMAL}
+    where PRESC_DATE = #{prescDate,jdbcType=DATE}
+      and PRESC_NO = #{prescNo,jdbcType=DECIMAL}
+  </update>
+</mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.RecpNoMapper">
+    <resultMap id="BaseMap" type="com.ht.extra.pojo.RecpNo">
+        <result column="NEXTVAL" property="recpNo" jdbcType="VARCHAR" />
+    </resultMap>
+    <select id="selectRecpNo" resultMap="BaseMap">
+      select hr_oup_recpt_no_seq.NEXTVAL from dual
+    </select>
+    <select id="selectPatientID" resultMap="BaseMap">
+        select HR160_PAT_MASTER_SEQ.NEXTVAL from dual
+    </select>
+    <select id="selectVisitNo" resultMap="BaseMap">
+        select outpadm.visit_no.NEXTVAL from dual
+    </select>
+
+    <select id="selectScanPay" resultMap="BaseMap">
+        select seq_scan_pay.NEXTVAL from dual
+    </select>
+
+</mapper>

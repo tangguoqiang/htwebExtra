@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.OutpConsultationMasterMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.outpdoct.OutpConsultationMaster" >
+    <id column="VISIT_DATE" property="visitDate" jdbcType="DATE" />
+    <id column="VISIT_NO" property="visitNo" jdbcType="DECIMAL" />
+    <id column="CONSULTATION_ID" property="consultationId" jdbcType="DECIMAL" />
+    <result column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <result column="CONSULTATION_TYPE" property="consultationType" jdbcType="DECIMAL" />
+    <result column="CONSULTATION_EXPLAIN" property="consultationExplain" jdbcType="VARCHAR" />
+    <result column="APPLY_DATE_TIME" property="applyDateTime" jdbcType="DATE" />
+    <result column="END_DATE_TIME" property="endDateTime" jdbcType="DATE" />
+    <result column="CONSULTATION_APPLY_DOCTOR" property="consultationApplyDoctor" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    VISIT_DATE, VISIT_NO, CONSULTATION_ID, PATIENT_ID, CONSULTATION_TYPE, CONSULTATION_EXPLAIN, 
+    APPLY_DATE_TIME, END_DATE_TIME, CONSULTATION_APPLY_DOCTOR
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.outpdoct.OutpConsultationMasterKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from OUTPDOCT.OUTP_CONSULTATION_MASTER
+    where VISIT_DATE = #{visitDate,jdbcType=DATE}
+      and VISIT_NO = #{visitNo,jdbcType=DECIMAL}
+      and CONSULTATION_ID = #{consultationId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.outpdoct.OutpConsultationMasterKey" >
+    delete from OUTPDOCT.OUTP_CONSULTATION_MASTER
+    where VISIT_DATE = #{visitDate,jdbcType=DATE}
+      and VISIT_NO = #{visitNo,jdbcType=DECIMAL}
+      and CONSULTATION_ID = #{consultationId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.outpdoct.OutpConsultationMaster" >
+    insert into OUTPDOCT.OUTP_CONSULTATION_MASTER (VISIT_DATE, VISIT_NO, CONSULTATION_ID, 
+      PATIENT_ID, CONSULTATION_TYPE, CONSULTATION_EXPLAIN, 
+      APPLY_DATE_TIME, END_DATE_TIME, CONSULTATION_APPLY_DOCTOR
+      )
+    values (#{visitDate,jdbcType=DATE}, #{visitNo,jdbcType=DECIMAL}, #{consultationId,jdbcType=DECIMAL}, 
+      #{patientId,jdbcType=VARCHAR}, #{consultationType,jdbcType=DECIMAL}, #{consultationExplain,jdbcType=VARCHAR}, 
+      #{applyDateTime,jdbcType=DATE}, #{endDateTime,jdbcType=DATE}, #{consultationApplyDoctor,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.outpdoct.OutpConsultationMaster" >
+    insert into OUTPDOCT.OUTP_CONSULTATION_MASTER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="visitDate != null" >
+        VISIT_DATE,
+      </if>
+      <if test="visitNo != null" >
+        VISIT_NO,
+      </if>
+      <if test="consultationId != null" >
+        CONSULTATION_ID,
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="consultationType != null" >
+        CONSULTATION_TYPE,
+      </if>
+      <if test="consultationExplain != null" >
+        CONSULTATION_EXPLAIN,
+      </if>
+      <if test="applyDateTime != null" >
+        APPLY_DATE_TIME,
+      </if>
+      <if test="endDateTime != null" >
+        END_DATE_TIME,
+      </if>
+      <if test="consultationApplyDoctor != null" >
+        CONSULTATION_APPLY_DOCTOR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="visitDate != null" >
+        #{visitDate,jdbcType=DATE},
+      </if>
+      <if test="visitNo != null" >
+        #{visitNo,jdbcType=DECIMAL},
+      </if>
+      <if test="consultationId != null" >
+        #{consultationId,jdbcType=DECIMAL},
+      </if>
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="consultationType != null" >
+        #{consultationType,jdbcType=DECIMAL},
+      </if>
+      <if test="consultationExplain != null" >
+        #{consultationExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="applyDateTime != null" >
+        #{applyDateTime,jdbcType=DATE},
+      </if>
+      <if test="endDateTime != null" >
+        #{endDateTime,jdbcType=DATE},
+      </if>
+      <if test="consultationApplyDoctor != null" >
+        #{consultationApplyDoctor,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.outpdoct.OutpConsultationMaster" >
+    update OUTPDOCT.OUTP_CONSULTATION_MASTER
+    <set >
+      <if test="patientId != null" >
+        PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="consultationType != null" >
+        CONSULTATION_TYPE = #{consultationType,jdbcType=DECIMAL},
+      </if>
+      <if test="consultationExplain != null" >
+        CONSULTATION_EXPLAIN = #{consultationExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="applyDateTime != null" >
+        APPLY_DATE_TIME = #{applyDateTime,jdbcType=DATE},
+      </if>
+      <if test="endDateTime != null" >
+        END_DATE_TIME = #{endDateTime,jdbcType=DATE},
+      </if>
+      <if test="consultationApplyDoctor != null" >
+        CONSULTATION_APPLY_DOCTOR = #{consultationApplyDoctor,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where VISIT_DATE = #{visitDate,jdbcType=DATE}
+      and VISIT_NO = #{visitNo,jdbcType=DECIMAL}
+      and CONSULTATION_ID = #{consultationId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.outpdoct.OutpConsultationMaster" >
+    update OUTPDOCT.OUTP_CONSULTATION_MASTER
+    set PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      CONSULTATION_TYPE = #{consultationType,jdbcType=DECIMAL},
+      CONSULTATION_EXPLAIN = #{consultationExplain,jdbcType=VARCHAR},
+      APPLY_DATE_TIME = #{applyDateTime,jdbcType=DATE},
+      END_DATE_TIME = #{endDateTime,jdbcType=DATE},
+      CONSULTATION_APPLY_DOCTOR = #{consultationApplyDoctor,jdbcType=VARCHAR}
+    where VISIT_DATE = #{visitDate,jdbcType=DATE}
+      and VISIT_NO = #{visitNo,jdbcType=DECIMAL}
+      and CONSULTATION_ID = #{consultationId,jdbcType=DECIMAL}
+  </update>
+</mapper>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.MrTempletIndexMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.medrec.MrTempletIndex" >
+    <id column="TEMPLET_ID" property="templetId" jdbcType="VARCHAR" />
+    <result column="TEMPLET_FILE_NAME" property="templetFileName" jdbcType="VARCHAR" />
+    <result column="ACCESS_PATH" property="accessPath" jdbcType="VARCHAR" />
+    <result column="TOPIC" property="topic" jdbcType="VARCHAR" />
+    <result column="DEPT_CODE" property="deptCode" jdbcType="VARCHAR" />
+    <result column="CREATOR_ID" property="creatorId" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE_TIME" property="createDateTime" jdbcType="DATE" />
+    <result column="LAST_MODIFY_DATE_TIME" property="lastModifyDateTime" jdbcType="DATE" />
+    <result column="PERMISSION" property="permission" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    TEMPLET_ID, TEMPLET_FILE_NAME, ACCESS_PATH, TOPIC, DEPT_CODE, CREATOR_ID, CREATE_DATE_TIME, 
+    LAST_MODIFY_DATE_TIME, PERMISSION
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from MEDREC.MR_TEMPLET_INDEX
+    where TEMPLET_ID = #{templetId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from MEDREC.MR_TEMPLET_INDEX
+    where TEMPLET_ID = #{templetId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.medrec.MrTempletIndex" >
+    insert into MEDREC.MR_TEMPLET_INDEX (TEMPLET_ID, TEMPLET_FILE_NAME, ACCESS_PATH, 
+      TOPIC, DEPT_CODE, CREATOR_ID, 
+      CREATE_DATE_TIME, LAST_MODIFY_DATE_TIME, PERMISSION
+      )
+    values (#{templetId,jdbcType=VARCHAR}, #{templetFileName,jdbcType=VARCHAR}, #{accessPath,jdbcType=VARCHAR}, 
+      #{topic,jdbcType=VARCHAR}, #{deptCode,jdbcType=VARCHAR}, #{creatorId,jdbcType=VARCHAR}, 
+      #{createDateTime,jdbcType=DATE}, #{lastModifyDateTime,jdbcType=DATE}, #{permission,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.medrec.MrTempletIndex" >
+    insert into MEDREC.MR_TEMPLET_INDEX
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="templetId != null" >
+        TEMPLET_ID,
+      </if>
+      <if test="templetFileName != null" >
+        TEMPLET_FILE_NAME,
+      </if>
+      <if test="accessPath != null" >
+        ACCESS_PATH,
+      </if>
+      <if test="topic != null" >
+        TOPIC,
+      </if>
+      <if test="deptCode != null" >
+        DEPT_CODE,
+      </if>
+      <if test="creatorId != null" >
+        CREATOR_ID,
+      </if>
+      <if test="createDateTime != null" >
+        CREATE_DATE_TIME,
+      </if>
+      <if test="lastModifyDateTime != null" >
+        LAST_MODIFY_DATE_TIME,
+      </if>
+      <if test="permission != null" >
+        PERMISSION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="templetId != null" >
+        #{templetId,jdbcType=VARCHAR},
+      </if>
+      <if test="templetFileName != null" >
+        #{templetFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="accessPath != null" >
+        #{accessPath,jdbcType=VARCHAR},
+      </if>
+      <if test="topic != null" >
+        #{topic,jdbcType=VARCHAR},
+      </if>
+      <if test="deptCode != null" >
+        #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorId != null" >
+        #{creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="createDateTime != null" >
+        #{createDateTime,jdbcType=DATE},
+      </if>
+      <if test="lastModifyDateTime != null" >
+        #{lastModifyDateTime,jdbcType=DATE},
+      </if>
+      <if test="permission != null" >
+        #{permission,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.medrec.MrTempletIndex" >
+    update MEDREC.MR_TEMPLET_INDEX
+    <set >
+      <if test="templetFileName != null" >
+        TEMPLET_FILE_NAME = #{templetFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="accessPath != null" >
+        ACCESS_PATH = #{accessPath,jdbcType=VARCHAR},
+      </if>
+      <if test="topic != null" >
+        TOPIC = #{topic,jdbcType=VARCHAR},
+      </if>
+      <if test="deptCode != null" >
+        DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorId != null" >
+        CREATOR_ID = #{creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="createDateTime != null" >
+        CREATE_DATE_TIME = #{createDateTime,jdbcType=DATE},
+      </if>
+      <if test="lastModifyDateTime != null" >
+        LAST_MODIFY_DATE_TIME = #{lastModifyDateTime,jdbcType=DATE},
+      </if>
+      <if test="permission != null" >
+        PERMISSION = #{permission,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where TEMPLET_ID = #{templetId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.medrec.MrTempletIndex" >
+    update MEDREC.MR_TEMPLET_INDEX
+    set TEMPLET_FILE_NAME = #{templetFileName,jdbcType=VARCHAR},
+      ACCESS_PATH = #{accessPath,jdbcType=VARCHAR},
+      TOPIC = #{topic,jdbcType=VARCHAR},
+      DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+      CREATOR_ID = #{creatorId,jdbcType=VARCHAR},
+      CREATE_DATE_TIME = #{createDateTime,jdbcType=DATE},
+      LAST_MODIFY_DATE_TIME = #{lastModifyDateTime,jdbcType=DATE},
+      PERMISSION = #{permission,jdbcType=VARCHAR}
+    where TEMPLET_ID = #{templetId,jdbcType=VARCHAR}
+  </update>
+</mapper>

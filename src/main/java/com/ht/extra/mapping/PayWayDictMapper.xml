@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.PayWayDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.PayWayDict" >
+    <id column="PAY_WAY_CODE" property="payWayCode" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="PAY_WAY_NAME" property="payWayName" jdbcType="VARCHAR" />
+    <result column="ACCTING_INDICATOR" property="acctingIndicator" jdbcType="DECIMAL" />
+    <result column="OUTP_INDICATOR" property="outpIndicator" jdbcType="DECIMAL" />
+    <result column="INP_INDICATOR" property="inpIndicator" jdbcType="DECIMAL" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PAY_WAY_CODE, SERIAL_NO, PAY_WAY_NAME, ACCTING_INDICATOR, OUTP_INDICATOR, INP_INDICATOR, 
+    INPUT_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.PAY_WAY_DICT
+    where PAY_WAY_CODE = #{payWayCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.PAY_WAY_DICT
+    where PAY_WAY_CODE = #{payWayCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.PayWayDict" >
+    insert into COMM.PAY_WAY_DICT (PAY_WAY_CODE, SERIAL_NO, PAY_WAY_NAME, 
+      ACCTING_INDICATOR, OUTP_INDICATOR, INP_INDICATOR, 
+      INPUT_CODE)
+    values (#{payWayCode,jdbcType=VARCHAR}, #{serialNo,jdbcType=DECIMAL}, #{payWayName,jdbcType=VARCHAR}, 
+      #{acctingIndicator,jdbcType=DECIMAL}, #{outpIndicator,jdbcType=DECIMAL}, #{inpIndicator,jdbcType=DECIMAL}, 
+      #{inputCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.PayWayDict" >
+    insert into COMM.PAY_WAY_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="payWayCode != null" >
+        PAY_WAY_CODE,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="payWayName != null" >
+        PAY_WAY_NAME,
+      </if>
+      <if test="acctingIndicator != null" >
+        ACCTING_INDICATOR,
+      </if>
+      <if test="outpIndicator != null" >
+        OUTP_INDICATOR,
+      </if>
+      <if test="inpIndicator != null" >
+        INP_INDICATOR,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="payWayCode != null" >
+        #{payWayCode,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="payWayName != null" >
+        #{payWayName,jdbcType=VARCHAR},
+      </if>
+      <if test="acctingIndicator != null" >
+        #{acctingIndicator,jdbcType=DECIMAL},
+      </if>
+      <if test="outpIndicator != null" >
+        #{outpIndicator,jdbcType=DECIMAL},
+      </if>
+      <if test="inpIndicator != null" >
+        #{inpIndicator,jdbcType=DECIMAL},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.PayWayDict" >
+    update COMM.PAY_WAY_DICT
+    <set >
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="payWayName != null" >
+        PAY_WAY_NAME = #{payWayName,jdbcType=VARCHAR},
+      </if>
+      <if test="acctingIndicator != null" >
+        ACCTING_INDICATOR = #{acctingIndicator,jdbcType=DECIMAL},
+      </if>
+      <if test="outpIndicator != null" >
+        OUTP_INDICATOR = #{outpIndicator,jdbcType=DECIMAL},
+      </if>
+      <if test="inpIndicator != null" >
+        INP_INDICATOR = #{inpIndicator,jdbcType=DECIMAL},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PAY_WAY_CODE = #{payWayCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.PayWayDict" >
+    update COMM.PAY_WAY_DICT
+    set SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      PAY_WAY_NAME = #{payWayName,jdbcType=VARCHAR},
+      ACCTING_INDICATOR = #{acctingIndicator,jdbcType=DECIMAL},
+      OUTP_INDICATOR = #{outpIndicator,jdbcType=DECIMAL},
+      INP_INDICATOR = #{inpIndicator,jdbcType=DECIMAL},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR}
+    where PAY_WAY_CODE = #{payWayCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

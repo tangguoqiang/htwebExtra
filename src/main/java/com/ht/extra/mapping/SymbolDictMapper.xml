@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.SymbolDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.lab.SymbolDict" >
+    <id column="ITEM_CODE" property="itemCode" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="SYMBOL" property="symbol" jdbcType="VARCHAR" />
+    <result column="UPPER_LIMIT" property="upperLimit" jdbcType="DECIMAL" />
+    <result column="LOWER_LIMIT" property="lowerLimit" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ITEM_CODE, SERIAL_NO, SYMBOL, UPPER_LIMIT, LOWER_LIMIT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from LAB.SYMBOL_DICT
+    where ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from LAB.SYMBOL_DICT
+    where ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.lab.SymbolDict" >
+    insert into LAB.SYMBOL_DICT (ITEM_CODE, SERIAL_NO, SYMBOL, 
+      UPPER_LIMIT, LOWER_LIMIT)
+    values (#{itemCode,jdbcType=VARCHAR}, #{serialNo,jdbcType=DECIMAL}, #{symbol,jdbcType=VARCHAR}, 
+      #{upperLimit,jdbcType=DECIMAL}, #{lowerLimit,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.lab.SymbolDict" >
+    insert into LAB.SYMBOL_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="itemCode != null" >
+        ITEM_CODE,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="symbol != null" >
+        SYMBOL,
+      </if>
+      <if test="upperLimit != null" >
+        UPPER_LIMIT,
+      </if>
+      <if test="lowerLimit != null" >
+        LOWER_LIMIT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="itemCode != null" >
+        #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="symbol != null" >
+        #{symbol,jdbcType=VARCHAR},
+      </if>
+      <if test="upperLimit != null" >
+        #{upperLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="lowerLimit != null" >
+        #{lowerLimit,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.lab.SymbolDict" >
+    update LAB.SYMBOL_DICT
+    <set >
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="symbol != null" >
+        SYMBOL = #{symbol,jdbcType=VARCHAR},
+      </if>
+      <if test="upperLimit != null" >
+        UPPER_LIMIT = #{upperLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="lowerLimit != null" >
+        LOWER_LIMIT = #{lowerLimit,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.lab.SymbolDict" >
+    update LAB.SYMBOL_DICT
+    set SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      SYMBOL = #{symbol,jdbcType=VARCHAR},
+      UPPER_LIMIT = #{upperLimit,jdbcType=DECIMAL},
+      LOWER_LIMIT = #{lowerLimit,jdbcType=DECIMAL}
+    where ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

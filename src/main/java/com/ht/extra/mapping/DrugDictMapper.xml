@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.DrugDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.DrugDict" >
+    <id column="DRUG_CODE" property="drugCode" jdbcType="VARCHAR" />
+    <id column="DRUG_SPEC" property="drugSpec" jdbcType="VARCHAR" />
+    <id column="DRUG_INDICATOR" property="drugIndicator" jdbcType="DECIMAL" />
+    <result column="DRUG_NAME" property="drugName" jdbcType="VARCHAR" />
+    <result column="UNITS" property="units" jdbcType="VARCHAR" />
+    <result column="DRUG_FORM" property="drugForm" jdbcType="VARCHAR" />
+    <result column="TOXI_PROPERTY" property="toxiProperty" jdbcType="VARCHAR" />
+    <result column="DOSE_PER_UNIT" property="dosePerUnit" jdbcType="DECIMAL" />
+    <result column="DOSE_UNITS" property="doseUnits" jdbcType="VARCHAR" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+    <result column="ADMINISTRATION" property="administration" jdbcType="VARCHAR" />
+    <result column="FREQUENCY" property="frequency" jdbcType="VARCHAR" />
+    <result column="NOTES" property="notes" jdbcType="VARCHAR" />
+    <result column="PER_AMOUNT" property="perAmount" jdbcType="DECIMAL" />
+    <result column="MEMOS" property="memos" jdbcType="VARCHAR" />
+    <result column="SPECIAL_SIGN" property="specialSign" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    DRUG_CODE, DRUG_SPEC, DRUG_INDICATOR, DRUG_NAME, UNITS, DRUG_FORM, TOXI_PROPERTY, 
+    DOSE_PER_UNIT, DOSE_UNITS, INPUT_CODE, ADMINISTRATION, FREQUENCY, NOTES, PER_AMOUNT, 
+    MEMOS, SPECIAL_SIGN
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.DrugDictKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.DRUG_DICT
+    where DRUG_CODE = #{drugCode,jdbcType=VARCHAR}
+      and DRUG_SPEC = #{drugSpec,jdbcType=VARCHAR}
+      and DRUG_INDICATOR = #{drugIndicator,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.DrugDictKey" >
+    delete from COMM.DRUG_DICT
+    where DRUG_CODE = #{drugCode,jdbcType=VARCHAR}
+      and DRUG_SPEC = #{drugSpec,jdbcType=VARCHAR}
+      and DRUG_INDICATOR = #{drugIndicator,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.DrugDict" >
+    insert into COMM.DRUG_DICT (DRUG_CODE, DRUG_SPEC, DRUG_INDICATOR, 
+      DRUG_NAME, UNITS, DRUG_FORM, 
+      TOXI_PROPERTY, DOSE_PER_UNIT, DOSE_UNITS, 
+      INPUT_CODE, ADMINISTRATION, FREQUENCY, 
+      NOTES, PER_AMOUNT, MEMOS, 
+      SPECIAL_SIGN)
+    values (#{drugCode,jdbcType=VARCHAR}, #{drugSpec,jdbcType=VARCHAR}, #{drugIndicator,jdbcType=DECIMAL}, 
+      #{drugName,jdbcType=VARCHAR}, #{units,jdbcType=VARCHAR}, #{drugForm,jdbcType=VARCHAR}, 
+      #{toxiProperty,jdbcType=VARCHAR}, #{dosePerUnit,jdbcType=DECIMAL}, #{doseUnits,jdbcType=VARCHAR}, 
+      #{inputCode,jdbcType=VARCHAR}, #{administration,jdbcType=VARCHAR}, #{frequency,jdbcType=VARCHAR}, 
+      #{notes,jdbcType=VARCHAR}, #{perAmount,jdbcType=DECIMAL}, #{memos,jdbcType=VARCHAR}, 
+      #{specialSign,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.DrugDict" >
+    insert into COMM.DRUG_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="drugCode != null" >
+        DRUG_CODE,
+      </if>
+      <if test="drugSpec != null" >
+        DRUG_SPEC,
+      </if>
+      <if test="drugIndicator != null" >
+        DRUG_INDICATOR,
+      </if>
+      <if test="drugName != null" >
+        DRUG_NAME,
+      </if>
+      <if test="units != null" >
+        UNITS,
+      </if>
+      <if test="drugForm != null" >
+        DRUG_FORM,
+      </if>
+      <if test="toxiProperty != null" >
+        TOXI_PROPERTY,
+      </if>
+      <if test="dosePerUnit != null" >
+        DOSE_PER_UNIT,
+      </if>
+      <if test="doseUnits != null" >
+        DOSE_UNITS,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+      <if test="administration != null" >
+        ADMINISTRATION,
+      </if>
+      <if test="frequency != null" >
+        FREQUENCY,
+      </if>
+      <if test="notes != null" >
+        NOTES,
+      </if>
+      <if test="perAmount != null" >
+        PER_AMOUNT,
+      </if>
+      <if test="memos != null" >
+        MEMOS,
+      </if>
+      <if test="specialSign != null" >
+        SPECIAL_SIGN,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="drugCode != null" >
+        #{drugCode,jdbcType=VARCHAR},
+      </if>
+      <if test="drugSpec != null" >
+        #{drugSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="drugIndicator != null" >
+        #{drugIndicator,jdbcType=DECIMAL},
+      </if>
+      <if test="drugName != null" >
+        #{drugName,jdbcType=VARCHAR},
+      </if>
+      <if test="units != null" >
+        #{units,jdbcType=VARCHAR},
+      </if>
+      <if test="drugForm != null" >
+        #{drugForm,jdbcType=VARCHAR},
+      </if>
+      <if test="toxiProperty != null" >
+        #{toxiProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="dosePerUnit != null" >
+        #{dosePerUnit,jdbcType=DECIMAL},
+      </if>
+      <if test="doseUnits != null" >
+        #{doseUnits,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="administration != null" >
+        #{administration,jdbcType=VARCHAR},
+      </if>
+      <if test="frequency != null" >
+        #{frequency,jdbcType=VARCHAR},
+      </if>
+      <if test="notes != null" >
+        #{notes,jdbcType=VARCHAR},
+      </if>
+      <if test="perAmount != null" >
+        #{perAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="memos != null" >
+        #{memos,jdbcType=VARCHAR},
+      </if>
+      <if test="specialSign != null" >
+        #{specialSign,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.DrugDict" >
+    update COMM.DRUG_DICT
+    <set >
+      <if test="drugName != null" >
+        DRUG_NAME = #{drugName,jdbcType=VARCHAR},
+      </if>
+      <if test="units != null" >
+        UNITS = #{units,jdbcType=VARCHAR},
+      </if>
+      <if test="drugForm != null" >
+        DRUG_FORM = #{drugForm,jdbcType=VARCHAR},
+      </if>
+      <if test="toxiProperty != null" >
+        TOXI_PROPERTY = #{toxiProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="dosePerUnit != null" >
+        DOSE_PER_UNIT = #{dosePerUnit,jdbcType=DECIMAL},
+      </if>
+      <if test="doseUnits != null" >
+        DOSE_UNITS = #{doseUnits,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="administration != null" >
+        ADMINISTRATION = #{administration,jdbcType=VARCHAR},
+      </if>
+      <if test="frequency != null" >
+        FREQUENCY = #{frequency,jdbcType=VARCHAR},
+      </if>
+      <if test="notes != null" >
+        NOTES = #{notes,jdbcType=VARCHAR},
+      </if>
+      <if test="perAmount != null" >
+        PER_AMOUNT = #{perAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="memos != null" >
+        MEMOS = #{memos,jdbcType=VARCHAR},
+      </if>
+      <if test="specialSign != null" >
+        SPECIAL_SIGN = #{specialSign,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DRUG_CODE = #{drugCode,jdbcType=VARCHAR}
+      and DRUG_SPEC = #{drugSpec,jdbcType=VARCHAR}
+      and DRUG_INDICATOR = #{drugIndicator,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.DrugDict" >
+    update COMM.DRUG_DICT
+    set DRUG_NAME = #{drugName,jdbcType=VARCHAR},
+      UNITS = #{units,jdbcType=VARCHAR},
+      DRUG_FORM = #{drugForm,jdbcType=VARCHAR},
+      TOXI_PROPERTY = #{toxiProperty,jdbcType=VARCHAR},
+      DOSE_PER_UNIT = #{dosePerUnit,jdbcType=DECIMAL},
+      DOSE_UNITS = #{doseUnits,jdbcType=VARCHAR},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      ADMINISTRATION = #{administration,jdbcType=VARCHAR},
+      FREQUENCY = #{frequency,jdbcType=VARCHAR},
+      NOTES = #{notes,jdbcType=VARCHAR},
+      PER_AMOUNT = #{perAmount,jdbcType=DECIMAL},
+      MEMOS = #{memos,jdbcType=VARCHAR},
+      SPECIAL_SIGN = #{specialSign,jdbcType=VARCHAR}
+    where DRUG_CODE = #{drugCode,jdbcType=VARCHAR}
+      and DRUG_SPEC = #{drugSpec,jdbcType=VARCHAR}
+      and DRUG_INDICATOR = #{drugIndicator,jdbcType=DECIMAL}
+  </update>
+</mapper>

@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.InpBillDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.inpbill.InpBillDetail" >
+    <id column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <id column="VISIT_ID" property="visitId" jdbcType="DECIMAL" />
+    <id column="ITEM_NO" property="itemNo" jdbcType="DECIMAL" />
+    <result column="ITEM_CLASS" property="itemClass" jdbcType="VARCHAR" />
+    <result column="ITEM_NAME" property="itemName" jdbcType="VARCHAR" />
+    <result column="ITEM_CODE" property="itemCode" jdbcType="VARCHAR" />
+    <result column="ITEM_SPEC" property="itemSpec" jdbcType="VARCHAR" />
+    <result column="AMOUNT" property="amount" jdbcType="DECIMAL" />
+    <result column="UNITS" property="units" jdbcType="VARCHAR" />
+    <result column="ORDERED_BY" property="orderedBy" jdbcType="VARCHAR" />
+    <result column="PERFORMED_BY" property="performedBy" jdbcType="VARCHAR" />
+    <result column="COSTS" property="costs" jdbcType="DECIMAL" />
+    <result column="CHARGES" property="charges" jdbcType="DECIMAL" />
+    <result column="BILLING_DATE_TIME" property="billingDateTime" jdbcType="DATE" />
+    <result column="OPERATOR_NO" property="operatorNo" jdbcType="VARCHAR" />
+    <result column="RCPT_NO" property="rcptNo" jdbcType="VARCHAR" />
+    <result column="SPECIAL_CHARGES" property="specialCharges" jdbcType="DECIMAL" />
+    <result column="FREE_LIMIT" property="freeLimit" jdbcType="DECIMAL" />
+    <result column="PRICE" property="price" jdbcType="DECIMAL" />
+    <result column="PURCHASE_PRICE" property="purchasePrice" jdbcType="DECIMAL" />
+    <result column="DOCTOR_DEPT" property="doctorDept" jdbcType="VARCHAR" />
+    <result column="CHECKER" property="checker" jdbcType="VARCHAR" />
+    <result column="CHECK_TIME" property="checkTime" jdbcType="DATE" />
+    <result column="MACHINE_CODE" property="machineCode" jdbcType="VARCHAR" />
+    <result column="SETTLE_FLAG" property="settleFlag" jdbcType="DECIMAL" />
+    <result column="DEDUCT_INDICATOR" property="deductIndicator" jdbcType="DECIMAL" />
+    <result column="CLASS_ON_INP_RCPT" property="classOnInpRcpt" jdbcType="VARCHAR" />
+    <result column="SUBJ_CODE" property="subjCode" jdbcType="VARCHAR" />
+    <result column="CLASS_ON_MR" property="classOnMr" jdbcType="VARCHAR" />
+    <result column="CLASS_ON_RECKONING" property="classOnReckoning" jdbcType="VARCHAR" />
+    <result column="FLAG" property="flag" jdbcType="VARCHAR" />
+    <result column="OWN_COSTS" property="ownCosts" jdbcType="DECIMAL" />
+    <result column="INSUR_COSTS" property="insurCosts" jdbcType="DECIMAL" />
+    <result column="ITEM_SERIAL_NO" property="itemSerialNo" jdbcType="VARCHAR" />
+    <result column="UPDATE_FLAG" property="updateFlag" jdbcType="VARCHAR" />
+    <result column="GS_FLAG" property="gsFlag" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PATIENT_ID, VISIT_ID, ITEM_NO, ITEM_CLASS, ITEM_NAME, ITEM_CODE, ITEM_SPEC, AMOUNT, 
+    UNITS, ORDERED_BY, PERFORMED_BY, COSTS, CHARGES, BILLING_DATE_TIME, OPERATOR_NO, 
+    RCPT_NO, SPECIAL_CHARGES, FREE_LIMIT, PRICE, PURCHASE_PRICE, DOCTOR_DEPT, CHECKER, 
+    CHECK_TIME, MACHINE_CODE, SETTLE_FLAG, DEDUCT_INDICATOR, CLASS_ON_INP_RCPT, SUBJ_CODE, 
+    CLASS_ON_MR, CLASS_ON_RECKONING, FLAG, OWN_COSTS, INSUR_COSTS, ITEM_SERIAL_NO, UPDATE_FLAG, 
+    GS_FLAG
+  </sql>
+
+  <select id="selectBillingDate" resultMap="BaseResultMap">
+    select *
+    from INPBILL.INP_BILL_DETAIL
+    where PATIENT_ID = #{0}
+    and VISIT_ID = #{1}
+    and  trunc(billing_date_time) = #{2}
+  </select>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.inpbill.InpBillDetailKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from INPBILL.INP_BILL_DETAIL
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.inpbill.InpBillDetailKey" >
+    delete from INPBILL.INP_BILL_DETAIL
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.inpbill.InpBillDetail" >
+    insert into INPBILL.INP_BILL_DETAIL (PATIENT_ID, VISIT_ID, ITEM_NO, 
+      ITEM_CLASS, ITEM_NAME, ITEM_CODE, 
+      ITEM_SPEC, AMOUNT, UNITS, 
+      ORDERED_BY, PERFORMED_BY, COSTS, 
+      CHARGES, BILLING_DATE_TIME, OPERATOR_NO, 
+      RCPT_NO, SPECIAL_CHARGES, FREE_LIMIT, 
+      PRICE, PURCHASE_PRICE, DOCTOR_DEPT, 
+      CHECKER, CHECK_TIME, MACHINE_CODE, 
+      SETTLE_FLAG, DEDUCT_INDICATOR, CLASS_ON_INP_RCPT, 
+      SUBJ_CODE, CLASS_ON_MR, CLASS_ON_RECKONING, 
+      FLAG, OWN_COSTS, INSUR_COSTS, 
+      ITEM_SERIAL_NO, UPDATE_FLAG, GS_FLAG
+      )
+    values (#{patientId,jdbcType=VARCHAR}, #{visitId,jdbcType=DECIMAL}, #{itemNo,jdbcType=DECIMAL}, 
+      #{itemClass,jdbcType=VARCHAR}, #{itemName,jdbcType=VARCHAR}, #{itemCode,jdbcType=VARCHAR}, 
+      #{itemSpec,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, #{units,jdbcType=VARCHAR}, 
+      #{orderedBy,jdbcType=VARCHAR}, #{performedBy,jdbcType=VARCHAR}, #{costs,jdbcType=DECIMAL}, 
+      #{charges,jdbcType=DECIMAL}, #{billingDateTime,jdbcType=DATE}, #{operatorNo,jdbcType=VARCHAR}, 
+      #{rcptNo,jdbcType=VARCHAR}, #{specialCharges,jdbcType=DECIMAL}, #{freeLimit,jdbcType=DECIMAL}, 
+      #{price,jdbcType=DECIMAL}, #{purchasePrice,jdbcType=DECIMAL}, #{doctorDept,jdbcType=VARCHAR}, 
+      #{checker,jdbcType=VARCHAR}, #{checkTime,jdbcType=DATE}, #{machineCode,jdbcType=VARCHAR}, 
+      #{settleFlag,jdbcType=DECIMAL}, #{deductIndicator,jdbcType=DECIMAL}, #{classOnInpRcpt,jdbcType=VARCHAR}, 
+      #{subjCode,jdbcType=VARCHAR}, #{classOnMr,jdbcType=VARCHAR}, #{classOnReckoning,jdbcType=VARCHAR}, 
+      #{flag,jdbcType=VARCHAR}, #{ownCosts,jdbcType=DECIMAL}, #{insurCosts,jdbcType=DECIMAL}, 
+      #{itemSerialNo,jdbcType=VARCHAR}, #{updateFlag,jdbcType=VARCHAR}, #{gsFlag,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.inpbill.InpBillDetail" >
+    insert into INPBILL.INP_BILL_DETAIL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="visitId != null" >
+        VISIT_ID,
+      </if>
+      <if test="itemNo != null" >
+        ITEM_NO,
+      </if>
+      <if test="itemClass != null" >
+        ITEM_CLASS,
+      </if>
+      <if test="itemName != null" >
+        ITEM_NAME,
+      </if>
+      <if test="itemCode != null" >
+        ITEM_CODE,
+      </if>
+      <if test="itemSpec != null" >
+        ITEM_SPEC,
+      </if>
+      <if test="amount != null" >
+        AMOUNT,
+      </if>
+      <if test="units != null" >
+        UNITS,
+      </if>
+      <if test="orderedBy != null" >
+        ORDERED_BY,
+      </if>
+      <if test="performedBy != null" >
+        PERFORMED_BY,
+      </if>
+      <if test="costs != null" >
+        COSTS,
+      </if>
+      <if test="charges != null" >
+        CHARGES,
+      </if>
+      <if test="billingDateTime != null" >
+        BILLING_DATE_TIME,
+      </if>
+      <if test="operatorNo != null" >
+        OPERATOR_NO,
+      </if>
+      <if test="rcptNo != null" >
+        RCPT_NO,
+      </if>
+      <if test="specialCharges != null" >
+        SPECIAL_CHARGES,
+      </if>
+      <if test="freeLimit != null" >
+        FREE_LIMIT,
+      </if>
+      <if test="price != null" >
+        PRICE,
+      </if>
+      <if test="purchasePrice != null" >
+        PURCHASE_PRICE,
+      </if>
+      <if test="doctorDept != null" >
+        DOCTOR_DEPT,
+      </if>
+      <if test="checker != null" >
+        CHECKER,
+      </if>
+      <if test="checkTime != null" >
+        CHECK_TIME,
+      </if>
+      <if test="machineCode != null" >
+        MACHINE_CODE,
+      </if>
+      <if test="settleFlag != null" >
+        SETTLE_FLAG,
+      </if>
+      <if test="deductIndicator != null" >
+        DEDUCT_INDICATOR,
+      </if>
+      <if test="classOnInpRcpt != null" >
+        CLASS_ON_INP_RCPT,
+      </if>
+      <if test="subjCode != null" >
+        SUBJ_CODE,
+      </if>
+      <if test="classOnMr != null" >
+        CLASS_ON_MR,
+      </if>
+      <if test="classOnReckoning != null" >
+        CLASS_ON_RECKONING,
+      </if>
+      <if test="flag != null" >
+        FLAG,
+      </if>
+      <if test="ownCosts != null" >
+        OWN_COSTS,
+      </if>
+      <if test="insurCosts != null" >
+        INSUR_COSTS,
+      </if>
+      <if test="itemSerialNo != null" >
+        ITEM_SERIAL_NO,
+      </if>
+      <if test="updateFlag != null" >
+        UPDATE_FLAG,
+      </if>
+      <if test="gsFlag != null" >
+        GS_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitId != null" >
+        #{visitId,jdbcType=DECIMAL},
+      </if>
+      <if test="itemNo != null" >
+        #{itemNo,jdbcType=DECIMAL},
+      </if>
+      <if test="itemClass != null" >
+        #{itemClass,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode != null" >
+        #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemSpec != null" >
+        #{itemSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="units != null" >
+        #{units,jdbcType=VARCHAR},
+      </if>
+      <if test="orderedBy != null" >
+        #{orderedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="performedBy != null" >
+        #{performedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="costs != null" >
+        #{costs,jdbcType=DECIMAL},
+      </if>
+      <if test="charges != null" >
+        #{charges,jdbcType=DECIMAL},
+      </if>
+      <if test="billingDateTime != null" >
+        #{billingDateTime,jdbcType=DATE},
+      </if>
+      <if test="operatorNo != null" >
+        #{operatorNo,jdbcType=VARCHAR},
+      </if>
+      <if test="rcptNo != null" >
+        #{rcptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="specialCharges != null" >
+        #{specialCharges,jdbcType=DECIMAL},
+      </if>
+      <if test="freeLimit != null" >
+        #{freeLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="purchasePrice != null" >
+        #{purchasePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="doctorDept != null" >
+        #{doctorDept,jdbcType=VARCHAR},
+      </if>
+      <if test="checker != null" >
+        #{checker,jdbcType=VARCHAR},
+      </if>
+      <if test="checkTime != null" >
+        #{checkTime,jdbcType=DATE},
+      </if>
+      <if test="machineCode != null" >
+        #{machineCode,jdbcType=VARCHAR},
+      </if>
+      <if test="settleFlag != null" >
+        #{settleFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="deductIndicator != null" >
+        #{deductIndicator,jdbcType=DECIMAL},
+      </if>
+      <if test="classOnInpRcpt != null" >
+        #{classOnInpRcpt,jdbcType=VARCHAR},
+      </if>
+      <if test="subjCode != null" >
+        #{subjCode,jdbcType=VARCHAR},
+      </if>
+      <if test="classOnMr != null" >
+        #{classOnMr,jdbcType=VARCHAR},
+      </if>
+      <if test="classOnReckoning != null" >
+        #{classOnReckoning,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=VARCHAR},
+      </if>
+      <if test="ownCosts != null" >
+        #{ownCosts,jdbcType=DECIMAL},
+      </if>
+      <if test="insurCosts != null" >
+        #{insurCosts,jdbcType=DECIMAL},
+      </if>
+      <if test="itemSerialNo != null" >
+        #{itemSerialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="updateFlag != null" >
+        #{updateFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="gsFlag != null" >
+        #{gsFlag,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.inpbill.InpBillDetail" >
+    update INPBILL.INP_BILL_DETAIL
+    <set >
+      <if test="itemClass != null" >
+        ITEM_CLASS = #{itemClass,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        ITEM_NAME = #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode != null" >
+        ITEM_CODE = #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemSpec != null" >
+        ITEM_SPEC = #{itemSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        AMOUNT = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="units != null" >
+        UNITS = #{units,jdbcType=VARCHAR},
+      </if>
+      <if test="orderedBy != null" >
+        ORDERED_BY = #{orderedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="performedBy != null" >
+        PERFORMED_BY = #{performedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="costs != null" >
+        COSTS = #{costs,jdbcType=DECIMAL},
+      </if>
+      <if test="charges != null" >
+        CHARGES = #{charges,jdbcType=DECIMAL},
+      </if>
+      <if test="billingDateTime != null" >
+        BILLING_DATE_TIME = #{billingDateTime,jdbcType=DATE},
+      </if>
+      <if test="operatorNo != null" >
+        OPERATOR_NO = #{operatorNo,jdbcType=VARCHAR},
+      </if>
+      <if test="rcptNo != null" >
+        RCPT_NO = #{rcptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="specialCharges != null" >
+        SPECIAL_CHARGES = #{specialCharges,jdbcType=DECIMAL},
+      </if>
+      <if test="freeLimit != null" >
+        FREE_LIMIT = #{freeLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="price != null" >
+        PRICE = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="purchasePrice != null" >
+        PURCHASE_PRICE = #{purchasePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="doctorDept != null" >
+        DOCTOR_DEPT = #{doctorDept,jdbcType=VARCHAR},
+      </if>
+      <if test="checker != null" >
+        CHECKER = #{checker,jdbcType=VARCHAR},
+      </if>
+      <if test="checkTime != null" >
+        CHECK_TIME = #{checkTime,jdbcType=DATE},
+      </if>
+      <if test="machineCode != null" >
+        MACHINE_CODE = #{machineCode,jdbcType=VARCHAR},
+      </if>
+      <if test="settleFlag != null" >
+        SETTLE_FLAG = #{settleFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="deductIndicator != null" >
+        DEDUCT_INDICATOR = #{deductIndicator,jdbcType=DECIMAL},
+      </if>
+      <if test="classOnInpRcpt != null" >
+        CLASS_ON_INP_RCPT = #{classOnInpRcpt,jdbcType=VARCHAR},
+      </if>
+      <if test="subjCode != null" >
+        SUBJ_CODE = #{subjCode,jdbcType=VARCHAR},
+      </if>
+      <if test="classOnMr != null" >
+        CLASS_ON_MR = #{classOnMr,jdbcType=VARCHAR},
+      </if>
+      <if test="classOnReckoning != null" >
+        CLASS_ON_RECKONING = #{classOnReckoning,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        FLAG = #{flag,jdbcType=VARCHAR},
+      </if>
+      <if test="ownCosts != null" >
+        OWN_COSTS = #{ownCosts,jdbcType=DECIMAL},
+      </if>
+      <if test="insurCosts != null" >
+        INSUR_COSTS = #{insurCosts,jdbcType=DECIMAL},
+      </if>
+      <if test="itemSerialNo != null" >
+        ITEM_SERIAL_NO = #{itemSerialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="updateFlag != null" >
+        UPDATE_FLAG = #{updateFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="gsFlag != null" >
+        GS_FLAG = #{gsFlag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.inpbill.InpBillDetail" >
+    update INPBILL.INP_BILL_DETAIL
+    set ITEM_CLASS = #{itemClass,jdbcType=VARCHAR},
+      ITEM_NAME = #{itemName,jdbcType=VARCHAR},
+      ITEM_CODE = #{itemCode,jdbcType=VARCHAR},
+      ITEM_SPEC = #{itemSpec,jdbcType=VARCHAR},
+      AMOUNT = #{amount,jdbcType=DECIMAL},
+      UNITS = #{units,jdbcType=VARCHAR},
+      ORDERED_BY = #{orderedBy,jdbcType=VARCHAR},
+      PERFORMED_BY = #{performedBy,jdbcType=VARCHAR},
+      COSTS = #{costs,jdbcType=DECIMAL},
+      CHARGES = #{charges,jdbcType=DECIMAL},
+      BILLING_DATE_TIME = #{billingDateTime,jdbcType=DATE},
+      OPERATOR_NO = #{operatorNo,jdbcType=VARCHAR},
+      RCPT_NO = #{rcptNo,jdbcType=VARCHAR},
+      SPECIAL_CHARGES = #{specialCharges,jdbcType=DECIMAL},
+      FREE_LIMIT = #{freeLimit,jdbcType=DECIMAL},
+      PRICE = #{price,jdbcType=DECIMAL},
+      PURCHASE_PRICE = #{purchasePrice,jdbcType=DECIMAL},
+      DOCTOR_DEPT = #{doctorDept,jdbcType=VARCHAR},
+      CHECKER = #{checker,jdbcType=VARCHAR},
+      CHECK_TIME = #{checkTime,jdbcType=DATE},
+      MACHINE_CODE = #{machineCode,jdbcType=VARCHAR},
+      SETTLE_FLAG = #{settleFlag,jdbcType=DECIMAL},
+      DEDUCT_INDICATOR = #{deductIndicator,jdbcType=DECIMAL},
+      CLASS_ON_INP_RCPT = #{classOnInpRcpt,jdbcType=VARCHAR},
+      SUBJ_CODE = #{subjCode,jdbcType=VARCHAR},
+      CLASS_ON_MR = #{classOnMr,jdbcType=VARCHAR},
+      CLASS_ON_RECKONING = #{classOnReckoning,jdbcType=VARCHAR},
+      FLAG = #{flag,jdbcType=VARCHAR},
+      OWN_COSTS = #{ownCosts,jdbcType=DECIMAL},
+      INSUR_COSTS = #{insurCosts,jdbcType=DECIMAL},
+      ITEM_SERIAL_NO = #{itemSerialNo,jdbcType=VARCHAR},
+      UPDATE_FLAG = #{updateFlag,jdbcType=VARCHAR},
+      GS_FLAG = #{gsFlag,jdbcType=VARCHAR}
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+  </update>
+</mapper>

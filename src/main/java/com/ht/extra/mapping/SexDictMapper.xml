@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.SexDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.SexDict" >
+    <id column="SEX_NAME" property="sexName" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="SEX_CODE" property="sexCode" jdbcType="VARCHAR" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SEX_NAME, SERIAL_NO, SEX_CODE, INPUT_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.SEX_DICT
+    where SEX_NAME = #{sexName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.SEX_DICT
+    where SEX_NAME = #{sexName,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.SexDict" >
+    insert into COMM.SEX_DICT (SEX_NAME, SERIAL_NO, SEX_CODE, 
+      INPUT_CODE)
+    values (#{sexName,jdbcType=VARCHAR}, #{serialNo,jdbcType=DECIMAL}, #{sexCode,jdbcType=VARCHAR}, 
+      #{inputCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.SexDict" >
+    insert into COMM.SEX_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sexName != null" >
+        SEX_NAME,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="sexCode != null" >
+        SEX_CODE,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sexName != null" >
+        #{sexName,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="sexCode != null" >
+        #{sexCode,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.SexDict" >
+    update COMM.SEX_DICT
+    <set >
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="sexCode != null" >
+        SEX_CODE = #{sexCode,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SEX_NAME = #{sexName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.SexDict" >
+    update COMM.SEX_DICT
+    set SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      SEX_CODE = #{sexCode,jdbcType=VARCHAR},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR}
+    where SEX_NAME = #{sexName,jdbcType=VARCHAR}
+  </update>
+</mapper>

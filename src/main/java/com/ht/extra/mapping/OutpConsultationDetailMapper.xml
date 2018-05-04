@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.OutpConsultationDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.outpdoct.OutpConsultationDetail" >
+    <id column="VISIT_DATE" property="visitDate" jdbcType="DATE" />
+    <id column="VISIT_NO" property="visitNo" jdbcType="DECIMAL" />
+    <id column="CONSULTATION_ID" property="consultationId" jdbcType="DECIMAL" />
+    <id column="SUB_ID" property="subId" jdbcType="DECIMAL" />
+    <result column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <result column="CONSULTATION_DEPT" property="consultationDept" jdbcType="VARCHAR" />
+    <result column="CONSULTATION_DOCTOR" property="consultationDoctor" jdbcType="VARCHAR" />
+    <result column="APPLY_DATE_TIME" property="applyDateTime" jdbcType="DATE" />
+    <result column="CONSULTATION_IDEA" property="consultationIdea" jdbcType="VARCHAR" />
+    <result column="COMMIT_DATE_TIME" property="commitDateTime" jdbcType="DATE" />
+    <result column="CONSULTATION_COMMIT" property="consultationCommit" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    VISIT_DATE, VISIT_NO, CONSULTATION_ID, SUB_ID, PATIENT_ID, CONSULTATION_DEPT, CONSULTATION_DOCTOR, 
+    APPLY_DATE_TIME, CONSULTATION_IDEA, COMMIT_DATE_TIME, CONSULTATION_COMMIT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.outpdoct.OutpConsultationDetailKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from OUTPDOCT.OUTP_CONSULTATION_DETAIL
+    where VISIT_DATE = #{visitDate,jdbcType=DATE}
+      and VISIT_NO = #{visitNo,jdbcType=DECIMAL}
+      and CONSULTATION_ID = #{consultationId,jdbcType=DECIMAL}
+      and SUB_ID = #{subId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.outpdoct.OutpConsultationDetailKey" >
+    delete from OUTPDOCT.OUTP_CONSULTATION_DETAIL
+    where VISIT_DATE = #{visitDate,jdbcType=DATE}
+      and VISIT_NO = #{visitNo,jdbcType=DECIMAL}
+      and CONSULTATION_ID = #{consultationId,jdbcType=DECIMAL}
+      and SUB_ID = #{subId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.outpdoct.OutpConsultationDetail" >
+    insert into OUTPDOCT.OUTP_CONSULTATION_DETAIL (VISIT_DATE, VISIT_NO, CONSULTATION_ID, 
+      SUB_ID, PATIENT_ID, CONSULTATION_DEPT, 
+      CONSULTATION_DOCTOR, APPLY_DATE_TIME, CONSULTATION_IDEA, 
+      COMMIT_DATE_TIME, CONSULTATION_COMMIT)
+    values (#{visitDate,jdbcType=DATE}, #{visitNo,jdbcType=DECIMAL}, #{consultationId,jdbcType=DECIMAL}, 
+      #{subId,jdbcType=DECIMAL}, #{patientId,jdbcType=VARCHAR}, #{consultationDept,jdbcType=VARCHAR}, 
+      #{consultationDoctor,jdbcType=VARCHAR}, #{applyDateTime,jdbcType=DATE}, #{consultationIdea,jdbcType=VARCHAR}, 
+      #{commitDateTime,jdbcType=DATE}, #{consultationCommit,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.outpdoct.OutpConsultationDetail" >
+    insert into OUTPDOCT.OUTP_CONSULTATION_DETAIL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="visitDate != null" >
+        VISIT_DATE,
+      </if>
+      <if test="visitNo != null" >
+        VISIT_NO,
+      </if>
+      <if test="consultationId != null" >
+        CONSULTATION_ID,
+      </if>
+      <if test="subId != null" >
+        SUB_ID,
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="consultationDept != null" >
+        CONSULTATION_DEPT,
+      </if>
+      <if test="consultationDoctor != null" >
+        CONSULTATION_DOCTOR,
+      </if>
+      <if test="applyDateTime != null" >
+        APPLY_DATE_TIME,
+      </if>
+      <if test="consultationIdea != null" >
+        CONSULTATION_IDEA,
+      </if>
+      <if test="commitDateTime != null" >
+        COMMIT_DATE_TIME,
+      </if>
+      <if test="consultationCommit != null" >
+        CONSULTATION_COMMIT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="visitDate != null" >
+        #{visitDate,jdbcType=DATE},
+      </if>
+      <if test="visitNo != null" >
+        #{visitNo,jdbcType=DECIMAL},
+      </if>
+      <if test="consultationId != null" >
+        #{consultationId,jdbcType=DECIMAL},
+      </if>
+      <if test="subId != null" >
+        #{subId,jdbcType=DECIMAL},
+      </if>
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="consultationDept != null" >
+        #{consultationDept,jdbcType=VARCHAR},
+      </if>
+      <if test="consultationDoctor != null" >
+        #{consultationDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="applyDateTime != null" >
+        #{applyDateTime,jdbcType=DATE},
+      </if>
+      <if test="consultationIdea != null" >
+        #{consultationIdea,jdbcType=VARCHAR},
+      </if>
+      <if test="commitDateTime != null" >
+        #{commitDateTime,jdbcType=DATE},
+      </if>
+      <if test="consultationCommit != null" >
+        #{consultationCommit,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.outpdoct.OutpConsultationDetail" >
+    update OUTPDOCT.OUTP_CONSULTATION_DETAIL
+    <set >
+      <if test="patientId != null" >
+        PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="consultationDept != null" >
+        CONSULTATION_DEPT = #{consultationDept,jdbcType=VARCHAR},
+      </if>
+      <if test="consultationDoctor != null" >
+        CONSULTATION_DOCTOR = #{consultationDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="applyDateTime != null" >
+        APPLY_DATE_TIME = #{applyDateTime,jdbcType=DATE},
+      </if>
+      <if test="consultationIdea != null" >
+        CONSULTATION_IDEA = #{consultationIdea,jdbcType=VARCHAR},
+      </if>
+      <if test="commitDateTime != null" >
+        COMMIT_DATE_TIME = #{commitDateTime,jdbcType=DATE},
+      </if>
+      <if test="consultationCommit != null" >
+        CONSULTATION_COMMIT = #{consultationCommit,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where VISIT_DATE = #{visitDate,jdbcType=DATE}
+      and VISIT_NO = #{visitNo,jdbcType=DECIMAL}
+      and CONSULTATION_ID = #{consultationId,jdbcType=DECIMAL}
+      and SUB_ID = #{subId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.outpdoct.OutpConsultationDetail" >
+    update OUTPDOCT.OUTP_CONSULTATION_DETAIL
+    set PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      CONSULTATION_DEPT = #{consultationDept,jdbcType=VARCHAR},
+      CONSULTATION_DOCTOR = #{consultationDoctor,jdbcType=VARCHAR},
+      APPLY_DATE_TIME = #{applyDateTime,jdbcType=DATE},
+      CONSULTATION_IDEA = #{consultationIdea,jdbcType=VARCHAR},
+      COMMIT_DATE_TIME = #{commitDateTime,jdbcType=DATE},
+      CONSULTATION_COMMIT = #{consultationCommit,jdbcType=DECIMAL}
+    where VISIT_DATE = #{visitDate,jdbcType=DATE}
+      and VISIT_NO = #{visitNo,jdbcType=DECIMAL}
+      and CONSULTATION_ID = #{consultationId,jdbcType=DECIMAL}
+      and SUB_ID = #{subId,jdbcType=DECIMAL}
+  </update>
+</mapper>

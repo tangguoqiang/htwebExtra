@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.TallySubjectDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.TallySubjectDict" >
+    <id column="SUBJ_CODE" property="subjCode" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="SUBJ_NAME" property="subjName" jdbcType="VARCHAR" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SUBJ_CODE, SERIAL_NO, SUBJ_NAME, INPUT_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.TALLY_SUBJECT_DICT
+    where SUBJ_CODE = #{subjCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.TALLY_SUBJECT_DICT
+    where SUBJ_CODE = #{subjCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.TallySubjectDict" >
+    insert into COMM.TALLY_SUBJECT_DICT (SUBJ_CODE, SERIAL_NO, SUBJ_NAME, 
+      INPUT_CODE)
+    values (#{subjCode,jdbcType=VARCHAR}, #{serialNo,jdbcType=DECIMAL}, #{subjName,jdbcType=VARCHAR}, 
+      #{inputCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.TallySubjectDict" >
+    insert into COMM.TALLY_SUBJECT_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="subjCode != null" >
+        SUBJ_CODE,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="subjName != null" >
+        SUBJ_NAME,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="subjCode != null" >
+        #{subjCode,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="subjName != null" >
+        #{subjName,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.TallySubjectDict" >
+    update COMM.TALLY_SUBJECT_DICT
+    <set >
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="subjName != null" >
+        SUBJ_NAME = #{subjName,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SUBJ_CODE = #{subjCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.TallySubjectDict" >
+    update COMM.TALLY_SUBJECT_DICT
+    set SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      SUBJ_NAME = #{subjName,jdbcType=VARCHAR},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR}
+    where SUBJ_CODE = #{subjCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

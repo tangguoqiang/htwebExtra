@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.IsolationIndicatorDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.IsolationIndicatorDict" >
+    <id column="ISOLATION_INDICATOR_CODE" property="isolationIndicatorCode" jdbcType="DECIMAL" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="ISOLATION_INDICATOR_NAME" property="isolationIndicatorName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ISOLATION_INDICATOR_CODE, SERIAL_NO, ISOLATION_INDICATOR_NAME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.ISOLATION_INDICATOR_DICT
+    where ISOLATION_INDICATOR_CODE = #{isolationIndicatorCode,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from COMM.ISOLATION_INDICATOR_DICT
+    where ISOLATION_INDICATOR_CODE = #{isolationIndicatorCode,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.IsolationIndicatorDict" >
+    insert into COMM.ISOLATION_INDICATOR_DICT (ISOLATION_INDICATOR_CODE, SERIAL_NO, 
+      ISOLATION_INDICATOR_NAME)
+    values (#{isolationIndicatorCode,jdbcType=DECIMAL}, #{serialNo,jdbcType=DECIMAL}, 
+      #{isolationIndicatorName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.IsolationIndicatorDict" >
+    insert into COMM.ISOLATION_INDICATOR_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="isolationIndicatorCode != null" >
+        ISOLATION_INDICATOR_CODE,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="isolationIndicatorName != null" >
+        ISOLATION_INDICATOR_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="isolationIndicatorCode != null" >
+        #{isolationIndicatorCode,jdbcType=DECIMAL},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="isolationIndicatorName != null" >
+        #{isolationIndicatorName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.IsolationIndicatorDict" >
+    update COMM.ISOLATION_INDICATOR_DICT
+    <set >
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="isolationIndicatorName != null" >
+        ISOLATION_INDICATOR_NAME = #{isolationIndicatorName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ISOLATION_INDICATOR_CODE = #{isolationIndicatorCode,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.IsolationIndicatorDict" >
+    update COMM.ISOLATION_INDICATOR_DICT
+    set SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      ISOLATION_INDICATOR_NAME = #{isolationIndicatorName,jdbcType=VARCHAR}
+    where ISOLATION_INDICATOR_CODE = #{isolationIndicatorCode,jdbcType=DECIMAL}
+  </update>
+</mapper>

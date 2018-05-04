@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.InpDietCostsMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.inpbill.InpDietCosts" >
+    <id column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <id column="VISIT_ID" property="visitId" jdbcType="DECIMAL" />
+    <id column="ITEM_NO" property="itemNo" jdbcType="DECIMAL" />
+    <result column="COSTS" property="costs" jdbcType="DECIMAL" />
+    <result column="DIET_PROVIDER" property="dietProvider" jdbcType="VARCHAR" />
+    <result column="BILLING_DATE_TIME" property="billingDateTime" jdbcType="DATE" />
+    <result column="OPERATOR_NO" property="operatorNo" jdbcType="VARCHAR" />
+    <result column="RCPT_NO" property="rcptNo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PATIENT_ID, VISIT_ID, ITEM_NO, COSTS, DIET_PROVIDER, BILLING_DATE_TIME, OPERATOR_NO, 
+    RCPT_NO
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.inpbill.InpDietCostsKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from INPBILL.INP_DIET_COSTS
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.inpbill.InpDietCostsKey" >
+    delete from INPBILL.INP_DIET_COSTS
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.inpbill.InpDietCosts" >
+    insert into INPBILL.INP_DIET_COSTS (PATIENT_ID, VISIT_ID, ITEM_NO, 
+      COSTS, DIET_PROVIDER, BILLING_DATE_TIME, 
+      OPERATOR_NO, RCPT_NO)
+    values (#{patientId,jdbcType=VARCHAR}, #{visitId,jdbcType=DECIMAL}, #{itemNo,jdbcType=DECIMAL}, 
+      #{costs,jdbcType=DECIMAL}, #{dietProvider,jdbcType=VARCHAR}, #{billingDateTime,jdbcType=DATE}, 
+      #{operatorNo,jdbcType=VARCHAR}, #{rcptNo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.inpbill.InpDietCosts" >
+    insert into INPBILL.INP_DIET_COSTS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="visitId != null" >
+        VISIT_ID,
+      </if>
+      <if test="itemNo != null" >
+        ITEM_NO,
+      </if>
+      <if test="costs != null" >
+        COSTS,
+      </if>
+      <if test="dietProvider != null" >
+        DIET_PROVIDER,
+      </if>
+      <if test="billingDateTime != null" >
+        BILLING_DATE_TIME,
+      </if>
+      <if test="operatorNo != null" >
+        OPERATOR_NO,
+      </if>
+      <if test="rcptNo != null" >
+        RCPT_NO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitId != null" >
+        #{visitId,jdbcType=DECIMAL},
+      </if>
+      <if test="itemNo != null" >
+        #{itemNo,jdbcType=DECIMAL},
+      </if>
+      <if test="costs != null" >
+        #{costs,jdbcType=DECIMAL},
+      </if>
+      <if test="dietProvider != null" >
+        #{dietProvider,jdbcType=VARCHAR},
+      </if>
+      <if test="billingDateTime != null" >
+        #{billingDateTime,jdbcType=DATE},
+      </if>
+      <if test="operatorNo != null" >
+        #{operatorNo,jdbcType=VARCHAR},
+      </if>
+      <if test="rcptNo != null" >
+        #{rcptNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.inpbill.InpDietCosts" >
+    update INPBILL.INP_DIET_COSTS
+    <set >
+      <if test="costs != null" >
+        COSTS = #{costs,jdbcType=DECIMAL},
+      </if>
+      <if test="dietProvider != null" >
+        DIET_PROVIDER = #{dietProvider,jdbcType=VARCHAR},
+      </if>
+      <if test="billingDateTime != null" >
+        BILLING_DATE_TIME = #{billingDateTime,jdbcType=DATE},
+      </if>
+      <if test="operatorNo != null" >
+        OPERATOR_NO = #{operatorNo,jdbcType=VARCHAR},
+      </if>
+      <if test="rcptNo != null" >
+        RCPT_NO = #{rcptNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.inpbill.InpDietCosts" >
+    update INPBILL.INP_DIET_COSTS
+    set COSTS = #{costs,jdbcType=DECIMAL},
+      DIET_PROVIDER = #{dietProvider,jdbcType=VARCHAR},
+      BILLING_DATE_TIME = #{billingDateTime,jdbcType=DATE},
+      OPERATOR_NO = #{operatorNo,jdbcType=VARCHAR},
+      RCPT_NO = #{rcptNo,jdbcType=VARCHAR}
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+  </update>
+</mapper>

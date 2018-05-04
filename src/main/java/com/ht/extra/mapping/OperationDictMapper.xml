@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.OperationDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.OperationDict" >
+    <id column="OPERATION_NAME" property="operationName" jdbcType="VARCHAR" />
+    <result column="OPERATION_CODE" property="operationCode" jdbcType="VARCHAR" />
+    <result column="OPERATION_SCALE" property="operationScale" jdbcType="VARCHAR" />
+    <result column="STD_INDICATOR" property="stdIndicator" jdbcType="DECIMAL" />
+    <result column="APPROVED_INDICATOR" property="approvedIndicator" jdbcType="DECIMAL" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="DATE" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+    <result column="CODE_VERSION" property="codeVersion" jdbcType="VARCHAR" />
+    <result column="OPERATION_LEVEL" property="operationLevel" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    OPERATION_NAME, OPERATION_CODE, OPERATION_SCALE, STD_INDICATOR, APPROVED_INDICATOR, 
+    CREATE_DATE, INPUT_CODE, CODE_VERSION, OPERATION_LEVEL
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.OPERATION_DICT
+    where OPERATION_NAME = #{operationName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.OPERATION_DICT
+    where OPERATION_NAME = #{operationName,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.OperationDict" >
+    insert into COMM.OPERATION_DICT (OPERATION_NAME, OPERATION_CODE, OPERATION_SCALE, 
+      STD_INDICATOR, APPROVED_INDICATOR, CREATE_DATE, 
+      INPUT_CODE, CODE_VERSION, OPERATION_LEVEL
+      )
+    values (#{operationName,jdbcType=VARCHAR}, #{operationCode,jdbcType=VARCHAR}, #{operationScale,jdbcType=VARCHAR}, 
+      #{stdIndicator,jdbcType=DECIMAL}, #{approvedIndicator,jdbcType=DECIMAL}, #{createDate,jdbcType=DATE}, 
+      #{inputCode,jdbcType=VARCHAR}, #{codeVersion,jdbcType=VARCHAR}, #{operationLevel,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.OperationDict" >
+    insert into COMM.OPERATION_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="operationName != null" >
+        OPERATION_NAME,
+      </if>
+      <if test="operationCode != null" >
+        OPERATION_CODE,
+      </if>
+      <if test="operationScale != null" >
+        OPERATION_SCALE,
+      </if>
+      <if test="stdIndicator != null" >
+        STD_INDICATOR,
+      </if>
+      <if test="approvedIndicator != null" >
+        APPROVED_INDICATOR,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+      <if test="codeVersion != null" >
+        CODE_VERSION,
+      </if>
+      <if test="operationLevel != null" >
+        OPERATION_LEVEL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="operationName != null" >
+        #{operationName,jdbcType=VARCHAR},
+      </if>
+      <if test="operationCode != null" >
+        #{operationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="operationScale != null" >
+        #{operationScale,jdbcType=VARCHAR},
+      </if>
+      <if test="stdIndicator != null" >
+        #{stdIndicator,jdbcType=DECIMAL},
+      </if>
+      <if test="approvedIndicator != null" >
+        #{approvedIndicator,jdbcType=DECIMAL},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=DATE},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="codeVersion != null" >
+        #{codeVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="operationLevel != null" >
+        #{operationLevel,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.OperationDict" >
+    update COMM.OPERATION_DICT
+    <set >
+      <if test="operationCode != null" >
+        OPERATION_CODE = #{operationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="operationScale != null" >
+        OPERATION_SCALE = #{operationScale,jdbcType=VARCHAR},
+      </if>
+      <if test="stdIndicator != null" >
+        STD_INDICATOR = #{stdIndicator,jdbcType=DECIMAL},
+      </if>
+      <if test="approvedIndicator != null" >
+        APPROVED_INDICATOR = #{approvedIndicator,jdbcType=DECIMAL},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=DATE},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="codeVersion != null" >
+        CODE_VERSION = #{codeVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="operationLevel != null" >
+        OPERATION_LEVEL = #{operationLevel,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where OPERATION_NAME = #{operationName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.OperationDict" >
+    update COMM.OPERATION_DICT
+    set OPERATION_CODE = #{operationCode,jdbcType=VARCHAR},
+      OPERATION_SCALE = #{operationScale,jdbcType=VARCHAR},
+      STD_INDICATOR = #{stdIndicator,jdbcType=DECIMAL},
+      APPROVED_INDICATOR = #{approvedIndicator,jdbcType=DECIMAL},
+      CREATE_DATE = #{createDate,jdbcType=DATE},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      CODE_VERSION = #{codeVersion,jdbcType=VARCHAR},
+      OPERATION_LEVEL = #{operationLevel,jdbcType=DECIMAL}
+    where OPERATION_NAME = #{operationName,jdbcType=VARCHAR}
+  </update>
+</mapper>

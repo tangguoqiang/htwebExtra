@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.BillPatternDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.BillPatternDetail" >
+    <id column="PATTERN_NAME" property="patternName" jdbcType="VARCHAR" />
+    <id column="ITEM_NO" property="itemNo" jdbcType="DECIMAL" />
+    <result column="ITEM_CLASS" property="itemClass" jdbcType="VARCHAR" />
+    <result column="ITEM_CODE" property="itemCode" jdbcType="VARCHAR" />
+    <result column="ITEM_SPEC" property="itemSpec" jdbcType="VARCHAR" />
+    <result column="UNITS" property="units" jdbcType="VARCHAR" />
+    <result column="PERFORMED_BY" property="performedBy" jdbcType="VARCHAR" />
+    <result column="AMOUNT" property="amount" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PATTERN_NAME, ITEM_NO, ITEM_CLASS, ITEM_CODE, ITEM_SPEC, UNITS, PERFORMED_BY, AMOUNT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.BillPatternDetailKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.BILL_PATTERN_DETAIL
+    where PATTERN_NAME = #{patternName,jdbcType=VARCHAR}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.BillPatternDetailKey" >
+    delete from COMM.BILL_PATTERN_DETAIL
+    where PATTERN_NAME = #{patternName,jdbcType=VARCHAR}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.BillPatternDetail" >
+    insert into COMM.BILL_PATTERN_DETAIL (PATTERN_NAME, ITEM_NO, ITEM_CLASS, 
+      ITEM_CODE, ITEM_SPEC, UNITS, 
+      PERFORMED_BY, AMOUNT)
+    values (#{patternName,jdbcType=VARCHAR}, #{itemNo,jdbcType=DECIMAL}, #{itemClass,jdbcType=VARCHAR}, 
+      #{itemCode,jdbcType=VARCHAR}, #{itemSpec,jdbcType=VARCHAR}, #{units,jdbcType=VARCHAR}, 
+      #{performedBy,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.BillPatternDetail" >
+    insert into COMM.BILL_PATTERN_DETAIL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="patternName != null" >
+        PATTERN_NAME,
+      </if>
+      <if test="itemNo != null" >
+        ITEM_NO,
+      </if>
+      <if test="itemClass != null" >
+        ITEM_CLASS,
+      </if>
+      <if test="itemCode != null" >
+        ITEM_CODE,
+      </if>
+      <if test="itemSpec != null" >
+        ITEM_SPEC,
+      </if>
+      <if test="units != null" >
+        UNITS,
+      </if>
+      <if test="performedBy != null" >
+        PERFORMED_BY,
+      </if>
+      <if test="amount != null" >
+        AMOUNT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="patternName != null" >
+        #{patternName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemNo != null" >
+        #{itemNo,jdbcType=DECIMAL},
+      </if>
+      <if test="itemClass != null" >
+        #{itemClass,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode != null" >
+        #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemSpec != null" >
+        #{itemSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="units != null" >
+        #{units,jdbcType=VARCHAR},
+      </if>
+      <if test="performedBy != null" >
+        #{performedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.BillPatternDetail" >
+    update COMM.BILL_PATTERN_DETAIL
+    <set >
+      <if test="itemClass != null" >
+        ITEM_CLASS = #{itemClass,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode != null" >
+        ITEM_CODE = #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemSpec != null" >
+        ITEM_SPEC = #{itemSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="units != null" >
+        UNITS = #{units,jdbcType=VARCHAR},
+      </if>
+      <if test="performedBy != null" >
+        PERFORMED_BY = #{performedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        AMOUNT = #{amount,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where PATTERN_NAME = #{patternName,jdbcType=VARCHAR}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.BillPatternDetail" >
+    update COMM.BILL_PATTERN_DETAIL
+    set ITEM_CLASS = #{itemClass,jdbcType=VARCHAR},
+      ITEM_CODE = #{itemCode,jdbcType=VARCHAR},
+      ITEM_SPEC = #{itemSpec,jdbcType=VARCHAR},
+      UNITS = #{units,jdbcType=VARCHAR},
+      PERFORMED_BY = #{performedBy,jdbcType=VARCHAR},
+      AMOUNT = #{amount,jdbcType=DECIMAL}
+    where PATTERN_NAME = #{patternName,jdbcType=VARCHAR}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+  </update>
+</mapper>

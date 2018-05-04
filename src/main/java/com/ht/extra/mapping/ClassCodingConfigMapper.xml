@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.ClassCodingConfigMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.ClassCodingConfig" >
+    <id column="ITEM" property="item" jdbcType="VARCHAR" />
+    <result column="CODE_LEVEL" property="codeLevel" jdbcType="DECIMAL" />
+    <result column="WIZARD_TABLE_NAME" property="wizardTableName" jdbcType="VARCHAR" />
+    <result column="WIZARD_CODE_FIELD" property="wizardCodeField" jdbcType="VARCHAR" />
+    <result column="WIZARD_NAME_FIELD" property="wizardNameField" jdbcType="VARCHAR" />
+    <result column="WIZARD_FILTER" property="wizardFilter" jdbcType="VARCHAR" />
+    <result column="DATA_TABLE_NAME" property="dataTableName" jdbcType="VARCHAR" />
+    <result column="DATA_CODE_FIELD" property="dataCodeField" jdbcType="VARCHAR" />
+    <result column="DATA_NAME_FIELD" property="dataNameField" jdbcType="VARCHAR" />
+    <result column="DATA_FILTER" property="dataFilter" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ITEM, CODE_LEVEL, WIZARD_TABLE_NAME, WIZARD_CODE_FIELD, WIZARD_NAME_FIELD, WIZARD_FILTER, 
+    DATA_TABLE_NAME, DATA_CODE_FIELD, DATA_NAME_FIELD, DATA_FILTER
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.CLASS_CODING_CONFIG
+    where ITEM = #{item,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.CLASS_CODING_CONFIG
+    where ITEM = #{item,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.ClassCodingConfig" >
+    insert into COMM.CLASS_CODING_CONFIG (ITEM, CODE_LEVEL, WIZARD_TABLE_NAME, 
+      WIZARD_CODE_FIELD, WIZARD_NAME_FIELD, WIZARD_FILTER, 
+      DATA_TABLE_NAME, DATA_CODE_FIELD, DATA_NAME_FIELD, 
+      DATA_FILTER)
+    values (#{item,jdbcType=VARCHAR}, #{codeLevel,jdbcType=DECIMAL}, #{wizardTableName,jdbcType=VARCHAR}, 
+      #{wizardCodeField,jdbcType=VARCHAR}, #{wizardNameField,jdbcType=VARCHAR}, #{wizardFilter,jdbcType=VARCHAR}, 
+      #{dataTableName,jdbcType=VARCHAR}, #{dataCodeField,jdbcType=VARCHAR}, #{dataNameField,jdbcType=VARCHAR}, 
+      #{dataFilter,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.ClassCodingConfig" >
+    insert into COMM.CLASS_CODING_CONFIG
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="item != null" >
+        ITEM,
+      </if>
+      <if test="codeLevel != null" >
+        CODE_LEVEL,
+      </if>
+      <if test="wizardTableName != null" >
+        WIZARD_TABLE_NAME,
+      </if>
+      <if test="wizardCodeField != null" >
+        WIZARD_CODE_FIELD,
+      </if>
+      <if test="wizardNameField != null" >
+        WIZARD_NAME_FIELD,
+      </if>
+      <if test="wizardFilter != null" >
+        WIZARD_FILTER,
+      </if>
+      <if test="dataTableName != null" >
+        DATA_TABLE_NAME,
+      </if>
+      <if test="dataCodeField != null" >
+        DATA_CODE_FIELD,
+      </if>
+      <if test="dataNameField != null" >
+        DATA_NAME_FIELD,
+      </if>
+      <if test="dataFilter != null" >
+        DATA_FILTER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="item != null" >
+        #{item,jdbcType=VARCHAR},
+      </if>
+      <if test="codeLevel != null" >
+        #{codeLevel,jdbcType=DECIMAL},
+      </if>
+      <if test="wizardTableName != null" >
+        #{wizardTableName,jdbcType=VARCHAR},
+      </if>
+      <if test="wizardCodeField != null" >
+        #{wizardCodeField,jdbcType=VARCHAR},
+      </if>
+      <if test="wizardNameField != null" >
+        #{wizardNameField,jdbcType=VARCHAR},
+      </if>
+      <if test="wizardFilter != null" >
+        #{wizardFilter,jdbcType=VARCHAR},
+      </if>
+      <if test="dataTableName != null" >
+        #{dataTableName,jdbcType=VARCHAR},
+      </if>
+      <if test="dataCodeField != null" >
+        #{dataCodeField,jdbcType=VARCHAR},
+      </if>
+      <if test="dataNameField != null" >
+        #{dataNameField,jdbcType=VARCHAR},
+      </if>
+      <if test="dataFilter != null" >
+        #{dataFilter,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.ClassCodingConfig" >
+    update COMM.CLASS_CODING_CONFIG
+    <set >
+      <if test="codeLevel != null" >
+        CODE_LEVEL = #{codeLevel,jdbcType=DECIMAL},
+      </if>
+      <if test="wizardTableName != null" >
+        WIZARD_TABLE_NAME = #{wizardTableName,jdbcType=VARCHAR},
+      </if>
+      <if test="wizardCodeField != null" >
+        WIZARD_CODE_FIELD = #{wizardCodeField,jdbcType=VARCHAR},
+      </if>
+      <if test="wizardNameField != null" >
+        WIZARD_NAME_FIELD = #{wizardNameField,jdbcType=VARCHAR},
+      </if>
+      <if test="wizardFilter != null" >
+        WIZARD_FILTER = #{wizardFilter,jdbcType=VARCHAR},
+      </if>
+      <if test="dataTableName != null" >
+        DATA_TABLE_NAME = #{dataTableName,jdbcType=VARCHAR},
+      </if>
+      <if test="dataCodeField != null" >
+        DATA_CODE_FIELD = #{dataCodeField,jdbcType=VARCHAR},
+      </if>
+      <if test="dataNameField != null" >
+        DATA_NAME_FIELD = #{dataNameField,jdbcType=VARCHAR},
+      </if>
+      <if test="dataFilter != null" >
+        DATA_FILTER = #{dataFilter,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ITEM = #{item,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.ClassCodingConfig" >
+    update COMM.CLASS_CODING_CONFIG
+    set CODE_LEVEL = #{codeLevel,jdbcType=DECIMAL},
+      WIZARD_TABLE_NAME = #{wizardTableName,jdbcType=VARCHAR},
+      WIZARD_CODE_FIELD = #{wizardCodeField,jdbcType=VARCHAR},
+      WIZARD_NAME_FIELD = #{wizardNameField,jdbcType=VARCHAR},
+      WIZARD_FILTER = #{wizardFilter,jdbcType=VARCHAR},
+      DATA_TABLE_NAME = #{dataTableName,jdbcType=VARCHAR},
+      DATA_CODE_FIELD = #{dataCodeField,jdbcType=VARCHAR},
+      DATA_NAME_FIELD = #{dataNameField,jdbcType=VARCHAR},
+      DATA_FILTER = #{dataFilter,jdbcType=VARCHAR}
+    where ITEM = #{item,jdbcType=VARCHAR}
+  </update>
+</mapper>

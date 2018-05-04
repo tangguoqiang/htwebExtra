@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.ExamIntervalMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.exam.ExamInterval" >
+    <id column="EXAM_CLASS" property="examClass" jdbcType="VARCHAR" />
+    <id column="EXAM_GROUP" property="examGroup" jdbcType="VARCHAR" />
+    <result column="INTERVAL" property="interval" jdbcType="DECIMAL" />
+    <result column="NUM_OF_PAT" property="numOfPat" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    EXAM_CLASS, EXAM_GROUP, INTERVAL, NUM_OF_PAT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.exam.ExamIntervalKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from EXAM.EXAM_INTERVAL
+    where EXAM_CLASS = #{examClass,jdbcType=VARCHAR}
+      and EXAM_GROUP = #{examGroup,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.exam.ExamIntervalKey" >
+    delete from EXAM.EXAM_INTERVAL
+    where EXAM_CLASS = #{examClass,jdbcType=VARCHAR}
+      and EXAM_GROUP = #{examGroup,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.exam.ExamInterval" >
+    insert into EXAM.EXAM_INTERVAL (EXAM_CLASS, EXAM_GROUP, INTERVAL, 
+      NUM_OF_PAT)
+    values (#{examClass,jdbcType=VARCHAR}, #{examGroup,jdbcType=VARCHAR}, #{interval,jdbcType=DECIMAL}, 
+      #{numOfPat,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.exam.ExamInterval" >
+    insert into EXAM.EXAM_INTERVAL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="examClass != null" >
+        EXAM_CLASS,
+      </if>
+      <if test="examGroup != null" >
+        EXAM_GROUP,
+      </if>
+      <if test="interval != null" >
+        INTERVAL,
+      </if>
+      <if test="numOfPat != null" >
+        NUM_OF_PAT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="examClass != null" >
+        #{examClass,jdbcType=VARCHAR},
+      </if>
+      <if test="examGroup != null" >
+        #{examGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="interval != null" >
+        #{interval,jdbcType=DECIMAL},
+      </if>
+      <if test="numOfPat != null" >
+        #{numOfPat,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.exam.ExamInterval" >
+    update EXAM.EXAM_INTERVAL
+    <set >
+      <if test="interval != null" >
+        INTERVAL = #{interval,jdbcType=DECIMAL},
+      </if>
+      <if test="numOfPat != null" >
+        NUM_OF_PAT = #{numOfPat,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where EXAM_CLASS = #{examClass,jdbcType=VARCHAR}
+      and EXAM_GROUP = #{examGroup,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.exam.ExamInterval" >
+    update EXAM.EXAM_INTERVAL
+    set INTERVAL = #{interval,jdbcType=DECIMAL},
+      NUM_OF_PAT = #{numOfPat,jdbcType=DECIMAL}
+    where EXAM_CLASS = #{examClass,jdbcType=VARCHAR}
+      and EXAM_GROUP = #{examGroup,jdbcType=VARCHAR}
+  </update>
+</mapper>

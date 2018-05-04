@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.MedicalQcMsgMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.inpadm.MedicalQcMsg" >
+    <id column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <id column="VISIT_ID" property="visitId" jdbcType="DECIMAL" />
+    <id column="QC_MSG_CODE" property="qcMsgCode" jdbcType="VARCHAR" />
+    <id column="ISSUED_DATE_TIME" property="issuedDateTime" jdbcType="DATE" />
+    <result column="DEPT_STAYED" property="deptStayed" jdbcType="VARCHAR" />
+    <result column="DOCTOR_IN_CHARGE" property="doctorInCharge" jdbcType="VARCHAR" />
+    <result column="QA_EVENT_TYPE" property="qaEventType" jdbcType="VARCHAR" />
+    <result column="MESSAGE" property="message" jdbcType="VARCHAR" />
+    <result column="ISSUED_BY" property="issuedBy" jdbcType="VARCHAR" />
+    <result column="MSG_STATUS" property="msgStatus" jdbcType="DECIMAL" />
+    <result column="ASK_DATE_TIME" property="askDateTime" jdbcType="DATE" />
+    <result column="QC_MODULE" property="qcModule" jdbcType="VARCHAR" />
+    <result column="TOPIC_ID" property="topicId" jdbcType="VARCHAR" />
+    <result column="TOPIC" property="topic" jdbcType="VARCHAR" />
+    <result column="DOCTOR_COMMENT" property="doctorComment" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PATIENT_ID, VISIT_ID, QC_MSG_CODE, ISSUED_DATE_TIME, DEPT_STAYED, DOCTOR_IN_CHARGE, 
+    QA_EVENT_TYPE, MESSAGE, ISSUED_BY, MSG_STATUS, ASK_DATE_TIME, QC_MODULE, TOPIC_ID, 
+    TOPIC, DOCTOR_COMMENT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.inpadm.MedicalQcMsgKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from INPADM.MEDICAL_QC_MSG
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and QC_MSG_CODE = #{qcMsgCode,jdbcType=VARCHAR}
+      and ISSUED_DATE_TIME = #{issuedDateTime,jdbcType=DATE}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.inpadm.MedicalQcMsgKey" >
+    delete from INPADM.MEDICAL_QC_MSG
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and QC_MSG_CODE = #{qcMsgCode,jdbcType=VARCHAR}
+      and ISSUED_DATE_TIME = #{issuedDateTime,jdbcType=DATE}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.inpadm.MedicalQcMsg" >
+    insert into INPADM.MEDICAL_QC_MSG (PATIENT_ID, VISIT_ID, QC_MSG_CODE, 
+      ISSUED_DATE_TIME, DEPT_STAYED, DOCTOR_IN_CHARGE, 
+      QA_EVENT_TYPE, MESSAGE, ISSUED_BY, 
+      MSG_STATUS, ASK_DATE_TIME, QC_MODULE, 
+      TOPIC_ID, TOPIC, DOCTOR_COMMENT
+      )
+    values (#{patientId,jdbcType=VARCHAR}, #{visitId,jdbcType=DECIMAL}, #{qcMsgCode,jdbcType=VARCHAR}, 
+      #{issuedDateTime,jdbcType=DATE}, #{deptStayed,jdbcType=VARCHAR}, #{doctorInCharge,jdbcType=VARCHAR}, 
+      #{qaEventType,jdbcType=VARCHAR}, #{message,jdbcType=VARCHAR}, #{issuedBy,jdbcType=VARCHAR}, 
+      #{msgStatus,jdbcType=DECIMAL}, #{askDateTime,jdbcType=DATE}, #{qcModule,jdbcType=VARCHAR}, 
+      #{topicId,jdbcType=VARCHAR}, #{topic,jdbcType=VARCHAR}, #{doctorComment,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.inpadm.MedicalQcMsg" >
+    insert into INPADM.MEDICAL_QC_MSG
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="visitId != null" >
+        VISIT_ID,
+      </if>
+      <if test="qcMsgCode != null" >
+        QC_MSG_CODE,
+      </if>
+      <if test="issuedDateTime != null" >
+        ISSUED_DATE_TIME,
+      </if>
+      <if test="deptStayed != null" >
+        DEPT_STAYED,
+      </if>
+      <if test="doctorInCharge != null" >
+        DOCTOR_IN_CHARGE,
+      </if>
+      <if test="qaEventType != null" >
+        QA_EVENT_TYPE,
+      </if>
+      <if test="message != null" >
+        MESSAGE,
+      </if>
+      <if test="issuedBy != null" >
+        ISSUED_BY,
+      </if>
+      <if test="msgStatus != null" >
+        MSG_STATUS,
+      </if>
+      <if test="askDateTime != null" >
+        ASK_DATE_TIME,
+      </if>
+      <if test="qcModule != null" >
+        QC_MODULE,
+      </if>
+      <if test="topicId != null" >
+        TOPIC_ID,
+      </if>
+      <if test="topic != null" >
+        TOPIC,
+      </if>
+      <if test="doctorComment != null" >
+        DOCTOR_COMMENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitId != null" >
+        #{visitId,jdbcType=DECIMAL},
+      </if>
+      <if test="qcMsgCode != null" >
+        #{qcMsgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="issuedDateTime != null" >
+        #{issuedDateTime,jdbcType=DATE},
+      </if>
+      <if test="deptStayed != null" >
+        #{deptStayed,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorInCharge != null" >
+        #{doctorInCharge,jdbcType=VARCHAR},
+      </if>
+      <if test="qaEventType != null" >
+        #{qaEventType,jdbcType=VARCHAR},
+      </if>
+      <if test="message != null" >
+        #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="issuedBy != null" >
+        #{issuedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="msgStatus != null" >
+        #{msgStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="askDateTime != null" >
+        #{askDateTime,jdbcType=DATE},
+      </if>
+      <if test="qcModule != null" >
+        #{qcModule,jdbcType=VARCHAR},
+      </if>
+      <if test="topicId != null" >
+        #{topicId,jdbcType=VARCHAR},
+      </if>
+      <if test="topic != null" >
+        #{topic,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorComment != null" >
+        #{doctorComment,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.inpadm.MedicalQcMsg" >
+    update INPADM.MEDICAL_QC_MSG
+    <set >
+      <if test="deptStayed != null" >
+        DEPT_STAYED = #{deptStayed,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorInCharge != null" >
+        DOCTOR_IN_CHARGE = #{doctorInCharge,jdbcType=VARCHAR},
+      </if>
+      <if test="qaEventType != null" >
+        QA_EVENT_TYPE = #{qaEventType,jdbcType=VARCHAR},
+      </if>
+      <if test="message != null" >
+        MESSAGE = #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="issuedBy != null" >
+        ISSUED_BY = #{issuedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="msgStatus != null" >
+        MSG_STATUS = #{msgStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="askDateTime != null" >
+        ASK_DATE_TIME = #{askDateTime,jdbcType=DATE},
+      </if>
+      <if test="qcModule != null" >
+        QC_MODULE = #{qcModule,jdbcType=VARCHAR},
+      </if>
+      <if test="topicId != null" >
+        TOPIC_ID = #{topicId,jdbcType=VARCHAR},
+      </if>
+      <if test="topic != null" >
+        TOPIC = #{topic,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorComment != null" >
+        DOCTOR_COMMENT = #{doctorComment,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and QC_MSG_CODE = #{qcMsgCode,jdbcType=VARCHAR}
+      and ISSUED_DATE_TIME = #{issuedDateTime,jdbcType=DATE}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.inpadm.MedicalQcMsg" >
+    update INPADM.MEDICAL_QC_MSG
+    set DEPT_STAYED = #{deptStayed,jdbcType=VARCHAR},
+      DOCTOR_IN_CHARGE = #{doctorInCharge,jdbcType=VARCHAR},
+      QA_EVENT_TYPE = #{qaEventType,jdbcType=VARCHAR},
+      MESSAGE = #{message,jdbcType=VARCHAR},
+      ISSUED_BY = #{issuedBy,jdbcType=VARCHAR},
+      MSG_STATUS = #{msgStatus,jdbcType=DECIMAL},
+      ASK_DATE_TIME = #{askDateTime,jdbcType=DATE},
+      QC_MODULE = #{qcModule,jdbcType=VARCHAR},
+      TOPIC_ID = #{topicId,jdbcType=VARCHAR},
+      TOPIC = #{topic,jdbcType=VARCHAR},
+      DOCTOR_COMMENT = #{doctorComment,jdbcType=VARCHAR}
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and QC_MSG_CODE = #{qcMsgCode,jdbcType=VARCHAR}
+      and ISSUED_DATE_TIME = #{issuedDateTime,jdbcType=DATE}
+  </update>
+</mapper>

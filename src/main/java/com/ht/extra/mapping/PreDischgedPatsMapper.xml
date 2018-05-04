@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.PreDischgedPatsMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.inpadm.PreDischgedPats" >
+    <id column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <result column="DISCHARGE_DATE_EXPCTED" property="dischargeDateExpcted" jdbcType="DATE" />
+    <result column="CREATE_DATE_TIME" property="createDateTime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PATIENT_ID, DISCHARGE_DATE_EXPCTED, CREATE_DATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from INPADM.PRE_DISCHGED_PATS
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from INPADM.PRE_DISCHGED_PATS
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.inpadm.PreDischgedPats" >
+    insert into INPADM.PRE_DISCHGED_PATS (PATIENT_ID, DISCHARGE_DATE_EXPCTED, CREATE_DATE_TIME
+      )
+    values (#{patientId,jdbcType=VARCHAR}, #{dischargeDateExpcted,jdbcType=DATE}, #{createDateTime,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.inpadm.PreDischgedPats" >
+    insert into INPADM.PRE_DISCHGED_PATS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="dischargeDateExpcted != null" >
+        DISCHARGE_DATE_EXPCTED,
+      </if>
+      <if test="createDateTime != null" >
+        CREATE_DATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="dischargeDateExpcted != null" >
+        #{dischargeDateExpcted,jdbcType=DATE},
+      </if>
+      <if test="createDateTime != null" >
+        #{createDateTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.inpadm.PreDischgedPats" >
+    update INPADM.PRE_DISCHGED_PATS
+    <set >
+      <if test="dischargeDateExpcted != null" >
+        DISCHARGE_DATE_EXPCTED = #{dischargeDateExpcted,jdbcType=DATE},
+      </if>
+      <if test="createDateTime != null" >
+        CREATE_DATE_TIME = #{createDateTime,jdbcType=DATE},
+      </if>
+    </set>
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.inpadm.PreDischgedPats" >
+    update INPADM.PRE_DISCHGED_PATS
+    set DISCHARGE_DATE_EXPCTED = #{dischargeDateExpcted,jdbcType=DATE},
+      CREATE_DATE_TIME = #{createDateTime,jdbcType=DATE}
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.ScanPayMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.insurance.ScanPay" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="IP_ADDR" property="ipAddr" jdbcType="VARCHAR" />
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+    <result column="PATIENT_NAME" property="patientName" jdbcType="VARCHAR" />
+    <result column="AUTH_CODE" property="authCode" jdbcType="VARCHAR" />
+    <result column="OPERATER_ID" property="operaterId" jdbcType="VARCHAR" />
+    <result column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <result column="CLINIC_LABEL" property="clinicLabel" jdbcType="VARCHAR" />
+    <result column="VISIT_DATE" property="visitDate" jdbcType="DATE" />
+    <result column="AM_PM" property="amPm" jdbcType="VARCHAR" />
+    <result column="TOTAL_COSTS" property="totalCosts" jdbcType="VARCHAR" />
+    <result column="CHARGE_TYPE" property="chargeType" jdbcType="VARCHAR" />
+    <result column="PAY_WAY" property="payWay" jdbcType="VARCHAR" />
+    <result column="HOSPITAL_MARK" property="hospitalMark" jdbcType="VARCHAR" />
+    <result column="TRANDE_NO" property="trandeNo" jdbcType="VARCHAR" />
+    <result column="RCPT_NO" property="rcptNo" jdbcType="VARCHAR" />
+    <result column="RESULT_COMMENT" property="resultComment" jdbcType="VARCHAR" />
+    <result column="ORIG_TRADE_NO" property="origTradeNo" jdbcType="VARCHAR" />
+    <result column="VISIT_ID" property="visitId" jdbcType="DECIMAL" />
+    <result column="OPER_DATE" property="operDate" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, IP_ADDR, USER_ID, PATIENT_NAME, AUTH_CODE, OPERATER_ID, PATIENT_ID, CLINIC_LABEL, 
+    VISIT_DATE, AM_PM, TOTAL_COSTS, CHARGE_TYPE, PAY_WAY, HOSPITAL_MARK, TRANDE_NO, RCPT_NO, 
+    RESULT_COMMENT, ORIG_TRADE_NO, VISIT_ID, OPER_DATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from INSURANCE.SCAN_PAY
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from INSURANCE.SCAN_PAY
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.insurance.ScanPay" >
+    insert into INSURANCE.SCAN_PAY (ID, IP_ADDR, USER_ID, 
+      PATIENT_NAME, AUTH_CODE, OPERATER_ID, 
+      PATIENT_ID, CLINIC_LABEL, VISIT_DATE, 
+      AM_PM, TOTAL_COSTS, CHARGE_TYPE, 
+      PAY_WAY, HOSPITAL_MARK, TRANDE_NO, 
+      RCPT_NO, RESULT_COMMENT, ORIG_TRADE_NO, 
+      VISIT_ID, OPER_DATE)
+    values (#{id,jdbcType=DECIMAL}, #{ipAddr,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{patientName,jdbcType=VARCHAR}, #{authCode,jdbcType=VARCHAR}, #{operaterId,jdbcType=VARCHAR}, 
+      #{patientId,jdbcType=VARCHAR}, #{clinicLabel,jdbcType=VARCHAR}, #{visitDate,jdbcType=DATE}, 
+      #{amPm,jdbcType=VARCHAR}, #{totalCosts,jdbcType=VARCHAR}, #{chargeType,jdbcType=VARCHAR}, 
+      #{payWay,jdbcType=VARCHAR}, #{hospitalMark,jdbcType=VARCHAR}, #{trandeNo,jdbcType=VARCHAR}, 
+      #{rcptNo,jdbcType=VARCHAR}, #{resultComment,jdbcType=VARCHAR}, #{origTradeNo,jdbcType=VARCHAR}, 
+      #{visitId,jdbcType=DECIMAL}, #{operDate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.insurance.ScanPay" >
+    insert into INSURANCE.SCAN_PAY
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="ipAddr != null" >
+        IP_ADDR,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="patientName != null" >
+        PATIENT_NAME,
+      </if>
+      <if test="authCode != null" >
+        AUTH_CODE,
+      </if>
+      <if test="operaterId != null" >
+        OPERATER_ID,
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="clinicLabel != null" >
+        CLINIC_LABEL,
+      </if>
+      <if test="visitDate != null" >
+        VISIT_DATE,
+      </if>
+      <if test="amPm != null" >
+        AM_PM,
+      </if>
+      <if test="totalCosts != null" >
+        TOTAL_COSTS,
+      </if>
+      <if test="chargeType != null" >
+        CHARGE_TYPE,
+      </if>
+      <if test="payWay != null" >
+        PAY_WAY,
+      </if>
+      <if test="hospitalMark != null" >
+        HOSPITAL_MARK,
+      </if>
+      <if test="trandeNo != null" >
+        TRANDE_NO,
+      </if>
+      <if test="rcptNo != null" >
+        RCPT_NO,
+      </if>
+      <if test="resultComment != null" >
+        RESULT_COMMENT,
+      </if>
+      <if test="origTradeNo != null" >
+        ORIG_TRADE_NO,
+      </if>
+      <if test="visitId != null" >
+        VISIT_ID,
+      </if>
+      <if test="operDate != null" >
+        OPER_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="ipAddr != null" >
+        #{ipAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="patientName != null" >
+        #{patientName,jdbcType=VARCHAR},
+      </if>
+      <if test="authCode != null" >
+        #{authCode,jdbcType=VARCHAR},
+      </if>
+      <if test="operaterId != null" >
+        #{operaterId,jdbcType=VARCHAR},
+      </if>
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="clinicLabel != null" >
+        #{clinicLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="visitDate != null" >
+        #{visitDate,jdbcType=DATE},
+      </if>
+      <if test="amPm != null" >
+        #{amPm,jdbcType=VARCHAR},
+      </if>
+      <if test="totalCosts != null" >
+        #{totalCosts,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeType != null" >
+        #{chargeType,jdbcType=VARCHAR},
+      </if>
+      <if test="payWay != null" >
+        #{payWay,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalMark != null" >
+        #{hospitalMark,jdbcType=VARCHAR},
+      </if>
+      <if test="trandeNo != null" >
+        #{trandeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="rcptNo != null" >
+        #{rcptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="resultComment != null" >
+        #{resultComment,jdbcType=VARCHAR},
+      </if>
+      <if test="origTradeNo != null" >
+        #{origTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="visitId != null" >
+        #{visitId,jdbcType=DECIMAL},
+      </if>
+      <if test="operDate != null" >
+        #{operDate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.insurance.ScanPay" >
+    update INSURANCE.SCAN_PAY
+    <set >
+      <if test="ipAddr != null" >
+        IP_ADDR = #{ipAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="patientName != null" >
+        PATIENT_NAME = #{patientName,jdbcType=VARCHAR},
+      </if>
+      <if test="authCode != null" >
+        AUTH_CODE = #{authCode,jdbcType=VARCHAR},
+      </if>
+      <if test="operaterId != null" >
+        OPERATER_ID = #{operaterId,jdbcType=VARCHAR},
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="clinicLabel != null" >
+        CLINIC_LABEL = #{clinicLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="visitDate != null" >
+        VISIT_DATE = #{visitDate,jdbcType=DATE},
+      </if>
+      <if test="amPm != null" >
+        AM_PM = #{amPm,jdbcType=VARCHAR},
+      </if>
+      <if test="totalCosts != null" >
+        TOTAL_COSTS = #{totalCosts,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeType != null" >
+        CHARGE_TYPE = #{chargeType,jdbcType=VARCHAR},
+      </if>
+      <if test="payWay != null" >
+        PAY_WAY = #{payWay,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalMark != null" >
+        HOSPITAL_MARK = #{hospitalMark,jdbcType=VARCHAR},
+      </if>
+      <if test="trandeNo != null" >
+        TRANDE_NO = #{trandeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="rcptNo != null" >
+        RCPT_NO = #{rcptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="resultComment != null" >
+        RESULT_COMMENT = #{resultComment,jdbcType=VARCHAR},
+      </if>
+      <if test="origTradeNo != null" >
+        ORIG_TRADE_NO = #{origTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="visitId != null" >
+        VISIT_ID = #{visitId,jdbcType=DECIMAL},
+      </if>
+      <if test="operDate != null" >
+        OPER_DATE = #{operDate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.insurance.ScanPay" >
+    update INSURANCE.SCAN_PAY
+    set IP_ADDR = #{ipAddr,jdbcType=VARCHAR},
+      USER_ID = #{userId,jdbcType=VARCHAR},
+      PATIENT_NAME = #{patientName,jdbcType=VARCHAR},
+      AUTH_CODE = #{authCode,jdbcType=VARCHAR},
+      OPERATER_ID = #{operaterId,jdbcType=VARCHAR},
+      PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      CLINIC_LABEL = #{clinicLabel,jdbcType=VARCHAR},
+      VISIT_DATE = #{visitDate,jdbcType=DATE},
+      AM_PM = #{amPm,jdbcType=VARCHAR},
+      TOTAL_COSTS = #{totalCosts,jdbcType=VARCHAR},
+      CHARGE_TYPE = #{chargeType,jdbcType=VARCHAR},
+      PAY_WAY = #{payWay,jdbcType=VARCHAR},
+      HOSPITAL_MARK = #{hospitalMark,jdbcType=VARCHAR},
+      TRANDE_NO = #{trandeNo,jdbcType=VARCHAR},
+      RCPT_NO = #{rcptNo,jdbcType=VARCHAR},
+      RESULT_COMMENT = #{resultComment,jdbcType=VARCHAR},
+      ORIG_TRADE_NO = #{origTradeNo,jdbcType=VARCHAR},
+      VISIT_ID = #{visitId,jdbcType=DECIMAL},
+      OPER_DATE = #{operDate,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

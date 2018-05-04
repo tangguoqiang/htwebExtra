@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.TimeIntervalDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.TimeIntervalDict" >
+    <id column="TIME_INTERVAL_NAME" property="timeIntervalName" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="TIME_INTERVAL_CODE" property="timeIntervalCode" jdbcType="VARCHAR" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    TIME_INTERVAL_NAME, SERIAL_NO, TIME_INTERVAL_CODE, INPUT_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.TIME_INTERVAL_DICT
+    where TIME_INTERVAL_NAME = #{timeIntervalName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.TIME_INTERVAL_DICT
+    where TIME_INTERVAL_NAME = #{timeIntervalName,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.TimeIntervalDict" >
+    insert into COMM.TIME_INTERVAL_DICT (TIME_INTERVAL_NAME, SERIAL_NO, TIME_INTERVAL_CODE, 
+      INPUT_CODE)
+    values (#{timeIntervalName,jdbcType=VARCHAR}, #{serialNo,jdbcType=DECIMAL}, #{timeIntervalCode,jdbcType=VARCHAR}, 
+      #{inputCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.TimeIntervalDict" >
+    insert into COMM.TIME_INTERVAL_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="timeIntervalName != null" >
+        TIME_INTERVAL_NAME,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="timeIntervalCode != null" >
+        TIME_INTERVAL_CODE,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="timeIntervalName != null" >
+        #{timeIntervalName,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="timeIntervalCode != null" >
+        #{timeIntervalCode,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.TimeIntervalDict" >
+    update COMM.TIME_INTERVAL_DICT
+    <set >
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="timeIntervalCode != null" >
+        TIME_INTERVAL_CODE = #{timeIntervalCode,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where TIME_INTERVAL_NAME = #{timeIntervalName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.TimeIntervalDict" >
+    update COMM.TIME_INTERVAL_DICT
+    set SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      TIME_INTERVAL_CODE = #{timeIntervalCode,jdbcType=VARCHAR},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR}
+    where TIME_INTERVAL_NAME = #{timeIntervalName,jdbcType=VARCHAR}
+  </update>
+</mapper>

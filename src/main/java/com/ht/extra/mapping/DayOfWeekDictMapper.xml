@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.DayOfWeekDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.DayOfWeekDict" >
+    <id column="DAY_NUMBER" property="dayNumber" jdbcType="DECIMAL" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="DAY_SYMBOL" property="daySymbol" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    DAY_NUMBER, SERIAL_NO, DAY_SYMBOL
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.DAY_OF_WEEK_DICT
+    where DAY_NUMBER = #{dayNumber,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from COMM.DAY_OF_WEEK_DICT
+    where DAY_NUMBER = #{dayNumber,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.DayOfWeekDict" >
+    insert into COMM.DAY_OF_WEEK_DICT (DAY_NUMBER, SERIAL_NO, DAY_SYMBOL
+      )
+    values (#{dayNumber,jdbcType=DECIMAL}, #{serialNo,jdbcType=DECIMAL}, #{daySymbol,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.DayOfWeekDict" >
+    insert into COMM.DAY_OF_WEEK_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dayNumber != null" >
+        DAY_NUMBER,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="daySymbol != null" >
+        DAY_SYMBOL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dayNumber != null" >
+        #{dayNumber,jdbcType=DECIMAL},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="daySymbol != null" >
+        #{daySymbol,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.DayOfWeekDict" >
+    update COMM.DAY_OF_WEEK_DICT
+    <set >
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="daySymbol != null" >
+        DAY_SYMBOL = #{daySymbol,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DAY_NUMBER = #{dayNumber,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.DayOfWeekDict" >
+    update COMM.DAY_OF_WEEK_DICT
+    set SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      DAY_SYMBOL = #{daySymbol,jdbcType=VARCHAR}
+    where DAY_NUMBER = #{dayNumber,jdbcType=DECIMAL}
+  </update>
+</mapper>

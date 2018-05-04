@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.InsuPhamDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.InsuPhamDict" >
+    <id column="INSU_NO" property="insuNo" jdbcType="DECIMAL" />
+    <result column="INSU_PHAM_CODE" property="insuPhamCode" jdbcType="VARCHAR" />
+    <result column="INSU_PHAM_NAME" property="insuPhamName" jdbcType="VARCHAR" />
+    <result column="INSU_PHAM_NAME_ALIAS" property="insuPhamNameAlias" jdbcType="VARCHAR" />
+    <result column="ITEM_CODE" property="itemCode" jdbcType="VARCHAR" />
+    <result column="ITEM_NAME" property="itemName" jdbcType="VARCHAR" />
+    <result column="ITEM_SPEC" property="itemSpec" jdbcType="VARCHAR" />
+    <result column="UNITS" property="units" jdbcType="VARCHAR" />
+    <result column="PRICE" property="price" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    INSU_NO, INSU_PHAM_CODE, INSU_PHAM_NAME, INSU_PHAM_NAME_ALIAS, ITEM_CODE, ITEM_NAME, 
+    ITEM_SPEC, UNITS, PRICE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.INSU_PHAM_DICT
+    where INSU_NO = #{insuNo,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from COMM.INSU_PHAM_DICT
+    where INSU_NO = #{insuNo,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.InsuPhamDict" >
+    insert into COMM.INSU_PHAM_DICT (INSU_NO, INSU_PHAM_CODE, INSU_PHAM_NAME, 
+      INSU_PHAM_NAME_ALIAS, ITEM_CODE, ITEM_NAME, 
+      ITEM_SPEC, UNITS, PRICE
+      )
+    values (#{insuNo,jdbcType=DECIMAL}, #{insuPhamCode,jdbcType=VARCHAR}, #{insuPhamName,jdbcType=VARCHAR}, 
+      #{insuPhamNameAlias,jdbcType=VARCHAR}, #{itemCode,jdbcType=VARCHAR}, #{itemName,jdbcType=VARCHAR}, 
+      #{itemSpec,jdbcType=VARCHAR}, #{units,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.InsuPhamDict" >
+    insert into COMM.INSU_PHAM_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="insuNo != null" >
+        INSU_NO,
+      </if>
+      <if test="insuPhamCode != null" >
+        INSU_PHAM_CODE,
+      </if>
+      <if test="insuPhamName != null" >
+        INSU_PHAM_NAME,
+      </if>
+      <if test="insuPhamNameAlias != null" >
+        INSU_PHAM_NAME_ALIAS,
+      </if>
+      <if test="itemCode != null" >
+        ITEM_CODE,
+      </if>
+      <if test="itemName != null" >
+        ITEM_NAME,
+      </if>
+      <if test="itemSpec != null" >
+        ITEM_SPEC,
+      </if>
+      <if test="units != null" >
+        UNITS,
+      </if>
+      <if test="price != null" >
+        PRICE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="insuNo != null" >
+        #{insuNo,jdbcType=DECIMAL},
+      </if>
+      <if test="insuPhamCode != null" >
+        #{insuPhamCode,jdbcType=VARCHAR},
+      </if>
+      <if test="insuPhamName != null" >
+        #{insuPhamName,jdbcType=VARCHAR},
+      </if>
+      <if test="insuPhamNameAlias != null" >
+        #{insuPhamNameAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode != null" >
+        #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemSpec != null" >
+        #{itemSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="units != null" >
+        #{units,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.InsuPhamDict" >
+    update COMM.INSU_PHAM_DICT
+    <set >
+      <if test="insuPhamCode != null" >
+        INSU_PHAM_CODE = #{insuPhamCode,jdbcType=VARCHAR},
+      </if>
+      <if test="insuPhamName != null" >
+        INSU_PHAM_NAME = #{insuPhamName,jdbcType=VARCHAR},
+      </if>
+      <if test="insuPhamNameAlias != null" >
+        INSU_PHAM_NAME_ALIAS = #{insuPhamNameAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode != null" >
+        ITEM_CODE = #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        ITEM_NAME = #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemSpec != null" >
+        ITEM_SPEC = #{itemSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="units != null" >
+        UNITS = #{units,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        PRICE = #{price,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where INSU_NO = #{insuNo,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.InsuPhamDict" >
+    update COMM.INSU_PHAM_DICT
+    set INSU_PHAM_CODE = #{insuPhamCode,jdbcType=VARCHAR},
+      INSU_PHAM_NAME = #{insuPhamName,jdbcType=VARCHAR},
+      INSU_PHAM_NAME_ALIAS = #{insuPhamNameAlias,jdbcType=VARCHAR},
+      ITEM_CODE = #{itemCode,jdbcType=VARCHAR},
+      ITEM_NAME = #{itemName,jdbcType=VARCHAR},
+      ITEM_SPEC = #{itemSpec,jdbcType=VARCHAR},
+      UNITS = #{units,jdbcType=VARCHAR},
+      PRICE = #{price,jdbcType=DECIMAL}
+    where INSU_NO = #{insuNo,jdbcType=DECIMAL}
+  </update>
+</mapper>

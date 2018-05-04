@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.DataVerifyConditionMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.DataVerifyCondition" >
+    <id column="VERIFY_TYPE" property="verifyType" jdbcType="VARCHAR" />
+    <id column="CONDITION_NO" property="conditionNo" jdbcType="DECIMAL" />
+    <result column="RELATIVE_TABLES" property="relativeTables" jdbcType="VARCHAR" />
+    <result column="PRIMARY_COLUMN" property="primaryColumn" jdbcType="VARCHAR" />
+    <result column="PRIMARY_COLUMN_CHINESE" property="primaryColumnChinese" jdbcType="VARCHAR" />
+    <result column="RELATIVE_COLUMNS" property="relativeColumns" jdbcType="VARCHAR" />
+    <result column="CONDITION_TYPE" property="conditionType" jdbcType="DECIMAL" />
+    <result column="CONDITION_SQL" property="conditionSql" jdbcType="VARCHAR" />
+    <result column="CONDITION_PB" property="conditionPb" jdbcType="VARCHAR" />
+    <result column="ERROR_LEVEL" property="errorLevel" jdbcType="DECIMAL" />
+    <result column="ERROR_MESSAGE" property="errorMessage" jdbcType="VARCHAR" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+    <result column="ENABLE_INDICATOR" property="enableIndicator" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    VERIFY_TYPE, CONDITION_NO, RELATIVE_TABLES, PRIMARY_COLUMN, PRIMARY_COLUMN_CHINESE, 
+    RELATIVE_COLUMNS, CONDITION_TYPE, CONDITION_SQL, CONDITION_PB, ERROR_LEVEL, ERROR_MESSAGE, 
+    MEMO, ENABLE_INDICATOR
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.DataVerifyConditionKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.DATA_VERIFY_CONDITION
+    where VERIFY_TYPE = #{verifyType,jdbcType=VARCHAR}
+      and CONDITION_NO = #{conditionNo,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.DataVerifyConditionKey" >
+    delete from COMM.DATA_VERIFY_CONDITION
+    where VERIFY_TYPE = #{verifyType,jdbcType=VARCHAR}
+      and CONDITION_NO = #{conditionNo,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.DataVerifyCondition" >
+    insert into COMM.DATA_VERIFY_CONDITION (VERIFY_TYPE, CONDITION_NO, RELATIVE_TABLES, 
+      PRIMARY_COLUMN, PRIMARY_COLUMN_CHINESE, RELATIVE_COLUMNS, 
+      CONDITION_TYPE, CONDITION_SQL, CONDITION_PB, 
+      ERROR_LEVEL, ERROR_MESSAGE, MEMO, 
+      ENABLE_INDICATOR)
+    values (#{verifyType,jdbcType=VARCHAR}, #{conditionNo,jdbcType=DECIMAL}, #{relativeTables,jdbcType=VARCHAR}, 
+      #{primaryColumn,jdbcType=VARCHAR}, #{primaryColumnChinese,jdbcType=VARCHAR}, #{relativeColumns,jdbcType=VARCHAR}, 
+      #{conditionType,jdbcType=DECIMAL}, #{conditionSql,jdbcType=VARCHAR}, #{conditionPb,jdbcType=VARCHAR}, 
+      #{errorLevel,jdbcType=DECIMAL}, #{errorMessage,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, 
+      #{enableIndicator,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.DataVerifyCondition" >
+    insert into COMM.DATA_VERIFY_CONDITION
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="verifyType != null" >
+        VERIFY_TYPE,
+      </if>
+      <if test="conditionNo != null" >
+        CONDITION_NO,
+      </if>
+      <if test="relativeTables != null" >
+        RELATIVE_TABLES,
+      </if>
+      <if test="primaryColumn != null" >
+        PRIMARY_COLUMN,
+      </if>
+      <if test="primaryColumnChinese != null" >
+        PRIMARY_COLUMN_CHINESE,
+      </if>
+      <if test="relativeColumns != null" >
+        RELATIVE_COLUMNS,
+      </if>
+      <if test="conditionType != null" >
+        CONDITION_TYPE,
+      </if>
+      <if test="conditionSql != null" >
+        CONDITION_SQL,
+      </if>
+      <if test="conditionPb != null" >
+        CONDITION_PB,
+      </if>
+      <if test="errorLevel != null" >
+        ERROR_LEVEL,
+      </if>
+      <if test="errorMessage != null" >
+        ERROR_MESSAGE,
+      </if>
+      <if test="memo != null" >
+        MEMO,
+      </if>
+      <if test="enableIndicator != null" >
+        ENABLE_INDICATOR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="verifyType != null" >
+        #{verifyType,jdbcType=VARCHAR},
+      </if>
+      <if test="conditionNo != null" >
+        #{conditionNo,jdbcType=DECIMAL},
+      </if>
+      <if test="relativeTables != null" >
+        #{relativeTables,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryColumn != null" >
+        #{primaryColumn,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryColumnChinese != null" >
+        #{primaryColumnChinese,jdbcType=VARCHAR},
+      </if>
+      <if test="relativeColumns != null" >
+        #{relativeColumns,jdbcType=VARCHAR},
+      </if>
+      <if test="conditionType != null" >
+        #{conditionType,jdbcType=DECIMAL},
+      </if>
+      <if test="conditionSql != null" >
+        #{conditionSql,jdbcType=VARCHAR},
+      </if>
+      <if test="conditionPb != null" >
+        #{conditionPb,jdbcType=VARCHAR},
+      </if>
+      <if test="errorLevel != null" >
+        #{errorLevel,jdbcType=DECIMAL},
+      </if>
+      <if test="errorMessage != null" >
+        #{errorMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="enableIndicator != null" >
+        #{enableIndicator,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.DataVerifyCondition" >
+    update COMM.DATA_VERIFY_CONDITION
+    <set >
+      <if test="relativeTables != null" >
+        RELATIVE_TABLES = #{relativeTables,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryColumn != null" >
+        PRIMARY_COLUMN = #{primaryColumn,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryColumnChinese != null" >
+        PRIMARY_COLUMN_CHINESE = #{primaryColumnChinese,jdbcType=VARCHAR},
+      </if>
+      <if test="relativeColumns != null" >
+        RELATIVE_COLUMNS = #{relativeColumns,jdbcType=VARCHAR},
+      </if>
+      <if test="conditionType != null" >
+        CONDITION_TYPE = #{conditionType,jdbcType=DECIMAL},
+      </if>
+      <if test="conditionSql != null" >
+        CONDITION_SQL = #{conditionSql,jdbcType=VARCHAR},
+      </if>
+      <if test="conditionPb != null" >
+        CONDITION_PB = #{conditionPb,jdbcType=VARCHAR},
+      </if>
+      <if test="errorLevel != null" >
+        ERROR_LEVEL = #{errorLevel,jdbcType=DECIMAL},
+      </if>
+      <if test="errorMessage != null" >
+        ERROR_MESSAGE = #{errorMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        MEMO = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="enableIndicator != null" >
+        ENABLE_INDICATOR = #{enableIndicator,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where VERIFY_TYPE = #{verifyType,jdbcType=VARCHAR}
+      and CONDITION_NO = #{conditionNo,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.DataVerifyCondition" >
+    update COMM.DATA_VERIFY_CONDITION
+    set RELATIVE_TABLES = #{relativeTables,jdbcType=VARCHAR},
+      PRIMARY_COLUMN = #{primaryColumn,jdbcType=VARCHAR},
+      PRIMARY_COLUMN_CHINESE = #{primaryColumnChinese,jdbcType=VARCHAR},
+      RELATIVE_COLUMNS = #{relativeColumns,jdbcType=VARCHAR},
+      CONDITION_TYPE = #{conditionType,jdbcType=DECIMAL},
+      CONDITION_SQL = #{conditionSql,jdbcType=VARCHAR},
+      CONDITION_PB = #{conditionPb,jdbcType=VARCHAR},
+      ERROR_LEVEL = #{errorLevel,jdbcType=DECIMAL},
+      ERROR_MESSAGE = #{errorMessage,jdbcType=VARCHAR},
+      MEMO = #{memo,jdbcType=VARCHAR},
+      ENABLE_INDICATOR = #{enableIndicator,jdbcType=DECIMAL}
+    where VERIFY_TYPE = #{verifyType,jdbcType=VARCHAR}
+      and CONDITION_NO = #{conditionNo,jdbcType=DECIMAL}
+  </update>
+</mapper>

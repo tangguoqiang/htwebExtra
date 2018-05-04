@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.DrugPrescDetailTempMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.pharmacy.DrugPrescDetailTemp" >
+    <id column="PRESC_DATE" property="prescDate" jdbcType="DATE" />
+    <id column="PRESC_NO" property="prescNo" jdbcType="DECIMAL" />
+    <id column="ITEM_NO" property="itemNo" jdbcType="DECIMAL" />
+    <result column="DRUG_CODE" property="drugCode" jdbcType="VARCHAR" />
+    <result column="DRUG_SPEC" property="drugSpec" jdbcType="VARCHAR" />
+    <result column="DRUG_NAME" property="drugName" jdbcType="VARCHAR" />
+    <result column="FIRM_ID" property="firmId" jdbcType="VARCHAR" />
+    <result column="PACKAGE_SPEC" property="packageSpec" jdbcType="VARCHAR" />
+    <result column="PACKAGE_UNITS" property="packageUnits" jdbcType="VARCHAR" />
+    <result column="QUANTITY" property="quantity" jdbcType="DECIMAL" />
+    <result column="COSTS" property="costs" jdbcType="DECIMAL" />
+    <result column="PAYMENTS" property="payments" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PRESC_DATE, PRESC_NO, ITEM_NO, DRUG_CODE, DRUG_SPEC, DRUG_NAME, FIRM_ID, PACKAGE_SPEC, 
+    PACKAGE_UNITS, QUANTITY, COSTS, PAYMENTS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.pharmacy.DrugPrescDetailTempKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from PHARMACY.DRUG_PRESC_DETAIL_TEMP
+    where PRESC_DATE = #{prescDate,jdbcType=DATE}
+      and PRESC_NO = #{prescNo,jdbcType=DECIMAL}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.pharmacy.DrugPrescDetailTempKey" >
+    delete from PHARMACY.DRUG_PRESC_DETAIL_TEMP
+    where PRESC_DATE = #{prescDate,jdbcType=DATE}
+      and PRESC_NO = #{prescNo,jdbcType=DECIMAL}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.pharmacy.DrugPrescDetailTemp" >
+    insert into PHARMACY.DRUG_PRESC_DETAIL_TEMP (PRESC_DATE, PRESC_NO, ITEM_NO, 
+      DRUG_CODE, DRUG_SPEC, DRUG_NAME, 
+      FIRM_ID, PACKAGE_SPEC, PACKAGE_UNITS, 
+      QUANTITY, COSTS, PAYMENTS
+      )
+    values (#{prescDate,jdbcType=DATE}, #{prescNo,jdbcType=DECIMAL}, #{itemNo,jdbcType=DECIMAL}, 
+      #{drugCode,jdbcType=VARCHAR}, #{drugSpec,jdbcType=VARCHAR}, #{drugName,jdbcType=VARCHAR}, 
+      #{firmId,jdbcType=VARCHAR}, #{packageSpec,jdbcType=VARCHAR}, #{packageUnits,jdbcType=VARCHAR}, 
+      #{quantity,jdbcType=DECIMAL}, #{costs,jdbcType=DECIMAL}, #{payments,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.pharmacy.DrugPrescDetailTemp" >
+    insert into PHARMACY.DRUG_PRESC_DETAIL_TEMP
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="prescDate != null" >
+        PRESC_DATE,
+      </if>
+      <if test="prescNo != null" >
+        PRESC_NO,
+      </if>
+      <if test="itemNo != null" >
+        ITEM_NO,
+      </if>
+      <if test="drugCode != null" >
+        DRUG_CODE,
+      </if>
+      <if test="drugSpec != null" >
+        DRUG_SPEC,
+      </if>
+      <if test="drugName != null" >
+        DRUG_NAME,
+      </if>
+      <if test="firmId != null" >
+        FIRM_ID,
+      </if>
+      <if test="packageSpec != null" >
+        PACKAGE_SPEC,
+      </if>
+      <if test="packageUnits != null" >
+        PACKAGE_UNITS,
+      </if>
+      <if test="quantity != null" >
+        QUANTITY,
+      </if>
+      <if test="costs != null" >
+        COSTS,
+      </if>
+      <if test="payments != null" >
+        PAYMENTS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="prescDate != null" >
+        #{prescDate,jdbcType=DATE},
+      </if>
+      <if test="prescNo != null" >
+        #{prescNo,jdbcType=DECIMAL},
+      </if>
+      <if test="itemNo != null" >
+        #{itemNo,jdbcType=DECIMAL},
+      </if>
+      <if test="drugCode != null" >
+        #{drugCode,jdbcType=VARCHAR},
+      </if>
+      <if test="drugSpec != null" >
+        #{drugSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="drugName != null" >
+        #{drugName,jdbcType=VARCHAR},
+      </if>
+      <if test="firmId != null" >
+        #{firmId,jdbcType=VARCHAR},
+      </if>
+      <if test="packageSpec != null" >
+        #{packageSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="packageUnits != null" >
+        #{packageUnits,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null" >
+        #{quantity,jdbcType=DECIMAL},
+      </if>
+      <if test="costs != null" >
+        #{costs,jdbcType=DECIMAL},
+      </if>
+      <if test="payments != null" >
+        #{payments,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.pharmacy.DrugPrescDetailTemp" >
+    update PHARMACY.DRUG_PRESC_DETAIL_TEMP
+    <set >
+      <if test="drugCode != null" >
+        DRUG_CODE = #{drugCode,jdbcType=VARCHAR},
+      </if>
+      <if test="drugSpec != null" >
+        DRUG_SPEC = #{drugSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="drugName != null" >
+        DRUG_NAME = #{drugName,jdbcType=VARCHAR},
+      </if>
+      <if test="firmId != null" >
+        FIRM_ID = #{firmId,jdbcType=VARCHAR},
+      </if>
+      <if test="packageSpec != null" >
+        PACKAGE_SPEC = #{packageSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="packageUnits != null" >
+        PACKAGE_UNITS = #{packageUnits,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null" >
+        QUANTITY = #{quantity,jdbcType=DECIMAL},
+      </if>
+      <if test="costs != null" >
+        COSTS = #{costs,jdbcType=DECIMAL},
+      </if>
+      <if test="payments != null" >
+        PAYMENTS = #{payments,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where PRESC_DATE = #{prescDate,jdbcType=DATE}
+      and PRESC_NO = #{prescNo,jdbcType=DECIMAL}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.pharmacy.DrugPrescDetailTemp" >
+    update PHARMACY.DRUG_PRESC_DETAIL_TEMP
+    set DRUG_CODE = #{drugCode,jdbcType=VARCHAR},
+      DRUG_SPEC = #{drugSpec,jdbcType=VARCHAR},
+      DRUG_NAME = #{drugName,jdbcType=VARCHAR},
+      FIRM_ID = #{firmId,jdbcType=VARCHAR},
+      PACKAGE_SPEC = #{packageSpec,jdbcType=VARCHAR},
+      PACKAGE_UNITS = #{packageUnits,jdbcType=VARCHAR},
+      QUANTITY = #{quantity,jdbcType=DECIMAL},
+      COSTS = #{costs,jdbcType=DECIMAL},
+      PAYMENTS = #{payments,jdbcType=DECIMAL}
+    where PRESC_DATE = #{prescDate,jdbcType=DATE}
+      and PRESC_NO = #{prescNo,jdbcType=DECIMAL}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+  </update>
+</mapper>

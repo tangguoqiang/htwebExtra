@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.StaffArt81Mapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.StaffArt81" >
+    <id column="ART_CODE" property="artCode" jdbcType="VARCHAR" />
+    <result column="ART_NAME" property="artName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ART_CODE, ART_NAME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.STAFF_ART_81
+    where ART_CODE = #{artCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.STAFF_ART_81
+    where ART_CODE = #{artCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.StaffArt81" >
+    insert into COMM.STAFF_ART_81 (ART_CODE, ART_NAME)
+    values (#{artCode,jdbcType=VARCHAR}, #{artName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.StaffArt81" >
+    insert into COMM.STAFF_ART_81
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="artCode != null" >
+        ART_CODE,
+      </if>
+      <if test="artName != null" >
+        ART_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="artCode != null" >
+        #{artCode,jdbcType=VARCHAR},
+      </if>
+      <if test="artName != null" >
+        #{artName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.StaffArt81" >
+    update COMM.STAFF_ART_81
+    <set >
+      <if test="artName != null" >
+        ART_NAME = #{artName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ART_CODE = #{artCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.StaffArt81" >
+    update COMM.STAFF_ART_81
+    set ART_NAME = #{artName,jdbcType=VARCHAR}
+    where ART_CODE = #{artCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

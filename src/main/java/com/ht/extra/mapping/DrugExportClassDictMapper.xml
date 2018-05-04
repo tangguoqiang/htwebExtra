@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.DrugExportClassDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.DrugExportClassDict" >
+    <id column="EXPORT_CLASS" property="exportClass" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    EXPORT_CLASS, SERIAL_NO
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.DRUG_EXPORT_CLASS_DICT
+    where EXPORT_CLASS = #{exportClass,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.DRUG_EXPORT_CLASS_DICT
+    where EXPORT_CLASS = #{exportClass,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.DrugExportClassDict" >
+    insert into COMM.DRUG_EXPORT_CLASS_DICT (EXPORT_CLASS, SERIAL_NO)
+    values (#{exportClass,jdbcType=VARCHAR}, #{serialNo,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.DrugExportClassDict" >
+    insert into COMM.DRUG_EXPORT_CLASS_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="exportClass != null" >
+        EXPORT_CLASS,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="exportClass != null" >
+        #{exportClass,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.DrugExportClassDict" >
+    update COMM.DRUG_EXPORT_CLASS_DICT
+    <set >
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where EXPORT_CLASS = #{exportClass,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.DrugExportClassDict" >
+    update COMM.DRUG_EXPORT_CLASS_DICT
+    set SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+    where EXPORT_CLASS = #{exportClass,jdbcType=VARCHAR}
+  </update>
+</mapper>

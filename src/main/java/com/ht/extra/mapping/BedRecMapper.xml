@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.BedRecMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.inpadm.BedRec" >
+    <id column="WARD_CODE" property="wardCode" jdbcType="VARCHAR" />
+    <id column="BED_NO" property="bedNo" jdbcType="DECIMAL" />
+    <result column="BED_LABEL" property="bedLabel" jdbcType="VARCHAR" />
+    <result column="ROOM_NO" property="roomNo" jdbcType="VARCHAR" />
+    <result column="DEPT_CODE" property="deptCode" jdbcType="VARCHAR" />
+    <result column="BED_APPROVED_TYPE" property="bedApprovedType" jdbcType="VARCHAR" />
+    <result column="BED_SEX_TYPE" property="bedSexType" jdbcType="VARCHAR" />
+    <result column="BED_CLASS" property="bedClass" jdbcType="VARCHAR" />
+    <result column="BED_STATUS" property="bedStatus" jdbcType="VARCHAR" />
+    <result column="MONITOR_LABEL" property="monitorLabel" jdbcType="VARCHAR" />
+    <result column="ICU_INDICATOR" property="icuIndicator" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    WARD_CODE, BED_NO, BED_LABEL, ROOM_NO, DEPT_CODE, BED_APPROVED_TYPE, BED_SEX_TYPE, 
+    BED_CLASS, BED_STATUS, MONITOR_LABEL, ICU_INDICATOR
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.inpadm.BedRecKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from INPADM.BED_REC
+    where WARD_CODE = #{wardCode,jdbcType=VARCHAR}
+      and BED_NO = #{bedNo,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.inpadm.BedRecKey" >
+    delete from INPADM.BED_REC
+    where WARD_CODE = #{wardCode,jdbcType=VARCHAR}
+      and BED_NO = #{bedNo,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.inpadm.BedRec" >
+    insert into INPADM.BED_REC (WARD_CODE, BED_NO, BED_LABEL, 
+      ROOM_NO, DEPT_CODE, BED_APPROVED_TYPE, 
+      BED_SEX_TYPE, BED_CLASS, BED_STATUS, 
+      MONITOR_LABEL, ICU_INDICATOR)
+    values (#{wardCode,jdbcType=VARCHAR}, #{bedNo,jdbcType=DECIMAL}, #{bedLabel,jdbcType=VARCHAR}, 
+      #{roomNo,jdbcType=VARCHAR}, #{deptCode,jdbcType=VARCHAR}, #{bedApprovedType,jdbcType=VARCHAR}, 
+      #{bedSexType,jdbcType=VARCHAR}, #{bedClass,jdbcType=VARCHAR}, #{bedStatus,jdbcType=VARCHAR}, 
+      #{monitorLabel,jdbcType=VARCHAR}, #{icuIndicator,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.inpadm.BedRec" >
+    insert into INPADM.BED_REC
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="wardCode != null" >
+        WARD_CODE,
+      </if>
+      <if test="bedNo != null" >
+        BED_NO,
+      </if>
+      <if test="bedLabel != null" >
+        BED_LABEL,
+      </if>
+      <if test="roomNo != null" >
+        ROOM_NO,
+      </if>
+      <if test="deptCode != null" >
+        DEPT_CODE,
+      </if>
+      <if test="bedApprovedType != null" >
+        BED_APPROVED_TYPE,
+      </if>
+      <if test="bedSexType != null" >
+        BED_SEX_TYPE,
+      </if>
+      <if test="bedClass != null" >
+        BED_CLASS,
+      </if>
+      <if test="bedStatus != null" >
+        BED_STATUS,
+      </if>
+      <if test="monitorLabel != null" >
+        MONITOR_LABEL,
+      </if>
+      <if test="icuIndicator != null" >
+        ICU_INDICATOR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="wardCode != null" >
+        #{wardCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bedNo != null" >
+        #{bedNo,jdbcType=DECIMAL},
+      </if>
+      <if test="bedLabel != null" >
+        #{bedLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="roomNo != null" >
+        #{roomNo,jdbcType=VARCHAR},
+      </if>
+      <if test="deptCode != null" >
+        #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bedApprovedType != null" >
+        #{bedApprovedType,jdbcType=VARCHAR},
+      </if>
+      <if test="bedSexType != null" >
+        #{bedSexType,jdbcType=VARCHAR},
+      </if>
+      <if test="bedClass != null" >
+        #{bedClass,jdbcType=VARCHAR},
+      </if>
+      <if test="bedStatus != null" >
+        #{bedStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="monitorLabel != null" >
+        #{monitorLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="icuIndicator != null" >
+        #{icuIndicator,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.inpadm.BedRec" >
+    update INPADM.BED_REC
+    <set >
+      <if test="bedLabel != null" >
+        BED_LABEL = #{bedLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="roomNo != null" >
+        ROOM_NO = #{roomNo,jdbcType=VARCHAR},
+      </if>
+      <if test="deptCode != null" >
+        DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bedApprovedType != null" >
+        BED_APPROVED_TYPE = #{bedApprovedType,jdbcType=VARCHAR},
+      </if>
+      <if test="bedSexType != null" >
+        BED_SEX_TYPE = #{bedSexType,jdbcType=VARCHAR},
+      </if>
+      <if test="bedClass != null" >
+        BED_CLASS = #{bedClass,jdbcType=VARCHAR},
+      </if>
+      <if test="bedStatus != null" >
+        BED_STATUS = #{bedStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="monitorLabel != null" >
+        MONITOR_LABEL = #{monitorLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="icuIndicator != null" >
+        ICU_INDICATOR = #{icuIndicator,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where WARD_CODE = #{wardCode,jdbcType=VARCHAR}
+      and BED_NO = #{bedNo,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.inpadm.BedRec" >
+    update INPADM.BED_REC
+    set BED_LABEL = #{bedLabel,jdbcType=VARCHAR},
+      ROOM_NO = #{roomNo,jdbcType=VARCHAR},
+      DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+      BED_APPROVED_TYPE = #{bedApprovedType,jdbcType=VARCHAR},
+      BED_SEX_TYPE = #{bedSexType,jdbcType=VARCHAR},
+      BED_CLASS = #{bedClass,jdbcType=VARCHAR},
+      BED_STATUS = #{bedStatus,jdbcType=VARCHAR},
+      MONITOR_LABEL = #{monitorLabel,jdbcType=VARCHAR},
+      ICU_INDICATOR = #{icuIndicator,jdbcType=DECIMAL}
+    where WARD_CODE = #{wardCode,jdbcType=VARCHAR}
+      and BED_NO = #{bedNo,jdbcType=DECIMAL}
+  </update>
+</mapper>

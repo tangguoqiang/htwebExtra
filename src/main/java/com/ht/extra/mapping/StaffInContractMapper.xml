@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.StaffInContractMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.StaffInContract" >
+    <id column="UNIT_CODE" property="unitCode" jdbcType="VARCHAR" />
+    <id column="IDENTITY" property="identity" jdbcType="VARCHAR" />
+    <result column="STAFF_NUM" property="staffNum" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    UNIT_CODE, IDENTITY, STAFF_NUM
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.StaffInContractKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.STAFF_IN_CONTRACT
+    where UNIT_CODE = #{unitCode,jdbcType=VARCHAR}
+      and IDENTITY = #{identity,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.StaffInContractKey" >
+    delete from COMM.STAFF_IN_CONTRACT
+    where UNIT_CODE = #{unitCode,jdbcType=VARCHAR}
+      and IDENTITY = #{identity,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.StaffInContract" >
+    insert into COMM.STAFF_IN_CONTRACT (UNIT_CODE, IDENTITY, STAFF_NUM
+      )
+    values (#{unitCode,jdbcType=VARCHAR}, #{identity,jdbcType=VARCHAR}, #{staffNum,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.StaffInContract" >
+    insert into COMM.STAFF_IN_CONTRACT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="unitCode != null" >
+        UNIT_CODE,
+      </if>
+      <if test="identity != null" >
+        IDENTITY,
+      </if>
+      <if test="staffNum != null" >
+        STAFF_NUM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="unitCode != null" >
+        #{unitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="identity != null" >
+        #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="staffNum != null" >
+        #{staffNum,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.StaffInContract" >
+    update COMM.STAFF_IN_CONTRACT
+    <set >
+      <if test="staffNum != null" >
+        STAFF_NUM = #{staffNum,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where UNIT_CODE = #{unitCode,jdbcType=VARCHAR}
+      and IDENTITY = #{identity,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.StaffInContract" >
+    update COMM.STAFF_IN_CONTRACT
+    set STAFF_NUM = #{staffNum,jdbcType=DECIMAL}
+    where UNIT_CODE = #{unitCode,jdbcType=VARCHAR}
+      and IDENTITY = #{identity,jdbcType=VARCHAR}
+  </update>
+</mapper>

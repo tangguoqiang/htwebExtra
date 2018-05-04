@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.FormularDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.lab.FormularDict" >
+    <id column="COMPUTED_CODE" property="computedCode" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="COMPUTING_CODE1" property="computingCode1" jdbcType="VARCHAR" />
+    <result column="COMPUTING_CODE2" property="computingCode2" jdbcType="VARCHAR" />
+    <result column="COMPUTING_CODE3" property="computingCode3" jdbcType="VARCHAR" />
+    <result column="COMPUTING_CODE4" property="computingCode4" jdbcType="VARCHAR" />
+    <result column="COMPUTING_CODE5" property="computingCode5" jdbcType="VARCHAR" />
+    <result column="FORMULAR" property="formular" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    COMPUTED_CODE, SERIAL_NO, COMPUTING_CODE1, COMPUTING_CODE2, COMPUTING_CODE3, COMPUTING_CODE4, 
+    COMPUTING_CODE5, FORMULAR
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from LAB.FORMULAR_DICT
+    where COMPUTED_CODE = #{computedCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from LAB.FORMULAR_DICT
+    where COMPUTED_CODE = #{computedCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.lab.FormularDict" >
+    insert into LAB.FORMULAR_DICT (COMPUTED_CODE, SERIAL_NO, COMPUTING_CODE1, 
+      COMPUTING_CODE2, COMPUTING_CODE3, COMPUTING_CODE4, 
+      COMPUTING_CODE5, FORMULAR)
+    values (#{computedCode,jdbcType=VARCHAR}, #{serialNo,jdbcType=DECIMAL}, #{computingCode1,jdbcType=VARCHAR}, 
+      #{computingCode2,jdbcType=VARCHAR}, #{computingCode3,jdbcType=VARCHAR}, #{computingCode4,jdbcType=VARCHAR}, 
+      #{computingCode5,jdbcType=VARCHAR}, #{formular,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.lab.FormularDict" >
+    insert into LAB.FORMULAR_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="computedCode != null" >
+        COMPUTED_CODE,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="computingCode1 != null" >
+        COMPUTING_CODE1,
+      </if>
+      <if test="computingCode2 != null" >
+        COMPUTING_CODE2,
+      </if>
+      <if test="computingCode3 != null" >
+        COMPUTING_CODE3,
+      </if>
+      <if test="computingCode4 != null" >
+        COMPUTING_CODE4,
+      </if>
+      <if test="computingCode5 != null" >
+        COMPUTING_CODE5,
+      </if>
+      <if test="formular != null" >
+        FORMULAR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="computedCode != null" >
+        #{computedCode,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="computingCode1 != null" >
+        #{computingCode1,jdbcType=VARCHAR},
+      </if>
+      <if test="computingCode2 != null" >
+        #{computingCode2,jdbcType=VARCHAR},
+      </if>
+      <if test="computingCode3 != null" >
+        #{computingCode3,jdbcType=VARCHAR},
+      </if>
+      <if test="computingCode4 != null" >
+        #{computingCode4,jdbcType=VARCHAR},
+      </if>
+      <if test="computingCode5 != null" >
+        #{computingCode5,jdbcType=VARCHAR},
+      </if>
+      <if test="formular != null" >
+        #{formular,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.lab.FormularDict" >
+    update LAB.FORMULAR_DICT
+    <set >
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="computingCode1 != null" >
+        COMPUTING_CODE1 = #{computingCode1,jdbcType=VARCHAR},
+      </if>
+      <if test="computingCode2 != null" >
+        COMPUTING_CODE2 = #{computingCode2,jdbcType=VARCHAR},
+      </if>
+      <if test="computingCode3 != null" >
+        COMPUTING_CODE3 = #{computingCode3,jdbcType=VARCHAR},
+      </if>
+      <if test="computingCode4 != null" >
+        COMPUTING_CODE4 = #{computingCode4,jdbcType=VARCHAR},
+      </if>
+      <if test="computingCode5 != null" >
+        COMPUTING_CODE5 = #{computingCode5,jdbcType=VARCHAR},
+      </if>
+      <if test="formular != null" >
+        FORMULAR = #{formular,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where COMPUTED_CODE = #{computedCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.lab.FormularDict" >
+    update LAB.FORMULAR_DICT
+    set SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      COMPUTING_CODE1 = #{computingCode1,jdbcType=VARCHAR},
+      COMPUTING_CODE2 = #{computingCode2,jdbcType=VARCHAR},
+      COMPUTING_CODE3 = #{computingCode3,jdbcType=VARCHAR},
+      COMPUTING_CODE4 = #{computingCode4,jdbcType=VARCHAR},
+      COMPUTING_CODE5 = #{computingCode5,jdbcType=VARCHAR},
+      FORMULAR = #{formular,jdbcType=VARCHAR}
+    where COMPUTED_CODE = #{computedCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

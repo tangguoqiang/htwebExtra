@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.OutpPrescMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.outpdoct.OutpPresc" >
+    <id column="SERIAL_NO" property="serialNo" jdbcType="VARCHAR" />
+    <id column="ITEM_NO" property="itemNo" jdbcType="DECIMAL" />
+    <result column="VISIT_DATE" property="visitDate" jdbcType="DATE" />
+    <result column="VISIT_NO" property="visitNo" jdbcType="DECIMAL" />
+    <result column="PRESC_NO" property="prescNo" jdbcType="DECIMAL" />
+    <result column="ITEM_CLASS" property="itemClass" jdbcType="VARCHAR" />
+    <result column="DRUG_CODE" property="drugCode" jdbcType="VARCHAR" />
+    <result column="DRUG_NAME" property="drugName" jdbcType="VARCHAR" />
+    <result column="DRUG_SPEC" property="drugSpec" jdbcType="VARCHAR" />
+    <result column="FIRM_ID" property="firmId" jdbcType="VARCHAR" />
+    <result column="UNITS" property="units" jdbcType="VARCHAR" />
+    <result column="REPETITION" property="repetition" jdbcType="DECIMAL" />
+    <result column="AMOUNT" property="amount" jdbcType="DECIMAL" />
+    <result column="DOSAGE" property="dosage" jdbcType="DECIMAL" />
+    <result column="DOSAGE_UNITS" property="dosageUnits" jdbcType="VARCHAR" />
+    <result column="ADMINISTRATION" property="administration" jdbcType="VARCHAR" />
+    <result column="FREQUENCY" property="frequency" jdbcType="VARCHAR" />
+    <result column="PROVIDED_INDICATOR" property="providedIndicator" jdbcType="DECIMAL" />
+    <result column="COSTS" property="costs" jdbcType="DECIMAL" />
+    <result column="CHARGES" property="charges" jdbcType="DECIMAL" />
+    <result column="CHARGE_INDICATOR" property="chargeIndicator" jdbcType="DECIMAL" />
+    <result column="DISPENSARY" property="dispensary" jdbcType="VARCHAR" />
+    <result column="PRESC_CLASS" property="prescClass" jdbcType="VARCHAR" />
+    <result column="MENO" property="meno" jdbcType="VARCHAR" />
+    <result column="ORDER_NO" property="orderNo" jdbcType="DECIMAL" />
+    <result column="ORDER_SUB_NO" property="orderSubNo" jdbcType="DECIMAL" />
+    <result column="DAYS" property="days" jdbcType="DECIMAL" />
+    <result column="PRESS_CLASS_BAK" property="pressClassBak" jdbcType="DECIMAL" />
+    <result column="PRESC_ID" property="prescId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SERIAL_NO, ITEM_NO, VISIT_DATE, VISIT_NO, PRESC_NO, ITEM_CLASS, DRUG_CODE, DRUG_NAME, 
+    DRUG_SPEC, FIRM_ID, UNITS, REPETITION, AMOUNT, DOSAGE, DOSAGE_UNITS, ADMINISTRATION, 
+    FREQUENCY, PROVIDED_INDICATOR, COSTS, CHARGES, CHARGE_INDICATOR, DISPENSARY, PRESC_CLASS, 
+    MENO, ORDER_NO, ORDER_SUB_NO, DAYS, PRESS_CLASS_BAK, PRESC_ID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.outpdoct.OutpPrescKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from OUTPDOCT.OUTP_PRESC
+    where SERIAL_NO = #{serialNo,jdbcType=VARCHAR}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.outpdoct.OutpPrescKey" >
+    delete from OUTPDOCT.OUTP_PRESC
+    where SERIAL_NO = #{serialNo,jdbcType=VARCHAR}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.outpdoct.OutpPresc" >
+    insert into OUTPDOCT.OUTP_PRESC (SERIAL_NO, ITEM_NO, VISIT_DATE, 
+      VISIT_NO, PRESC_NO, ITEM_CLASS, 
+      DRUG_CODE, DRUG_NAME, DRUG_SPEC, 
+      FIRM_ID, UNITS, REPETITION, 
+      AMOUNT, DOSAGE, DOSAGE_UNITS, 
+      ADMINISTRATION, FREQUENCY, PROVIDED_INDICATOR, 
+      COSTS, CHARGES, CHARGE_INDICATOR, 
+      DISPENSARY, PRESC_CLASS, MENO, 
+      ORDER_NO, ORDER_SUB_NO, DAYS, 
+      PRESS_CLASS_BAK, PRESC_ID)
+    values (#{serialNo,jdbcType=VARCHAR}, #{itemNo,jdbcType=DECIMAL}, #{visitDate,jdbcType=DATE}, 
+      #{visitNo,jdbcType=DECIMAL}, #{prescNo,jdbcType=DECIMAL}, #{itemClass,jdbcType=VARCHAR}, 
+      #{drugCode,jdbcType=VARCHAR}, #{drugName,jdbcType=VARCHAR}, #{drugSpec,jdbcType=VARCHAR}, 
+      #{firmId,jdbcType=VARCHAR}, #{units,jdbcType=VARCHAR}, #{repetition,jdbcType=DECIMAL}, 
+      #{amount,jdbcType=DECIMAL}, #{dosage,jdbcType=DECIMAL}, #{dosageUnits,jdbcType=VARCHAR}, 
+      #{administration,jdbcType=VARCHAR}, #{frequency,jdbcType=VARCHAR}, #{providedIndicator,jdbcType=DECIMAL}, 
+      #{costs,jdbcType=DECIMAL}, #{charges,jdbcType=DECIMAL}, #{chargeIndicator,jdbcType=DECIMAL}, 
+      #{dispensary,jdbcType=VARCHAR}, #{prescClass,jdbcType=VARCHAR}, #{meno,jdbcType=VARCHAR}, 
+      #{orderNo,jdbcType=DECIMAL}, #{orderSubNo,jdbcType=DECIMAL}, #{days,jdbcType=DECIMAL}, 
+      #{pressClassBak,jdbcType=DECIMAL}, #{prescId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.outpdoct.OutpPresc" >
+    insert into OUTPDOCT.OUTP_PRESC
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="itemNo != null" >
+        ITEM_NO,
+      </if>
+      <if test="visitDate != null" >
+        VISIT_DATE,
+      </if>
+      <if test="visitNo != null" >
+        VISIT_NO,
+      </if>
+      <if test="prescNo != null" >
+        PRESC_NO,
+      </if>
+      <if test="itemClass != null" >
+        ITEM_CLASS,
+      </if>
+      <if test="drugCode != null" >
+        DRUG_CODE,
+      </if>
+      <if test="drugName != null" >
+        DRUG_NAME,
+      </if>
+      <if test="drugSpec != null" >
+        DRUG_SPEC,
+      </if>
+      <if test="firmId != null" >
+        FIRM_ID,
+      </if>
+      <if test="units != null" >
+        UNITS,
+      </if>
+      <if test="repetition != null" >
+        REPETITION,
+      </if>
+      <if test="amount != null" >
+        AMOUNT,
+      </if>
+      <if test="dosage != null" >
+        DOSAGE,
+      </if>
+      <if test="dosageUnits != null" >
+        DOSAGE_UNITS,
+      </if>
+      <if test="administration != null" >
+        ADMINISTRATION,
+      </if>
+      <if test="frequency != null" >
+        FREQUENCY,
+      </if>
+      <if test="providedIndicator != null" >
+        PROVIDED_INDICATOR,
+      </if>
+      <if test="costs != null" >
+        COSTS,
+      </if>
+      <if test="charges != null" >
+        CHARGES,
+      </if>
+      <if test="chargeIndicator != null" >
+        CHARGE_INDICATOR,
+      </if>
+      <if test="dispensary != null" >
+        DISPENSARY,
+      </if>
+      <if test="prescClass != null" >
+        PRESC_CLASS,
+      </if>
+      <if test="meno != null" >
+        MENO,
+      </if>
+      <if test="orderNo != null" >
+        ORDER_NO,
+      </if>
+      <if test="orderSubNo != null" >
+        ORDER_SUB_NO,
+      </if>
+      <if test="days != null" >
+        DAYS,
+      </if>
+      <if test="pressClassBak != null" >
+        PRESS_CLASS_BAK,
+      </if>
+      <if test="prescId != null" >
+        PRESC_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="itemNo != null" >
+        #{itemNo,jdbcType=DECIMAL},
+      </if>
+      <if test="visitDate != null" >
+        #{visitDate,jdbcType=DATE},
+      </if>
+      <if test="visitNo != null" >
+        #{visitNo,jdbcType=DECIMAL},
+      </if>
+      <if test="prescNo != null" >
+        #{prescNo,jdbcType=DECIMAL},
+      </if>
+      <if test="itemClass != null" >
+        #{itemClass,jdbcType=VARCHAR},
+      </if>
+      <if test="drugCode != null" >
+        #{drugCode,jdbcType=VARCHAR},
+      </if>
+      <if test="drugName != null" >
+        #{drugName,jdbcType=VARCHAR},
+      </if>
+      <if test="drugSpec != null" >
+        #{drugSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="firmId != null" >
+        #{firmId,jdbcType=VARCHAR},
+      </if>
+      <if test="units != null" >
+        #{units,jdbcType=VARCHAR},
+      </if>
+      <if test="repetition != null" >
+        #{repetition,jdbcType=DECIMAL},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="dosage != null" >
+        #{dosage,jdbcType=DECIMAL},
+      </if>
+      <if test="dosageUnits != null" >
+        #{dosageUnits,jdbcType=VARCHAR},
+      </if>
+      <if test="administration != null" >
+        #{administration,jdbcType=VARCHAR},
+      </if>
+      <if test="frequency != null" >
+        #{frequency,jdbcType=VARCHAR},
+      </if>
+      <if test="providedIndicator != null" >
+        #{providedIndicator,jdbcType=DECIMAL},
+      </if>
+      <if test="costs != null" >
+        #{costs,jdbcType=DECIMAL},
+      </if>
+      <if test="charges != null" >
+        #{charges,jdbcType=DECIMAL},
+      </if>
+      <if test="chargeIndicator != null" >
+        #{chargeIndicator,jdbcType=DECIMAL},
+      </if>
+      <if test="dispensary != null" >
+        #{dispensary,jdbcType=VARCHAR},
+      </if>
+      <if test="prescClass != null" >
+        #{prescClass,jdbcType=VARCHAR},
+      </if>
+      <if test="meno != null" >
+        #{meno,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=DECIMAL},
+      </if>
+      <if test="orderSubNo != null" >
+        #{orderSubNo,jdbcType=DECIMAL},
+      </if>
+      <if test="days != null" >
+        #{days,jdbcType=DECIMAL},
+      </if>
+      <if test="pressClassBak != null" >
+        #{pressClassBak,jdbcType=DECIMAL},
+      </if>
+      <if test="prescId != null" >
+        #{prescId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.outpdoct.OutpPresc" >
+    update OUTPDOCT.OUTP_PRESC
+    <set >
+      <if test="visitDate != null" >
+        VISIT_DATE = #{visitDate,jdbcType=DATE},
+      </if>
+      <if test="visitNo != null" >
+        VISIT_NO = #{visitNo,jdbcType=DECIMAL},
+      </if>
+      <if test="prescNo != null" >
+        PRESC_NO = #{prescNo,jdbcType=DECIMAL},
+      </if>
+      <if test="itemClass != null" >
+        ITEM_CLASS = #{itemClass,jdbcType=VARCHAR},
+      </if>
+      <if test="drugCode != null" >
+        DRUG_CODE = #{drugCode,jdbcType=VARCHAR},
+      </if>
+      <if test="drugName != null" >
+        DRUG_NAME = #{drugName,jdbcType=VARCHAR},
+      </if>
+      <if test="drugSpec != null" >
+        DRUG_SPEC = #{drugSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="firmId != null" >
+        FIRM_ID = #{firmId,jdbcType=VARCHAR},
+      </if>
+      <if test="units != null" >
+        UNITS = #{units,jdbcType=VARCHAR},
+      </if>
+      <if test="repetition != null" >
+        REPETITION = #{repetition,jdbcType=DECIMAL},
+      </if>
+      <if test="amount != null" >
+        AMOUNT = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="dosage != null" >
+        DOSAGE = #{dosage,jdbcType=DECIMAL},
+      </if>
+      <if test="dosageUnits != null" >
+        DOSAGE_UNITS = #{dosageUnits,jdbcType=VARCHAR},
+      </if>
+      <if test="administration != null" >
+        ADMINISTRATION = #{administration,jdbcType=VARCHAR},
+      </if>
+      <if test="frequency != null" >
+        FREQUENCY = #{frequency,jdbcType=VARCHAR},
+      </if>
+      <if test="providedIndicator != null" >
+        PROVIDED_INDICATOR = #{providedIndicator,jdbcType=DECIMAL},
+      </if>
+      <if test="costs != null" >
+        COSTS = #{costs,jdbcType=DECIMAL},
+      </if>
+      <if test="charges != null" >
+        CHARGES = #{charges,jdbcType=DECIMAL},
+      </if>
+      <if test="chargeIndicator != null" >
+        CHARGE_INDICATOR = #{chargeIndicator,jdbcType=DECIMAL},
+      </if>
+      <if test="dispensary != null" >
+        DISPENSARY = #{dispensary,jdbcType=VARCHAR},
+      </if>
+      <if test="prescClass != null" >
+        PRESC_CLASS = #{prescClass,jdbcType=VARCHAR},
+      </if>
+      <if test="meno != null" >
+        MENO = #{meno,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        ORDER_NO = #{orderNo,jdbcType=DECIMAL},
+      </if>
+      <if test="orderSubNo != null" >
+        ORDER_SUB_NO = #{orderSubNo,jdbcType=DECIMAL},
+      </if>
+      <if test="days != null" >
+        DAYS = #{days,jdbcType=DECIMAL},
+      </if>
+      <if test="pressClassBak != null" >
+        PRESS_CLASS_BAK = #{pressClassBak,jdbcType=DECIMAL},
+      </if>
+      <if test="prescId != null" >
+        PRESC_ID = #{prescId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SERIAL_NO = #{serialNo,jdbcType=VARCHAR}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.outpdoct.OutpPresc" >
+    update OUTPDOCT.OUTP_PRESC
+    set VISIT_DATE = #{visitDate,jdbcType=DATE},
+      VISIT_NO = #{visitNo,jdbcType=DECIMAL},
+      PRESC_NO = #{prescNo,jdbcType=DECIMAL},
+      ITEM_CLASS = #{itemClass,jdbcType=VARCHAR},
+      DRUG_CODE = #{drugCode,jdbcType=VARCHAR},
+      DRUG_NAME = #{drugName,jdbcType=VARCHAR},
+      DRUG_SPEC = #{drugSpec,jdbcType=VARCHAR},
+      FIRM_ID = #{firmId,jdbcType=VARCHAR},
+      UNITS = #{units,jdbcType=VARCHAR},
+      REPETITION = #{repetition,jdbcType=DECIMAL},
+      AMOUNT = #{amount,jdbcType=DECIMAL},
+      DOSAGE = #{dosage,jdbcType=DECIMAL},
+      DOSAGE_UNITS = #{dosageUnits,jdbcType=VARCHAR},
+      ADMINISTRATION = #{administration,jdbcType=VARCHAR},
+      FREQUENCY = #{frequency,jdbcType=VARCHAR},
+      PROVIDED_INDICATOR = #{providedIndicator,jdbcType=DECIMAL},
+      COSTS = #{costs,jdbcType=DECIMAL},
+      CHARGES = #{charges,jdbcType=DECIMAL},
+      CHARGE_INDICATOR = #{chargeIndicator,jdbcType=DECIMAL},
+      DISPENSARY = #{dispensary,jdbcType=VARCHAR},
+      PRESC_CLASS = #{prescClass,jdbcType=VARCHAR},
+      MENO = #{meno,jdbcType=VARCHAR},
+      ORDER_NO = #{orderNo,jdbcType=DECIMAL},
+      ORDER_SUB_NO = #{orderSubNo,jdbcType=DECIMAL},
+      DAYS = #{days,jdbcType=DECIMAL},
+      PRESS_CLASS_BAK = #{pressClassBak,jdbcType=DECIMAL},
+      PRESC_ID = #{prescId,jdbcType=VARCHAR}
+    where SERIAL_NO = #{serialNo,jdbcType=VARCHAR}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+  </update>
+</mapper>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.MaritalStatusDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.MaritalStatusDict" >
+    <id column="MARITAL_STATUS_NAME" property="maritalStatusName" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="MARITAL_STATUS_CODE" property="maritalStatusCode" jdbcType="VARCHAR" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    MARITAL_STATUS_NAME, SERIAL_NO, MARITAL_STATUS_CODE, INPUT_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.MARITAL_STATUS_DICT
+    where MARITAL_STATUS_NAME = #{maritalStatusName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.MARITAL_STATUS_DICT
+    where MARITAL_STATUS_NAME = #{maritalStatusName,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.MaritalStatusDict" >
+    insert into COMM.MARITAL_STATUS_DICT (MARITAL_STATUS_NAME, SERIAL_NO, MARITAL_STATUS_CODE, 
+      INPUT_CODE)
+    values (#{maritalStatusName,jdbcType=VARCHAR}, #{serialNo,jdbcType=DECIMAL}, #{maritalStatusCode,jdbcType=VARCHAR}, 
+      #{inputCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.MaritalStatusDict" >
+    insert into COMM.MARITAL_STATUS_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="maritalStatusName != null" >
+        MARITAL_STATUS_NAME,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="maritalStatusCode != null" >
+        MARITAL_STATUS_CODE,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="maritalStatusName != null" >
+        #{maritalStatusName,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="maritalStatusCode != null" >
+        #{maritalStatusCode,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.MaritalStatusDict" >
+    update COMM.MARITAL_STATUS_DICT
+    <set >
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="maritalStatusCode != null" >
+        MARITAL_STATUS_CODE = #{maritalStatusCode,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where MARITAL_STATUS_NAME = #{maritalStatusName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.MaritalStatusDict" >
+    update COMM.MARITAL_STATUS_DICT
+    set SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      MARITAL_STATUS_CODE = #{maritalStatusCode,jdbcType=VARCHAR},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR}
+    where MARITAL_STATUS_NAME = #{maritalStatusName,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.InsuranceConstantscategoryMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.insurance.InsuranceConstantscategory" >
+    <id column="INTERFACECODE" property="interfacecode" jdbcType="VARCHAR" />
+    <id column="GUIDECODE" property="guidecode" jdbcType="VARCHAR" />
+    <result column="GUIDENAME" property="guidename" jdbcType="VARCHAR" />
+    <result column="CREATED" property="created" jdbcType="DATE" />
+    <result column="CREATEDBY" property="createdby" jdbcType="VARCHAR" />
+    <result column="UPDATED" property="updated" jdbcType="DATE" />
+    <result column="UPDATEDBY" property="updatedby" jdbcType="VARCHAR" />
+    <result column="ISACTIVE" property="isactive" jdbcType="CHAR" />
+    <result column="ISSYSTEM" property="issystem" jdbcType="VARCHAR" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    INTERFACECODE, GUIDECODE, GUIDENAME, CREATED, CREATEDBY, UPDATED, UPDATEDBY, ISACTIVE, 
+    ISSYSTEM, DESCRIPTION
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.insurance.InsuranceConstantscategoryKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from INSURANCE.INSURANCE_CONSTANTSCATEGORY
+    where INTERFACECODE = #{interfacecode,jdbcType=VARCHAR}
+      and GUIDECODE = #{guidecode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.insurance.InsuranceConstantscategoryKey" >
+    delete from INSURANCE.INSURANCE_CONSTANTSCATEGORY
+    where INTERFACECODE = #{interfacecode,jdbcType=VARCHAR}
+      and GUIDECODE = #{guidecode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.insurance.InsuranceConstantscategory" >
+    insert into INSURANCE.INSURANCE_CONSTANTSCATEGORY (INTERFACECODE, GUIDECODE, GUIDENAME, 
+      CREATED, CREATEDBY, UPDATED, 
+      UPDATEDBY, ISACTIVE, ISSYSTEM, 
+      DESCRIPTION)
+    values (#{interfacecode,jdbcType=VARCHAR}, #{guidecode,jdbcType=VARCHAR}, #{guidename,jdbcType=VARCHAR}, 
+      #{created,jdbcType=DATE}, #{createdby,jdbcType=VARCHAR}, #{updated,jdbcType=DATE}, 
+      #{updatedby,jdbcType=VARCHAR}, #{isactive,jdbcType=CHAR}, #{issystem,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.insurance.InsuranceConstantscategory" >
+    insert into INSURANCE.INSURANCE_CONSTANTSCATEGORY
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="interfacecode != null" >
+        INTERFACECODE,
+      </if>
+      <if test="guidecode != null" >
+        GUIDECODE,
+      </if>
+      <if test="guidename != null" >
+        GUIDENAME,
+      </if>
+      <if test="created != null" >
+        CREATED,
+      </if>
+      <if test="createdby != null" >
+        CREATEDBY,
+      </if>
+      <if test="updated != null" >
+        UPDATED,
+      </if>
+      <if test="updatedby != null" >
+        UPDATEDBY,
+      </if>
+      <if test="isactive != null" >
+        ISACTIVE,
+      </if>
+      <if test="issystem != null" >
+        ISSYSTEM,
+      </if>
+      <if test="description != null" >
+        DESCRIPTION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="interfacecode != null" >
+        #{interfacecode,jdbcType=VARCHAR},
+      </if>
+      <if test="guidecode != null" >
+        #{guidecode,jdbcType=VARCHAR},
+      </if>
+      <if test="guidename != null" >
+        #{guidename,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=DATE},
+      </if>
+      <if test="createdby != null" >
+        #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null" >
+        #{updated,jdbcType=DATE},
+      </if>
+      <if test="updatedby != null" >
+        #{updatedby,jdbcType=VARCHAR},
+      </if>
+      <if test="isactive != null" >
+        #{isactive,jdbcType=CHAR},
+      </if>
+      <if test="issystem != null" >
+        #{issystem,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.insurance.InsuranceConstantscategory" >
+    update INSURANCE.INSURANCE_CONSTANTSCATEGORY
+    <set >
+      <if test="guidename != null" >
+        GUIDENAME = #{guidename,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null" >
+        CREATED = #{created,jdbcType=DATE},
+      </if>
+      <if test="createdby != null" >
+        CREATEDBY = #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null" >
+        UPDATED = #{updated,jdbcType=DATE},
+      </if>
+      <if test="updatedby != null" >
+        UPDATEDBY = #{updatedby,jdbcType=VARCHAR},
+      </if>
+      <if test="isactive != null" >
+        ISACTIVE = #{isactive,jdbcType=CHAR},
+      </if>
+      <if test="issystem != null" >
+        ISSYSTEM = #{issystem,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where INTERFACECODE = #{interfacecode,jdbcType=VARCHAR}
+      and GUIDECODE = #{guidecode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.insurance.InsuranceConstantscategory" >
+    update INSURANCE.INSURANCE_CONSTANTSCATEGORY
+    set GUIDENAME = #{guidename,jdbcType=VARCHAR},
+      CREATED = #{created,jdbcType=DATE},
+      CREATEDBY = #{createdby,jdbcType=VARCHAR},
+      UPDATED = #{updated,jdbcType=DATE},
+      UPDATEDBY = #{updatedby,jdbcType=VARCHAR},
+      ISACTIVE = #{isactive,jdbcType=CHAR},
+      ISSYSTEM = #{issystem,jdbcType=VARCHAR},
+      DESCRIPTION = #{description,jdbcType=VARCHAR}
+    where INTERFACECODE = #{interfacecode,jdbcType=VARCHAR}
+      and GUIDECODE = #{guidecode,jdbcType=VARCHAR}
+  </update>
+</mapper>

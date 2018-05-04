@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.PriceStandardGlyynjMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.PriceStandardGlyynj" >
+    <id column="ITEM_NO" property="itemNo" jdbcType="VARCHAR" />
+    <result column="ITEM_CODE" property="itemCode" jdbcType="VARCHAR" />
+    <result column="ITEM_NAME" property="itemName" jdbcType="VARCHAR" />
+    <result column="ITEM_CONTENT" property="itemContent" jdbcType="VARCHAR" />
+    <result column="ITEM_EXCEPT_CONTENT" property="itemExceptContent" jdbcType="VARCHAR" />
+    <result column="UNIT" property="unit" jdbcType="VARCHAR" />
+    <result column="OLD_PRICE" property="oldPrice" jdbcType="DECIMAL" />
+    <result column="TWO_PRICE" property="twoPrice" jdbcType="DECIMAL" />
+    <result column="THREE_PRICE" property="threePrice" jdbcType="DECIMAL" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+    <result column="ITEM_CODE_BD" property="itemCodeBd" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ITEM_NO, ITEM_CODE, ITEM_NAME, ITEM_CONTENT, ITEM_EXCEPT_CONTENT, UNIT, OLD_PRICE, 
+    TWO_PRICE, THREE_PRICE, MEMO, ITEM_CODE_BD
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.PRICE_STANDARD_GLYYNJ
+    where ITEM_NO = #{itemNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.PRICE_STANDARD_GLYYNJ
+    where ITEM_NO = #{itemNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.PriceStandardGlyynj" >
+    insert into COMM.PRICE_STANDARD_GLYYNJ (ITEM_NO, ITEM_CODE, ITEM_NAME, 
+      ITEM_CONTENT, ITEM_EXCEPT_CONTENT, UNIT, 
+      OLD_PRICE, TWO_PRICE, THREE_PRICE, 
+      MEMO, ITEM_CODE_BD)
+    values (#{itemNo,jdbcType=VARCHAR}, #{itemCode,jdbcType=VARCHAR}, #{itemName,jdbcType=VARCHAR}, 
+      #{itemContent,jdbcType=VARCHAR}, #{itemExceptContent,jdbcType=VARCHAR}, #{unit,jdbcType=VARCHAR}, 
+      #{oldPrice,jdbcType=DECIMAL}, #{twoPrice,jdbcType=DECIMAL}, #{threePrice,jdbcType=DECIMAL}, 
+      #{memo,jdbcType=VARCHAR}, #{itemCodeBd,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.PriceStandardGlyynj" >
+    insert into COMM.PRICE_STANDARD_GLYYNJ
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="itemNo != null" >
+        ITEM_NO,
+      </if>
+      <if test="itemCode != null" >
+        ITEM_CODE,
+      </if>
+      <if test="itemName != null" >
+        ITEM_NAME,
+      </if>
+      <if test="itemContent != null" >
+        ITEM_CONTENT,
+      </if>
+      <if test="itemExceptContent != null" >
+        ITEM_EXCEPT_CONTENT,
+      </if>
+      <if test="unit != null" >
+        UNIT,
+      </if>
+      <if test="oldPrice != null" >
+        OLD_PRICE,
+      </if>
+      <if test="twoPrice != null" >
+        TWO_PRICE,
+      </if>
+      <if test="threePrice != null" >
+        THREE_PRICE,
+      </if>
+      <if test="memo != null" >
+        MEMO,
+      </if>
+      <if test="itemCodeBd != null" >
+        ITEM_CODE_BD,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="itemNo != null" >
+        #{itemNo,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode != null" >
+        #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemContent != null" >
+        #{itemContent,jdbcType=VARCHAR},
+      </if>
+      <if test="itemExceptContent != null" >
+        #{itemExceptContent,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="oldPrice != null" >
+        #{oldPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="twoPrice != null" >
+        #{twoPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="threePrice != null" >
+        #{threePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCodeBd != null" >
+        #{itemCodeBd,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.PriceStandardGlyynj" >
+    update COMM.PRICE_STANDARD_GLYYNJ
+    <set >
+      <if test="itemCode != null" >
+        ITEM_CODE = #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        ITEM_NAME = #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemContent != null" >
+        ITEM_CONTENT = #{itemContent,jdbcType=VARCHAR},
+      </if>
+      <if test="itemExceptContent != null" >
+        ITEM_EXCEPT_CONTENT = #{itemExceptContent,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        UNIT = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="oldPrice != null" >
+        OLD_PRICE = #{oldPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="twoPrice != null" >
+        TWO_PRICE = #{twoPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="threePrice != null" >
+        THREE_PRICE = #{threePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="memo != null" >
+        MEMO = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCodeBd != null" >
+        ITEM_CODE_BD = #{itemCodeBd,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ITEM_NO = #{itemNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.PriceStandardGlyynj" >
+    update COMM.PRICE_STANDARD_GLYYNJ
+    set ITEM_CODE = #{itemCode,jdbcType=VARCHAR},
+      ITEM_NAME = #{itemName,jdbcType=VARCHAR},
+      ITEM_CONTENT = #{itemContent,jdbcType=VARCHAR},
+      ITEM_EXCEPT_CONTENT = #{itemExceptContent,jdbcType=VARCHAR},
+      UNIT = #{unit,jdbcType=VARCHAR},
+      OLD_PRICE = #{oldPrice,jdbcType=DECIMAL},
+      TWO_PRICE = #{twoPrice,jdbcType=DECIMAL},
+      THREE_PRICE = #{threePrice,jdbcType=DECIMAL},
+      MEMO = #{memo,jdbcType=VARCHAR},
+      ITEM_CODE_BD = #{itemCodeBd,jdbcType=VARCHAR}
+    where ITEM_NO = #{itemNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

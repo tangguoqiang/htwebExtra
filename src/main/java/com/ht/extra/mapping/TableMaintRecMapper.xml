@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.TableMaintRecMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.TableMaintRec" >
+    <id column="TABLE_NAME" property="tableName" jdbcType="VARCHAR" />
+    <id column="MAINT_DATE" property="maintDate" jdbcType="DATE" />
+    <id column="MAINT_TYPE" property="maintType" jdbcType="VARCHAR" />
+    <id column="FIELD_NAME" property="fieldName" jdbcType="VARCHAR" />
+    <result column="TABLE_CHINESE_NAME" property="tableChineseName" jdbcType="VARCHAR" />
+    <result column="CONTENT_BEFORE_MAINT" property="contentBeforeMaint" jdbcType="VARCHAR" />
+    <result column="CONTENT_AFTER_MAINT" property="contentAfterMaint" jdbcType="VARCHAR" />
+    <result column="CORRELATIVE_SOFTWARE" property="correlativeSoftware" jdbcType="VARCHAR" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    TABLE_NAME, MAINT_DATE, MAINT_TYPE, FIELD_NAME, TABLE_CHINESE_NAME, CONTENT_BEFORE_MAINT, 
+    CONTENT_AFTER_MAINT, CORRELATIVE_SOFTWARE, MEMO
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.TableMaintRecKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.TABLE_MAINT_REC
+    where TABLE_NAME = #{tableName,jdbcType=VARCHAR}
+      and MAINT_DATE = #{maintDate,jdbcType=DATE}
+      and MAINT_TYPE = #{maintType,jdbcType=VARCHAR}
+      and FIELD_NAME = #{fieldName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.TableMaintRecKey" >
+    delete from COMM.TABLE_MAINT_REC
+    where TABLE_NAME = #{tableName,jdbcType=VARCHAR}
+      and MAINT_DATE = #{maintDate,jdbcType=DATE}
+      and MAINT_TYPE = #{maintType,jdbcType=VARCHAR}
+      and FIELD_NAME = #{fieldName,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.TableMaintRec" >
+    insert into COMM.TABLE_MAINT_REC (TABLE_NAME, MAINT_DATE, MAINT_TYPE, 
+      FIELD_NAME, TABLE_CHINESE_NAME, CONTENT_BEFORE_MAINT, 
+      CONTENT_AFTER_MAINT, CORRELATIVE_SOFTWARE, 
+      MEMO)
+    values (#{tableName,jdbcType=VARCHAR}, #{maintDate,jdbcType=DATE}, #{maintType,jdbcType=VARCHAR}, 
+      #{fieldName,jdbcType=VARCHAR}, #{tableChineseName,jdbcType=VARCHAR}, #{contentBeforeMaint,jdbcType=VARCHAR}, 
+      #{contentAfterMaint,jdbcType=VARCHAR}, #{correlativeSoftware,jdbcType=VARCHAR}, 
+      #{memo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.TableMaintRec" >
+    insert into COMM.TABLE_MAINT_REC
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tableName != null" >
+        TABLE_NAME,
+      </if>
+      <if test="maintDate != null" >
+        MAINT_DATE,
+      </if>
+      <if test="maintType != null" >
+        MAINT_TYPE,
+      </if>
+      <if test="fieldName != null" >
+        FIELD_NAME,
+      </if>
+      <if test="tableChineseName != null" >
+        TABLE_CHINESE_NAME,
+      </if>
+      <if test="contentBeforeMaint != null" >
+        CONTENT_BEFORE_MAINT,
+      </if>
+      <if test="contentAfterMaint != null" >
+        CONTENT_AFTER_MAINT,
+      </if>
+      <if test="correlativeSoftware != null" >
+        CORRELATIVE_SOFTWARE,
+      </if>
+      <if test="memo != null" >
+        MEMO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tableName != null" >
+        #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="maintDate != null" >
+        #{maintDate,jdbcType=DATE},
+      </if>
+      <if test="maintType != null" >
+        #{maintType,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldName != null" >
+        #{fieldName,jdbcType=VARCHAR},
+      </if>
+      <if test="tableChineseName != null" >
+        #{tableChineseName,jdbcType=VARCHAR},
+      </if>
+      <if test="contentBeforeMaint != null" >
+        #{contentBeforeMaint,jdbcType=VARCHAR},
+      </if>
+      <if test="contentAfterMaint != null" >
+        #{contentAfterMaint,jdbcType=VARCHAR},
+      </if>
+      <if test="correlativeSoftware != null" >
+        #{correlativeSoftware,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.TableMaintRec" >
+    update COMM.TABLE_MAINT_REC
+    <set >
+      <if test="tableChineseName != null" >
+        TABLE_CHINESE_NAME = #{tableChineseName,jdbcType=VARCHAR},
+      </if>
+      <if test="contentBeforeMaint != null" >
+        CONTENT_BEFORE_MAINT = #{contentBeforeMaint,jdbcType=VARCHAR},
+      </if>
+      <if test="contentAfterMaint != null" >
+        CONTENT_AFTER_MAINT = #{contentAfterMaint,jdbcType=VARCHAR},
+      </if>
+      <if test="correlativeSoftware != null" >
+        CORRELATIVE_SOFTWARE = #{correlativeSoftware,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        MEMO = #{memo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where TABLE_NAME = #{tableName,jdbcType=VARCHAR}
+      and MAINT_DATE = #{maintDate,jdbcType=DATE}
+      and MAINT_TYPE = #{maintType,jdbcType=VARCHAR}
+      and FIELD_NAME = #{fieldName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.TableMaintRec" >
+    update COMM.TABLE_MAINT_REC
+    set TABLE_CHINESE_NAME = #{tableChineseName,jdbcType=VARCHAR},
+      CONTENT_BEFORE_MAINT = #{contentBeforeMaint,jdbcType=VARCHAR},
+      CONTENT_AFTER_MAINT = #{contentAfterMaint,jdbcType=VARCHAR},
+      CORRELATIVE_SOFTWARE = #{correlativeSoftware,jdbcType=VARCHAR},
+      MEMO = #{memo,jdbcType=VARCHAR}
+    where TABLE_NAME = #{tableName,jdbcType=VARCHAR}
+      and MAINT_DATE = #{maintDate,jdbcType=DATE}
+      and MAINT_TYPE = #{maintType,jdbcType=VARCHAR}
+      and FIELD_NAME = #{fieldName,jdbcType=VARCHAR}
+  </update>
+</mapper>

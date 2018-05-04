@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.PmiMergedLogMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.medrec.PmiMergedLog" >
+    <id column="PID_MERGED" property="pidMerged" jdbcType="VARCHAR" />
+    <id column="PID_RETAINED" property="pidRetained" jdbcType="VARCHAR" />
+    <id column="MERGED_DATE" property="mergedDate" jdbcType="DATE" />
+    <result column="OPERATOR" property="operator" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PID_MERGED, PID_RETAINED, MERGED_DATE, OPERATOR
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.medrec.PmiMergedLogKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from MEDREC.PMI_MERGED_LOG
+    where PID_MERGED = #{pidMerged,jdbcType=VARCHAR}
+      and PID_RETAINED = #{pidRetained,jdbcType=VARCHAR}
+      and MERGED_DATE = #{mergedDate,jdbcType=DATE}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.medrec.PmiMergedLogKey" >
+    delete from MEDREC.PMI_MERGED_LOG
+    where PID_MERGED = #{pidMerged,jdbcType=VARCHAR}
+      and PID_RETAINED = #{pidRetained,jdbcType=VARCHAR}
+      and MERGED_DATE = #{mergedDate,jdbcType=DATE}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.medrec.PmiMergedLog" >
+    insert into MEDREC.PMI_MERGED_LOG (PID_MERGED, PID_RETAINED, MERGED_DATE, 
+      OPERATOR)
+    values (#{pidMerged,jdbcType=VARCHAR}, #{pidRetained,jdbcType=VARCHAR}, #{mergedDate,jdbcType=DATE}, 
+      #{operator,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.medrec.PmiMergedLog" >
+    insert into MEDREC.PMI_MERGED_LOG
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pidMerged != null" >
+        PID_MERGED,
+      </if>
+      <if test="pidRetained != null" >
+        PID_RETAINED,
+      </if>
+      <if test="mergedDate != null" >
+        MERGED_DATE,
+      </if>
+      <if test="operator != null" >
+        OPERATOR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pidMerged != null" >
+        #{pidMerged,jdbcType=VARCHAR},
+      </if>
+      <if test="pidRetained != null" >
+        #{pidRetained,jdbcType=VARCHAR},
+      </if>
+      <if test="mergedDate != null" >
+        #{mergedDate,jdbcType=DATE},
+      </if>
+      <if test="operator != null" >
+        #{operator,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.medrec.PmiMergedLog" >
+    update MEDREC.PMI_MERGED_LOG
+    <set >
+      <if test="operator != null" >
+        OPERATOR = #{operator,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PID_MERGED = #{pidMerged,jdbcType=VARCHAR}
+      and PID_RETAINED = #{pidRetained,jdbcType=VARCHAR}
+      and MERGED_DATE = #{mergedDate,jdbcType=DATE}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.medrec.PmiMergedLog" >
+    update MEDREC.PMI_MERGED_LOG
+    set OPERATOR = #{operator,jdbcType=VARCHAR}
+    where PID_MERGED = #{pidMerged,jdbcType=VARCHAR}
+      and PID_RETAINED = #{pidRetained,jdbcType=VARCHAR}
+      and MERGED_DATE = #{mergedDate,jdbcType=DATE}
+  </update>
+</mapper>

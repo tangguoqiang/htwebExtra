@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.ExamPatMiMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.exam.ExamPatMi" >
+    <id column="LOCAL_ID_CLASS" property="localIdClass" jdbcType="VARCHAR" />
+    <id column="PATIENT_LOCAL_ID" property="patientLocalId" jdbcType="VARCHAR" />
+    <result column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="NAME_PHONETIC" property="namePhonetic" jdbcType="VARCHAR" />
+    <result column="SEX" property="sex" jdbcType="VARCHAR" />
+    <result column="DATE_OF_BIRTH" property="dateOfBirth" jdbcType="DATE" />
+    <result column="BIRTH_PLACE" property="birthPlace" jdbcType="VARCHAR" />
+    <result column="IDENTITY" property="identity" jdbcType="VARCHAR" />
+    <result column="CHARGE_TYPE" property="chargeType" jdbcType="VARCHAR" />
+    <result column="MAILING_ADDRESS" property="mailingAddress" jdbcType="VARCHAR" />
+    <result column="ZIP_CODE" property="zipCode" jdbcType="VARCHAR" />
+    <result column="PHONE_NUMBER" property="phoneNumber" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    LOCAL_ID_CLASS, PATIENT_LOCAL_ID, PATIENT_ID, NAME, NAME_PHONETIC, SEX, DATE_OF_BIRTH, 
+    BIRTH_PLACE, IDENTITY, CHARGE_TYPE, MAILING_ADDRESS, ZIP_CODE, PHONE_NUMBER
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.exam.ExamPatMiKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from EXAM.EXAM_PAT_MI
+    where LOCAL_ID_CLASS = #{localIdClass,jdbcType=VARCHAR}
+      and PATIENT_LOCAL_ID = #{patientLocalId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.exam.ExamPatMiKey" >
+    delete from EXAM.EXAM_PAT_MI
+    where LOCAL_ID_CLASS = #{localIdClass,jdbcType=VARCHAR}
+      and PATIENT_LOCAL_ID = #{patientLocalId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.exam.ExamPatMi" >
+    insert into EXAM.EXAM_PAT_MI (LOCAL_ID_CLASS, PATIENT_LOCAL_ID, PATIENT_ID, 
+      NAME, NAME_PHONETIC, SEX, 
+      DATE_OF_BIRTH, BIRTH_PLACE, IDENTITY, 
+      CHARGE_TYPE, MAILING_ADDRESS, ZIP_CODE, 
+      PHONE_NUMBER)
+    values (#{localIdClass,jdbcType=VARCHAR}, #{patientLocalId,jdbcType=VARCHAR}, #{patientId,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{namePhonetic,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+      #{dateOfBirth,jdbcType=DATE}, #{birthPlace,jdbcType=VARCHAR}, #{identity,jdbcType=VARCHAR}, 
+      #{chargeType,jdbcType=VARCHAR}, #{mailingAddress,jdbcType=VARCHAR}, #{zipCode,jdbcType=VARCHAR}, 
+      #{phoneNumber,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.exam.ExamPatMi" >
+    insert into EXAM.EXAM_PAT_MI
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="localIdClass != null" >
+        LOCAL_ID_CLASS,
+      </if>
+      <if test="patientLocalId != null" >
+        PATIENT_LOCAL_ID,
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="namePhonetic != null" >
+        NAME_PHONETIC,
+      </if>
+      <if test="sex != null" >
+        SEX,
+      </if>
+      <if test="dateOfBirth != null" >
+        DATE_OF_BIRTH,
+      </if>
+      <if test="birthPlace != null" >
+        BIRTH_PLACE,
+      </if>
+      <if test="identity != null" >
+        IDENTITY,
+      </if>
+      <if test="chargeType != null" >
+        CHARGE_TYPE,
+      </if>
+      <if test="mailingAddress != null" >
+        MAILING_ADDRESS,
+      </if>
+      <if test="zipCode != null" >
+        ZIP_CODE,
+      </if>
+      <if test="phoneNumber != null" >
+        PHONE_NUMBER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="localIdClass != null" >
+        #{localIdClass,jdbcType=VARCHAR},
+      </if>
+      <if test="patientLocalId != null" >
+        #{patientLocalId,jdbcType=VARCHAR},
+      </if>
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="namePhonetic != null" >
+        #{namePhonetic,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="dateOfBirth != null" >
+        #{dateOfBirth,jdbcType=DATE},
+      </if>
+      <if test="birthPlace != null" >
+        #{birthPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="identity != null" >
+        #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeType != null" >
+        #{chargeType,jdbcType=VARCHAR},
+      </if>
+      <if test="mailingAddress != null" >
+        #{mailingAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null" >
+        #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null" >
+        #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.exam.ExamPatMi" >
+    update EXAM.EXAM_PAT_MI
+    <set >
+      <if test="patientId != null" >
+        PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="namePhonetic != null" >
+        NAME_PHONETIC = #{namePhonetic,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        SEX = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="dateOfBirth != null" >
+        DATE_OF_BIRTH = #{dateOfBirth,jdbcType=DATE},
+      </if>
+      <if test="birthPlace != null" >
+        BIRTH_PLACE = #{birthPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="identity != null" >
+        IDENTITY = #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeType != null" >
+        CHARGE_TYPE = #{chargeType,jdbcType=VARCHAR},
+      </if>
+      <if test="mailingAddress != null" >
+        MAILING_ADDRESS = #{mailingAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null" >
+        ZIP_CODE = #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null" >
+        PHONE_NUMBER = #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where LOCAL_ID_CLASS = #{localIdClass,jdbcType=VARCHAR}
+      and PATIENT_LOCAL_ID = #{patientLocalId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.exam.ExamPatMi" >
+    update EXAM.EXAM_PAT_MI
+    set PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      NAME_PHONETIC = #{namePhonetic,jdbcType=VARCHAR},
+      SEX = #{sex,jdbcType=VARCHAR},
+      DATE_OF_BIRTH = #{dateOfBirth,jdbcType=DATE},
+      BIRTH_PLACE = #{birthPlace,jdbcType=VARCHAR},
+      IDENTITY = #{identity,jdbcType=VARCHAR},
+      CHARGE_TYPE = #{chargeType,jdbcType=VARCHAR},
+      MAILING_ADDRESS = #{mailingAddress,jdbcType=VARCHAR},
+      ZIP_CODE = #{zipCode,jdbcType=VARCHAR},
+      PHONE_NUMBER = #{phoneNumber,jdbcType=VARCHAR}
+    where LOCAL_ID_CLASS = #{localIdClass,jdbcType=VARCHAR}
+      and PATIENT_LOCAL_ID = #{patientLocalId,jdbcType=VARCHAR}
+  </update>
+</mapper>

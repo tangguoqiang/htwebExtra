@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.SybDispatDiagInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.medrec.SybDispatDiagInfo" >
+    <id column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <id column="VISIT_ID" property="visitId" jdbcType="DECIMAL" />
+    <id column="DIAGNOSIS_TYPE" property="diagnosisType" jdbcType="VARCHAR" />
+    <id column="DIAGNOSIS_NO" property="diagnosisNo" jdbcType="DECIMAL" />
+    <result column="DIAGNOSIS_DESC" property="diagnosisDesc" jdbcType="VARCHAR" />
+    <result column="DIAGNOSIS_DATE" property="diagnosisDate" jdbcType="DATE" />
+    <result column="TREAT_DAYS" property="treatDays" jdbcType="DECIMAL" />
+    <result column="TREAT_RESULT" property="treatResult" jdbcType="VARCHAR" />
+    <result column="OPER_TREAT_INDICATOR" property="operTreatIndicator" jdbcType="DECIMAL" />
+    <result column="CODE_VERSION" property="codeVersion" jdbcType="VARCHAR" />
+    <result column="DIAG_CODE" property="diagCode" jdbcType="VARCHAR" />
+    <result column="TREATCODE" property="treatcode" jdbcType="VARCHAR" />
+    <result column="OPSID" property="opsid" jdbcType="VARCHAR" />
+    <result column="DISREG_FLAG" property="disregFlag" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PATIENT_ID, VISIT_ID, DIAGNOSIS_TYPE, DIAGNOSIS_NO, DIAGNOSIS_DESC, DIAGNOSIS_DATE, 
+    TREAT_DAYS, TREAT_RESULT, OPER_TREAT_INDICATOR, CODE_VERSION, DIAG_CODE, TREATCODE, 
+    OPSID, DISREG_FLAG
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.medrec.SybDispatDiagInfoKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from MEDREC.SYB_DISPAT_DIAG_INFO
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and DIAGNOSIS_TYPE = #{diagnosisType,jdbcType=VARCHAR}
+      and DIAGNOSIS_NO = #{diagnosisNo,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.medrec.SybDispatDiagInfoKey" >
+    delete from MEDREC.SYB_DISPAT_DIAG_INFO
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and DIAGNOSIS_TYPE = #{diagnosisType,jdbcType=VARCHAR}
+      and DIAGNOSIS_NO = #{diagnosisNo,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.medrec.SybDispatDiagInfo" >
+    insert into MEDREC.SYB_DISPAT_DIAG_INFO (PATIENT_ID, VISIT_ID, DIAGNOSIS_TYPE, 
+      DIAGNOSIS_NO, DIAGNOSIS_DESC, DIAGNOSIS_DATE, 
+      TREAT_DAYS, TREAT_RESULT, OPER_TREAT_INDICATOR, 
+      CODE_VERSION, DIAG_CODE, TREATCODE, 
+      OPSID, DISREG_FLAG)
+    values (#{patientId,jdbcType=VARCHAR}, #{visitId,jdbcType=DECIMAL}, #{diagnosisType,jdbcType=VARCHAR}, 
+      #{diagnosisNo,jdbcType=DECIMAL}, #{diagnosisDesc,jdbcType=VARCHAR}, #{diagnosisDate,jdbcType=DATE}, 
+      #{treatDays,jdbcType=DECIMAL}, #{treatResult,jdbcType=VARCHAR}, #{operTreatIndicator,jdbcType=DECIMAL}, 
+      #{codeVersion,jdbcType=VARCHAR}, #{diagCode,jdbcType=VARCHAR}, #{treatcode,jdbcType=VARCHAR}, 
+      #{opsid,jdbcType=VARCHAR}, #{disregFlag,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.medrec.SybDispatDiagInfo" >
+    insert into MEDREC.SYB_DISPAT_DIAG_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="visitId != null" >
+        VISIT_ID,
+      </if>
+      <if test="diagnosisType != null" >
+        DIAGNOSIS_TYPE,
+      </if>
+      <if test="diagnosisNo != null" >
+        DIAGNOSIS_NO,
+      </if>
+      <if test="diagnosisDesc != null" >
+        DIAGNOSIS_DESC,
+      </if>
+      <if test="diagnosisDate != null" >
+        DIAGNOSIS_DATE,
+      </if>
+      <if test="treatDays != null" >
+        TREAT_DAYS,
+      </if>
+      <if test="treatResult != null" >
+        TREAT_RESULT,
+      </if>
+      <if test="operTreatIndicator != null" >
+        OPER_TREAT_INDICATOR,
+      </if>
+      <if test="codeVersion != null" >
+        CODE_VERSION,
+      </if>
+      <if test="diagCode != null" >
+        DIAG_CODE,
+      </if>
+      <if test="treatcode != null" >
+        TREATCODE,
+      </if>
+      <if test="opsid != null" >
+        OPSID,
+      </if>
+      <if test="disregFlag != null" >
+        DISREG_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitId != null" >
+        #{visitId,jdbcType=DECIMAL},
+      </if>
+      <if test="diagnosisType != null" >
+        #{diagnosisType,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnosisNo != null" >
+        #{diagnosisNo,jdbcType=DECIMAL},
+      </if>
+      <if test="diagnosisDesc != null" >
+        #{diagnosisDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnosisDate != null" >
+        #{diagnosisDate,jdbcType=DATE},
+      </if>
+      <if test="treatDays != null" >
+        #{treatDays,jdbcType=DECIMAL},
+      </if>
+      <if test="treatResult != null" >
+        #{treatResult,jdbcType=VARCHAR},
+      </if>
+      <if test="operTreatIndicator != null" >
+        #{operTreatIndicator,jdbcType=DECIMAL},
+      </if>
+      <if test="codeVersion != null" >
+        #{codeVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="diagCode != null" >
+        #{diagCode,jdbcType=VARCHAR},
+      </if>
+      <if test="treatcode != null" >
+        #{treatcode,jdbcType=VARCHAR},
+      </if>
+      <if test="opsid != null" >
+        #{opsid,jdbcType=VARCHAR},
+      </if>
+      <if test="disregFlag != null" >
+        #{disregFlag,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.medrec.SybDispatDiagInfo" >
+    update MEDREC.SYB_DISPAT_DIAG_INFO
+    <set >
+      <if test="diagnosisDesc != null" >
+        DIAGNOSIS_DESC = #{diagnosisDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnosisDate != null" >
+        DIAGNOSIS_DATE = #{diagnosisDate,jdbcType=DATE},
+      </if>
+      <if test="treatDays != null" >
+        TREAT_DAYS = #{treatDays,jdbcType=DECIMAL},
+      </if>
+      <if test="treatResult != null" >
+        TREAT_RESULT = #{treatResult,jdbcType=VARCHAR},
+      </if>
+      <if test="operTreatIndicator != null" >
+        OPER_TREAT_INDICATOR = #{operTreatIndicator,jdbcType=DECIMAL},
+      </if>
+      <if test="codeVersion != null" >
+        CODE_VERSION = #{codeVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="diagCode != null" >
+        DIAG_CODE = #{diagCode,jdbcType=VARCHAR},
+      </if>
+      <if test="treatcode != null" >
+        TREATCODE = #{treatcode,jdbcType=VARCHAR},
+      </if>
+      <if test="opsid != null" >
+        OPSID = #{opsid,jdbcType=VARCHAR},
+      </if>
+      <if test="disregFlag != null" >
+        DISREG_FLAG = #{disregFlag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and DIAGNOSIS_TYPE = #{diagnosisType,jdbcType=VARCHAR}
+      and DIAGNOSIS_NO = #{diagnosisNo,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.medrec.SybDispatDiagInfo" >
+    update MEDREC.SYB_DISPAT_DIAG_INFO
+    set DIAGNOSIS_DESC = #{diagnosisDesc,jdbcType=VARCHAR},
+      DIAGNOSIS_DATE = #{diagnosisDate,jdbcType=DATE},
+      TREAT_DAYS = #{treatDays,jdbcType=DECIMAL},
+      TREAT_RESULT = #{treatResult,jdbcType=VARCHAR},
+      OPER_TREAT_INDICATOR = #{operTreatIndicator,jdbcType=DECIMAL},
+      CODE_VERSION = #{codeVersion,jdbcType=VARCHAR},
+      DIAG_CODE = #{diagCode,jdbcType=VARCHAR},
+      TREATCODE = #{treatcode,jdbcType=VARCHAR},
+      OPSID = #{opsid,jdbcType=VARCHAR},
+      DISREG_FLAG = #{disregFlag,jdbcType=VARCHAR}
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and DIAGNOSIS_TYPE = #{diagnosisType,jdbcType=VARCHAR}
+      and DIAGNOSIS_NO = #{diagnosisNo,jdbcType=DECIMAL}
+  </update>
+</mapper>

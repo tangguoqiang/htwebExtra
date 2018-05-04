@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.ApplicationKeyMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.ApplicationKey" >
+    <result column="APPLICATION" property="application" jdbcType="VARCHAR" />
+    <result column="VERSION" property="version" jdbcType="VARCHAR" />
+    <result column="KEY" property="key" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.ApplicationKey" >
+    insert into COMM.APPLICATION_KEY (APPLICATION, VERSION, KEY
+      )
+    values (#{application,jdbcType=VARCHAR}, #{version,jdbcType=VARCHAR}, #{key,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.ApplicationKey" >
+    insert into COMM.APPLICATION_KEY
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="application != null" >
+        APPLICATION,
+      </if>
+      <if test="version != null" >
+        VERSION,
+      </if>
+      <if test="key != null" >
+        KEY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="application != null" >
+        #{application,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="key != null" >
+        #{key,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

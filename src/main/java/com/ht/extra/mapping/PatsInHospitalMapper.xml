@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.PatsInHospitalMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.inpadm.PatsInHospital" >
+    <id column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <result column="VISIT_ID" property="visitId" jdbcType="DECIMAL" />
+    <result column="WARD_CODE" property="wardCode" jdbcType="VARCHAR" />
+    <result column="DEPT_CODE" property="deptCode" jdbcType="VARCHAR" />
+    <result column="BED_NO" property="bedNo" jdbcType="DECIMAL" />
+    <result column="ADMISSION_DATE_TIME" property="admissionDateTime" jdbcType="DATE" />
+    <result column="ADM_WARD_DATE_TIME" property="admWardDateTime" jdbcType="DATE" />
+    <result column="DIAGNOSIS" property="diagnosis" jdbcType="VARCHAR" />
+    <result column="PATIENT_CONDITION" property="patientCondition" jdbcType="VARCHAR" />
+    <result column="NURSING_CLASS" property="nursingClass" jdbcType="VARCHAR" />
+    <result column="DOCTOR_IN_CHARGE" property="doctorInCharge" jdbcType="VARCHAR" />
+    <result column="OPERATING_DATE" property="operatingDate" jdbcType="DATE" />
+    <result column="BILLING_DATE_TIME" property="billingDateTime" jdbcType="DATE" />
+    <result column="PREPAYMENTS" property="prepayments" jdbcType="DECIMAL" />
+    <result column="TOTAL_COSTS" property="totalCosts" jdbcType="DECIMAL" />
+    <result column="TOTAL_CHARGES" property="totalCharges" jdbcType="DECIMAL" />
+    <result column="GUARANTOR" property="guarantor" jdbcType="VARCHAR" />
+    <result column="GUARANTOR_ORG" property="guarantorOrg" jdbcType="VARCHAR" />
+    <result column="GUARANTOR_PHONE_NUM" property="guarantorPhoneNum" jdbcType="VARCHAR" />
+    <result column="BILL_CHECKED_DATE_TIME" property="billCheckedDateTime" jdbcType="DATE" />
+    <result column="SETTLED_INDICATOR" property="settledIndicator" jdbcType="DECIMAL" />
+    <result column="PAY_FROM_ACCOUNT" property="payFromAccount" jdbcType="DECIMAL" />
+    <result column="PAY_FROM_FUND" property="payFromFund" jdbcType="DECIMAL" />
+    <result column="PAY_FROM_INSURED" property="payFromInsured" jdbcType="DECIMAL" />
+    <result column="PAY_WAY" property="payWay" jdbcType="DECIMAL" />
+    <result column="DEPT_IN_CHARGE" property="deptInCharge" jdbcType="VARCHAR" />
+    <result column="START_DATE_TIME" property="startDateTime" jdbcType="DATE" />
+    <result column="FREQUENCY_NURSE" property="frequencyNurse" jdbcType="DECIMAL" />
+    <result column="BED_LABEL" property="bedLabel" jdbcType="VARCHAR" />
+    <result column="NURSE_IN_CHARGE" property="nurseInCharge" jdbcType="VARCHAR" />
+    <result column="BED_DEPT_CODE" property="bedDeptCode" jdbcType="VARCHAR" />
+    <result column="BED_WARD_CODE" property="bedWardCode" jdbcType="VARCHAR" />
+    <result column="LEND_INDICATOR" property="lendIndicator" jdbcType="DECIMAL" />
+    <result column="OUT_DATE" property="outDate" jdbcType="DATE" />
+    <result column="DEPT_NAME" property="deptName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PATIENT_ID, VISIT_ID, WARD_CODE, DEPT_CODE, BED_NO, ADMISSION_DATE_TIME, ADM_WARD_DATE_TIME, 
+    DIAGNOSIS, PATIENT_CONDITION, NURSING_CLASS, DOCTOR_IN_CHARGE, OPERATING_DATE, BILLING_DATE_TIME, 
+    PREPAYMENTS, TOTAL_COSTS, TOTAL_CHARGES, GUARANTOR, GUARANTOR_ORG, GUARANTOR_PHONE_NUM, 
+    BILL_CHECKED_DATE_TIME, SETTLED_INDICATOR, PAY_FROM_ACCOUNT, PAY_FROM_FUND, PAY_FROM_INSURED, 
+    PAY_WAY, DEPT_IN_CHARGE, START_DATE_TIME, FREQUENCY_NURSE, BED_LABEL, NURSE_IN_CHARGE, 
+    BED_DEPT_CODE, BED_WARD_CODE, LEND_INDICATOR
+  </sql>
+
+  <select id="selectByOutTime" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    <![CDATA[select a.*,b.dept_name,
+    (select log_date_time from inpadm.adt_log where patient_id =a.patient_id
+    and visit_id = a.visit_id and action ='F' and rownum='1'
+    )out_time
+    from inpadm.pats_in_hospital a,comm.dept_dict b where a.dept_code = b.dept_code and patient_id=#{0}
+    and a.admission_date_time>to_date(#{1},'yyyy-mm-dd') and
+    a.admission_date_time<to_date(#{2},'yyyy-mm-dd')]]>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from INPADM.PATS_IN_HOSPITAL
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from INPADM.PATS_IN_HOSPITAL
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.inpadm.PatsInHospital" >
+    insert into INPADM.PATS_IN_HOSPITAL (PATIENT_ID, VISIT_ID, WARD_CODE, 
+      DEPT_CODE, BED_NO, ADMISSION_DATE_TIME, 
+      ADM_WARD_DATE_TIME, DIAGNOSIS, PATIENT_CONDITION, 
+      NURSING_CLASS, DOCTOR_IN_CHARGE, OPERATING_DATE, 
+      BILLING_DATE_TIME, PREPAYMENTS, TOTAL_COSTS, 
+      TOTAL_CHARGES, GUARANTOR, GUARANTOR_ORG, 
+      GUARANTOR_PHONE_NUM, BILL_CHECKED_DATE_TIME, SETTLED_INDICATOR, 
+      PAY_FROM_ACCOUNT, PAY_FROM_FUND, PAY_FROM_INSURED, 
+      PAY_WAY, DEPT_IN_CHARGE, START_DATE_TIME, 
+      FREQUENCY_NURSE, BED_LABEL, NURSE_IN_CHARGE, 
+      BED_DEPT_CODE, BED_WARD_CODE, LEND_INDICATOR
+      )
+    values (#{patientId,jdbcType=VARCHAR}, #{visitId,jdbcType=DECIMAL}, #{wardCode,jdbcType=VARCHAR}, 
+      #{deptCode,jdbcType=VARCHAR}, #{bedNo,jdbcType=DECIMAL}, #{admissionDateTime,jdbcType=DATE}, 
+      #{admWardDateTime,jdbcType=DATE}, #{diagnosis,jdbcType=VARCHAR}, #{patientCondition,jdbcType=VARCHAR}, 
+      #{nursingClass,jdbcType=VARCHAR}, #{doctorInCharge,jdbcType=VARCHAR}, #{operatingDate,jdbcType=DATE}, 
+      #{billingDateTime,jdbcType=DATE}, #{prepayments,jdbcType=DECIMAL}, #{totalCosts,jdbcType=DECIMAL}, 
+      #{totalCharges,jdbcType=DECIMAL}, #{guarantor,jdbcType=VARCHAR}, #{guarantorOrg,jdbcType=VARCHAR}, 
+      #{guarantorPhoneNum,jdbcType=VARCHAR}, #{billCheckedDateTime,jdbcType=DATE}, #{settledIndicator,jdbcType=DECIMAL}, 
+      #{payFromAccount,jdbcType=DECIMAL}, #{payFromFund,jdbcType=DECIMAL}, #{payFromInsured,jdbcType=DECIMAL}, 
+      #{payWay,jdbcType=DECIMAL}, #{deptInCharge,jdbcType=VARCHAR}, #{startDateTime,jdbcType=DATE}, 
+      #{frequencyNurse,jdbcType=DECIMAL}, #{bedLabel,jdbcType=VARCHAR}, #{nurseInCharge,jdbcType=VARCHAR}, 
+      #{bedDeptCode,jdbcType=VARCHAR}, #{bedWardCode,jdbcType=VARCHAR}, #{lendIndicator,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.inpadm.PatsInHospital" >
+    insert into INPADM.PATS_IN_HOSPITAL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="visitId != null" >
+        VISIT_ID,
+      </if>
+      <if test="wardCode != null" >
+        WARD_CODE,
+      </if>
+      <if test="deptCode != null" >
+        DEPT_CODE,
+      </if>
+      <if test="bedNo != null" >
+        BED_NO,
+      </if>
+      <if test="admissionDateTime != null" >
+        ADMISSION_DATE_TIME,
+      </if>
+      <if test="admWardDateTime != null" >
+        ADM_WARD_DATE_TIME,
+      </if>
+      <if test="diagnosis != null" >
+        DIAGNOSIS,
+      </if>
+      <if test="patientCondition != null" >
+        PATIENT_CONDITION,
+      </if>
+      <if test="nursingClass != null" >
+        NURSING_CLASS,
+      </if>
+      <if test="doctorInCharge != null" >
+        DOCTOR_IN_CHARGE,
+      </if>
+      <if test="operatingDate != null" >
+        OPERATING_DATE,
+      </if>
+      <if test="billingDateTime != null" >
+        BILLING_DATE_TIME,
+      </if>
+      <if test="prepayments != null" >
+        PREPAYMENTS,
+      </if>
+      <if test="totalCosts != null" >
+        TOTAL_COSTS,
+      </if>
+      <if test="totalCharges != null" >
+        TOTAL_CHARGES,
+      </if>
+      <if test="guarantor != null" >
+        GUARANTOR,
+      </if>
+      <if test="guarantorOrg != null" >
+        GUARANTOR_ORG,
+      </if>
+      <if test="guarantorPhoneNum != null" >
+        GUARANTOR_PHONE_NUM,
+      </if>
+      <if test="billCheckedDateTime != null" >
+        BILL_CHECKED_DATE_TIME,
+      </if>
+      <if test="settledIndicator != null" >
+        SETTLED_INDICATOR,
+      </if>
+      <if test="payFromAccount != null" >
+        PAY_FROM_ACCOUNT,
+      </if>
+      <if test="payFromFund != null" >
+        PAY_FROM_FUND,
+      </if>
+      <if test="payFromInsured != null" >
+        PAY_FROM_INSURED,
+      </if>
+      <if test="payWay != null" >
+        PAY_WAY,
+      </if>
+      <if test="deptInCharge != null" >
+        DEPT_IN_CHARGE,
+      </if>
+      <if test="startDateTime != null" >
+        START_DATE_TIME,
+      </if>
+      <if test="frequencyNurse != null" >
+        FREQUENCY_NURSE,
+      </if>
+      <if test="bedLabel != null" >
+        BED_LABEL,
+      </if>
+      <if test="nurseInCharge != null" >
+        NURSE_IN_CHARGE,
+      </if>
+      <if test="bedDeptCode != null" >
+        BED_DEPT_CODE,
+      </if>
+      <if test="bedWardCode != null" >
+        BED_WARD_CODE,
+      </if>
+      <if test="lendIndicator != null" >
+        LEND_INDICATOR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitId != null" >
+        #{visitId,jdbcType=DECIMAL},
+      </if>
+      <if test="wardCode != null" >
+        #{wardCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptCode != null" >
+        #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bedNo != null" >
+        #{bedNo,jdbcType=DECIMAL},
+      </if>
+      <if test="admissionDateTime != null" >
+        #{admissionDateTime,jdbcType=DATE},
+      </if>
+      <if test="admWardDateTime != null" >
+        #{admWardDateTime,jdbcType=DATE},
+      </if>
+      <if test="diagnosis != null" >
+        #{diagnosis,jdbcType=VARCHAR},
+      </if>
+      <if test="patientCondition != null" >
+        #{patientCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="nursingClass != null" >
+        #{nursingClass,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorInCharge != null" >
+        #{doctorInCharge,jdbcType=VARCHAR},
+      </if>
+      <if test="operatingDate != null" >
+        #{operatingDate,jdbcType=DATE},
+      </if>
+      <if test="billingDateTime != null" >
+        #{billingDateTime,jdbcType=DATE},
+      </if>
+      <if test="prepayments != null" >
+        #{prepayments,jdbcType=DECIMAL},
+      </if>
+      <if test="totalCosts != null" >
+        #{totalCosts,jdbcType=DECIMAL},
+      </if>
+      <if test="totalCharges != null" >
+        #{totalCharges,jdbcType=DECIMAL},
+      </if>
+      <if test="guarantor != null" >
+        #{guarantor,jdbcType=VARCHAR},
+      </if>
+      <if test="guarantorOrg != null" >
+        #{guarantorOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="guarantorPhoneNum != null" >
+        #{guarantorPhoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="billCheckedDateTime != null" >
+        #{billCheckedDateTime,jdbcType=DATE},
+      </if>
+      <if test="settledIndicator != null" >
+        #{settledIndicator,jdbcType=DECIMAL},
+      </if>
+      <if test="payFromAccount != null" >
+        #{payFromAccount,jdbcType=DECIMAL},
+      </if>
+      <if test="payFromFund != null" >
+        #{payFromFund,jdbcType=DECIMAL},
+      </if>
+      <if test="payFromInsured != null" >
+        #{payFromInsured,jdbcType=DECIMAL},
+      </if>
+      <if test="payWay != null" >
+        #{payWay,jdbcType=DECIMAL},
+      </if>
+      <if test="deptInCharge != null" >
+        #{deptInCharge,jdbcType=VARCHAR},
+      </if>
+      <if test="startDateTime != null" >
+        #{startDateTime,jdbcType=DATE},
+      </if>
+      <if test="frequencyNurse != null" >
+        #{frequencyNurse,jdbcType=DECIMAL},
+      </if>
+      <if test="bedLabel != null" >
+        #{bedLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="nurseInCharge != null" >
+        #{nurseInCharge,jdbcType=VARCHAR},
+      </if>
+      <if test="bedDeptCode != null" >
+        #{bedDeptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bedWardCode != null" >
+        #{bedWardCode,jdbcType=VARCHAR},
+      </if>
+      <if test="lendIndicator != null" >
+        #{lendIndicator,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.inpadm.PatsInHospital" >
+    update INPADM.PATS_IN_HOSPITAL
+    <set >
+      <if test="visitId != null" >
+        VISIT_ID = #{visitId,jdbcType=DECIMAL},
+      </if>
+      <if test="wardCode != null" >
+        WARD_CODE = #{wardCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptCode != null" >
+        DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bedNo != null" >
+        BED_NO = #{bedNo,jdbcType=DECIMAL},
+      </if>
+      <if test="admissionDateTime != null" >
+        ADMISSION_DATE_TIME = #{admissionDateTime,jdbcType=DATE},
+      </if>
+      <if test="admWardDateTime != null" >
+        ADM_WARD_DATE_TIME = #{admWardDateTime,jdbcType=DATE},
+      </if>
+      <if test="diagnosis != null" >
+        DIAGNOSIS = #{diagnosis,jdbcType=VARCHAR},
+      </if>
+      <if test="patientCondition != null" >
+        PATIENT_CONDITION = #{patientCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="nursingClass != null" >
+        NURSING_CLASS = #{nursingClass,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorInCharge != null" >
+        DOCTOR_IN_CHARGE = #{doctorInCharge,jdbcType=VARCHAR},
+      </if>
+      <if test="operatingDate != null" >
+        OPERATING_DATE = #{operatingDate,jdbcType=DATE},
+      </if>
+      <if test="billingDateTime != null" >
+        BILLING_DATE_TIME = #{billingDateTime,jdbcType=DATE},
+      </if>
+      <if test="prepayments != null" >
+        PREPAYMENTS = #{prepayments,jdbcType=DECIMAL},
+      </if>
+      <if test="totalCosts != null" >
+        TOTAL_COSTS = #{totalCosts,jdbcType=DECIMAL},
+      </if>
+      <if test="totalCharges != null" >
+        TOTAL_CHARGES = #{totalCharges,jdbcType=DECIMAL},
+      </if>
+      <if test="guarantor != null" >
+        GUARANTOR = #{guarantor,jdbcType=VARCHAR},
+      </if>
+      <if test="guarantorOrg != null" >
+        GUARANTOR_ORG = #{guarantorOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="guarantorPhoneNum != null" >
+        GUARANTOR_PHONE_NUM = #{guarantorPhoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="billCheckedDateTime != null" >
+        BILL_CHECKED_DATE_TIME = #{billCheckedDateTime,jdbcType=DATE},
+      </if>
+      <if test="settledIndicator != null" >
+        SETTLED_INDICATOR = #{settledIndicator,jdbcType=DECIMAL},
+      </if>
+      <if test="payFromAccount != null" >
+        PAY_FROM_ACCOUNT = #{payFromAccount,jdbcType=DECIMAL},
+      </if>
+      <if test="payFromFund != null" >
+        PAY_FROM_FUND = #{payFromFund,jdbcType=DECIMAL},
+      </if>
+      <if test="payFromInsured != null" >
+        PAY_FROM_INSURED = #{payFromInsured,jdbcType=DECIMAL},
+      </if>
+      <if test="payWay != null" >
+        PAY_WAY = #{payWay,jdbcType=DECIMAL},
+      </if>
+      <if test="deptInCharge != null" >
+        DEPT_IN_CHARGE = #{deptInCharge,jdbcType=VARCHAR},
+      </if>
+      <if test="startDateTime != null" >
+        START_DATE_TIME = #{startDateTime,jdbcType=DATE},
+      </if>
+      <if test="frequencyNurse != null" >
+        FREQUENCY_NURSE = #{frequencyNurse,jdbcType=DECIMAL},
+      </if>
+      <if test="bedLabel != null" >
+        BED_LABEL = #{bedLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="nurseInCharge != null" >
+        NURSE_IN_CHARGE = #{nurseInCharge,jdbcType=VARCHAR},
+      </if>
+      <if test="bedDeptCode != null" >
+        BED_DEPT_CODE = #{bedDeptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bedWardCode != null" >
+        BED_WARD_CODE = #{bedWardCode,jdbcType=VARCHAR},
+      </if>
+      <if test="lendIndicator != null" >
+        LEND_INDICATOR = #{lendIndicator,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.inpadm.PatsInHospital" >
+    update INPADM.PATS_IN_HOSPITAL
+    set VISIT_ID = #{visitId,jdbcType=DECIMAL},
+      WARD_CODE = #{wardCode,jdbcType=VARCHAR},
+      DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+      BED_NO = #{bedNo,jdbcType=DECIMAL},
+      ADMISSION_DATE_TIME = #{admissionDateTime,jdbcType=DATE},
+      ADM_WARD_DATE_TIME = #{admWardDateTime,jdbcType=DATE},
+      DIAGNOSIS = #{diagnosis,jdbcType=VARCHAR},
+      PATIENT_CONDITION = #{patientCondition,jdbcType=VARCHAR},
+      NURSING_CLASS = #{nursingClass,jdbcType=VARCHAR},
+      DOCTOR_IN_CHARGE = #{doctorInCharge,jdbcType=VARCHAR},
+      OPERATING_DATE = #{operatingDate,jdbcType=DATE},
+      BILLING_DATE_TIME = #{billingDateTime,jdbcType=DATE},
+      PREPAYMENTS = #{prepayments,jdbcType=DECIMAL},
+      TOTAL_COSTS = #{totalCosts,jdbcType=DECIMAL},
+      TOTAL_CHARGES = #{totalCharges,jdbcType=DECIMAL},
+      GUARANTOR = #{guarantor,jdbcType=VARCHAR},
+      GUARANTOR_ORG = #{guarantorOrg,jdbcType=VARCHAR},
+      GUARANTOR_PHONE_NUM = #{guarantorPhoneNum,jdbcType=VARCHAR},
+      BILL_CHECKED_DATE_TIME = #{billCheckedDateTime,jdbcType=DATE},
+      SETTLED_INDICATOR = #{settledIndicator,jdbcType=DECIMAL},
+      PAY_FROM_ACCOUNT = #{payFromAccount,jdbcType=DECIMAL},
+      PAY_FROM_FUND = #{payFromFund,jdbcType=DECIMAL},
+      PAY_FROM_INSURED = #{payFromInsured,jdbcType=DECIMAL},
+      PAY_WAY = #{payWay,jdbcType=DECIMAL},
+      DEPT_IN_CHARGE = #{deptInCharge,jdbcType=VARCHAR},
+      START_DATE_TIME = #{startDateTime,jdbcType=DATE},
+      FREQUENCY_NURSE = #{frequencyNurse,jdbcType=DECIMAL},
+      BED_LABEL = #{bedLabel,jdbcType=VARCHAR},
+      NURSE_IN_CHARGE = #{nurseInCharge,jdbcType=VARCHAR},
+      BED_DEPT_CODE = #{bedDeptCode,jdbcType=VARCHAR},
+      BED_WARD_CODE = #{bedWardCode,jdbcType=VARCHAR},
+      LEND_INDICATOR = #{lendIndicator,jdbcType=DECIMAL}
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+  </update>
+</mapper>

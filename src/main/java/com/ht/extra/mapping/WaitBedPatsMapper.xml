@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.WaitBedPatsMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.inpadm.WaitBedPats" >
+    <id column="WAIT_NO" property="waitNo" jdbcType="DECIMAL" />
+    <result column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="NAME_PHONETIC" property="namePhonetic" jdbcType="VARCHAR" />
+    <result column="SEX" property="sex" jdbcType="VARCHAR" />
+    <result column="DATE_OF_BIRTH" property="dateOfBirth" jdbcType="DATE" />
+    <result column="BIRTH_PLACE" property="birthPlace" jdbcType="VARCHAR" />
+    <result column="IDENTITY" property="identity" jdbcType="VARCHAR" />
+    <result column="CHARGE_TYPE" property="chargeType" jdbcType="VARCHAR" />
+    <result column="MAILING_ADDRESS" property="mailingAddress" jdbcType="VARCHAR" />
+    <result column="ZIP_CODE" property="zipCode" jdbcType="VARCHAR" />
+    <result column="CONTACT_PERSON" property="contactPerson" jdbcType="VARCHAR" />
+    <result column="PHONE_NUMBER" property="phoneNumber" jdbcType="VARCHAR" />
+    <result column="CLINIC_DIAGNOSIS" property="clinicDiagnosis" jdbcType="VARCHAR" />
+    <result column="PATIENT_CONDITION" property="patientCondition" jdbcType="VARCHAR" />
+    <result column="DEPT_WAITING_FOR" property="deptWaitingFor" jdbcType="VARCHAR" />
+    <result column="CONSULTING_DOCTOR" property="consultingDoctor" jdbcType="VARCHAR" />
+    <result column="REGISTERING_DATE" property="registeringDate" jdbcType="DATE" />
+    <result column="LAST_NOTING_DATE" property="lastNotingDate" jdbcType="DATE" />
+    <result column="NOTIFY_TIMES" property="notifyTimes" jdbcType="DECIMAL" />
+    <result column="MARITAL_STATUS" property="maritalStatus" jdbcType="VARCHAR" />
+    <result column="WORKING_STATUS" property="workingStatus" jdbcType="DECIMAL" />
+    <result column="OCCUPATION" property="occupation" jdbcType="VARCHAR" />
+    <result column="SERVICE_AGENCY" property="serviceAgency" jdbcType="VARCHAR" />
+    <result column="ADMISSION_CAUSE" property="admissionCause" jdbcType="VARCHAR" />
+    <result column="PATIENT_CLASS" property="patientClass" jdbcType="VARCHAR" />
+    <result column="NATION" property="nation" jdbcType="VARCHAR" />
+    <result column="CITIZENSHIP" property="citizenship" jdbcType="VARCHAR" />
+    <result column="UNIT_IN_CONTRACT" property="unitInContract" jdbcType="VARCHAR" />
+    <result column="NEXT_OF_KIN" property="nextOfKin" jdbcType="VARCHAR" />
+    <result column="RELATIONSHIP" property="relationship" jdbcType="VARCHAR" />
+    <result column="NEXT_OF_KIN_ADDR" property="nextOfKinAddr" jdbcType="VARCHAR" />
+    <result column="NEXT_OF_KIN_ZIP_CODE" property="nextOfKinZipCode" jdbcType="VARCHAR" />
+    <result column="NEXT_OF_KIN_PHONE" property="nextOfKinPhone" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    WAIT_NO, PATIENT_ID, NAME, NAME_PHONETIC, SEX, DATE_OF_BIRTH, BIRTH_PLACE, IDENTITY, 
+    CHARGE_TYPE, MAILING_ADDRESS, ZIP_CODE, CONTACT_PERSON, PHONE_NUMBER, CLINIC_DIAGNOSIS, 
+    PATIENT_CONDITION, DEPT_WAITING_FOR, CONSULTING_DOCTOR, REGISTERING_DATE, LAST_NOTING_DATE, 
+    NOTIFY_TIMES, MARITAL_STATUS, WORKING_STATUS, OCCUPATION, SERVICE_AGENCY, ADMISSION_CAUSE, 
+    PATIENT_CLASS, NATION, CITIZENSHIP, UNIT_IN_CONTRACT, NEXT_OF_KIN, RELATIONSHIP, 
+    NEXT_OF_KIN_ADDR, NEXT_OF_KIN_ZIP_CODE, NEXT_OF_KIN_PHONE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select 
+    <include refid="Base_Column_List" />
+    from INPADM.WAIT_BED_PATS
+    where WAIT_NO = #{waitNo,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from INPADM.WAIT_BED_PATS
+    where WAIT_NO = #{waitNo,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.inpadm.WaitBedPats" >
+    insert into INPADM.WAIT_BED_PATS (WAIT_NO, PATIENT_ID, NAME, 
+      NAME_PHONETIC, SEX, DATE_OF_BIRTH, 
+      BIRTH_PLACE, IDENTITY, CHARGE_TYPE, 
+      MAILING_ADDRESS, ZIP_CODE, CONTACT_PERSON, 
+      PHONE_NUMBER, CLINIC_DIAGNOSIS, PATIENT_CONDITION, 
+      DEPT_WAITING_FOR, CONSULTING_DOCTOR, REGISTERING_DATE, 
+      LAST_NOTING_DATE, NOTIFY_TIMES, MARITAL_STATUS, 
+      WORKING_STATUS, OCCUPATION, SERVICE_AGENCY, 
+      ADMISSION_CAUSE, PATIENT_CLASS, NATION, 
+      CITIZENSHIP, UNIT_IN_CONTRACT, NEXT_OF_KIN, 
+      RELATIONSHIP, NEXT_OF_KIN_ADDR, NEXT_OF_KIN_ZIP_CODE, 
+      NEXT_OF_KIN_PHONE)
+    values (#{waitNo,jdbcType=DECIMAL}, #{patientId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{namePhonetic,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{dateOfBirth,jdbcType=DATE}, 
+      #{birthPlace,jdbcType=VARCHAR}, #{identity,jdbcType=VARCHAR}, #{chargeType,jdbcType=VARCHAR}, 
+      #{mailingAddress,jdbcType=VARCHAR}, #{zipCode,jdbcType=VARCHAR}, #{contactPerson,jdbcType=VARCHAR}, 
+      #{phoneNumber,jdbcType=VARCHAR}, #{clinicDiagnosis,jdbcType=VARCHAR}, #{patientCondition,jdbcType=VARCHAR}, 
+      #{deptWaitingFor,jdbcType=VARCHAR}, #{consultingDoctor,jdbcType=VARCHAR}, #{registeringDate,jdbcType=DATE}, 
+      #{lastNotingDate,jdbcType=DATE}, #{notifyTimes,jdbcType=DECIMAL}, #{maritalStatus,jdbcType=VARCHAR}, 
+      #{workingStatus,jdbcType=DECIMAL}, #{occupation,jdbcType=VARCHAR}, #{serviceAgency,jdbcType=VARCHAR}, 
+      #{admissionCause,jdbcType=VARCHAR}, #{patientClass,jdbcType=VARCHAR}, #{nation,jdbcType=VARCHAR}, 
+      #{citizenship,jdbcType=VARCHAR}, #{unitInContract,jdbcType=VARCHAR}, #{nextOfKin,jdbcType=VARCHAR}, 
+      #{relationship,jdbcType=VARCHAR}, #{nextOfKinAddr,jdbcType=VARCHAR}, #{nextOfKinZipCode,jdbcType=VARCHAR}, 
+      #{nextOfKinPhone,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.inpadm.WaitBedPats" >
+    insert into INPADM.WAIT_BED_PATS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="waitNo != null" >
+        WAIT_NO,
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="namePhonetic != null" >
+        NAME_PHONETIC,
+      </if>
+      <if test="sex != null" >
+        SEX,
+      </if>
+      <if test="dateOfBirth != null" >
+        DATE_OF_BIRTH,
+      </if>
+      <if test="birthPlace != null" >
+        BIRTH_PLACE,
+      </if>
+      <if test="identity != null" >
+        IDENTITY,
+      </if>
+      <if test="chargeType != null" >
+        CHARGE_TYPE,
+      </if>
+      <if test="mailingAddress != null" >
+        MAILING_ADDRESS,
+      </if>
+      <if test="zipCode != null" >
+        ZIP_CODE,
+      </if>
+      <if test="contactPerson != null" >
+        CONTACT_PERSON,
+      </if>
+      <if test="phoneNumber != null" >
+        PHONE_NUMBER,
+      </if>
+      <if test="clinicDiagnosis != null" >
+        CLINIC_DIAGNOSIS,
+      </if>
+      <if test="patientCondition != null" >
+        PATIENT_CONDITION,
+      </if>
+      <if test="deptWaitingFor != null" >
+        DEPT_WAITING_FOR,
+      </if>
+      <if test="consultingDoctor != null" >
+        CONSULTING_DOCTOR,
+      </if>
+      <if test="registeringDate != null" >
+        REGISTERING_DATE,
+      </if>
+      <if test="lastNotingDate != null" >
+        LAST_NOTING_DATE,
+      </if>
+      <if test="notifyTimes != null" >
+        NOTIFY_TIMES,
+      </if>
+      <if test="maritalStatus != null" >
+        MARITAL_STATUS,
+      </if>
+      <if test="workingStatus != null" >
+        WORKING_STATUS,
+      </if>
+      <if test="occupation != null" >
+        OCCUPATION,
+      </if>
+      <if test="serviceAgency != null" >
+        SERVICE_AGENCY,
+      </if>
+      <if test="admissionCause != null" >
+        ADMISSION_CAUSE,
+      </if>
+      <if test="patientClass != null" >
+        PATIENT_CLASS,
+      </if>
+      <if test="nation != null" >
+        NATION,
+      </if>
+      <if test="citizenship != null" >
+        CITIZENSHIP,
+      </if>
+      <if test="unitInContract != null" >
+        UNIT_IN_CONTRACT,
+      </if>
+      <if test="nextOfKin != null" >
+        NEXT_OF_KIN,
+      </if>
+      <if test="relationship != null" >
+        RELATIONSHIP,
+      </if>
+      <if test="nextOfKinAddr != null" >
+        NEXT_OF_KIN_ADDR,
+      </if>
+      <if test="nextOfKinZipCode != null" >
+        NEXT_OF_KIN_ZIP_CODE,
+      </if>
+      <if test="nextOfKinPhone != null" >
+        NEXT_OF_KIN_PHONE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="waitNo != null" >
+        #{waitNo,jdbcType=DECIMAL},
+      </if>
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="namePhonetic != null" >
+        #{namePhonetic,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="dateOfBirth != null" >
+        #{dateOfBirth,jdbcType=DATE},
+      </if>
+      <if test="birthPlace != null" >
+        #{birthPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="identity != null" >
+        #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeType != null" >
+        #{chargeType,jdbcType=VARCHAR},
+      </if>
+      <if test="mailingAddress != null" >
+        #{mailingAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null" >
+        #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPerson != null" >
+        #{contactPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null" >
+        #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="clinicDiagnosis != null" >
+        #{clinicDiagnosis,jdbcType=VARCHAR},
+      </if>
+      <if test="patientCondition != null" >
+        #{patientCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="deptWaitingFor != null" >
+        #{deptWaitingFor,jdbcType=VARCHAR},
+      </if>
+      <if test="consultingDoctor != null" >
+        #{consultingDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="registeringDate != null" >
+        #{registeringDate,jdbcType=DATE},
+      </if>
+      <if test="lastNotingDate != null" >
+        #{lastNotingDate,jdbcType=DATE},
+      </if>
+      <if test="notifyTimes != null" >
+        #{notifyTimes,jdbcType=DECIMAL},
+      </if>
+      <if test="maritalStatus != null" >
+        #{maritalStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="workingStatus != null" >
+        #{workingStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="occupation != null" >
+        #{occupation,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceAgency != null" >
+        #{serviceAgency,jdbcType=VARCHAR},
+      </if>
+      <if test="admissionCause != null" >
+        #{admissionCause,jdbcType=VARCHAR},
+      </if>
+      <if test="patientClass != null" >
+        #{patientClass,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null" >
+        #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="citizenship != null" >
+        #{citizenship,jdbcType=VARCHAR},
+      </if>
+      <if test="unitInContract != null" >
+        #{unitInContract,jdbcType=VARCHAR},
+      </if>
+      <if test="nextOfKin != null" >
+        #{nextOfKin,jdbcType=VARCHAR},
+      </if>
+      <if test="relationship != null" >
+        #{relationship,jdbcType=VARCHAR},
+      </if>
+      <if test="nextOfKinAddr != null" >
+        #{nextOfKinAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="nextOfKinZipCode != null" >
+        #{nextOfKinZipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="nextOfKinPhone != null" >
+        #{nextOfKinPhone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.inpadm.WaitBedPats" >
+    update INPADM.WAIT_BED_PATS
+    <set >
+      <if test="patientId != null" >
+        PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="namePhonetic != null" >
+        NAME_PHONETIC = #{namePhonetic,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        SEX = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="dateOfBirth != null" >
+        DATE_OF_BIRTH = #{dateOfBirth,jdbcType=DATE},
+      </if>
+      <if test="birthPlace != null" >
+        BIRTH_PLACE = #{birthPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="identity != null" >
+        IDENTITY = #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeType != null" >
+        CHARGE_TYPE = #{chargeType,jdbcType=VARCHAR},
+      </if>
+      <if test="mailingAddress != null" >
+        MAILING_ADDRESS = #{mailingAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null" >
+        ZIP_CODE = #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPerson != null" >
+        CONTACT_PERSON = #{contactPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null" >
+        PHONE_NUMBER = #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="clinicDiagnosis != null" >
+        CLINIC_DIAGNOSIS = #{clinicDiagnosis,jdbcType=VARCHAR},
+      </if>
+      <if test="patientCondition != null" >
+        PATIENT_CONDITION = #{patientCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="deptWaitingFor != null" >
+        DEPT_WAITING_FOR = #{deptWaitingFor,jdbcType=VARCHAR},
+      </if>
+      <if test="consultingDoctor != null" >
+        CONSULTING_DOCTOR = #{consultingDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="registeringDate != null" >
+        REGISTERING_DATE = #{registeringDate,jdbcType=DATE},
+      </if>
+      <if test="lastNotingDate != null" >
+        LAST_NOTING_DATE = #{lastNotingDate,jdbcType=DATE},
+      </if>
+      <if test="notifyTimes != null" >
+        NOTIFY_TIMES = #{notifyTimes,jdbcType=DECIMAL},
+      </if>
+      <if test="maritalStatus != null" >
+        MARITAL_STATUS = #{maritalStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="workingStatus != null" >
+        WORKING_STATUS = #{workingStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="occupation != null" >
+        OCCUPATION = #{occupation,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceAgency != null" >
+        SERVICE_AGENCY = #{serviceAgency,jdbcType=VARCHAR},
+      </if>
+      <if test="admissionCause != null" >
+        ADMISSION_CAUSE = #{admissionCause,jdbcType=VARCHAR},
+      </if>
+      <if test="patientClass != null" >
+        PATIENT_CLASS = #{patientClass,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null" >
+        NATION = #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="citizenship != null" >
+        CITIZENSHIP = #{citizenship,jdbcType=VARCHAR},
+      </if>
+      <if test="unitInContract != null" >
+        UNIT_IN_CONTRACT = #{unitInContract,jdbcType=VARCHAR},
+      </if>
+      <if test="nextOfKin != null" >
+        NEXT_OF_KIN = #{nextOfKin,jdbcType=VARCHAR},
+      </if>
+      <if test="relationship != null" >
+        RELATIONSHIP = #{relationship,jdbcType=VARCHAR},
+      </if>
+      <if test="nextOfKinAddr != null" >
+        NEXT_OF_KIN_ADDR = #{nextOfKinAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="nextOfKinZipCode != null" >
+        NEXT_OF_KIN_ZIP_CODE = #{nextOfKinZipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="nextOfKinPhone != null" >
+        NEXT_OF_KIN_PHONE = #{nextOfKinPhone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where WAIT_NO = #{waitNo,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.inpadm.WaitBedPats" >
+    update INPADM.WAIT_BED_PATS
+    set PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      NAME_PHONETIC = #{namePhonetic,jdbcType=VARCHAR},
+      SEX = #{sex,jdbcType=VARCHAR},
+      DATE_OF_BIRTH = #{dateOfBirth,jdbcType=DATE},
+      BIRTH_PLACE = #{birthPlace,jdbcType=VARCHAR},
+      IDENTITY = #{identity,jdbcType=VARCHAR},
+      CHARGE_TYPE = #{chargeType,jdbcType=VARCHAR},
+      MAILING_ADDRESS = #{mailingAddress,jdbcType=VARCHAR},
+      ZIP_CODE = #{zipCode,jdbcType=VARCHAR},
+      CONTACT_PERSON = #{contactPerson,jdbcType=VARCHAR},
+      PHONE_NUMBER = #{phoneNumber,jdbcType=VARCHAR},
+      CLINIC_DIAGNOSIS = #{clinicDiagnosis,jdbcType=VARCHAR},
+      PATIENT_CONDITION = #{patientCondition,jdbcType=VARCHAR},
+      DEPT_WAITING_FOR = #{deptWaitingFor,jdbcType=VARCHAR},
+      CONSULTING_DOCTOR = #{consultingDoctor,jdbcType=VARCHAR},
+      REGISTERING_DATE = #{registeringDate,jdbcType=DATE},
+      LAST_NOTING_DATE = #{lastNotingDate,jdbcType=DATE},
+      NOTIFY_TIMES = #{notifyTimes,jdbcType=DECIMAL},
+      MARITAL_STATUS = #{maritalStatus,jdbcType=VARCHAR},
+      WORKING_STATUS = #{workingStatus,jdbcType=DECIMAL},
+      OCCUPATION = #{occupation,jdbcType=VARCHAR},
+      SERVICE_AGENCY = #{serviceAgency,jdbcType=VARCHAR},
+      ADMISSION_CAUSE = #{admissionCause,jdbcType=VARCHAR},
+      PATIENT_CLASS = #{patientClass,jdbcType=VARCHAR},
+      NATION = #{nation,jdbcType=VARCHAR},
+      CITIZENSHIP = #{citizenship,jdbcType=VARCHAR},
+      UNIT_IN_CONTRACT = #{unitInContract,jdbcType=VARCHAR},
+      NEXT_OF_KIN = #{nextOfKin,jdbcType=VARCHAR},
+      RELATIONSHIP = #{relationship,jdbcType=VARCHAR},
+      NEXT_OF_KIN_ADDR = #{nextOfKinAddr,jdbcType=VARCHAR},
+      NEXT_OF_KIN_ZIP_CODE = #{nextOfKinZipCode,jdbcType=VARCHAR},
+      NEXT_OF_KIN_PHONE = #{nextOfKinPhone,jdbcType=VARCHAR}
+    where WAIT_NO = #{waitNo,jdbcType=DECIMAL}
+  </update>
+</mapper>

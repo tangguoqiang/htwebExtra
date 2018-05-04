@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.PriceNoVsInsuMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.PriceNoVsInsu" >
+    <id column="ITEM_CLASS" property="itemClass" jdbcType="VARCHAR" />
+    <id column="ITEM_CODE" property="itemCode" jdbcType="VARCHAR" />
+    <id column="ITEM_SPEC" property="itemSpec" jdbcType="VARCHAR" />
+    <id column="UNITS" property="units" jdbcType="VARCHAR" />
+    <result column="INSU_CODE" property="insuCode" jdbcType="VARCHAR" />
+    <result column="ITEM_NAME" property="itemName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ITEM_CLASS, ITEM_CODE, ITEM_SPEC, UNITS, INSU_CODE, ITEM_NAME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.PriceNoVsInsuKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.PRICE_NO_VS_INSU
+    where ITEM_CLASS = #{itemClass,jdbcType=VARCHAR}
+      and ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+      and ITEM_SPEC = #{itemSpec,jdbcType=VARCHAR}
+      and UNITS = #{units,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.PriceNoVsInsuKey" >
+    delete from COMM.PRICE_NO_VS_INSU
+    where ITEM_CLASS = #{itemClass,jdbcType=VARCHAR}
+      and ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+      and ITEM_SPEC = #{itemSpec,jdbcType=VARCHAR}
+      and UNITS = #{units,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.PriceNoVsInsu" >
+    insert into COMM.PRICE_NO_VS_INSU (ITEM_CLASS, ITEM_CODE, ITEM_SPEC, 
+      UNITS, INSU_CODE, ITEM_NAME
+      )
+    values (#{itemClass,jdbcType=VARCHAR}, #{itemCode,jdbcType=VARCHAR}, #{itemSpec,jdbcType=VARCHAR}, 
+      #{units,jdbcType=VARCHAR}, #{insuCode,jdbcType=VARCHAR}, #{itemName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.PriceNoVsInsu" >
+    insert into COMM.PRICE_NO_VS_INSU
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="itemClass != null" >
+        ITEM_CLASS,
+      </if>
+      <if test="itemCode != null" >
+        ITEM_CODE,
+      </if>
+      <if test="itemSpec != null" >
+        ITEM_SPEC,
+      </if>
+      <if test="units != null" >
+        UNITS,
+      </if>
+      <if test="insuCode != null" >
+        INSU_CODE,
+      </if>
+      <if test="itemName != null" >
+        ITEM_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="itemClass != null" >
+        #{itemClass,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode != null" >
+        #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemSpec != null" >
+        #{itemSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="units != null" >
+        #{units,jdbcType=VARCHAR},
+      </if>
+      <if test="insuCode != null" >
+        #{insuCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.PriceNoVsInsu" >
+    update COMM.PRICE_NO_VS_INSU
+    <set >
+      <if test="insuCode != null" >
+        INSU_CODE = #{insuCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        ITEM_NAME = #{itemName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ITEM_CLASS = #{itemClass,jdbcType=VARCHAR}
+      and ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+      and ITEM_SPEC = #{itemSpec,jdbcType=VARCHAR}
+      and UNITS = #{units,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.PriceNoVsInsu" >
+    update COMM.PRICE_NO_VS_INSU
+    set INSU_CODE = #{insuCode,jdbcType=VARCHAR},
+      ITEM_NAME = #{itemName,jdbcType=VARCHAR}
+    where ITEM_CLASS = #{itemClass,jdbcType=VARCHAR}
+      and ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+      and ITEM_SPEC = #{itemSpec,jdbcType=VARCHAR}
+      and UNITS = #{units,jdbcType=VARCHAR}
+  </update>
+</mapper>

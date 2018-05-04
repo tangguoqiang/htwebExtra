@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.InpBillDetailSgfMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.inpbill.InpBillDetailSgf" >
+    <result column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <result column="VISIT_ID" property="visitId" jdbcType="DECIMAL" />
+    <result column="ITEM_NO" property="itemNo" jdbcType="DECIMAL" />
+    <result column="ITEM_CLASS" property="itemClass" jdbcType="VARCHAR" />
+    <result column="ITEM_NAME" property="itemName" jdbcType="VARCHAR" />
+    <result column="ITEM_CODE" property="itemCode" jdbcType="VARCHAR" />
+    <result column="ITEM_SPEC" property="itemSpec" jdbcType="VARCHAR" />
+    <result column="AMOUNT" property="amount" jdbcType="DECIMAL" />
+    <result column="UNITS" property="units" jdbcType="VARCHAR" />
+    <result column="ORDERED_BY" property="orderedBy" jdbcType="VARCHAR" />
+    <result column="PERFORMED_BY" property="performedBy" jdbcType="VARCHAR" />
+    <result column="COSTS" property="costs" jdbcType="DECIMAL" />
+    <result column="CHARGES" property="charges" jdbcType="DECIMAL" />
+    <result column="BILLING_DATE_TIME" property="billingDateTime" jdbcType="DATE" />
+    <result column="OPERATOR_NO" property="operatorNo" jdbcType="VARCHAR" />
+    <result column="RCPT_NO" property="rcptNo" jdbcType="VARCHAR" />
+    <result column="SPECIAL_CHARGES" property="specialCharges" jdbcType="DECIMAL" />
+    <result column="FLAG" property="flag" jdbcType="DECIMAL" />
+  </resultMap>
+  <insert id="insert" parameterType="com.ht.extra.pojo.inpbill.InpBillDetailSgf" >
+    insert into INPBILL.INP_BILL_DETAIL_SGF (PATIENT_ID, VISIT_ID, ITEM_NO, 
+      ITEM_CLASS, ITEM_NAME, ITEM_CODE, 
+      ITEM_SPEC, AMOUNT, UNITS, 
+      ORDERED_BY, PERFORMED_BY, COSTS, 
+      CHARGES, BILLING_DATE_TIME, OPERATOR_NO, 
+      RCPT_NO, SPECIAL_CHARGES, FLAG
+      )
+    values (#{patientId,jdbcType=VARCHAR}, #{visitId,jdbcType=DECIMAL}, #{itemNo,jdbcType=DECIMAL}, 
+      #{itemClass,jdbcType=VARCHAR}, #{itemName,jdbcType=VARCHAR}, #{itemCode,jdbcType=VARCHAR}, 
+      #{itemSpec,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, #{units,jdbcType=VARCHAR}, 
+      #{orderedBy,jdbcType=VARCHAR}, #{performedBy,jdbcType=VARCHAR}, #{costs,jdbcType=DECIMAL}, 
+      #{charges,jdbcType=DECIMAL}, #{billingDateTime,jdbcType=DATE}, #{operatorNo,jdbcType=VARCHAR}, 
+      #{rcptNo,jdbcType=VARCHAR}, #{specialCharges,jdbcType=DECIMAL}, #{flag,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.inpbill.InpBillDetailSgf" >
+    insert into INPBILL.INP_BILL_DETAIL_SGF
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="visitId != null" >
+        VISIT_ID,
+      </if>
+      <if test="itemNo != null" >
+        ITEM_NO,
+      </if>
+      <if test="itemClass != null" >
+        ITEM_CLASS,
+      </if>
+      <if test="itemName != null" >
+        ITEM_NAME,
+      </if>
+      <if test="itemCode != null" >
+        ITEM_CODE,
+      </if>
+      <if test="itemSpec != null" >
+        ITEM_SPEC,
+      </if>
+      <if test="amount != null" >
+        AMOUNT,
+      </if>
+      <if test="units != null" >
+        UNITS,
+      </if>
+      <if test="orderedBy != null" >
+        ORDERED_BY,
+      </if>
+      <if test="performedBy != null" >
+        PERFORMED_BY,
+      </if>
+      <if test="costs != null" >
+        COSTS,
+      </if>
+      <if test="charges != null" >
+        CHARGES,
+      </if>
+      <if test="billingDateTime != null" >
+        BILLING_DATE_TIME,
+      </if>
+      <if test="operatorNo != null" >
+        OPERATOR_NO,
+      </if>
+      <if test="rcptNo != null" >
+        RCPT_NO,
+      </if>
+      <if test="specialCharges != null" >
+        SPECIAL_CHARGES,
+      </if>
+      <if test="flag != null" >
+        FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitId != null" >
+        #{visitId,jdbcType=DECIMAL},
+      </if>
+      <if test="itemNo != null" >
+        #{itemNo,jdbcType=DECIMAL},
+      </if>
+      <if test="itemClass != null" >
+        #{itemClass,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode != null" >
+        #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemSpec != null" >
+        #{itemSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="units != null" >
+        #{units,jdbcType=VARCHAR},
+      </if>
+      <if test="orderedBy != null" >
+        #{orderedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="performedBy != null" >
+        #{performedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="costs != null" >
+        #{costs,jdbcType=DECIMAL},
+      </if>
+      <if test="charges != null" >
+        #{charges,jdbcType=DECIMAL},
+      </if>
+      <if test="billingDateTime != null" >
+        #{billingDateTime,jdbcType=DATE},
+      </if>
+      <if test="operatorNo != null" >
+        #{operatorNo,jdbcType=VARCHAR},
+      </if>
+      <if test="rcptNo != null" >
+        #{rcptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="specialCharges != null" >
+        #{specialCharges,jdbcType=DECIMAL},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+</mapper>

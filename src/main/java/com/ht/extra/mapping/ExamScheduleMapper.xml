@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.ExamScheduleMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.exam.ExamSchedule" >
+    <id column="SERIAL_NO" property="serialNo" jdbcType="VARCHAR" />
+    <id column="EXAM_CLASS" property="examClass" jdbcType="VARCHAR" />
+    <id column="EXAM_GROUP" property="examGroup" jdbcType="VARCHAR" />
+    <id column="SCHEDULED_DATE_TIME" property="scheduledDateTime" jdbcType="DATE" />
+    <result column="EXAM_NO" property="examNo" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SERIAL_NO, EXAM_CLASS, EXAM_GROUP, SCHEDULED_DATE_TIME, EXAM_NO, STATUS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.exam.ExamScheduleKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from EXAM.EXAM_SCHEDULE
+    where SERIAL_NO = #{serialNo,jdbcType=VARCHAR}
+      and EXAM_CLASS = #{examClass,jdbcType=VARCHAR}
+      and EXAM_GROUP = #{examGroup,jdbcType=VARCHAR}
+      and SCHEDULED_DATE_TIME = #{scheduledDateTime,jdbcType=DATE}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.exam.ExamScheduleKey" >
+    delete from EXAM.EXAM_SCHEDULE
+    where SERIAL_NO = #{serialNo,jdbcType=VARCHAR}
+      and EXAM_CLASS = #{examClass,jdbcType=VARCHAR}
+      and EXAM_GROUP = #{examGroup,jdbcType=VARCHAR}
+      and SCHEDULED_DATE_TIME = #{scheduledDateTime,jdbcType=DATE}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.exam.ExamSchedule" >
+    insert into EXAM.EXAM_SCHEDULE (SERIAL_NO, EXAM_CLASS, EXAM_GROUP, 
+      SCHEDULED_DATE_TIME, EXAM_NO, STATUS
+      )
+    values (#{serialNo,jdbcType=VARCHAR}, #{examClass,jdbcType=VARCHAR}, #{examGroup,jdbcType=VARCHAR}, 
+      #{scheduledDateTime,jdbcType=DATE}, #{examNo,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.exam.ExamSchedule" >
+    insert into EXAM.EXAM_SCHEDULE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="examClass != null" >
+        EXAM_CLASS,
+      </if>
+      <if test="examGroup != null" >
+        EXAM_GROUP,
+      </if>
+      <if test="scheduledDateTime != null" >
+        SCHEDULED_DATE_TIME,
+      </if>
+      <if test="examNo != null" >
+        EXAM_NO,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="examClass != null" >
+        #{examClass,jdbcType=VARCHAR},
+      </if>
+      <if test="examGroup != null" >
+        #{examGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduledDateTime != null" >
+        #{scheduledDateTime,jdbcType=DATE},
+      </if>
+      <if test="examNo != null" >
+        #{examNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.exam.ExamSchedule" >
+    update EXAM.EXAM_SCHEDULE
+    <set >
+      <if test="examNo != null" >
+        EXAM_NO = #{examNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SERIAL_NO = #{serialNo,jdbcType=VARCHAR}
+      and EXAM_CLASS = #{examClass,jdbcType=VARCHAR}
+      and EXAM_GROUP = #{examGroup,jdbcType=VARCHAR}
+      and SCHEDULED_DATE_TIME = #{scheduledDateTime,jdbcType=DATE}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.exam.ExamSchedule" >
+    update EXAM.EXAM_SCHEDULE
+    set EXAM_NO = #{examNo,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR}
+    where SERIAL_NO = #{serialNo,jdbcType=VARCHAR}
+      and EXAM_CLASS = #{examClass,jdbcType=VARCHAR}
+      and EXAM_GROUP = #{examGroup,jdbcType=VARCHAR}
+      and SCHEDULED_DATE_TIME = #{scheduledDateTime,jdbcType=DATE}
+  </update>
+</mapper>

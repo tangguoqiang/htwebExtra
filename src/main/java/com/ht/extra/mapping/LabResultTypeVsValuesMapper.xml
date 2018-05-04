@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.LabResultTypeVsValuesMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.lab.LabResultTypeVsValues" >
+    <id column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="RESULT_TYPE" property="resultType" jdbcType="VARCHAR" />
+    <result column="RESULT_VALUE" property="resultValue" jdbcType="VARCHAR" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SERIAL_NO, RESULT_TYPE, RESULT_VALUE, INPUT_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select 
+    <include refid="Base_Column_List" />
+    from LAB.LAB_RESULT_TYPE_VS_VALUES
+    where SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from LAB.LAB_RESULT_TYPE_VS_VALUES
+    where SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.lab.LabResultTypeVsValues" >
+    insert into LAB.LAB_RESULT_TYPE_VS_VALUES (SERIAL_NO, RESULT_TYPE, RESULT_VALUE, 
+      INPUT_CODE)
+    values (#{serialNo,jdbcType=DECIMAL}, #{resultType,jdbcType=VARCHAR}, #{resultValue,jdbcType=VARCHAR}, 
+      #{inputCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.lab.LabResultTypeVsValues" >
+    insert into LAB.LAB_RESULT_TYPE_VS_VALUES
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="resultType != null" >
+        RESULT_TYPE,
+      </if>
+      <if test="resultValue != null" >
+        RESULT_VALUE,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="resultType != null" >
+        #{resultType,jdbcType=VARCHAR},
+      </if>
+      <if test="resultValue != null" >
+        #{resultValue,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.lab.LabResultTypeVsValues" >
+    update LAB.LAB_RESULT_TYPE_VS_VALUES
+    <set >
+      <if test="resultType != null" >
+        RESULT_TYPE = #{resultType,jdbcType=VARCHAR},
+      </if>
+      <if test="resultValue != null" >
+        RESULT_VALUE = #{resultValue,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.lab.LabResultTypeVsValues" >
+    update LAB.LAB_RESULT_TYPE_VS_VALUES
+    set RESULT_TYPE = #{resultType,jdbcType=VARCHAR},
+      RESULT_VALUE = #{resultValue,jdbcType=VARCHAR},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR}
+    where SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+  </update>
+</mapper>

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.ClinicAppointsMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.outpadm.ClinicAppoints" >
+    <id column="VISIT_DATE_APPTED" property="visitDateAppted" jdbcType="DATE" />
+    <id column="CLINIC_LABEL" property="clinicLabel" jdbcType="VARCHAR" />
+    <id column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <id column="VISIT_TIME_APPTED" property="visitTimeAppted" jdbcType="VARCHAR" />
+    <result column="APPT_MADE_DATE" property="apptMadeDate" jdbcType="TIMESTAMP" />
+    <result column="CLINIC_ATTR" property="clinicAttr" jdbcType="VARCHAR" />
+    <result column="CLINIC_SOURCE" property="clinicSource" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    VISIT_DATE_APPTED, CLINIC_LABEL, PATIENT_ID, VISIT_TIME_APPTED, APPT_MADE_DATE, CLINIC_ATTR, 
+    CLINIC_SOURCE, SERIAL_NO
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.outpadm.ClinicAppointsKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from OUTPADM.CLINIC_APPOINTS
+    where VISIT_DATE_APPTED = #{visitDateAppted,jdbcType=DATE}
+      and CLINIC_LABEL = #{clinicLabel,jdbcType=VARCHAR}
+      and PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_TIME_APPTED = #{visitTimeAppted,jdbcType=VARCHAR}
+  </select>
+  <select id="selectApponints" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from OUTPADM.CLINIC_APPOINTS
+    where VISIT_DATE_APPTED =  #{0}
+    and CLINIC_LABEL=#{1}
+    and (CLINIC_ATTR='0' or CLINIC_ATTR='1')
+  </select>
+  <select id="selectRegesters" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from OUTPADM.CLINIC_APPOINTS
+    where VISIT_DATE_APPTED =  #{0}
+    and CLINIC_LABEL=#{1}
+    and CLINIC_ATTR='0'
+  </select>
+  <select id="selectByPatientId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+     <![CDATA[
+    select
+    *
+    from OUTPADM.CLINIC_APPOINTS
+    where  PATIENT_ID = #{0}
+    and VISIT_DATE_APPTED > sysdate-1
+    and CLINIC_ATTR='0'
+   ]]>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.outpadm.ClinicAppointsKey" >
+    delete from OUTPADM.CLINIC_APPOINTS
+    where VISIT_DATE_APPTED = #{visitDateAppted,jdbcType=DATE}
+      and CLINIC_LABEL = #{clinicLabel,jdbcType=VARCHAR}
+      and PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_TIME_APPTED = #{visitTimeAppted,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.outpadm.ClinicAppoints" >
+    insert into OUTPADM.CLINIC_APPOINTS (VISIT_DATE_APPTED, CLINIC_LABEL, PATIENT_ID, 
+      VISIT_TIME_APPTED, APPT_MADE_DATE, CLINIC_ATTR, 
+      CLINIC_SOURCE, SERIAL_NO)
+    values (#{visitDateAppted,jdbcType=DATE}, #{clinicLabel,jdbcType=VARCHAR}, #{patientId,jdbcType=VARCHAR}, 
+      #{visitTimeAppted,jdbcType=VARCHAR}, #{apptMadeDate,jdbcType=TIMESTAMP}, #{clinicAttr,jdbcType=VARCHAR},
+      #{clinicSource,jdbcType=VARCHAR}, #{serialNo,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.outpadm.ClinicAppoints" >
+    insert into OUTPADM.CLINIC_APPOINTS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="visitDateAppted != null" >
+        VISIT_DATE_APPTED,
+      </if>
+      <if test="clinicLabel != null" >
+        CLINIC_LABEL,
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="visitTimeAppted != null" >
+        VISIT_TIME_APPTED,
+      </if>
+      <if test="apptMadeDate != null" >
+        APPT_MADE_DATE,
+      </if>
+      <if test="clinicAttr != null" >
+        CLINIC_ATTR,
+      </if>
+      <if test="clinicSource != null" >
+        CLINIC_SOURCE,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="visitDateAppted != null" >
+        #{visitDateAppted,jdbcType=DATE},
+      </if>
+      <if test="clinicLabel != null" >
+        #{clinicLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitTimeAppted != null" >
+        #{visitTimeAppted,jdbcType=VARCHAR},
+      </if>
+      <if test="apptMadeDate != null" >
+        #{apptMadeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clinicAttr != null" >
+        #{clinicAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="clinicSource != null" >
+        #{clinicSource,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.outpadm.ClinicAppoints" >
+    update OUTPADM.CLINIC_APPOINTS
+    <set >
+      <if test="apptMadeDate != null" >
+        APPT_MADE_DATE = #{apptMadeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clinicAttr != null" >
+        CLINIC_ATTR = #{clinicAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="clinicSource != null" >
+        CLINIC_SOURCE = #{clinicSource,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where VISIT_DATE_APPTED = #{visitDateAppted,jdbcType=DATE}
+      and CLINIC_LABEL = #{clinicLabel,jdbcType=VARCHAR}
+      and PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_TIME_APPTED = #{visitTimeAppted,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.outpadm.ClinicAppoints" >
+    update OUTPADM.CLINIC_APPOINTS
+    set APPT_MADE_DATE = #{apptMadeDate,jdbcType=TIMESTAMP},
+      CLINIC_ATTR = #{clinicAttr,jdbcType=VARCHAR},
+      CLINIC_SOURCE = #{clinicSource,jdbcType=VARCHAR},
+      SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+    where VISIT_DATE_APPTED = #{visitDateAppted,jdbcType=DATE}
+      and CLINIC_LABEL = #{clinicLabel,jdbcType=VARCHAR}
+      and PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_TIME_APPTED = #{visitTimeAppted,jdbcType=VARCHAR}
+  </update>
+</mapper>

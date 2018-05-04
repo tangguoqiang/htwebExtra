@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.EraseLoginLogMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.EraseLoginLog" >
+    <result column="SESSION_ID" property="sessionId" jdbcType="DECIMAL" />
+    <result column="LOGIN_ON_TIME" property="loginOnTime" jdbcType="DATE" />
+    <result column="LOGIN_OFF_TIME" property="loginOffTime" jdbcType="DATE" />
+    <result column="USER_IN_DB" property="userInDb" jdbcType="VARCHAR" />
+    <result column="MACHINE" property="machine" jdbcType="VARCHAR" />
+    <result column="IP_ADDRESS" property="ipAddress" jdbcType="VARCHAR" />
+    <result column="RUN_PROGRAM" property="runProgram" jdbcType="VARCHAR" />
+    <result column="SID" property="sid" jdbcType="DECIMAL" />
+    <result column="SERIAL" property="serial" jdbcType="DECIMAL" />
+  </resultMap>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.EraseLoginLog" >
+    insert into COMM.ERASE_LOGIN_LOG (SESSION_ID, LOGIN_ON_TIME, LOGIN_OFF_TIME, 
+      USER_IN_DB, MACHINE, IP_ADDRESS, 
+      RUN_PROGRAM, SID, SERIAL
+      )
+    values (#{sessionId,jdbcType=DECIMAL}, #{loginOnTime,jdbcType=DATE}, #{loginOffTime,jdbcType=DATE}, 
+      #{userInDb,jdbcType=VARCHAR}, #{machine,jdbcType=VARCHAR}, #{ipAddress,jdbcType=VARCHAR}, 
+      #{runProgram,jdbcType=VARCHAR}, #{sid,jdbcType=DECIMAL}, #{serial,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.EraseLoginLog" >
+    insert into COMM.ERASE_LOGIN_LOG
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sessionId != null" >
+        SESSION_ID,
+      </if>
+      <if test="loginOnTime != null" >
+        LOGIN_ON_TIME,
+      </if>
+      <if test="loginOffTime != null" >
+        LOGIN_OFF_TIME,
+      </if>
+      <if test="userInDb != null" >
+        USER_IN_DB,
+      </if>
+      <if test="machine != null" >
+        MACHINE,
+      </if>
+      <if test="ipAddress != null" >
+        IP_ADDRESS,
+      </if>
+      <if test="runProgram != null" >
+        RUN_PROGRAM,
+      </if>
+      <if test="sid != null" >
+        SID,
+      </if>
+      <if test="serial != null" >
+        SERIAL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sessionId != null" >
+        #{sessionId,jdbcType=DECIMAL},
+      </if>
+      <if test="loginOnTime != null" >
+        #{loginOnTime,jdbcType=DATE},
+      </if>
+      <if test="loginOffTime != null" >
+        #{loginOffTime,jdbcType=DATE},
+      </if>
+      <if test="userInDb != null" >
+        #{userInDb,jdbcType=VARCHAR},
+      </if>
+      <if test="machine != null" >
+        #{machine,jdbcType=VARCHAR},
+      </if>
+      <if test="ipAddress != null" >
+        #{ipAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="runProgram != null" >
+        #{runProgram,jdbcType=VARCHAR},
+      </if>
+      <if test="sid != null" >
+        #{sid,jdbcType=DECIMAL},
+      </if>
+      <if test="serial != null" >
+        #{serial,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+</mapper>

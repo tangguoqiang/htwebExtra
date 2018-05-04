@@ -1,0 +1,674 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.Njjb2100Mapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.insurance.Njjb2100" >
+    <id column="INSURANCE_NO" property="insuranceNo" jdbcType="VARCHAR" />
+    <result column="READ_NAME_1" property="readName1" jdbcType="VARCHAR" />
+    <result column="READ_NAME_2" property="readName2" jdbcType="VARCHAR" />
+    <result column="READ_NAME_3" property="readName3" jdbcType="VARCHAR" />
+    <result column="READ_NAME_4" property="readName4" jdbcType="VARCHAR" />
+    <result column="READ_NAME_5" property="readName5" jdbcType="VARCHAR" />
+    <result column="READ_NAME_6" property="readName6" jdbcType="VARCHAR" />
+    <result column="READ_NAME_7" property="readName7" jdbcType="VARCHAR" />
+    <result column="READ_NAME_8" property="readName8" jdbcType="VARCHAR" />
+    <result column="READ_NAME_9" property="readName9" jdbcType="VARCHAR" />
+    <result column="READ_NAME_10" property="readName10" jdbcType="VARCHAR" />
+    <result column="READ_NAME_11" property="readName11" jdbcType="VARCHAR" />
+    <result column="READ_NAME_12" property="readName12" jdbcType="VARCHAR" />
+    <result column="READ_NAME_13" property="readName13" jdbcType="VARCHAR" />
+    <result column="READ_NAME_14" property="readName14" jdbcType="VARCHAR" />
+    <result column="READ_NAME_15" property="readName15" jdbcType="VARCHAR" />
+    <result column="READ_NAME_16" property="readName16" jdbcType="VARCHAR" />
+    <result column="READ_NAME_17" property="readName17" jdbcType="VARCHAR" />
+    <result column="READ_NAME_18" property="readName18" jdbcType="VARCHAR" />
+    <result column="READ_NAME_19" property="readName19" jdbcType="VARCHAR" />
+    <result column="READ_NAME_20" property="readName20" jdbcType="VARCHAR" />
+    <result column="READ_NAME_21" property="readName21" jdbcType="VARCHAR" />
+    <result column="READ_NAME_22" property="readName22" jdbcType="VARCHAR" />
+    <result column="READ_NAME_23" property="readName23" jdbcType="VARCHAR" />
+    <result column="READ_NAME_24" property="readName24" jdbcType="VARCHAR" />
+    <result column="READ_NAME_25" property="readName25" jdbcType="VARCHAR" />
+    <result column="READ_NAME_26" property="readName26" jdbcType="VARCHAR" />
+    <result column="READ_NAME_27" property="readName27" jdbcType="VARCHAR" />
+    <result column="READ_NAME_28" property="readName28" jdbcType="VARCHAR" />
+    <result column="READ_NAME_29" property="readName29" jdbcType="VARCHAR" />
+    <result column="READ_NAME_30" property="readName30" jdbcType="VARCHAR" />
+    <result column="READ_NAME_31" property="readName31" jdbcType="VARCHAR" />
+    <result column="READ_NAME_32" property="readName32" jdbcType="VARCHAR" />
+    <result column="READ_NAME_33" property="readName33" jdbcType="VARCHAR" />
+    <result column="READ_NAME_34" property="readName34" jdbcType="VARCHAR" />
+    <result column="READ_NAME_35" property="readName35" jdbcType="VARCHAR" />
+    <result column="READ_NAME_36" property="readName36" jdbcType="VARCHAR" />
+    <result column="READ_NAME_37" property="readName37" jdbcType="VARCHAR" />
+    <result column="READ_NAME_38" property="readName38" jdbcType="VARCHAR" />
+    <result column="READ_NAME_39" property="readName39" jdbcType="VARCHAR" />
+    <result column="READ_NAME_40" property="readName40" jdbcType="VARCHAR" />
+    <result column="READ_NAME_41" property="readName41" jdbcType="VARCHAR" />
+    <result column="READ_NAME_42" property="readName42" jdbcType="VARCHAR" />
+    <result column="READ_NAME_43" property="readName43" jdbcType="VARCHAR" />
+    <result column="READ_NAME_44" property="readName44" jdbcType="VARCHAR" />
+    <result column="READ_NAME_45" property="readName45" jdbcType="VARCHAR" />
+    <result column="READ_NAME_46" property="readName46" jdbcType="VARCHAR" />
+    <result column="READ_NAME_47" property="readName47" jdbcType="VARCHAR" />
+    <result column="READ_NAME_48" property="readName48" jdbcType="VARCHAR" />
+    <result column="READ_NAME_49" property="readName49" jdbcType="VARCHAR" />
+    <result column="READ_NAME_50" property="readName50" jdbcType="VARCHAR" />
+    <result column="READ_NAME_51" property="readName51" jdbcType="VARCHAR" />
+    <result column="READ_NAME_52" property="readName52" jdbcType="VARCHAR" />
+    <result column="READ_NAME_53" property="readName53" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    INSURANCE_NO, READ_NAME_1, READ_NAME_2, READ_NAME_3, READ_NAME_4, READ_NAME_5, READ_NAME_6, 
+    READ_NAME_7, READ_NAME_8, READ_NAME_9, READ_NAME_10, READ_NAME_11, READ_NAME_12, 
+    READ_NAME_13, READ_NAME_14, READ_NAME_15, READ_NAME_16, READ_NAME_17, READ_NAME_18, 
+    READ_NAME_19, READ_NAME_20, READ_NAME_21, READ_NAME_22, READ_NAME_23, READ_NAME_24, 
+    READ_NAME_25, READ_NAME_26, READ_NAME_27, READ_NAME_28, READ_NAME_29, READ_NAME_30, 
+    READ_NAME_31, READ_NAME_32, READ_NAME_33, READ_NAME_34, READ_NAME_35, READ_NAME_36, 
+    READ_NAME_37, READ_NAME_38, READ_NAME_39, READ_NAME_40, READ_NAME_41, READ_NAME_42, 
+    READ_NAME_43, READ_NAME_44, READ_NAME_45, READ_NAME_46, READ_NAME_47, READ_NAME_48, 
+    READ_NAME_49, READ_NAME_50, READ_NAME_51, READ_NAME_52, READ_NAME_53
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from INSURANCE.NJJB_2100
+    where INSURANCE_NO = #{insuranceNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from INSURANCE.NJJB_2100
+    where INSURANCE_NO = #{insuranceNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.insurance.Njjb2100" >
+    insert into INSURANCE.NJJB_2100 (INSURANCE_NO, READ_NAME_1, READ_NAME_2, 
+      READ_NAME_3, READ_NAME_4, READ_NAME_5, 
+      READ_NAME_6, READ_NAME_7, READ_NAME_8, 
+      READ_NAME_9, READ_NAME_10, READ_NAME_11, 
+      READ_NAME_12, READ_NAME_13, READ_NAME_14, 
+      READ_NAME_15, READ_NAME_16, READ_NAME_17, 
+      READ_NAME_18, READ_NAME_19, READ_NAME_20, 
+      READ_NAME_21, READ_NAME_22, READ_NAME_23, 
+      READ_NAME_24, READ_NAME_25, READ_NAME_26, 
+      READ_NAME_27, READ_NAME_28, READ_NAME_29, 
+      READ_NAME_30, READ_NAME_31, READ_NAME_32, 
+      READ_NAME_33, READ_NAME_34, READ_NAME_35, 
+      READ_NAME_36, READ_NAME_37, READ_NAME_38, 
+      READ_NAME_39, READ_NAME_40, READ_NAME_41, 
+      READ_NAME_42, READ_NAME_43, READ_NAME_44, 
+      READ_NAME_45, READ_NAME_46, READ_NAME_47, 
+      READ_NAME_48, READ_NAME_49, READ_NAME_50, 
+      READ_NAME_51, READ_NAME_52, READ_NAME_53
+      )
+    values (#{insuranceNo,jdbcType=VARCHAR}, #{readName1,jdbcType=VARCHAR}, #{readName2,jdbcType=VARCHAR}, 
+      #{readName3,jdbcType=VARCHAR}, #{readName4,jdbcType=VARCHAR}, #{readName5,jdbcType=VARCHAR}, 
+      #{readName6,jdbcType=VARCHAR}, #{readName7,jdbcType=VARCHAR}, #{readName8,jdbcType=VARCHAR}, 
+      #{readName9,jdbcType=VARCHAR}, #{readName10,jdbcType=VARCHAR}, #{readName11,jdbcType=VARCHAR}, 
+      #{readName12,jdbcType=VARCHAR}, #{readName13,jdbcType=VARCHAR}, #{readName14,jdbcType=VARCHAR}, 
+      #{readName15,jdbcType=VARCHAR}, #{readName16,jdbcType=VARCHAR}, #{readName17,jdbcType=VARCHAR}, 
+      #{readName18,jdbcType=VARCHAR}, #{readName19,jdbcType=VARCHAR}, #{readName20,jdbcType=VARCHAR}, 
+      #{readName21,jdbcType=VARCHAR}, #{readName22,jdbcType=VARCHAR}, #{readName23,jdbcType=VARCHAR}, 
+      #{readName24,jdbcType=VARCHAR}, #{readName25,jdbcType=VARCHAR}, #{readName26,jdbcType=VARCHAR}, 
+      #{readName27,jdbcType=VARCHAR}, #{readName28,jdbcType=VARCHAR}, #{readName29,jdbcType=VARCHAR}, 
+      #{readName30,jdbcType=VARCHAR}, #{readName31,jdbcType=VARCHAR}, #{readName32,jdbcType=VARCHAR}, 
+      #{readName33,jdbcType=VARCHAR}, #{readName34,jdbcType=VARCHAR}, #{readName35,jdbcType=VARCHAR}, 
+      #{readName36,jdbcType=VARCHAR}, #{readName37,jdbcType=VARCHAR}, #{readName38,jdbcType=VARCHAR}, 
+      #{readName39,jdbcType=VARCHAR}, #{readName40,jdbcType=VARCHAR}, #{readName41,jdbcType=VARCHAR}, 
+      #{readName42,jdbcType=VARCHAR}, #{readName43,jdbcType=VARCHAR}, #{readName44,jdbcType=VARCHAR}, 
+      #{readName45,jdbcType=VARCHAR}, #{readName46,jdbcType=VARCHAR}, #{readName47,jdbcType=VARCHAR}, 
+      #{readName48,jdbcType=VARCHAR}, #{readName49,jdbcType=VARCHAR}, #{readName50,jdbcType=VARCHAR}, 
+      #{readName51,jdbcType=VARCHAR}, #{readName52,jdbcType=VARCHAR}, #{readName53,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.insurance.Njjb2100" >
+    insert into INSURANCE.NJJB_2100
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="insuranceNo != null" >
+        INSURANCE_NO,
+      </if>
+      <if test="readName1 != null" >
+        READ_NAME_1,
+      </if>
+      <if test="readName2 != null" >
+        READ_NAME_2,
+      </if>
+      <if test="readName3 != null" >
+        READ_NAME_3,
+      </if>
+      <if test="readName4 != null" >
+        READ_NAME_4,
+      </if>
+      <if test="readName5 != null" >
+        READ_NAME_5,
+      </if>
+      <if test="readName6 != null" >
+        READ_NAME_6,
+      </if>
+      <if test="readName7 != null" >
+        READ_NAME_7,
+      </if>
+      <if test="readName8 != null" >
+        READ_NAME_8,
+      </if>
+      <if test="readName9 != null" >
+        READ_NAME_9,
+      </if>
+      <if test="readName10 != null" >
+        READ_NAME_10,
+      </if>
+      <if test="readName11 != null" >
+        READ_NAME_11,
+      </if>
+      <if test="readName12 != null" >
+        READ_NAME_12,
+      </if>
+      <if test="readName13 != null" >
+        READ_NAME_13,
+      </if>
+      <if test="readName14 != null" >
+        READ_NAME_14,
+      </if>
+      <if test="readName15 != null" >
+        READ_NAME_15,
+      </if>
+      <if test="readName16 != null" >
+        READ_NAME_16,
+      </if>
+      <if test="readName17 != null" >
+        READ_NAME_17,
+      </if>
+      <if test="readName18 != null" >
+        READ_NAME_18,
+      </if>
+      <if test="readName19 != null" >
+        READ_NAME_19,
+      </if>
+      <if test="readName20 != null" >
+        READ_NAME_20,
+      </if>
+      <if test="readName21 != null" >
+        READ_NAME_21,
+      </if>
+      <if test="readName22 != null" >
+        READ_NAME_22,
+      </if>
+      <if test="readName23 != null" >
+        READ_NAME_23,
+      </if>
+      <if test="readName24 != null" >
+        READ_NAME_24,
+      </if>
+      <if test="readName25 != null" >
+        READ_NAME_25,
+      </if>
+      <if test="readName26 != null" >
+        READ_NAME_26,
+      </if>
+      <if test="readName27 != null" >
+        READ_NAME_27,
+      </if>
+      <if test="readName28 != null" >
+        READ_NAME_28,
+      </if>
+      <if test="readName29 != null" >
+        READ_NAME_29,
+      </if>
+      <if test="readName30 != null" >
+        READ_NAME_30,
+      </if>
+      <if test="readName31 != null" >
+        READ_NAME_31,
+      </if>
+      <if test="readName32 != null" >
+        READ_NAME_32,
+      </if>
+      <if test="readName33 != null" >
+        READ_NAME_33,
+      </if>
+      <if test="readName34 != null" >
+        READ_NAME_34,
+      </if>
+      <if test="readName35 != null" >
+        READ_NAME_35,
+      </if>
+      <if test="readName36 != null" >
+        READ_NAME_36,
+      </if>
+      <if test="readName37 != null" >
+        READ_NAME_37,
+      </if>
+      <if test="readName38 != null" >
+        READ_NAME_38,
+      </if>
+      <if test="readName39 != null" >
+        READ_NAME_39,
+      </if>
+      <if test="readName40 != null" >
+        READ_NAME_40,
+      </if>
+      <if test="readName41 != null" >
+        READ_NAME_41,
+      </if>
+      <if test="readName42 != null" >
+        READ_NAME_42,
+      </if>
+      <if test="readName43 != null" >
+        READ_NAME_43,
+      </if>
+      <if test="readName44 != null" >
+        READ_NAME_44,
+      </if>
+      <if test="readName45 != null" >
+        READ_NAME_45,
+      </if>
+      <if test="readName46 != null" >
+        READ_NAME_46,
+      </if>
+      <if test="readName47 != null" >
+        READ_NAME_47,
+      </if>
+      <if test="readName48 != null" >
+        READ_NAME_48,
+      </if>
+      <if test="readName49 != null" >
+        READ_NAME_49,
+      </if>
+      <if test="readName50 != null" >
+        READ_NAME_50,
+      </if>
+      <if test="readName51 != null" >
+        READ_NAME_51,
+      </if>
+      <if test="readName52 != null" >
+        READ_NAME_52,
+      </if>
+      <if test="readName53 != null" >
+        READ_NAME_53,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="insuranceNo != null" >
+        #{insuranceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="readName1 != null" >
+        #{readName1,jdbcType=VARCHAR},
+      </if>
+      <if test="readName2 != null" >
+        #{readName2,jdbcType=VARCHAR},
+      </if>
+      <if test="readName3 != null" >
+        #{readName3,jdbcType=VARCHAR},
+      </if>
+      <if test="readName4 != null" >
+        #{readName4,jdbcType=VARCHAR},
+      </if>
+      <if test="readName5 != null" >
+        #{readName5,jdbcType=VARCHAR},
+      </if>
+      <if test="readName6 != null" >
+        #{readName6,jdbcType=VARCHAR},
+      </if>
+      <if test="readName7 != null" >
+        #{readName7,jdbcType=VARCHAR},
+      </if>
+      <if test="readName8 != null" >
+        #{readName8,jdbcType=VARCHAR},
+      </if>
+      <if test="readName9 != null" >
+        #{readName9,jdbcType=VARCHAR},
+      </if>
+      <if test="readName10 != null" >
+        #{readName10,jdbcType=VARCHAR},
+      </if>
+      <if test="readName11 != null" >
+        #{readName11,jdbcType=VARCHAR},
+      </if>
+      <if test="readName12 != null" >
+        #{readName12,jdbcType=VARCHAR},
+      </if>
+      <if test="readName13 != null" >
+        #{readName13,jdbcType=VARCHAR},
+      </if>
+      <if test="readName14 != null" >
+        #{readName14,jdbcType=VARCHAR},
+      </if>
+      <if test="readName15 != null" >
+        #{readName15,jdbcType=VARCHAR},
+      </if>
+      <if test="readName16 != null" >
+        #{readName16,jdbcType=VARCHAR},
+      </if>
+      <if test="readName17 != null" >
+        #{readName17,jdbcType=VARCHAR},
+      </if>
+      <if test="readName18 != null" >
+        #{readName18,jdbcType=VARCHAR},
+      </if>
+      <if test="readName19 != null" >
+        #{readName19,jdbcType=VARCHAR},
+      </if>
+      <if test="readName20 != null" >
+        #{readName20,jdbcType=VARCHAR},
+      </if>
+      <if test="readName21 != null" >
+        #{readName21,jdbcType=VARCHAR},
+      </if>
+      <if test="readName22 != null" >
+        #{readName22,jdbcType=VARCHAR},
+      </if>
+      <if test="readName23 != null" >
+        #{readName23,jdbcType=VARCHAR},
+      </if>
+      <if test="readName24 != null" >
+        #{readName24,jdbcType=VARCHAR},
+      </if>
+      <if test="readName25 != null" >
+        #{readName25,jdbcType=VARCHAR},
+      </if>
+      <if test="readName26 != null" >
+        #{readName26,jdbcType=VARCHAR},
+      </if>
+      <if test="readName27 != null" >
+        #{readName27,jdbcType=VARCHAR},
+      </if>
+      <if test="readName28 != null" >
+        #{readName28,jdbcType=VARCHAR},
+      </if>
+      <if test="readName29 != null" >
+        #{readName29,jdbcType=VARCHAR},
+      </if>
+      <if test="readName30 != null" >
+        #{readName30,jdbcType=VARCHAR},
+      </if>
+      <if test="readName31 != null" >
+        #{readName31,jdbcType=VARCHAR},
+      </if>
+      <if test="readName32 != null" >
+        #{readName32,jdbcType=VARCHAR},
+      </if>
+      <if test="readName33 != null" >
+        #{readName33,jdbcType=VARCHAR},
+      </if>
+      <if test="readName34 != null" >
+        #{readName34,jdbcType=VARCHAR},
+      </if>
+      <if test="readName35 != null" >
+        #{readName35,jdbcType=VARCHAR},
+      </if>
+      <if test="readName36 != null" >
+        #{readName36,jdbcType=VARCHAR},
+      </if>
+      <if test="readName37 != null" >
+        #{readName37,jdbcType=VARCHAR},
+      </if>
+      <if test="readName38 != null" >
+        #{readName38,jdbcType=VARCHAR},
+      </if>
+      <if test="readName39 != null" >
+        #{readName39,jdbcType=VARCHAR},
+      </if>
+      <if test="readName40 != null" >
+        #{readName40,jdbcType=VARCHAR},
+      </if>
+      <if test="readName41 != null" >
+        #{readName41,jdbcType=VARCHAR},
+      </if>
+      <if test="readName42 != null" >
+        #{readName42,jdbcType=VARCHAR},
+      </if>
+      <if test="readName43 != null" >
+        #{readName43,jdbcType=VARCHAR},
+      </if>
+      <if test="readName44 != null" >
+        #{readName44,jdbcType=VARCHAR},
+      </if>
+      <if test="readName45 != null" >
+        #{readName45,jdbcType=VARCHAR},
+      </if>
+      <if test="readName46 != null" >
+        #{readName46,jdbcType=VARCHAR},
+      </if>
+      <if test="readName47 != null" >
+        #{readName47,jdbcType=VARCHAR},
+      </if>
+      <if test="readName48 != null" >
+        #{readName48,jdbcType=VARCHAR},
+      </if>
+      <if test="readName49 != null" >
+        #{readName49,jdbcType=VARCHAR},
+      </if>
+      <if test="readName50 != null" >
+        #{readName50,jdbcType=VARCHAR},
+      </if>
+      <if test="readName51 != null" >
+        #{readName51,jdbcType=VARCHAR},
+      </if>
+      <if test="readName52 != null" >
+        #{readName52,jdbcType=VARCHAR},
+      </if>
+      <if test="readName53 != null" >
+        #{readName53,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.insurance.Njjb2100" >
+    update INSURANCE.NJJB_2100
+    <set >
+      <if test="readName1 != null" >
+        READ_NAME_1 = #{readName1,jdbcType=VARCHAR},
+      </if>
+      <if test="readName2 != null" >
+        READ_NAME_2 = #{readName2,jdbcType=VARCHAR},
+      </if>
+      <if test="readName3 != null" >
+        READ_NAME_3 = #{readName3,jdbcType=VARCHAR},
+      </if>
+      <if test="readName4 != null" >
+        READ_NAME_4 = #{readName4,jdbcType=VARCHAR},
+      </if>
+      <if test="readName5 != null" >
+        READ_NAME_5 = #{readName5,jdbcType=VARCHAR},
+      </if>
+      <if test="readName6 != null" >
+        READ_NAME_6 = #{readName6,jdbcType=VARCHAR},
+      </if>
+      <if test="readName7 != null" >
+        READ_NAME_7 = #{readName7,jdbcType=VARCHAR},
+      </if>
+      <if test="readName8 != null" >
+        READ_NAME_8 = #{readName8,jdbcType=VARCHAR},
+      </if>
+      <if test="readName9 != null" >
+        READ_NAME_9 = #{readName9,jdbcType=VARCHAR},
+      </if>
+      <if test="readName10 != null" >
+        READ_NAME_10 = #{readName10,jdbcType=VARCHAR},
+      </if>
+      <if test="readName11 != null" >
+        READ_NAME_11 = #{readName11,jdbcType=VARCHAR},
+      </if>
+      <if test="readName12 != null" >
+        READ_NAME_12 = #{readName12,jdbcType=VARCHAR},
+      </if>
+      <if test="readName13 != null" >
+        READ_NAME_13 = #{readName13,jdbcType=VARCHAR},
+      </if>
+      <if test="readName14 != null" >
+        READ_NAME_14 = #{readName14,jdbcType=VARCHAR},
+      </if>
+      <if test="readName15 != null" >
+        READ_NAME_15 = #{readName15,jdbcType=VARCHAR},
+      </if>
+      <if test="readName16 != null" >
+        READ_NAME_16 = #{readName16,jdbcType=VARCHAR},
+      </if>
+      <if test="readName17 != null" >
+        READ_NAME_17 = #{readName17,jdbcType=VARCHAR},
+      </if>
+      <if test="readName18 != null" >
+        READ_NAME_18 = #{readName18,jdbcType=VARCHAR},
+      </if>
+      <if test="readName19 != null" >
+        READ_NAME_19 = #{readName19,jdbcType=VARCHAR},
+      </if>
+      <if test="readName20 != null" >
+        READ_NAME_20 = #{readName20,jdbcType=VARCHAR},
+      </if>
+      <if test="readName21 != null" >
+        READ_NAME_21 = #{readName21,jdbcType=VARCHAR},
+      </if>
+      <if test="readName22 != null" >
+        READ_NAME_22 = #{readName22,jdbcType=VARCHAR},
+      </if>
+      <if test="readName23 != null" >
+        READ_NAME_23 = #{readName23,jdbcType=VARCHAR},
+      </if>
+      <if test="readName24 != null" >
+        READ_NAME_24 = #{readName24,jdbcType=VARCHAR},
+      </if>
+      <if test="readName25 != null" >
+        READ_NAME_25 = #{readName25,jdbcType=VARCHAR},
+      </if>
+      <if test="readName26 != null" >
+        READ_NAME_26 = #{readName26,jdbcType=VARCHAR},
+      </if>
+      <if test="readName27 != null" >
+        READ_NAME_27 = #{readName27,jdbcType=VARCHAR},
+      </if>
+      <if test="readName28 != null" >
+        READ_NAME_28 = #{readName28,jdbcType=VARCHAR},
+      </if>
+      <if test="readName29 != null" >
+        READ_NAME_29 = #{readName29,jdbcType=VARCHAR},
+      </if>
+      <if test="readName30 != null" >
+        READ_NAME_30 = #{readName30,jdbcType=VARCHAR},
+      </if>
+      <if test="readName31 != null" >
+        READ_NAME_31 = #{readName31,jdbcType=VARCHAR},
+      </if>
+      <if test="readName32 != null" >
+        READ_NAME_32 = #{readName32,jdbcType=VARCHAR},
+      </if>
+      <if test="readName33 != null" >
+        READ_NAME_33 = #{readName33,jdbcType=VARCHAR},
+      </if>
+      <if test="readName34 != null" >
+        READ_NAME_34 = #{readName34,jdbcType=VARCHAR},
+      </if>
+      <if test="readName35 != null" >
+        READ_NAME_35 = #{readName35,jdbcType=VARCHAR},
+      </if>
+      <if test="readName36 != null" >
+        READ_NAME_36 = #{readName36,jdbcType=VARCHAR},
+      </if>
+      <if test="readName37 != null" >
+        READ_NAME_37 = #{readName37,jdbcType=VARCHAR},
+      </if>
+      <if test="readName38 != null" >
+        READ_NAME_38 = #{readName38,jdbcType=VARCHAR},
+      </if>
+      <if test="readName39 != null" >
+        READ_NAME_39 = #{readName39,jdbcType=VARCHAR},
+      </if>
+      <if test="readName40 != null" >
+        READ_NAME_40 = #{readName40,jdbcType=VARCHAR},
+      </if>
+      <if test="readName41 != null" >
+        READ_NAME_41 = #{readName41,jdbcType=VARCHAR},
+      </if>
+      <if test="readName42 != null" >
+        READ_NAME_42 = #{readName42,jdbcType=VARCHAR},
+      </if>
+      <if test="readName43 != null" >
+        READ_NAME_43 = #{readName43,jdbcType=VARCHAR},
+      </if>
+      <if test="readName44 != null" >
+        READ_NAME_44 = #{readName44,jdbcType=VARCHAR},
+      </if>
+      <if test="readName45 != null" >
+        READ_NAME_45 = #{readName45,jdbcType=VARCHAR},
+      </if>
+      <if test="readName46 != null" >
+        READ_NAME_46 = #{readName46,jdbcType=VARCHAR},
+      </if>
+      <if test="readName47 != null" >
+        READ_NAME_47 = #{readName47,jdbcType=VARCHAR},
+      </if>
+      <if test="readName48 != null" >
+        READ_NAME_48 = #{readName48,jdbcType=VARCHAR},
+      </if>
+      <if test="readName49 != null" >
+        READ_NAME_49 = #{readName49,jdbcType=VARCHAR},
+      </if>
+      <if test="readName50 != null" >
+        READ_NAME_50 = #{readName50,jdbcType=VARCHAR},
+      </if>
+      <if test="readName51 != null" >
+        READ_NAME_51 = #{readName51,jdbcType=VARCHAR},
+      </if>
+      <if test="readName52 != null" >
+        READ_NAME_52 = #{readName52,jdbcType=VARCHAR},
+      </if>
+      <if test="readName53 != null" >
+        READ_NAME_53 = #{readName53,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where INSURANCE_NO = #{insuranceNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.insurance.Njjb2100" >
+    update INSURANCE.NJJB_2100
+    set READ_NAME_1 = #{readName1,jdbcType=VARCHAR},
+      READ_NAME_2 = #{readName2,jdbcType=VARCHAR},
+      READ_NAME_3 = #{readName3,jdbcType=VARCHAR},
+      READ_NAME_4 = #{readName4,jdbcType=VARCHAR},
+      READ_NAME_5 = #{readName5,jdbcType=VARCHAR},
+      READ_NAME_6 = #{readName6,jdbcType=VARCHAR},
+      READ_NAME_7 = #{readName7,jdbcType=VARCHAR},
+      READ_NAME_8 = #{readName8,jdbcType=VARCHAR},
+      READ_NAME_9 = #{readName9,jdbcType=VARCHAR},
+      READ_NAME_10 = #{readName10,jdbcType=VARCHAR},
+      READ_NAME_11 = #{readName11,jdbcType=VARCHAR},
+      READ_NAME_12 = #{readName12,jdbcType=VARCHAR},
+      READ_NAME_13 = #{readName13,jdbcType=VARCHAR},
+      READ_NAME_14 = #{readName14,jdbcType=VARCHAR},
+      READ_NAME_15 = #{readName15,jdbcType=VARCHAR},
+      READ_NAME_16 = #{readName16,jdbcType=VARCHAR},
+      READ_NAME_17 = #{readName17,jdbcType=VARCHAR},
+      READ_NAME_18 = #{readName18,jdbcType=VARCHAR},
+      READ_NAME_19 = #{readName19,jdbcType=VARCHAR},
+      READ_NAME_20 = #{readName20,jdbcType=VARCHAR},
+      READ_NAME_21 = #{readName21,jdbcType=VARCHAR},
+      READ_NAME_22 = #{readName22,jdbcType=VARCHAR},
+      READ_NAME_23 = #{readName23,jdbcType=VARCHAR},
+      READ_NAME_24 = #{readName24,jdbcType=VARCHAR},
+      READ_NAME_25 = #{readName25,jdbcType=VARCHAR},
+      READ_NAME_26 = #{readName26,jdbcType=VARCHAR},
+      READ_NAME_27 = #{readName27,jdbcType=VARCHAR},
+      READ_NAME_28 = #{readName28,jdbcType=VARCHAR},
+      READ_NAME_29 = #{readName29,jdbcType=VARCHAR},
+      READ_NAME_30 = #{readName30,jdbcType=VARCHAR},
+      READ_NAME_31 = #{readName31,jdbcType=VARCHAR},
+      READ_NAME_32 = #{readName32,jdbcType=VARCHAR},
+      READ_NAME_33 = #{readName33,jdbcType=VARCHAR},
+      READ_NAME_34 = #{readName34,jdbcType=VARCHAR},
+      READ_NAME_35 = #{readName35,jdbcType=VARCHAR},
+      READ_NAME_36 = #{readName36,jdbcType=VARCHAR},
+      READ_NAME_37 = #{readName37,jdbcType=VARCHAR},
+      READ_NAME_38 = #{readName38,jdbcType=VARCHAR},
+      READ_NAME_39 = #{readName39,jdbcType=VARCHAR},
+      READ_NAME_40 = #{readName40,jdbcType=VARCHAR},
+      READ_NAME_41 = #{readName41,jdbcType=VARCHAR},
+      READ_NAME_42 = #{readName42,jdbcType=VARCHAR},
+      READ_NAME_43 = #{readName43,jdbcType=VARCHAR},
+      READ_NAME_44 = #{readName44,jdbcType=VARCHAR},
+      READ_NAME_45 = #{readName45,jdbcType=VARCHAR},
+      READ_NAME_46 = #{readName46,jdbcType=VARCHAR},
+      READ_NAME_47 = #{readName47,jdbcType=VARCHAR},
+      READ_NAME_48 = #{readName48,jdbcType=VARCHAR},
+      READ_NAME_49 = #{readName49,jdbcType=VARCHAR},
+      READ_NAME_50 = #{readName50,jdbcType=VARCHAR},
+      READ_NAME_51 = #{readName51,jdbcType=VARCHAR},
+      READ_NAME_52 = #{readName52,jdbcType=VARCHAR},
+      READ_NAME_53 = #{readName53,jdbcType=VARCHAR}
+    where INSURANCE_NO = #{insuranceNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

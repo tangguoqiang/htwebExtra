@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.LabOrderVsReportMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.LabOrderVsReport" >
+    <id column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="ORDER_ITEM_CODE" property="orderItemCode" jdbcType="VARCHAR" />
+    <result column="REPORT_ITEM_CODE" property="reportItemCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SERIAL_NO, ORDER_ITEM_CODE, REPORT_ITEM_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.LAB_ORDER_VS_REPORT
+    where SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from COMM.LAB_ORDER_VS_REPORT
+    where SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.LabOrderVsReport" >
+    insert into COMM.LAB_ORDER_VS_REPORT (SERIAL_NO, ORDER_ITEM_CODE, REPORT_ITEM_CODE
+      )
+    values (#{serialNo,jdbcType=DECIMAL}, #{orderItemCode,jdbcType=VARCHAR}, #{reportItemCode,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.LabOrderVsReport" >
+    insert into COMM.LAB_ORDER_VS_REPORT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="orderItemCode != null" >
+        ORDER_ITEM_CODE,
+      </if>
+      <if test="reportItemCode != null" >
+        REPORT_ITEM_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="orderItemCode != null" >
+        #{orderItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="reportItemCode != null" >
+        #{reportItemCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.LabOrderVsReport" >
+    update COMM.LAB_ORDER_VS_REPORT
+    <set >
+      <if test="orderItemCode != null" >
+        ORDER_ITEM_CODE = #{orderItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="reportItemCode != null" >
+        REPORT_ITEM_CODE = #{reportItemCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.LabOrderVsReport" >
+    update COMM.LAB_ORDER_VS_REPORT
+    set ORDER_ITEM_CODE = #{orderItemCode,jdbcType=VARCHAR},
+      REPORT_ITEM_CODE = #{reportItemCode,jdbcType=VARCHAR}
+    where SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+  </update>
+</mapper>

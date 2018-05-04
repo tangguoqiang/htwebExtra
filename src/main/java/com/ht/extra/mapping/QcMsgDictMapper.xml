@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.QcMsgDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.QcMsgDict" >
+    <id column="QC_MSG_CODE" property="qcMsgCode" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="QA_EVENT_TYPE" property="qaEventType" jdbcType="VARCHAR" />
+    <result column="MESSAGE" property="message" jdbcType="VARCHAR" />
+    <result column="SCORE" property="score" jdbcType="DECIMAL" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+    <result column="SCORE_TYPE" property="scoreType" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    QC_MSG_CODE, SERIAL_NO, QA_EVENT_TYPE, MESSAGE, SCORE, INPUT_CODE, SCORE_TYPE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.QC_MSG_DICT
+    where QC_MSG_CODE = #{qcMsgCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.QC_MSG_DICT
+    where QC_MSG_CODE = #{qcMsgCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.QcMsgDict" >
+    insert into COMM.QC_MSG_DICT (QC_MSG_CODE, SERIAL_NO, QA_EVENT_TYPE, 
+      MESSAGE, SCORE, INPUT_CODE, 
+      SCORE_TYPE)
+    values (#{qcMsgCode,jdbcType=VARCHAR}, #{serialNo,jdbcType=DECIMAL}, #{qaEventType,jdbcType=VARCHAR}, 
+      #{message,jdbcType=VARCHAR}, #{score,jdbcType=DECIMAL}, #{inputCode,jdbcType=VARCHAR}, 
+      #{scoreType,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.QcMsgDict" >
+    insert into COMM.QC_MSG_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="qcMsgCode != null" >
+        QC_MSG_CODE,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="qaEventType != null" >
+        QA_EVENT_TYPE,
+      </if>
+      <if test="message != null" >
+        MESSAGE,
+      </if>
+      <if test="score != null" >
+        SCORE,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+      <if test="scoreType != null" >
+        SCORE_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="qcMsgCode != null" >
+        #{qcMsgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="qaEventType != null" >
+        #{qaEventType,jdbcType=VARCHAR},
+      </if>
+      <if test="message != null" >
+        #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=DECIMAL},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="scoreType != null" >
+        #{scoreType,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.QcMsgDict" >
+    update COMM.QC_MSG_DICT
+    <set >
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="qaEventType != null" >
+        QA_EVENT_TYPE = #{qaEventType,jdbcType=VARCHAR},
+      </if>
+      <if test="message != null" >
+        MESSAGE = #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        SCORE = #{score,jdbcType=DECIMAL},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="scoreType != null" >
+        SCORE_TYPE = #{scoreType,jdbcType=CHAR},
+      </if>
+    </set>
+    where QC_MSG_CODE = #{qcMsgCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.QcMsgDict" >
+    update COMM.QC_MSG_DICT
+    set SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      QA_EVENT_TYPE = #{qaEventType,jdbcType=VARCHAR},
+      MESSAGE = #{message,jdbcType=VARCHAR},
+      SCORE = #{score,jdbcType=DECIMAL},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      SCORE_TYPE = #{scoreType,jdbcType=CHAR}
+    where QC_MSG_CODE = #{qcMsgCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

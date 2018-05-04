@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.OutpDoctorDailyAdjustMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.outpadm.OutpDoctorDailyAdjustKey" >
+    <id column="CLINIC_DATE" property="clinicDate" jdbcType="DATE" />
+    <id column="CLINIC_DEPT" property="clinicDept" jdbcType="VARCHAR" />
+    <id column="DOCTOR" property="doctor" jdbcType="VARCHAR" />
+    <id column="QUEUE_NAME" property="queueName" jdbcType="VARCHAR" />
+    <id column="ADJUST_TYPE" property="adjustType" jdbcType="DECIMAL" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.outpadm.OutpDoctorDailyAdjustKey" >
+    delete from OUTPADM.OUTP_DOCTOR_DAILY_ADJUST
+    where CLINIC_DATE = #{clinicDate,jdbcType=DATE}
+      and CLINIC_DEPT = #{clinicDept,jdbcType=VARCHAR}
+      and DOCTOR = #{doctor,jdbcType=VARCHAR}
+      and QUEUE_NAME = #{queueName,jdbcType=VARCHAR}
+      and ADJUST_TYPE = #{adjustType,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.outpadm.OutpDoctorDailyAdjustKey" >
+    insert into OUTPADM.OUTP_DOCTOR_DAILY_ADJUST (CLINIC_DATE, CLINIC_DEPT, DOCTOR, 
+      QUEUE_NAME, ADJUST_TYPE)
+    values (#{clinicDate,jdbcType=DATE}, #{clinicDept,jdbcType=VARCHAR}, #{doctor,jdbcType=VARCHAR}, 
+      #{queueName,jdbcType=VARCHAR}, #{adjustType,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.outpadm.OutpDoctorDailyAdjustKey" >
+    insert into OUTPADM.OUTP_DOCTOR_DAILY_ADJUST
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="clinicDate != null" >
+        CLINIC_DATE,
+      </if>
+      <if test="clinicDept != null" >
+        CLINIC_DEPT,
+      </if>
+      <if test="doctor != null" >
+        DOCTOR,
+      </if>
+      <if test="queueName != null" >
+        QUEUE_NAME,
+      </if>
+      <if test="adjustType != null" >
+        ADJUST_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="clinicDate != null" >
+        #{clinicDate,jdbcType=DATE},
+      </if>
+      <if test="clinicDept != null" >
+        #{clinicDept,jdbcType=VARCHAR},
+      </if>
+      <if test="doctor != null" >
+        #{doctor,jdbcType=VARCHAR},
+      </if>
+      <if test="queueName != null" >
+        #{queueName,jdbcType=VARCHAR},
+      </if>
+      <if test="adjustType != null" >
+        #{adjustType,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+</mapper>

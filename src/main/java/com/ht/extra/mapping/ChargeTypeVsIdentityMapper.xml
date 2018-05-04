@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.ChargeTypeVsIdentityMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.ChargeTypeVsIdentity" >
+    <id column="CHARGE_TYPE" property="chargeType" jdbcType="VARCHAR" />
+    <id column="IDENTITY_SERIAL_NO" property="identitySerialNo" jdbcType="DECIMAL" />
+    <result column="IDENTITY" property="identity" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    CHARGE_TYPE, IDENTITY_SERIAL_NO, IDENTITY
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.ChargeTypeVsIdentityKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.CHARGE_TYPE_VS_IDENTITY
+    where CHARGE_TYPE = #{chargeType,jdbcType=VARCHAR}
+      and IDENTITY_SERIAL_NO = #{identitySerialNo,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.ChargeTypeVsIdentityKey" >
+    delete from COMM.CHARGE_TYPE_VS_IDENTITY
+    where CHARGE_TYPE = #{chargeType,jdbcType=VARCHAR}
+      and IDENTITY_SERIAL_NO = #{identitySerialNo,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.ChargeTypeVsIdentity" >
+    insert into COMM.CHARGE_TYPE_VS_IDENTITY (CHARGE_TYPE, IDENTITY_SERIAL_NO, IDENTITY
+      )
+    values (#{chargeType,jdbcType=VARCHAR}, #{identitySerialNo,jdbcType=DECIMAL}, #{identity,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.ChargeTypeVsIdentity" >
+    insert into COMM.CHARGE_TYPE_VS_IDENTITY
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="chargeType != null" >
+        CHARGE_TYPE,
+      </if>
+      <if test="identitySerialNo != null" >
+        IDENTITY_SERIAL_NO,
+      </if>
+      <if test="identity != null" >
+        IDENTITY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="chargeType != null" >
+        #{chargeType,jdbcType=VARCHAR},
+      </if>
+      <if test="identitySerialNo != null" >
+        #{identitySerialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="identity != null" >
+        #{identity,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.ChargeTypeVsIdentity" >
+    update COMM.CHARGE_TYPE_VS_IDENTITY
+    <set >
+      <if test="identity != null" >
+        IDENTITY = #{identity,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CHARGE_TYPE = #{chargeType,jdbcType=VARCHAR}
+      and IDENTITY_SERIAL_NO = #{identitySerialNo,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.ChargeTypeVsIdentity" >
+    update COMM.CHARGE_TYPE_VS_IDENTITY
+    set IDENTITY = #{identity,jdbcType=VARCHAR}
+    where CHARGE_TYPE = #{chargeType,jdbcType=VARCHAR}
+      and IDENTITY_SERIAL_NO = #{identitySerialNo,jdbcType=DECIMAL}
+  </update>
+</mapper>

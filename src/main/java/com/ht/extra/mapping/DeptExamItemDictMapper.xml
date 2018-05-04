@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.DeptExamItemDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.DeptExamItemDictKey" >
+    <id column="EXAM_CLASS" property="examClass" jdbcType="VARCHAR" />
+    <id column="EXAM_SUB_CLASS" property="examSubClass" jdbcType="VARCHAR" />
+    <id column="EXAM_ITEM_CODE" property="examItemCode" jdbcType="VARCHAR" />
+    <id column="PERFORMED_BY" property="performedBy" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.DeptExamItemDictKey" >
+    delete from COMM.DEPT_EXAM_ITEM_DICT
+    where EXAM_CLASS = #{examClass,jdbcType=VARCHAR}
+      and EXAM_SUB_CLASS = #{examSubClass,jdbcType=VARCHAR}
+      and EXAM_ITEM_CODE = #{examItemCode,jdbcType=VARCHAR}
+      and PERFORMED_BY = #{performedBy,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.DeptExamItemDictKey" >
+    insert into COMM.DEPT_EXAM_ITEM_DICT (EXAM_CLASS, EXAM_SUB_CLASS, EXAM_ITEM_CODE, 
+      PERFORMED_BY)
+    values (#{examClass,jdbcType=VARCHAR}, #{examSubClass,jdbcType=VARCHAR}, #{examItemCode,jdbcType=VARCHAR}, 
+      #{performedBy,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.DeptExamItemDictKey" >
+    insert into COMM.DEPT_EXAM_ITEM_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="examClass != null" >
+        EXAM_CLASS,
+      </if>
+      <if test="examSubClass != null" >
+        EXAM_SUB_CLASS,
+      </if>
+      <if test="examItemCode != null" >
+        EXAM_ITEM_CODE,
+      </if>
+      <if test="performedBy != null" >
+        PERFORMED_BY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="examClass != null" >
+        #{examClass,jdbcType=VARCHAR},
+      </if>
+      <if test="examSubClass != null" >
+        #{examSubClass,jdbcType=VARCHAR},
+      </if>
+      <if test="examItemCode != null" >
+        #{examItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="performedBy != null" >
+        #{performedBy,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

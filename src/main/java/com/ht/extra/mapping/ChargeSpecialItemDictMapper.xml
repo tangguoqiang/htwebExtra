@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.ChargeSpecialItemDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.ChargeSpecialItemDict" >
+    <id column="CHARGE_TYPE" property="chargeType" jdbcType="VARCHAR" />
+    <id column="ITEM_CLASS" property="itemClass" jdbcType="VARCHAR" />
+    <id column="ITEM_CODE" property="itemCode" jdbcType="VARCHAR" />
+    <id column="ITEM_SPEC" property="itemSpec" jdbcType="VARCHAR" />
+    <result column="PROPORTION_NUMERATOR" property="proportionNumerator" jdbcType="DECIMAL" />
+    <result column="PROPORTION_DENOMINATOR" property="proportionDenominator" jdbcType="DECIMAL" />
+    <result column="FREE_LIMIT" property="freeLimit" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    CHARGE_TYPE, ITEM_CLASS, ITEM_CODE, ITEM_SPEC, PROPORTION_NUMERATOR, PROPORTION_DENOMINATOR, 
+    FREE_LIMIT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.ChargeSpecialItemDictKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.CHARGE_SPECIAL_ITEM_DICT
+    where CHARGE_TYPE = #{chargeType,jdbcType=VARCHAR}
+      and ITEM_CLASS = #{itemClass,jdbcType=VARCHAR}
+      and ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+      and ITEM_SPEC = #{itemSpec,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.ChargeSpecialItemDictKey" >
+    delete from COMM.CHARGE_SPECIAL_ITEM_DICT
+    where CHARGE_TYPE = #{chargeType,jdbcType=VARCHAR}
+      and ITEM_CLASS = #{itemClass,jdbcType=VARCHAR}
+      and ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+      and ITEM_SPEC = #{itemSpec,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.ChargeSpecialItemDict" >
+    insert into COMM.CHARGE_SPECIAL_ITEM_DICT (CHARGE_TYPE, ITEM_CLASS, ITEM_CODE, 
+      ITEM_SPEC, PROPORTION_NUMERATOR, PROPORTION_DENOMINATOR, 
+      FREE_LIMIT)
+    values (#{chargeType,jdbcType=VARCHAR}, #{itemClass,jdbcType=VARCHAR}, #{itemCode,jdbcType=VARCHAR}, 
+      #{itemSpec,jdbcType=VARCHAR}, #{proportionNumerator,jdbcType=DECIMAL}, #{proportionDenominator,jdbcType=DECIMAL}, 
+      #{freeLimit,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.ChargeSpecialItemDict" >
+    insert into COMM.CHARGE_SPECIAL_ITEM_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="chargeType != null" >
+        CHARGE_TYPE,
+      </if>
+      <if test="itemClass != null" >
+        ITEM_CLASS,
+      </if>
+      <if test="itemCode != null" >
+        ITEM_CODE,
+      </if>
+      <if test="itemSpec != null" >
+        ITEM_SPEC,
+      </if>
+      <if test="proportionNumerator != null" >
+        PROPORTION_NUMERATOR,
+      </if>
+      <if test="proportionDenominator != null" >
+        PROPORTION_DENOMINATOR,
+      </if>
+      <if test="freeLimit != null" >
+        FREE_LIMIT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="chargeType != null" >
+        #{chargeType,jdbcType=VARCHAR},
+      </if>
+      <if test="itemClass != null" >
+        #{itemClass,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode != null" >
+        #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemSpec != null" >
+        #{itemSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="proportionNumerator != null" >
+        #{proportionNumerator,jdbcType=DECIMAL},
+      </if>
+      <if test="proportionDenominator != null" >
+        #{proportionDenominator,jdbcType=DECIMAL},
+      </if>
+      <if test="freeLimit != null" >
+        #{freeLimit,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.ChargeSpecialItemDict" >
+    update COMM.CHARGE_SPECIAL_ITEM_DICT
+    <set >
+      <if test="proportionNumerator != null" >
+        PROPORTION_NUMERATOR = #{proportionNumerator,jdbcType=DECIMAL},
+      </if>
+      <if test="proportionDenominator != null" >
+        PROPORTION_DENOMINATOR = #{proportionDenominator,jdbcType=DECIMAL},
+      </if>
+      <if test="freeLimit != null" >
+        FREE_LIMIT = #{freeLimit,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where CHARGE_TYPE = #{chargeType,jdbcType=VARCHAR}
+      and ITEM_CLASS = #{itemClass,jdbcType=VARCHAR}
+      and ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+      and ITEM_SPEC = #{itemSpec,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.ChargeSpecialItemDict" >
+    update COMM.CHARGE_SPECIAL_ITEM_DICT
+    set PROPORTION_NUMERATOR = #{proportionNumerator,jdbcType=DECIMAL},
+      PROPORTION_DENOMINATOR = #{proportionDenominator,jdbcType=DECIMAL},
+      FREE_LIMIT = #{freeLimit,jdbcType=DECIMAL}
+    where CHARGE_TYPE = #{chargeType,jdbcType=VARCHAR}
+      and ITEM_CLASS = #{itemClass,jdbcType=VARCHAR}
+      and ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+      and ITEM_SPEC = #{itemSpec,jdbcType=VARCHAR}
+  </update>
+</mapper>

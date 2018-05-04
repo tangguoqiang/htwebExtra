@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.OutpCounselQueueMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.outpadm.OutpCounselQueue" >
+    <id column="COUNSEL_NO" property="counselNo" jdbcType="VARCHAR" />
+    <id column="QUEUE_NAME" property="queueName" jdbcType="VARCHAR" />
+    <id column="CLINIC_LABEL" property="clinicLabel" jdbcType="VARCHAR" />
+    <result column="MAX_LIMITED_PATIENT" property="maxLimitedPatient" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    COUNSEL_NO, QUEUE_NAME, CLINIC_LABEL, MAX_LIMITED_PATIENT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.outpadm.OutpCounselQueueKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from OUTPADM.OUTP_COUNSEL_QUEUE
+    where COUNSEL_NO = #{counselNo,jdbcType=VARCHAR}
+      and QUEUE_NAME = #{queueName,jdbcType=VARCHAR}
+      and CLINIC_LABEL = #{clinicLabel,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.outpadm.OutpCounselQueueKey" >
+    delete from OUTPADM.OUTP_COUNSEL_QUEUE
+    where COUNSEL_NO = #{counselNo,jdbcType=VARCHAR}
+      and QUEUE_NAME = #{queueName,jdbcType=VARCHAR}
+      and CLINIC_LABEL = #{clinicLabel,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.outpadm.OutpCounselQueue" >
+    insert into OUTPADM.OUTP_COUNSEL_QUEUE (COUNSEL_NO, QUEUE_NAME, CLINIC_LABEL, 
+      MAX_LIMITED_PATIENT)
+    values (#{counselNo,jdbcType=VARCHAR}, #{queueName,jdbcType=VARCHAR}, #{clinicLabel,jdbcType=VARCHAR}, 
+      #{maxLimitedPatient,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.outpadm.OutpCounselQueue" >
+    insert into OUTPADM.OUTP_COUNSEL_QUEUE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="counselNo != null" >
+        COUNSEL_NO,
+      </if>
+      <if test="queueName != null" >
+        QUEUE_NAME,
+      </if>
+      <if test="clinicLabel != null" >
+        CLINIC_LABEL,
+      </if>
+      <if test="maxLimitedPatient != null" >
+        MAX_LIMITED_PATIENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="counselNo != null" >
+        #{counselNo,jdbcType=VARCHAR},
+      </if>
+      <if test="queueName != null" >
+        #{queueName,jdbcType=VARCHAR},
+      </if>
+      <if test="clinicLabel != null" >
+        #{clinicLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="maxLimitedPatient != null" >
+        #{maxLimitedPatient,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.outpadm.OutpCounselQueue" >
+    update OUTPADM.OUTP_COUNSEL_QUEUE
+    <set >
+      <if test="maxLimitedPatient != null" >
+        MAX_LIMITED_PATIENT = #{maxLimitedPatient,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where COUNSEL_NO = #{counselNo,jdbcType=VARCHAR}
+      and QUEUE_NAME = #{queueName,jdbcType=VARCHAR}
+      and CLINIC_LABEL = #{clinicLabel,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.outpadm.OutpCounselQueue" >
+    update OUTPADM.OUTP_COUNSEL_QUEUE
+    set MAX_LIMITED_PATIENT = #{maxLimitedPatient,jdbcType=DECIMAL}
+    where COUNSEL_NO = #{counselNo,jdbcType=VARCHAR}
+      and QUEUE_NAME = #{queueName,jdbcType=VARCHAR}
+      and CLINIC_LABEL = #{clinicLabel,jdbcType=VARCHAR}
+  </update>
+</mapper>

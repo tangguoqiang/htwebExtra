@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.OfficialDrugCatalogMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.OfficialDrugCatalog" >
+    <id column="CHARGE_TYPE" property="chargeType" jdbcType="VARCHAR" />
+    <id column="DRUG_CODE" property="drugCode" jdbcType="VARCHAR" />
+    <id column="DRUG_SPEC" property="drugSpec" jdbcType="VARCHAR" />
+    <result column="CONSTRAINED_LEVEL" property="constrainedLevel" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    CHARGE_TYPE, DRUG_CODE, DRUG_SPEC, CONSTRAINED_LEVEL
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.OfficialDrugCatalogKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.OFFICIAL_DRUG_CATALOG
+    where CHARGE_TYPE = #{chargeType,jdbcType=VARCHAR}
+      and DRUG_CODE = #{drugCode,jdbcType=VARCHAR}
+      and DRUG_SPEC = #{drugSpec,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.OfficialDrugCatalogKey" >
+    delete from COMM.OFFICIAL_DRUG_CATALOG
+    where CHARGE_TYPE = #{chargeType,jdbcType=VARCHAR}
+      and DRUG_CODE = #{drugCode,jdbcType=VARCHAR}
+      and DRUG_SPEC = #{drugSpec,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.OfficialDrugCatalog" >
+    insert into COMM.OFFICIAL_DRUG_CATALOG (CHARGE_TYPE, DRUG_CODE, DRUG_SPEC, 
+      CONSTRAINED_LEVEL)
+    values (#{chargeType,jdbcType=VARCHAR}, #{drugCode,jdbcType=VARCHAR}, #{drugSpec,jdbcType=VARCHAR}, 
+      #{constrainedLevel,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.OfficialDrugCatalog" >
+    insert into COMM.OFFICIAL_DRUG_CATALOG
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="chargeType != null" >
+        CHARGE_TYPE,
+      </if>
+      <if test="drugCode != null" >
+        DRUG_CODE,
+      </if>
+      <if test="drugSpec != null" >
+        DRUG_SPEC,
+      </if>
+      <if test="constrainedLevel != null" >
+        CONSTRAINED_LEVEL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="chargeType != null" >
+        #{chargeType,jdbcType=VARCHAR},
+      </if>
+      <if test="drugCode != null" >
+        #{drugCode,jdbcType=VARCHAR},
+      </if>
+      <if test="drugSpec != null" >
+        #{drugSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="constrainedLevel != null" >
+        #{constrainedLevel,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.OfficialDrugCatalog" >
+    update COMM.OFFICIAL_DRUG_CATALOG
+    <set >
+      <if test="constrainedLevel != null" >
+        CONSTRAINED_LEVEL = #{constrainedLevel,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where CHARGE_TYPE = #{chargeType,jdbcType=VARCHAR}
+      and DRUG_CODE = #{drugCode,jdbcType=VARCHAR}
+      and DRUG_SPEC = #{drugSpec,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.OfficialDrugCatalog" >
+    update COMM.OFFICIAL_DRUG_CATALOG
+    set CONSTRAINED_LEVEL = #{constrainedLevel,jdbcType=DECIMAL}
+    where CHARGE_TYPE = #{chargeType,jdbcType=VARCHAR}
+      and DRUG_CODE = #{drugCode,jdbcType=VARCHAR}
+      and DRUG_SPEC = #{drugSpec,jdbcType=VARCHAR}
+  </update>
+</mapper>

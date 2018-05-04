@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.HelpMsgMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.HelpMsg" >
+    <id column="APPLICATION" property="application" jdbcType="VARCHAR" />
+    <id column="WINDOW_ID" property="windowId" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.ht.extra.pojo.comm.HelpMsg" extends="BaseResultMap" >
+    <result column="MESSAGES" property="messages" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    APPLICATION, WINDOW_ID
+  </sql>
+  <sql id="Blob_Column_List" >
+    MESSAGES
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="com.ht.extra.pojo.comm.HelpMsgKey" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from COMM.HELP_MSG
+    where APPLICATION = #{application,jdbcType=VARCHAR}
+      and WINDOW_ID = #{windowId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.HelpMsgKey" >
+    delete from COMM.HELP_MSG
+    where APPLICATION = #{application,jdbcType=VARCHAR}
+      and WINDOW_ID = #{windowId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.HelpMsg" >
+    insert into COMM.HELP_MSG (APPLICATION, WINDOW_ID, MESSAGES
+      )
+    values (#{application,jdbcType=VARCHAR}, #{windowId,jdbcType=VARCHAR}, #{messages,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.HelpMsg" >
+    insert into COMM.HELP_MSG
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="application != null" >
+        APPLICATION,
+      </if>
+      <if test="windowId != null" >
+        WINDOW_ID,
+      </if>
+      <if test="messages != null" >
+        MESSAGES,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="application != null" >
+        #{application,jdbcType=VARCHAR},
+      </if>
+      <if test="windowId != null" >
+        #{windowId,jdbcType=VARCHAR},
+      </if>
+      <if test="messages != null" >
+        #{messages,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.HelpMsg" >
+    update COMM.HELP_MSG
+    <set >
+      <if test="messages != null" >
+        MESSAGES = #{messages,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where APPLICATION = #{application,jdbcType=VARCHAR}
+      and WINDOW_ID = #{windowId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ht.extra.pojo.comm.HelpMsg" >
+    update COMM.HELP_MSG
+    set MESSAGES = #{messages,jdbcType=LONGVARCHAR}
+    where APPLICATION = #{application,jdbcType=VARCHAR}
+      and WINDOW_ID = #{windowId,jdbcType=VARCHAR}
+  </update>
+</mapper>

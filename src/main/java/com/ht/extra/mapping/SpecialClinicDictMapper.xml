@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.SpecialClinicDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.SpecialClinicDict" >
+    <id column="SPECIAL_CLINIC_NAME" property="specialClinicName" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="SPECIAL_CLINIC_CODE" property="specialClinicCode" jdbcType="VARCHAR" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SPECIAL_CLINIC_NAME, SERIAL_NO, SPECIAL_CLINIC_CODE, INPUT_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.SPECIAL_CLINIC_DICT
+    where SPECIAL_CLINIC_NAME = #{specialClinicName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.SPECIAL_CLINIC_DICT
+    where SPECIAL_CLINIC_NAME = #{specialClinicName,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.SpecialClinicDict" >
+    insert into COMM.SPECIAL_CLINIC_DICT (SPECIAL_CLINIC_NAME, SERIAL_NO, SPECIAL_CLINIC_CODE, 
+      INPUT_CODE)
+    values (#{specialClinicName,jdbcType=VARCHAR}, #{serialNo,jdbcType=DECIMAL}, #{specialClinicCode,jdbcType=VARCHAR}, 
+      #{inputCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.SpecialClinicDict" >
+    insert into COMM.SPECIAL_CLINIC_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="specialClinicName != null" >
+        SPECIAL_CLINIC_NAME,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="specialClinicCode != null" >
+        SPECIAL_CLINIC_CODE,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="specialClinicName != null" >
+        #{specialClinicName,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="specialClinicCode != null" >
+        #{specialClinicCode,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.SpecialClinicDict" >
+    update COMM.SPECIAL_CLINIC_DICT
+    <set >
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="specialClinicCode != null" >
+        SPECIAL_CLINIC_CODE = #{specialClinicCode,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SPECIAL_CLINIC_NAME = #{specialClinicName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.SpecialClinicDict" >
+    update COMM.SPECIAL_CLINIC_DICT
+    set SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      SPECIAL_CLINIC_CODE = #{specialClinicCode,jdbcType=VARCHAR},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR}
+    where SPECIAL_CLINIC_NAME = #{specialClinicName,jdbcType=VARCHAR}
+  </update>
+</mapper>

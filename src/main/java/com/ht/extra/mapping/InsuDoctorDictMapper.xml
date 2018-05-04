@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.InsuDoctorDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.insurance.InsuDoctorDict" >
+    <id column="DOCT_CODE" property="doctCode" jdbcType="VARCHAR" />
+    <result column="DOCT_NAME" property="doctName" jdbcType="VARCHAR" />
+    <result column="DOCT_DEPT_CODE" property="doctDeptCode" jdbcType="VARCHAR" />
+    <result column="DOCT_SEX" property="doctSex" jdbcType="VARCHAR" />
+    <result column="DOCT_INSU_NO" property="doctInsuNo" jdbcType="VARCHAR" />
+    <result column="DOCT_EDUCATION" property="doctEducation" jdbcType="VARCHAR" />
+    <result column="DOCT_CERTIFICATE_NO" property="doctCertificateNo" jdbcType="VARCHAR" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    DOCT_CODE, DOCT_NAME, DOCT_DEPT_CODE, DOCT_SEX, DOCT_INSU_NO, DOCT_EDUCATION, DOCT_CERTIFICATE_NO, 
+    INPUT_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from INSURANCE.INSU_DOCTOR_DICT
+    where DOCT_CODE = #{doctCode,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByDoctorName" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from INSURANCE.INSU_DOCTOR_DICT
+    where DOCT_NAME = #{0}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from INSURANCE.INSU_DOCTOR_DICT
+    where DOCT_CODE = #{doctCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.insurance.InsuDoctorDict" >
+    insert into INSURANCE.INSU_DOCTOR_DICT (DOCT_CODE, DOCT_NAME, DOCT_DEPT_CODE, 
+      DOCT_SEX, DOCT_INSU_NO, DOCT_EDUCATION, 
+      DOCT_CERTIFICATE_NO, INPUT_CODE)
+    values (#{doctCode,jdbcType=VARCHAR}, #{doctName,jdbcType=VARCHAR}, #{doctDeptCode,jdbcType=VARCHAR}, 
+      #{doctSex,jdbcType=VARCHAR}, #{doctInsuNo,jdbcType=VARCHAR}, #{doctEducation,jdbcType=VARCHAR}, 
+      #{doctCertificateNo,jdbcType=VARCHAR}, #{inputCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.insurance.InsuDoctorDict" >
+    insert into INSURANCE.INSU_DOCTOR_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="doctCode != null" >
+        DOCT_CODE,
+      </if>
+      <if test="doctName != null" >
+        DOCT_NAME,
+      </if>
+      <if test="doctDeptCode != null" >
+        DOCT_DEPT_CODE,
+      </if>
+      <if test="doctSex != null" >
+        DOCT_SEX,
+      </if>
+      <if test="doctInsuNo != null" >
+        DOCT_INSU_NO,
+      </if>
+      <if test="doctEducation != null" >
+        DOCT_EDUCATION,
+      </if>
+      <if test="doctCertificateNo != null" >
+        DOCT_CERTIFICATE_NO,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="doctCode != null" >
+        #{doctCode,jdbcType=VARCHAR},
+      </if>
+      <if test="doctName != null" >
+        #{doctName,jdbcType=VARCHAR},
+      </if>
+      <if test="doctDeptCode != null" >
+        #{doctDeptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="doctSex != null" >
+        #{doctSex,jdbcType=VARCHAR},
+      </if>
+      <if test="doctInsuNo != null" >
+        #{doctInsuNo,jdbcType=VARCHAR},
+      </if>
+      <if test="doctEducation != null" >
+        #{doctEducation,jdbcType=VARCHAR},
+      </if>
+      <if test="doctCertificateNo != null" >
+        #{doctCertificateNo,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.insurance.InsuDoctorDict" >
+    update INSURANCE.INSU_DOCTOR_DICT
+    <set >
+      <if test="doctName != null" >
+        DOCT_NAME = #{doctName,jdbcType=VARCHAR},
+      </if>
+      <if test="doctDeptCode != null" >
+        DOCT_DEPT_CODE = #{doctDeptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="doctSex != null" >
+        DOCT_SEX = #{doctSex,jdbcType=VARCHAR},
+      </if>
+      <if test="doctInsuNo != null" >
+        DOCT_INSU_NO = #{doctInsuNo,jdbcType=VARCHAR},
+      </if>
+      <if test="doctEducation != null" >
+        DOCT_EDUCATION = #{doctEducation,jdbcType=VARCHAR},
+      </if>
+      <if test="doctCertificateNo != null" >
+        DOCT_CERTIFICATE_NO = #{doctCertificateNo,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DOCT_CODE = #{doctCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.insurance.InsuDoctorDict" >
+    update INSURANCE.INSU_DOCTOR_DICT
+    set DOCT_NAME = #{doctName,jdbcType=VARCHAR},
+      DOCT_DEPT_CODE = #{doctDeptCode,jdbcType=VARCHAR},
+      DOCT_SEX = #{doctSex,jdbcType=VARCHAR},
+      DOCT_INSU_NO = #{doctInsuNo,jdbcType=VARCHAR},
+      DOCT_EDUCATION = #{doctEducation,jdbcType=VARCHAR},
+      DOCT_CERTIFICATE_NO = #{doctCertificateNo,jdbcType=VARCHAR},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR}
+    where DOCT_CODE = #{doctCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

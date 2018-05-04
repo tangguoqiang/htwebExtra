@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.MdcClassDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.medrec.MdcClassDict" >
+    <id column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="CCLASS_CODE" property="cclassCode" jdbcType="VARCHAR" />
+    <result column="CCLASS_NAME" property="cclassName" jdbcType="VARCHAR" />
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+    <result column="USER_DEPT" property="userDept" jdbcType="VARCHAR" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SERIAL_NO, CCLASS_CODE, CCLASS_NAME, USER_ID, USER_DEPT, INPUT_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from MEDREC.MDC_CLASS_DICT
+    where SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from MEDREC.MDC_CLASS_DICT
+    where SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.medrec.MdcClassDict" >
+    insert into MEDREC.MDC_CLASS_DICT (SERIAL_NO, CCLASS_CODE, CCLASS_NAME, 
+      USER_ID, USER_DEPT, INPUT_CODE
+      )
+    values (#{serialNo,jdbcType=DECIMAL}, #{cclassCode,jdbcType=VARCHAR}, #{cclassName,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=VARCHAR}, #{userDept,jdbcType=VARCHAR}, #{inputCode,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.medrec.MdcClassDict" >
+    insert into MEDREC.MDC_CLASS_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="cclassCode != null" >
+        CCLASS_CODE,
+      </if>
+      <if test="cclassName != null" >
+        CCLASS_NAME,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="userDept != null" >
+        USER_DEPT,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="cclassCode != null" >
+        #{cclassCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cclassName != null" >
+        #{cclassName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userDept != null" >
+        #{userDept,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.medrec.MdcClassDict" >
+    update MEDREC.MDC_CLASS_DICT
+    <set >
+      <if test="cclassCode != null" >
+        CCLASS_CODE = #{cclassCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cclassName != null" >
+        CCLASS_NAME = #{cclassName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userDept != null" >
+        USER_DEPT = #{userDept,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.medrec.MdcClassDict" >
+    update MEDREC.MDC_CLASS_DICT
+    set CCLASS_CODE = #{cclassCode,jdbcType=VARCHAR},
+      CCLASS_NAME = #{cclassName,jdbcType=VARCHAR},
+      USER_ID = #{userId,jdbcType=VARCHAR},
+      USER_DEPT = #{userDept,jdbcType=VARCHAR},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR}
+    where SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+  </update>
+</mapper>

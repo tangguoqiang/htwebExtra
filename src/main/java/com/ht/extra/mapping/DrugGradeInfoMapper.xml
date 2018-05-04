@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.DrugGradeInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.DrugGradeInfo" >
+    <id column="DRUG_CODE" property="drugCode" jdbcType="VARCHAR" />
+    <id column="DRUG_SPEC" property="drugSpec" jdbcType="VARCHAR" />
+    <result column="DRUG_NAME" property="drugName" jdbcType="VARCHAR" />
+    <result column="DRUG_FORM" property="drugForm" jdbcType="VARCHAR" />
+    <result column="CLASS1" property="class1" jdbcType="VARCHAR" />
+    <result column="CLASS2" property="class2" jdbcType="VARCHAR" />
+    <result column="CLASS3" property="class3" jdbcType="VARCHAR" />
+    <result column="CLASS4" property="class4" jdbcType="VARCHAR" />
+    <result column="CLASS5" property="class5" jdbcType="VARCHAR" />
+    <result column="CLASS6" property="class6" jdbcType="VARCHAR" />
+    <result column="DOSE_PER_UNIT" property="dosePerUnit" jdbcType="DECIMAL" />
+    <result column="DOSE_UNITS" property="doseUnits" jdbcType="VARCHAR" />
+    <result column="DOSE_PER_DAY" property="dosePerDay" jdbcType="DECIMAL" />
+    <result column="ADMINISTRATION" property="administration" jdbcType="VARCHAR" />
+    <result column="VALID_STATUS" property="validStatus" jdbcType="DECIMAL" />
+    <result column="CATALOG_STATUS" property="catalogStatus" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    DRUG_CODE, DRUG_SPEC, DRUG_NAME, DRUG_FORM, CLASS1, CLASS2, CLASS3, CLASS4, CLASS5, 
+    CLASS6, DOSE_PER_UNIT, DOSE_UNITS, DOSE_PER_DAY, ADMINISTRATION, VALID_STATUS, CATALOG_STATUS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.DrugGradeInfoKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.DRUG_GRADE_INFO
+    where DRUG_CODE = #{drugCode,jdbcType=VARCHAR}
+      and DRUG_SPEC = #{drugSpec,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.DrugGradeInfoKey" >
+    delete from COMM.DRUG_GRADE_INFO
+    where DRUG_CODE = #{drugCode,jdbcType=VARCHAR}
+      and DRUG_SPEC = #{drugSpec,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.DrugGradeInfo" >
+    insert into COMM.DRUG_GRADE_INFO (DRUG_CODE, DRUG_SPEC, DRUG_NAME, 
+      DRUG_FORM, CLASS1, CLASS2, 
+      CLASS3, CLASS4, CLASS5, 
+      CLASS6, DOSE_PER_UNIT, DOSE_UNITS, 
+      DOSE_PER_DAY, ADMINISTRATION, VALID_STATUS, 
+      CATALOG_STATUS)
+    values (#{drugCode,jdbcType=VARCHAR}, #{drugSpec,jdbcType=VARCHAR}, #{drugName,jdbcType=VARCHAR}, 
+      #{drugForm,jdbcType=VARCHAR}, #{class1,jdbcType=VARCHAR}, #{class2,jdbcType=VARCHAR}, 
+      #{class3,jdbcType=VARCHAR}, #{class4,jdbcType=VARCHAR}, #{class5,jdbcType=VARCHAR}, 
+      #{class6,jdbcType=VARCHAR}, #{dosePerUnit,jdbcType=DECIMAL}, #{doseUnits,jdbcType=VARCHAR}, 
+      #{dosePerDay,jdbcType=DECIMAL}, #{administration,jdbcType=VARCHAR}, #{validStatus,jdbcType=DECIMAL}, 
+      #{catalogStatus,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.DrugGradeInfo" >
+    insert into COMM.DRUG_GRADE_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="drugCode != null" >
+        DRUG_CODE,
+      </if>
+      <if test="drugSpec != null" >
+        DRUG_SPEC,
+      </if>
+      <if test="drugName != null" >
+        DRUG_NAME,
+      </if>
+      <if test="drugForm != null" >
+        DRUG_FORM,
+      </if>
+      <if test="class1 != null" >
+        CLASS1,
+      </if>
+      <if test="class2 != null" >
+        CLASS2,
+      </if>
+      <if test="class3 != null" >
+        CLASS3,
+      </if>
+      <if test="class4 != null" >
+        CLASS4,
+      </if>
+      <if test="class5 != null" >
+        CLASS5,
+      </if>
+      <if test="class6 != null" >
+        CLASS6,
+      </if>
+      <if test="dosePerUnit != null" >
+        DOSE_PER_UNIT,
+      </if>
+      <if test="doseUnits != null" >
+        DOSE_UNITS,
+      </if>
+      <if test="dosePerDay != null" >
+        DOSE_PER_DAY,
+      </if>
+      <if test="administration != null" >
+        ADMINISTRATION,
+      </if>
+      <if test="validStatus != null" >
+        VALID_STATUS,
+      </if>
+      <if test="catalogStatus != null" >
+        CATALOG_STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="drugCode != null" >
+        #{drugCode,jdbcType=VARCHAR},
+      </if>
+      <if test="drugSpec != null" >
+        #{drugSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="drugName != null" >
+        #{drugName,jdbcType=VARCHAR},
+      </if>
+      <if test="drugForm != null" >
+        #{drugForm,jdbcType=VARCHAR},
+      </if>
+      <if test="class1 != null" >
+        #{class1,jdbcType=VARCHAR},
+      </if>
+      <if test="class2 != null" >
+        #{class2,jdbcType=VARCHAR},
+      </if>
+      <if test="class3 != null" >
+        #{class3,jdbcType=VARCHAR},
+      </if>
+      <if test="class4 != null" >
+        #{class4,jdbcType=VARCHAR},
+      </if>
+      <if test="class5 != null" >
+        #{class5,jdbcType=VARCHAR},
+      </if>
+      <if test="class6 != null" >
+        #{class6,jdbcType=VARCHAR},
+      </if>
+      <if test="dosePerUnit != null" >
+        #{dosePerUnit,jdbcType=DECIMAL},
+      </if>
+      <if test="doseUnits != null" >
+        #{doseUnits,jdbcType=VARCHAR},
+      </if>
+      <if test="dosePerDay != null" >
+        #{dosePerDay,jdbcType=DECIMAL},
+      </if>
+      <if test="administration != null" >
+        #{administration,jdbcType=VARCHAR},
+      </if>
+      <if test="validStatus != null" >
+        #{validStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="catalogStatus != null" >
+        #{catalogStatus,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.DrugGradeInfo" >
+    update COMM.DRUG_GRADE_INFO
+    <set >
+      <if test="drugName != null" >
+        DRUG_NAME = #{drugName,jdbcType=VARCHAR},
+      </if>
+      <if test="drugForm != null" >
+        DRUG_FORM = #{drugForm,jdbcType=VARCHAR},
+      </if>
+      <if test="class1 != null" >
+        CLASS1 = #{class1,jdbcType=VARCHAR},
+      </if>
+      <if test="class2 != null" >
+        CLASS2 = #{class2,jdbcType=VARCHAR},
+      </if>
+      <if test="class3 != null" >
+        CLASS3 = #{class3,jdbcType=VARCHAR},
+      </if>
+      <if test="class4 != null" >
+        CLASS4 = #{class4,jdbcType=VARCHAR},
+      </if>
+      <if test="class5 != null" >
+        CLASS5 = #{class5,jdbcType=VARCHAR},
+      </if>
+      <if test="class6 != null" >
+        CLASS6 = #{class6,jdbcType=VARCHAR},
+      </if>
+      <if test="dosePerUnit != null" >
+        DOSE_PER_UNIT = #{dosePerUnit,jdbcType=DECIMAL},
+      </if>
+      <if test="doseUnits != null" >
+        DOSE_UNITS = #{doseUnits,jdbcType=VARCHAR},
+      </if>
+      <if test="dosePerDay != null" >
+        DOSE_PER_DAY = #{dosePerDay,jdbcType=DECIMAL},
+      </if>
+      <if test="administration != null" >
+        ADMINISTRATION = #{administration,jdbcType=VARCHAR},
+      </if>
+      <if test="validStatus != null" >
+        VALID_STATUS = #{validStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="catalogStatus != null" >
+        CATALOG_STATUS = #{catalogStatus,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where DRUG_CODE = #{drugCode,jdbcType=VARCHAR}
+      and DRUG_SPEC = #{drugSpec,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.DrugGradeInfo" >
+    update COMM.DRUG_GRADE_INFO
+    set DRUG_NAME = #{drugName,jdbcType=VARCHAR},
+      DRUG_FORM = #{drugForm,jdbcType=VARCHAR},
+      CLASS1 = #{class1,jdbcType=VARCHAR},
+      CLASS2 = #{class2,jdbcType=VARCHAR},
+      CLASS3 = #{class3,jdbcType=VARCHAR},
+      CLASS4 = #{class4,jdbcType=VARCHAR},
+      CLASS5 = #{class5,jdbcType=VARCHAR},
+      CLASS6 = #{class6,jdbcType=VARCHAR},
+      DOSE_PER_UNIT = #{dosePerUnit,jdbcType=DECIMAL},
+      DOSE_UNITS = #{doseUnits,jdbcType=VARCHAR},
+      DOSE_PER_DAY = #{dosePerDay,jdbcType=DECIMAL},
+      ADMINISTRATION = #{administration,jdbcType=VARCHAR},
+      VALID_STATUS = #{validStatus,jdbcType=DECIMAL},
+      CATALOG_STATUS = #{catalogStatus,jdbcType=DECIMAL}
+    where DRUG_CODE = #{drugCode,jdbcType=VARCHAR}
+      and DRUG_SPEC = #{drugSpec,jdbcType=VARCHAR}
+  </update>
+</mapper>

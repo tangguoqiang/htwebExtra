@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.LocalIdClassDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.LocalIdClassDict" >
+    <id column="LOCAL_ID_CLASS_CODE" property="localIdClassCode" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="LOCAL_ID_CLASS_NAME" property="localIdClassName" jdbcType="VARCHAR" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    LOCAL_ID_CLASS_CODE, SERIAL_NO, LOCAL_ID_CLASS_NAME, INPUT_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.LOCAL_ID_CLASS_DICT
+    where LOCAL_ID_CLASS_CODE = #{localIdClassCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.LOCAL_ID_CLASS_DICT
+    where LOCAL_ID_CLASS_CODE = #{localIdClassCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.LocalIdClassDict" >
+    insert into COMM.LOCAL_ID_CLASS_DICT (LOCAL_ID_CLASS_CODE, SERIAL_NO, LOCAL_ID_CLASS_NAME, 
+      INPUT_CODE)
+    values (#{localIdClassCode,jdbcType=VARCHAR}, #{serialNo,jdbcType=DECIMAL}, #{localIdClassName,jdbcType=VARCHAR}, 
+      #{inputCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.LocalIdClassDict" >
+    insert into COMM.LOCAL_ID_CLASS_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="localIdClassCode != null" >
+        LOCAL_ID_CLASS_CODE,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="localIdClassName != null" >
+        LOCAL_ID_CLASS_NAME,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="localIdClassCode != null" >
+        #{localIdClassCode,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="localIdClassName != null" >
+        #{localIdClassName,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.LocalIdClassDict" >
+    update COMM.LOCAL_ID_CLASS_DICT
+    <set >
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="localIdClassName != null" >
+        LOCAL_ID_CLASS_NAME = #{localIdClassName,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where LOCAL_ID_CLASS_CODE = #{localIdClassCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.LocalIdClassDict" >
+    update COMM.LOCAL_ID_CLASS_DICT
+    set SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      LOCAL_ID_CLASS_NAME = #{localIdClassName,jdbcType=VARCHAR},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR}
+    where LOCAL_ID_CLASS_CODE = #{localIdClassCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

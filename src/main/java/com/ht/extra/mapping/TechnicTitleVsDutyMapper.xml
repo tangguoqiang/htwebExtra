@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.TechnicTitleVsDutyMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.TechnicTitleVsDuty" >
+    <id column="GRADE_OF_TECHNIC" property="gradeOfTechnic" jdbcType="VARCHAR" />
+    <id column="GRADE_OF_TITLE" property="gradeOfTitle" jdbcType="VARCHAR" />
+    <result column="GRADE_OF_DUTY" property="gradeOfDuty" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    GRADE_OF_TECHNIC, GRADE_OF_TITLE, GRADE_OF_DUTY
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.TechnicTitleVsDutyKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.TECHNIC_TITLE_VS_DUTY
+    where GRADE_OF_TECHNIC = #{gradeOfTechnic,jdbcType=VARCHAR}
+      and GRADE_OF_TITLE = #{gradeOfTitle,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.TechnicTitleVsDutyKey" >
+    delete from COMM.TECHNIC_TITLE_VS_DUTY
+    where GRADE_OF_TECHNIC = #{gradeOfTechnic,jdbcType=VARCHAR}
+      and GRADE_OF_TITLE = #{gradeOfTitle,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.TechnicTitleVsDuty" >
+    insert into COMM.TECHNIC_TITLE_VS_DUTY (GRADE_OF_TECHNIC, GRADE_OF_TITLE, GRADE_OF_DUTY
+      )
+    values (#{gradeOfTechnic,jdbcType=VARCHAR}, #{gradeOfTitle,jdbcType=VARCHAR}, #{gradeOfDuty,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.TechnicTitleVsDuty" >
+    insert into COMM.TECHNIC_TITLE_VS_DUTY
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="gradeOfTechnic != null" >
+        GRADE_OF_TECHNIC,
+      </if>
+      <if test="gradeOfTitle != null" >
+        GRADE_OF_TITLE,
+      </if>
+      <if test="gradeOfDuty != null" >
+        GRADE_OF_DUTY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="gradeOfTechnic != null" >
+        #{gradeOfTechnic,jdbcType=VARCHAR},
+      </if>
+      <if test="gradeOfTitle != null" >
+        #{gradeOfTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="gradeOfDuty != null" >
+        #{gradeOfDuty,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.TechnicTitleVsDuty" >
+    update COMM.TECHNIC_TITLE_VS_DUTY
+    <set >
+      <if test="gradeOfDuty != null" >
+        GRADE_OF_DUTY = #{gradeOfDuty,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where GRADE_OF_TECHNIC = #{gradeOfTechnic,jdbcType=VARCHAR}
+      and GRADE_OF_TITLE = #{gradeOfTitle,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.TechnicTitleVsDuty" >
+    update COMM.TECHNIC_TITLE_VS_DUTY
+    set GRADE_OF_DUTY = #{gradeOfDuty,jdbcType=VARCHAR}
+    where GRADE_OF_TECHNIC = #{gradeOfTechnic,jdbcType=VARCHAR}
+      and GRADE_OF_TITLE = #{gradeOfTitle,jdbcType=VARCHAR}
+  </update>
+</mapper>

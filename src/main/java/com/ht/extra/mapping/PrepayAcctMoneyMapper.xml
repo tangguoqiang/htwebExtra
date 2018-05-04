@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.PrepayAcctMoneyMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.inpbill.PrepayAcctMoney" >
+    <id column="ACCT_NO" property="acctNo" jdbcType="VARCHAR" />
+    <id column="MONEY_TYPE" property="moneyType" jdbcType="VARCHAR" />
+    <result column="INCOME_AMOUNT" property="incomeAmount" jdbcType="DECIMAL" />
+    <result column="REFUNDED_AMOUNT" property="refundedAmount" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ACCT_NO, MONEY_TYPE, INCOME_AMOUNT, REFUNDED_AMOUNT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.inpbill.PrepayAcctMoneyKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from INPBILL.PREPAY_ACCT_MONEY
+    where ACCT_NO = #{acctNo,jdbcType=VARCHAR}
+      and MONEY_TYPE = #{moneyType,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.inpbill.PrepayAcctMoneyKey" >
+    delete from INPBILL.PREPAY_ACCT_MONEY
+    where ACCT_NO = #{acctNo,jdbcType=VARCHAR}
+      and MONEY_TYPE = #{moneyType,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.inpbill.PrepayAcctMoney" >
+    insert into INPBILL.PREPAY_ACCT_MONEY (ACCT_NO, MONEY_TYPE, INCOME_AMOUNT, 
+      REFUNDED_AMOUNT)
+    values (#{acctNo,jdbcType=VARCHAR}, #{moneyType,jdbcType=VARCHAR}, #{incomeAmount,jdbcType=DECIMAL}, 
+      #{refundedAmount,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.inpbill.PrepayAcctMoney" >
+    insert into INPBILL.PREPAY_ACCT_MONEY
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="acctNo != null" >
+        ACCT_NO,
+      </if>
+      <if test="moneyType != null" >
+        MONEY_TYPE,
+      </if>
+      <if test="incomeAmount != null" >
+        INCOME_AMOUNT,
+      </if>
+      <if test="refundedAmount != null" >
+        REFUNDED_AMOUNT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="acctNo != null" >
+        #{acctNo,jdbcType=VARCHAR},
+      </if>
+      <if test="moneyType != null" >
+        #{moneyType,jdbcType=VARCHAR},
+      </if>
+      <if test="incomeAmount != null" >
+        #{incomeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="refundedAmount != null" >
+        #{refundedAmount,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.inpbill.PrepayAcctMoney" >
+    update INPBILL.PREPAY_ACCT_MONEY
+    <set >
+      <if test="incomeAmount != null" >
+        INCOME_AMOUNT = #{incomeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="refundedAmount != null" >
+        REFUNDED_AMOUNT = #{refundedAmount,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ACCT_NO = #{acctNo,jdbcType=VARCHAR}
+      and MONEY_TYPE = #{moneyType,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.inpbill.PrepayAcctMoney" >
+    update INPBILL.PREPAY_ACCT_MONEY
+    set INCOME_AMOUNT = #{incomeAmount,jdbcType=DECIMAL},
+      REFUNDED_AMOUNT = #{refundedAmount,jdbcType=DECIMAL}
+    where ACCT_NO = #{acctNo,jdbcType=VARCHAR}
+      and MONEY_TYPE = #{moneyType,jdbcType=VARCHAR}
+  </update>
+</mapper>

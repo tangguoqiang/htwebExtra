@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.ApplicationGrantLogMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.ApplicationGrantLog" >
+    <id column="USER_ID" property="userId" jdbcType="VARCHAR" />
+    <id column="APPLICATION" property="application" jdbcType="VARCHAR" />
+    <id column="LOG_DATE_TIME" property="logDateTime" jdbcType="DATE" />
+    <result column="OLD_CAPABILITY" property="oldCapability" jdbcType="VARCHAR" />
+    <result column="NEW_CAPABILITY" property="newCapability" jdbcType="VARCHAR" />
+    <result column="DB_USER" property="dbUser" jdbcType="VARCHAR" />
+    <result column="MACHINE" property="machine" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    USER_ID, APPLICATION, LOG_DATE_TIME, OLD_CAPABILITY, NEW_CAPABILITY, DB_USER, MACHINE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.ApplicationGrantLogKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.APPLICATION_GRANT_LOG
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+      and APPLICATION = #{application,jdbcType=VARCHAR}
+      and LOG_DATE_TIME = #{logDateTime,jdbcType=DATE}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.ApplicationGrantLogKey" >
+    delete from COMM.APPLICATION_GRANT_LOG
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+      and APPLICATION = #{application,jdbcType=VARCHAR}
+      and LOG_DATE_TIME = #{logDateTime,jdbcType=DATE}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.ApplicationGrantLog" >
+    insert into COMM.APPLICATION_GRANT_LOG (USER_ID, APPLICATION, LOG_DATE_TIME, 
+      OLD_CAPABILITY, NEW_CAPABILITY, DB_USER, 
+      MACHINE)
+    values (#{userId,jdbcType=VARCHAR}, #{application,jdbcType=VARCHAR}, #{logDateTime,jdbcType=DATE}, 
+      #{oldCapability,jdbcType=VARCHAR}, #{newCapability,jdbcType=VARCHAR}, #{dbUser,jdbcType=VARCHAR}, 
+      #{machine,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.ApplicationGrantLog" >
+    insert into COMM.APPLICATION_GRANT_LOG
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="application != null" >
+        APPLICATION,
+      </if>
+      <if test="logDateTime != null" >
+        LOG_DATE_TIME,
+      </if>
+      <if test="oldCapability != null" >
+        OLD_CAPABILITY,
+      </if>
+      <if test="newCapability != null" >
+        NEW_CAPABILITY,
+      </if>
+      <if test="dbUser != null" >
+        DB_USER,
+      </if>
+      <if test="machine != null" >
+        MACHINE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="application != null" >
+        #{application,jdbcType=VARCHAR},
+      </if>
+      <if test="logDateTime != null" >
+        #{logDateTime,jdbcType=DATE},
+      </if>
+      <if test="oldCapability != null" >
+        #{oldCapability,jdbcType=VARCHAR},
+      </if>
+      <if test="newCapability != null" >
+        #{newCapability,jdbcType=VARCHAR},
+      </if>
+      <if test="dbUser != null" >
+        #{dbUser,jdbcType=VARCHAR},
+      </if>
+      <if test="machine != null" >
+        #{machine,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.ApplicationGrantLog" >
+    update COMM.APPLICATION_GRANT_LOG
+    <set >
+      <if test="oldCapability != null" >
+        OLD_CAPABILITY = #{oldCapability,jdbcType=VARCHAR},
+      </if>
+      <if test="newCapability != null" >
+        NEW_CAPABILITY = #{newCapability,jdbcType=VARCHAR},
+      </if>
+      <if test="dbUser != null" >
+        DB_USER = #{dbUser,jdbcType=VARCHAR},
+      </if>
+      <if test="machine != null" >
+        MACHINE = #{machine,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+      and APPLICATION = #{application,jdbcType=VARCHAR}
+      and LOG_DATE_TIME = #{logDateTime,jdbcType=DATE}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.ApplicationGrantLog" >
+    update COMM.APPLICATION_GRANT_LOG
+    set OLD_CAPABILITY = #{oldCapability,jdbcType=VARCHAR},
+      NEW_CAPABILITY = #{newCapability,jdbcType=VARCHAR},
+      DB_USER = #{dbUser,jdbcType=VARCHAR},
+      MACHINE = #{machine,jdbcType=VARCHAR}
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+      and APPLICATION = #{application,jdbcType=VARCHAR}
+      and LOG_DATE_TIME = #{logDateTime,jdbcType=DATE}
+  </update>
+</mapper>

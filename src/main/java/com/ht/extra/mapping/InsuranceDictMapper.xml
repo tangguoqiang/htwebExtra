@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.InsuranceDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.InsuranceDict" >
+    <id column="INSU_NO" property="insuNo" jdbcType="DECIMAL" />
+    <result column="INSU_ITEM_CODE" property="insuItemCode" jdbcType="VARCHAR" />
+    <result column="INSU_ITEM_NAME" property="insuItemName" jdbcType="VARCHAR" />
+    <result column="UNIT" property="unit" jdbcType="VARCHAR" />
+    <result column="ITEM_CODE" property="itemCode" jdbcType="VARCHAR" />
+    <result column="PRICE" property="price" jdbcType="DECIMAL" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    INSU_NO, INSU_ITEM_CODE, INSU_ITEM_NAME, UNIT, ITEM_CODE, PRICE, INPUT_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.INSURANCE_DICT
+    where INSU_NO = #{insuNo,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from COMM.INSURANCE_DICT
+    where INSU_NO = #{insuNo,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.InsuranceDict" >
+    insert into COMM.INSURANCE_DICT (INSU_NO, INSU_ITEM_CODE, INSU_ITEM_NAME, 
+      UNIT, ITEM_CODE, PRICE, 
+      INPUT_CODE)
+    values (#{insuNo,jdbcType=DECIMAL}, #{insuItemCode,jdbcType=VARCHAR}, #{insuItemName,jdbcType=VARCHAR}, 
+      #{unit,jdbcType=VARCHAR}, #{itemCode,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, 
+      #{inputCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.InsuranceDict" >
+    insert into COMM.INSURANCE_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="insuNo != null" >
+        INSU_NO,
+      </if>
+      <if test="insuItemCode != null" >
+        INSU_ITEM_CODE,
+      </if>
+      <if test="insuItemName != null" >
+        INSU_ITEM_NAME,
+      </if>
+      <if test="unit != null" >
+        UNIT,
+      </if>
+      <if test="itemCode != null" >
+        ITEM_CODE,
+      </if>
+      <if test="price != null" >
+        PRICE,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="insuNo != null" >
+        #{insuNo,jdbcType=DECIMAL},
+      </if>
+      <if test="insuItemCode != null" >
+        #{insuItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="insuItemName != null" >
+        #{insuItemName,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode != null" >
+        #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.InsuranceDict" >
+    update COMM.INSURANCE_DICT
+    <set >
+      <if test="insuItemCode != null" >
+        INSU_ITEM_CODE = #{insuItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="insuItemName != null" >
+        INSU_ITEM_NAME = #{insuItemName,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        UNIT = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode != null" >
+        ITEM_CODE = #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        PRICE = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where INSU_NO = #{insuNo,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.InsuranceDict" >
+    update COMM.INSURANCE_DICT
+    set INSU_ITEM_CODE = #{insuItemCode,jdbcType=VARCHAR},
+      INSU_ITEM_NAME = #{insuItemName,jdbcType=VARCHAR},
+      UNIT = #{unit,jdbcType=VARCHAR},
+      ITEM_CODE = #{itemCode,jdbcType=VARCHAR},
+      PRICE = #{price,jdbcType=DECIMAL},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR}
+    where INSU_NO = #{insuNo,jdbcType=DECIMAL}
+  </update>
+</mapper>

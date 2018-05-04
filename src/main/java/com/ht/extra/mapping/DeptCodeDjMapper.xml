@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.DeptCodeDjMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.DeptCodeDj" >
+    <id column="DEPT_CODE" property="deptCode" jdbcType="VARCHAR" />
+    <id column="ITEM_CODE" property="itemCode" jdbcType="VARCHAR" />
+    <result column="TCBL" property="tcbl" jdbcType="DECIMAL" />
+    <result column="FCBL" property="fcbl" jdbcType="DECIMAL" />
+    <result column="DEPT_CODEHZ" property="deptCodehz" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    DEPT_CODE, ITEM_CODE, TCBL, FCBL, DEPT_CODEHZ
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.DeptCodeDjKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.DEPT_CODE_DJ
+    where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+      and ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.DeptCodeDjKey" >
+    delete from COMM.DEPT_CODE_DJ
+    where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+      and ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.DeptCodeDj" >
+    insert into COMM.DEPT_CODE_DJ (DEPT_CODE, ITEM_CODE, TCBL, 
+      FCBL, DEPT_CODEHZ)
+    values (#{deptCode,jdbcType=VARCHAR}, #{itemCode,jdbcType=VARCHAR}, #{tcbl,jdbcType=DECIMAL}, 
+      #{fcbl,jdbcType=DECIMAL}, #{deptCodehz,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.DeptCodeDj" >
+    insert into COMM.DEPT_CODE_DJ
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="deptCode != null" >
+        DEPT_CODE,
+      </if>
+      <if test="itemCode != null" >
+        ITEM_CODE,
+      </if>
+      <if test="tcbl != null" >
+        TCBL,
+      </if>
+      <if test="fcbl != null" >
+        FCBL,
+      </if>
+      <if test="deptCodehz != null" >
+        DEPT_CODEHZ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="deptCode != null" >
+        #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode != null" >
+        #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="tcbl != null" >
+        #{tcbl,jdbcType=DECIMAL},
+      </if>
+      <if test="fcbl != null" >
+        #{fcbl,jdbcType=DECIMAL},
+      </if>
+      <if test="deptCodehz != null" >
+        #{deptCodehz,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.DeptCodeDj" >
+    update COMM.DEPT_CODE_DJ
+    <set >
+      <if test="tcbl != null" >
+        TCBL = #{tcbl,jdbcType=DECIMAL},
+      </if>
+      <if test="fcbl != null" >
+        FCBL = #{fcbl,jdbcType=DECIMAL},
+      </if>
+      <if test="deptCodehz != null" >
+        DEPT_CODEHZ = #{deptCodehz,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+      and ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.DeptCodeDj" >
+    update COMM.DEPT_CODE_DJ
+    set TCBL = #{tcbl,jdbcType=DECIMAL},
+      FCBL = #{fcbl,jdbcType=DECIMAL},
+      DEPT_CODEHZ = #{deptCodehz,jdbcType=VARCHAR}
+    where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+      and ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

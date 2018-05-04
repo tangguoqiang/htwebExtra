@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.MrQualityDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.MrQualityDict" >
+    <id column="MR_QUALITY_NAME" property="mrQualityName" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="MR_QUALITY_CODE" property="mrQualityCode" jdbcType="VARCHAR" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    MR_QUALITY_NAME, SERIAL_NO, MR_QUALITY_CODE, INPUT_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.MR_QUALITY_DICT
+    where MR_QUALITY_NAME = #{mrQualityName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.MR_QUALITY_DICT
+    where MR_QUALITY_NAME = #{mrQualityName,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.MrQualityDict" >
+    insert into COMM.MR_QUALITY_DICT (MR_QUALITY_NAME, SERIAL_NO, MR_QUALITY_CODE, 
+      INPUT_CODE)
+    values (#{mrQualityName,jdbcType=VARCHAR}, #{serialNo,jdbcType=DECIMAL}, #{mrQualityCode,jdbcType=VARCHAR}, 
+      #{inputCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.MrQualityDict" >
+    insert into COMM.MR_QUALITY_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mrQualityName != null" >
+        MR_QUALITY_NAME,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="mrQualityCode != null" >
+        MR_QUALITY_CODE,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mrQualityName != null" >
+        #{mrQualityName,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="mrQualityCode != null" >
+        #{mrQualityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.MrQualityDict" >
+    update COMM.MR_QUALITY_DICT
+    <set >
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="mrQualityCode != null" >
+        MR_QUALITY_CODE = #{mrQualityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where MR_QUALITY_NAME = #{mrQualityName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.MrQualityDict" >
+    update COMM.MR_QUALITY_DICT
+    set SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      MR_QUALITY_CODE = #{mrQualityCode,jdbcType=VARCHAR},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR}
+    where MR_QUALITY_NAME = #{mrQualityName,jdbcType=VARCHAR}
+  </update>
+</mapper>

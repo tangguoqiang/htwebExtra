@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.OuterGenerationMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.OuterGeneration" >
+    <id column="DICT_FILE_NAME" property="dictFileName" jdbcType="VARCHAR" />
+    <result column="DATA_TABLE_NAME" property="dataTableName" jdbcType="VARCHAR" />
+    <result column="DATA_INPUT_FIELD" property="dataInputField" jdbcType="VARCHAR" />
+    <result column="DATA_CODE_FIELD" property="dataCodeField" jdbcType="VARCHAR" />
+    <result column="DATA_NAME_FIELD" property="dataNameField" jdbcType="VARCHAR" />
+    <result column="DATA_FILTER" property="dataFilter" jdbcType="VARCHAR" />
+    <result column="UPDT_METHOD" property="updtMethod" jdbcType="DECIMAL" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.ht.extra.pojo.comm.OuterGeneration" extends="BaseResultMap" >
+    <result column="DICT_TXT_FILE" property="dictTxtFile" jdbcType="LONGVARBINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    DICT_FILE_NAME, DATA_TABLE_NAME, DATA_INPUT_FIELD, DATA_CODE_FIELD, DATA_NAME_FIELD, 
+    DATA_FILTER, UPDT_METHOD
+  </sql>
+  <sql id="Blob_Column_List" >
+    DICT_TXT_FILE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from COMM.OUTER_GENERATION
+    where DICT_FILE_NAME = #{dictFileName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.OUTER_GENERATION
+    where DICT_FILE_NAME = #{dictFileName,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.OuterGeneration" >
+    insert into COMM.OUTER_GENERATION (DICT_FILE_NAME, DATA_TABLE_NAME, DATA_INPUT_FIELD, 
+      DATA_CODE_FIELD, DATA_NAME_FIELD, DATA_FILTER, 
+      UPDT_METHOD, DICT_TXT_FILE)
+    values (#{dictFileName,jdbcType=VARCHAR}, #{dataTableName,jdbcType=VARCHAR}, #{dataInputField,jdbcType=VARCHAR}, 
+      #{dataCodeField,jdbcType=VARCHAR}, #{dataNameField,jdbcType=VARCHAR}, #{dataFilter,jdbcType=VARCHAR}, 
+      #{updtMethod,jdbcType=DECIMAL}, #{dictTxtFile,jdbcType=LONGVARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.OuterGeneration" >
+    insert into COMM.OUTER_GENERATION
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dictFileName != null" >
+        DICT_FILE_NAME,
+      </if>
+      <if test="dataTableName != null" >
+        DATA_TABLE_NAME,
+      </if>
+      <if test="dataInputField != null" >
+        DATA_INPUT_FIELD,
+      </if>
+      <if test="dataCodeField != null" >
+        DATA_CODE_FIELD,
+      </if>
+      <if test="dataNameField != null" >
+        DATA_NAME_FIELD,
+      </if>
+      <if test="dataFilter != null" >
+        DATA_FILTER,
+      </if>
+      <if test="updtMethod != null" >
+        UPDT_METHOD,
+      </if>
+      <if test="dictTxtFile != null" >
+        DICT_TXT_FILE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dictFileName != null" >
+        #{dictFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="dataTableName != null" >
+        #{dataTableName,jdbcType=VARCHAR},
+      </if>
+      <if test="dataInputField != null" >
+        #{dataInputField,jdbcType=VARCHAR},
+      </if>
+      <if test="dataCodeField != null" >
+        #{dataCodeField,jdbcType=VARCHAR},
+      </if>
+      <if test="dataNameField != null" >
+        #{dataNameField,jdbcType=VARCHAR},
+      </if>
+      <if test="dataFilter != null" >
+        #{dataFilter,jdbcType=VARCHAR},
+      </if>
+      <if test="updtMethod != null" >
+        #{updtMethod,jdbcType=DECIMAL},
+      </if>
+      <if test="dictTxtFile != null" >
+        #{dictTxtFile,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.OuterGeneration" >
+    update COMM.OUTER_GENERATION
+    <set >
+      <if test="dataTableName != null" >
+        DATA_TABLE_NAME = #{dataTableName,jdbcType=VARCHAR},
+      </if>
+      <if test="dataInputField != null" >
+        DATA_INPUT_FIELD = #{dataInputField,jdbcType=VARCHAR},
+      </if>
+      <if test="dataCodeField != null" >
+        DATA_CODE_FIELD = #{dataCodeField,jdbcType=VARCHAR},
+      </if>
+      <if test="dataNameField != null" >
+        DATA_NAME_FIELD = #{dataNameField,jdbcType=VARCHAR},
+      </if>
+      <if test="dataFilter != null" >
+        DATA_FILTER = #{dataFilter,jdbcType=VARCHAR},
+      </if>
+      <if test="updtMethod != null" >
+        UPDT_METHOD = #{updtMethod,jdbcType=DECIMAL},
+      </if>
+      <if test="dictTxtFile != null" >
+        DICT_TXT_FILE = #{dictTxtFile,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where DICT_FILE_NAME = #{dictFileName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ht.extra.pojo.comm.OuterGeneration" >
+    update COMM.OUTER_GENERATION
+    set DATA_TABLE_NAME = #{dataTableName,jdbcType=VARCHAR},
+      DATA_INPUT_FIELD = #{dataInputField,jdbcType=VARCHAR},
+      DATA_CODE_FIELD = #{dataCodeField,jdbcType=VARCHAR},
+      DATA_NAME_FIELD = #{dataNameField,jdbcType=VARCHAR},
+      DATA_FILTER = #{dataFilter,jdbcType=VARCHAR},
+      UPDT_METHOD = #{updtMethod,jdbcType=DECIMAL},
+      DICT_TXT_FILE = #{dictTxtFile,jdbcType=LONGVARBINARY}
+    where DICT_FILE_NAME = #{dictFileName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.OuterGeneration" >
+    update COMM.OUTER_GENERATION
+    set DATA_TABLE_NAME = #{dataTableName,jdbcType=VARCHAR},
+      DATA_INPUT_FIELD = #{dataInputField,jdbcType=VARCHAR},
+      DATA_CODE_FIELD = #{dataCodeField,jdbcType=VARCHAR},
+      DATA_NAME_FIELD = #{dataNameField,jdbcType=VARCHAR},
+      DATA_FILTER = #{dataFilter,jdbcType=VARCHAR},
+      UPDT_METHOD = #{updtMethod,jdbcType=DECIMAL}
+    where DICT_FILE_NAME = #{dictFileName,jdbcType=VARCHAR}
+  </update>
+</mapper>

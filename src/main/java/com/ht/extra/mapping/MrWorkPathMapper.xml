@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.MrWorkPathMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.medrec.MrWorkPath" >
+    <id column="MR_PATH" property="mrPath" jdbcType="VARCHAR" />
+    <result column="TEMPLET_PATH" property="templetPath" jdbcType="VARCHAR" />
+    <result column="FILE_USER" property="fileUser" jdbcType="VARCHAR" />
+    <result column="FILE_PWD" property="filePwd" jdbcType="VARCHAR" />
+    <result column="IP_ADDR" property="ipAddr" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    MR_PATH, TEMPLET_PATH, FILE_USER, FILE_PWD, IP_ADDR
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from MEDREC.MR_WORK_PATH
+    where MR_PATH = #{mrPath,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from MEDREC.MR_WORK_PATH
+    where MR_PATH = #{mrPath,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.medrec.MrWorkPath" >
+    insert into MEDREC.MR_WORK_PATH (MR_PATH, TEMPLET_PATH, FILE_USER, 
+      FILE_PWD, IP_ADDR)
+    values (#{mrPath,jdbcType=VARCHAR}, #{templetPath,jdbcType=VARCHAR}, #{fileUser,jdbcType=VARCHAR}, 
+      #{filePwd,jdbcType=VARCHAR}, #{ipAddr,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.medrec.MrWorkPath" >
+    insert into MEDREC.MR_WORK_PATH
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mrPath != null" >
+        MR_PATH,
+      </if>
+      <if test="templetPath != null" >
+        TEMPLET_PATH,
+      </if>
+      <if test="fileUser != null" >
+        FILE_USER,
+      </if>
+      <if test="filePwd != null" >
+        FILE_PWD,
+      </if>
+      <if test="ipAddr != null" >
+        IP_ADDR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mrPath != null" >
+        #{mrPath,jdbcType=VARCHAR},
+      </if>
+      <if test="templetPath != null" >
+        #{templetPath,jdbcType=VARCHAR},
+      </if>
+      <if test="fileUser != null" >
+        #{fileUser,jdbcType=VARCHAR},
+      </if>
+      <if test="filePwd != null" >
+        #{filePwd,jdbcType=VARCHAR},
+      </if>
+      <if test="ipAddr != null" >
+        #{ipAddr,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.medrec.MrWorkPath" >
+    update MEDREC.MR_WORK_PATH
+    <set >
+      <if test="templetPath != null" >
+        TEMPLET_PATH = #{templetPath,jdbcType=VARCHAR},
+      </if>
+      <if test="fileUser != null" >
+        FILE_USER = #{fileUser,jdbcType=VARCHAR},
+      </if>
+      <if test="filePwd != null" >
+        FILE_PWD = #{filePwd,jdbcType=VARCHAR},
+      </if>
+      <if test="ipAddr != null" >
+        IP_ADDR = #{ipAddr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where MR_PATH = #{mrPath,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.medrec.MrWorkPath" >
+    update MEDREC.MR_WORK_PATH
+    set TEMPLET_PATH = #{templetPath,jdbcType=VARCHAR},
+      FILE_USER = #{fileUser,jdbcType=VARCHAR},
+      FILE_PWD = #{filePwd,jdbcType=VARCHAR},
+      IP_ADDR = #{ipAddr,jdbcType=VARCHAR}
+    where MR_PATH = #{mrPath,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.LabDeptTestMonthMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.lab.LabDeptTestMonth" >
+    <id column="ST_MONTH" property="stMonth" jdbcType="VARCHAR" />
+    <id column="ORDERING_DEPT_CODE" property="orderingDeptCode" jdbcType="VARCHAR" />
+    <id column="ASSAY_DEPT_CODE" property="assayDeptCode" jdbcType="VARCHAR" />
+    <id column="ITEM_CODE" property="itemCode" jdbcType="VARCHAR" />
+    <result column="ITEM_NAME" property="itemName" jdbcType="VARCHAR" />
+    <result column="COMPLETED_NUM" property="completedNum" jdbcType="DECIMAL" />
+    <result column="OUTP_OR_INP" property="outpOrInp" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ST_MONTH, ORDERING_DEPT_CODE, ASSAY_DEPT_CODE, ITEM_CODE, ITEM_NAME, COMPLETED_NUM, 
+    OUTP_OR_INP
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.lab.LabDeptTestMonthKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from LAB.LAB_DEPT_TEST_MONTH
+    where ST_MONTH = #{stMonth,jdbcType=VARCHAR}
+      and ORDERING_DEPT_CODE = #{orderingDeptCode,jdbcType=VARCHAR}
+      and ASSAY_DEPT_CODE = #{assayDeptCode,jdbcType=VARCHAR}
+      and ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.lab.LabDeptTestMonthKey" >
+    delete from LAB.LAB_DEPT_TEST_MONTH
+    where ST_MONTH = #{stMonth,jdbcType=VARCHAR}
+      and ORDERING_DEPT_CODE = #{orderingDeptCode,jdbcType=VARCHAR}
+      and ASSAY_DEPT_CODE = #{assayDeptCode,jdbcType=VARCHAR}
+      and ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.lab.LabDeptTestMonth" >
+    insert into LAB.LAB_DEPT_TEST_MONTH (ST_MONTH, ORDERING_DEPT_CODE, ASSAY_DEPT_CODE, 
+      ITEM_CODE, ITEM_NAME, COMPLETED_NUM, 
+      OUTP_OR_INP)
+    values (#{stMonth,jdbcType=VARCHAR}, #{orderingDeptCode,jdbcType=VARCHAR}, #{assayDeptCode,jdbcType=VARCHAR}, 
+      #{itemCode,jdbcType=VARCHAR}, #{itemName,jdbcType=VARCHAR}, #{completedNum,jdbcType=DECIMAL}, 
+      #{outpOrInp,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.lab.LabDeptTestMonth" >
+    insert into LAB.LAB_DEPT_TEST_MONTH
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="stMonth != null" >
+        ST_MONTH,
+      </if>
+      <if test="orderingDeptCode != null" >
+        ORDERING_DEPT_CODE,
+      </if>
+      <if test="assayDeptCode != null" >
+        ASSAY_DEPT_CODE,
+      </if>
+      <if test="itemCode != null" >
+        ITEM_CODE,
+      </if>
+      <if test="itemName != null" >
+        ITEM_NAME,
+      </if>
+      <if test="completedNum != null" >
+        COMPLETED_NUM,
+      </if>
+      <if test="outpOrInp != null" >
+        OUTP_OR_INP,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="stMonth != null" >
+        #{stMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="orderingDeptCode != null" >
+        #{orderingDeptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="assayDeptCode != null" >
+        #{assayDeptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode != null" >
+        #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="completedNum != null" >
+        #{completedNum,jdbcType=DECIMAL},
+      </if>
+      <if test="outpOrInp != null" >
+        #{outpOrInp,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.lab.LabDeptTestMonth" >
+    update LAB.LAB_DEPT_TEST_MONTH
+    <set >
+      <if test="itemName != null" >
+        ITEM_NAME = #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="completedNum != null" >
+        COMPLETED_NUM = #{completedNum,jdbcType=DECIMAL},
+      </if>
+      <if test="outpOrInp != null" >
+        OUTP_OR_INP = #{outpOrInp,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ST_MONTH = #{stMonth,jdbcType=VARCHAR}
+      and ORDERING_DEPT_CODE = #{orderingDeptCode,jdbcType=VARCHAR}
+      and ASSAY_DEPT_CODE = #{assayDeptCode,jdbcType=VARCHAR}
+      and ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.lab.LabDeptTestMonth" >
+    update LAB.LAB_DEPT_TEST_MONTH
+    set ITEM_NAME = #{itemName,jdbcType=VARCHAR},
+      COMPLETED_NUM = #{completedNum,jdbcType=DECIMAL},
+      OUTP_OR_INP = #{outpOrInp,jdbcType=DECIMAL}
+    where ST_MONTH = #{stMonth,jdbcType=VARCHAR}
+      and ORDERING_DEPT_CODE = #{orderingDeptCode,jdbcType=VARCHAR}
+      and ASSAY_DEPT_CODE = #{assayDeptCode,jdbcType=VARCHAR}
+      and ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

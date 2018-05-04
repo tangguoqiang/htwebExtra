@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.PerformFreqDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.PerformFreqDict" >
+    <id column="FREQ_DESC" property="freqDesc" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="FREQ_COUNTER" property="freqCounter" jdbcType="DECIMAL" />
+    <result column="FREQ_INTERVAL" property="freqInterval" jdbcType="DECIMAL" />
+    <result column="FREQ_INTERVAL_UNITS" property="freqIntervalUnits" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    FREQ_DESC, SERIAL_NO, FREQ_COUNTER, FREQ_INTERVAL, FREQ_INTERVAL_UNITS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.PERFORM_FREQ_DICT
+    where FREQ_DESC = #{freqDesc,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.PERFORM_FREQ_DICT
+    where FREQ_DESC = #{freqDesc,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.PerformFreqDict" >
+    insert into COMM.PERFORM_FREQ_DICT (FREQ_DESC, SERIAL_NO, FREQ_COUNTER, 
+      FREQ_INTERVAL, FREQ_INTERVAL_UNITS)
+    values (#{freqDesc,jdbcType=VARCHAR}, #{serialNo,jdbcType=DECIMAL}, #{freqCounter,jdbcType=DECIMAL}, 
+      #{freqInterval,jdbcType=DECIMAL}, #{freqIntervalUnits,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.PerformFreqDict" >
+    insert into COMM.PERFORM_FREQ_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="freqDesc != null" >
+        FREQ_DESC,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="freqCounter != null" >
+        FREQ_COUNTER,
+      </if>
+      <if test="freqInterval != null" >
+        FREQ_INTERVAL,
+      </if>
+      <if test="freqIntervalUnits != null" >
+        FREQ_INTERVAL_UNITS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="freqDesc != null" >
+        #{freqDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="freqCounter != null" >
+        #{freqCounter,jdbcType=DECIMAL},
+      </if>
+      <if test="freqInterval != null" >
+        #{freqInterval,jdbcType=DECIMAL},
+      </if>
+      <if test="freqIntervalUnits != null" >
+        #{freqIntervalUnits,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.PerformFreqDict" >
+    update COMM.PERFORM_FREQ_DICT
+    <set >
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="freqCounter != null" >
+        FREQ_COUNTER = #{freqCounter,jdbcType=DECIMAL},
+      </if>
+      <if test="freqInterval != null" >
+        FREQ_INTERVAL = #{freqInterval,jdbcType=DECIMAL},
+      </if>
+      <if test="freqIntervalUnits != null" >
+        FREQ_INTERVAL_UNITS = #{freqIntervalUnits,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where FREQ_DESC = #{freqDesc,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.PerformFreqDict" >
+    update COMM.PERFORM_FREQ_DICT
+    set SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      FREQ_COUNTER = #{freqCounter,jdbcType=DECIMAL},
+      FREQ_INTERVAL = #{freqInterval,jdbcType=DECIMAL},
+      FREQ_INTERVAL_UNITS = #{freqIntervalUnits,jdbcType=VARCHAR}
+    where FREQ_DESC = #{freqDesc,jdbcType=VARCHAR}
+  </update>
+</mapper>

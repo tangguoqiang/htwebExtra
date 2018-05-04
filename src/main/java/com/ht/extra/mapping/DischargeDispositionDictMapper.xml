@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.DischargeDispositionDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.DischargeDispositionDict" >
+    <id column="DISCHARGE_DISPOSITION_CODE" property="dischargeDispositionCode" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="DISCHARGE_DISPOSITION_NAME" property="dischargeDispositionName" jdbcType="VARCHAR" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+    <result column="INSUR_DISTYPE_CODE" property="insurDistypeCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    DISCHARGE_DISPOSITION_CODE, SERIAL_NO, DISCHARGE_DISPOSITION_NAME, INPUT_CODE, INSUR_DISTYPE_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.DISCHARGE_DISPOSITION_DICT
+    where DISCHARGE_DISPOSITION_CODE = #{dischargeDispositionCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.DISCHARGE_DISPOSITION_DICT
+    where DISCHARGE_DISPOSITION_CODE = #{dischargeDispositionCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.DischargeDispositionDict" >
+    insert into COMM.DISCHARGE_DISPOSITION_DICT (DISCHARGE_DISPOSITION_CODE, SERIAL_NO, 
+      DISCHARGE_DISPOSITION_NAME, INPUT_CODE, INSUR_DISTYPE_CODE
+      )
+    values (#{dischargeDispositionCode,jdbcType=VARCHAR}, #{serialNo,jdbcType=DECIMAL}, 
+      #{dischargeDispositionName,jdbcType=VARCHAR}, #{inputCode,jdbcType=VARCHAR}, #{insurDistypeCode,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.DischargeDispositionDict" >
+    insert into COMM.DISCHARGE_DISPOSITION_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dischargeDispositionCode != null" >
+        DISCHARGE_DISPOSITION_CODE,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="dischargeDispositionName != null" >
+        DISCHARGE_DISPOSITION_NAME,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+      <if test="insurDistypeCode != null" >
+        INSUR_DISTYPE_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dischargeDispositionCode != null" >
+        #{dischargeDispositionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="dischargeDispositionName != null" >
+        #{dischargeDispositionName,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="insurDistypeCode != null" >
+        #{insurDistypeCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.DischargeDispositionDict" >
+    update COMM.DISCHARGE_DISPOSITION_DICT
+    <set >
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="dischargeDispositionName != null" >
+        DISCHARGE_DISPOSITION_NAME = #{dischargeDispositionName,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="insurDistypeCode != null" >
+        INSUR_DISTYPE_CODE = #{insurDistypeCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DISCHARGE_DISPOSITION_CODE = #{dischargeDispositionCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.DischargeDispositionDict" >
+    update COMM.DISCHARGE_DISPOSITION_DICT
+    set SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      DISCHARGE_DISPOSITION_NAME = #{dischargeDispositionName,jdbcType=VARCHAR},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      INSUR_DISTYPE_CODE = #{insurDistypeCode,jdbcType=VARCHAR}
+    where DISCHARGE_DISPOSITION_CODE = #{dischargeDispositionCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

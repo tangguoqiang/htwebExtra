@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.OutpMrMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.outpdoct.OutpMr" >
+    <id column="VISIT_DATE" property="visitDate" jdbcType="DATE" />
+    <id column="VISIT_NO" property="visitNo" jdbcType="DECIMAL" />
+    <id column="ORDINAL" property="ordinal" jdbcType="DECIMAL" />
+    <result column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <result column="ILLNESS_DESC" property="illnessDesc" jdbcType="VARCHAR" />
+    <result column="ANAMNESIS" property="anamnesis" jdbcType="VARCHAR" />
+    <result column="FAMILY_ILL" property="familyIll" jdbcType="VARCHAR" />
+    <result column="MARRITAL" property="marrital" jdbcType="VARCHAR" />
+    <result column="INDIVIDUAL" property="individual" jdbcType="VARCHAR" />
+    <result column="MENSES" property="menses" jdbcType="VARCHAR" />
+    <result column="MED_HISTORY" property="medHistory" jdbcType="VARCHAR" />
+    <result column="BODY_EXAM" property="bodyExam" jdbcType="VARCHAR" />
+    <result column="DIAG_DESC" property="diagDesc" jdbcType="VARCHAR" />
+    <result column="ADVICE" property="advice" jdbcType="VARCHAR" />
+    <result column="DOCTOR" property="doctor" jdbcType="VARCHAR" />
+    <result column="OPERATION_RECORD" property="operationRecord" jdbcType="VARCHAR" />
+    <result column="MEDICAL_RECORD" property="medicalRecord" jdbcType="VARCHAR" />
+    <result column="DIAG_CODE" property="diagCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    VISIT_DATE, VISIT_NO, ORDINAL, PATIENT_ID, ILLNESS_DESC, ANAMNESIS, FAMILY_ILL, MARRITAL, 
+    INDIVIDUAL, MENSES, MED_HISTORY, BODY_EXAM, DIAG_DESC, ADVICE, DOCTOR, OPERATION_RECORD, 
+    MEDICAL_RECORD, DIAG_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.outpdoct.OutpMrKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from OUTPDOCT.OUTP_MR
+    where VISIT_DATE = #{visitDate,jdbcType=DATE}
+      and VISIT_NO = #{visitNo,jdbcType=DECIMAL}
+      and ORDINAL = #{ordinal,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.outpdoct.OutpMrKey" >
+    delete from OUTPDOCT.OUTP_MR
+    where VISIT_DATE = #{visitDate,jdbcType=DATE}
+      and VISIT_NO = #{visitNo,jdbcType=DECIMAL}
+      and ORDINAL = #{ordinal,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.outpdoct.OutpMr" >
+    insert into OUTPDOCT.OUTP_MR (VISIT_DATE, VISIT_NO, ORDINAL, 
+      PATIENT_ID, ILLNESS_DESC, ANAMNESIS, 
+      FAMILY_ILL, MARRITAL, INDIVIDUAL, 
+      MENSES, MED_HISTORY, BODY_EXAM, 
+      DIAG_DESC, ADVICE, DOCTOR, 
+      OPERATION_RECORD, MEDICAL_RECORD, DIAG_CODE
+      )
+    values (#{visitDate,jdbcType=DATE}, #{visitNo,jdbcType=DECIMAL}, #{ordinal,jdbcType=DECIMAL}, 
+      #{patientId,jdbcType=VARCHAR}, #{illnessDesc,jdbcType=VARCHAR}, #{anamnesis,jdbcType=VARCHAR}, 
+      #{familyIll,jdbcType=VARCHAR}, #{marrital,jdbcType=VARCHAR}, #{individual,jdbcType=VARCHAR}, 
+      #{menses,jdbcType=VARCHAR}, #{medHistory,jdbcType=VARCHAR}, #{bodyExam,jdbcType=VARCHAR}, 
+      #{diagDesc,jdbcType=VARCHAR}, #{advice,jdbcType=VARCHAR}, #{doctor,jdbcType=VARCHAR}, 
+      #{operationRecord,jdbcType=VARCHAR}, #{medicalRecord,jdbcType=VARCHAR}, #{diagCode,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.outpdoct.OutpMr" >
+    insert into OUTPDOCT.OUTP_MR
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="visitDate != null" >
+        VISIT_DATE,
+      </if>
+      <if test="visitNo != null" >
+        VISIT_NO,
+      </if>
+      <if test="ordinal != null" >
+        ORDINAL,
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="illnessDesc != null" >
+        ILLNESS_DESC,
+      </if>
+      <if test="anamnesis != null" >
+        ANAMNESIS,
+      </if>
+      <if test="familyIll != null" >
+        FAMILY_ILL,
+      </if>
+      <if test="marrital != null" >
+        MARRITAL,
+      </if>
+      <if test="individual != null" >
+        INDIVIDUAL,
+      </if>
+      <if test="menses != null" >
+        MENSES,
+      </if>
+      <if test="medHistory != null" >
+        MED_HISTORY,
+      </if>
+      <if test="bodyExam != null" >
+        BODY_EXAM,
+      </if>
+      <if test="diagDesc != null" >
+        DIAG_DESC,
+      </if>
+      <if test="advice != null" >
+        ADVICE,
+      </if>
+      <if test="doctor != null" >
+        DOCTOR,
+      </if>
+      <if test="operationRecord != null" >
+        OPERATION_RECORD,
+      </if>
+      <if test="medicalRecord != null" >
+        MEDICAL_RECORD,
+      </if>
+      <if test="diagCode != null" >
+        DIAG_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="visitDate != null" >
+        #{visitDate,jdbcType=DATE},
+      </if>
+      <if test="visitNo != null" >
+        #{visitNo,jdbcType=DECIMAL},
+      </if>
+      <if test="ordinal != null" >
+        #{ordinal,jdbcType=DECIMAL},
+      </if>
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="illnessDesc != null" >
+        #{illnessDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="anamnesis != null" >
+        #{anamnesis,jdbcType=VARCHAR},
+      </if>
+      <if test="familyIll != null" >
+        #{familyIll,jdbcType=VARCHAR},
+      </if>
+      <if test="marrital != null" >
+        #{marrital,jdbcType=VARCHAR},
+      </if>
+      <if test="individual != null" >
+        #{individual,jdbcType=VARCHAR},
+      </if>
+      <if test="menses != null" >
+        #{menses,jdbcType=VARCHAR},
+      </if>
+      <if test="medHistory != null" >
+        #{medHistory,jdbcType=VARCHAR},
+      </if>
+      <if test="bodyExam != null" >
+        #{bodyExam,jdbcType=VARCHAR},
+      </if>
+      <if test="diagDesc != null" >
+        #{diagDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="advice != null" >
+        #{advice,jdbcType=VARCHAR},
+      </if>
+      <if test="doctor != null" >
+        #{doctor,jdbcType=VARCHAR},
+      </if>
+      <if test="operationRecord != null" >
+        #{operationRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="medicalRecord != null" >
+        #{medicalRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="diagCode != null" >
+        #{diagCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.outpdoct.OutpMr" >
+    update OUTPDOCT.OUTP_MR
+    <set >
+      <if test="patientId != null" >
+        PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="illnessDesc != null" >
+        ILLNESS_DESC = #{illnessDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="anamnesis != null" >
+        ANAMNESIS = #{anamnesis,jdbcType=VARCHAR},
+      </if>
+      <if test="familyIll != null" >
+        FAMILY_ILL = #{familyIll,jdbcType=VARCHAR},
+      </if>
+      <if test="marrital != null" >
+        MARRITAL = #{marrital,jdbcType=VARCHAR},
+      </if>
+      <if test="individual != null" >
+        INDIVIDUAL = #{individual,jdbcType=VARCHAR},
+      </if>
+      <if test="menses != null" >
+        MENSES = #{menses,jdbcType=VARCHAR},
+      </if>
+      <if test="medHistory != null" >
+        MED_HISTORY = #{medHistory,jdbcType=VARCHAR},
+      </if>
+      <if test="bodyExam != null" >
+        BODY_EXAM = #{bodyExam,jdbcType=VARCHAR},
+      </if>
+      <if test="diagDesc != null" >
+        DIAG_DESC = #{diagDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="advice != null" >
+        ADVICE = #{advice,jdbcType=VARCHAR},
+      </if>
+      <if test="doctor != null" >
+        DOCTOR = #{doctor,jdbcType=VARCHAR},
+      </if>
+      <if test="operationRecord != null" >
+        OPERATION_RECORD = #{operationRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="medicalRecord != null" >
+        MEDICAL_RECORD = #{medicalRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="diagCode != null" >
+        DIAG_CODE = #{diagCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where VISIT_DATE = #{visitDate,jdbcType=DATE}
+      and VISIT_NO = #{visitNo,jdbcType=DECIMAL}
+      and ORDINAL = #{ordinal,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.outpdoct.OutpMr" >
+    update OUTPDOCT.OUTP_MR
+    set PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      ILLNESS_DESC = #{illnessDesc,jdbcType=VARCHAR},
+      ANAMNESIS = #{anamnesis,jdbcType=VARCHAR},
+      FAMILY_ILL = #{familyIll,jdbcType=VARCHAR},
+      MARRITAL = #{marrital,jdbcType=VARCHAR},
+      INDIVIDUAL = #{individual,jdbcType=VARCHAR},
+      MENSES = #{menses,jdbcType=VARCHAR},
+      MED_HISTORY = #{medHistory,jdbcType=VARCHAR},
+      BODY_EXAM = #{bodyExam,jdbcType=VARCHAR},
+      DIAG_DESC = #{diagDesc,jdbcType=VARCHAR},
+      ADVICE = #{advice,jdbcType=VARCHAR},
+      DOCTOR = #{doctor,jdbcType=VARCHAR},
+      OPERATION_RECORD = #{operationRecord,jdbcType=VARCHAR},
+      MEDICAL_RECORD = #{medicalRecord,jdbcType=VARCHAR},
+      DIAG_CODE = #{diagCode,jdbcType=VARCHAR}
+    where VISIT_DATE = #{visitDate,jdbcType=DATE}
+      and VISIT_NO = #{visitNo,jdbcType=DECIMAL}
+      and ORDINAL = #{ordinal,jdbcType=DECIMAL}
+  </update>
+</mapper>

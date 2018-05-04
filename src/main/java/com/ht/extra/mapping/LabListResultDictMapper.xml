@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.LabListResultDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.LabListResultDict" >
+    <id column="REPORT_ITEM_CODE" property="reportItemCode" jdbcType="VARCHAR" />
+    <id column="RESULT_NO" property="resultNo" jdbcType="DECIMAL" />
+    <result column="RESULT_VALUE" property="resultValue" jdbcType="VARCHAR" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    REPORT_ITEM_CODE, RESULT_NO, RESULT_VALUE, INPUT_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.LabListResultDictKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.LAB_LIST_RESULT_DICT
+    where REPORT_ITEM_CODE = #{reportItemCode,jdbcType=VARCHAR}
+      and RESULT_NO = #{resultNo,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.LabListResultDictKey" >
+    delete from COMM.LAB_LIST_RESULT_DICT
+    where REPORT_ITEM_CODE = #{reportItemCode,jdbcType=VARCHAR}
+      and RESULT_NO = #{resultNo,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.LabListResultDict" >
+    insert into COMM.LAB_LIST_RESULT_DICT (REPORT_ITEM_CODE, RESULT_NO, RESULT_VALUE, 
+      INPUT_CODE)
+    values (#{reportItemCode,jdbcType=VARCHAR}, #{resultNo,jdbcType=DECIMAL}, #{resultValue,jdbcType=VARCHAR}, 
+      #{inputCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.LabListResultDict" >
+    insert into COMM.LAB_LIST_RESULT_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="reportItemCode != null" >
+        REPORT_ITEM_CODE,
+      </if>
+      <if test="resultNo != null" >
+        RESULT_NO,
+      </if>
+      <if test="resultValue != null" >
+        RESULT_VALUE,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="reportItemCode != null" >
+        #{reportItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="resultNo != null" >
+        #{resultNo,jdbcType=DECIMAL},
+      </if>
+      <if test="resultValue != null" >
+        #{resultValue,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.LabListResultDict" >
+    update COMM.LAB_LIST_RESULT_DICT
+    <set >
+      <if test="resultValue != null" >
+        RESULT_VALUE = #{resultValue,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where REPORT_ITEM_CODE = #{reportItemCode,jdbcType=VARCHAR}
+      and RESULT_NO = #{resultNo,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.LabListResultDict" >
+    update COMM.LAB_LIST_RESULT_DICT
+    set RESULT_VALUE = #{resultValue,jdbcType=VARCHAR},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR}
+    where REPORT_ITEM_CODE = #{reportItemCode,jdbcType=VARCHAR}
+      and RESULT_NO = #{resultNo,jdbcType=DECIMAL}
+  </update>
+</mapper>

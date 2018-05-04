@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.OutpTreatRecMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.outpdoct.OutpTreatRec" >
+    <id column="SERIAL_NO" property="serialNo" jdbcType="VARCHAR" />
+    <id column="ITEM_NO" property="itemNo" jdbcType="DECIMAL" />
+    <result column="VISIT_DATE" property="visitDate" jdbcType="DATE" />
+    <result column="VISIT_NO" property="visitNo" jdbcType="DECIMAL" />
+    <result column="ITEM_CLASS" property="itemClass" jdbcType="VARCHAR" />
+    <result column="ITEM_CODE" property="itemCode" jdbcType="VARCHAR" />
+    <result column="ITEM_NAME" property="itemName" jdbcType="VARCHAR" />
+    <result column="ITEM_SPEC" property="itemSpec" jdbcType="VARCHAR" />
+    <result column="UNITS" property="units" jdbcType="VARCHAR" />
+    <result column="AMOUNT" property="amount" jdbcType="DECIMAL" />
+    <result column="FREQUENCY" property="frequency" jdbcType="VARCHAR" />
+    <result column="PERFORMED_BY" property="performedBy" jdbcType="VARCHAR" />
+    <result column="COSTS" property="costs" jdbcType="DECIMAL" />
+    <result column="CHARGES" property="charges" jdbcType="DECIMAL" />
+    <result column="CHARGE_INDICATOR" property="chargeIndicator" jdbcType="DECIMAL" />
+    <result column="APPOINT_NO" property="appointNo" jdbcType="VARCHAR" />
+    <result column="APPOINT_ITEM_NO" property="appointItemNo" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SERIAL_NO, ITEM_NO, VISIT_DATE, VISIT_NO, ITEM_CLASS, ITEM_CODE, ITEM_NAME, ITEM_SPEC, 
+    UNITS, AMOUNT, FREQUENCY, PERFORMED_BY, COSTS, CHARGES, CHARGE_INDICATOR, APPOINT_NO, 
+    APPOINT_ITEM_NO
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.outpdoct.OutpTreatRecKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from OUTPDOCT.OUTP_TREAT_REC
+    where SERIAL_NO = #{serialNo,jdbcType=VARCHAR}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.outpdoct.OutpTreatRecKey" >
+    delete from OUTPDOCT.OUTP_TREAT_REC
+    where SERIAL_NO = #{serialNo,jdbcType=VARCHAR}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.outpdoct.OutpTreatRec" >
+    insert into OUTPDOCT.OUTP_TREAT_REC (SERIAL_NO, ITEM_NO, VISIT_DATE, 
+      VISIT_NO, ITEM_CLASS, ITEM_CODE, 
+      ITEM_NAME, ITEM_SPEC, UNITS, 
+      AMOUNT, FREQUENCY, PERFORMED_BY, 
+      COSTS, CHARGES, CHARGE_INDICATOR, 
+      APPOINT_NO, APPOINT_ITEM_NO)
+    values (#{serialNo,jdbcType=VARCHAR}, #{itemNo,jdbcType=DECIMAL}, #{visitDate,jdbcType=DATE}, 
+      #{visitNo,jdbcType=DECIMAL}, #{itemClass,jdbcType=VARCHAR}, #{itemCode,jdbcType=VARCHAR}, 
+      #{itemName,jdbcType=VARCHAR}, #{itemSpec,jdbcType=VARCHAR}, #{units,jdbcType=VARCHAR}, 
+      #{amount,jdbcType=DECIMAL}, #{frequency,jdbcType=VARCHAR}, #{performedBy,jdbcType=VARCHAR}, 
+      #{costs,jdbcType=DECIMAL}, #{charges,jdbcType=DECIMAL}, #{chargeIndicator,jdbcType=DECIMAL}, 
+      #{appointNo,jdbcType=VARCHAR}, #{appointItemNo,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.outpdoct.OutpTreatRec" >
+    insert into OUTPDOCT.OUTP_TREAT_REC
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="itemNo != null" >
+        ITEM_NO,
+      </if>
+      <if test="visitDate != null" >
+        VISIT_DATE,
+      </if>
+      <if test="visitNo != null" >
+        VISIT_NO,
+      </if>
+      <if test="itemClass != null" >
+        ITEM_CLASS,
+      </if>
+      <if test="itemCode != null" >
+        ITEM_CODE,
+      </if>
+      <if test="itemName != null" >
+        ITEM_NAME,
+      </if>
+      <if test="itemSpec != null" >
+        ITEM_SPEC,
+      </if>
+      <if test="units != null" >
+        UNITS,
+      </if>
+      <if test="amount != null" >
+        AMOUNT,
+      </if>
+      <if test="frequency != null" >
+        FREQUENCY,
+      </if>
+      <if test="performedBy != null" >
+        PERFORMED_BY,
+      </if>
+      <if test="costs != null" >
+        COSTS,
+      </if>
+      <if test="charges != null" >
+        CHARGES,
+      </if>
+      <if test="chargeIndicator != null" >
+        CHARGE_INDICATOR,
+      </if>
+      <if test="appointNo != null" >
+        APPOINT_NO,
+      </if>
+      <if test="appointItemNo != null" >
+        APPOINT_ITEM_NO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="itemNo != null" >
+        #{itemNo,jdbcType=DECIMAL},
+      </if>
+      <if test="visitDate != null" >
+        #{visitDate,jdbcType=DATE},
+      </if>
+      <if test="visitNo != null" >
+        #{visitNo,jdbcType=DECIMAL},
+      </if>
+      <if test="itemClass != null" >
+        #{itemClass,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode != null" >
+        #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemSpec != null" >
+        #{itemSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="units != null" >
+        #{units,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="frequency != null" >
+        #{frequency,jdbcType=VARCHAR},
+      </if>
+      <if test="performedBy != null" >
+        #{performedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="costs != null" >
+        #{costs,jdbcType=DECIMAL},
+      </if>
+      <if test="charges != null" >
+        #{charges,jdbcType=DECIMAL},
+      </if>
+      <if test="chargeIndicator != null" >
+        #{chargeIndicator,jdbcType=DECIMAL},
+      </if>
+      <if test="appointNo != null" >
+        #{appointNo,jdbcType=VARCHAR},
+      </if>
+      <if test="appointItemNo != null" >
+        #{appointItemNo,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.outpdoct.OutpTreatRec" >
+    update OUTPDOCT.OUTP_TREAT_REC
+    <set >
+      <if test="visitDate != null" >
+        VISIT_DATE = #{visitDate,jdbcType=DATE},
+      </if>
+      <if test="visitNo != null" >
+        VISIT_NO = #{visitNo,jdbcType=DECIMAL},
+      </if>
+      <if test="itemClass != null" >
+        ITEM_CLASS = #{itemClass,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode != null" >
+        ITEM_CODE = #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        ITEM_NAME = #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemSpec != null" >
+        ITEM_SPEC = #{itemSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="units != null" >
+        UNITS = #{units,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        AMOUNT = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="frequency != null" >
+        FREQUENCY = #{frequency,jdbcType=VARCHAR},
+      </if>
+      <if test="performedBy != null" >
+        PERFORMED_BY = #{performedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="costs != null" >
+        COSTS = #{costs,jdbcType=DECIMAL},
+      </if>
+      <if test="charges != null" >
+        CHARGES = #{charges,jdbcType=DECIMAL},
+      </if>
+      <if test="chargeIndicator != null" >
+        CHARGE_INDICATOR = #{chargeIndicator,jdbcType=DECIMAL},
+      </if>
+      <if test="appointNo != null" >
+        APPOINT_NO = #{appointNo,jdbcType=VARCHAR},
+      </if>
+      <if test="appointItemNo != null" >
+        APPOINT_ITEM_NO = #{appointItemNo,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where SERIAL_NO = #{serialNo,jdbcType=VARCHAR}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.outpdoct.OutpTreatRec" >
+    update OUTPDOCT.OUTP_TREAT_REC
+    set VISIT_DATE = #{visitDate,jdbcType=DATE},
+      VISIT_NO = #{visitNo,jdbcType=DECIMAL},
+      ITEM_CLASS = #{itemClass,jdbcType=VARCHAR},
+      ITEM_CODE = #{itemCode,jdbcType=VARCHAR},
+      ITEM_NAME = #{itemName,jdbcType=VARCHAR},
+      ITEM_SPEC = #{itemSpec,jdbcType=VARCHAR},
+      UNITS = #{units,jdbcType=VARCHAR},
+      AMOUNT = #{amount,jdbcType=DECIMAL},
+      FREQUENCY = #{frequency,jdbcType=VARCHAR},
+      PERFORMED_BY = #{performedBy,jdbcType=VARCHAR},
+      COSTS = #{costs,jdbcType=DECIMAL},
+      CHARGES = #{charges,jdbcType=DECIMAL},
+      CHARGE_INDICATOR = #{chargeIndicator,jdbcType=DECIMAL},
+      APPOINT_NO = #{appointNo,jdbcType=VARCHAR},
+      APPOINT_ITEM_NO = #{appointItemNo,jdbcType=DECIMAL}
+    where SERIAL_NO = #{serialNo,jdbcType=VARCHAR}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+  </update>
+</mapper>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.DoctorTitleDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.DoctorTitleDict" >
+    <id column="TITLE_NAME" property="titleName" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="TITLE_CODE" property="titleCode" jdbcType="VARCHAR" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    TITLE_NAME, SERIAL_NO, TITLE_CODE, INPUT_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.DOCTOR_TITLE_DICT
+    where TITLE_NAME = #{titleName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.DOCTOR_TITLE_DICT
+    where TITLE_NAME = #{titleName,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.DoctorTitleDict" >
+    insert into COMM.DOCTOR_TITLE_DICT (TITLE_NAME, SERIAL_NO, TITLE_CODE, 
+      INPUT_CODE)
+    values (#{titleName,jdbcType=VARCHAR}, #{serialNo,jdbcType=DECIMAL}, #{titleCode,jdbcType=VARCHAR}, 
+      #{inputCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.DoctorTitleDict" >
+    insert into COMM.DOCTOR_TITLE_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="titleName != null" >
+        TITLE_NAME,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="titleCode != null" >
+        TITLE_CODE,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="titleName != null" >
+        #{titleName,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="titleCode != null" >
+        #{titleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.DoctorTitleDict" >
+    update COMM.DOCTOR_TITLE_DICT
+    <set >
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="titleCode != null" >
+        TITLE_CODE = #{titleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where TITLE_NAME = #{titleName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.DoctorTitleDict" >
+    update COMM.DOCTOR_TITLE_DICT
+    set SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      TITLE_CODE = #{titleCode,jdbcType=VARCHAR},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR}
+    where TITLE_NAME = #{titleName,jdbcType=VARCHAR}
+  </update>
+</mapper>

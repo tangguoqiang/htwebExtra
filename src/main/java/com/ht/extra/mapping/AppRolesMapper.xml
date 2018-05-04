@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.AppRolesMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.AppRolesKey" >
+    <id column="APPLICATION" property="application" jdbcType="VARCHAR" />
+    <id column="ROLE" property="role" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.AppRolesKey" >
+    delete from COMM.APP_ROLES
+    where APPLICATION = #{application,jdbcType=VARCHAR}
+      and ROLE = #{role,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.AppRolesKey" >
+    insert into COMM.APP_ROLES (APPLICATION, ROLE)
+    values (#{application,jdbcType=VARCHAR}, #{role,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.AppRolesKey" >
+    insert into COMM.APP_ROLES
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="application != null" >
+        APPLICATION,
+      </if>
+      <if test="role != null" >
+        ROLE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="application != null" >
+        #{application,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null" >
+        #{role,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

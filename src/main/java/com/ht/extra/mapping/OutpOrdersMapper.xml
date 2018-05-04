@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.OutpOrdersMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.outpdoct.OutpOrders" >
+    <id column="SERIAL_NO" property="serialNo" jdbcType="VARCHAR" />
+    <result column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <result column="VISIT_DATE" property="visitDate" jdbcType="DATE" />
+    <result column="VISIT_NO" property="visitNo" jdbcType="DECIMAL" />
+    <result column="ORDERED_BY" property="orderedBy" jdbcType="VARCHAR" />
+    <result column="DOCTOR" property="doctor" jdbcType="VARCHAR" />
+    <result column="ORDER_DATE" property="orderDate" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SERIAL_NO, PATIENT_ID, VISIT_DATE, VISIT_NO, ORDERED_BY, DOCTOR, ORDER_DATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from OUTPDOCT.OUTP_ORDERS
+    where SERIAL_NO = #{serialNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from OUTPDOCT.OUTP_ORDERS
+    where SERIAL_NO = #{serialNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.outpdoct.OutpOrders" >
+    insert into OUTPDOCT.OUTP_ORDERS (SERIAL_NO, PATIENT_ID, VISIT_DATE, 
+      VISIT_NO, ORDERED_BY, DOCTOR, 
+      ORDER_DATE)
+    values (#{serialNo,jdbcType=VARCHAR}, #{patientId,jdbcType=VARCHAR}, #{visitDate,jdbcType=DATE}, 
+      #{visitNo,jdbcType=DECIMAL}, #{orderedBy,jdbcType=VARCHAR}, #{doctor,jdbcType=VARCHAR}, 
+      #{orderDate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.outpdoct.OutpOrders" >
+    insert into OUTPDOCT.OUTP_ORDERS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="visitDate != null" >
+        VISIT_DATE,
+      </if>
+      <if test="visitNo != null" >
+        VISIT_NO,
+      </if>
+      <if test="orderedBy != null" >
+        ORDERED_BY,
+      </if>
+      <if test="doctor != null" >
+        DOCTOR,
+      </if>
+      <if test="orderDate != null" >
+        ORDER_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitDate != null" >
+        #{visitDate,jdbcType=DATE},
+      </if>
+      <if test="visitNo != null" >
+        #{visitNo,jdbcType=DECIMAL},
+      </if>
+      <if test="orderedBy != null" >
+        #{orderedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="doctor != null" >
+        #{doctor,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDate != null" >
+        #{orderDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.outpdoct.OutpOrders" >
+    update OUTPDOCT.OUTP_ORDERS
+    <set >
+      <if test="patientId != null" >
+        PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitDate != null" >
+        VISIT_DATE = #{visitDate,jdbcType=DATE},
+      </if>
+      <if test="visitNo != null" >
+        VISIT_NO = #{visitNo,jdbcType=DECIMAL},
+      </if>
+      <if test="orderedBy != null" >
+        ORDERED_BY = #{orderedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="doctor != null" >
+        DOCTOR = #{doctor,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDate != null" >
+        ORDER_DATE = #{orderDate,jdbcType=DATE},
+      </if>
+    </set>
+    where SERIAL_NO = #{serialNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.outpdoct.OutpOrders" >
+    update OUTPDOCT.OUTP_ORDERS
+    set PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      VISIT_DATE = #{visitDate,jdbcType=DATE},
+      VISIT_NO = #{visitNo,jdbcType=DECIMAL},
+      ORDERED_BY = #{orderedBy,jdbcType=VARCHAR},
+      DOCTOR = #{doctor,jdbcType=VARCHAR},
+      ORDER_DATE = #{orderDate,jdbcType=DATE}
+    where SERIAL_NO = #{serialNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

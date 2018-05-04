@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.InsuOutpClinicMasterMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.insurance.InsuOutpClinicMaster" >
+    <id column="VISIT_DATE" property="visitDate" jdbcType="VARCHAR" />
+    <id column="PAT_NAME" property="patName" jdbcType="VARCHAR" />
+    <result column="INSU_CARD_NO" property="insuCardNo" jdbcType="VARCHAR" />
+    <result column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <result column="ORDERED_BY_DOCTOR_CODE" property="orderedByDoctorCode" jdbcType="VARCHAR" />
+    <result column="ORDERED_BY_DOCTOR" property="orderedByDoctor" jdbcType="VARCHAR" />
+    <result column="DIAGNOSIS_CODE" property="diagnosisCode" jdbcType="VARCHAR" />
+    <result column="DIAGNOSIS_NAME" property="diagnosisName" jdbcType="VARCHAR" />
+    <result column="VISIT_DEPT_INSU_CODE" property="visitDeptInsuCode" jdbcType="VARCHAR" />
+    <result column="VISIT_DEPT_INSU_NAME" property="visitDeptInsuName" jdbcType="VARCHAR" />
+    <result column="OPERATOR_NO" property="operatorNo" jdbcType="VARCHAR" />
+    <result column="RCPT_NO" property="rcptNo" jdbcType="VARCHAR" />
+    <result column="INSU_TYPE" property="insuType" jdbcType="VARCHAR" />
+    <result column="REFUNDED_RCPT_NO" property="refundedRcptNo" jdbcType="VARCHAR" />
+    <result column="DEPT_CODE" property="deptCode" jdbcType="VARCHAR" />
+    <result column="DEPT_NAME" property="deptName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    VISIT_DATE, PAT_NAME, INSU_CARD_NO, PATIENT_ID, ORDERED_BY_DOCTOR_CODE, ORDERED_BY_DOCTOR, 
+    DIAGNOSIS_CODE, DIAGNOSIS_NAME, VISIT_DEPT_INSU_CODE, VISIT_DEPT_INSU_NAME, OPERATOR_NO, 
+    RCPT_NO, INSU_TYPE, REFUNDED_RCPT_NO, DEPT_CODE, DEPT_NAME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.insurance.InsuOutpClinicMasterKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from INSURANCE.INSU_OUTP_CLINIC_MASTER
+    where VISIT_DATE = #{visitDate,jdbcType=VARCHAR}
+      and PAT_NAME = #{patName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.insurance.InsuOutpClinicMasterKey" >
+    delete from INSURANCE.INSU_OUTP_CLINIC_MASTER
+    where VISIT_DATE = #{visitDate,jdbcType=VARCHAR}
+      and PAT_NAME = #{patName,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.insurance.InsuOutpClinicMaster" >
+    insert into INSURANCE.INSU_OUTP_CLINIC_MASTER (VISIT_DATE, PAT_NAME, INSU_CARD_NO, 
+      PATIENT_ID, ORDERED_BY_DOCTOR_CODE, ORDERED_BY_DOCTOR, 
+      DIAGNOSIS_CODE, DIAGNOSIS_NAME, VISIT_DEPT_INSU_CODE, 
+      VISIT_DEPT_INSU_NAME, OPERATOR_NO, RCPT_NO, 
+      INSU_TYPE, REFUNDED_RCPT_NO, DEPT_CODE, 
+      DEPT_NAME)
+    values (#{visitDate,jdbcType=VARCHAR}, #{patName,jdbcType=VARCHAR}, #{insuCardNo,jdbcType=VARCHAR}, 
+      #{patientId,jdbcType=VARCHAR}, #{orderedByDoctorCode,jdbcType=VARCHAR}, #{orderedByDoctor,jdbcType=VARCHAR}, 
+      #{diagnosisCode,jdbcType=VARCHAR}, #{diagnosisName,jdbcType=VARCHAR}, #{visitDeptInsuCode,jdbcType=VARCHAR}, 
+      #{visitDeptInsuName,jdbcType=VARCHAR}, #{operatorNo,jdbcType=VARCHAR}, #{rcptNo,jdbcType=VARCHAR}, 
+      #{insuType,jdbcType=VARCHAR}, #{refundedRcptNo,jdbcType=VARCHAR}, #{deptCode,jdbcType=VARCHAR}, 
+      #{deptName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.insurance.InsuOutpClinicMaster" >
+    insert into INSURANCE.INSU_OUTP_CLINIC_MASTER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="visitDate != null" >
+        VISIT_DATE,
+      </if>
+      <if test="patName != null" >
+        PAT_NAME,
+      </if>
+      <if test="insuCardNo != null" >
+        INSU_CARD_NO,
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="orderedByDoctorCode != null" >
+        ORDERED_BY_DOCTOR_CODE,
+      </if>
+      <if test="orderedByDoctor != null" >
+        ORDERED_BY_DOCTOR,
+      </if>
+      <if test="diagnosisCode != null" >
+        DIAGNOSIS_CODE,
+      </if>
+      <if test="diagnosisName != null" >
+        DIAGNOSIS_NAME,
+      </if>
+      <if test="visitDeptInsuCode != null" >
+        VISIT_DEPT_INSU_CODE,
+      </if>
+      <if test="visitDeptInsuName != null" >
+        VISIT_DEPT_INSU_NAME,
+      </if>
+      <if test="operatorNo != null" >
+        OPERATOR_NO,
+      </if>
+      <if test="rcptNo != null" >
+        RCPT_NO,
+      </if>
+      <if test="insuType != null" >
+        INSU_TYPE,
+      </if>
+      <if test="refundedRcptNo != null" >
+        REFUNDED_RCPT_NO,
+      </if>
+      <if test="deptCode != null" >
+        DEPT_CODE,
+      </if>
+      <if test="deptName != null" >
+        DEPT_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="visitDate != null" >
+        #{visitDate,jdbcType=VARCHAR},
+      </if>
+      <if test="patName != null" >
+        #{patName,jdbcType=VARCHAR},
+      </if>
+      <if test="insuCardNo != null" >
+        #{insuCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderedByDoctorCode != null" >
+        #{orderedByDoctorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orderedByDoctor != null" >
+        #{orderedByDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnosisCode != null" >
+        #{diagnosisCode,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnosisName != null" >
+        #{diagnosisName,jdbcType=VARCHAR},
+      </if>
+      <if test="visitDeptInsuCode != null" >
+        #{visitDeptInsuCode,jdbcType=VARCHAR},
+      </if>
+      <if test="visitDeptInsuName != null" >
+        #{visitDeptInsuName,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorNo != null" >
+        #{operatorNo,jdbcType=VARCHAR},
+      </if>
+      <if test="rcptNo != null" >
+        #{rcptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="insuType != null" >
+        #{insuType,jdbcType=VARCHAR},
+      </if>
+      <if test="refundedRcptNo != null" >
+        #{refundedRcptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="deptCode != null" >
+        #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null" >
+        #{deptName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.insurance.InsuOutpClinicMaster" >
+    update INSURANCE.INSU_OUTP_CLINIC_MASTER
+    <set >
+      <if test="insuCardNo != null" >
+        INSU_CARD_NO = #{insuCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderedByDoctorCode != null" >
+        ORDERED_BY_DOCTOR_CODE = #{orderedByDoctorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orderedByDoctor != null" >
+        ORDERED_BY_DOCTOR = #{orderedByDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnosisCode != null" >
+        DIAGNOSIS_CODE = #{diagnosisCode,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnosisName != null" >
+        DIAGNOSIS_NAME = #{diagnosisName,jdbcType=VARCHAR},
+      </if>
+      <if test="visitDeptInsuCode != null" >
+        VISIT_DEPT_INSU_CODE = #{visitDeptInsuCode,jdbcType=VARCHAR},
+      </if>
+      <if test="visitDeptInsuName != null" >
+        VISIT_DEPT_INSU_NAME = #{visitDeptInsuName,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorNo != null" >
+        OPERATOR_NO = #{operatorNo,jdbcType=VARCHAR},
+      </if>
+      <if test="rcptNo != null" >
+        RCPT_NO = #{rcptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="insuType != null" >
+        INSU_TYPE = #{insuType,jdbcType=VARCHAR},
+      </if>
+      <if test="refundedRcptNo != null" >
+        REFUNDED_RCPT_NO = #{refundedRcptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="deptCode != null" >
+        DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null" >
+        DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where VISIT_DATE = #{visitDate,jdbcType=VARCHAR}
+      and PAT_NAME = #{patName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.insurance.InsuOutpClinicMaster" >
+    update INSURANCE.INSU_OUTP_CLINIC_MASTER
+    set INSU_CARD_NO = #{insuCardNo,jdbcType=VARCHAR},
+      PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      ORDERED_BY_DOCTOR_CODE = #{orderedByDoctorCode,jdbcType=VARCHAR},
+      ORDERED_BY_DOCTOR = #{orderedByDoctor,jdbcType=VARCHAR},
+      DIAGNOSIS_CODE = #{diagnosisCode,jdbcType=VARCHAR},
+      DIAGNOSIS_NAME = #{diagnosisName,jdbcType=VARCHAR},
+      VISIT_DEPT_INSU_CODE = #{visitDeptInsuCode,jdbcType=VARCHAR},
+      VISIT_DEPT_INSU_NAME = #{visitDeptInsuName,jdbcType=VARCHAR},
+      OPERATOR_NO = #{operatorNo,jdbcType=VARCHAR},
+      RCPT_NO = #{rcptNo,jdbcType=VARCHAR},
+      INSU_TYPE = #{insuType,jdbcType=VARCHAR},
+      REFUNDED_RCPT_NO = #{refundedRcptNo,jdbcType=VARCHAR},
+      DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+      DEPT_NAME = #{deptName,jdbcType=VARCHAR}
+    where VISIT_DATE = #{visitDate,jdbcType=VARCHAR}
+      and PAT_NAME = #{patName,jdbcType=VARCHAR}
+  </update>
+</mapper>

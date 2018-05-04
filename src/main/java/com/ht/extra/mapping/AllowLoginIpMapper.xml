@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.AllowLoginIpMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.AllowLoginIp" >
+    <id column="IP_ADDRESS" property="ipAddress" jdbcType="VARCHAR" />
+    <result column="MACHINE" property="machine" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    IP_ADDRESS, MACHINE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.ALLOW_LOGIN_IP
+    where IP_ADDRESS = #{ipAddress,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.ALLOW_LOGIN_IP
+    where IP_ADDRESS = #{ipAddress,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.AllowLoginIp" >
+    insert into COMM.ALLOW_LOGIN_IP (IP_ADDRESS, MACHINE)
+    values (#{ipAddress,jdbcType=VARCHAR}, #{machine,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.AllowLoginIp" >
+    insert into COMM.ALLOW_LOGIN_IP
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ipAddress != null" >
+        IP_ADDRESS,
+      </if>
+      <if test="machine != null" >
+        MACHINE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ipAddress != null" >
+        #{ipAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="machine != null" >
+        #{machine,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.AllowLoginIp" >
+    update COMM.ALLOW_LOGIN_IP
+    <set >
+      <if test="machine != null" >
+        MACHINE = #{machine,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where IP_ADDRESS = #{ipAddress,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.AllowLoginIp" >
+    update COMM.ALLOW_LOGIN_IP
+    set MACHINE = #{machine,jdbcType=VARCHAR}
+    where IP_ADDRESS = #{ipAddress,jdbcType=VARCHAR}
+  </update>
+</mapper>

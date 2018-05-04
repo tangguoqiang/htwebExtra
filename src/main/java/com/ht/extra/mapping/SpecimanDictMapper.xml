@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.SpecimanDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.SpecimanDict" >
+    <id column="SPECIMAN_CODE" property="specimanCode" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="SPECIMAN_NAME" property="specimanName" jdbcType="VARCHAR" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+    <result column="DEPT_CODE" property="deptCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SPECIMAN_CODE, SERIAL_NO, SPECIMAN_NAME, INPUT_CODE, DEPT_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.SPECIMAN_DICT
+    where SPECIMAN_CODE = #{specimanCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.SPECIMAN_DICT
+    where SPECIMAN_CODE = #{specimanCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.SpecimanDict" >
+    insert into COMM.SPECIMAN_DICT (SPECIMAN_CODE, SERIAL_NO, SPECIMAN_NAME, 
+      INPUT_CODE, DEPT_CODE)
+    values (#{specimanCode,jdbcType=VARCHAR}, #{serialNo,jdbcType=DECIMAL}, #{specimanName,jdbcType=VARCHAR}, 
+      #{inputCode,jdbcType=VARCHAR}, #{deptCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.SpecimanDict" >
+    insert into COMM.SPECIMAN_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="specimanCode != null" >
+        SPECIMAN_CODE,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="specimanName != null" >
+        SPECIMAN_NAME,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+      <if test="deptCode != null" >
+        DEPT_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="specimanCode != null" >
+        #{specimanCode,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="specimanName != null" >
+        #{specimanName,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptCode != null" >
+        #{deptCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.SpecimanDict" >
+    update COMM.SPECIMAN_DICT
+    <set >
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="specimanName != null" >
+        SPECIMAN_NAME = #{specimanName,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptCode != null" >
+        DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SPECIMAN_CODE = #{specimanCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.SpecimanDict" >
+    update COMM.SPECIMAN_DICT
+    set SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      SPECIMAN_NAME = #{specimanName,jdbcType=VARCHAR},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+    where SPECIMAN_CODE = #{specimanCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

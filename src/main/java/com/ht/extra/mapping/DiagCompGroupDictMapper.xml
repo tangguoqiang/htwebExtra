@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.DiagCompGroupDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.DiagCompGroupDict" >
+    <id column="DIAG_COMP_GROUP_CODE" property="diagCompGroupCode" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="DIAG_COMP_GROUP_NAME" property="diagCompGroupName" jdbcType="VARCHAR" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    DIAG_COMP_GROUP_CODE, SERIAL_NO, DIAG_COMP_GROUP_NAME, INPUT_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.DIAG_COMP_GROUP_DICT
+    where DIAG_COMP_GROUP_CODE = #{diagCompGroupCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.DIAG_COMP_GROUP_DICT
+    where DIAG_COMP_GROUP_CODE = #{diagCompGroupCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.DiagCompGroupDict" >
+    insert into COMM.DIAG_COMP_GROUP_DICT (DIAG_COMP_GROUP_CODE, SERIAL_NO, DIAG_COMP_GROUP_NAME, 
+      INPUT_CODE)
+    values (#{diagCompGroupCode,jdbcType=VARCHAR}, #{serialNo,jdbcType=DECIMAL}, #{diagCompGroupName,jdbcType=VARCHAR}, 
+      #{inputCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.DiagCompGroupDict" >
+    insert into COMM.DIAG_COMP_GROUP_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="diagCompGroupCode != null" >
+        DIAG_COMP_GROUP_CODE,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="diagCompGroupName != null" >
+        DIAG_COMP_GROUP_NAME,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="diagCompGroupCode != null" >
+        #{diagCompGroupCode,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="diagCompGroupName != null" >
+        #{diagCompGroupName,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.DiagCompGroupDict" >
+    update COMM.DIAG_COMP_GROUP_DICT
+    <set >
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="diagCompGroupName != null" >
+        DIAG_COMP_GROUP_NAME = #{diagCompGroupName,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DIAG_COMP_GROUP_CODE = #{diagCompGroupCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.DiagCompGroupDict" >
+    update COMM.DIAG_COMP_GROUP_DICT
+    set SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      DIAG_COMP_GROUP_NAME = #{diagCompGroupName,jdbcType=VARCHAR},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR}
+    where DIAG_COMP_GROUP_CODE = #{diagCompGroupCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

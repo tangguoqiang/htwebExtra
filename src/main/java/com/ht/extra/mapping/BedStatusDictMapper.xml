@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.BedStatusDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.BedStatusDict" >
+    <id column="BED_STATUS_CODE" property="bedStatusCode" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="BED_STATUS_NAME" property="bedStatusName" jdbcType="VARCHAR" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    BED_STATUS_CODE, SERIAL_NO, BED_STATUS_NAME, INPUT_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.BED_STATUS_DICT
+    where BED_STATUS_CODE = #{bedStatusCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.BED_STATUS_DICT
+    where BED_STATUS_CODE = #{bedStatusCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.BedStatusDict" >
+    insert into COMM.BED_STATUS_DICT (BED_STATUS_CODE, SERIAL_NO, BED_STATUS_NAME, 
+      INPUT_CODE)
+    values (#{bedStatusCode,jdbcType=VARCHAR}, #{serialNo,jdbcType=DECIMAL}, #{bedStatusName,jdbcType=VARCHAR}, 
+      #{inputCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.BedStatusDict" >
+    insert into COMM.BED_STATUS_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bedStatusCode != null" >
+        BED_STATUS_CODE,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="bedStatusName != null" >
+        BED_STATUS_NAME,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bedStatusCode != null" >
+        #{bedStatusCode,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="bedStatusName != null" >
+        #{bedStatusName,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.BedStatusDict" >
+    update COMM.BED_STATUS_DICT
+    <set >
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="bedStatusName != null" >
+        BED_STATUS_NAME = #{bedStatusName,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where BED_STATUS_CODE = #{bedStatusCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.BedStatusDict" >
+    update COMM.BED_STATUS_DICT
+    set SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      BED_STATUS_NAME = #{bedStatusName,jdbcType=VARCHAR},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR}
+    where BED_STATUS_CODE = #{bedStatusCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

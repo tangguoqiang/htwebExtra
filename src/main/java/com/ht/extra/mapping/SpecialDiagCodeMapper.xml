@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.SpecialDiagCodeMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.SpecialDiagCode" >
+    <id column="SPECIAL_DIAG_NAME" property="specialDiagName" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="SPECIAL_DIAG_CODE" property="specialDiagCode" jdbcType="VARCHAR" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+    <result column="INSUR_TYPE" property="insurType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SPECIAL_DIAG_NAME, SERIAL_NO, SPECIAL_DIAG_CODE, INPUT_CODE, INSUR_TYPE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.SPECIAL_DIAG_CODE
+    where SPECIAL_DIAG_NAME = #{specialDiagName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.SPECIAL_DIAG_CODE
+    where SPECIAL_DIAG_NAME = #{specialDiagName,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.SpecialDiagCode" >
+    insert into COMM.SPECIAL_DIAG_CODE (SPECIAL_DIAG_NAME, SERIAL_NO, SPECIAL_DIAG_CODE, 
+      INPUT_CODE, INSUR_TYPE)
+    values (#{specialDiagName,jdbcType=VARCHAR}, #{serialNo,jdbcType=DECIMAL}, #{specialDiagCode,jdbcType=VARCHAR}, 
+      #{inputCode,jdbcType=VARCHAR}, #{insurType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.SpecialDiagCode" >
+    insert into COMM.SPECIAL_DIAG_CODE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="specialDiagName != null" >
+        SPECIAL_DIAG_NAME,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="specialDiagCode != null" >
+        SPECIAL_DIAG_CODE,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+      <if test="insurType != null" >
+        INSUR_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="specialDiagName != null" >
+        #{specialDiagName,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="specialDiagCode != null" >
+        #{specialDiagCode,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="insurType != null" >
+        #{insurType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.SpecialDiagCode" >
+    update COMM.SPECIAL_DIAG_CODE
+    <set >
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="specialDiagCode != null" >
+        SPECIAL_DIAG_CODE = #{specialDiagCode,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="insurType != null" >
+        INSUR_TYPE = #{insurType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SPECIAL_DIAG_NAME = #{specialDiagName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.SpecialDiagCode" >
+    update COMM.SPECIAL_DIAG_CODE
+    set SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      SPECIAL_DIAG_CODE = #{specialDiagCode,jdbcType=VARCHAR},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      INSUR_TYPE = #{insurType,jdbcType=VARCHAR}
+    where SPECIAL_DIAG_NAME = #{specialDiagName,jdbcType=VARCHAR}
+  </update>
+</mapper>

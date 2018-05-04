@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.LabSheetItemsMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.LabSheetItems" >
+    <id column="LAB_SHEET_ID" property="labSheetId" jdbcType="VARCHAR" />
+    <id column="LAB_ITEM_CODE" property="labItemCode" jdbcType="VARCHAR" />
+    <result column="LAB_ITEM_NO" property="labItemNo" jdbcType="DECIMAL" />
+    <result column="LAB_ITEM_NAME" property="labItemName" jdbcType="VARCHAR" />
+    <result column="CHARGE_ITEM_CLASS" property="chargeItemClass" jdbcType="VARCHAR" />
+    <result column="CHARGE_ITEM_CODE" property="chargeItemCode" jdbcType="VARCHAR" />
+    <result column="SPECIMAN" property="speciman" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    LAB_SHEET_ID, LAB_ITEM_CODE, LAB_ITEM_NO, LAB_ITEM_NAME, CHARGE_ITEM_CLASS, CHARGE_ITEM_CODE, 
+    SPECIMAN
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.LabSheetItemsKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.LAB_SHEET_ITEMS
+    where LAB_SHEET_ID = #{labSheetId,jdbcType=VARCHAR}
+      and LAB_ITEM_CODE = #{labItemCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.LabSheetItemsKey" >
+    delete from COMM.LAB_SHEET_ITEMS
+    where LAB_SHEET_ID = #{labSheetId,jdbcType=VARCHAR}
+      and LAB_ITEM_CODE = #{labItemCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.LabSheetItems" >
+    insert into COMM.LAB_SHEET_ITEMS (LAB_SHEET_ID, LAB_ITEM_CODE, LAB_ITEM_NO, 
+      LAB_ITEM_NAME, CHARGE_ITEM_CLASS, CHARGE_ITEM_CODE, 
+      SPECIMAN)
+    values (#{labSheetId,jdbcType=VARCHAR}, #{labItemCode,jdbcType=VARCHAR}, #{labItemNo,jdbcType=DECIMAL}, 
+      #{labItemName,jdbcType=VARCHAR}, #{chargeItemClass,jdbcType=VARCHAR}, #{chargeItemCode,jdbcType=VARCHAR}, 
+      #{speciman,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.LabSheetItems" >
+    insert into COMM.LAB_SHEET_ITEMS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="labSheetId != null" >
+        LAB_SHEET_ID,
+      </if>
+      <if test="labItemCode != null" >
+        LAB_ITEM_CODE,
+      </if>
+      <if test="labItemNo != null" >
+        LAB_ITEM_NO,
+      </if>
+      <if test="labItemName != null" >
+        LAB_ITEM_NAME,
+      </if>
+      <if test="chargeItemClass != null" >
+        CHARGE_ITEM_CLASS,
+      </if>
+      <if test="chargeItemCode != null" >
+        CHARGE_ITEM_CODE,
+      </if>
+      <if test="speciman != null" >
+        SPECIMAN,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="labSheetId != null" >
+        #{labSheetId,jdbcType=VARCHAR},
+      </if>
+      <if test="labItemCode != null" >
+        #{labItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="labItemNo != null" >
+        #{labItemNo,jdbcType=DECIMAL},
+      </if>
+      <if test="labItemName != null" >
+        #{labItemName,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeItemClass != null" >
+        #{chargeItemClass,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeItemCode != null" >
+        #{chargeItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="speciman != null" >
+        #{speciman,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.LabSheetItems" >
+    update COMM.LAB_SHEET_ITEMS
+    <set >
+      <if test="labItemNo != null" >
+        LAB_ITEM_NO = #{labItemNo,jdbcType=DECIMAL},
+      </if>
+      <if test="labItemName != null" >
+        LAB_ITEM_NAME = #{labItemName,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeItemClass != null" >
+        CHARGE_ITEM_CLASS = #{chargeItemClass,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeItemCode != null" >
+        CHARGE_ITEM_CODE = #{chargeItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="speciman != null" >
+        SPECIMAN = #{speciman,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where LAB_SHEET_ID = #{labSheetId,jdbcType=VARCHAR}
+      and LAB_ITEM_CODE = #{labItemCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.LabSheetItems" >
+    update COMM.LAB_SHEET_ITEMS
+    set LAB_ITEM_NO = #{labItemNo,jdbcType=DECIMAL},
+      LAB_ITEM_NAME = #{labItemName,jdbcType=VARCHAR},
+      CHARGE_ITEM_CLASS = #{chargeItemClass,jdbcType=VARCHAR},
+      CHARGE_ITEM_CODE = #{chargeItemCode,jdbcType=VARCHAR},
+      SPECIMAN = #{speciman,jdbcType=VARCHAR}
+    where LAB_SHEET_ID = #{labSheetId,jdbcType=VARCHAR}
+      and LAB_ITEM_CODE = #{labItemCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

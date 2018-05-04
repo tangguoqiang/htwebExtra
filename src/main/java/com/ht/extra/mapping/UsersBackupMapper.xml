@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.UsersBackupMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.UsersBackup" >
+    <id column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="DB_USER" property="dbUser" jdbcType="VARCHAR" />
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+    <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+    <result column="USER_DEPT" property="userDept" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SERIAL_NO, DB_USER, USER_ID, USER_NAME, USER_DEPT, CREATE_DATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.USERS_BACKUP
+    where SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from COMM.USERS_BACKUP
+    where SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.UsersBackup" >
+    insert into COMM.USERS_BACKUP (SERIAL_NO, DB_USER, USER_ID, 
+      USER_NAME, USER_DEPT, CREATE_DATE
+      )
+    values (#{serialNo,jdbcType=DECIMAL}, #{dbUser,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{userName,jdbcType=VARCHAR}, #{userDept,jdbcType=VARCHAR}, #{createDate,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.UsersBackup" >
+    insert into COMM.USERS_BACKUP
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="dbUser != null" >
+        DB_USER,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="userName != null" >
+        USER_NAME,
+      </if>
+      <if test="userDept != null" >
+        USER_DEPT,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="dbUser != null" >
+        #{dbUser,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userDept != null" >
+        #{userDept,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.UsersBackup" >
+    update COMM.USERS_BACKUP
+    <set >
+      <if test="dbUser != null" >
+        DB_USER = #{dbUser,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userDept != null" >
+        USER_DEPT = #{userDept,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=DATE},
+      </if>
+    </set>
+    where SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.UsersBackup" >
+    update COMM.USERS_BACKUP
+    set DB_USER = #{dbUser,jdbcType=VARCHAR},
+      USER_ID = #{userId,jdbcType=VARCHAR},
+      USER_NAME = #{userName,jdbcType=VARCHAR},
+      USER_DEPT = #{userDept,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=DATE}
+    where SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+  </update>
+</mapper>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.HospitalConfigMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.HospitalConfig" >
+    <id column="HOSPITAL" property="hospital" jdbcType="VARCHAR" />
+    <result column="AUTHORIZED_KEY" property="authorizedKey" jdbcType="VARCHAR" />
+    <result column="UNIT_CODE" property="unitCode" jdbcType="VARCHAR" />
+    <result column="LOCATION" property="location" jdbcType="VARCHAR" />
+    <result column="MAILING_ADDRESS" property="mailingAddress" jdbcType="VARCHAR" />
+    <result column="ZIP_CODE" property="zipCode" jdbcType="VARCHAR" />
+    <result column="APPROVED_BED_NUM" property="approvedBedNum" jdbcType="DECIMAL" />
+    <result column="HOSPITAL_TYPE" property="hospitalType" jdbcType="DECIMAL" />
+    <result column="HOSPITAL_CLASS" property="hospitalClass" jdbcType="VARCHAR" />
+    <result column="HOSPITAL_NO" property="hospitalNo" jdbcType="VARCHAR" />
+    <result column="VERIFY_KEY" property="verifyKey" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    HOSPITAL, AUTHORIZED_KEY, UNIT_CODE, LOCATION, MAILING_ADDRESS, ZIP_CODE, APPROVED_BED_NUM, 
+    HOSPITAL_TYPE, HOSPITAL_CLASS, HOSPITAL_NO, VERIFY_KEY
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.HOSPITAL_CONFIG
+    where HOSPITAL = #{hospital,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.HOSPITAL_CONFIG
+    where HOSPITAL = #{hospital,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.HospitalConfig" >
+    insert into COMM.HOSPITAL_CONFIG (HOSPITAL, AUTHORIZED_KEY, UNIT_CODE, 
+      LOCATION, MAILING_ADDRESS, ZIP_CODE, 
+      APPROVED_BED_NUM, HOSPITAL_TYPE, HOSPITAL_CLASS, 
+      HOSPITAL_NO, VERIFY_KEY)
+    values (#{hospital,jdbcType=VARCHAR}, #{authorizedKey,jdbcType=VARCHAR}, #{unitCode,jdbcType=VARCHAR}, 
+      #{location,jdbcType=VARCHAR}, #{mailingAddress,jdbcType=VARCHAR}, #{zipCode,jdbcType=VARCHAR}, 
+      #{approvedBedNum,jdbcType=DECIMAL}, #{hospitalType,jdbcType=DECIMAL}, #{hospitalClass,jdbcType=VARCHAR}, 
+      #{hospitalNo,jdbcType=VARCHAR}, #{verifyKey,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.HospitalConfig" >
+    insert into COMM.HOSPITAL_CONFIG
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="hospital != null" >
+        HOSPITAL,
+      </if>
+      <if test="authorizedKey != null" >
+        AUTHORIZED_KEY,
+      </if>
+      <if test="unitCode != null" >
+        UNIT_CODE,
+      </if>
+      <if test="location != null" >
+        LOCATION,
+      </if>
+      <if test="mailingAddress != null" >
+        MAILING_ADDRESS,
+      </if>
+      <if test="zipCode != null" >
+        ZIP_CODE,
+      </if>
+      <if test="approvedBedNum != null" >
+        APPROVED_BED_NUM,
+      </if>
+      <if test="hospitalType != null" >
+        HOSPITAL_TYPE,
+      </if>
+      <if test="hospitalClass != null" >
+        HOSPITAL_CLASS,
+      </if>
+      <if test="hospitalNo != null" >
+        HOSPITAL_NO,
+      </if>
+      <if test="verifyKey != null" >
+        VERIFY_KEY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="hospital != null" >
+        #{hospital,jdbcType=VARCHAR},
+      </if>
+      <if test="authorizedKey != null" >
+        #{authorizedKey,jdbcType=VARCHAR},
+      </if>
+      <if test="unitCode != null" >
+        #{unitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="mailingAddress != null" >
+        #{mailingAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null" >
+        #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="approvedBedNum != null" >
+        #{approvedBedNum,jdbcType=DECIMAL},
+      </if>
+      <if test="hospitalType != null" >
+        #{hospitalType,jdbcType=DECIMAL},
+      </if>
+      <if test="hospitalClass != null" >
+        #{hospitalClass,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalNo != null" >
+        #{hospitalNo,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyKey != null" >
+        #{verifyKey,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.HospitalConfig" >
+    update COMM.HOSPITAL_CONFIG
+    <set >
+      <if test="authorizedKey != null" >
+        AUTHORIZED_KEY = #{authorizedKey,jdbcType=VARCHAR},
+      </if>
+      <if test="unitCode != null" >
+        UNIT_CODE = #{unitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        LOCATION = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="mailingAddress != null" >
+        MAILING_ADDRESS = #{mailingAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null" >
+        ZIP_CODE = #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="approvedBedNum != null" >
+        APPROVED_BED_NUM = #{approvedBedNum,jdbcType=DECIMAL},
+      </if>
+      <if test="hospitalType != null" >
+        HOSPITAL_TYPE = #{hospitalType,jdbcType=DECIMAL},
+      </if>
+      <if test="hospitalClass != null" >
+        HOSPITAL_CLASS = #{hospitalClass,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalNo != null" >
+        HOSPITAL_NO = #{hospitalNo,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyKey != null" >
+        VERIFY_KEY = #{verifyKey,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where HOSPITAL = #{hospital,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.HospitalConfig" >
+    update COMM.HOSPITAL_CONFIG
+    set AUTHORIZED_KEY = #{authorizedKey,jdbcType=VARCHAR},
+      UNIT_CODE = #{unitCode,jdbcType=VARCHAR},
+      LOCATION = #{location,jdbcType=VARCHAR},
+      MAILING_ADDRESS = #{mailingAddress,jdbcType=VARCHAR},
+      ZIP_CODE = #{zipCode,jdbcType=VARCHAR},
+      APPROVED_BED_NUM = #{approvedBedNum,jdbcType=DECIMAL},
+      HOSPITAL_TYPE = #{hospitalType,jdbcType=DECIMAL},
+      HOSPITAL_CLASS = #{hospitalClass,jdbcType=VARCHAR},
+      HOSPITAL_NO = #{hospitalNo,jdbcType=VARCHAR},
+      VERIFY_KEY = #{verifyKey,jdbcType=VARCHAR}
+    where HOSPITAL = #{hospital,jdbcType=VARCHAR}
+  </update>
+</mapper>

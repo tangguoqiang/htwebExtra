@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.PatientIdRefMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.PatientIdRef" >
+    <id column="TABLE_NAME" property="tableName" jdbcType="VARCHAR" />
+    <id column="COLUMN_NAME" property="columnName" jdbcType="VARCHAR" />
+    <result column="RELATED_COLUMN_NAME" property="relatedColumnName" jdbcType="VARCHAR" />
+    <result column="OPER_TYPE" property="operType" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    TABLE_NAME, COLUMN_NAME, RELATED_COLUMN_NAME, OPER_TYPE, SERIAL_NO
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.PatientIdRefKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.PATIENT_ID_REF
+    where TABLE_NAME = #{tableName,jdbcType=VARCHAR}
+      and COLUMN_NAME = #{columnName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.PatientIdRefKey" >
+    delete from COMM.PATIENT_ID_REF
+    where TABLE_NAME = #{tableName,jdbcType=VARCHAR}
+      and COLUMN_NAME = #{columnName,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.PatientIdRef" >
+    insert into COMM.PATIENT_ID_REF (TABLE_NAME, COLUMN_NAME, RELATED_COLUMN_NAME, 
+      OPER_TYPE, SERIAL_NO)
+    values (#{tableName,jdbcType=VARCHAR}, #{columnName,jdbcType=VARCHAR}, #{relatedColumnName,jdbcType=VARCHAR}, 
+      #{operType,jdbcType=VARCHAR}, #{serialNo,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.PatientIdRef" >
+    insert into COMM.PATIENT_ID_REF
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tableName != null" >
+        TABLE_NAME,
+      </if>
+      <if test="columnName != null" >
+        COLUMN_NAME,
+      </if>
+      <if test="relatedColumnName != null" >
+        RELATED_COLUMN_NAME,
+      </if>
+      <if test="operType != null" >
+        OPER_TYPE,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tableName != null" >
+        #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="columnName != null" >
+        #{columnName,jdbcType=VARCHAR},
+      </if>
+      <if test="relatedColumnName != null" >
+        #{relatedColumnName,jdbcType=VARCHAR},
+      </if>
+      <if test="operType != null" >
+        #{operType,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.PatientIdRef" >
+    update COMM.PATIENT_ID_REF
+    <set >
+      <if test="relatedColumnName != null" >
+        RELATED_COLUMN_NAME = #{relatedColumnName,jdbcType=VARCHAR},
+      </if>
+      <if test="operType != null" >
+        OPER_TYPE = #{operType,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where TABLE_NAME = #{tableName,jdbcType=VARCHAR}
+      and COLUMN_NAME = #{columnName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.PatientIdRef" >
+    update COMM.PATIENT_ID_REF
+    set RELATED_COLUMN_NAME = #{relatedColumnName,jdbcType=VARCHAR},
+      OPER_TYPE = #{operType,jdbcType=VARCHAR},
+      SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+    where TABLE_NAME = #{tableName,jdbcType=VARCHAR}
+      and COLUMN_NAME = #{columnName,jdbcType=VARCHAR}
+  </update>
+</mapper>

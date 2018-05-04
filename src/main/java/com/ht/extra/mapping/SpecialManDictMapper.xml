@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.SpecialManDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.SpecialManDict" >
+    <id column="MAN_NAME" property="manName" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="MAN_CODE" property="manCode" jdbcType="VARCHAR" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    MAN_NAME, SERIAL_NO, MAN_CODE, INPUT_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.SPECIAL_MAN_DICT
+    where MAN_NAME = #{manName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.SPECIAL_MAN_DICT
+    where MAN_NAME = #{manName,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.SpecialManDict" >
+    insert into COMM.SPECIAL_MAN_DICT (MAN_NAME, SERIAL_NO, MAN_CODE, 
+      INPUT_CODE)
+    values (#{manName,jdbcType=VARCHAR}, #{serialNo,jdbcType=DECIMAL}, #{manCode,jdbcType=VARCHAR}, 
+      #{inputCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.SpecialManDict" >
+    insert into COMM.SPECIAL_MAN_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="manName != null" >
+        MAN_NAME,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="manCode != null" >
+        MAN_CODE,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="manName != null" >
+        #{manName,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="manCode != null" >
+        #{manCode,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.SpecialManDict" >
+    update COMM.SPECIAL_MAN_DICT
+    <set >
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="manCode != null" >
+        MAN_CODE = #{manCode,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where MAN_NAME = #{manName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.SpecialManDict" >
+    update COMM.SPECIAL_MAN_DICT
+    set SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      MAN_CODE = #{manCode,jdbcType=VARCHAR},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR}
+    where MAN_NAME = #{manName,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.MrValueDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.MrValueDict" >
+    <id column="MR_VALUE_NAME" property="mrValueName" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="MR_VALUE_CODE" property="mrValueCode" jdbcType="VARCHAR" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    MR_VALUE_NAME, SERIAL_NO, MR_VALUE_CODE, INPUT_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.MR_VALUE_DICT
+    where MR_VALUE_NAME = #{mrValueName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.MR_VALUE_DICT
+    where MR_VALUE_NAME = #{mrValueName,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.MrValueDict" >
+    insert into COMM.MR_VALUE_DICT (MR_VALUE_NAME, SERIAL_NO, MR_VALUE_CODE, 
+      INPUT_CODE)
+    values (#{mrValueName,jdbcType=VARCHAR}, #{serialNo,jdbcType=DECIMAL}, #{mrValueCode,jdbcType=VARCHAR}, 
+      #{inputCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.MrValueDict" >
+    insert into COMM.MR_VALUE_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mrValueName != null" >
+        MR_VALUE_NAME,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="mrValueCode != null" >
+        MR_VALUE_CODE,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mrValueName != null" >
+        #{mrValueName,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="mrValueCode != null" >
+        #{mrValueCode,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.MrValueDict" >
+    update COMM.MR_VALUE_DICT
+    <set >
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="mrValueCode != null" >
+        MR_VALUE_CODE = #{mrValueCode,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where MR_VALUE_NAME = #{mrValueName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.MrValueDict" >
+    update COMM.MR_VALUE_DICT
+    set SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      MR_VALUE_CODE = #{mrValueCode,jdbcType=VARCHAR},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR}
+    where MR_VALUE_NAME = #{mrValueName,jdbcType=VARCHAR}
+  </update>
+</mapper>

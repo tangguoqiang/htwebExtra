@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.PhamDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.PhamDict" >
+    <id column="PHAM_STD_CODE" property="phamStdCode" jdbcType="VARCHAR" />
+    <result column="PHAM_NAME" property="phamName" jdbcType="VARCHAR" />
+    <result column="PHAM_SPEC" property="phamSpec" jdbcType="VARCHAR" />
+    <result column="PHAM_UNIT" property="phamUnit" jdbcType="VARCHAR" />
+    <result column="PHAM_FORM" property="phamForm" jdbcType="VARCHAR" />
+    <result column="TOXICOLOGY_PROPERTY" property="toxicologyProperty" jdbcType="VARCHAR" />
+    <result column="STD_DOSE" property="stdDose" jdbcType="DECIMAL" />
+    <result column="MATERIAL_PROPERTY" property="materialProperty" jdbcType="VARCHAR" />
+    <result column="DIVIDE_PACK_DOSE" property="dividePackDose" jdbcType="DECIMAL" />
+    <result column="CONDITION_OF_STORAGE" property="conditionOfStorage" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PHAM_STD_CODE, PHAM_NAME, PHAM_SPEC, PHAM_UNIT, PHAM_FORM, TOXICOLOGY_PROPERTY, STD_DOSE, 
+    MATERIAL_PROPERTY, DIVIDE_PACK_DOSE, CONDITION_OF_STORAGE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.PHAM_DICT
+    where PHAM_STD_CODE = #{phamStdCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.PHAM_DICT
+    where PHAM_STD_CODE = #{phamStdCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.PhamDict" >
+    insert into COMM.PHAM_DICT (PHAM_STD_CODE, PHAM_NAME, PHAM_SPEC, 
+      PHAM_UNIT, PHAM_FORM, TOXICOLOGY_PROPERTY, 
+      STD_DOSE, MATERIAL_PROPERTY, DIVIDE_PACK_DOSE, 
+      CONDITION_OF_STORAGE)
+    values (#{phamStdCode,jdbcType=VARCHAR}, #{phamName,jdbcType=VARCHAR}, #{phamSpec,jdbcType=VARCHAR}, 
+      #{phamUnit,jdbcType=VARCHAR}, #{phamForm,jdbcType=VARCHAR}, #{toxicologyProperty,jdbcType=VARCHAR}, 
+      #{stdDose,jdbcType=DECIMAL}, #{materialProperty,jdbcType=VARCHAR}, #{dividePackDose,jdbcType=DECIMAL}, 
+      #{conditionOfStorage,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.PhamDict" >
+    insert into COMM.PHAM_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="phamStdCode != null" >
+        PHAM_STD_CODE,
+      </if>
+      <if test="phamName != null" >
+        PHAM_NAME,
+      </if>
+      <if test="phamSpec != null" >
+        PHAM_SPEC,
+      </if>
+      <if test="phamUnit != null" >
+        PHAM_UNIT,
+      </if>
+      <if test="phamForm != null" >
+        PHAM_FORM,
+      </if>
+      <if test="toxicologyProperty != null" >
+        TOXICOLOGY_PROPERTY,
+      </if>
+      <if test="stdDose != null" >
+        STD_DOSE,
+      </if>
+      <if test="materialProperty != null" >
+        MATERIAL_PROPERTY,
+      </if>
+      <if test="dividePackDose != null" >
+        DIVIDE_PACK_DOSE,
+      </if>
+      <if test="conditionOfStorage != null" >
+        CONDITION_OF_STORAGE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="phamStdCode != null" >
+        #{phamStdCode,jdbcType=VARCHAR},
+      </if>
+      <if test="phamName != null" >
+        #{phamName,jdbcType=VARCHAR},
+      </if>
+      <if test="phamSpec != null" >
+        #{phamSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="phamUnit != null" >
+        #{phamUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="phamForm != null" >
+        #{phamForm,jdbcType=VARCHAR},
+      </if>
+      <if test="toxicologyProperty != null" >
+        #{toxicologyProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="stdDose != null" >
+        #{stdDose,jdbcType=DECIMAL},
+      </if>
+      <if test="materialProperty != null" >
+        #{materialProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="dividePackDose != null" >
+        #{dividePackDose,jdbcType=DECIMAL},
+      </if>
+      <if test="conditionOfStorage != null" >
+        #{conditionOfStorage,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.PhamDict" >
+    update COMM.PHAM_DICT
+    <set >
+      <if test="phamName != null" >
+        PHAM_NAME = #{phamName,jdbcType=VARCHAR},
+      </if>
+      <if test="phamSpec != null" >
+        PHAM_SPEC = #{phamSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="phamUnit != null" >
+        PHAM_UNIT = #{phamUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="phamForm != null" >
+        PHAM_FORM = #{phamForm,jdbcType=VARCHAR},
+      </if>
+      <if test="toxicologyProperty != null" >
+        TOXICOLOGY_PROPERTY = #{toxicologyProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="stdDose != null" >
+        STD_DOSE = #{stdDose,jdbcType=DECIMAL},
+      </if>
+      <if test="materialProperty != null" >
+        MATERIAL_PROPERTY = #{materialProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="dividePackDose != null" >
+        DIVIDE_PACK_DOSE = #{dividePackDose,jdbcType=DECIMAL},
+      </if>
+      <if test="conditionOfStorage != null" >
+        CONDITION_OF_STORAGE = #{conditionOfStorage,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PHAM_STD_CODE = #{phamStdCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.PhamDict" >
+    update COMM.PHAM_DICT
+    set PHAM_NAME = #{phamName,jdbcType=VARCHAR},
+      PHAM_SPEC = #{phamSpec,jdbcType=VARCHAR},
+      PHAM_UNIT = #{phamUnit,jdbcType=VARCHAR},
+      PHAM_FORM = #{phamForm,jdbcType=VARCHAR},
+      TOXICOLOGY_PROPERTY = #{toxicologyProperty,jdbcType=VARCHAR},
+      STD_DOSE = #{stdDose,jdbcType=DECIMAL},
+      MATERIAL_PROPERTY = #{materialProperty,jdbcType=VARCHAR},
+      DIVIDE_PACK_DOSE = #{dividePackDose,jdbcType=DECIMAL},
+      CONDITION_OF_STORAGE = #{conditionOfStorage,jdbcType=VARCHAR}
+    where PHAM_STD_CODE = #{phamStdCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

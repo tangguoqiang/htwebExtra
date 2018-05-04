@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.DeptCodeHzMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.DeptCodeHz" >
+    <id column="DEPT_CODEHZ" property="deptCodehz" jdbcType="VARCHAR" />
+    <result column="DEPT_NAMEHZ" property="deptNamehz" jdbcType="VARCHAR" />
+    <result column="DEPT_HZADRESS" property="deptHzadress" jdbcType="VARCHAR" />
+    <result column="DEPT_HZBANK" property="deptHzbank" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    DEPT_CODEHZ, DEPT_NAMEHZ, DEPT_HZADRESS, DEPT_HZBANK
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.DEPT_CODE_HZ
+    where DEPT_CODEHZ = #{deptCodehz,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.DEPT_CODE_HZ
+    where DEPT_CODEHZ = #{deptCodehz,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.DeptCodeHz" >
+    insert into COMM.DEPT_CODE_HZ (DEPT_CODEHZ, DEPT_NAMEHZ, DEPT_HZADRESS, 
+      DEPT_HZBANK)
+    values (#{deptCodehz,jdbcType=VARCHAR}, #{deptNamehz,jdbcType=VARCHAR}, #{deptHzadress,jdbcType=VARCHAR}, 
+      #{deptHzbank,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.DeptCodeHz" >
+    insert into COMM.DEPT_CODE_HZ
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="deptCodehz != null" >
+        DEPT_CODEHZ,
+      </if>
+      <if test="deptNamehz != null" >
+        DEPT_NAMEHZ,
+      </if>
+      <if test="deptHzadress != null" >
+        DEPT_HZADRESS,
+      </if>
+      <if test="deptHzbank != null" >
+        DEPT_HZBANK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="deptCodehz != null" >
+        #{deptCodehz,jdbcType=VARCHAR},
+      </if>
+      <if test="deptNamehz != null" >
+        #{deptNamehz,jdbcType=VARCHAR},
+      </if>
+      <if test="deptHzadress != null" >
+        #{deptHzadress,jdbcType=VARCHAR},
+      </if>
+      <if test="deptHzbank != null" >
+        #{deptHzbank,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.DeptCodeHz" >
+    update COMM.DEPT_CODE_HZ
+    <set >
+      <if test="deptNamehz != null" >
+        DEPT_NAMEHZ = #{deptNamehz,jdbcType=VARCHAR},
+      </if>
+      <if test="deptHzadress != null" >
+        DEPT_HZADRESS = #{deptHzadress,jdbcType=VARCHAR},
+      </if>
+      <if test="deptHzbank != null" >
+        DEPT_HZBANK = #{deptHzbank,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DEPT_CODEHZ = #{deptCodehz,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.DeptCodeHz" >
+    update COMM.DEPT_CODE_HZ
+    set DEPT_NAMEHZ = #{deptNamehz,jdbcType=VARCHAR},
+      DEPT_HZADRESS = #{deptHzadress,jdbcType=VARCHAR},
+      DEPT_HZBANK = #{deptHzbank,jdbcType=VARCHAR}
+    where DEPT_CODEHZ = #{deptCodehz,jdbcType=VARCHAR}
+  </update>
+</mapper>

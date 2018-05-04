@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.InsuOutpSettleRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.insurance.InsuOutpSettleRecord" >
+    <id column="INSU_RCPT_NO" property="insuRcptNo" jdbcType="VARCHAR" />
+    <result column="INSU_CARD_NO" property="insuCardNo" jdbcType="VARCHAR" />
+    <result column="INSU_VISIT_DATE" property="insuVisitDate" jdbcType="DATE" />
+    <result column="OUTP_FEE" property="outpFee" jdbcType="DECIMAL" />
+    <result column="DRUG_TOTAL" property="drugTotal" jdbcType="DECIMAL" />
+    <result column="MEDICAL_TOTAL" property="medicalTotal" jdbcType="DECIMAL" />
+    <result column="PAYMENT_SELF" property="paymentSelf" jdbcType="DECIMAL" />
+    <result column="INSU_RANGE_TOTAL" property="insuRangeTotal" jdbcType="DECIMAL" />
+    <result column="PAY_FROM_ACCOUNT" property="payFromAccount" jdbcType="DECIMAL" />
+    <result column="PAY_FROM_FUND" property="payFromFund" jdbcType="DECIMAL" />
+    <result column="LARGER_DIAGNOSIS_PAYMENT" property="largerDiagnosisPayment" jdbcType="DECIMAL" />
+    <result column="PAY_FROM_INSURED" property="payFromInsured" jdbcType="DECIMAL" />
+    <result column="ACCOUNT_INITIAL_AMOUNT" property="accountInitialAmount" jdbcType="DECIMAL" />
+    <result column="ACCOUNT_END_AMOUNT" property="accountEndAmount" jdbcType="DECIMAL" />
+    <result column="INSU_OPERATOR_NO" property="insuOperatorNo" jdbcType="VARCHAR" />
+    <result column="RCPT_NO" property="rcptNo" jdbcType="VARCHAR" />
+    <result column="REFUNDED_RCPT_NO" property="refundedRcptNo" jdbcType="VARCHAR" />
+    <result column="PAT_NAME" property="patName" jdbcType="VARCHAR" />
+    <result column="IDENTITY_CLASS" property="identityClass" jdbcType="VARCHAR" />
+    <result column="PAY_FROM_CASH" property="payFromCash" jdbcType="DECIMAL" />
+    <result column="CHARGE_CLASS" property="chargeClass" jdbcType="VARCHAR" />
+    <result column="INSURANCE_CLASS" property="insuranceClass" jdbcType="VARCHAR" />
+    <result column="PAY_FROM_ALLOWANCE" property="payFromAllowance" jdbcType="DECIMAL" />
+    <result column="PAY_FROM_CIVIL" property="payFromCivil" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    INSU_RCPT_NO, INSU_CARD_NO, INSU_VISIT_DATE, OUTP_FEE, DRUG_TOTAL, MEDICAL_TOTAL, 
+    PAYMENT_SELF, INSU_RANGE_TOTAL, PAY_FROM_ACCOUNT, PAY_FROM_FUND, LARGER_DIAGNOSIS_PAYMENT, 
+    PAY_FROM_INSURED, ACCOUNT_INITIAL_AMOUNT, ACCOUNT_END_AMOUNT, INSU_OPERATOR_NO, RCPT_NO, 
+    REFUNDED_RCPT_NO, PAT_NAME, IDENTITY_CLASS, PAY_FROM_CASH, CHARGE_CLASS, INSURANCE_CLASS, 
+    PAY_FROM_ALLOWANCE, PAY_FROM_CIVIL
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from INSURANCE.INSU_OUTP_SETTLE_RECORD
+    where INSU_RCPT_NO = #{insuRcptNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from INSURANCE.INSU_OUTP_SETTLE_RECORD
+    where INSU_RCPT_NO = #{insuRcptNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.insurance.InsuOutpSettleRecord" >
+    insert into INSURANCE.INSU_OUTP_SETTLE_RECORD (INSU_RCPT_NO, INSU_CARD_NO, INSU_VISIT_DATE, 
+      OUTP_FEE, DRUG_TOTAL, MEDICAL_TOTAL, 
+      PAYMENT_SELF, INSU_RANGE_TOTAL, PAY_FROM_ACCOUNT, 
+      PAY_FROM_FUND, LARGER_DIAGNOSIS_PAYMENT, PAY_FROM_INSURED, 
+      ACCOUNT_INITIAL_AMOUNT, ACCOUNT_END_AMOUNT, 
+      INSU_OPERATOR_NO, RCPT_NO, REFUNDED_RCPT_NO, 
+      PAT_NAME, IDENTITY_CLASS, PAY_FROM_CASH, 
+      CHARGE_CLASS, INSURANCE_CLASS, PAY_FROM_ALLOWANCE, 
+      PAY_FROM_CIVIL)
+    values (#{insuRcptNo,jdbcType=VARCHAR}, #{insuCardNo,jdbcType=VARCHAR}, #{insuVisitDate,jdbcType=DATE}, 
+      #{outpFee,jdbcType=DECIMAL}, #{drugTotal,jdbcType=DECIMAL}, #{medicalTotal,jdbcType=DECIMAL}, 
+      #{paymentSelf,jdbcType=DECIMAL}, #{insuRangeTotal,jdbcType=DECIMAL}, #{payFromAccount,jdbcType=DECIMAL}, 
+      #{payFromFund,jdbcType=DECIMAL}, #{largerDiagnosisPayment,jdbcType=DECIMAL}, #{payFromInsured,jdbcType=DECIMAL}, 
+      #{accountInitialAmount,jdbcType=DECIMAL}, #{accountEndAmount,jdbcType=DECIMAL}, 
+      #{insuOperatorNo,jdbcType=VARCHAR}, #{rcptNo,jdbcType=VARCHAR}, #{refundedRcptNo,jdbcType=VARCHAR}, 
+      #{patName,jdbcType=VARCHAR}, #{identityClass,jdbcType=VARCHAR}, #{payFromCash,jdbcType=DECIMAL}, 
+      #{chargeClass,jdbcType=VARCHAR}, #{insuranceClass,jdbcType=VARCHAR}, #{payFromAllowance,jdbcType=DECIMAL}, 
+      #{payFromCivil,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.insurance.InsuOutpSettleRecord" >
+    insert into INSURANCE.INSU_OUTP_SETTLE_RECORD
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="insuRcptNo != null" >
+        INSU_RCPT_NO,
+      </if>
+      <if test="insuCardNo != null" >
+        INSU_CARD_NO,
+      </if>
+      <if test="insuVisitDate != null" >
+        INSU_VISIT_DATE,
+      </if>
+      <if test="outpFee != null" >
+        OUTP_FEE,
+      </if>
+      <if test="drugTotal != null" >
+        DRUG_TOTAL,
+      </if>
+      <if test="medicalTotal != null" >
+        MEDICAL_TOTAL,
+      </if>
+      <if test="paymentSelf != null" >
+        PAYMENT_SELF,
+      </if>
+      <if test="insuRangeTotal != null" >
+        INSU_RANGE_TOTAL,
+      </if>
+      <if test="payFromAccount != null" >
+        PAY_FROM_ACCOUNT,
+      </if>
+      <if test="payFromFund != null" >
+        PAY_FROM_FUND,
+      </if>
+      <if test="largerDiagnosisPayment != null" >
+        LARGER_DIAGNOSIS_PAYMENT,
+      </if>
+      <if test="payFromInsured != null" >
+        PAY_FROM_INSURED,
+      </if>
+      <if test="accountInitialAmount != null" >
+        ACCOUNT_INITIAL_AMOUNT,
+      </if>
+      <if test="accountEndAmount != null" >
+        ACCOUNT_END_AMOUNT,
+      </if>
+      <if test="insuOperatorNo != null" >
+        INSU_OPERATOR_NO,
+      </if>
+      <if test="rcptNo != null" >
+        RCPT_NO,
+      </if>
+      <if test="refundedRcptNo != null" >
+        REFUNDED_RCPT_NO,
+      </if>
+      <if test="patName != null" >
+        PAT_NAME,
+      </if>
+      <if test="identityClass != null" >
+        IDENTITY_CLASS,
+      </if>
+      <if test="payFromCash != null" >
+        PAY_FROM_CASH,
+      </if>
+      <if test="chargeClass != null" >
+        CHARGE_CLASS,
+      </if>
+      <if test="insuranceClass != null" >
+        INSURANCE_CLASS,
+      </if>
+      <if test="payFromAllowance != null" >
+        PAY_FROM_ALLOWANCE,
+      </if>
+      <if test="payFromCivil != null" >
+        PAY_FROM_CIVIL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="insuRcptNo != null" >
+        #{insuRcptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="insuCardNo != null" >
+        #{insuCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="insuVisitDate != null" >
+        #{insuVisitDate,jdbcType=DATE},
+      </if>
+      <if test="outpFee != null" >
+        #{outpFee,jdbcType=DECIMAL},
+      </if>
+      <if test="drugTotal != null" >
+        #{drugTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="medicalTotal != null" >
+        #{medicalTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="paymentSelf != null" >
+        #{paymentSelf,jdbcType=DECIMAL},
+      </if>
+      <if test="insuRangeTotal != null" >
+        #{insuRangeTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="payFromAccount != null" >
+        #{payFromAccount,jdbcType=DECIMAL},
+      </if>
+      <if test="payFromFund != null" >
+        #{payFromFund,jdbcType=DECIMAL},
+      </if>
+      <if test="largerDiagnosisPayment != null" >
+        #{largerDiagnosisPayment,jdbcType=DECIMAL},
+      </if>
+      <if test="payFromInsured != null" >
+        #{payFromInsured,jdbcType=DECIMAL},
+      </if>
+      <if test="accountInitialAmount != null" >
+        #{accountInitialAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="accountEndAmount != null" >
+        #{accountEndAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="insuOperatorNo != null" >
+        #{insuOperatorNo,jdbcType=VARCHAR},
+      </if>
+      <if test="rcptNo != null" >
+        #{rcptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="refundedRcptNo != null" >
+        #{refundedRcptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="patName != null" >
+        #{patName,jdbcType=VARCHAR},
+      </if>
+      <if test="identityClass != null" >
+        #{identityClass,jdbcType=VARCHAR},
+      </if>
+      <if test="payFromCash != null" >
+        #{payFromCash,jdbcType=DECIMAL},
+      </if>
+      <if test="chargeClass != null" >
+        #{chargeClass,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceClass != null" >
+        #{insuranceClass,jdbcType=VARCHAR},
+      </if>
+      <if test="payFromAllowance != null" >
+        #{payFromAllowance,jdbcType=DECIMAL},
+      </if>
+      <if test="payFromCivil != null" >
+        #{payFromCivil,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.insurance.InsuOutpSettleRecord" >
+    update INSURANCE.INSU_OUTP_SETTLE_RECORD
+    <set >
+      <if test="insuCardNo != null" >
+        INSU_CARD_NO = #{insuCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="insuVisitDate != null" >
+        INSU_VISIT_DATE = #{insuVisitDate,jdbcType=DATE},
+      </if>
+      <if test="outpFee != null" >
+        OUTP_FEE = #{outpFee,jdbcType=DECIMAL},
+      </if>
+      <if test="drugTotal != null" >
+        DRUG_TOTAL = #{drugTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="medicalTotal != null" >
+        MEDICAL_TOTAL = #{medicalTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="paymentSelf != null" >
+        PAYMENT_SELF = #{paymentSelf,jdbcType=DECIMAL},
+      </if>
+      <if test="insuRangeTotal != null" >
+        INSU_RANGE_TOTAL = #{insuRangeTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="payFromAccount != null" >
+        PAY_FROM_ACCOUNT = #{payFromAccount,jdbcType=DECIMAL},
+      </if>
+      <if test="payFromFund != null" >
+        PAY_FROM_FUND = #{payFromFund,jdbcType=DECIMAL},
+      </if>
+      <if test="largerDiagnosisPayment != null" >
+        LARGER_DIAGNOSIS_PAYMENT = #{largerDiagnosisPayment,jdbcType=DECIMAL},
+      </if>
+      <if test="payFromInsured != null" >
+        PAY_FROM_INSURED = #{payFromInsured,jdbcType=DECIMAL},
+      </if>
+      <if test="accountInitialAmount != null" >
+        ACCOUNT_INITIAL_AMOUNT = #{accountInitialAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="accountEndAmount != null" >
+        ACCOUNT_END_AMOUNT = #{accountEndAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="insuOperatorNo != null" >
+        INSU_OPERATOR_NO = #{insuOperatorNo,jdbcType=VARCHAR},
+      </if>
+      <if test="rcptNo != null" >
+        RCPT_NO = #{rcptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="refundedRcptNo != null" >
+        REFUNDED_RCPT_NO = #{refundedRcptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="patName != null" >
+        PAT_NAME = #{patName,jdbcType=VARCHAR},
+      </if>
+      <if test="identityClass != null" >
+        IDENTITY_CLASS = #{identityClass,jdbcType=VARCHAR},
+      </if>
+      <if test="payFromCash != null" >
+        PAY_FROM_CASH = #{payFromCash,jdbcType=DECIMAL},
+      </if>
+      <if test="chargeClass != null" >
+        CHARGE_CLASS = #{chargeClass,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceClass != null" >
+        INSURANCE_CLASS = #{insuranceClass,jdbcType=VARCHAR},
+      </if>
+      <if test="payFromAllowance != null" >
+        PAY_FROM_ALLOWANCE = #{payFromAllowance,jdbcType=DECIMAL},
+      </if>
+      <if test="payFromCivil != null" >
+        PAY_FROM_CIVIL = #{payFromCivil,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where INSU_RCPT_NO = #{insuRcptNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.insurance.InsuOutpSettleRecord" >
+    update INSURANCE.INSU_OUTP_SETTLE_RECORD
+    set INSU_CARD_NO = #{insuCardNo,jdbcType=VARCHAR},
+      INSU_VISIT_DATE = #{insuVisitDate,jdbcType=DATE},
+      OUTP_FEE = #{outpFee,jdbcType=DECIMAL},
+      DRUG_TOTAL = #{drugTotal,jdbcType=DECIMAL},
+      MEDICAL_TOTAL = #{medicalTotal,jdbcType=DECIMAL},
+      PAYMENT_SELF = #{paymentSelf,jdbcType=DECIMAL},
+      INSU_RANGE_TOTAL = #{insuRangeTotal,jdbcType=DECIMAL},
+      PAY_FROM_ACCOUNT = #{payFromAccount,jdbcType=DECIMAL},
+      PAY_FROM_FUND = #{payFromFund,jdbcType=DECIMAL},
+      LARGER_DIAGNOSIS_PAYMENT = #{largerDiagnosisPayment,jdbcType=DECIMAL},
+      PAY_FROM_INSURED = #{payFromInsured,jdbcType=DECIMAL},
+      ACCOUNT_INITIAL_AMOUNT = #{accountInitialAmount,jdbcType=DECIMAL},
+      ACCOUNT_END_AMOUNT = #{accountEndAmount,jdbcType=DECIMAL},
+      INSU_OPERATOR_NO = #{insuOperatorNo,jdbcType=VARCHAR},
+      RCPT_NO = #{rcptNo,jdbcType=VARCHAR},
+      REFUNDED_RCPT_NO = #{refundedRcptNo,jdbcType=VARCHAR},
+      PAT_NAME = #{patName,jdbcType=VARCHAR},
+      IDENTITY_CLASS = #{identityClass,jdbcType=VARCHAR},
+      PAY_FROM_CASH = #{payFromCash,jdbcType=DECIMAL},
+      CHARGE_CLASS = #{chargeClass,jdbcType=VARCHAR},
+      INSURANCE_CLASS = #{insuranceClass,jdbcType=VARCHAR},
+      PAY_FROM_ALLOWANCE = #{payFromAllowance,jdbcType=DECIMAL},
+      PAY_FROM_CIVIL = #{payFromCivil,jdbcType=DECIMAL}
+    where INSU_RCPT_NO = #{insuRcptNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

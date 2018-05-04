@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.ClinicScheduleMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.outpadm.ClinicSchedule" >
+    <id column="CLINIC_LABEL" property="clinicLabel" jdbcType="VARCHAR" />
+    <id column="DAY_OF_WEEK" property="dayOfWeek" jdbcType="DECIMAL" />
+    <id column="TIME_DESC" property="timeDesc" jdbcType="VARCHAR" />
+    <result column="REGISTRATION_LIMITS" property="registrationLimits" jdbcType="DECIMAL" />
+    <result column="APPOINTMENT_LIMITS" property="appointmentLimits" jdbcType="DECIMAL" />
+    <result column="PRICE" property="price" javaType="DECIMAL"/>
+    <association property="clinicIndex" javaType="com.ht.extra.pojo.outpadm.ClinicIndex">
+      <id column="CLINIC_LABEL" property="clinicLabel" jdbcType="VARCHAR" />
+      <result column="CLINIC_DEPT" property="clinicDept" jdbcType="VARCHAR" />
+      <result column="DOCTOR" property="doctor" jdbcType="VARCHAR" />
+      <result column="DOCTOR_TITLE" property="doctorTitle" jdbcType="VARCHAR" />
+      <result column="CLINIC_TYPE" property="clinicType" jdbcType="VARCHAR" />
+      <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+      <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    </association>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    CLINIC_LABEL, DAY_OF_WEEK, TIME_DESC, REGISTRATION_LIMITS, APPOINTMENT_LIMITS
+  </sql>
+  <select id="selectByDeptForSchedule" resultMap="BaseResultMap" parameterType="java.lang.String" >
+ <![CDATA[
+ select * from (select a.doctor,a.clinic_type,b.*,
+    (select price from comm.price_list where
+    item_code =(select charge_item from outpadm.clinic_type_dict where clinic_type = a.clinic_type)
+    and item_spec =(select clinic_type_code from outpadm.clinic_type_dict where clinic_type=a.clinic_type)
+    and stop_date is null
+    ) price,(select count(*) from COMM.STAFF_DICT d where d.name = a.doctor
+    and emp_no IN ('1808','597','2559','178','2341','2510','2349','369','2564','2530','3488','3489','2392','3491','698','2425','2899','339','1845','1640')
+    )emp_flag1,
+    (select count(*) from COMM.STAFF_DICT d where d.name = a.doctor )emp_flag2
+    from outpadm.clinic_index a,outpadm.clinic_schedule b
+    where a.clinic_label = b.clinic_label and CLINIC_DEPT=#{clinicdept,jdbcType=VARCHAR} )
+    where (emp_flag2=0 or emp_flag2-emp_flag1>0)
+   ]]>
+  </select>
+
+  <select id="selectForSchedule" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    <![CDATA[
+ select * from (select a.doctor,a.CLINIC_DEPT,a.clinic_type,b.*,
+    (select price from comm.price_list where
+    item_code =(select charge_item from outpadm.clinic_type_dict where clinic_type = a.clinic_type)
+    and item_spec =(select clinic_type_code from outpadm.clinic_type_dict where clinic_type=a.clinic_type)
+    and stop_date is null
+    ) price,(select count(*) from COMM.STAFF_DICT d where d.name = a.doctor
+    and emp_no IN ('1808','597','2559','178','2341','2510','2349','369','2564','2530','3488','3489','2392','3491','698','2425','2899','339','1845','1640')
+    )emp_flag1,
+    (select count(*) from COMM.STAFF_DICT d where d.name = a.doctor )emp_flag2
+    from outpadm.clinic_index a,outpadm.clinic_schedule b
+    where a.clinic_label = b.clinic_label and a.CLINIC_DEPT not in('53'))
+    where (emp_flag2=0 or emp_flag2-emp_flag1>0)
+   ]]>
+  </select>
+
+  <select id="selectByDeptAndDocIdForSchedule" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select a.*,b.*,
+    (select price from comm.price_list where
+    item_code =(select charge_item from outpadm.clinic_type_dict where clinic_type = a.clinic_type)
+    and item_spec =(select clinic_type_code from outpadm.clinic_type_dict where clinic_type=a.clinic_type)
+    and stop_date is null
+    ) price
+    from outpadm.clinic_index a,outpadm.clinic_schedule b
+    where a.clinic_label = b.clinic_label and  CLINIC_DEPT= #{0} and DOCTOR =#{1}
+  </select>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.outpadm.ClinicScheduleKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from OUTPADM.CLINIC_SCHEDULE
+    where CLINIC_LABEL = #{clinicLabel,jdbcType=VARCHAR}
+      and DAY_OF_WEEK = #{dayOfWeek,jdbcType=DECIMAL}
+      and TIME_DESC = #{timeDesc,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.outpadm.ClinicScheduleKey" >
+    delete from OUTPADM.CLINIC_SCHEDULE
+    where CLINIC_LABEL = #{clinicLabel,jdbcType=VARCHAR}
+      and DAY_OF_WEEK = #{dayOfWeek,jdbcType=DECIMAL}
+      and TIME_DESC = #{timeDesc,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.outpadm.ClinicSchedule" >
+    insert into OUTPADM.CLINIC_SCHEDULE (CLINIC_LABEL, DAY_OF_WEEK, TIME_DESC, 
+      REGISTRATION_LIMITS, APPOINTMENT_LIMITS)
+    values (#{clinicLabel,jdbcType=VARCHAR}, #{dayOfWeek,jdbcType=DECIMAL}, #{timeDesc,jdbcType=VARCHAR}, 
+      #{registrationLimits,jdbcType=DECIMAL}, #{appointmentLimits,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.outpadm.ClinicSchedule" >
+    insert into OUTPADM.CLINIC_SCHEDULE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="clinicLabel != null" >
+        CLINIC_LABEL,
+      </if>
+      <if test="dayOfWeek != null" >
+        DAY_OF_WEEK,
+      </if>
+      <if test="timeDesc != null" >
+        TIME_DESC,
+      </if>
+      <if test="registrationLimits != null" >
+        REGISTRATION_LIMITS,
+      </if>
+      <if test="appointmentLimits != null" >
+        APPOINTMENT_LIMITS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="clinicLabel != null" >
+        #{clinicLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="dayOfWeek != null" >
+        #{dayOfWeek,jdbcType=DECIMAL},
+      </if>
+      <if test="timeDesc != null" >
+        #{timeDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationLimits != null" >
+        #{registrationLimits,jdbcType=DECIMAL},
+      </if>
+      <if test="appointmentLimits != null" >
+        #{appointmentLimits,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.outpadm.ClinicSchedule" >
+    update OUTPADM.CLINIC_SCHEDULE
+    <set >
+      <if test="registrationLimits != null" >
+        REGISTRATION_LIMITS = #{registrationLimits,jdbcType=DECIMAL},
+      </if>
+      <if test="appointmentLimits != null" >
+        APPOINTMENT_LIMITS = #{appointmentLimits,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where CLINIC_LABEL = #{clinicLabel,jdbcType=VARCHAR}
+      and DAY_OF_WEEK = #{dayOfWeek,jdbcType=DECIMAL}
+      and TIME_DESC = #{timeDesc,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.outpadm.ClinicSchedule" >
+    update OUTPADM.CLINIC_SCHEDULE
+    set REGISTRATION_LIMITS = #{registrationLimits,jdbcType=DECIMAL},
+      APPOINTMENT_LIMITS = #{appointmentLimits,jdbcType=DECIMAL}
+    where CLINIC_LABEL = #{clinicLabel,jdbcType=VARCHAR}
+      and DAY_OF_WEEK = #{dayOfWeek,jdbcType=DECIMAL}
+      and TIME_DESC = #{timeDesc,jdbcType=VARCHAR}
+  </update>
+</mapper>

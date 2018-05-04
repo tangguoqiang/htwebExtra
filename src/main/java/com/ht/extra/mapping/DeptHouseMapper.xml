@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.DeptHouseMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.DeptHouse" >
+    <id column="DEPT_CODE" property="deptCode" jdbcType="VARCHAR" />
+    <result column="HOUSE" property="house" jdbcType="DECIMAL" />
+    <result column="COST_HOUSE" property="costHouse" jdbcType="DECIMAL" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.ht.extra.pojo.comm.DeptHouse" extends="BaseResultMap" >
+    <result column="BZ" property="bz" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    DEPT_CODE, HOUSE, COST_HOUSE
+  </sql>
+  <sql id="Blob_Column_List" >
+    BZ
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from COMM.DEPT_HOUSE
+    where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.DEPT_HOUSE
+    where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.DeptHouse" >
+    insert into COMM.DEPT_HOUSE (DEPT_CODE, HOUSE, COST_HOUSE, 
+      BZ)
+    values (#{deptCode,jdbcType=VARCHAR}, #{house,jdbcType=DECIMAL}, #{costHouse,jdbcType=DECIMAL}, 
+      #{bz,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.DeptHouse" >
+    insert into COMM.DEPT_HOUSE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="deptCode != null" >
+        DEPT_CODE,
+      </if>
+      <if test="house != null" >
+        HOUSE,
+      </if>
+      <if test="costHouse != null" >
+        COST_HOUSE,
+      </if>
+      <if test="bz != null" >
+        BZ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="deptCode != null" >
+        #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="house != null" >
+        #{house,jdbcType=DECIMAL},
+      </if>
+      <if test="costHouse != null" >
+        #{costHouse,jdbcType=DECIMAL},
+      </if>
+      <if test="bz != null" >
+        #{bz,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.DeptHouse" >
+    update COMM.DEPT_HOUSE
+    <set >
+      <if test="house != null" >
+        HOUSE = #{house,jdbcType=DECIMAL},
+      </if>
+      <if test="costHouse != null" >
+        COST_HOUSE = #{costHouse,jdbcType=DECIMAL},
+      </if>
+      <if test="bz != null" >
+        BZ = #{bz,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ht.extra.pojo.comm.DeptHouse" >
+    update COMM.DEPT_HOUSE
+    set HOUSE = #{house,jdbcType=DECIMAL},
+      COST_HOUSE = #{costHouse,jdbcType=DECIMAL},
+      BZ = #{bz,jdbcType=LONGVARCHAR}
+    where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.DeptHouse" >
+    update COMM.DEPT_HOUSE
+    set HOUSE = #{house,jdbcType=DECIMAL},
+      COST_HOUSE = #{costHouse,jdbcType=DECIMAL}
+    where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

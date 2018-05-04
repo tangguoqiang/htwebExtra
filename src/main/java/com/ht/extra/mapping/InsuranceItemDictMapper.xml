@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.InsuranceItemDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.InsuranceItemDict" >
+    <id column="ITEM_CODE" property="itemCode" jdbcType="VARCHAR" />
+    <id column="ITEM_CLASS" property="itemClass" jdbcType="VARCHAR" />
+    <id column="CLASS_CODE" property="classCode" jdbcType="VARCHAR" />
+    <id column="ITEM_NAME" property="itemName" jdbcType="VARCHAR" />
+    <id column="INSURANCE_FLAG" property="insuranceFlag" jdbcType="VARCHAR" />
+    <id column="CITY_FLAG" property="cityFlag" jdbcType="VARCHAR" />
+    <result column="ITEM_SPEC" property="itemSpec" jdbcType="VARCHAR" />
+    <result column="UNITS" property="units" jdbcType="VARCHAR" />
+    <result column="INSURANCE_CLASS" property="insuranceClass" jdbcType="VARCHAR" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+    <result column="PAY_BL" property="payBl" jdbcType="VARCHAR" />
+    <result column="EXCEPT_MEMO" property="exceptMemo" jdbcType="VARCHAR" />
+    <result column="LIMIT_PRICE" property="limitPrice" jdbcType="VARCHAR" />
+    <result column="OTHER_MEMO" property="otherMemo" jdbcType="VARCHAR" />
+    <result column="DRUG_CONF" property="drugConf" jdbcType="VARCHAR" />
+    <result column="COUNTRY_MEDICA" property="countryMedica" jdbcType="VARCHAR" />
+    <result column="CITY_BL" property="cityBl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ITEM_CODE, ITEM_CLASS, CLASS_CODE, ITEM_NAME, INSURANCE_FLAG, CITY_FLAG, ITEM_SPEC, 
+    UNITS, INSURANCE_CLASS, INPUT_CODE, MEMO, PAY_BL, EXCEPT_MEMO, LIMIT_PRICE, OTHER_MEMO, 
+    DRUG_CONF, COUNTRY_MEDICA, CITY_BL
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.InsuranceItemDictKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.INSURANCE_ITEM_DICT
+    where ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+      and ITEM_CLASS = #{itemClass,jdbcType=VARCHAR}
+      and CLASS_CODE = #{classCode,jdbcType=VARCHAR}
+      and ITEM_NAME = #{itemName,jdbcType=VARCHAR}
+      and INSURANCE_FLAG = #{insuranceFlag,jdbcType=VARCHAR}
+      and CITY_FLAG = #{cityFlag,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.InsuranceItemDictKey" >
+    delete from COMM.INSURANCE_ITEM_DICT
+    where ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+      and ITEM_CLASS = #{itemClass,jdbcType=VARCHAR}
+      and CLASS_CODE = #{classCode,jdbcType=VARCHAR}
+      and ITEM_NAME = #{itemName,jdbcType=VARCHAR}
+      and INSURANCE_FLAG = #{insuranceFlag,jdbcType=VARCHAR}
+      and CITY_FLAG = #{cityFlag,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.InsuranceItemDict" >
+    insert into COMM.INSURANCE_ITEM_DICT (ITEM_CODE, ITEM_CLASS, CLASS_CODE, 
+      ITEM_NAME, INSURANCE_FLAG, CITY_FLAG, 
+      ITEM_SPEC, UNITS, INSURANCE_CLASS, 
+      INPUT_CODE, MEMO, PAY_BL, 
+      EXCEPT_MEMO, LIMIT_PRICE, OTHER_MEMO, 
+      DRUG_CONF, COUNTRY_MEDICA, CITY_BL
+      )
+    values (#{itemCode,jdbcType=VARCHAR}, #{itemClass,jdbcType=VARCHAR}, #{classCode,jdbcType=VARCHAR}, 
+      #{itemName,jdbcType=VARCHAR}, #{insuranceFlag,jdbcType=VARCHAR}, #{cityFlag,jdbcType=VARCHAR}, 
+      #{itemSpec,jdbcType=VARCHAR}, #{units,jdbcType=VARCHAR}, #{insuranceClass,jdbcType=VARCHAR}, 
+      #{inputCode,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, #{payBl,jdbcType=VARCHAR}, 
+      #{exceptMemo,jdbcType=VARCHAR}, #{limitPrice,jdbcType=VARCHAR}, #{otherMemo,jdbcType=VARCHAR}, 
+      #{drugConf,jdbcType=VARCHAR}, #{countryMedica,jdbcType=VARCHAR}, #{cityBl,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.InsuranceItemDict" >
+    insert into COMM.INSURANCE_ITEM_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="itemCode != null" >
+        ITEM_CODE,
+      </if>
+      <if test="itemClass != null" >
+        ITEM_CLASS,
+      </if>
+      <if test="classCode != null" >
+        CLASS_CODE,
+      </if>
+      <if test="itemName != null" >
+        ITEM_NAME,
+      </if>
+      <if test="insuranceFlag != null" >
+        INSURANCE_FLAG,
+      </if>
+      <if test="cityFlag != null" >
+        CITY_FLAG,
+      </if>
+      <if test="itemSpec != null" >
+        ITEM_SPEC,
+      </if>
+      <if test="units != null" >
+        UNITS,
+      </if>
+      <if test="insuranceClass != null" >
+        INSURANCE_CLASS,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+      <if test="memo != null" >
+        MEMO,
+      </if>
+      <if test="payBl != null" >
+        PAY_BL,
+      </if>
+      <if test="exceptMemo != null" >
+        EXCEPT_MEMO,
+      </if>
+      <if test="limitPrice != null" >
+        LIMIT_PRICE,
+      </if>
+      <if test="otherMemo != null" >
+        OTHER_MEMO,
+      </if>
+      <if test="drugConf != null" >
+        DRUG_CONF,
+      </if>
+      <if test="countryMedica != null" >
+        COUNTRY_MEDICA,
+      </if>
+      <if test="cityBl != null" >
+        CITY_BL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="itemCode != null" >
+        #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemClass != null" >
+        #{itemClass,jdbcType=VARCHAR},
+      </if>
+      <if test="classCode != null" >
+        #{classCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceFlag != null" >
+        #{insuranceFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="cityFlag != null" >
+        #{cityFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="itemSpec != null" >
+        #{itemSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="units != null" >
+        #{units,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceClass != null" >
+        #{insuranceClass,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="payBl != null" >
+        #{payBl,jdbcType=VARCHAR},
+      </if>
+      <if test="exceptMemo != null" >
+        #{exceptMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="limitPrice != null" >
+        #{limitPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="otherMemo != null" >
+        #{otherMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="drugConf != null" >
+        #{drugConf,jdbcType=VARCHAR},
+      </if>
+      <if test="countryMedica != null" >
+        #{countryMedica,jdbcType=VARCHAR},
+      </if>
+      <if test="cityBl != null" >
+        #{cityBl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.InsuranceItemDict" >
+    update COMM.INSURANCE_ITEM_DICT
+    <set >
+      <if test="itemSpec != null" >
+        ITEM_SPEC = #{itemSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="units != null" >
+        UNITS = #{units,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceClass != null" >
+        INSURANCE_CLASS = #{insuranceClass,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        MEMO = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="payBl != null" >
+        PAY_BL = #{payBl,jdbcType=VARCHAR},
+      </if>
+      <if test="exceptMemo != null" >
+        EXCEPT_MEMO = #{exceptMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="limitPrice != null" >
+        LIMIT_PRICE = #{limitPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="otherMemo != null" >
+        OTHER_MEMO = #{otherMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="drugConf != null" >
+        DRUG_CONF = #{drugConf,jdbcType=VARCHAR},
+      </if>
+      <if test="countryMedica != null" >
+        COUNTRY_MEDICA = #{countryMedica,jdbcType=VARCHAR},
+      </if>
+      <if test="cityBl != null" >
+        CITY_BL = #{cityBl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+      and ITEM_CLASS = #{itemClass,jdbcType=VARCHAR}
+      and CLASS_CODE = #{classCode,jdbcType=VARCHAR}
+      and ITEM_NAME = #{itemName,jdbcType=VARCHAR}
+      and INSURANCE_FLAG = #{insuranceFlag,jdbcType=VARCHAR}
+      and CITY_FLAG = #{cityFlag,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.InsuranceItemDict" >
+    update COMM.INSURANCE_ITEM_DICT
+    set ITEM_SPEC = #{itemSpec,jdbcType=VARCHAR},
+      UNITS = #{units,jdbcType=VARCHAR},
+      INSURANCE_CLASS = #{insuranceClass,jdbcType=VARCHAR},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      MEMO = #{memo,jdbcType=VARCHAR},
+      PAY_BL = #{payBl,jdbcType=VARCHAR},
+      EXCEPT_MEMO = #{exceptMemo,jdbcType=VARCHAR},
+      LIMIT_PRICE = #{limitPrice,jdbcType=VARCHAR},
+      OTHER_MEMO = #{otherMemo,jdbcType=VARCHAR},
+      DRUG_CONF = #{drugConf,jdbcType=VARCHAR},
+      COUNTRY_MEDICA = #{countryMedica,jdbcType=VARCHAR},
+      CITY_BL = #{cityBl,jdbcType=VARCHAR}
+    where ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+      and ITEM_CLASS = #{itemClass,jdbcType=VARCHAR}
+      and CLASS_CODE = #{classCode,jdbcType=VARCHAR}
+      and ITEM_NAME = #{itemName,jdbcType=VARCHAR}
+      and INSURANCE_FLAG = #{insuranceFlag,jdbcType=VARCHAR}
+      and CITY_FLAG = #{cityFlag,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.StandardVsPriceMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.StandardVsPrice" >
+    <id column="ITEM_CLASS" property="itemClass" jdbcType="VARCHAR" />
+    <id column="ITEM_CODE" property="itemCode" jdbcType="VARCHAR" />
+    <id column="ITEM_SPEC" property="itemSpec" jdbcType="VARCHAR" />
+    <id column="UNITS" property="units" jdbcType="VARCHAR" />
+    <result column="STANDARD_CODE" property="standardCode" jdbcType="VARCHAR" />
+    <result column="STANDARD_NAME" property="standardName" jdbcType="VARCHAR" />
+    <result column="STANDARD_MEANING" property="standardMeaning" jdbcType="VARCHAR" />
+    <result column="STANDARD_EXCEPTION_CONTENT" property="standardExceptionContent" jdbcType="VARCHAR" />
+    <result column="STANDARD_UNITS" property="standardUnits" jdbcType="VARCHAR" />
+    <result column="STANDARD_PRICE" property="standardPrice" jdbcType="VARCHAR" />
+    <result column="STANDARD_MEMO" property="standardMemo" jdbcType="VARCHAR" />
+    <result column="ITEM_NAME" property="itemName" jdbcType="VARCHAR" />
+    <result column="PRICE" property="price" jdbcType="DECIMAL" />
+    <result column="INPUTCODE" property="inputcode" jdbcType="VARCHAR" />
+    <result column="STANDARD_MATERIAL_NAME" property="standardMaterialName" jdbcType="VARCHAR" />
+    <result column="MATERIAL_SIGN" property="materialSign" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ITEM_CLASS, ITEM_CODE, ITEM_SPEC, UNITS, STANDARD_CODE, STANDARD_NAME, STANDARD_MEANING, 
+    STANDARD_EXCEPTION_CONTENT, STANDARD_UNITS, STANDARD_PRICE, STANDARD_MEMO, ITEM_NAME, 
+    PRICE, INPUTCODE, STANDARD_MATERIAL_NAME, MATERIAL_SIGN
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.StandardVsPriceKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.STANDARD_VS_PRICE
+    where ITEM_CLASS = #{itemClass,jdbcType=VARCHAR}
+      and ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+      and ITEM_SPEC = #{itemSpec,jdbcType=VARCHAR}
+      and UNITS = #{units,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.StandardVsPriceKey" >
+    delete from COMM.STANDARD_VS_PRICE
+    where ITEM_CLASS = #{itemClass,jdbcType=VARCHAR}
+      and ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+      and ITEM_SPEC = #{itemSpec,jdbcType=VARCHAR}
+      and UNITS = #{units,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.StandardVsPrice" >
+    insert into COMM.STANDARD_VS_PRICE (ITEM_CLASS, ITEM_CODE, ITEM_SPEC, 
+      UNITS, STANDARD_CODE, STANDARD_NAME, 
+      STANDARD_MEANING, STANDARD_EXCEPTION_CONTENT, 
+      STANDARD_UNITS, STANDARD_PRICE, STANDARD_MEMO, 
+      ITEM_NAME, PRICE, INPUTCODE, 
+      STANDARD_MATERIAL_NAME, MATERIAL_SIGN)
+    values (#{itemClass,jdbcType=VARCHAR}, #{itemCode,jdbcType=VARCHAR}, #{itemSpec,jdbcType=VARCHAR}, 
+      #{units,jdbcType=VARCHAR}, #{standardCode,jdbcType=VARCHAR}, #{standardName,jdbcType=VARCHAR}, 
+      #{standardMeaning,jdbcType=VARCHAR}, #{standardExceptionContent,jdbcType=VARCHAR}, 
+      #{standardUnits,jdbcType=VARCHAR}, #{standardPrice,jdbcType=VARCHAR}, #{standardMemo,jdbcType=VARCHAR}, 
+      #{itemName,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{inputcode,jdbcType=VARCHAR}, 
+      #{standardMaterialName,jdbcType=VARCHAR}, #{materialSign,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.StandardVsPrice" >
+    insert into COMM.STANDARD_VS_PRICE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="itemClass != null" >
+        ITEM_CLASS,
+      </if>
+      <if test="itemCode != null" >
+        ITEM_CODE,
+      </if>
+      <if test="itemSpec != null" >
+        ITEM_SPEC,
+      </if>
+      <if test="units != null" >
+        UNITS,
+      </if>
+      <if test="standardCode != null" >
+        STANDARD_CODE,
+      </if>
+      <if test="standardName != null" >
+        STANDARD_NAME,
+      </if>
+      <if test="standardMeaning != null" >
+        STANDARD_MEANING,
+      </if>
+      <if test="standardExceptionContent != null" >
+        STANDARD_EXCEPTION_CONTENT,
+      </if>
+      <if test="standardUnits != null" >
+        STANDARD_UNITS,
+      </if>
+      <if test="standardPrice != null" >
+        STANDARD_PRICE,
+      </if>
+      <if test="standardMemo != null" >
+        STANDARD_MEMO,
+      </if>
+      <if test="itemName != null" >
+        ITEM_NAME,
+      </if>
+      <if test="price != null" >
+        PRICE,
+      </if>
+      <if test="inputcode != null" >
+        INPUTCODE,
+      </if>
+      <if test="standardMaterialName != null" >
+        STANDARD_MATERIAL_NAME,
+      </if>
+      <if test="materialSign != null" >
+        MATERIAL_SIGN,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="itemClass != null" >
+        #{itemClass,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode != null" >
+        #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemSpec != null" >
+        #{itemSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="units != null" >
+        #{units,jdbcType=VARCHAR},
+      </if>
+      <if test="standardCode != null" >
+        #{standardCode,jdbcType=VARCHAR},
+      </if>
+      <if test="standardName != null" >
+        #{standardName,jdbcType=VARCHAR},
+      </if>
+      <if test="standardMeaning != null" >
+        #{standardMeaning,jdbcType=VARCHAR},
+      </if>
+      <if test="standardExceptionContent != null" >
+        #{standardExceptionContent,jdbcType=VARCHAR},
+      </if>
+      <if test="standardUnits != null" >
+        #{standardUnits,jdbcType=VARCHAR},
+      </if>
+      <if test="standardPrice != null" >
+        #{standardPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="standardMemo != null" >
+        #{standardMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="inputcode != null" >
+        #{inputcode,jdbcType=VARCHAR},
+      </if>
+      <if test="standardMaterialName != null" >
+        #{standardMaterialName,jdbcType=VARCHAR},
+      </if>
+      <if test="materialSign != null" >
+        #{materialSign,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.StandardVsPrice" >
+    update COMM.STANDARD_VS_PRICE
+    <set >
+      <if test="standardCode != null" >
+        STANDARD_CODE = #{standardCode,jdbcType=VARCHAR},
+      </if>
+      <if test="standardName != null" >
+        STANDARD_NAME = #{standardName,jdbcType=VARCHAR},
+      </if>
+      <if test="standardMeaning != null" >
+        STANDARD_MEANING = #{standardMeaning,jdbcType=VARCHAR},
+      </if>
+      <if test="standardExceptionContent != null" >
+        STANDARD_EXCEPTION_CONTENT = #{standardExceptionContent,jdbcType=VARCHAR},
+      </if>
+      <if test="standardUnits != null" >
+        STANDARD_UNITS = #{standardUnits,jdbcType=VARCHAR},
+      </if>
+      <if test="standardPrice != null" >
+        STANDARD_PRICE = #{standardPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="standardMemo != null" >
+        STANDARD_MEMO = #{standardMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        ITEM_NAME = #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        PRICE = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="inputcode != null" >
+        INPUTCODE = #{inputcode,jdbcType=VARCHAR},
+      </if>
+      <if test="standardMaterialName != null" >
+        STANDARD_MATERIAL_NAME = #{standardMaterialName,jdbcType=VARCHAR},
+      </if>
+      <if test="materialSign != null" >
+        MATERIAL_SIGN = #{materialSign,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ITEM_CLASS = #{itemClass,jdbcType=VARCHAR}
+      and ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+      and ITEM_SPEC = #{itemSpec,jdbcType=VARCHAR}
+      and UNITS = #{units,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.StandardVsPrice" >
+    update COMM.STANDARD_VS_PRICE
+    set STANDARD_CODE = #{standardCode,jdbcType=VARCHAR},
+      STANDARD_NAME = #{standardName,jdbcType=VARCHAR},
+      STANDARD_MEANING = #{standardMeaning,jdbcType=VARCHAR},
+      STANDARD_EXCEPTION_CONTENT = #{standardExceptionContent,jdbcType=VARCHAR},
+      STANDARD_UNITS = #{standardUnits,jdbcType=VARCHAR},
+      STANDARD_PRICE = #{standardPrice,jdbcType=VARCHAR},
+      STANDARD_MEMO = #{standardMemo,jdbcType=VARCHAR},
+      ITEM_NAME = #{itemName,jdbcType=VARCHAR},
+      PRICE = #{price,jdbcType=DECIMAL},
+      INPUTCODE = #{inputcode,jdbcType=VARCHAR},
+      STANDARD_MATERIAL_NAME = #{standardMaterialName,jdbcType=VARCHAR},
+      MATERIAL_SIGN = #{materialSign,jdbcType=VARCHAR}
+    where ITEM_CLASS = #{itemClass,jdbcType=VARCHAR}
+      and ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+      and ITEM_SPEC = #{itemSpec,jdbcType=VARCHAR}
+      and UNITS = #{units,jdbcType=VARCHAR}
+  </update>
+</mapper>

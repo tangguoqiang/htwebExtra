@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.QualityConListMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.lab.QualityConList" >
+    <id column="ITEM_CODE" property="itemCode" jdbcType="VARCHAR" />
+    <id column="QC_DATE" property="qcDate" jdbcType="DATE" />
+    <id column="CONTROL_NO" property="controlNo" jdbcType="DECIMAL" />
+    <result column="OPERATOR" property="operator" jdbcType="VARCHAR" />
+    <result column="CONTROL_RESULT" property="controlResult" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ITEM_CODE, QC_DATE, CONTROL_NO, OPERATOR, CONTROL_RESULT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.lab.QualityConListKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from LAB.QUALITY_CON_LIST
+    where ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+      and QC_DATE = #{qcDate,jdbcType=DATE}
+      and CONTROL_NO = #{controlNo,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.lab.QualityConListKey" >
+    delete from LAB.QUALITY_CON_LIST
+    where ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+      and QC_DATE = #{qcDate,jdbcType=DATE}
+      and CONTROL_NO = #{controlNo,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.lab.QualityConList" >
+    insert into LAB.QUALITY_CON_LIST (ITEM_CODE, QC_DATE, CONTROL_NO, 
+      OPERATOR, CONTROL_RESULT)
+    values (#{itemCode,jdbcType=VARCHAR}, #{qcDate,jdbcType=DATE}, #{controlNo,jdbcType=DECIMAL}, 
+      #{operator,jdbcType=VARCHAR}, #{controlResult,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.lab.QualityConList" >
+    insert into LAB.QUALITY_CON_LIST
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="itemCode != null" >
+        ITEM_CODE,
+      </if>
+      <if test="qcDate != null" >
+        QC_DATE,
+      </if>
+      <if test="controlNo != null" >
+        CONTROL_NO,
+      </if>
+      <if test="operator != null" >
+        OPERATOR,
+      </if>
+      <if test="controlResult != null" >
+        CONTROL_RESULT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="itemCode != null" >
+        #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="qcDate != null" >
+        #{qcDate,jdbcType=DATE},
+      </if>
+      <if test="controlNo != null" >
+        #{controlNo,jdbcType=DECIMAL},
+      </if>
+      <if test="operator != null" >
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="controlResult != null" >
+        #{controlResult,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.lab.QualityConList" >
+    update LAB.QUALITY_CON_LIST
+    <set >
+      <if test="operator != null" >
+        OPERATOR = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="controlResult != null" >
+        CONTROL_RESULT = #{controlResult,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+      and QC_DATE = #{qcDate,jdbcType=DATE}
+      and CONTROL_NO = #{controlNo,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.lab.QualityConList" >
+    update LAB.QUALITY_CON_LIST
+    set OPERATOR = #{operator,jdbcType=VARCHAR},
+      CONTROL_RESULT = #{controlResult,jdbcType=DECIMAL}
+    where ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+      and QC_DATE = #{qcDate,jdbcType=DATE}
+      and CONTROL_NO = #{controlNo,jdbcType=DECIMAL}
+  </update>
+</mapper>

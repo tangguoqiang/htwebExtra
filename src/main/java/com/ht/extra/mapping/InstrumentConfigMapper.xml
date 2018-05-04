@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.InstrumentConfigMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.lab.InstrumentConfig" >
+    <id column="INSTRUMENT_ID" property="instrumentId" jdbcType="VARCHAR" />
+    <id column="INSTRUMENT_ITEM_CODE" property="instrumentItemCode" jdbcType="VARCHAR" />
+    <result column="REPORT_ITEM_CODE" property="reportItemCode" jdbcType="VARCHAR" />
+    <result column="DEVIATION" property="deviation" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    INSTRUMENT_ID, INSTRUMENT_ITEM_CODE, REPORT_ITEM_CODE, DEVIATION
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.lab.InstrumentConfigKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from LAB.INSTRUMENT_CONFIG
+    where INSTRUMENT_ID = #{instrumentId,jdbcType=VARCHAR}
+      and INSTRUMENT_ITEM_CODE = #{instrumentItemCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.lab.InstrumentConfigKey" >
+    delete from LAB.INSTRUMENT_CONFIG
+    where INSTRUMENT_ID = #{instrumentId,jdbcType=VARCHAR}
+      and INSTRUMENT_ITEM_CODE = #{instrumentItemCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.lab.InstrumentConfig" >
+    insert into LAB.INSTRUMENT_CONFIG (INSTRUMENT_ID, INSTRUMENT_ITEM_CODE, 
+      REPORT_ITEM_CODE, DEVIATION)
+    values (#{instrumentId,jdbcType=VARCHAR}, #{instrumentItemCode,jdbcType=VARCHAR}, 
+      #{reportItemCode,jdbcType=VARCHAR}, #{deviation,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.lab.InstrumentConfig" >
+    insert into LAB.INSTRUMENT_CONFIG
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="instrumentId != null" >
+        INSTRUMENT_ID,
+      </if>
+      <if test="instrumentItemCode != null" >
+        INSTRUMENT_ITEM_CODE,
+      </if>
+      <if test="reportItemCode != null" >
+        REPORT_ITEM_CODE,
+      </if>
+      <if test="deviation != null" >
+        DEVIATION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="instrumentId != null" >
+        #{instrumentId,jdbcType=VARCHAR},
+      </if>
+      <if test="instrumentItemCode != null" >
+        #{instrumentItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="reportItemCode != null" >
+        #{reportItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deviation != null" >
+        #{deviation,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.lab.InstrumentConfig" >
+    update LAB.INSTRUMENT_CONFIG
+    <set >
+      <if test="reportItemCode != null" >
+        REPORT_ITEM_CODE = #{reportItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deviation != null" >
+        DEVIATION = #{deviation,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where INSTRUMENT_ID = #{instrumentId,jdbcType=VARCHAR}
+      and INSTRUMENT_ITEM_CODE = #{instrumentItemCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.lab.InstrumentConfig" >
+    update LAB.INSTRUMENT_CONFIG
+    set REPORT_ITEM_CODE = #{reportItemCode,jdbcType=VARCHAR},
+      DEVIATION = #{deviation,jdbcType=DECIMAL}
+    where INSTRUMENT_ID = #{instrumentId,jdbcType=VARCHAR}
+      and INSTRUMENT_ITEM_CODE = #{instrumentItemCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

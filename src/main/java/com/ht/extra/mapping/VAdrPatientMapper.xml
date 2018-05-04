@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.VAdrPatientMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.medrec.VAdrPatient" >
+    <result column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <result column="INP_NO" property="inpNo" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="SEX" property="sex" jdbcType="VARCHAR" />
+    <result column="BIRTHDAY" property="birthday" jdbcType="DATE" />
+    <result column="NATION" property="nation" jdbcType="VARCHAR" />
+    <result column="WEIGHT" property="weight" jdbcType="DECIMAL" />
+  </resultMap>
+  <insert id="insert" parameterType="com.ht.extra.pojo.medrec.VAdrPatient" >
+    insert into MEDREC.V_ADR_PATIENT (PATIENT_ID, INP_NO, NAME, 
+      SEX, BIRTHDAY, NATION, 
+      WEIGHT)
+    values (#{patientId,jdbcType=VARCHAR}, #{inpNo,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, #{nation,jdbcType=VARCHAR}, 
+      #{weight,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.medrec.VAdrPatient" >
+    insert into MEDREC.V_ADR_PATIENT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="inpNo != null" >
+        INP_NO,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="sex != null" >
+        SEX,
+      </if>
+      <if test="birthday != null" >
+        BIRTHDAY,
+      </if>
+      <if test="nation != null" >
+        NATION,
+      </if>
+      <if test="weight != null" >
+        WEIGHT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="inpNo != null" >
+        #{inpNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="nation != null" >
+        #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+</mapper>

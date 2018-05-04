@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.WoundGradeDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.WoundGradeDict" >
+    <id column="WOUND_GRADE_CODE" property="woundGradeCode" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="WOUND_GRADE_NAME" property="woundGradeName" jdbcType="VARCHAR" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    WOUND_GRADE_CODE, SERIAL_NO, WOUND_GRADE_NAME, INPUT_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.WOUND_GRADE_DICT
+    where WOUND_GRADE_CODE = #{woundGradeCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.WOUND_GRADE_DICT
+    where WOUND_GRADE_CODE = #{woundGradeCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.WoundGradeDict" >
+    insert into COMM.WOUND_GRADE_DICT (WOUND_GRADE_CODE, SERIAL_NO, WOUND_GRADE_NAME, 
+      INPUT_CODE)
+    values (#{woundGradeCode,jdbcType=VARCHAR}, #{serialNo,jdbcType=DECIMAL}, #{woundGradeName,jdbcType=VARCHAR}, 
+      #{inputCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.WoundGradeDict" >
+    insert into COMM.WOUND_GRADE_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="woundGradeCode != null" >
+        WOUND_GRADE_CODE,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="woundGradeName != null" >
+        WOUND_GRADE_NAME,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="woundGradeCode != null" >
+        #{woundGradeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="woundGradeName != null" >
+        #{woundGradeName,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.WoundGradeDict" >
+    update COMM.WOUND_GRADE_DICT
+    <set >
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="woundGradeName != null" >
+        WOUND_GRADE_NAME = #{woundGradeName,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where WOUND_GRADE_CODE = #{woundGradeCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.WoundGradeDict" >
+    update COMM.WOUND_GRADE_DICT
+    set SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      WOUND_GRADE_NAME = #{woundGradeName,jdbcType=VARCHAR},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR}
+    where WOUND_GRADE_CODE = #{woundGradeCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

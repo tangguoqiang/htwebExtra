@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.ClinicItemDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.ClinicItemDict" >
+    <id column="ITEM_CLASS" property="itemClass" jdbcType="VARCHAR" />
+    <id column="ITEM_CODE" property="itemCode" jdbcType="VARCHAR" />
+    <result column="ITEM_NAME" property="itemName" jdbcType="VARCHAR" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+    <result column="AUTOPRINT_FLAG" property="autoprintFlag" jdbcType="VARCHAR" />
+    <result column="ITEM_DATAWIN" property="itemDatawin" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ITEM_CLASS, ITEM_CODE, ITEM_NAME, INPUT_CODE, AUTOPRINT_FLAG, ITEM_DATAWIN
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.ClinicItemDictKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.CLINIC_ITEM_DICT
+    where ITEM_CLASS = #{itemClass,jdbcType=VARCHAR}
+      and ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.ClinicItemDictKey" >
+    delete from COMM.CLINIC_ITEM_DICT
+    where ITEM_CLASS = #{itemClass,jdbcType=VARCHAR}
+      and ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.ClinicItemDict" >
+    insert into COMM.CLINIC_ITEM_DICT (ITEM_CLASS, ITEM_CODE, ITEM_NAME, 
+      INPUT_CODE, AUTOPRINT_FLAG, ITEM_DATAWIN
+      )
+    values (#{itemClass,jdbcType=VARCHAR}, #{itemCode,jdbcType=VARCHAR}, #{itemName,jdbcType=VARCHAR}, 
+      #{inputCode,jdbcType=VARCHAR}, #{autoprintFlag,jdbcType=VARCHAR}, #{itemDatawin,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.ClinicItemDict" >
+    insert into COMM.CLINIC_ITEM_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="itemClass != null" >
+        ITEM_CLASS,
+      </if>
+      <if test="itemCode != null" >
+        ITEM_CODE,
+      </if>
+      <if test="itemName != null" >
+        ITEM_NAME,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+      <if test="autoprintFlag != null" >
+        AUTOPRINT_FLAG,
+      </if>
+      <if test="itemDatawin != null" >
+        ITEM_DATAWIN,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="itemClass != null" >
+        #{itemClass,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode != null" >
+        #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="autoprintFlag != null" >
+        #{autoprintFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="itemDatawin != null" >
+        #{itemDatawin,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.ClinicItemDict" >
+    update COMM.CLINIC_ITEM_DICT
+    <set >
+      <if test="itemName != null" >
+        ITEM_NAME = #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="autoprintFlag != null" >
+        AUTOPRINT_FLAG = #{autoprintFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="itemDatawin != null" >
+        ITEM_DATAWIN = #{itemDatawin,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ITEM_CLASS = #{itemClass,jdbcType=VARCHAR}
+      and ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.ClinicItemDict" >
+    update COMM.CLINIC_ITEM_DICT
+    set ITEM_NAME = #{itemName,jdbcType=VARCHAR},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      AUTOPRINT_FLAG = #{autoprintFlag,jdbcType=VARCHAR},
+      ITEM_DATAWIN = #{itemDatawin,jdbcType=VARCHAR}
+    where ITEM_CLASS = #{itemClass,jdbcType=VARCHAR}
+      and ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

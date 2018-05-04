@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.InpPatientCheckLogMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.medrec.InpPatientCheckLog" >
+    <id column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <id column="VISIT_ID" property="visitId" jdbcType="DECIMAL" />
+    <id column="S_NO" property="sNo" jdbcType="DECIMAL" />
+    <result column="DEPT_CODE" property="deptCode" jdbcType="VARCHAR" />
+    <result column="BED_NO" property="bedNo" jdbcType="VARCHAR" />
+    <result column="ADMISSION_DATE" property="admissionDate" jdbcType="DATE" />
+    <result column="APPLY_CHECK_DATE" property="applyCheckDate" jdbcType="DATE" />
+    <result column="APPLYER" property="applyer" jdbcType="VARCHAR" />
+    <result column="INP_NO" property="inpNo" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="INFO_STATUS" property="infoStatus" jdbcType="VARCHAR" />
+    <result column="CHECK_TYPE" property="checkType" jdbcType="VARCHAR" />
+    <result column="CHECK_STATUS" property="checkStatus" jdbcType="VARCHAR" />
+    <result column="CHECK_DATE" property="checkDate" jdbcType="DATE" />
+    <result column="CHECKER" property="checker" jdbcType="VARCHAR" />
+    <result column="SETTLE_DATE" property="settleDate" jdbcType="DATE" />
+    <result column="SETTLER" property="settler" jdbcType="VARCHAR" />
+    <result column="DISABLED_DATE" property="disabledDate" jdbcType="DATE" />
+    <result column="CHANGER" property="changer" jdbcType="VARCHAR" />
+    <result column="CHECK_COSTS" property="checkCosts" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PATIENT_ID, VISIT_ID, S_NO, DEPT_CODE, BED_NO, ADMISSION_DATE, APPLY_CHECK_DATE, 
+    APPLYER, INP_NO, NAME, INFO_STATUS, CHECK_TYPE, CHECK_STATUS, CHECK_DATE, CHECKER, 
+    SETTLE_DATE, SETTLER, DISABLED_DATE, CHANGER, CHECK_COSTS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.medrec.InpPatientCheckLogKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from MEDREC.INP_PATIENT_CHECK_LOG
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and S_NO = #{sNo,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.medrec.InpPatientCheckLogKey" >
+    delete from MEDREC.INP_PATIENT_CHECK_LOG
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and S_NO = #{sNo,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.medrec.InpPatientCheckLog" >
+    insert into MEDREC.INP_PATIENT_CHECK_LOG (PATIENT_ID, VISIT_ID, S_NO, 
+      DEPT_CODE, BED_NO, ADMISSION_DATE, 
+      APPLY_CHECK_DATE, APPLYER, INP_NO, 
+      NAME, INFO_STATUS, CHECK_TYPE, 
+      CHECK_STATUS, CHECK_DATE, CHECKER, 
+      SETTLE_DATE, SETTLER, DISABLED_DATE, 
+      CHANGER, CHECK_COSTS)
+    values (#{patientId,jdbcType=VARCHAR}, #{visitId,jdbcType=DECIMAL}, #{sNo,jdbcType=DECIMAL}, 
+      #{deptCode,jdbcType=VARCHAR}, #{bedNo,jdbcType=VARCHAR}, #{admissionDate,jdbcType=DATE}, 
+      #{applyCheckDate,jdbcType=DATE}, #{applyer,jdbcType=VARCHAR}, #{inpNo,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{infoStatus,jdbcType=VARCHAR}, #{checkType,jdbcType=VARCHAR}, 
+      #{checkStatus,jdbcType=VARCHAR}, #{checkDate,jdbcType=DATE}, #{checker,jdbcType=VARCHAR}, 
+      #{settleDate,jdbcType=DATE}, #{settler,jdbcType=VARCHAR}, #{disabledDate,jdbcType=DATE}, 
+      #{changer,jdbcType=VARCHAR}, #{checkCosts,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.medrec.InpPatientCheckLog" >
+    insert into MEDREC.INP_PATIENT_CHECK_LOG
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="visitId != null" >
+        VISIT_ID,
+      </if>
+      <if test="sNo != null" >
+        S_NO,
+      </if>
+      <if test="deptCode != null" >
+        DEPT_CODE,
+      </if>
+      <if test="bedNo != null" >
+        BED_NO,
+      </if>
+      <if test="admissionDate != null" >
+        ADMISSION_DATE,
+      </if>
+      <if test="applyCheckDate != null" >
+        APPLY_CHECK_DATE,
+      </if>
+      <if test="applyer != null" >
+        APPLYER,
+      </if>
+      <if test="inpNo != null" >
+        INP_NO,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="infoStatus != null" >
+        INFO_STATUS,
+      </if>
+      <if test="checkType != null" >
+        CHECK_TYPE,
+      </if>
+      <if test="checkStatus != null" >
+        CHECK_STATUS,
+      </if>
+      <if test="checkDate != null" >
+        CHECK_DATE,
+      </if>
+      <if test="checker != null" >
+        CHECKER,
+      </if>
+      <if test="settleDate != null" >
+        SETTLE_DATE,
+      </if>
+      <if test="settler != null" >
+        SETTLER,
+      </if>
+      <if test="disabledDate != null" >
+        DISABLED_DATE,
+      </if>
+      <if test="changer != null" >
+        CHANGER,
+      </if>
+      <if test="checkCosts != null" >
+        CHECK_COSTS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitId != null" >
+        #{visitId,jdbcType=DECIMAL},
+      </if>
+      <if test="sNo != null" >
+        #{sNo,jdbcType=DECIMAL},
+      </if>
+      <if test="deptCode != null" >
+        #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bedNo != null" >
+        #{bedNo,jdbcType=VARCHAR},
+      </if>
+      <if test="admissionDate != null" >
+        #{admissionDate,jdbcType=DATE},
+      </if>
+      <if test="applyCheckDate != null" >
+        #{applyCheckDate,jdbcType=DATE},
+      </if>
+      <if test="applyer != null" >
+        #{applyer,jdbcType=VARCHAR},
+      </if>
+      <if test="inpNo != null" >
+        #{inpNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="infoStatus != null" >
+        #{infoStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="checkType != null" >
+        #{checkType,jdbcType=VARCHAR},
+      </if>
+      <if test="checkStatus != null" >
+        #{checkStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="checkDate != null" >
+        #{checkDate,jdbcType=DATE},
+      </if>
+      <if test="checker != null" >
+        #{checker,jdbcType=VARCHAR},
+      </if>
+      <if test="settleDate != null" >
+        #{settleDate,jdbcType=DATE},
+      </if>
+      <if test="settler != null" >
+        #{settler,jdbcType=VARCHAR},
+      </if>
+      <if test="disabledDate != null" >
+        #{disabledDate,jdbcType=DATE},
+      </if>
+      <if test="changer != null" >
+        #{changer,jdbcType=VARCHAR},
+      </if>
+      <if test="checkCosts != null" >
+        #{checkCosts,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.medrec.InpPatientCheckLog" >
+    update MEDREC.INP_PATIENT_CHECK_LOG
+    <set >
+      <if test="deptCode != null" >
+        DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bedNo != null" >
+        BED_NO = #{bedNo,jdbcType=VARCHAR},
+      </if>
+      <if test="admissionDate != null" >
+        ADMISSION_DATE = #{admissionDate,jdbcType=DATE},
+      </if>
+      <if test="applyCheckDate != null" >
+        APPLY_CHECK_DATE = #{applyCheckDate,jdbcType=DATE},
+      </if>
+      <if test="applyer != null" >
+        APPLYER = #{applyer,jdbcType=VARCHAR},
+      </if>
+      <if test="inpNo != null" >
+        INP_NO = #{inpNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="infoStatus != null" >
+        INFO_STATUS = #{infoStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="checkType != null" >
+        CHECK_TYPE = #{checkType,jdbcType=VARCHAR},
+      </if>
+      <if test="checkStatus != null" >
+        CHECK_STATUS = #{checkStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="checkDate != null" >
+        CHECK_DATE = #{checkDate,jdbcType=DATE},
+      </if>
+      <if test="checker != null" >
+        CHECKER = #{checker,jdbcType=VARCHAR},
+      </if>
+      <if test="settleDate != null" >
+        SETTLE_DATE = #{settleDate,jdbcType=DATE},
+      </if>
+      <if test="settler != null" >
+        SETTLER = #{settler,jdbcType=VARCHAR},
+      </if>
+      <if test="disabledDate != null" >
+        DISABLED_DATE = #{disabledDate,jdbcType=DATE},
+      </if>
+      <if test="changer != null" >
+        CHANGER = #{changer,jdbcType=VARCHAR},
+      </if>
+      <if test="checkCosts != null" >
+        CHECK_COSTS = #{checkCosts,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and S_NO = #{sNo,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.medrec.InpPatientCheckLog" >
+    update MEDREC.INP_PATIENT_CHECK_LOG
+    set DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+      BED_NO = #{bedNo,jdbcType=VARCHAR},
+      ADMISSION_DATE = #{admissionDate,jdbcType=DATE},
+      APPLY_CHECK_DATE = #{applyCheckDate,jdbcType=DATE},
+      APPLYER = #{applyer,jdbcType=VARCHAR},
+      INP_NO = #{inpNo,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      INFO_STATUS = #{infoStatus,jdbcType=VARCHAR},
+      CHECK_TYPE = #{checkType,jdbcType=VARCHAR},
+      CHECK_STATUS = #{checkStatus,jdbcType=VARCHAR},
+      CHECK_DATE = #{checkDate,jdbcType=DATE},
+      CHECKER = #{checker,jdbcType=VARCHAR},
+      SETTLE_DATE = #{settleDate,jdbcType=DATE},
+      SETTLER = #{settler,jdbcType=VARCHAR},
+      DISABLED_DATE = #{disabledDate,jdbcType=DATE},
+      CHANGER = #{changer,jdbcType=VARCHAR},
+      CHECK_COSTS = #{checkCosts,jdbcType=DECIMAL}
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and S_NO = #{sNo,jdbcType=DECIMAL}
+  </update>
+</mapper>

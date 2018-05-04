@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.MrTraceLogMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.medrec.MrTraceLog" >
+    <id column="MR_CLASS" property="mrClass" jdbcType="VARCHAR" />
+    <id column="TRANSFER_ATTR" property="transferAttr" jdbcType="VARCHAR" />
+    <id column="MR_NO" property="mrNo" jdbcType="VARCHAR" />
+    <id column="RELEASED_DATE_TIME" property="releasedDateTime" jdbcType="DATE" />
+    <result column="RELEASED_DEPT" property="releasedDept" jdbcType="VARCHAR" />
+    <result column="ACCEPTED_DEPT" property="acceptedDept" jdbcType="VARCHAR" />
+    <result column="RELEASED_BY" property="releasedBy" jdbcType="VARCHAR" />
+    <result column="ACCEPTED_BY" property="acceptedBy" jdbcType="VARCHAR" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    MR_CLASS, TRANSFER_ATTR, MR_NO, RELEASED_DATE_TIME, RELEASED_DEPT, ACCEPTED_DEPT, 
+    RELEASED_BY, ACCEPTED_BY, MEMO
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.medrec.MrTraceLogKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from MEDREC.MR_TRACE_LOG
+    where MR_CLASS = #{mrClass,jdbcType=VARCHAR}
+      and TRANSFER_ATTR = #{transferAttr,jdbcType=VARCHAR}
+      and MR_NO = #{mrNo,jdbcType=VARCHAR}
+      and RELEASED_DATE_TIME = #{releasedDateTime,jdbcType=DATE}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.medrec.MrTraceLogKey" >
+    delete from MEDREC.MR_TRACE_LOG
+    where MR_CLASS = #{mrClass,jdbcType=VARCHAR}
+      and TRANSFER_ATTR = #{transferAttr,jdbcType=VARCHAR}
+      and MR_NO = #{mrNo,jdbcType=VARCHAR}
+      and RELEASED_DATE_TIME = #{releasedDateTime,jdbcType=DATE}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.medrec.MrTraceLog" >
+    insert into MEDREC.MR_TRACE_LOG (MR_CLASS, TRANSFER_ATTR, MR_NO, 
+      RELEASED_DATE_TIME, RELEASED_DEPT, ACCEPTED_DEPT, 
+      RELEASED_BY, ACCEPTED_BY, MEMO
+      )
+    values (#{mrClass,jdbcType=VARCHAR}, #{transferAttr,jdbcType=VARCHAR}, #{mrNo,jdbcType=VARCHAR}, 
+      #{releasedDateTime,jdbcType=DATE}, #{releasedDept,jdbcType=VARCHAR}, #{acceptedDept,jdbcType=VARCHAR}, 
+      #{releasedBy,jdbcType=VARCHAR}, #{acceptedBy,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.medrec.MrTraceLog" >
+    insert into MEDREC.MR_TRACE_LOG
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mrClass != null" >
+        MR_CLASS,
+      </if>
+      <if test="transferAttr != null" >
+        TRANSFER_ATTR,
+      </if>
+      <if test="mrNo != null" >
+        MR_NO,
+      </if>
+      <if test="releasedDateTime != null" >
+        RELEASED_DATE_TIME,
+      </if>
+      <if test="releasedDept != null" >
+        RELEASED_DEPT,
+      </if>
+      <if test="acceptedDept != null" >
+        ACCEPTED_DEPT,
+      </if>
+      <if test="releasedBy != null" >
+        RELEASED_BY,
+      </if>
+      <if test="acceptedBy != null" >
+        ACCEPTED_BY,
+      </if>
+      <if test="memo != null" >
+        MEMO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mrClass != null" >
+        #{mrClass,jdbcType=VARCHAR},
+      </if>
+      <if test="transferAttr != null" >
+        #{transferAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="mrNo != null" >
+        #{mrNo,jdbcType=VARCHAR},
+      </if>
+      <if test="releasedDateTime != null" >
+        #{releasedDateTime,jdbcType=DATE},
+      </if>
+      <if test="releasedDept != null" >
+        #{releasedDept,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptedDept != null" >
+        #{acceptedDept,jdbcType=VARCHAR},
+      </if>
+      <if test="releasedBy != null" >
+        #{releasedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptedBy != null" >
+        #{acceptedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.medrec.MrTraceLog" >
+    update MEDREC.MR_TRACE_LOG
+    <set >
+      <if test="releasedDept != null" >
+        RELEASED_DEPT = #{releasedDept,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptedDept != null" >
+        ACCEPTED_DEPT = #{acceptedDept,jdbcType=VARCHAR},
+      </if>
+      <if test="releasedBy != null" >
+        RELEASED_BY = #{releasedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptedBy != null" >
+        ACCEPTED_BY = #{acceptedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        MEMO = #{memo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where MR_CLASS = #{mrClass,jdbcType=VARCHAR}
+      and TRANSFER_ATTR = #{transferAttr,jdbcType=VARCHAR}
+      and MR_NO = #{mrNo,jdbcType=VARCHAR}
+      and RELEASED_DATE_TIME = #{releasedDateTime,jdbcType=DATE}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.medrec.MrTraceLog" >
+    update MEDREC.MR_TRACE_LOG
+    set RELEASED_DEPT = #{releasedDept,jdbcType=VARCHAR},
+      ACCEPTED_DEPT = #{acceptedDept,jdbcType=VARCHAR},
+      RELEASED_BY = #{releasedBy,jdbcType=VARCHAR},
+      ACCEPTED_BY = #{acceptedBy,jdbcType=VARCHAR},
+      MEMO = #{memo,jdbcType=VARCHAR}
+    where MR_CLASS = #{mrClass,jdbcType=VARCHAR}
+      and TRANSFER_ATTR = #{transferAttr,jdbcType=VARCHAR}
+      and MR_NO = #{mrNo,jdbcType=VARCHAR}
+      and RELEASED_DATE_TIME = #{releasedDateTime,jdbcType=DATE}
+  </update>
+</mapper>

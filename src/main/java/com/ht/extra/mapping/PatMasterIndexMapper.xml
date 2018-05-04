@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.PatMasterIndexMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.medrec.PatMasterIndex" >
+    <id column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <result column="INP_NO" property="inpNo" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="NAME_PHONETIC" property="namePhonetic" jdbcType="VARCHAR" />
+    <result column="SEX" property="sex" jdbcType="VARCHAR" />
+    <result column="DATE_OF_BIRTH" property="dateOfBirth" jdbcType="DATE" />
+    <result column="BIRTH_PLACE" property="birthPlace" jdbcType="VARCHAR" />
+    <result column="CITIZENSHIP" property="citizenship" jdbcType="VARCHAR" />
+    <result column="NATION" property="nation" jdbcType="VARCHAR" />
+    <result column="ID_NO" property="idNo" jdbcType="VARCHAR" />
+    <result column="IDENTITY" property="identity" jdbcType="VARCHAR" />
+    <result column="CHARGE_TYPE" property="chargeType" jdbcType="VARCHAR" />
+    <result column="UNIT_IN_CONTRACT" property="unitInContract" jdbcType="VARCHAR" />
+    <result column="MAILING_ADDRESS" property="mailingAddress" jdbcType="VARCHAR" />
+    <result column="ZIP_CODE" property="zipCode" jdbcType="VARCHAR" />
+    <result column="PHONE_NUMBER_HOME" property="phoneNumberHome" jdbcType="VARCHAR" />
+    <result column="PHONE_NUMBER_BUSINESS" property="phoneNumberBusiness" jdbcType="VARCHAR" />
+    <result column="NEXT_OF_KIN" property="nextOfKin" jdbcType="VARCHAR" />
+    <result column="RELATIONSHIP" property="relationship" jdbcType="VARCHAR" />
+    <result column="NEXT_OF_KIN_ADDR" property="nextOfKinAddr" jdbcType="VARCHAR" />
+    <result column="NEXT_OF_KIN_ZIP_CODE" property="nextOfKinZipCode" jdbcType="VARCHAR" />
+    <result column="NEXT_OF_KIN_PHONE" property="nextOfKinPhone" jdbcType="VARCHAR" />
+    <result column="LAST_VISIT_DATE" property="lastVisitDate" jdbcType="DATE" />
+    <result column="VIP_INDICATOR" property="vipIndicator" jdbcType="DECIMAL" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="DATE" />
+    <result column="OPERATOR" property="operator" jdbcType="VARCHAR" />
+    <result column="SECRET_LEVEL" property="secretLevel" jdbcType="DECIMAL" />
+    <result column="CENTER_NO" property="centerNo" jdbcType="VARCHAR" />
+    <result column="MEMBER_NO" property="memberNo" jdbcType="VARCHAR" />
+    <result column="COUNTRY_TEAM_CODE" property="countryTeamCode" jdbcType="VARCHAR" />
+    <result column="FAMILY_SYSNO" property="familySysno" jdbcType="VARCHAR" />
+    <result column="CARD_NO" property="cardNo" jdbcType="VARCHAR" />
+    <result column="IDENTITY_NAME" property="identityName" jdbcType="VARCHAR" />
+    <result column="HEAD_OF_HOUSEHOLD" property="headOfHousehold" jdbcType="VARCHAR" />
+    <result column="INSURANCES_NO" property="insurancesNo" jdbcType="VARCHAR" />
+    <result column="NAME_ALIAS" property="nameAlias" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PATIENT_ID, INP_NO, NAME, NAME_PHONETIC, SEX, DATE_OF_BIRTH, BIRTH_PLACE, CITIZENSHIP, 
+    NATION, ID_NO, IDENTITY, CHARGE_TYPE, UNIT_IN_CONTRACT, MAILING_ADDRESS, ZIP_CODE, 
+    PHONE_NUMBER_HOME, PHONE_NUMBER_BUSINESS, NEXT_OF_KIN, RELATIONSHIP, NEXT_OF_KIN_ADDR, 
+    NEXT_OF_KIN_ZIP_CODE, NEXT_OF_KIN_PHONE, LAST_VISIT_DATE, VIP_INDICATOR, CREATE_DATE, 
+    OPERATOR, SECRET_LEVEL, CENTER_NO, MEMBER_NO, COUNTRY_TEAM_CODE, FAMILY_SYSNO, CARD_NO, 
+    IDENTITY_NAME, HEAD_OF_HOUSEHOLD, INSURANCES_NO,NAME_ALIAS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from MEDREC.PAT_MASTER_INDEX
+    where PATIENT_ID = #{0}
+    and CHARGE_TYPE !='军队医改'
+  </select>
+  <select id="selectByPatientId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from MEDREC.PAT_MASTER_INDEX
+    where PATIENT_ID = #{0}
+  </select>
+  <select id="selectByIdNo" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from MEDREC.PAT_MASTER_INDEX
+    where ID_NO = #{0}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from MEDREC.PAT_MASTER_INDEX
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.medrec.PatMasterIndex" >
+    insert into MEDREC.PAT_MASTER_INDEX (PATIENT_ID, INP_NO, NAME, 
+      NAME_PHONETIC, SEX, DATE_OF_BIRTH, 
+      BIRTH_PLACE, CITIZENSHIP, NATION, 
+      ID_NO, IDENTITY, CHARGE_TYPE, 
+      UNIT_IN_CONTRACT, MAILING_ADDRESS, ZIP_CODE, 
+      PHONE_NUMBER_HOME, PHONE_NUMBER_BUSINESS, NEXT_OF_KIN, 
+      RELATIONSHIP, NEXT_OF_KIN_ADDR, NEXT_OF_KIN_ZIP_CODE, 
+      NEXT_OF_KIN_PHONE, LAST_VISIT_DATE, VIP_INDICATOR, 
+      CREATE_DATE, OPERATOR, SECRET_LEVEL, 
+      CENTER_NO, MEMBER_NO, COUNTRY_TEAM_CODE, 
+      FAMILY_SYSNO, CARD_NO, IDENTITY_NAME, 
+      HEAD_OF_HOUSEHOLD, INSURANCES_NO,NAME_ALIAS)
+    values (#{patientId,jdbcType=VARCHAR}, #{inpNo,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{namePhonetic,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{dateOfBirth,jdbcType=DATE}, 
+      #{birthPlace,jdbcType=VARCHAR}, #{citizenship,jdbcType=VARCHAR}, #{nation,jdbcType=VARCHAR}, 
+      #{idNo,jdbcType=VARCHAR}, #{identity,jdbcType=VARCHAR}, #{chargeType,jdbcType=VARCHAR}, 
+      #{unitInContract,jdbcType=VARCHAR}, #{mailingAddress,jdbcType=VARCHAR}, #{zipCode,jdbcType=VARCHAR}, 
+      #{phoneNumberHome,jdbcType=VARCHAR}, #{phoneNumberBusiness,jdbcType=VARCHAR}, #{nextOfKin,jdbcType=VARCHAR}, 
+      #{relationship,jdbcType=VARCHAR}, #{nextOfKinAddr,jdbcType=VARCHAR}, #{nextOfKinZipCode,jdbcType=VARCHAR}, 
+      #{nextOfKinPhone,jdbcType=VARCHAR}, #{lastVisitDate,jdbcType=DATE}, #{vipIndicator,jdbcType=DECIMAL}, 
+      #{createDate,jdbcType=DATE}, #{operator,jdbcType=VARCHAR}, #{secretLevel,jdbcType=DECIMAL}, 
+      #{centerNo,jdbcType=VARCHAR}, #{memberNo,jdbcType=VARCHAR}, #{countryTeamCode,jdbcType=VARCHAR}, 
+      #{familySysno,jdbcType=VARCHAR}, #{cardNo,jdbcType=VARCHAR}, #{identityName,jdbcType=VARCHAR}, 
+      #{headOfHousehold,jdbcType=VARCHAR}, #{insurancesNo,jdbcType=VARCHAR}),#{nameAlias,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.medrec.PatMasterIndex" >
+    insert into MEDREC.PAT_MASTER_INDEX
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="inpNo != null" >
+        INP_NO,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="namePhonetic != null" >
+        NAME_PHONETIC,
+      </if>
+      <if test="sex != null" >
+        SEX,
+      </if>
+      <if test="dateOfBirth != null" >
+        DATE_OF_BIRTH,
+      </if>
+      <if test="birthPlace != null" >
+        BIRTH_PLACE,
+      </if>
+      <if test="citizenship != null" >
+        CITIZENSHIP,
+      </if>
+      <if test="nation != null" >
+        NATION,
+      </if>
+      <if test="idNo != null" >
+        ID_NO,
+      </if>
+      <if test="identity != null" >
+        IDENTITY,
+      </if>
+      <if test="chargeType != null" >
+        CHARGE_TYPE,
+      </if>
+      <if test="unitInContract != null" >
+        UNIT_IN_CONTRACT,
+      </if>
+      <if test="mailingAddress != null" >
+        MAILING_ADDRESS,
+      </if>
+      <if test="zipCode != null" >
+        ZIP_CODE,
+      </if>
+      <if test="phoneNumberHome != null" >
+        PHONE_NUMBER_HOME,
+      </if>
+      <if test="phoneNumberBusiness != null" >
+        PHONE_NUMBER_BUSINESS,
+      </if>
+      <if test="nextOfKin != null" >
+        NEXT_OF_KIN,
+      </if>
+      <if test="relationship != null" >
+        RELATIONSHIP,
+      </if>
+      <if test="nextOfKinAddr != null" >
+        NEXT_OF_KIN_ADDR,
+      </if>
+      <if test="nextOfKinZipCode != null" >
+        NEXT_OF_KIN_ZIP_CODE,
+      </if>
+      <if test="nextOfKinPhone != null" >
+        NEXT_OF_KIN_PHONE,
+      </if>
+      <if test="lastVisitDate != null" >
+        LAST_VISIT_DATE,
+      </if>
+      <if test="vipIndicator != null" >
+        VIP_INDICATOR,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="operator != null" >
+        OPERATOR,
+      </if>
+      <if test="secretLevel != null" >
+        SECRET_LEVEL,
+      </if>
+      <if test="centerNo != null" >
+        CENTER_NO,
+      </if>
+      <if test="memberNo != null" >
+        MEMBER_NO,
+      </if>
+      <if test="countryTeamCode != null" >
+        COUNTRY_TEAM_CODE,
+      </if>
+      <if test="familySysno != null" >
+        FAMILY_SYSNO,
+      </if>
+      <if test="cardNo != null" >
+        CARD_NO,
+      </if>
+      <if test="identityName != null" >
+        IDENTITY_NAME,
+      </if>
+      <if test="headOfHousehold != null" >
+        HEAD_OF_HOUSEHOLD,
+      </if>
+      <if test="insurancesNo != null" >
+        INSURANCES_NO,
+      </if>
+      <if test="nameAlias != null" >
+        NAME_ALIAS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="inpNo != null" >
+        #{inpNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="namePhonetic != null" >
+        #{namePhonetic,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="dateOfBirth != null" >
+        #{dateOfBirth,jdbcType=DATE},
+      </if>
+      <if test="birthPlace != null" >
+        #{birthPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="citizenship != null" >
+        #{citizenship,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null" >
+        #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="idNo != null" >
+        #{idNo,jdbcType=VARCHAR},
+      </if>
+      <if test="identity != null" >
+        #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeType != null" >
+        #{chargeType,jdbcType=VARCHAR},
+      </if>
+      <if test="unitInContract != null" >
+        #{unitInContract,jdbcType=VARCHAR},
+      </if>
+      <if test="mailingAddress != null" >
+        #{mailingAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null" >
+        #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumberHome != null" >
+        #{phoneNumberHome,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumberBusiness != null" >
+        #{phoneNumberBusiness,jdbcType=VARCHAR},
+      </if>
+      <if test="nextOfKin != null" >
+        #{nextOfKin,jdbcType=VARCHAR},
+      </if>
+      <if test="relationship != null" >
+        #{relationship,jdbcType=VARCHAR},
+      </if>
+      <if test="nextOfKinAddr != null" >
+        #{nextOfKinAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="nextOfKinZipCode != null" >
+        #{nextOfKinZipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="nextOfKinPhone != null" >
+        #{nextOfKinPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="lastVisitDate != null" >
+        #{lastVisitDate,jdbcType=DATE},
+      </if>
+      <if test="vipIndicator != null" >
+        #{vipIndicator,jdbcType=DECIMAL},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=DATE},
+      </if>
+      <if test="operator != null" >
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="secretLevel != null" >
+        #{secretLevel,jdbcType=DECIMAL},
+      </if>
+      <if test="centerNo != null" >
+        #{centerNo,jdbcType=VARCHAR},
+      </if>
+      <if test="memberNo != null" >
+        #{memberNo,jdbcType=VARCHAR},
+      </if>
+      <if test="countryTeamCode != null" >
+        #{countryTeamCode,jdbcType=VARCHAR},
+      </if>
+      <if test="familySysno != null" >
+        #{familySysno,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNo != null" >
+        #{cardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="identityName != null" >
+        #{identityName,jdbcType=VARCHAR},
+      </if>
+      <if test="headOfHousehold != null" >
+        #{headOfHousehold,jdbcType=VARCHAR},
+      </if>
+      <if test="insurancesNo != null" >
+        #{insurancesNo,jdbcType=VARCHAR},
+      </if>
+      <if test="nameAlias != null" >
+        #{nameAlias,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.medrec.PatMasterIndex" >
+    update MEDREC.PAT_MASTER_INDEX
+    <set >
+      <if test="inpNo != null" >
+        INP_NO = #{inpNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="namePhonetic != null" >
+        NAME_PHONETIC = #{namePhonetic,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        SEX = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="dateOfBirth != null" >
+        DATE_OF_BIRTH = #{dateOfBirth,jdbcType=DATE},
+      </if>
+      <if test="birthPlace != null" >
+        BIRTH_PLACE = #{birthPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="citizenship != null" >
+        CITIZENSHIP = #{citizenship,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null" >
+        NATION = #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="idNo != null" >
+        ID_NO = #{idNo,jdbcType=VARCHAR},
+      </if>
+      <if test="identity != null" >
+        IDENTITY = #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeType != null" >
+        CHARGE_TYPE = #{chargeType,jdbcType=VARCHAR},
+      </if>
+      <if test="unitInContract != null" >
+        UNIT_IN_CONTRACT = #{unitInContract,jdbcType=VARCHAR},
+      </if>
+      <if test="mailingAddress != null" >
+        MAILING_ADDRESS = #{mailingAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null" >
+        ZIP_CODE = #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumberHome != null" >
+        PHONE_NUMBER_HOME = #{phoneNumberHome,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumberBusiness != null" >
+        PHONE_NUMBER_BUSINESS = #{phoneNumberBusiness,jdbcType=VARCHAR},
+      </if>
+      <if test="nextOfKin != null" >
+        NEXT_OF_KIN = #{nextOfKin,jdbcType=VARCHAR},
+      </if>
+      <if test="relationship != null" >
+        RELATIONSHIP = #{relationship,jdbcType=VARCHAR},
+      </if>
+      <if test="nextOfKinAddr != null" >
+        NEXT_OF_KIN_ADDR = #{nextOfKinAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="nextOfKinZipCode != null" >
+        NEXT_OF_KIN_ZIP_CODE = #{nextOfKinZipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="nextOfKinPhone != null" >
+        NEXT_OF_KIN_PHONE = #{nextOfKinPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="lastVisitDate != null" >
+        LAST_VISIT_DATE = #{lastVisitDate,jdbcType=DATE},
+      </if>
+      <if test="vipIndicator != null" >
+        VIP_INDICATOR = #{vipIndicator,jdbcType=DECIMAL},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=DATE},
+      </if>
+      <if test="operator != null" >
+        OPERATOR = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="secretLevel != null" >
+        SECRET_LEVEL = #{secretLevel,jdbcType=DECIMAL},
+      </if>
+      <if test="centerNo != null" >
+        CENTER_NO = #{centerNo,jdbcType=VARCHAR},
+      </if>
+      <if test="memberNo != null" >
+        MEMBER_NO = #{memberNo,jdbcType=VARCHAR},
+      </if>
+      <if test="countryTeamCode != null" >
+        COUNTRY_TEAM_CODE = #{countryTeamCode,jdbcType=VARCHAR},
+      </if>
+      <if test="familySysno != null" >
+        FAMILY_SYSNO = #{familySysno,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNo != null" >
+        CARD_NO = #{cardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="identityName != null" >
+        IDENTITY_NAME = #{identityName,jdbcType=VARCHAR},
+      </if>
+      <if test="headOfHousehold != null" >
+        HEAD_OF_HOUSEHOLD = #{headOfHousehold,jdbcType=VARCHAR},
+      </if>
+      <if test="insurancesNo != null" >
+        INSURANCES_NO = #{insurancesNo,jdbcType=VARCHAR},
+      </if>
+      <if test="nameAlias != null" >
+        NAME_ALIAS = #{nameAlias,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.medrec.PatMasterIndex" >
+    update MEDREC.PAT_MASTER_INDEX
+    set INP_NO = #{inpNo,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      NAME_PHONETIC = #{namePhonetic,jdbcType=VARCHAR},
+      SEX = #{sex,jdbcType=VARCHAR},
+      DATE_OF_BIRTH = #{dateOfBirth,jdbcType=DATE},
+      BIRTH_PLACE = #{birthPlace,jdbcType=VARCHAR},
+      CITIZENSHIP = #{citizenship,jdbcType=VARCHAR},
+      <if test="nation != null" >
+      NATION = #{nation,jdbcType=VARCHAR},
+      </if>
+      ID_NO = #{idNo,jdbcType=VARCHAR},
+      IDENTITY = #{identity,jdbcType=VARCHAR},
+      CHARGE_TYPE = #{chargeType,jdbcType=VARCHAR},
+      UNIT_IN_CONTRACT = #{unitInContract,jdbcType=VARCHAR},
+    <if test="mailingAddress != null" >
+      MAILING_ADDRESS = #{mailingAddress,jdbcType=VARCHAR},
+    </if>
+      ZIP_CODE = #{zipCode,jdbcType=VARCHAR},
+      PHONE_NUMBER_HOME = #{phoneNumberHome,jdbcType=VARCHAR},
+      PHONE_NUMBER_BUSINESS = #{phoneNumberBusiness,jdbcType=VARCHAR},
+      NEXT_OF_KIN = #{nextOfKin,jdbcType=VARCHAR},
+      RELATIONSHIP = #{relationship,jdbcType=VARCHAR},
+      NEXT_OF_KIN_ADDR = #{nextOfKinAddr,jdbcType=VARCHAR},
+      NEXT_OF_KIN_ZIP_CODE = #{nextOfKinZipCode,jdbcType=VARCHAR},
+      NEXT_OF_KIN_PHONE = #{nextOfKinPhone,jdbcType=VARCHAR},
+      LAST_VISIT_DATE = #{lastVisitDate,jdbcType=DATE},
+      VIP_INDICATOR = #{vipIndicator,jdbcType=DECIMAL},
+      CREATE_DATE = #{createDate,jdbcType=DATE},
+      OPERATOR = #{operator,jdbcType=VARCHAR},
+      SECRET_LEVEL = #{secretLevel,jdbcType=DECIMAL},
+      CENTER_NO = #{centerNo,jdbcType=VARCHAR},
+      MEMBER_NO = #{memberNo,jdbcType=VARCHAR},
+      COUNTRY_TEAM_CODE = #{countryTeamCode,jdbcType=VARCHAR},
+      FAMILY_SYSNO = #{familySysno,jdbcType=VARCHAR},
+      CARD_NO = #{cardNo,jdbcType=VARCHAR},
+      IDENTITY_NAME = #{identityName,jdbcType=VARCHAR},
+      HEAD_OF_HOUSEHOLD = #{headOfHousehold,jdbcType=VARCHAR},
+      INSURANCES_NO = #{insurancesNo,jdbcType=VARCHAR},
+      NAME_ALIAS = #{nameAlias,jdbcType=VARCHAR}
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+  </update>
+</mapper>

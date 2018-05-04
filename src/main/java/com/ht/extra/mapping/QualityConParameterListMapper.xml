@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.QualityConParameterListMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.lab.QualityConParameterList" >
+    <id column="ITEM_CODE" property="itemCode" jdbcType="VARCHAR" />
+    <id column="QC_YEAR" property="qcYear" jdbcType="DECIMAL" />
+    <id column="QC_MONTH" property="qcMonth" jdbcType="DECIMAL" />
+    <result column="INST" property="inst" jdbcType="VARCHAR" />
+    <result column="METHOD" property="method" jdbcType="VARCHAR" />
+    <result column="WAVELENGTH" property="wavelength" jdbcType="VARCHAR" />
+    <result column="XB1" property="xb1" jdbcType="DECIMAL" />
+    <result column="XB2" property="xb2" jdbcType="DECIMAL" />
+    <result column="XB3" property="xb3" jdbcType="DECIMAL" />
+    <result column="SD1" property="sd1" jdbcType="DECIMAL" />
+    <result column="SD2" property="sd2" jdbcType="DECIMAL" />
+    <result column="SD3" property="sd3" jdbcType="DECIMAL" />
+    <result column="CV1" property="cv1" jdbcType="DECIMAL" />
+    <result column="CV2" property="cv2" jdbcType="DECIMAL" />
+    <result column="CV3" property="cv3" jdbcType="DECIMAL" />
+    <result column="BATCH_NO1" property="batchNo1" jdbcType="VARCHAR" />
+    <result column="BATCH_NO2" property="batchNo2" jdbcType="VARCHAR" />
+    <result column="BATCH_NO3" property="batchNo3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ITEM_CODE, QC_YEAR, QC_MONTH, INST, METHOD, WAVELENGTH, XB1, XB2, XB3, SD1, SD2, 
+    SD3, CV1, CV2, CV3, BATCH_NO1, BATCH_NO2, BATCH_NO3
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.lab.QualityConParameterListKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from LAB.QUALITY_CON_PARAMETER_LIST
+    where ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+      and QC_YEAR = #{qcYear,jdbcType=DECIMAL}
+      and QC_MONTH = #{qcMonth,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.lab.QualityConParameterListKey" >
+    delete from LAB.QUALITY_CON_PARAMETER_LIST
+    where ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+      and QC_YEAR = #{qcYear,jdbcType=DECIMAL}
+      and QC_MONTH = #{qcMonth,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.lab.QualityConParameterList" >
+    insert into LAB.QUALITY_CON_PARAMETER_LIST (ITEM_CODE, QC_YEAR, QC_MONTH, 
+      INST, METHOD, WAVELENGTH, 
+      XB1, XB2, XB3, SD1, 
+      SD2, SD3, CV1, CV2, 
+      CV3, BATCH_NO1, BATCH_NO2, 
+      BATCH_NO3)
+    values (#{itemCode,jdbcType=VARCHAR}, #{qcYear,jdbcType=DECIMAL}, #{qcMonth,jdbcType=DECIMAL}, 
+      #{inst,jdbcType=VARCHAR}, #{method,jdbcType=VARCHAR}, #{wavelength,jdbcType=VARCHAR}, 
+      #{xb1,jdbcType=DECIMAL}, #{xb2,jdbcType=DECIMAL}, #{xb3,jdbcType=DECIMAL}, #{sd1,jdbcType=DECIMAL}, 
+      #{sd2,jdbcType=DECIMAL}, #{sd3,jdbcType=DECIMAL}, #{cv1,jdbcType=DECIMAL}, #{cv2,jdbcType=DECIMAL}, 
+      #{cv3,jdbcType=DECIMAL}, #{batchNo1,jdbcType=VARCHAR}, #{batchNo2,jdbcType=VARCHAR}, 
+      #{batchNo3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.lab.QualityConParameterList" >
+    insert into LAB.QUALITY_CON_PARAMETER_LIST
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="itemCode != null" >
+        ITEM_CODE,
+      </if>
+      <if test="qcYear != null" >
+        QC_YEAR,
+      </if>
+      <if test="qcMonth != null" >
+        QC_MONTH,
+      </if>
+      <if test="inst != null" >
+        INST,
+      </if>
+      <if test="method != null" >
+        METHOD,
+      </if>
+      <if test="wavelength != null" >
+        WAVELENGTH,
+      </if>
+      <if test="xb1 != null" >
+        XB1,
+      </if>
+      <if test="xb2 != null" >
+        XB2,
+      </if>
+      <if test="xb3 != null" >
+        XB3,
+      </if>
+      <if test="sd1 != null" >
+        SD1,
+      </if>
+      <if test="sd2 != null" >
+        SD2,
+      </if>
+      <if test="sd3 != null" >
+        SD3,
+      </if>
+      <if test="cv1 != null" >
+        CV1,
+      </if>
+      <if test="cv2 != null" >
+        CV2,
+      </if>
+      <if test="cv3 != null" >
+        CV3,
+      </if>
+      <if test="batchNo1 != null" >
+        BATCH_NO1,
+      </if>
+      <if test="batchNo2 != null" >
+        BATCH_NO2,
+      </if>
+      <if test="batchNo3 != null" >
+        BATCH_NO3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="itemCode != null" >
+        #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="qcYear != null" >
+        #{qcYear,jdbcType=DECIMAL},
+      </if>
+      <if test="qcMonth != null" >
+        #{qcMonth,jdbcType=DECIMAL},
+      </if>
+      <if test="inst != null" >
+        #{inst,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null" >
+        #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="wavelength != null" >
+        #{wavelength,jdbcType=VARCHAR},
+      </if>
+      <if test="xb1 != null" >
+        #{xb1,jdbcType=DECIMAL},
+      </if>
+      <if test="xb2 != null" >
+        #{xb2,jdbcType=DECIMAL},
+      </if>
+      <if test="xb3 != null" >
+        #{xb3,jdbcType=DECIMAL},
+      </if>
+      <if test="sd1 != null" >
+        #{sd1,jdbcType=DECIMAL},
+      </if>
+      <if test="sd2 != null" >
+        #{sd2,jdbcType=DECIMAL},
+      </if>
+      <if test="sd3 != null" >
+        #{sd3,jdbcType=DECIMAL},
+      </if>
+      <if test="cv1 != null" >
+        #{cv1,jdbcType=DECIMAL},
+      </if>
+      <if test="cv2 != null" >
+        #{cv2,jdbcType=DECIMAL},
+      </if>
+      <if test="cv3 != null" >
+        #{cv3,jdbcType=DECIMAL},
+      </if>
+      <if test="batchNo1 != null" >
+        #{batchNo1,jdbcType=VARCHAR},
+      </if>
+      <if test="batchNo2 != null" >
+        #{batchNo2,jdbcType=VARCHAR},
+      </if>
+      <if test="batchNo3 != null" >
+        #{batchNo3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.lab.QualityConParameterList" >
+    update LAB.QUALITY_CON_PARAMETER_LIST
+    <set >
+      <if test="inst != null" >
+        INST = #{inst,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null" >
+        METHOD = #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="wavelength != null" >
+        WAVELENGTH = #{wavelength,jdbcType=VARCHAR},
+      </if>
+      <if test="xb1 != null" >
+        XB1 = #{xb1,jdbcType=DECIMAL},
+      </if>
+      <if test="xb2 != null" >
+        XB2 = #{xb2,jdbcType=DECIMAL},
+      </if>
+      <if test="xb3 != null" >
+        XB3 = #{xb3,jdbcType=DECIMAL},
+      </if>
+      <if test="sd1 != null" >
+        SD1 = #{sd1,jdbcType=DECIMAL},
+      </if>
+      <if test="sd2 != null" >
+        SD2 = #{sd2,jdbcType=DECIMAL},
+      </if>
+      <if test="sd3 != null" >
+        SD3 = #{sd3,jdbcType=DECIMAL},
+      </if>
+      <if test="cv1 != null" >
+        CV1 = #{cv1,jdbcType=DECIMAL},
+      </if>
+      <if test="cv2 != null" >
+        CV2 = #{cv2,jdbcType=DECIMAL},
+      </if>
+      <if test="cv3 != null" >
+        CV3 = #{cv3,jdbcType=DECIMAL},
+      </if>
+      <if test="batchNo1 != null" >
+        BATCH_NO1 = #{batchNo1,jdbcType=VARCHAR},
+      </if>
+      <if test="batchNo2 != null" >
+        BATCH_NO2 = #{batchNo2,jdbcType=VARCHAR},
+      </if>
+      <if test="batchNo3 != null" >
+        BATCH_NO3 = #{batchNo3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+      and QC_YEAR = #{qcYear,jdbcType=DECIMAL}
+      and QC_MONTH = #{qcMonth,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.lab.QualityConParameterList" >
+    update LAB.QUALITY_CON_PARAMETER_LIST
+    set INST = #{inst,jdbcType=VARCHAR},
+      METHOD = #{method,jdbcType=VARCHAR},
+      WAVELENGTH = #{wavelength,jdbcType=VARCHAR},
+      XB1 = #{xb1,jdbcType=DECIMAL},
+      XB2 = #{xb2,jdbcType=DECIMAL},
+      XB3 = #{xb3,jdbcType=DECIMAL},
+      SD1 = #{sd1,jdbcType=DECIMAL},
+      SD2 = #{sd2,jdbcType=DECIMAL},
+      SD3 = #{sd3,jdbcType=DECIMAL},
+      CV1 = #{cv1,jdbcType=DECIMAL},
+      CV2 = #{cv2,jdbcType=DECIMAL},
+      CV3 = #{cv3,jdbcType=DECIMAL},
+      BATCH_NO1 = #{batchNo1,jdbcType=VARCHAR},
+      BATCH_NO2 = #{batchNo2,jdbcType=VARCHAR},
+      BATCH_NO3 = #{batchNo3,jdbcType=VARCHAR}
+    where ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+      and QC_YEAR = #{qcYear,jdbcType=DECIMAL}
+      and QC_MONTH = #{qcMonth,jdbcType=DECIMAL}
+  </update>
+</mapper>

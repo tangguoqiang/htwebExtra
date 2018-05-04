@@ -1,0 +1,684 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.NjjbOutp2410Mapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.insurance.NjjbOutp2410" >
+    <id column="RCPT_NO" property="rcptNo" jdbcType="VARCHAR" />
+    <result column="VISIT_DATE" property="visitDate" jdbcType="DATE" />
+    <result column="VISIT_NO" property="visitNo" jdbcType="DECIMAL" />
+    <result column="SIGN" property="sign" jdbcType="DECIMAL" />
+    <result column="CREATED" property="created" jdbcType="DATE" />
+    <result column="IN_HEADER_1" property="inHeader1" jdbcType="VARCHAR" />
+    <result column="IN_HEADER_2" property="inHeader2" jdbcType="VARCHAR" />
+    <result column="IN_HEADER_3" property="inHeader3" jdbcType="VARCHAR" />
+    <result column="IN_HEADER_4" property="inHeader4" jdbcType="VARCHAR" />
+    <result column="IN_HEADER_5" property="inHeader5" jdbcType="VARCHAR" />
+    <result column="IN_HEADER_6" property="inHeader6" jdbcType="VARCHAR" />
+    <result column="IN_HEADER_7" property="inHeader7" jdbcType="VARCHAR" />
+    <result column="IN_NAME_1" property="inName1" jdbcType="VARCHAR" />
+    <result column="IN_NAME_2" property="inName2" jdbcType="VARCHAR" />
+    <result column="IN_NAME_3" property="inName3" jdbcType="VARCHAR" />
+    <result column="IN_NAME_4" property="inName4" jdbcType="VARCHAR" />
+    <result column="IN_NAME_5" property="inName5" jdbcType="VARCHAR" />
+    <result column="IN_NAME_6" property="inName6" jdbcType="VARCHAR" />
+    <result column="IN_NAME_7" property="inName7" jdbcType="VARCHAR" />
+    <result column="IN_NAME_8" property="inName8" jdbcType="VARCHAR" />
+    <result column="IN_NAME_9" property="inName9" jdbcType="VARCHAR" />
+    <result column="IN_NAME_10" property="inName10" jdbcType="VARCHAR" />
+    <result column="IN_NAME_11" property="inName11" jdbcType="VARCHAR" />
+    <result column="IN_NAME_12" property="inName12" jdbcType="VARCHAR" />
+    <result column="IN_NAME_13" property="inName13" jdbcType="VARCHAR" />
+    <result column="IN_NAME_14" property="inName14" jdbcType="VARCHAR" />
+    <result column="IN_NAME_15" property="inName15" jdbcType="VARCHAR" />
+    <result column="IN_NAME_16" property="inName16" jdbcType="VARCHAR" />
+    <result column="IN_NAME_17" property="inName17" jdbcType="VARCHAR" />
+    <result column="IN_NAME_18" property="inName18" jdbcType="VARCHAR" />
+    <result column="IN_NAME_19" property="inName19" jdbcType="VARCHAR" />
+    <result column="IN_NAME_20" property="inName20" jdbcType="VARCHAR" />
+    <result column="OUT_FOOTER_1" property="outFooter1" jdbcType="VARCHAR" />
+    <result column="OUT_NAME_1" property="outName1" jdbcType="VARCHAR" />
+    <result column="OUT_NAME_2" property="outName2" jdbcType="VARCHAR" />
+    <result column="OUT_NAME_3" property="outName3" jdbcType="VARCHAR" />
+    <result column="OUT_NAME_4" property="outName4" jdbcType="VARCHAR" />
+    <result column="OUT_NAME_5" property="outName5" jdbcType="VARCHAR" />
+    <result column="OUT_NAME_6" property="outName6" jdbcType="VARCHAR" />
+    <result column="OUT_NAME_7" property="outName7" jdbcType="VARCHAR" />
+    <result column="OUT_NAME_8" property="outName8" jdbcType="VARCHAR" />
+    <result column="OUT_NAME_9" property="outName9" jdbcType="VARCHAR" />
+    <result column="OUT_NAME_10" property="outName10" jdbcType="VARCHAR" />
+    <result column="OUT_NAME_11" property="outName11" jdbcType="VARCHAR" />
+    <result column="OUT_NAME_12" property="outName12" jdbcType="VARCHAR" />
+    <result column="OUT_NAME_13" property="outName13" jdbcType="VARCHAR" />
+    <result column="OUT_NAME_14" property="outName14" jdbcType="VARCHAR" />
+    <result column="OUT_NAME_15" property="outName15" jdbcType="VARCHAR" />
+    <result column="OUT_NAME_16" property="outName16" jdbcType="VARCHAR" />
+    <result column="OUT_NAME_17" property="outName17" jdbcType="VARCHAR" />
+    <result column="OUT_NAME_18" property="outName18" jdbcType="VARCHAR" />
+    <result column="OUT_NAME_19" property="outName19" jdbcType="VARCHAR" />
+    <result column="OUT_NAME_20" property="outName20" jdbcType="VARCHAR" />
+    <result column="OUT_FOOTER_2" property="outFooter2" jdbcType="VARCHAR" />
+    <result column="OUT_FOOTER_3" property="outFooter3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    RCPT_NO, VISIT_DATE, VISIT_NO, SIGN, CREATED, IN_HEADER_1, IN_HEADER_2, IN_HEADER_3, 
+    IN_HEADER_4, IN_HEADER_5, IN_HEADER_6, IN_HEADER_7, IN_NAME_1, IN_NAME_2, IN_NAME_3, 
+    IN_NAME_4, IN_NAME_5, IN_NAME_6, IN_NAME_7, IN_NAME_8, IN_NAME_9, IN_NAME_10, IN_NAME_11, 
+    IN_NAME_12, IN_NAME_13, IN_NAME_14, IN_NAME_15, IN_NAME_16, IN_NAME_17, IN_NAME_18, 
+    IN_NAME_19, IN_NAME_20, OUT_FOOTER_1, OUT_NAME_1, OUT_NAME_2, OUT_NAME_3, OUT_NAME_4, 
+    OUT_NAME_5, OUT_NAME_6, OUT_NAME_7, OUT_NAME_8, OUT_NAME_9, OUT_NAME_10, OUT_NAME_11, 
+    OUT_NAME_12, OUT_NAME_13, OUT_NAME_14, OUT_NAME_15, OUT_NAME_16, OUT_NAME_17, OUT_NAME_18, 
+    OUT_NAME_19, OUT_NAME_20, OUT_FOOTER_2, OUT_FOOTER_3
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from INSURANCE.NJJB_OUTP_2410
+    where RCPT_NO = #{rcptNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from INSURANCE.NJJB_OUTP_2410
+    where RCPT_NO = #{rcptNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.insurance.NjjbOutp2410" >
+    insert into INSURANCE.NJJB_OUTP_2410 (RCPT_NO, VISIT_DATE, VISIT_NO, 
+      SIGN, CREATED, IN_HEADER_1, 
+      IN_HEADER_2, IN_HEADER_3, IN_HEADER_4, 
+      IN_HEADER_5, IN_HEADER_6, IN_HEADER_7, 
+      IN_NAME_1, IN_NAME_2, IN_NAME_3, 
+      IN_NAME_4, IN_NAME_5, IN_NAME_6, 
+      IN_NAME_7, IN_NAME_8, IN_NAME_9, 
+      IN_NAME_10, IN_NAME_11, IN_NAME_12, 
+      IN_NAME_13, IN_NAME_14, IN_NAME_15, 
+      IN_NAME_16, IN_NAME_17, IN_NAME_18, 
+      IN_NAME_19, IN_NAME_20, OUT_FOOTER_1, 
+      OUT_NAME_1, OUT_NAME_2, OUT_NAME_3, 
+      OUT_NAME_4, OUT_NAME_5, OUT_NAME_6, 
+      OUT_NAME_7, OUT_NAME_8, OUT_NAME_9, 
+      OUT_NAME_10, OUT_NAME_11, OUT_NAME_12, 
+      OUT_NAME_13, OUT_NAME_14, OUT_NAME_15, 
+      OUT_NAME_16, OUT_NAME_17, OUT_NAME_18, 
+      OUT_NAME_19, OUT_NAME_20, OUT_FOOTER_2, 
+      OUT_FOOTER_3)
+    values (#{rcptNo,jdbcType=VARCHAR}, #{visitDate,jdbcType=DATE}, #{visitNo,jdbcType=DECIMAL}, 
+      #{sign,jdbcType=DECIMAL}, #{created,jdbcType=DATE}, #{inHeader1,jdbcType=VARCHAR}, 
+      #{inHeader2,jdbcType=VARCHAR}, #{inHeader3,jdbcType=VARCHAR}, #{inHeader4,jdbcType=VARCHAR}, 
+      #{inHeader5,jdbcType=VARCHAR}, #{inHeader6,jdbcType=VARCHAR}, #{inHeader7,jdbcType=VARCHAR}, 
+      #{inName1,jdbcType=VARCHAR}, #{inName2,jdbcType=VARCHAR}, #{inName3,jdbcType=VARCHAR}, 
+      #{inName4,jdbcType=VARCHAR}, #{inName5,jdbcType=VARCHAR}, #{inName6,jdbcType=VARCHAR}, 
+      #{inName7,jdbcType=VARCHAR}, #{inName8,jdbcType=VARCHAR}, #{inName9,jdbcType=VARCHAR}, 
+      #{inName10,jdbcType=VARCHAR}, #{inName11,jdbcType=VARCHAR}, #{inName12,jdbcType=VARCHAR}, 
+      #{inName13,jdbcType=VARCHAR}, #{inName14,jdbcType=VARCHAR}, #{inName15,jdbcType=VARCHAR}, 
+      #{inName16,jdbcType=VARCHAR}, #{inName17,jdbcType=VARCHAR}, #{inName18,jdbcType=VARCHAR}, 
+      #{inName19,jdbcType=VARCHAR}, #{inName20,jdbcType=VARCHAR}, #{outFooter1,jdbcType=VARCHAR}, 
+      #{outName1,jdbcType=VARCHAR}, #{outName2,jdbcType=VARCHAR}, #{outName3,jdbcType=VARCHAR}, 
+      #{outName4,jdbcType=VARCHAR}, #{outName5,jdbcType=VARCHAR}, #{outName6,jdbcType=VARCHAR}, 
+      #{outName7,jdbcType=VARCHAR}, #{outName8,jdbcType=VARCHAR}, #{outName9,jdbcType=VARCHAR}, 
+      #{outName10,jdbcType=VARCHAR}, #{outName11,jdbcType=VARCHAR}, #{outName12,jdbcType=VARCHAR}, 
+      #{outName13,jdbcType=VARCHAR}, #{outName14,jdbcType=VARCHAR}, #{outName15,jdbcType=VARCHAR}, 
+      #{outName16,jdbcType=VARCHAR}, #{outName17,jdbcType=VARCHAR}, #{outName18,jdbcType=VARCHAR}, 
+      #{outName19,jdbcType=VARCHAR}, #{outName20,jdbcType=VARCHAR}, #{outFooter2,jdbcType=VARCHAR}, 
+      #{outFooter3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.insurance.NjjbOutp2410" >
+    insert into INSURANCE.NJJB_OUTP_2410
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rcptNo != null" >
+        RCPT_NO,
+      </if>
+      <if test="visitDate != null" >
+        VISIT_DATE,
+      </if>
+      <if test="visitNo != null" >
+        VISIT_NO,
+      </if>
+      <if test="sign != null" >
+        SIGN,
+      </if>
+      <if test="created != null" >
+        CREATED,
+      </if>
+      <if test="inHeader1 != null" >
+        IN_HEADER_1,
+      </if>
+      <if test="inHeader2 != null" >
+        IN_HEADER_2,
+      </if>
+      <if test="inHeader3 != null" >
+        IN_HEADER_3,
+      </if>
+      <if test="inHeader4 != null" >
+        IN_HEADER_4,
+      </if>
+      <if test="inHeader5 != null" >
+        IN_HEADER_5,
+      </if>
+      <if test="inHeader6 != null" >
+        IN_HEADER_6,
+      </if>
+      <if test="inHeader7 != null" >
+        IN_HEADER_7,
+      </if>
+      <if test="inName1 != null" >
+        IN_NAME_1,
+      </if>
+      <if test="inName2 != null" >
+        IN_NAME_2,
+      </if>
+      <if test="inName3 != null" >
+        IN_NAME_3,
+      </if>
+      <if test="inName4 != null" >
+        IN_NAME_4,
+      </if>
+      <if test="inName5 != null" >
+        IN_NAME_5,
+      </if>
+      <if test="inName6 != null" >
+        IN_NAME_6,
+      </if>
+      <if test="inName7 != null" >
+        IN_NAME_7,
+      </if>
+      <if test="inName8 != null" >
+        IN_NAME_8,
+      </if>
+      <if test="inName9 != null" >
+        IN_NAME_9,
+      </if>
+      <if test="inName10 != null" >
+        IN_NAME_10,
+      </if>
+      <if test="inName11 != null" >
+        IN_NAME_11,
+      </if>
+      <if test="inName12 != null" >
+        IN_NAME_12,
+      </if>
+      <if test="inName13 != null" >
+        IN_NAME_13,
+      </if>
+      <if test="inName14 != null" >
+        IN_NAME_14,
+      </if>
+      <if test="inName15 != null" >
+        IN_NAME_15,
+      </if>
+      <if test="inName16 != null" >
+        IN_NAME_16,
+      </if>
+      <if test="inName17 != null" >
+        IN_NAME_17,
+      </if>
+      <if test="inName18 != null" >
+        IN_NAME_18,
+      </if>
+      <if test="inName19 != null" >
+        IN_NAME_19,
+      </if>
+      <if test="inName20 != null" >
+        IN_NAME_20,
+      </if>
+      <if test="outFooter1 != null" >
+        OUT_FOOTER_1,
+      </if>
+      <if test="outName1 != null" >
+        OUT_NAME_1,
+      </if>
+      <if test="outName2 != null" >
+        OUT_NAME_2,
+      </if>
+      <if test="outName3 != null" >
+        OUT_NAME_3,
+      </if>
+      <if test="outName4 != null" >
+        OUT_NAME_4,
+      </if>
+      <if test="outName5 != null" >
+        OUT_NAME_5,
+      </if>
+      <if test="outName6 != null" >
+        OUT_NAME_6,
+      </if>
+      <if test="outName7 != null" >
+        OUT_NAME_7,
+      </if>
+      <if test="outName8 != null" >
+        OUT_NAME_8,
+      </if>
+      <if test="outName9 != null" >
+        OUT_NAME_9,
+      </if>
+      <if test="outName10 != null" >
+        OUT_NAME_10,
+      </if>
+      <if test="outName11 != null" >
+        OUT_NAME_11,
+      </if>
+      <if test="outName12 != null" >
+        OUT_NAME_12,
+      </if>
+      <if test="outName13 != null" >
+        OUT_NAME_13,
+      </if>
+      <if test="outName14 != null" >
+        OUT_NAME_14,
+      </if>
+      <if test="outName15 != null" >
+        OUT_NAME_15,
+      </if>
+      <if test="outName16 != null" >
+        OUT_NAME_16,
+      </if>
+      <if test="outName17 != null" >
+        OUT_NAME_17,
+      </if>
+      <if test="outName18 != null" >
+        OUT_NAME_18,
+      </if>
+      <if test="outName19 != null" >
+        OUT_NAME_19,
+      </if>
+      <if test="outName20 != null" >
+        OUT_NAME_20,
+      </if>
+      <if test="outFooter2 != null" >
+        OUT_FOOTER_2,
+      </if>
+      <if test="outFooter3 != null" >
+        OUT_FOOTER_3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rcptNo != null" >
+        #{rcptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="visitDate != null" >
+        #{visitDate,jdbcType=DATE},
+      </if>
+      <if test="visitNo != null" >
+        #{visitNo,jdbcType=DECIMAL},
+      </if>
+      <if test="sign != null" >
+        #{sign,jdbcType=DECIMAL},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=DATE},
+      </if>
+      <if test="inHeader1 != null" >
+        #{inHeader1,jdbcType=VARCHAR},
+      </if>
+      <if test="inHeader2 != null" >
+        #{inHeader2,jdbcType=VARCHAR},
+      </if>
+      <if test="inHeader3 != null" >
+        #{inHeader3,jdbcType=VARCHAR},
+      </if>
+      <if test="inHeader4 != null" >
+        #{inHeader4,jdbcType=VARCHAR},
+      </if>
+      <if test="inHeader5 != null" >
+        #{inHeader5,jdbcType=VARCHAR},
+      </if>
+      <if test="inHeader6 != null" >
+        #{inHeader6,jdbcType=VARCHAR},
+      </if>
+      <if test="inHeader7 != null" >
+        #{inHeader7,jdbcType=VARCHAR},
+      </if>
+      <if test="inName1 != null" >
+        #{inName1,jdbcType=VARCHAR},
+      </if>
+      <if test="inName2 != null" >
+        #{inName2,jdbcType=VARCHAR},
+      </if>
+      <if test="inName3 != null" >
+        #{inName3,jdbcType=VARCHAR},
+      </if>
+      <if test="inName4 != null" >
+        #{inName4,jdbcType=VARCHAR},
+      </if>
+      <if test="inName5 != null" >
+        #{inName5,jdbcType=VARCHAR},
+      </if>
+      <if test="inName6 != null" >
+        #{inName6,jdbcType=VARCHAR},
+      </if>
+      <if test="inName7 != null" >
+        #{inName7,jdbcType=VARCHAR},
+      </if>
+      <if test="inName8 != null" >
+        #{inName8,jdbcType=VARCHAR},
+      </if>
+      <if test="inName9 != null" >
+        #{inName9,jdbcType=VARCHAR},
+      </if>
+      <if test="inName10 != null" >
+        #{inName10,jdbcType=VARCHAR},
+      </if>
+      <if test="inName11 != null" >
+        #{inName11,jdbcType=VARCHAR},
+      </if>
+      <if test="inName12 != null" >
+        #{inName12,jdbcType=VARCHAR},
+      </if>
+      <if test="inName13 != null" >
+        #{inName13,jdbcType=VARCHAR},
+      </if>
+      <if test="inName14 != null" >
+        #{inName14,jdbcType=VARCHAR},
+      </if>
+      <if test="inName15 != null" >
+        #{inName15,jdbcType=VARCHAR},
+      </if>
+      <if test="inName16 != null" >
+        #{inName16,jdbcType=VARCHAR},
+      </if>
+      <if test="inName17 != null" >
+        #{inName17,jdbcType=VARCHAR},
+      </if>
+      <if test="inName18 != null" >
+        #{inName18,jdbcType=VARCHAR},
+      </if>
+      <if test="inName19 != null" >
+        #{inName19,jdbcType=VARCHAR},
+      </if>
+      <if test="inName20 != null" >
+        #{inName20,jdbcType=VARCHAR},
+      </if>
+      <if test="outFooter1 != null" >
+        #{outFooter1,jdbcType=VARCHAR},
+      </if>
+      <if test="outName1 != null" >
+        #{outName1,jdbcType=VARCHAR},
+      </if>
+      <if test="outName2 != null" >
+        #{outName2,jdbcType=VARCHAR},
+      </if>
+      <if test="outName3 != null" >
+        #{outName3,jdbcType=VARCHAR},
+      </if>
+      <if test="outName4 != null" >
+        #{outName4,jdbcType=VARCHAR},
+      </if>
+      <if test="outName5 != null" >
+        #{outName5,jdbcType=VARCHAR},
+      </if>
+      <if test="outName6 != null" >
+        #{outName6,jdbcType=VARCHAR},
+      </if>
+      <if test="outName7 != null" >
+        #{outName7,jdbcType=VARCHAR},
+      </if>
+      <if test="outName8 != null" >
+        #{outName8,jdbcType=VARCHAR},
+      </if>
+      <if test="outName9 != null" >
+        #{outName9,jdbcType=VARCHAR},
+      </if>
+      <if test="outName10 != null" >
+        #{outName10,jdbcType=VARCHAR},
+      </if>
+      <if test="outName11 != null" >
+        #{outName11,jdbcType=VARCHAR},
+      </if>
+      <if test="outName12 != null" >
+        #{outName12,jdbcType=VARCHAR},
+      </if>
+      <if test="outName13 != null" >
+        #{outName13,jdbcType=VARCHAR},
+      </if>
+      <if test="outName14 != null" >
+        #{outName14,jdbcType=VARCHAR},
+      </if>
+      <if test="outName15 != null" >
+        #{outName15,jdbcType=VARCHAR},
+      </if>
+      <if test="outName16 != null" >
+        #{outName16,jdbcType=VARCHAR},
+      </if>
+      <if test="outName17 != null" >
+        #{outName17,jdbcType=VARCHAR},
+      </if>
+      <if test="outName18 != null" >
+        #{outName18,jdbcType=VARCHAR},
+      </if>
+      <if test="outName19 != null" >
+        #{outName19,jdbcType=VARCHAR},
+      </if>
+      <if test="outName20 != null" >
+        #{outName20,jdbcType=VARCHAR},
+      </if>
+      <if test="outFooter2 != null" >
+        #{outFooter2,jdbcType=VARCHAR},
+      </if>
+      <if test="outFooter3 != null" >
+        #{outFooter3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.insurance.NjjbOutp2410" >
+    update INSURANCE.NJJB_OUTP_2410
+    <set >
+      <if test="visitDate != null" >
+        VISIT_DATE = #{visitDate,jdbcType=DATE},
+      </if>
+      <if test="visitNo != null" >
+        VISIT_NO = #{visitNo,jdbcType=DECIMAL},
+      </if>
+      <if test="sign != null" >
+        SIGN = #{sign,jdbcType=DECIMAL},
+      </if>
+      <if test="created != null" >
+        CREATED = #{created,jdbcType=DATE},
+      </if>
+      <if test="inHeader1 != null" >
+        IN_HEADER_1 = #{inHeader1,jdbcType=VARCHAR},
+      </if>
+      <if test="inHeader2 != null" >
+        IN_HEADER_2 = #{inHeader2,jdbcType=VARCHAR},
+      </if>
+      <if test="inHeader3 != null" >
+        IN_HEADER_3 = #{inHeader3,jdbcType=VARCHAR},
+      </if>
+      <if test="inHeader4 != null" >
+        IN_HEADER_4 = #{inHeader4,jdbcType=VARCHAR},
+      </if>
+      <if test="inHeader5 != null" >
+        IN_HEADER_5 = #{inHeader5,jdbcType=VARCHAR},
+      </if>
+      <if test="inHeader6 != null" >
+        IN_HEADER_6 = #{inHeader6,jdbcType=VARCHAR},
+      </if>
+      <if test="inHeader7 != null" >
+        IN_HEADER_7 = #{inHeader7,jdbcType=VARCHAR},
+      </if>
+      <if test="inName1 != null" >
+        IN_NAME_1 = #{inName1,jdbcType=VARCHAR},
+      </if>
+      <if test="inName2 != null" >
+        IN_NAME_2 = #{inName2,jdbcType=VARCHAR},
+      </if>
+      <if test="inName3 != null" >
+        IN_NAME_3 = #{inName3,jdbcType=VARCHAR},
+      </if>
+      <if test="inName4 != null" >
+        IN_NAME_4 = #{inName4,jdbcType=VARCHAR},
+      </if>
+      <if test="inName5 != null" >
+        IN_NAME_5 = #{inName5,jdbcType=VARCHAR},
+      </if>
+      <if test="inName6 != null" >
+        IN_NAME_6 = #{inName6,jdbcType=VARCHAR},
+      </if>
+      <if test="inName7 != null" >
+        IN_NAME_7 = #{inName7,jdbcType=VARCHAR},
+      </if>
+      <if test="inName8 != null" >
+        IN_NAME_8 = #{inName8,jdbcType=VARCHAR},
+      </if>
+      <if test="inName9 != null" >
+        IN_NAME_9 = #{inName9,jdbcType=VARCHAR},
+      </if>
+      <if test="inName10 != null" >
+        IN_NAME_10 = #{inName10,jdbcType=VARCHAR},
+      </if>
+      <if test="inName11 != null" >
+        IN_NAME_11 = #{inName11,jdbcType=VARCHAR},
+      </if>
+      <if test="inName12 != null" >
+        IN_NAME_12 = #{inName12,jdbcType=VARCHAR},
+      </if>
+      <if test="inName13 != null" >
+        IN_NAME_13 = #{inName13,jdbcType=VARCHAR},
+      </if>
+      <if test="inName14 != null" >
+        IN_NAME_14 = #{inName14,jdbcType=VARCHAR},
+      </if>
+      <if test="inName15 != null" >
+        IN_NAME_15 = #{inName15,jdbcType=VARCHAR},
+      </if>
+      <if test="inName16 != null" >
+        IN_NAME_16 = #{inName16,jdbcType=VARCHAR},
+      </if>
+      <if test="inName17 != null" >
+        IN_NAME_17 = #{inName17,jdbcType=VARCHAR},
+      </if>
+      <if test="inName18 != null" >
+        IN_NAME_18 = #{inName18,jdbcType=VARCHAR},
+      </if>
+      <if test="inName19 != null" >
+        IN_NAME_19 = #{inName19,jdbcType=VARCHAR},
+      </if>
+      <if test="inName20 != null" >
+        IN_NAME_20 = #{inName20,jdbcType=VARCHAR},
+      </if>
+      <if test="outFooter1 != null" >
+        OUT_FOOTER_1 = #{outFooter1,jdbcType=VARCHAR},
+      </if>
+      <if test="outName1 != null" >
+        OUT_NAME_1 = #{outName1,jdbcType=VARCHAR},
+      </if>
+      <if test="outName2 != null" >
+        OUT_NAME_2 = #{outName2,jdbcType=VARCHAR},
+      </if>
+      <if test="outName3 != null" >
+        OUT_NAME_3 = #{outName3,jdbcType=VARCHAR},
+      </if>
+      <if test="outName4 != null" >
+        OUT_NAME_4 = #{outName4,jdbcType=VARCHAR},
+      </if>
+      <if test="outName5 != null" >
+        OUT_NAME_5 = #{outName5,jdbcType=VARCHAR},
+      </if>
+      <if test="outName6 != null" >
+        OUT_NAME_6 = #{outName6,jdbcType=VARCHAR},
+      </if>
+      <if test="outName7 != null" >
+        OUT_NAME_7 = #{outName7,jdbcType=VARCHAR},
+      </if>
+      <if test="outName8 != null" >
+        OUT_NAME_8 = #{outName8,jdbcType=VARCHAR},
+      </if>
+      <if test="outName9 != null" >
+        OUT_NAME_9 = #{outName9,jdbcType=VARCHAR},
+      </if>
+      <if test="outName10 != null" >
+        OUT_NAME_10 = #{outName10,jdbcType=VARCHAR},
+      </if>
+      <if test="outName11 != null" >
+        OUT_NAME_11 = #{outName11,jdbcType=VARCHAR},
+      </if>
+      <if test="outName12 != null" >
+        OUT_NAME_12 = #{outName12,jdbcType=VARCHAR},
+      </if>
+      <if test="outName13 != null" >
+        OUT_NAME_13 = #{outName13,jdbcType=VARCHAR},
+      </if>
+      <if test="outName14 != null" >
+        OUT_NAME_14 = #{outName14,jdbcType=VARCHAR},
+      </if>
+      <if test="outName15 != null" >
+        OUT_NAME_15 = #{outName15,jdbcType=VARCHAR},
+      </if>
+      <if test="outName16 != null" >
+        OUT_NAME_16 = #{outName16,jdbcType=VARCHAR},
+      </if>
+      <if test="outName17 != null" >
+        OUT_NAME_17 = #{outName17,jdbcType=VARCHAR},
+      </if>
+      <if test="outName18 != null" >
+        OUT_NAME_18 = #{outName18,jdbcType=VARCHAR},
+      </if>
+      <if test="outName19 != null" >
+        OUT_NAME_19 = #{outName19,jdbcType=VARCHAR},
+      </if>
+      <if test="outName20 != null" >
+        OUT_NAME_20 = #{outName20,jdbcType=VARCHAR},
+      </if>
+      <if test="outFooter2 != null" >
+        OUT_FOOTER_2 = #{outFooter2,jdbcType=VARCHAR},
+      </if>
+      <if test="outFooter3 != null" >
+        OUT_FOOTER_3 = #{outFooter3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where RCPT_NO = #{rcptNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.insurance.NjjbOutp2410" >
+    update INSURANCE.NJJB_OUTP_2410
+    set VISIT_DATE = #{visitDate,jdbcType=DATE},
+      VISIT_NO = #{visitNo,jdbcType=DECIMAL},
+      SIGN = #{sign,jdbcType=DECIMAL},
+      CREATED = #{created,jdbcType=DATE},
+      IN_HEADER_1 = #{inHeader1,jdbcType=VARCHAR},
+      IN_HEADER_2 = #{inHeader2,jdbcType=VARCHAR},
+      IN_HEADER_3 = #{inHeader3,jdbcType=VARCHAR},
+      IN_HEADER_4 = #{inHeader4,jdbcType=VARCHAR},
+      IN_HEADER_5 = #{inHeader5,jdbcType=VARCHAR},
+      IN_HEADER_6 = #{inHeader6,jdbcType=VARCHAR},
+      IN_HEADER_7 = #{inHeader7,jdbcType=VARCHAR},
+      IN_NAME_1 = #{inName1,jdbcType=VARCHAR},
+      IN_NAME_2 = #{inName2,jdbcType=VARCHAR},
+      IN_NAME_3 = #{inName3,jdbcType=VARCHAR},
+      IN_NAME_4 = #{inName4,jdbcType=VARCHAR},
+      IN_NAME_5 = #{inName5,jdbcType=VARCHAR},
+      IN_NAME_6 = #{inName6,jdbcType=VARCHAR},
+      IN_NAME_7 = #{inName7,jdbcType=VARCHAR},
+      IN_NAME_8 = #{inName8,jdbcType=VARCHAR},
+      IN_NAME_9 = #{inName9,jdbcType=VARCHAR},
+      IN_NAME_10 = #{inName10,jdbcType=VARCHAR},
+      IN_NAME_11 = #{inName11,jdbcType=VARCHAR},
+      IN_NAME_12 = #{inName12,jdbcType=VARCHAR},
+      IN_NAME_13 = #{inName13,jdbcType=VARCHAR},
+      IN_NAME_14 = #{inName14,jdbcType=VARCHAR},
+      IN_NAME_15 = #{inName15,jdbcType=VARCHAR},
+      IN_NAME_16 = #{inName16,jdbcType=VARCHAR},
+      IN_NAME_17 = #{inName17,jdbcType=VARCHAR},
+      IN_NAME_18 = #{inName18,jdbcType=VARCHAR},
+      IN_NAME_19 = #{inName19,jdbcType=VARCHAR},
+      IN_NAME_20 = #{inName20,jdbcType=VARCHAR},
+      OUT_FOOTER_1 = #{outFooter1,jdbcType=VARCHAR},
+      OUT_NAME_1 = #{outName1,jdbcType=VARCHAR},
+      OUT_NAME_2 = #{outName2,jdbcType=VARCHAR},
+      OUT_NAME_3 = #{outName3,jdbcType=VARCHAR},
+      OUT_NAME_4 = #{outName4,jdbcType=VARCHAR},
+      OUT_NAME_5 = #{outName5,jdbcType=VARCHAR},
+      OUT_NAME_6 = #{outName6,jdbcType=VARCHAR},
+      OUT_NAME_7 = #{outName7,jdbcType=VARCHAR},
+      OUT_NAME_8 = #{outName8,jdbcType=VARCHAR},
+      OUT_NAME_9 = #{outName9,jdbcType=VARCHAR},
+      OUT_NAME_10 = #{outName10,jdbcType=VARCHAR},
+      OUT_NAME_11 = #{outName11,jdbcType=VARCHAR},
+      OUT_NAME_12 = #{outName12,jdbcType=VARCHAR},
+      OUT_NAME_13 = #{outName13,jdbcType=VARCHAR},
+      OUT_NAME_14 = #{outName14,jdbcType=VARCHAR},
+      OUT_NAME_15 = #{outName15,jdbcType=VARCHAR},
+      OUT_NAME_16 = #{outName16,jdbcType=VARCHAR},
+      OUT_NAME_17 = #{outName17,jdbcType=VARCHAR},
+      OUT_NAME_18 = #{outName18,jdbcType=VARCHAR},
+      OUT_NAME_19 = #{outName19,jdbcType=VARCHAR},
+      OUT_NAME_20 = #{outName20,jdbcType=VARCHAR},
+      OUT_FOOTER_2 = #{outFooter2,jdbcType=VARCHAR},
+      OUT_FOOTER_3 = #{outFooter3,jdbcType=VARCHAR}
+    where RCPT_NO = #{rcptNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

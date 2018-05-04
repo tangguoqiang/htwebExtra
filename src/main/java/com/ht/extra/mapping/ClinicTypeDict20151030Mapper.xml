@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.ClinicTypeDict20151030Mapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.outpadm.ClinicTypeDict20151030" >
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="CLINIC_TYPE" property="clinicType" jdbcType="VARCHAR" />
+    <result column="PRICE" property="price" jdbcType="DECIMAL" />
+    <result column="CLINIC_TYPE_NAME" property="clinicTypeName" jdbcType="VARCHAR" />
+    <result column="CLINIC_TYPE_CODE" property="clinicTypeCode" jdbcType="VARCHAR" />
+    <result column="CHARGE_ITEM" property="chargeItem" jdbcType="VARCHAR" />
+    <result column="PRICE_ITEM" property="priceItem" jdbcType="VARCHAR" />
+    <result column="CLINIC_ITEM_SPEC" property="clinicItemSpec" jdbcType="VARCHAR" />
+    <result column="CLINIC_ITEM_UNITS" property="clinicItemUnits" jdbcType="VARCHAR" />
+    <result column="PRICE_ITEM_SPEC" property="priceItemSpec" jdbcType="VARCHAR" />
+    <result column="PRICE_ITEM_UNITS" property="priceItemUnits" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.ht.extra.pojo.outpadm.ClinicTypeDict20151030" >
+    insert into OUTPADM.CLINIC_TYPE_DICT20151030 (SERIAL_NO, CLINIC_TYPE, PRICE, 
+      CLINIC_TYPE_NAME, CLINIC_TYPE_CODE, CHARGE_ITEM, 
+      PRICE_ITEM, CLINIC_ITEM_SPEC, CLINIC_ITEM_UNITS, 
+      PRICE_ITEM_SPEC, PRICE_ITEM_UNITS)
+    values (#{serialNo,jdbcType=DECIMAL}, #{clinicType,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, 
+      #{clinicTypeName,jdbcType=VARCHAR}, #{clinicTypeCode,jdbcType=VARCHAR}, #{chargeItem,jdbcType=VARCHAR}, 
+      #{priceItem,jdbcType=VARCHAR}, #{clinicItemSpec,jdbcType=VARCHAR}, #{clinicItemUnits,jdbcType=VARCHAR}, 
+      #{priceItemSpec,jdbcType=VARCHAR}, #{priceItemUnits,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.outpadm.ClinicTypeDict20151030" >
+    insert into OUTPADM.CLINIC_TYPE_DICT20151030
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="clinicType != null" >
+        CLINIC_TYPE,
+      </if>
+      <if test="price != null" >
+        PRICE,
+      </if>
+      <if test="clinicTypeName != null" >
+        CLINIC_TYPE_NAME,
+      </if>
+      <if test="clinicTypeCode != null" >
+        CLINIC_TYPE_CODE,
+      </if>
+      <if test="chargeItem != null" >
+        CHARGE_ITEM,
+      </if>
+      <if test="priceItem != null" >
+        PRICE_ITEM,
+      </if>
+      <if test="clinicItemSpec != null" >
+        CLINIC_ITEM_SPEC,
+      </if>
+      <if test="clinicItemUnits != null" >
+        CLINIC_ITEM_UNITS,
+      </if>
+      <if test="priceItemSpec != null" >
+        PRICE_ITEM_SPEC,
+      </if>
+      <if test="priceItemUnits != null" >
+        PRICE_ITEM_UNITS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="clinicType != null" >
+        #{clinicType,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="clinicTypeName != null" >
+        #{clinicTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="clinicTypeCode != null" >
+        #{clinicTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeItem != null" >
+        #{chargeItem,jdbcType=VARCHAR},
+      </if>
+      <if test="priceItem != null" >
+        #{priceItem,jdbcType=VARCHAR},
+      </if>
+      <if test="clinicItemSpec != null" >
+        #{clinicItemSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="clinicItemUnits != null" >
+        #{clinicItemUnits,jdbcType=VARCHAR},
+      </if>
+      <if test="priceItemSpec != null" >
+        #{priceItemSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="priceItemUnits != null" >
+        #{priceItemUnits,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.DrugCodingRuleMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.DrugCodingRule" >
+    <id column="CODE_LEVEL" property="codeLevel" jdbcType="DECIMAL" />
+    <result column="LEVEL_WIDTH" property="levelWidth" jdbcType="DECIMAL" />
+    <result column="CLASS_NAME" property="className" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    CODE_LEVEL, LEVEL_WIDTH, CLASS_NAME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.DRUG_CODING_RULE
+    where CODE_LEVEL = #{codeLevel,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from COMM.DRUG_CODING_RULE
+    where CODE_LEVEL = #{codeLevel,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.DrugCodingRule" >
+    insert into COMM.DRUG_CODING_RULE (CODE_LEVEL, LEVEL_WIDTH, CLASS_NAME
+      )
+    values (#{codeLevel,jdbcType=DECIMAL}, #{levelWidth,jdbcType=DECIMAL}, #{className,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.DrugCodingRule" >
+    insert into COMM.DRUG_CODING_RULE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="codeLevel != null" >
+        CODE_LEVEL,
+      </if>
+      <if test="levelWidth != null" >
+        LEVEL_WIDTH,
+      </if>
+      <if test="className != null" >
+        CLASS_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="codeLevel != null" >
+        #{codeLevel,jdbcType=DECIMAL},
+      </if>
+      <if test="levelWidth != null" >
+        #{levelWidth,jdbcType=DECIMAL},
+      </if>
+      <if test="className != null" >
+        #{className,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.DrugCodingRule" >
+    update COMM.DRUG_CODING_RULE
+    <set >
+      <if test="levelWidth != null" >
+        LEVEL_WIDTH = #{levelWidth,jdbcType=DECIMAL},
+      </if>
+      <if test="className != null" >
+        CLASS_NAME = #{className,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CODE_LEVEL = #{codeLevel,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.DrugCodingRule" >
+    update COMM.DRUG_CODING_RULE
+    set LEVEL_WIDTH = #{levelWidth,jdbcType=DECIMAL},
+      CLASS_NAME = #{className,jdbcType=VARCHAR}
+    where CODE_LEVEL = #{codeLevel,jdbcType=DECIMAL}
+  </update>
+</mapper>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.InsuranceVsDiagnosisMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.insurance.InsuranceVsDiagnosis" >
+    <id column="INTERFACECODE" property="interfacecode" jdbcType="VARCHAR" />
+    <id column="DIAGNOSIS_CODE" property="diagnosisCode" jdbcType="VARCHAR" />
+    <id column="ICD_TYPE" property="icdType" jdbcType="VARCHAR" />
+    <result column="DIAGNOSIS_NAME" property="diagnosisName" jdbcType="VARCHAR" />
+    <result column="ICD_CODE" property="icdCode" jdbcType="VARCHAR" />
+    <result column="ICD_NAME" property="icdName" jdbcType="VARCHAR" />
+    <result column="IME_PINYIN" property="imePinyin" jdbcType="VARCHAR" />
+    <result column="IME_WUBI" property="imeWubi" jdbcType="VARCHAR" />
+    <result column="MARKS" property="marks" jdbcType="DECIMAL" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    INTERFACECODE, DIAGNOSIS_CODE, ICD_TYPE, DIAGNOSIS_NAME, ICD_CODE, ICD_NAME, IME_PINYIN, 
+    IME_WUBI, MARKS, DESCRIPTION
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.insurance.InsuranceVsDiagnosisKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from INSURANCE.INSURANCE_VS_DIAGNOSIS
+    where INTERFACECODE = #{interfacecode,jdbcType=VARCHAR}
+      and DIAGNOSIS_CODE = #{diagnosisCode,jdbcType=VARCHAR}
+      and ICD_TYPE = #{icdType,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByDiagnosisCode" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List" />
+    from INSURANCE.INSURANCE_VS_DIAGNOSIS
+    where  DIAGNOSIS_CODE = #{0}
+
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.insurance.InsuranceVsDiagnosisKey" >
+    delete from INSURANCE.INSURANCE_VS_DIAGNOSIS
+    where INTERFACECODE = #{interfacecode,jdbcType=VARCHAR}
+      and DIAGNOSIS_CODE = #{diagnosisCode,jdbcType=VARCHAR}
+      and ICD_TYPE = #{icdType,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.insurance.InsuranceVsDiagnosis" >
+    insert into INSURANCE.INSURANCE_VS_DIAGNOSIS (INTERFACECODE, DIAGNOSIS_CODE, ICD_TYPE, 
+      DIAGNOSIS_NAME, ICD_CODE, ICD_NAME, 
+      IME_PINYIN, IME_WUBI, MARKS, 
+      DESCRIPTION)
+    values (#{interfacecode,jdbcType=VARCHAR}, #{diagnosisCode,jdbcType=VARCHAR}, #{icdType,jdbcType=VARCHAR}, 
+      #{diagnosisName,jdbcType=VARCHAR}, #{icdCode,jdbcType=VARCHAR}, #{icdName,jdbcType=VARCHAR}, 
+      #{imePinyin,jdbcType=VARCHAR}, #{imeWubi,jdbcType=VARCHAR}, #{marks,jdbcType=DECIMAL}, 
+      #{description,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.insurance.InsuranceVsDiagnosis" >
+    insert into INSURANCE.INSURANCE_VS_DIAGNOSIS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="interfacecode != null" >
+        INTERFACECODE,
+      </if>
+      <if test="diagnosisCode != null" >
+        DIAGNOSIS_CODE,
+      </if>
+      <if test="icdType != null" >
+        ICD_TYPE,
+      </if>
+      <if test="diagnosisName != null" >
+        DIAGNOSIS_NAME,
+      </if>
+      <if test="icdCode != null" >
+        ICD_CODE,
+      </if>
+      <if test="icdName != null" >
+        ICD_NAME,
+      </if>
+      <if test="imePinyin != null" >
+        IME_PINYIN,
+      </if>
+      <if test="imeWubi != null" >
+        IME_WUBI,
+      </if>
+      <if test="marks != null" >
+        MARKS,
+      </if>
+      <if test="description != null" >
+        DESCRIPTION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="interfacecode != null" >
+        #{interfacecode,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnosisCode != null" >
+        #{diagnosisCode,jdbcType=VARCHAR},
+      </if>
+      <if test="icdType != null" >
+        #{icdType,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnosisName != null" >
+        #{diagnosisName,jdbcType=VARCHAR},
+      </if>
+      <if test="icdCode != null" >
+        #{icdCode,jdbcType=VARCHAR},
+      </if>
+      <if test="icdName != null" >
+        #{icdName,jdbcType=VARCHAR},
+      </if>
+      <if test="imePinyin != null" >
+        #{imePinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="imeWubi != null" >
+        #{imeWubi,jdbcType=VARCHAR},
+      </if>
+      <if test="marks != null" >
+        #{marks,jdbcType=DECIMAL},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.insurance.InsuranceVsDiagnosis" >
+    update INSURANCE.INSURANCE_VS_DIAGNOSIS
+    <set >
+      <if test="diagnosisName != null" >
+        DIAGNOSIS_NAME = #{diagnosisName,jdbcType=VARCHAR},
+      </if>
+      <if test="icdCode != null" >
+        ICD_CODE = #{icdCode,jdbcType=VARCHAR},
+      </if>
+      <if test="icdName != null" >
+        ICD_NAME = #{icdName,jdbcType=VARCHAR},
+      </if>
+      <if test="imePinyin != null" >
+        IME_PINYIN = #{imePinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="imeWubi != null" >
+        IME_WUBI = #{imeWubi,jdbcType=VARCHAR},
+      </if>
+      <if test="marks != null" >
+        MARKS = #{marks,jdbcType=DECIMAL},
+      </if>
+      <if test="description != null" >
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where INTERFACECODE = #{interfacecode,jdbcType=VARCHAR}
+      and DIAGNOSIS_CODE = #{diagnosisCode,jdbcType=VARCHAR}
+      and ICD_TYPE = #{icdType,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.insurance.InsuranceVsDiagnosis" >
+    update INSURANCE.INSURANCE_VS_DIAGNOSIS
+    set DIAGNOSIS_NAME = #{diagnosisName,jdbcType=VARCHAR},
+      ICD_CODE = #{icdCode,jdbcType=VARCHAR},
+      ICD_NAME = #{icdName,jdbcType=VARCHAR},
+      IME_PINYIN = #{imePinyin,jdbcType=VARCHAR},
+      IME_WUBI = #{imeWubi,jdbcType=VARCHAR},
+      MARKS = #{marks,jdbcType=DECIMAL},
+      DESCRIPTION = #{description,jdbcType=VARCHAR}
+    where INTERFACECODE = #{interfacecode,jdbcType=VARCHAR}
+      and DIAGNOSIS_CODE = #{diagnosisCode,jdbcType=VARCHAR}
+      and ICD_TYPE = #{icdType,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.StaffVsGroupMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.StaffVsGroupKey" >
+    <id column="GROUP_CLASS" property="groupClass" jdbcType="VARCHAR" />
+    <id column="GROUP_CODE" property="groupCode" jdbcType="VARCHAR" />
+    <id column="EMP_NO" property="empNo" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.StaffVsGroupKey" >
+    delete from COMM.STAFF_VS_GROUP
+    where GROUP_CLASS = #{groupClass,jdbcType=VARCHAR}
+      and GROUP_CODE = #{groupCode,jdbcType=VARCHAR}
+      and EMP_NO = #{empNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.StaffVsGroupKey" >
+    insert into COMM.STAFF_VS_GROUP (GROUP_CLASS, GROUP_CODE, EMP_NO
+      )
+    values (#{groupClass,jdbcType=VARCHAR}, #{groupCode,jdbcType=VARCHAR}, #{empNo,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.StaffVsGroupKey" >
+    insert into COMM.STAFF_VS_GROUP
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="groupClass != null" >
+        GROUP_CLASS,
+      </if>
+      <if test="groupCode != null" >
+        GROUP_CODE,
+      </if>
+      <if test="empNo != null" >
+        EMP_NO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="groupClass != null" >
+        #{groupClass,jdbcType=VARCHAR},
+      </if>
+      <if test="groupCode != null" >
+        #{groupCode,jdbcType=VARCHAR},
+      </if>
+      <if test="empNo != null" >
+        #{empNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

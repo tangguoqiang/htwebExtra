@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.InsuranceAccountsNjjbMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.insurance.InsuranceAccountsNjjb" >
+    <id column="INSURANCE_NO" property="insuranceNo" jdbcType="VARCHAR" />
+    <id column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <id column="ACCOUNT_STATUS" property="accountStatus" jdbcType="DECIMAL" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="NAME_PHONETIC" property="namePhonetic" jdbcType="VARCHAR" />
+    <result column="SEX" property="sex" jdbcType="VARCHAR" />
+    <result column="DATE_OF_BIRTH" property="dateOfBirth" jdbcType="DATE" />
+    <result column="START_DATE_OF_WORK" property="startDateOfWork" jdbcType="DATE" />
+    <result column="WORKING_YEARS" property="workingYears" jdbcType="DECIMAL" />
+    <result column="SALARY" property="salary" jdbcType="DECIMAL" />
+    <result column="UNIT" property="unit" jdbcType="VARCHAR" />
+    <result column="IDENTITY_CLASS" property="identityClass" jdbcType="VARCHAR" />
+    <result column="INSURANCE_TYPE" property="insuranceType" jdbcType="VARCHAR" />
+    <result column="ACCOUNT_RATED_AMOUNT" property="accountRatedAmount" jdbcType="DECIMAL" />
+    <result column="PAYMENT_BEGINNING_LINE" property="paymentBeginningLine" jdbcType="DECIMAL" />
+    <result column="ACCOUNT_INITIAL_AMOUNT" property="accountInitialAmount" jdbcType="DECIMAL" />
+    <result column="ACCOUNT_BALANCE" property="accountBalance" jdbcType="DECIMAL" />
+    <result column="ACCOUNT_RESERVED_AMOUNT" property="accountReservedAmount" jdbcType="DECIMAL" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="EXPIRATION_DATE" property="expirationDate" jdbcType="DATE" />
+    <result column="LAST_DEPOSIT_DATE" property="lastDepositDate" jdbcType="DATE" />
+    <result column="CANCEL_DATE" property="cancelDate" jdbcType="DATE" />
+    <result column="CANCEL_CAUSE" property="cancelCause" jdbcType="VARCHAR" />
+    <result column="UPDATE_DATE_TIME" property="updateDateTime" jdbcType="TIMESTAMP" />
+    <result column="OPERATOR" property="operator" jdbcType="VARCHAR" />
+    <result column="INSURANCE_LOCATION" property="insuranceLocation" jdbcType="VARCHAR" />
+    <result column="INSURANCE_LOCATION_CODE" property="insuranceLocationCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    INSURANCE_NO, PATIENT_ID, ACCOUNT_STATUS, NAME, NAME_PHONETIC, SEX, DATE_OF_BIRTH, 
+    START_DATE_OF_WORK, WORKING_YEARS, SALARY, UNIT, IDENTITY_CLASS, INSURANCE_TYPE, 
+    ACCOUNT_RATED_AMOUNT, PAYMENT_BEGINNING_LINE, ACCOUNT_INITIAL_AMOUNT, ACCOUNT_BALANCE, 
+    ACCOUNT_RESERVED_AMOUNT, CREATE_DATE, EXPIRATION_DATE, LAST_DEPOSIT_DATE, CANCEL_DATE, 
+    CANCEL_CAUSE, UPDATE_DATE_TIME, OPERATOR, INSURANCE_LOCATION, INSURANCE_LOCATION_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.insurance.InsuranceAccountsNjjbKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from INSURANCE.INSURANCE_ACCOUNTS_NJJB
+    where INSURANCE_NO = #{insuranceNo,jdbcType=VARCHAR}
+      and PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and ACCOUNT_STATUS = #{accountStatus,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.insurance.InsuranceAccountsNjjbKey" >
+    delete from INSURANCE.INSURANCE_ACCOUNTS_NJJB
+    where INSURANCE_NO = #{insuranceNo,jdbcType=VARCHAR}
+      and PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and ACCOUNT_STATUS = #{accountStatus,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.insurance.InsuranceAccountsNjjb" >
+    insert into INSURANCE.INSURANCE_ACCOUNTS_NJJB (INSURANCE_NO, PATIENT_ID, ACCOUNT_STATUS, 
+      NAME, NAME_PHONETIC, SEX, 
+      DATE_OF_BIRTH, START_DATE_OF_WORK, WORKING_YEARS, 
+      SALARY, UNIT, IDENTITY_CLASS, 
+      INSURANCE_TYPE, ACCOUNT_RATED_AMOUNT, PAYMENT_BEGINNING_LINE, 
+      ACCOUNT_INITIAL_AMOUNT, ACCOUNT_BALANCE, ACCOUNT_RESERVED_AMOUNT, 
+      CREATE_DATE, EXPIRATION_DATE, LAST_DEPOSIT_DATE, 
+      CANCEL_DATE, CANCEL_CAUSE, UPDATE_DATE_TIME, 
+      OPERATOR, INSURANCE_LOCATION, INSURANCE_LOCATION_CODE
+      )
+    values (#{insuranceNo,jdbcType=VARCHAR}, #{patientId,jdbcType=VARCHAR}, #{accountStatus,jdbcType=DECIMAL}, 
+      #{name,jdbcType=VARCHAR}, #{namePhonetic,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+      #{dateOfBirth,jdbcType=DATE}, #{startDateOfWork,jdbcType=DATE}, #{workingYears,jdbcType=DECIMAL}, 
+      #{salary,jdbcType=DECIMAL}, #{unit,jdbcType=VARCHAR}, #{identityClass,jdbcType=VARCHAR}, 
+      #{insuranceType,jdbcType=VARCHAR}, #{accountRatedAmount,jdbcType=DECIMAL}, #{paymentBeginningLine,jdbcType=DECIMAL}, 
+      #{accountInitialAmount,jdbcType=DECIMAL}, #{accountBalance,jdbcType=DECIMAL}, #{accountReservedAmount,jdbcType=DECIMAL}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{expirationDate,jdbcType=DATE}, #{lastDepositDate,jdbcType=DATE},
+      #{cancelDate,jdbcType=DATE}, #{cancelCause,jdbcType=VARCHAR}, #{updateDateTime,jdbcType=TIMESTAMP},
+      #{operator,jdbcType=VARCHAR}, #{insuranceLocation,jdbcType=VARCHAR}, #{insuranceLocationCode,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.insurance.InsuranceAccountsNjjb" >
+    insert into INSURANCE.INSURANCE_ACCOUNTS_NJJB
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="insuranceNo != null" >
+        INSURANCE_NO,
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="accountStatus != null" >
+        ACCOUNT_STATUS,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="namePhonetic != null" >
+        NAME_PHONETIC,
+      </if>
+      <if test="sex != null" >
+        SEX,
+      </if>
+      <if test="dateOfBirth != null" >
+        DATE_OF_BIRTH,
+      </if>
+      <if test="startDateOfWork != null" >
+        START_DATE_OF_WORK,
+      </if>
+      <if test="workingYears != null" >
+        WORKING_YEARS,
+      </if>
+      <if test="salary != null" >
+        SALARY,
+      </if>
+      <if test="unit != null" >
+        UNIT,
+      </if>
+      <if test="identityClass != null" >
+        IDENTITY_CLASS,
+      </if>
+      <if test="insuranceType != null" >
+        INSURANCE_TYPE,
+      </if>
+      <if test="accountRatedAmount != null" >
+        ACCOUNT_RATED_AMOUNT,
+      </if>
+      <if test="paymentBeginningLine != null" >
+        PAYMENT_BEGINNING_LINE,
+      </if>
+      <if test="accountInitialAmount != null" >
+        ACCOUNT_INITIAL_AMOUNT,
+      </if>
+      <if test="accountBalance != null" >
+        ACCOUNT_BALANCE,
+      </if>
+      <if test="accountReservedAmount != null" >
+        ACCOUNT_RESERVED_AMOUNT,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="expirationDate != null" >
+        EXPIRATION_DATE,
+      </if>
+      <if test="lastDepositDate != null" >
+        LAST_DEPOSIT_DATE,
+      </if>
+      <if test="cancelDate != null" >
+        CANCEL_DATE,
+      </if>
+      <if test="cancelCause != null" >
+        CANCEL_CAUSE,
+      </if>
+      <if test="updateDateTime != null" >
+        UPDATE_DATE_TIME,
+      </if>
+      <if test="operator != null" >
+        OPERATOR,
+      </if>
+      <if test="insuranceLocation != null" >
+        INSURANCE_LOCATION,
+      </if>
+      <if test="insuranceLocationCode != null" >
+        INSURANCE_LOCATION_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="insuranceNo != null" >
+        #{insuranceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountStatus != null" >
+        #{accountStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="namePhonetic != null" >
+        #{namePhonetic,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="dateOfBirth != null" >
+        #{dateOfBirth,jdbcType=DATE},
+      </if>
+      <if test="startDateOfWork != null" >
+        #{startDateOfWork,jdbcType=DATE},
+      </if>
+      <if test="workingYears != null" >
+        #{workingYears,jdbcType=DECIMAL},
+      </if>
+      <if test="salary != null" >
+        #{salary,jdbcType=DECIMAL},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="identityClass != null" >
+        #{identityClass,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceType != null" >
+        #{insuranceType,jdbcType=VARCHAR},
+      </if>
+      <if test="accountRatedAmount != null" >
+        #{accountRatedAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="paymentBeginningLine != null" >
+        #{paymentBeginningLine,jdbcType=DECIMAL},
+      </if>
+      <if test="accountInitialAmount != null" >
+        #{accountInitialAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="accountBalance != null" >
+        #{accountBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="accountReservedAmount != null" >
+        #{accountReservedAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=DATE},
+      </if>
+      <if test="expirationDate != null" >
+        #{expirationDate,jdbcType=DATE},
+      </if>
+      <if test="lastDepositDate != null" >
+        #{lastDepositDate,jdbcType=DATE},
+      </if>
+      <if test="cancelDate != null" >
+        #{cancelDate,jdbcType=DATE},
+      </if>
+      <if test="cancelCause != null" >
+        #{cancelCause,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDateTime != null" >
+        #{updateDateTime,jdbcType=DATE},
+      </if>
+      <if test="operator != null" >
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceLocation != null" >
+        #{insuranceLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceLocationCode != null" >
+        #{insuranceLocationCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.insurance.InsuranceAccountsNjjb" >
+    update INSURANCE.INSURANCE_ACCOUNTS_NJJB
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="namePhonetic != null" >
+        NAME_PHONETIC = #{namePhonetic,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        SEX = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="dateOfBirth != null" >
+        DATE_OF_BIRTH = #{dateOfBirth,jdbcType=DATE},
+      </if>
+      <if test="startDateOfWork != null" >
+        START_DATE_OF_WORK = #{startDateOfWork,jdbcType=DATE},
+      </if>
+      <if test="workingYears != null" >
+        WORKING_YEARS = #{workingYears,jdbcType=DECIMAL},
+      </if>
+      <if test="salary != null" >
+        SALARY = #{salary,jdbcType=DECIMAL},
+      </if>
+      <if test="unit != null" >
+        UNIT = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="identityClass != null" >
+        IDENTITY_CLASS = #{identityClass,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceType != null" >
+        INSURANCE_TYPE = #{insuranceType,jdbcType=VARCHAR},
+      </if>
+      <if test="accountRatedAmount != null" >
+        ACCOUNT_RATED_AMOUNT = #{accountRatedAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="paymentBeginningLine != null" >
+        PAYMENT_BEGINNING_LINE = #{paymentBeginningLine,jdbcType=DECIMAL},
+      </if>
+      <if test="accountInitialAmount != null" >
+        ACCOUNT_INITIAL_AMOUNT = #{accountInitialAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="accountBalance != null" >
+        ACCOUNT_BALANCE = #{accountBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="accountReservedAmount != null" >
+        ACCOUNT_RESERVED_AMOUNT = #{accountReservedAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expirationDate != null" >
+        EXPIRATION_DATE = #{expirationDate,jdbcType=DATE},
+      </if>
+      <if test="lastDepositDate != null" >
+        LAST_DEPOSIT_DATE = #{lastDepositDate,jdbcType=DATE},
+      </if>
+      <if test="cancelDate != null" >
+        CANCEL_DATE = #{cancelDate,jdbcType=DATE},
+      </if>
+      <if test="cancelCause != null" >
+        CANCEL_CAUSE = #{cancelCause,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDateTime != null" >
+        UPDATE_DATE_TIME = #{updateDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operator != null" >
+        OPERATOR = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceLocation != null" >
+        INSURANCE_LOCATION = #{insuranceLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceLocationCode != null" >
+        INSURANCE_LOCATION_CODE = #{insuranceLocationCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where INSURANCE_NO = #{insuranceNo,jdbcType=VARCHAR}
+      and PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and ACCOUNT_STATUS = #{accountStatus,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.insurance.InsuranceAccountsNjjb" >
+    update INSURANCE.INSURANCE_ACCOUNTS_NJJB
+    set NAME = #{name,jdbcType=VARCHAR},
+      NAME_PHONETIC = #{namePhonetic,jdbcType=VARCHAR},
+      SEX = #{sex,jdbcType=VARCHAR},
+      DATE_OF_BIRTH = #{dateOfBirth,jdbcType=DATE},
+      START_DATE_OF_WORK = #{startDateOfWork,jdbcType=DATE},
+      WORKING_YEARS = #{workingYears,jdbcType=DECIMAL},
+      SALARY = #{salary,jdbcType=DECIMAL},
+      UNIT = #{unit,jdbcType=VARCHAR},
+      IDENTITY_CLASS = #{identityClass,jdbcType=VARCHAR},
+      INSURANCE_TYPE = #{insuranceType,jdbcType=VARCHAR},
+      ACCOUNT_RATED_AMOUNT = #{accountRatedAmount,jdbcType=DECIMAL},
+      PAYMENT_BEGINNING_LINE = #{paymentBeginningLine,jdbcType=DECIMAL},
+      ACCOUNT_INITIAL_AMOUNT = #{accountInitialAmount,jdbcType=DECIMAL},
+      ACCOUNT_BALANCE = #{accountBalance,jdbcType=DECIMAL},
+      ACCOUNT_RESERVED_AMOUNT = #{accountReservedAmount,jdbcType=DECIMAL},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      EXPIRATION_DATE = #{expirationDate,jdbcType=DATE},
+      LAST_DEPOSIT_DATE = #{lastDepositDate,jdbcType=DATE},
+      CANCEL_DATE = #{cancelDate,jdbcType=DATE},
+      CANCEL_CAUSE = #{cancelCause,jdbcType=VARCHAR},
+      UPDATE_DATE_TIME = #{updateDateTime,jdbcType=TIMESTAMP},
+      OPERATOR = #{operator,jdbcType=VARCHAR},
+      INSURANCE_LOCATION = #{insuranceLocation,jdbcType=VARCHAR},
+      INSURANCE_LOCATION_CODE = #{insuranceLocationCode,jdbcType=VARCHAR}
+    where INSURANCE_NO = #{insuranceNo,jdbcType=VARCHAR}
+      and PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and ACCOUNT_STATUS = #{accountStatus,jdbcType=DECIMAL}
+  </update>
+</mapper>

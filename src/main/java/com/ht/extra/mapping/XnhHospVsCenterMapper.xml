@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.XnhHospVsCenterMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.XnhHospVsCenter" >
+    <id column="HOSP_ITEM_CLASS" property="hospItemClass" jdbcType="VARCHAR" />
+    <id column="HOSP_ITEM_CODE" property="hospItemCode" jdbcType="VARCHAR" />
+    <id column="HOSP_ITEM_SPEC" property="hospItemSpec" jdbcType="VARCHAR" />
+    <id column="HOSP_ITEM_UNIT" property="hospItemUnit" jdbcType="VARCHAR" />
+    <result column="HOSP_ITEM_NAME" property="hospItemName" jdbcType="VARCHAR" />
+    <result column="HOSP_ITEM_CONF" property="hospItemConf" jdbcType="VARCHAR" />
+    <result column="HOSP_ITEM_PRICE" property="hospItemPrice" jdbcType="DECIMAL" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+    <result column="CENTER_ITEM_NAME" property="centerItemName" jdbcType="VARCHAR" />
+    <result column="CHANGFENG_ITEM_CODE" property="changfengItemCode" jdbcType="VARCHAR" />
+    <result column="CHANGFENG_PAY_BL" property="changfengPayBl" jdbcType="VARCHAR" />
+    <result column="JINZHAI_ITEM_CODE" property="jinzhaiItemCode" jdbcType="VARCHAR" />
+    <result column="JINZHAI_PAY_BL" property="jinzhaiPayBl" jdbcType="VARCHAR" />
+    <result column="HUOQIU_ITEM_CODE" property="huoqiuItemCode" jdbcType="VARCHAR" />
+    <result column="HUOQIU_PAY_BL" property="huoqiuPayBl" jdbcType="VARCHAR" />
+    <result column="COUNTRY_BASE_ML" property="countryBaseMl" jdbcType="VARCHAR" />
+    <result column="HNGS_ITEM_NAME" property="hngsItemName" jdbcType="VARCHAR" />
+    <result column="HNGS_ITEM_CODE" property="hngsItemCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    HOSP_ITEM_CLASS, HOSP_ITEM_CODE, HOSP_ITEM_SPEC, HOSP_ITEM_UNIT, HOSP_ITEM_NAME, 
+    HOSP_ITEM_CONF, HOSP_ITEM_PRICE, INPUT_CODE, CENTER_ITEM_NAME, CHANGFENG_ITEM_CODE, 
+    CHANGFENG_PAY_BL, JINZHAI_ITEM_CODE, JINZHAI_PAY_BL, HUOQIU_ITEM_CODE, HUOQIU_PAY_BL, 
+    COUNTRY_BASE_ML, HNGS_ITEM_NAME, HNGS_ITEM_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.XnhHospVsCenterKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.XNH_HOSP_VS_CENTER
+    where HOSP_ITEM_CLASS = #{hospItemClass,jdbcType=VARCHAR}
+      and HOSP_ITEM_CODE = #{hospItemCode,jdbcType=VARCHAR}
+      and HOSP_ITEM_SPEC = #{hospItemSpec,jdbcType=VARCHAR}
+      and HOSP_ITEM_UNIT = #{hospItemUnit,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.XnhHospVsCenterKey" >
+    delete from COMM.XNH_HOSP_VS_CENTER
+    where HOSP_ITEM_CLASS = #{hospItemClass,jdbcType=VARCHAR}
+      and HOSP_ITEM_CODE = #{hospItemCode,jdbcType=VARCHAR}
+      and HOSP_ITEM_SPEC = #{hospItemSpec,jdbcType=VARCHAR}
+      and HOSP_ITEM_UNIT = #{hospItemUnit,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.XnhHospVsCenter" >
+    insert into COMM.XNH_HOSP_VS_CENTER (HOSP_ITEM_CLASS, HOSP_ITEM_CODE, HOSP_ITEM_SPEC, 
+      HOSP_ITEM_UNIT, HOSP_ITEM_NAME, HOSP_ITEM_CONF, 
+      HOSP_ITEM_PRICE, INPUT_CODE, CENTER_ITEM_NAME, 
+      CHANGFENG_ITEM_CODE, CHANGFENG_PAY_BL, JINZHAI_ITEM_CODE, 
+      JINZHAI_PAY_BL, HUOQIU_ITEM_CODE, HUOQIU_PAY_BL, 
+      COUNTRY_BASE_ML, HNGS_ITEM_NAME, HNGS_ITEM_CODE
+      )
+    values (#{hospItemClass,jdbcType=VARCHAR}, #{hospItemCode,jdbcType=VARCHAR}, #{hospItemSpec,jdbcType=VARCHAR}, 
+      #{hospItemUnit,jdbcType=VARCHAR}, #{hospItemName,jdbcType=VARCHAR}, #{hospItemConf,jdbcType=VARCHAR}, 
+      #{hospItemPrice,jdbcType=DECIMAL}, #{inputCode,jdbcType=VARCHAR}, #{centerItemName,jdbcType=VARCHAR}, 
+      #{changfengItemCode,jdbcType=VARCHAR}, #{changfengPayBl,jdbcType=VARCHAR}, #{jinzhaiItemCode,jdbcType=VARCHAR}, 
+      #{jinzhaiPayBl,jdbcType=VARCHAR}, #{huoqiuItemCode,jdbcType=VARCHAR}, #{huoqiuPayBl,jdbcType=VARCHAR}, 
+      #{countryBaseMl,jdbcType=VARCHAR}, #{hngsItemName,jdbcType=VARCHAR}, #{hngsItemCode,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.XnhHospVsCenter" >
+    insert into COMM.XNH_HOSP_VS_CENTER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="hospItemClass != null" >
+        HOSP_ITEM_CLASS,
+      </if>
+      <if test="hospItemCode != null" >
+        HOSP_ITEM_CODE,
+      </if>
+      <if test="hospItemSpec != null" >
+        HOSP_ITEM_SPEC,
+      </if>
+      <if test="hospItemUnit != null" >
+        HOSP_ITEM_UNIT,
+      </if>
+      <if test="hospItemName != null" >
+        HOSP_ITEM_NAME,
+      </if>
+      <if test="hospItemConf != null" >
+        HOSP_ITEM_CONF,
+      </if>
+      <if test="hospItemPrice != null" >
+        HOSP_ITEM_PRICE,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+      <if test="centerItemName != null" >
+        CENTER_ITEM_NAME,
+      </if>
+      <if test="changfengItemCode != null" >
+        CHANGFENG_ITEM_CODE,
+      </if>
+      <if test="changfengPayBl != null" >
+        CHANGFENG_PAY_BL,
+      </if>
+      <if test="jinzhaiItemCode != null" >
+        JINZHAI_ITEM_CODE,
+      </if>
+      <if test="jinzhaiPayBl != null" >
+        JINZHAI_PAY_BL,
+      </if>
+      <if test="huoqiuItemCode != null" >
+        HUOQIU_ITEM_CODE,
+      </if>
+      <if test="huoqiuPayBl != null" >
+        HUOQIU_PAY_BL,
+      </if>
+      <if test="countryBaseMl != null" >
+        COUNTRY_BASE_ML,
+      </if>
+      <if test="hngsItemName != null" >
+        HNGS_ITEM_NAME,
+      </if>
+      <if test="hngsItemCode != null" >
+        HNGS_ITEM_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="hospItemClass != null" >
+        #{hospItemClass,jdbcType=VARCHAR},
+      </if>
+      <if test="hospItemCode != null" >
+        #{hospItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hospItemSpec != null" >
+        #{hospItemSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="hospItemUnit != null" >
+        #{hospItemUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="hospItemName != null" >
+        #{hospItemName,jdbcType=VARCHAR},
+      </if>
+      <if test="hospItemConf != null" >
+        #{hospItemConf,jdbcType=VARCHAR},
+      </if>
+      <if test="hospItemPrice != null" >
+        #{hospItemPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="centerItemName != null" >
+        #{centerItemName,jdbcType=VARCHAR},
+      </if>
+      <if test="changfengItemCode != null" >
+        #{changfengItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="changfengPayBl != null" >
+        #{changfengPayBl,jdbcType=VARCHAR},
+      </if>
+      <if test="jinzhaiItemCode != null" >
+        #{jinzhaiItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="jinzhaiPayBl != null" >
+        #{jinzhaiPayBl,jdbcType=VARCHAR},
+      </if>
+      <if test="huoqiuItemCode != null" >
+        #{huoqiuItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="huoqiuPayBl != null" >
+        #{huoqiuPayBl,jdbcType=VARCHAR},
+      </if>
+      <if test="countryBaseMl != null" >
+        #{countryBaseMl,jdbcType=VARCHAR},
+      </if>
+      <if test="hngsItemName != null" >
+        #{hngsItemName,jdbcType=VARCHAR},
+      </if>
+      <if test="hngsItemCode != null" >
+        #{hngsItemCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.XnhHospVsCenter" >
+    update COMM.XNH_HOSP_VS_CENTER
+    <set >
+      <if test="hospItemName != null" >
+        HOSP_ITEM_NAME = #{hospItemName,jdbcType=VARCHAR},
+      </if>
+      <if test="hospItemConf != null" >
+        HOSP_ITEM_CONF = #{hospItemConf,jdbcType=VARCHAR},
+      </if>
+      <if test="hospItemPrice != null" >
+        HOSP_ITEM_PRICE = #{hospItemPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="centerItemName != null" >
+        CENTER_ITEM_NAME = #{centerItemName,jdbcType=VARCHAR},
+      </if>
+      <if test="changfengItemCode != null" >
+        CHANGFENG_ITEM_CODE = #{changfengItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="changfengPayBl != null" >
+        CHANGFENG_PAY_BL = #{changfengPayBl,jdbcType=VARCHAR},
+      </if>
+      <if test="jinzhaiItemCode != null" >
+        JINZHAI_ITEM_CODE = #{jinzhaiItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="jinzhaiPayBl != null" >
+        JINZHAI_PAY_BL = #{jinzhaiPayBl,jdbcType=VARCHAR},
+      </if>
+      <if test="huoqiuItemCode != null" >
+        HUOQIU_ITEM_CODE = #{huoqiuItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="huoqiuPayBl != null" >
+        HUOQIU_PAY_BL = #{huoqiuPayBl,jdbcType=VARCHAR},
+      </if>
+      <if test="countryBaseMl != null" >
+        COUNTRY_BASE_ML = #{countryBaseMl,jdbcType=VARCHAR},
+      </if>
+      <if test="hngsItemName != null" >
+        HNGS_ITEM_NAME = #{hngsItemName,jdbcType=VARCHAR},
+      </if>
+      <if test="hngsItemCode != null" >
+        HNGS_ITEM_CODE = #{hngsItemCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where HOSP_ITEM_CLASS = #{hospItemClass,jdbcType=VARCHAR}
+      and HOSP_ITEM_CODE = #{hospItemCode,jdbcType=VARCHAR}
+      and HOSP_ITEM_SPEC = #{hospItemSpec,jdbcType=VARCHAR}
+      and HOSP_ITEM_UNIT = #{hospItemUnit,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.XnhHospVsCenter" >
+    update COMM.XNH_HOSP_VS_CENTER
+    set HOSP_ITEM_NAME = #{hospItemName,jdbcType=VARCHAR},
+      HOSP_ITEM_CONF = #{hospItemConf,jdbcType=VARCHAR},
+      HOSP_ITEM_PRICE = #{hospItemPrice,jdbcType=DECIMAL},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      CENTER_ITEM_NAME = #{centerItemName,jdbcType=VARCHAR},
+      CHANGFENG_ITEM_CODE = #{changfengItemCode,jdbcType=VARCHAR},
+      CHANGFENG_PAY_BL = #{changfengPayBl,jdbcType=VARCHAR},
+      JINZHAI_ITEM_CODE = #{jinzhaiItemCode,jdbcType=VARCHAR},
+      JINZHAI_PAY_BL = #{jinzhaiPayBl,jdbcType=VARCHAR},
+      HUOQIU_ITEM_CODE = #{huoqiuItemCode,jdbcType=VARCHAR},
+      HUOQIU_PAY_BL = #{huoqiuPayBl,jdbcType=VARCHAR},
+      COUNTRY_BASE_ML = #{countryBaseMl,jdbcType=VARCHAR},
+      HNGS_ITEM_NAME = #{hngsItemName,jdbcType=VARCHAR},
+      HNGS_ITEM_CODE = #{hngsItemCode,jdbcType=VARCHAR}
+    where HOSP_ITEM_CLASS = #{hospItemClass,jdbcType=VARCHAR}
+      and HOSP_ITEM_CODE = #{hospItemCode,jdbcType=VARCHAR}
+      and HOSP_ITEM_SPEC = #{hospItemSpec,jdbcType=VARCHAR}
+      and HOSP_ITEM_UNIT = #{hospItemUnit,jdbcType=VARCHAR}
+  </update>
+</mapper>

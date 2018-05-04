@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.PhamAliaDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.PhamAliaDict" >
+    <id column="PHAM_CODE" property="phamCode" jdbcType="VARCHAR" />
+    <id column="PHAM_NAME" property="phamName" jdbcType="VARCHAR" />
+    <result column="STD_INDICATOR" property="stdIndicator" jdbcType="DECIMAL" />
+    <result column="PHONETIC_HEAD_CODE" property="phoneticHeadCode" jdbcType="VARCHAR" />
+    <result column="FOUR_CONER_CODE" property="fourConerCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PHAM_CODE, PHAM_NAME, STD_INDICATOR, PHONETIC_HEAD_CODE, FOUR_CONER_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.PhamAliaDictKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.PHAM_ALIA_DICT
+    where PHAM_CODE = #{phamCode,jdbcType=VARCHAR}
+      and PHAM_NAME = #{phamName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.PhamAliaDictKey" >
+    delete from COMM.PHAM_ALIA_DICT
+    where PHAM_CODE = #{phamCode,jdbcType=VARCHAR}
+      and PHAM_NAME = #{phamName,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.PhamAliaDict" >
+    insert into COMM.PHAM_ALIA_DICT (PHAM_CODE, PHAM_NAME, STD_INDICATOR, 
+      PHONETIC_HEAD_CODE, FOUR_CONER_CODE)
+    values (#{phamCode,jdbcType=VARCHAR}, #{phamName,jdbcType=VARCHAR}, #{stdIndicator,jdbcType=DECIMAL}, 
+      #{phoneticHeadCode,jdbcType=VARCHAR}, #{fourConerCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.PhamAliaDict" >
+    insert into COMM.PHAM_ALIA_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="phamCode != null" >
+        PHAM_CODE,
+      </if>
+      <if test="phamName != null" >
+        PHAM_NAME,
+      </if>
+      <if test="stdIndicator != null" >
+        STD_INDICATOR,
+      </if>
+      <if test="phoneticHeadCode != null" >
+        PHONETIC_HEAD_CODE,
+      </if>
+      <if test="fourConerCode != null" >
+        FOUR_CONER_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="phamCode != null" >
+        #{phamCode,jdbcType=VARCHAR},
+      </if>
+      <if test="phamName != null" >
+        #{phamName,jdbcType=VARCHAR},
+      </if>
+      <if test="stdIndicator != null" >
+        #{stdIndicator,jdbcType=DECIMAL},
+      </if>
+      <if test="phoneticHeadCode != null" >
+        #{phoneticHeadCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fourConerCode != null" >
+        #{fourConerCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.PhamAliaDict" >
+    update COMM.PHAM_ALIA_DICT
+    <set >
+      <if test="stdIndicator != null" >
+        STD_INDICATOR = #{stdIndicator,jdbcType=DECIMAL},
+      </if>
+      <if test="phoneticHeadCode != null" >
+        PHONETIC_HEAD_CODE = #{phoneticHeadCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fourConerCode != null" >
+        FOUR_CONER_CODE = #{fourConerCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PHAM_CODE = #{phamCode,jdbcType=VARCHAR}
+      and PHAM_NAME = #{phamName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.PhamAliaDict" >
+    update COMM.PHAM_ALIA_DICT
+    set STD_INDICATOR = #{stdIndicator,jdbcType=DECIMAL},
+      PHONETIC_HEAD_CODE = #{phoneticHeadCode,jdbcType=VARCHAR},
+      FOUR_CONER_CODE = #{fourConerCode,jdbcType=VARCHAR}
+    where PHAM_CODE = #{phamCode,jdbcType=VARCHAR}
+      and PHAM_NAME = #{phamName,jdbcType=VARCHAR}
+  </update>
+</mapper>

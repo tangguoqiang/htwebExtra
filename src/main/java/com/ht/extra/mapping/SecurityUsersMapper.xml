@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.SecurityUsersMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.SecurityUsers" >
+    <id column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="PRIORITY" property="priority" jdbcType="DECIMAL" />
+    <result column="USER_TYPE" property="userType" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    NAME, DESCRIPTION, PRIORITY, USER_TYPE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.SECURITY_USERS
+    where NAME = #{name,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.SECURITY_USERS
+    where NAME = #{name,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.SecurityUsers" >
+    insert into COMM.SECURITY_USERS (NAME, DESCRIPTION, PRIORITY, 
+      USER_TYPE)
+    values (#{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{priority,jdbcType=DECIMAL}, 
+      #{userType,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.SecurityUsers" >
+    insert into COMM.SECURITY_USERS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="description != null" >
+        DESCRIPTION,
+      </if>
+      <if test="priority != null" >
+        PRIORITY,
+      </if>
+      <if test="userType != null" >
+        USER_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null" >
+        #{priority,jdbcType=DECIMAL},
+      </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.SecurityUsers" >
+    update COMM.SECURITY_USERS
+    <set >
+      <if test="description != null" >
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null" >
+        PRIORITY = #{priority,jdbcType=DECIMAL},
+      </if>
+      <if test="userType != null" >
+        USER_TYPE = #{userType,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where NAME = #{name,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.SecurityUsers" >
+    update COMM.SECURITY_USERS
+    set DESCRIPTION = #{description,jdbcType=VARCHAR},
+      PRIORITY = #{priority,jdbcType=DECIMAL},
+      USER_TYPE = #{userType,jdbcType=DECIMAL}
+    where NAME = #{name,jdbcType=VARCHAR}
+  </update>
+</mapper>

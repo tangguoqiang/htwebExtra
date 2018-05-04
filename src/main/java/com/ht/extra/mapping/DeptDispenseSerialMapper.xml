@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.DeptDispenseSerialMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.DeptDispenseSerial" >
+    <id column="DEPT_CODE" property="deptCode" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="USE_INFO" property="useInfo" jdbcType="DECIMAL" />
+    <result column="VISUAL_CODE" property="visualCode" jdbcType="VARCHAR" />
+    <result column="LOCATION" property="location" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    DEPT_CODE, SERIAL_NO, USE_INFO, VISUAL_CODE, LOCATION
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.DEPT_DISPENSE_SERIAL
+    where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.DEPT_DISPENSE_SERIAL
+    where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.DeptDispenseSerial" >
+    insert into COMM.DEPT_DISPENSE_SERIAL (DEPT_CODE, SERIAL_NO, USE_INFO, 
+      VISUAL_CODE, LOCATION)
+    values (#{deptCode,jdbcType=VARCHAR}, #{serialNo,jdbcType=DECIMAL}, #{useInfo,jdbcType=DECIMAL}, 
+      #{visualCode,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.DeptDispenseSerial" >
+    insert into COMM.DEPT_DISPENSE_SERIAL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="deptCode != null" >
+        DEPT_CODE,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="useInfo != null" >
+        USE_INFO,
+      </if>
+      <if test="visualCode != null" >
+        VISUAL_CODE,
+      </if>
+      <if test="location != null" >
+        LOCATION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="deptCode != null" >
+        #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="useInfo != null" >
+        #{useInfo,jdbcType=DECIMAL},
+      </if>
+      <if test="visualCode != null" >
+        #{visualCode,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        #{location,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.DeptDispenseSerial" >
+    update COMM.DEPT_DISPENSE_SERIAL
+    <set >
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="useInfo != null" >
+        USE_INFO = #{useInfo,jdbcType=DECIMAL},
+      </if>
+      <if test="visualCode != null" >
+        VISUAL_CODE = #{visualCode,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        LOCATION = #{location,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.DeptDispenseSerial" >
+    update COMM.DEPT_DISPENSE_SERIAL
+    set SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      USE_INFO = #{useInfo,jdbcType=DECIMAL},
+      VISUAL_CODE = #{visualCode,jdbcType=VARCHAR},
+      LOCATION = #{location,jdbcType=VARCHAR}
+    where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

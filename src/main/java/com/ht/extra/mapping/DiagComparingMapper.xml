@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.DiagComparingMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.medrec.DiagComparing" >
+    <id column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <id column="VISIT_ID" property="visitId" jdbcType="DECIMAL" />
+    <id column="DIAG_COMPARE_GROUP" property="diagCompareGroup" jdbcType="VARCHAR" />
+    <result column="DIAG_CORRESPONDENCE" property="diagCorrespondence" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PATIENT_ID, VISIT_ID, DIAG_COMPARE_GROUP, DIAG_CORRESPONDENCE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.medrec.DiagComparingKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from MEDREC.DIAG_COMPARING
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and DIAG_COMPARE_GROUP = #{diagCompareGroup,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.medrec.DiagComparingKey" >
+    delete from MEDREC.DIAG_COMPARING
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and DIAG_COMPARE_GROUP = #{diagCompareGroup,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.medrec.DiagComparing" >
+    insert into MEDREC.DIAG_COMPARING (PATIENT_ID, VISIT_ID, DIAG_COMPARE_GROUP, 
+      DIAG_CORRESPONDENCE)
+    values (#{patientId,jdbcType=VARCHAR}, #{visitId,jdbcType=DECIMAL}, #{diagCompareGroup,jdbcType=VARCHAR}, 
+      #{diagCorrespondence,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.medrec.DiagComparing" >
+    insert into MEDREC.DIAG_COMPARING
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="visitId != null" >
+        VISIT_ID,
+      </if>
+      <if test="diagCompareGroup != null" >
+        DIAG_COMPARE_GROUP,
+      </if>
+      <if test="diagCorrespondence != null" >
+        DIAG_CORRESPONDENCE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitId != null" >
+        #{visitId,jdbcType=DECIMAL},
+      </if>
+      <if test="diagCompareGroup != null" >
+        #{diagCompareGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="diagCorrespondence != null" >
+        #{diagCorrespondence,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.medrec.DiagComparing" >
+    update MEDREC.DIAG_COMPARING
+    <set >
+      <if test="diagCorrespondence != null" >
+        DIAG_CORRESPONDENCE = #{diagCorrespondence,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and DIAG_COMPARE_GROUP = #{diagCompareGroup,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.medrec.DiagComparing" >
+    update MEDREC.DIAG_COMPARING
+    set DIAG_CORRESPONDENCE = #{diagCorrespondence,jdbcType=VARCHAR}
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and DIAG_COMPARE_GROUP = #{diagCompareGroup,jdbcType=VARCHAR}
+  </update>
+</mapper>

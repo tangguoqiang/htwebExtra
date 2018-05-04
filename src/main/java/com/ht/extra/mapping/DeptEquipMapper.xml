@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.DeptEquipMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.DeptEquip" >
+    <id column="DEPT_CODE" property="deptCode" jdbcType="VARCHAR" />
+    <result column="SBZJ" property="sbzj" jdbcType="DECIMAL" />
+    <result column="COST_SBZJ" property="costSbzj" jdbcType="DECIMAL" />
+    <result column="SBBX" property="sbbx" jdbcType="DECIMAL" />
+    <result column="COST_SBBX" property="costSbbx" jdbcType="DECIMAL" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.ht.extra.pojo.comm.DeptEquip" extends="BaseResultMap" >
+    <result column="BZ" property="bz" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    DEPT_CODE, SBZJ, COST_SBZJ, SBBX, COST_SBBX
+  </sql>
+  <sql id="Blob_Column_List" >
+    BZ
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from COMM.DEPT_EQUIP
+    where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.DEPT_EQUIP
+    where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.DeptEquip" >
+    insert into COMM.DEPT_EQUIP (DEPT_CODE, SBZJ, COST_SBZJ, 
+      SBBX, COST_SBBX, BZ
+      )
+    values (#{deptCode,jdbcType=VARCHAR}, #{sbzj,jdbcType=DECIMAL}, #{costSbzj,jdbcType=DECIMAL}, 
+      #{sbbx,jdbcType=DECIMAL}, #{costSbbx,jdbcType=DECIMAL}, #{bz,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.DeptEquip" >
+    insert into COMM.DEPT_EQUIP
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="deptCode != null" >
+        DEPT_CODE,
+      </if>
+      <if test="sbzj != null" >
+        SBZJ,
+      </if>
+      <if test="costSbzj != null" >
+        COST_SBZJ,
+      </if>
+      <if test="sbbx != null" >
+        SBBX,
+      </if>
+      <if test="costSbbx != null" >
+        COST_SBBX,
+      </if>
+      <if test="bz != null" >
+        BZ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="deptCode != null" >
+        #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sbzj != null" >
+        #{sbzj,jdbcType=DECIMAL},
+      </if>
+      <if test="costSbzj != null" >
+        #{costSbzj,jdbcType=DECIMAL},
+      </if>
+      <if test="sbbx != null" >
+        #{sbbx,jdbcType=DECIMAL},
+      </if>
+      <if test="costSbbx != null" >
+        #{costSbbx,jdbcType=DECIMAL},
+      </if>
+      <if test="bz != null" >
+        #{bz,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.DeptEquip" >
+    update COMM.DEPT_EQUIP
+    <set >
+      <if test="sbzj != null" >
+        SBZJ = #{sbzj,jdbcType=DECIMAL},
+      </if>
+      <if test="costSbzj != null" >
+        COST_SBZJ = #{costSbzj,jdbcType=DECIMAL},
+      </if>
+      <if test="sbbx != null" >
+        SBBX = #{sbbx,jdbcType=DECIMAL},
+      </if>
+      <if test="costSbbx != null" >
+        COST_SBBX = #{costSbbx,jdbcType=DECIMAL},
+      </if>
+      <if test="bz != null" >
+        BZ = #{bz,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ht.extra.pojo.comm.DeptEquip" >
+    update COMM.DEPT_EQUIP
+    set SBZJ = #{sbzj,jdbcType=DECIMAL},
+      COST_SBZJ = #{costSbzj,jdbcType=DECIMAL},
+      SBBX = #{sbbx,jdbcType=DECIMAL},
+      COST_SBBX = #{costSbbx,jdbcType=DECIMAL},
+      BZ = #{bz,jdbcType=LONGVARCHAR}
+    where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.DeptEquip" >
+    update COMM.DEPT_EQUIP
+    set SBZJ = #{sbzj,jdbcType=DECIMAL},
+      COST_SBZJ = #{costSbzj,jdbcType=DECIMAL},
+      SBBX = #{sbbx,jdbcType=DECIMAL},
+      COST_SBBX = #{costSbbx,jdbcType=DECIMAL}
+    where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

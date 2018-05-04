@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.BankTradeLogMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.insurance.BankTradeLog" >
+    <id column="TYPE" property="type" jdbcType="VARCHAR" />
+    <id column="RCPT_NO" property="rcptNo" jdbcType="VARCHAR" />
+    <id column="TRA_DATE" property="traDate" jdbcType="VARCHAR" />
+    <id column="TRADE_ID" property="tradeId" jdbcType="VARCHAR" />
+    <result column="TEMP_RCPT_NO" property="tempRcptNo" jdbcType="VARCHAR" />
+    <result column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <result column="BANK_CARD" property="bankCard" jdbcType="VARCHAR" />
+    <result column="TRA_NO" property="traNo" jdbcType="VARCHAR" />
+    <result column="TRA_REFER_NO" property="traReferNo" jdbcType="VARCHAR" />
+    <result column="TRA_TOTAL" property="traTotal" jdbcType="DECIMAL" />
+    <result column="TRA_TYPE" property="traType" jdbcType="VARCHAR" />
+    <result column="TRA_STATUS" property="traStatus" jdbcType="VARCHAR" />
+    <result column="TRA_FINAL_NO" property="traFinalNo" jdbcType="VARCHAR" />
+    <result column="TRA_PC_NO" property="traPcNo" jdbcType="VARCHAR" />
+    <result column="TRA_TIME" property="traTime" jdbcType="VARCHAR" />
+    <result column="MERCHANT_NO" property="merchantNo" jdbcType="VARCHAR" />
+    <result column="NOTE" property="note" jdbcType="VARCHAR" />
+    <result column="TIMES" property="times" jdbcType="DECIMAL" />
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+    <result column="ACCT_NO" property="acctNo" jdbcType="VARCHAR" />
+    <result column="RETURN_TIMES" property="returnTimes" jdbcType="DECIMAL" />
+    <result column="RETURN_MONEY_LIMIT" property="returnMoneyLimit" jdbcType="DECIMAL" />
+    <result column="RETURN_TYPE" property="returnType" jdbcType="VARCHAR" />
+    <result column="OPR_APP_NAME_HIS" property="oprAppNameHis" jdbcType="VARCHAR" />
+    <result column="ACCT_FLAG_HIS" property="acctFlagHis" jdbcType="DECIMAL" />
+    <result column="OPER_TYPE_HIS" property="operTypeHis" jdbcType="VARCHAR" />
+    <result column="RCPT_FLAG_HIS" property="rcptFlagHis" jdbcType="DECIMAL" />
+    <result column="BANK_NO" property="bankNo" jdbcType="VARCHAR" />
+    <result column="TRA_AUTH_NO" property="traAuthNo" jdbcType="VARCHAR" />
+    <result column="SETTLE_DATE" property="settleDate" jdbcType="VARCHAR" />
+    <result column="LRC_RETURN" property="lrcReturn" jdbcType="VARCHAR" />
+    <result column="RETURN_RCPT_NO" property="returnRcptNo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    TYPE, RCPT_NO, TRA_DATE, TRADE_ID, TEMP_RCPT_NO, PATIENT_ID, BANK_CARD, TRA_NO, TRA_REFER_NO, 
+    TRA_TOTAL, TRA_TYPE, TRA_STATUS, TRA_FINAL_NO, TRA_PC_NO, TRA_TIME, MERCHANT_NO, 
+    NOTE, TIMES, USER_ID, ACCT_NO, RETURN_TIMES, RETURN_MONEY_LIMIT, RETURN_TYPE, OPR_APP_NAME_HIS, 
+    ACCT_FLAG_HIS, OPER_TYPE_HIS, RCPT_FLAG_HIS, BANK_NO, TRA_AUTH_NO, SETTLE_DATE, LRC_RETURN, 
+    RETURN_RCPT_NO
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.insurance.BankTradeLogKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from INSURANCE.BANK_TRADE_LOG
+    where TYPE = #{type,jdbcType=VARCHAR}
+      and RCPT_NO = #{rcptNo,jdbcType=VARCHAR}
+      and TRA_DATE = #{traDate,jdbcType=VARCHAR}
+      and TRADE_ID = #{tradeId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.insurance.BankTradeLogKey" >
+    delete from INSURANCE.BANK_TRADE_LOG
+    where TYPE = #{type,jdbcType=VARCHAR}
+      and RCPT_NO = #{rcptNo,jdbcType=VARCHAR}
+      and TRA_DATE = #{traDate,jdbcType=VARCHAR}
+      and TRADE_ID = #{tradeId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.insurance.BankTradeLog" >
+    insert into INSURANCE.BANK_TRADE_LOG (TYPE, RCPT_NO, TRA_DATE, 
+      TRADE_ID, TEMP_RCPT_NO, PATIENT_ID, 
+      BANK_CARD, TRA_NO, TRA_REFER_NO, 
+      TRA_TOTAL, TRA_TYPE, TRA_STATUS, 
+      TRA_FINAL_NO, TRA_PC_NO, TRA_TIME, 
+      MERCHANT_NO, NOTE, TIMES, 
+      USER_ID, ACCT_NO, RETURN_TIMES, 
+      RETURN_MONEY_LIMIT, RETURN_TYPE, OPR_APP_NAME_HIS, 
+      ACCT_FLAG_HIS, OPER_TYPE_HIS, RCPT_FLAG_HIS, 
+      BANK_NO, TRA_AUTH_NO, SETTLE_DATE, 
+      LRC_RETURN, RETURN_RCPT_NO)
+    values (#{type,jdbcType=VARCHAR}, #{rcptNo,jdbcType=VARCHAR}, #{traDate,jdbcType=VARCHAR}, 
+      #{tradeId,jdbcType=VARCHAR}, #{tempRcptNo,jdbcType=VARCHAR}, #{patientId,jdbcType=VARCHAR}, 
+      #{bankCard,jdbcType=VARCHAR}, #{traNo,jdbcType=VARCHAR}, #{traReferNo,jdbcType=VARCHAR}, 
+      #{traTotal,jdbcType=DECIMAL}, #{traType,jdbcType=VARCHAR}, #{traStatus,jdbcType=VARCHAR}, 
+      #{traFinalNo,jdbcType=VARCHAR}, #{traPcNo,jdbcType=VARCHAR}, #{traTime,jdbcType=VARCHAR}, 
+      #{merchantNo,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, #{times,jdbcType=DECIMAL}, 
+      #{userId,jdbcType=VARCHAR}, #{acctNo,jdbcType=VARCHAR}, #{returnTimes,jdbcType=DECIMAL}, 
+      #{returnMoneyLimit,jdbcType=DECIMAL}, #{returnType,jdbcType=VARCHAR}, #{oprAppNameHis,jdbcType=VARCHAR}, 
+      #{acctFlagHis,jdbcType=DECIMAL}, #{operTypeHis,jdbcType=VARCHAR}, #{rcptFlagHis,jdbcType=DECIMAL}, 
+      #{bankNo,jdbcType=VARCHAR}, #{traAuthNo,jdbcType=VARCHAR}, #{settleDate,jdbcType=VARCHAR}, 
+      #{lrcReturn,jdbcType=VARCHAR}, #{returnRcptNo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.insurance.BankTradeLog" >
+    insert into INSURANCE.BANK_TRADE_LOG
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="rcptNo != null" >
+        RCPT_NO,
+      </if>
+      <if test="traDate != null" >
+        TRA_DATE,
+      </if>
+      <if test="tradeId != null" >
+        TRADE_ID,
+      </if>
+      <if test="tempRcptNo != null" >
+        TEMP_RCPT_NO,
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="bankCard != null" >
+        BANK_CARD,
+      </if>
+      <if test="traNo != null" >
+        TRA_NO,
+      </if>
+      <if test="traReferNo != null" >
+        TRA_REFER_NO,
+      </if>
+      <if test="traTotal != null" >
+        TRA_TOTAL,
+      </if>
+      <if test="traType != null" >
+        TRA_TYPE,
+      </if>
+      <if test="traStatus != null" >
+        TRA_STATUS,
+      </if>
+      <if test="traFinalNo != null" >
+        TRA_FINAL_NO,
+      </if>
+      <if test="traPcNo != null" >
+        TRA_PC_NO,
+      </if>
+      <if test="traTime != null" >
+        TRA_TIME,
+      </if>
+      <if test="merchantNo != null" >
+        MERCHANT_NO,
+      </if>
+      <if test="note != null" >
+        NOTE,
+      </if>
+      <if test="times != null" >
+        TIMES,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="acctNo != null" >
+        ACCT_NO,
+      </if>
+      <if test="returnTimes != null" >
+        RETURN_TIMES,
+      </if>
+      <if test="returnMoneyLimit != null" >
+        RETURN_MONEY_LIMIT,
+      </if>
+      <if test="returnType != null" >
+        RETURN_TYPE,
+      </if>
+      <if test="oprAppNameHis != null" >
+        OPR_APP_NAME_HIS,
+      </if>
+      <if test="acctFlagHis != null" >
+        ACCT_FLAG_HIS,
+      </if>
+      <if test="operTypeHis != null" >
+        OPER_TYPE_HIS,
+      </if>
+      <if test="rcptFlagHis != null" >
+        RCPT_FLAG_HIS,
+      </if>
+      <if test="bankNo != null" >
+        BANK_NO,
+      </if>
+      <if test="traAuthNo != null" >
+        TRA_AUTH_NO,
+      </if>
+      <if test="settleDate != null" >
+        SETTLE_DATE,
+      </if>
+      <if test="lrcReturn != null" >
+        LRC_RETURN,
+      </if>
+      <if test="returnRcptNo != null" >
+        RETURN_RCPT_NO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="rcptNo != null" >
+        #{rcptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="traDate != null" >
+        #{traDate,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeId != null" >
+        #{tradeId,jdbcType=VARCHAR},
+      </if>
+      <if test="tempRcptNo != null" >
+        #{tempRcptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCard != null" >
+        #{bankCard,jdbcType=VARCHAR},
+      </if>
+      <if test="traNo != null" >
+        #{traNo,jdbcType=VARCHAR},
+      </if>
+      <if test="traReferNo != null" >
+        #{traReferNo,jdbcType=VARCHAR},
+      </if>
+      <if test="traTotal != null" >
+        #{traTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="traType != null" >
+        #{traType,jdbcType=VARCHAR},
+      </if>
+      <if test="traStatus != null" >
+        #{traStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="traFinalNo != null" >
+        #{traFinalNo,jdbcType=VARCHAR},
+      </if>
+      <if test="traPcNo != null" >
+        #{traPcNo,jdbcType=VARCHAR},
+      </if>
+      <if test="traTime != null" >
+        #{traTime,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantNo != null" >
+        #{merchantNo,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="times != null" >
+        #{times,jdbcType=DECIMAL},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="acctNo != null" >
+        #{acctNo,jdbcType=VARCHAR},
+      </if>
+      <if test="returnTimes != null" >
+        #{returnTimes,jdbcType=DECIMAL},
+      </if>
+      <if test="returnMoneyLimit != null" >
+        #{returnMoneyLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="returnType != null" >
+        #{returnType,jdbcType=VARCHAR},
+      </if>
+      <if test="oprAppNameHis != null" >
+        #{oprAppNameHis,jdbcType=VARCHAR},
+      </if>
+      <if test="acctFlagHis != null" >
+        #{acctFlagHis,jdbcType=DECIMAL},
+      </if>
+      <if test="operTypeHis != null" >
+        #{operTypeHis,jdbcType=VARCHAR},
+      </if>
+      <if test="rcptFlagHis != null" >
+        #{rcptFlagHis,jdbcType=DECIMAL},
+      </if>
+      <if test="bankNo != null" >
+        #{bankNo,jdbcType=VARCHAR},
+      </if>
+      <if test="traAuthNo != null" >
+        #{traAuthNo,jdbcType=VARCHAR},
+      </if>
+      <if test="settleDate != null" >
+        #{settleDate,jdbcType=VARCHAR},
+      </if>
+      <if test="lrcReturn != null" >
+        #{lrcReturn,jdbcType=VARCHAR},
+      </if>
+      <if test="returnRcptNo != null" >
+        #{returnRcptNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.insurance.BankTradeLog" >
+    update INSURANCE.BANK_TRADE_LOG
+    <set >
+      <if test="tempRcptNo != null" >
+        TEMP_RCPT_NO = #{tempRcptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCard != null" >
+        BANK_CARD = #{bankCard,jdbcType=VARCHAR},
+      </if>
+      <if test="traNo != null" >
+        TRA_NO = #{traNo,jdbcType=VARCHAR},
+      </if>
+      <if test="traReferNo != null" >
+        TRA_REFER_NO = #{traReferNo,jdbcType=VARCHAR},
+      </if>
+      <if test="traTotal != null" >
+        TRA_TOTAL = #{traTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="traType != null" >
+        TRA_TYPE = #{traType,jdbcType=VARCHAR},
+      </if>
+      <if test="traStatus != null" >
+        TRA_STATUS = #{traStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="traFinalNo != null" >
+        TRA_FINAL_NO = #{traFinalNo,jdbcType=VARCHAR},
+      </if>
+      <if test="traPcNo != null" >
+        TRA_PC_NO = #{traPcNo,jdbcType=VARCHAR},
+      </if>
+      <if test="traTime != null" >
+        TRA_TIME = #{traTime,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantNo != null" >
+        MERCHANT_NO = #{merchantNo,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        NOTE = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="times != null" >
+        TIMES = #{times,jdbcType=DECIMAL},
+      </if>
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="acctNo != null" >
+        ACCT_NO = #{acctNo,jdbcType=VARCHAR},
+      </if>
+      <if test="returnTimes != null" >
+        RETURN_TIMES = #{returnTimes,jdbcType=DECIMAL},
+      </if>
+      <if test="returnMoneyLimit != null" >
+        RETURN_MONEY_LIMIT = #{returnMoneyLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="returnType != null" >
+        RETURN_TYPE = #{returnType,jdbcType=VARCHAR},
+      </if>
+      <if test="oprAppNameHis != null" >
+        OPR_APP_NAME_HIS = #{oprAppNameHis,jdbcType=VARCHAR},
+      </if>
+      <if test="acctFlagHis != null" >
+        ACCT_FLAG_HIS = #{acctFlagHis,jdbcType=DECIMAL},
+      </if>
+      <if test="operTypeHis != null" >
+        OPER_TYPE_HIS = #{operTypeHis,jdbcType=VARCHAR},
+      </if>
+      <if test="rcptFlagHis != null" >
+        RCPT_FLAG_HIS = #{rcptFlagHis,jdbcType=DECIMAL},
+      </if>
+      <if test="bankNo != null" >
+        BANK_NO = #{bankNo,jdbcType=VARCHAR},
+      </if>
+      <if test="traAuthNo != null" >
+        TRA_AUTH_NO = #{traAuthNo,jdbcType=VARCHAR},
+      </if>
+      <if test="settleDate != null" >
+        SETTLE_DATE = #{settleDate,jdbcType=VARCHAR},
+      </if>
+      <if test="lrcReturn != null" >
+        LRC_RETURN = #{lrcReturn,jdbcType=VARCHAR},
+      </if>
+      <if test="returnRcptNo != null" >
+        RETURN_RCPT_NO = #{returnRcptNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where TYPE = #{type,jdbcType=VARCHAR}
+      and RCPT_NO = #{rcptNo,jdbcType=VARCHAR}
+      and TRA_DATE = #{traDate,jdbcType=VARCHAR}
+      and TRADE_ID = #{tradeId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.insurance.BankTradeLog" >
+    update INSURANCE.BANK_TRADE_LOG
+    set TEMP_RCPT_NO = #{tempRcptNo,jdbcType=VARCHAR},
+      PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      BANK_CARD = #{bankCard,jdbcType=VARCHAR},
+      TRA_NO = #{traNo,jdbcType=VARCHAR},
+      TRA_REFER_NO = #{traReferNo,jdbcType=VARCHAR},
+      TRA_TOTAL = #{traTotal,jdbcType=DECIMAL},
+      TRA_TYPE = #{traType,jdbcType=VARCHAR},
+      TRA_STATUS = #{traStatus,jdbcType=VARCHAR},
+      TRA_FINAL_NO = #{traFinalNo,jdbcType=VARCHAR},
+      TRA_PC_NO = #{traPcNo,jdbcType=VARCHAR},
+      TRA_TIME = #{traTime,jdbcType=VARCHAR},
+      MERCHANT_NO = #{merchantNo,jdbcType=VARCHAR},
+      NOTE = #{note,jdbcType=VARCHAR},
+      TIMES = #{times,jdbcType=DECIMAL},
+      USER_ID = #{userId,jdbcType=VARCHAR},
+      ACCT_NO = #{acctNo,jdbcType=VARCHAR},
+      RETURN_TIMES = #{returnTimes,jdbcType=DECIMAL},
+      RETURN_MONEY_LIMIT = #{returnMoneyLimit,jdbcType=DECIMAL},
+      RETURN_TYPE = #{returnType,jdbcType=VARCHAR},
+      OPR_APP_NAME_HIS = #{oprAppNameHis,jdbcType=VARCHAR},
+      ACCT_FLAG_HIS = #{acctFlagHis,jdbcType=DECIMAL},
+      OPER_TYPE_HIS = #{operTypeHis,jdbcType=VARCHAR},
+      RCPT_FLAG_HIS = #{rcptFlagHis,jdbcType=DECIMAL},
+      BANK_NO = #{bankNo,jdbcType=VARCHAR},
+      TRA_AUTH_NO = #{traAuthNo,jdbcType=VARCHAR},
+      SETTLE_DATE = #{settleDate,jdbcType=VARCHAR},
+      LRC_RETURN = #{lrcReturn,jdbcType=VARCHAR},
+      RETURN_RCPT_NO = #{returnRcptNo,jdbcType=VARCHAR}
+    where TYPE = #{type,jdbcType=VARCHAR}
+      and RCPT_NO = #{rcptNo,jdbcType=VARCHAR}
+      and TRA_DATE = #{traDate,jdbcType=VARCHAR}
+      and TRADE_ID = #{tradeId,jdbcType=VARCHAR}
+  </update>
+</mapper>

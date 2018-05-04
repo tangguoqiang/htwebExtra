@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.MeasuresDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.MeasuresDict" >
+    <id column="MEASURES_CLASS" property="measuresClass" jdbcType="VARCHAR" />
+    <id column="MEASURES_NAME" property="measuresName" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="MEASURES_CODE" property="measuresCode" jdbcType="VARCHAR" />
+    <result column="BASE_UNITS" property="baseUnits" jdbcType="VARCHAR" />
+    <result column="CONVERSION_RATIO" property="conversionRatio" jdbcType="DECIMAL" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    MEASURES_CLASS, MEASURES_NAME, SERIAL_NO, MEASURES_CODE, BASE_UNITS, CONVERSION_RATIO, 
+    INPUT_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.MeasuresDictKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.MEASURES_DICT
+    where MEASURES_CLASS = #{measuresClass,jdbcType=VARCHAR}
+      and MEASURES_NAME = #{measuresName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.MeasuresDictKey" >
+    delete from COMM.MEASURES_DICT
+    where MEASURES_CLASS = #{measuresClass,jdbcType=VARCHAR}
+      and MEASURES_NAME = #{measuresName,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.MeasuresDict" >
+    insert into COMM.MEASURES_DICT (MEASURES_CLASS, MEASURES_NAME, SERIAL_NO, 
+      MEASURES_CODE, BASE_UNITS, CONVERSION_RATIO, 
+      INPUT_CODE)
+    values (#{measuresClass,jdbcType=VARCHAR}, #{measuresName,jdbcType=VARCHAR}, #{serialNo,jdbcType=DECIMAL}, 
+      #{measuresCode,jdbcType=VARCHAR}, #{baseUnits,jdbcType=VARCHAR}, #{conversionRatio,jdbcType=DECIMAL}, 
+      #{inputCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.MeasuresDict" >
+    insert into COMM.MEASURES_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="measuresClass != null" >
+        MEASURES_CLASS,
+      </if>
+      <if test="measuresName != null" >
+        MEASURES_NAME,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="measuresCode != null" >
+        MEASURES_CODE,
+      </if>
+      <if test="baseUnits != null" >
+        BASE_UNITS,
+      </if>
+      <if test="conversionRatio != null" >
+        CONVERSION_RATIO,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="measuresClass != null" >
+        #{measuresClass,jdbcType=VARCHAR},
+      </if>
+      <if test="measuresName != null" >
+        #{measuresName,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="measuresCode != null" >
+        #{measuresCode,jdbcType=VARCHAR},
+      </if>
+      <if test="baseUnits != null" >
+        #{baseUnits,jdbcType=VARCHAR},
+      </if>
+      <if test="conversionRatio != null" >
+        #{conversionRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.MeasuresDict" >
+    update COMM.MEASURES_DICT
+    <set >
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="measuresCode != null" >
+        MEASURES_CODE = #{measuresCode,jdbcType=VARCHAR},
+      </if>
+      <if test="baseUnits != null" >
+        BASE_UNITS = #{baseUnits,jdbcType=VARCHAR},
+      </if>
+      <if test="conversionRatio != null" >
+        CONVERSION_RATIO = #{conversionRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where MEASURES_CLASS = #{measuresClass,jdbcType=VARCHAR}
+      and MEASURES_NAME = #{measuresName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.MeasuresDict" >
+    update COMM.MEASURES_DICT
+    set SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      MEASURES_CODE = #{measuresCode,jdbcType=VARCHAR},
+      BASE_UNITS = #{baseUnits,jdbcType=VARCHAR},
+      CONVERSION_RATIO = #{conversionRatio,jdbcType=DECIMAL},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR}
+    where MEASURES_CLASS = #{measuresClass,jdbcType=VARCHAR}
+      and MEASURES_NAME = #{measuresName,jdbcType=VARCHAR}
+  </update>
+</mapper>

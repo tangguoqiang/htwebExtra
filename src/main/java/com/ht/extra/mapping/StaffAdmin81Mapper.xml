@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.StaffAdmin81Mapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.StaffAdmin81" >
+    <id column="ADMIN_CODE" property="adminCode" jdbcType="VARCHAR" />
+    <result column="ADMIN_NAME" property="adminName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ADMIN_CODE, ADMIN_NAME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.STAFF_ADMIN_81
+    where ADMIN_CODE = #{adminCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.STAFF_ADMIN_81
+    where ADMIN_CODE = #{adminCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.StaffAdmin81" >
+    insert into COMM.STAFF_ADMIN_81 (ADMIN_CODE, ADMIN_NAME)
+    values (#{adminCode,jdbcType=VARCHAR}, #{adminName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.StaffAdmin81" >
+    insert into COMM.STAFF_ADMIN_81
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="adminCode != null" >
+        ADMIN_CODE,
+      </if>
+      <if test="adminName != null" >
+        ADMIN_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="adminCode != null" >
+        #{adminCode,jdbcType=VARCHAR},
+      </if>
+      <if test="adminName != null" >
+        #{adminName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.StaffAdmin81" >
+    update COMM.STAFF_ADMIN_81
+    <set >
+      <if test="adminName != null" >
+        ADMIN_NAME = #{adminName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ADMIN_CODE = #{adminCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.StaffAdmin81" >
+    update COMM.STAFF_ADMIN_81
+    set ADMIN_NAME = #{adminName,jdbcType=VARCHAR}
+    where ADMIN_CODE = #{adminCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

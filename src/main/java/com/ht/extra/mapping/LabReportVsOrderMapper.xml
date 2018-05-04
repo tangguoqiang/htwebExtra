@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.LabReportVsOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.LabReportVsOrder" >
+    <id column="DEPT_CODE" property="deptCode" jdbcType="VARCHAR" />
+    <id column="REPORT_ITEM_CODE" property="reportItemCode" jdbcType="VARCHAR" />
+    <id column="SPECIMEN" property="specimen" jdbcType="VARCHAR" />
+    <id column="PRIORITY_INDICATOR" property="priorityIndicator" jdbcType="DECIMAL" />
+    <id column="INSTRUMENT_ID" property="instrumentId" jdbcType="VARCHAR" />
+    <result column="ITEM_CODE" property="itemCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    DEPT_CODE, REPORT_ITEM_CODE, SPECIMEN, PRIORITY_INDICATOR, INSTRUMENT_ID, ITEM_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.LabReportVsOrderKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.LAB_REPORT_VS_ORDER
+    where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+      and REPORT_ITEM_CODE = #{reportItemCode,jdbcType=VARCHAR}
+      and SPECIMEN = #{specimen,jdbcType=VARCHAR}
+      and PRIORITY_INDICATOR = #{priorityIndicator,jdbcType=DECIMAL}
+      and INSTRUMENT_ID = #{instrumentId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.LabReportVsOrderKey" >
+    delete from COMM.LAB_REPORT_VS_ORDER
+    where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+      and REPORT_ITEM_CODE = #{reportItemCode,jdbcType=VARCHAR}
+      and SPECIMEN = #{specimen,jdbcType=VARCHAR}
+      and PRIORITY_INDICATOR = #{priorityIndicator,jdbcType=DECIMAL}
+      and INSTRUMENT_ID = #{instrumentId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.LabReportVsOrder" >
+    insert into COMM.LAB_REPORT_VS_ORDER (DEPT_CODE, REPORT_ITEM_CODE, SPECIMEN, 
+      PRIORITY_INDICATOR, INSTRUMENT_ID, ITEM_CODE
+      )
+    values (#{deptCode,jdbcType=VARCHAR}, #{reportItemCode,jdbcType=VARCHAR}, #{specimen,jdbcType=VARCHAR}, 
+      #{priorityIndicator,jdbcType=DECIMAL}, #{instrumentId,jdbcType=VARCHAR}, #{itemCode,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.LabReportVsOrder" >
+    insert into COMM.LAB_REPORT_VS_ORDER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="deptCode != null" >
+        DEPT_CODE,
+      </if>
+      <if test="reportItemCode != null" >
+        REPORT_ITEM_CODE,
+      </if>
+      <if test="specimen != null" >
+        SPECIMEN,
+      </if>
+      <if test="priorityIndicator != null" >
+        PRIORITY_INDICATOR,
+      </if>
+      <if test="instrumentId != null" >
+        INSTRUMENT_ID,
+      </if>
+      <if test="itemCode != null" >
+        ITEM_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="deptCode != null" >
+        #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="reportItemCode != null" >
+        #{reportItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="specimen != null" >
+        #{specimen,jdbcType=VARCHAR},
+      </if>
+      <if test="priorityIndicator != null" >
+        #{priorityIndicator,jdbcType=DECIMAL},
+      </if>
+      <if test="instrumentId != null" >
+        #{instrumentId,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode != null" >
+        #{itemCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.LabReportVsOrder" >
+    update COMM.LAB_REPORT_VS_ORDER
+    <set >
+      <if test="itemCode != null" >
+        ITEM_CODE = #{itemCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+      and REPORT_ITEM_CODE = #{reportItemCode,jdbcType=VARCHAR}
+      and SPECIMEN = #{specimen,jdbcType=VARCHAR}
+      and PRIORITY_INDICATOR = #{priorityIndicator,jdbcType=DECIMAL}
+      and INSTRUMENT_ID = #{instrumentId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.LabReportVsOrder" >
+    update COMM.LAB_REPORT_VS_ORDER
+    set ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+    where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+      and REPORT_ITEM_CODE = #{reportItemCode,jdbcType=VARCHAR}
+      and SPECIMEN = #{specimen,jdbcType=VARCHAR}
+      and PRIORITY_INDICATOR = #{priorityIndicator,jdbcType=DECIMAL}
+      and INSTRUMENT_ID = #{instrumentId,jdbcType=VARCHAR}
+  </update>
+</mapper>

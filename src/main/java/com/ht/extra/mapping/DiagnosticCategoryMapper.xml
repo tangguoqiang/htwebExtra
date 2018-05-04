@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.DiagnosticCategoryMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.medrec.DiagnosticCategory" >
+    <id column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <id column="VISIT_ID" property="visitId" jdbcType="DECIMAL" />
+    <id column="DIAGNOSIS_TYPE" property="diagnosisType" jdbcType="VARCHAR" />
+    <id column="DIAGNOSIS_NO" property="diagnosisNo" jdbcType="DECIMAL" />
+    <id column="DIAGNOSIS_CODE" property="diagnosisCode" jdbcType="VARCHAR" />
+    <result column="CODE_NO" property="codeNo" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PATIENT_ID, VISIT_ID, DIAGNOSIS_TYPE, DIAGNOSIS_NO, DIAGNOSIS_CODE, CODE_NO
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.medrec.DiagnosticCategoryKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from MEDREC.DIAGNOSTIC_CATEGORY
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and DIAGNOSIS_TYPE = #{diagnosisType,jdbcType=VARCHAR}
+      and DIAGNOSIS_NO = #{diagnosisNo,jdbcType=DECIMAL}
+      and DIAGNOSIS_CODE = #{diagnosisCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.medrec.DiagnosticCategoryKey" >
+    delete from MEDREC.DIAGNOSTIC_CATEGORY
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and DIAGNOSIS_TYPE = #{diagnosisType,jdbcType=VARCHAR}
+      and DIAGNOSIS_NO = #{diagnosisNo,jdbcType=DECIMAL}
+      and DIAGNOSIS_CODE = #{diagnosisCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.medrec.DiagnosticCategory" >
+    insert into MEDREC.DIAGNOSTIC_CATEGORY (PATIENT_ID, VISIT_ID, DIAGNOSIS_TYPE, 
+      DIAGNOSIS_NO, DIAGNOSIS_CODE, CODE_NO
+      )
+    values (#{patientId,jdbcType=VARCHAR}, #{visitId,jdbcType=DECIMAL}, #{diagnosisType,jdbcType=VARCHAR}, 
+      #{diagnosisNo,jdbcType=DECIMAL}, #{diagnosisCode,jdbcType=VARCHAR}, #{codeNo,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.medrec.DiagnosticCategory" >
+    insert into MEDREC.DIAGNOSTIC_CATEGORY
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="visitId != null" >
+        VISIT_ID,
+      </if>
+      <if test="diagnosisType != null" >
+        DIAGNOSIS_TYPE,
+      </if>
+      <if test="diagnosisNo != null" >
+        DIAGNOSIS_NO,
+      </if>
+      <if test="diagnosisCode != null" >
+        DIAGNOSIS_CODE,
+      </if>
+      <if test="codeNo != null" >
+        CODE_NO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitId != null" >
+        #{visitId,jdbcType=DECIMAL},
+      </if>
+      <if test="diagnosisType != null" >
+        #{diagnosisType,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnosisNo != null" >
+        #{diagnosisNo,jdbcType=DECIMAL},
+      </if>
+      <if test="diagnosisCode != null" >
+        #{diagnosisCode,jdbcType=VARCHAR},
+      </if>
+      <if test="codeNo != null" >
+        #{codeNo,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.medrec.DiagnosticCategory" >
+    update MEDREC.DIAGNOSTIC_CATEGORY
+    <set >
+      <if test="codeNo != null" >
+        CODE_NO = #{codeNo,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and DIAGNOSIS_TYPE = #{diagnosisType,jdbcType=VARCHAR}
+      and DIAGNOSIS_NO = #{diagnosisNo,jdbcType=DECIMAL}
+      and DIAGNOSIS_CODE = #{diagnosisCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.medrec.DiagnosticCategory" >
+    update MEDREC.DIAGNOSTIC_CATEGORY
+    set CODE_NO = #{codeNo,jdbcType=DECIMAL}
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and DIAGNOSIS_TYPE = #{diagnosisType,jdbcType=VARCHAR}
+      and DIAGNOSIS_NO = #{diagnosisNo,jdbcType=DECIMAL}
+      and DIAGNOSIS_CODE = #{diagnosisCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

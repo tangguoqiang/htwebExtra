@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.ChargetypeVsMedpaywayMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.ChargetypeVsMedpayway" >
+    <id column="CHARGE_TYPE" property="chargeType" jdbcType="VARCHAR" />
+    <id column="INSURANCE_TYPE" property="insuranceType" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="PAY_WAY_NAME" property="payWayName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    CHARGE_TYPE, INSURANCE_TYPE, SERIAL_NO, PAY_WAY_NAME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.ChargetypeVsMedpaywayKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.CHARGETYPE_VS_MEDPAYWAY
+    where CHARGE_TYPE = #{chargeType,jdbcType=VARCHAR}
+      and INSURANCE_TYPE = #{insuranceType,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.ChargetypeVsMedpaywayKey" >
+    delete from COMM.CHARGETYPE_VS_MEDPAYWAY
+    where CHARGE_TYPE = #{chargeType,jdbcType=VARCHAR}
+      and INSURANCE_TYPE = #{insuranceType,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.ChargetypeVsMedpayway" >
+    insert into COMM.CHARGETYPE_VS_MEDPAYWAY (CHARGE_TYPE, INSURANCE_TYPE, SERIAL_NO, 
+      PAY_WAY_NAME)
+    values (#{chargeType,jdbcType=VARCHAR}, #{insuranceType,jdbcType=VARCHAR}, #{serialNo,jdbcType=DECIMAL}, 
+      #{payWayName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.ChargetypeVsMedpayway" >
+    insert into COMM.CHARGETYPE_VS_MEDPAYWAY
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="chargeType != null" >
+        CHARGE_TYPE,
+      </if>
+      <if test="insuranceType != null" >
+        INSURANCE_TYPE,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="payWayName != null" >
+        PAY_WAY_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="chargeType != null" >
+        #{chargeType,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceType != null" >
+        #{insuranceType,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="payWayName != null" >
+        #{payWayName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.ChargetypeVsMedpayway" >
+    update COMM.CHARGETYPE_VS_MEDPAYWAY
+    <set >
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="payWayName != null" >
+        PAY_WAY_NAME = #{payWayName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CHARGE_TYPE = #{chargeType,jdbcType=VARCHAR}
+      and INSURANCE_TYPE = #{insuranceType,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.ChargetypeVsMedpayway" >
+    update COMM.CHARGETYPE_VS_MEDPAYWAY
+    set SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      PAY_WAY_NAME = #{payWayName,jdbcType=VARCHAR}
+    where CHARGE_TYPE = #{chargeType,jdbcType=VARCHAR}
+      and INSURANCE_TYPE = #{insuranceType,jdbcType=VARCHAR}
+  </update>
+</mapper>

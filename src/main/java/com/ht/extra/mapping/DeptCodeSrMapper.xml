@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.DeptCodeSrMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.DeptCodeSr" >
+    <id column="DEPT_CODE" property="deptCode" jdbcType="CHAR" />
+    <result column="SCEP_NO" property="scepNo" jdbcType="CHAR" />
+    <result column="DEPT_NAME" property="deptName" jdbcType="CHAR" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="CHAR" />
+    <result column="DEPT_TCBL" property="deptTcbl" jdbcType="DECIMAL" />
+    <result column="JMBL" property="jmbl" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    DEPT_CODE, SCEP_NO, DEPT_NAME, INPUT_CODE, DEPT_TCBL, JMBL
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.DEPT_CODE_SR
+    where DEPT_CODE = #{deptCode,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.DEPT_CODE_SR
+    where DEPT_CODE = #{deptCode,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.DeptCodeSr" >
+    insert into COMM.DEPT_CODE_SR (DEPT_CODE, SCEP_NO, DEPT_NAME, 
+      INPUT_CODE, DEPT_TCBL, JMBL
+      )
+    values (#{deptCode,jdbcType=CHAR}, #{scepNo,jdbcType=CHAR}, #{deptName,jdbcType=CHAR}, 
+      #{inputCode,jdbcType=CHAR}, #{deptTcbl,jdbcType=DECIMAL}, #{jmbl,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.DeptCodeSr" >
+    insert into COMM.DEPT_CODE_SR
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="deptCode != null" >
+        DEPT_CODE,
+      </if>
+      <if test="scepNo != null" >
+        SCEP_NO,
+      </if>
+      <if test="deptName != null" >
+        DEPT_NAME,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+      <if test="deptTcbl != null" >
+        DEPT_TCBL,
+      </if>
+      <if test="jmbl != null" >
+        JMBL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="deptCode != null" >
+        #{deptCode,jdbcType=CHAR},
+      </if>
+      <if test="scepNo != null" >
+        #{scepNo,jdbcType=CHAR},
+      </if>
+      <if test="deptName != null" >
+        #{deptName,jdbcType=CHAR},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=CHAR},
+      </if>
+      <if test="deptTcbl != null" >
+        #{deptTcbl,jdbcType=DECIMAL},
+      </if>
+      <if test="jmbl != null" >
+        #{jmbl,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.DeptCodeSr" >
+    update COMM.DEPT_CODE_SR
+    <set >
+      <if test="scepNo != null" >
+        SCEP_NO = #{scepNo,jdbcType=CHAR},
+      </if>
+      <if test="deptName != null" >
+        DEPT_NAME = #{deptName,jdbcType=CHAR},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=CHAR},
+      </if>
+      <if test="deptTcbl != null" >
+        DEPT_TCBL = #{deptTcbl,jdbcType=DECIMAL},
+      </if>
+      <if test="jmbl != null" >
+        JMBL = #{jmbl,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where DEPT_CODE = #{deptCode,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.DeptCodeSr" >
+    update COMM.DEPT_CODE_SR
+    set SCEP_NO = #{scepNo,jdbcType=CHAR},
+      DEPT_NAME = #{deptName,jdbcType=CHAR},
+      INPUT_CODE = #{inputCode,jdbcType=CHAR},
+      DEPT_TCBL = #{deptTcbl,jdbcType=DECIMAL},
+      JMBL = #{jmbl,jdbcType=DECIMAL}
+    where DEPT_CODE = #{deptCode,jdbcType=CHAR}
+  </update>
+</mapper>

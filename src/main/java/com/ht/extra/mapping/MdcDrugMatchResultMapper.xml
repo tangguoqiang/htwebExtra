@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.MdcDrugMatchResultMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.MdcDrugMatchResult" >
+    <result column="SUSER_ID" property="suserId" jdbcType="VARCHAR" />
+    <result column="SUSER_UNIT" property="suserUnit" jdbcType="VARCHAR" />
+    <result column="SSYS_NAME" property="ssysName" jdbcType="VARCHAR" />
+    <result column="SSYS_TYPE" property="ssysType" jdbcType="VARCHAR" />
+    <result column="SSTRENGTH" property="sstrength" jdbcType="VARCHAR" />
+    <result column="SSYS_UNIT" property="ssysUnit" jdbcType="VARCHAR" />
+    <result column="SUNITRATE" property="sunitrate" jdbcType="VARCHAR" />
+    <result column="SMATCH_USER" property="smatchUser" jdbcType="VARCHAR" />
+    <result column="SMATCH_TIME" property="smatchTime" jdbcType="VARCHAR" />
+    <result column="SHAS_HIS_INFO" property="shasHisInfo" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.MdcDrugMatchResult" >
+    insert into COMM.MDC_DRUG_MATCH_RESULT (SUSER_ID, SUSER_UNIT, SSYS_NAME, 
+      SSYS_TYPE, SSTRENGTH, SSYS_UNIT, 
+      SUNITRATE, SMATCH_USER, SMATCH_TIME, 
+      SHAS_HIS_INFO)
+    values (#{suserId,jdbcType=VARCHAR}, #{suserUnit,jdbcType=VARCHAR}, #{ssysName,jdbcType=VARCHAR}, 
+      #{ssysType,jdbcType=VARCHAR}, #{sstrength,jdbcType=VARCHAR}, #{ssysUnit,jdbcType=VARCHAR}, 
+      #{sunitrate,jdbcType=VARCHAR}, #{smatchUser,jdbcType=VARCHAR}, #{smatchTime,jdbcType=VARCHAR}, 
+      #{shasHisInfo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.MdcDrugMatchResult" >
+    insert into COMM.MDC_DRUG_MATCH_RESULT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="suserId != null" >
+        SUSER_ID,
+      </if>
+      <if test="suserUnit != null" >
+        SUSER_UNIT,
+      </if>
+      <if test="ssysName != null" >
+        SSYS_NAME,
+      </if>
+      <if test="ssysType != null" >
+        SSYS_TYPE,
+      </if>
+      <if test="sstrength != null" >
+        SSTRENGTH,
+      </if>
+      <if test="ssysUnit != null" >
+        SSYS_UNIT,
+      </if>
+      <if test="sunitrate != null" >
+        SUNITRATE,
+      </if>
+      <if test="smatchUser != null" >
+        SMATCH_USER,
+      </if>
+      <if test="smatchTime != null" >
+        SMATCH_TIME,
+      </if>
+      <if test="shasHisInfo != null" >
+        SHAS_HIS_INFO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="suserId != null" >
+        #{suserId,jdbcType=VARCHAR},
+      </if>
+      <if test="suserUnit != null" >
+        #{suserUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="ssysName != null" >
+        #{ssysName,jdbcType=VARCHAR},
+      </if>
+      <if test="ssysType != null" >
+        #{ssysType,jdbcType=VARCHAR},
+      </if>
+      <if test="sstrength != null" >
+        #{sstrength,jdbcType=VARCHAR},
+      </if>
+      <if test="ssysUnit != null" >
+        #{ssysUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="sunitrate != null" >
+        #{sunitrate,jdbcType=VARCHAR},
+      </if>
+      <if test="smatchUser != null" >
+        #{smatchUser,jdbcType=VARCHAR},
+      </if>
+      <if test="smatchTime != null" >
+        #{smatchTime,jdbcType=VARCHAR},
+      </if>
+      <if test="shasHisInfo != null" >
+        #{shasHisInfo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

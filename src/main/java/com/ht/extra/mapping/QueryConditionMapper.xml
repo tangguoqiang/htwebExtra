@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.QueryConditionMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.QueryCondition" >
+    <id column="APPLICATION" property="application" jdbcType="VARCHAR" />
+    <id column="QUERY_TITLE" property="queryTitle" jdbcType="VARCHAR" />
+    <result column="CONDITION_TYPE" property="conditionType" jdbcType="VARCHAR" />
+    <result column="QUERY_CONDITION" property="queryCondition" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    APPLICATION, QUERY_TITLE, CONDITION_TYPE, QUERY_CONDITION
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.QueryConditionKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.QUERY_CONDITION
+    where APPLICATION = #{application,jdbcType=VARCHAR}
+      and QUERY_TITLE = #{queryTitle,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.QueryConditionKey" >
+    delete from COMM.QUERY_CONDITION
+    where APPLICATION = #{application,jdbcType=VARCHAR}
+      and QUERY_TITLE = #{queryTitle,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.QueryCondition" >
+    insert into COMM.QUERY_CONDITION (APPLICATION, QUERY_TITLE, CONDITION_TYPE, 
+      QUERY_CONDITION)
+    values (#{application,jdbcType=VARCHAR}, #{queryTitle,jdbcType=VARCHAR}, #{conditionType,jdbcType=VARCHAR}, 
+      #{queryCondition,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.QueryCondition" >
+    insert into COMM.QUERY_CONDITION
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="application != null" >
+        APPLICATION,
+      </if>
+      <if test="queryTitle != null" >
+        QUERY_TITLE,
+      </if>
+      <if test="conditionType != null" >
+        CONDITION_TYPE,
+      </if>
+      <if test="queryCondition != null" >
+        QUERY_CONDITION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="application != null" >
+        #{application,jdbcType=VARCHAR},
+      </if>
+      <if test="queryTitle != null" >
+        #{queryTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="conditionType != null" >
+        #{conditionType,jdbcType=VARCHAR},
+      </if>
+      <if test="queryCondition != null" >
+        #{queryCondition,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.QueryCondition" >
+    update COMM.QUERY_CONDITION
+    <set >
+      <if test="conditionType != null" >
+        CONDITION_TYPE = #{conditionType,jdbcType=VARCHAR},
+      </if>
+      <if test="queryCondition != null" >
+        QUERY_CONDITION = #{queryCondition,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where APPLICATION = #{application,jdbcType=VARCHAR}
+      and QUERY_TITLE = #{queryTitle,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.QueryCondition" >
+    update COMM.QUERY_CONDITION
+    set CONDITION_TYPE = #{conditionType,jdbcType=VARCHAR},
+      QUERY_CONDITION = #{queryCondition,jdbcType=VARCHAR}
+    where APPLICATION = #{application,jdbcType=VARCHAR}
+      and QUERY_TITLE = #{queryTitle,jdbcType=VARCHAR}
+  </update>
+</mapper>

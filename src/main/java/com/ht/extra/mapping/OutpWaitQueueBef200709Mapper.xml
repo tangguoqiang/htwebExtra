@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.OutpWaitQueueBef200709Mapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.outpdoct.OutpWaitQueueBef200709" >
+    <result column="VISIT_DATE" property="visitDate" jdbcType="DATE" />
+    <result column="VISIT_NO" property="visitNo" jdbcType="DECIMAL" />
+    <result column="QUEUE_SEQUENCE" property="queueSequence" jdbcType="DECIMAL" />
+    <result column="COUNSEL_NO" property="counselNo" jdbcType="VARCHAR" />
+    <result column="QUEUE_NAME" property="queueName" jdbcType="VARCHAR" />
+    <result column="REGISTER_DEPT" property="registerDept" jdbcType="VARCHAR" />
+    <result column="REGISTER_DATE" property="registerDate" jdbcType="DATE" />
+    <result column="WORKED_INDICATOR" property="workedIndicator" jdbcType="DECIMAL" />
+    <result column="DOCTOR" property="doctor" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.ht.extra.pojo.outpdoct.OutpWaitQueueBef200709" >
+    insert into OUTPDOCT.OUTP_WAIT_QUEUE_BEF200709 (VISIT_DATE, VISIT_NO, QUEUE_SEQUENCE, 
+      COUNSEL_NO, QUEUE_NAME, REGISTER_DEPT, 
+      REGISTER_DATE, WORKED_INDICATOR, DOCTOR
+      )
+    values (#{visitDate,jdbcType=DATE}, #{visitNo,jdbcType=DECIMAL}, #{queueSequence,jdbcType=DECIMAL}, 
+      #{counselNo,jdbcType=VARCHAR}, #{queueName,jdbcType=VARCHAR}, #{registerDept,jdbcType=VARCHAR}, 
+      #{registerDate,jdbcType=DATE}, #{workedIndicator,jdbcType=DECIMAL}, #{doctor,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.outpdoct.OutpWaitQueueBef200709" >
+    insert into OUTPDOCT.OUTP_WAIT_QUEUE_BEF200709
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="visitDate != null" >
+        VISIT_DATE,
+      </if>
+      <if test="visitNo != null" >
+        VISIT_NO,
+      </if>
+      <if test="queueSequence != null" >
+        QUEUE_SEQUENCE,
+      </if>
+      <if test="counselNo != null" >
+        COUNSEL_NO,
+      </if>
+      <if test="queueName != null" >
+        QUEUE_NAME,
+      </if>
+      <if test="registerDept != null" >
+        REGISTER_DEPT,
+      </if>
+      <if test="registerDate != null" >
+        REGISTER_DATE,
+      </if>
+      <if test="workedIndicator != null" >
+        WORKED_INDICATOR,
+      </if>
+      <if test="doctor != null" >
+        DOCTOR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="visitDate != null" >
+        #{visitDate,jdbcType=DATE},
+      </if>
+      <if test="visitNo != null" >
+        #{visitNo,jdbcType=DECIMAL},
+      </if>
+      <if test="queueSequence != null" >
+        #{queueSequence,jdbcType=DECIMAL},
+      </if>
+      <if test="counselNo != null" >
+        #{counselNo,jdbcType=VARCHAR},
+      </if>
+      <if test="queueName != null" >
+        #{queueName,jdbcType=VARCHAR},
+      </if>
+      <if test="registerDept != null" >
+        #{registerDept,jdbcType=VARCHAR},
+      </if>
+      <if test="registerDate != null" >
+        #{registerDate,jdbcType=DATE},
+      </if>
+      <if test="workedIndicator != null" >
+        #{workedIndicator,jdbcType=DECIMAL},
+      </if>
+      <if test="doctor != null" >
+        #{doctor,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

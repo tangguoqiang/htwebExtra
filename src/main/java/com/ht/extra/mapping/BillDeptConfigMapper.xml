@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.BillDeptConfigMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.inpbill.BillDeptConfig" >
+    <id column="DEPT_CODE" property="deptCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from INPBILL.BILL_DEPT_CONFIG
+    where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.inpbill.BillDeptConfig" >
+    insert into INPBILL.BILL_DEPT_CONFIG (DEPT_CODE)
+    values (#{deptCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.inpbill.BillDeptConfig" >
+    insert into INPBILL.BILL_DEPT_CONFIG
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="deptCode != null" >
+        DEPT_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="deptCode != null" >
+        #{deptCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

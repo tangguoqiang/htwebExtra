@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.LabItemVsClassMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.LabItemVsClass" >
+    <id column="ITEM_CODE" property="itemCode" jdbcType="VARCHAR" />
+    <result column="ITEM_CLASS" property="itemClass" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ITEM_CODE, ITEM_CLASS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.LAB_ITEM_VS_CLASS
+    where ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.LAB_ITEM_VS_CLASS
+    where ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.LabItemVsClass" >
+    insert into COMM.LAB_ITEM_VS_CLASS (ITEM_CODE, ITEM_CLASS)
+    values (#{itemCode,jdbcType=VARCHAR}, #{itemClass,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.LabItemVsClass" >
+    insert into COMM.LAB_ITEM_VS_CLASS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="itemCode != null" >
+        ITEM_CODE,
+      </if>
+      <if test="itemClass != null" >
+        ITEM_CLASS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="itemCode != null" >
+        #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemClass != null" >
+        #{itemClass,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.LabItemVsClass" >
+    update COMM.LAB_ITEM_VS_CLASS
+    <set >
+      <if test="itemClass != null" >
+        ITEM_CLASS = #{itemClass,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.LabItemVsClass" >
+    update COMM.LAB_ITEM_VS_CLASS
+    set ITEM_CLASS = #{itemClass,jdbcType=VARCHAR}
+    where ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

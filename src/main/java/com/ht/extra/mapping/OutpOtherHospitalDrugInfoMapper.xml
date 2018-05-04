@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.OutpOtherHospitalDrugInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.outpadm.OutpOtherHospitalDrugInfo" >
+    <id column="HOSPITAL_NAME" property="hospitalName" jdbcType="VARCHAR" />
+    <id column="VISIT_DATE" property="visitDate" jdbcType="DATE" />
+    <id column="RCPT_NO" property="rcptNo" jdbcType="VARCHAR" />
+    <id column="ITEM_NO" property="itemNo" jdbcType="DECIMAL" />
+    <result column="DRUG_NAME" property="drugName" jdbcType="VARCHAR" />
+    <result column="DRUG_SPEC" property="drugSpec" jdbcType="VARCHAR" />
+    <result column="AMOUNT" property="amount" jdbcType="DECIMAL" />
+    <result column="UNITS" property="units" jdbcType="VARCHAR" />
+    <result column="INURANCE_NO" property="inuranceNo" jdbcType="VARCHAR" />
+    <result column="INSURANCE_NO" property="insuranceNo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    HOSPITAL_NAME, VISIT_DATE, RCPT_NO, ITEM_NO, DRUG_NAME, DRUG_SPEC, AMOUNT, UNITS, 
+    INURANCE_NO, INSURANCE_NO
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.outpadm.OutpOtherHospitalDrugInfoKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from OUTPADM.OUTP_OTHER_HOSPITAL_DRUG_INFO
+    where HOSPITAL_NAME = #{hospitalName,jdbcType=VARCHAR}
+      and VISIT_DATE = #{visitDate,jdbcType=DATE}
+      and RCPT_NO = #{rcptNo,jdbcType=VARCHAR}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.outpadm.OutpOtherHospitalDrugInfoKey" >
+    delete from OUTPADM.OUTP_OTHER_HOSPITAL_DRUG_INFO
+    where HOSPITAL_NAME = #{hospitalName,jdbcType=VARCHAR}
+      and VISIT_DATE = #{visitDate,jdbcType=DATE}
+      and RCPT_NO = #{rcptNo,jdbcType=VARCHAR}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.outpadm.OutpOtherHospitalDrugInfo" >
+    insert into OUTPADM.OUTP_OTHER_HOSPITAL_DRUG_INFO (HOSPITAL_NAME, VISIT_DATE, RCPT_NO, 
+      ITEM_NO, DRUG_NAME, DRUG_SPEC, 
+      AMOUNT, UNITS, INURANCE_NO, 
+      INSURANCE_NO)
+    values (#{hospitalName,jdbcType=VARCHAR}, #{visitDate,jdbcType=DATE}, #{rcptNo,jdbcType=VARCHAR}, 
+      #{itemNo,jdbcType=DECIMAL}, #{drugName,jdbcType=VARCHAR}, #{drugSpec,jdbcType=VARCHAR}, 
+      #{amount,jdbcType=DECIMAL}, #{units,jdbcType=VARCHAR}, #{inuranceNo,jdbcType=VARCHAR}, 
+      #{insuranceNo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.outpadm.OutpOtherHospitalDrugInfo" >
+    insert into OUTPADM.OUTP_OTHER_HOSPITAL_DRUG_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="hospitalName != null" >
+        HOSPITAL_NAME,
+      </if>
+      <if test="visitDate != null" >
+        VISIT_DATE,
+      </if>
+      <if test="rcptNo != null" >
+        RCPT_NO,
+      </if>
+      <if test="itemNo != null" >
+        ITEM_NO,
+      </if>
+      <if test="drugName != null" >
+        DRUG_NAME,
+      </if>
+      <if test="drugSpec != null" >
+        DRUG_SPEC,
+      </if>
+      <if test="amount != null" >
+        AMOUNT,
+      </if>
+      <if test="units != null" >
+        UNITS,
+      </if>
+      <if test="inuranceNo != null" >
+        INURANCE_NO,
+      </if>
+      <if test="insuranceNo != null" >
+        INSURANCE_NO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="hospitalName != null" >
+        #{hospitalName,jdbcType=VARCHAR},
+      </if>
+      <if test="visitDate != null" >
+        #{visitDate,jdbcType=DATE},
+      </if>
+      <if test="rcptNo != null" >
+        #{rcptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="itemNo != null" >
+        #{itemNo,jdbcType=DECIMAL},
+      </if>
+      <if test="drugName != null" >
+        #{drugName,jdbcType=VARCHAR},
+      </if>
+      <if test="drugSpec != null" >
+        #{drugSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="units != null" >
+        #{units,jdbcType=VARCHAR},
+      </if>
+      <if test="inuranceNo != null" >
+        #{inuranceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceNo != null" >
+        #{insuranceNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.outpadm.OutpOtherHospitalDrugInfo" >
+    update OUTPADM.OUTP_OTHER_HOSPITAL_DRUG_INFO
+    <set >
+      <if test="drugName != null" >
+        DRUG_NAME = #{drugName,jdbcType=VARCHAR},
+      </if>
+      <if test="drugSpec != null" >
+        DRUG_SPEC = #{drugSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        AMOUNT = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="units != null" >
+        UNITS = #{units,jdbcType=VARCHAR},
+      </if>
+      <if test="inuranceNo != null" >
+        INURANCE_NO = #{inuranceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceNo != null" >
+        INSURANCE_NO = #{insuranceNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where HOSPITAL_NAME = #{hospitalName,jdbcType=VARCHAR}
+      and VISIT_DATE = #{visitDate,jdbcType=DATE}
+      and RCPT_NO = #{rcptNo,jdbcType=VARCHAR}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.outpadm.OutpOtherHospitalDrugInfo" >
+    update OUTPADM.OUTP_OTHER_HOSPITAL_DRUG_INFO
+    set DRUG_NAME = #{drugName,jdbcType=VARCHAR},
+      DRUG_SPEC = #{drugSpec,jdbcType=VARCHAR},
+      AMOUNT = #{amount,jdbcType=DECIMAL},
+      UNITS = #{units,jdbcType=VARCHAR},
+      INURANCE_NO = #{inuranceNo,jdbcType=VARCHAR},
+      INSURANCE_NO = #{insuranceNo,jdbcType=VARCHAR}
+    where HOSPITAL_NAME = #{hospitalName,jdbcType=VARCHAR}
+      and VISIT_DATE = #{visitDate,jdbcType=DATE}
+      and RCPT_NO = #{rcptNo,jdbcType=VARCHAR}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+  </update>
+</mapper>

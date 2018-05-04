@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.DeptDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.DeptDict" >
+    <id column="DEPT_CODE" property="deptCode" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="DEPT_NAME" property="deptName" jdbcType="VARCHAR" />
+    <result column="DEPT_ALIAS" property="deptAlias" jdbcType="VARCHAR" />
+    <result column="CLINIC_ATTR" property="clinicAttr" jdbcType="DECIMAL" />
+    <result column="OUTP_OR_INP" property="outpOrInp" jdbcType="DECIMAL" />
+    <result column="INTERNAL_OR_SERGERY" property="internalOrSergery" jdbcType="DECIMAL" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+    <result column="VALID_INDICATOR" property="validIndicator" jdbcType="DECIMAL" />
+    <result column="DEPT_LOCATION" property="deptLocation" jdbcType="VARCHAR" />
+    <result column="SIGN" property="sign" jdbcType="VARCHAR" />
+    <result column="INSUR_DEPT_CODE" property="insurDeptCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    DEPT_CODE, SERIAL_NO, DEPT_NAME, DEPT_ALIAS, CLINIC_ATTR, OUTP_OR_INP, INTERNAL_OR_SERGERY, 
+    INPUT_CODE, VALID_INDICATOR, DEPT_LOCATION, SIGN, INSUR_DEPT_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.DEPT_DICT
+    where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+  </select>
+  <select id="selectDeptLocation" parameterType="java.lang.String" resultMap="BaseResultMap">
+      select  wm_concat(dept_alias||' '||dept_location) dept_location from dept_dict where dept_code in
+      (select distinct(performed_by) from outp_bill_items where rcpt_no=#{0})
+  </select>
+
+  <select id="selectByAll"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from comm.dept_dict where dept_name not in ('急诊科','急诊','急诊外科','急诊内科','军队医改门诊')
+  </select>
+
+  <select id="selectByAllByMZ"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from comm.dept_dict where EXISTS
+    (SELECT 1 from clinic_index i ,clinic_for_regist c
+      where i.clinic_label = c.clinic_label
+      and c.clinic_date > sysdate -180
+      and i.clinic_dept = dept_dict.dept_code
+    ) and dept_name not in ('急诊科','急诊','急诊外科','急诊内科','军队医改门诊')
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.DEPT_DICT
+    where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.DeptDict" >
+    insert into COMM.DEPT_DICT (DEPT_CODE, SERIAL_NO, DEPT_NAME, 
+      DEPT_ALIAS, CLINIC_ATTR, OUTP_OR_INP, 
+      INTERNAL_OR_SERGERY, INPUT_CODE, VALID_INDICATOR, 
+      DEPT_LOCATION, SIGN, INSUR_DEPT_CODE
+      )
+    values (#{deptCode,jdbcType=VARCHAR}, #{serialNo,jdbcType=DECIMAL}, #{deptName,jdbcType=VARCHAR}, 
+      #{deptAlias,jdbcType=VARCHAR}, #{clinicAttr,jdbcType=DECIMAL}, #{outpOrInp,jdbcType=DECIMAL}, 
+      #{internalOrSergery,jdbcType=DECIMAL}, #{inputCode,jdbcType=VARCHAR}, #{validIndicator,jdbcType=DECIMAL}, 
+      #{deptLocation,jdbcType=VARCHAR}, #{sign,jdbcType=VARCHAR}, #{insurDeptCode,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.DeptDict" >
+    insert into COMM.DEPT_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="deptCode != null" >
+        DEPT_CODE,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="deptName != null" >
+        DEPT_NAME,
+      </if>
+      <if test="deptAlias != null" >
+        DEPT_ALIAS,
+      </if>
+      <if test="clinicAttr != null" >
+        CLINIC_ATTR,
+      </if>
+      <if test="outpOrInp != null" >
+        OUTP_OR_INP,
+      </if>
+      <if test="internalOrSergery != null" >
+        INTERNAL_OR_SERGERY,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+      <if test="validIndicator != null" >
+        VALID_INDICATOR,
+      </if>
+      <if test="deptLocation != null" >
+        DEPT_LOCATION,
+      </if>
+      <if test="sign != null" >
+        SIGN,
+      </if>
+      <if test="insurDeptCode != null" >
+        INSUR_DEPT_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="deptCode != null" >
+        #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="deptName != null" >
+        #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptAlias != null" >
+        #{deptAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="clinicAttr != null" >
+        #{clinicAttr,jdbcType=DECIMAL},
+      </if>
+      <if test="outpOrInp != null" >
+        #{outpOrInp,jdbcType=DECIMAL},
+      </if>
+      <if test="internalOrSergery != null" >
+        #{internalOrSergery,jdbcType=DECIMAL},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="validIndicator != null" >
+        #{validIndicator,jdbcType=DECIMAL},
+      </if>
+      <if test="deptLocation != null" >
+        #{deptLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="sign != null" >
+        #{sign,jdbcType=VARCHAR},
+      </if>
+      <if test="insurDeptCode != null" >
+        #{insurDeptCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.DeptDict" >
+    update COMM.DEPT_DICT
+    <set >
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="deptName != null" >
+        DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptAlias != null" >
+        DEPT_ALIAS = #{deptAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="clinicAttr != null" >
+        CLINIC_ATTR = #{clinicAttr,jdbcType=DECIMAL},
+      </if>
+      <if test="outpOrInp != null" >
+        OUTP_OR_INP = #{outpOrInp,jdbcType=DECIMAL},
+      </if>
+      <if test="internalOrSergery != null" >
+        INTERNAL_OR_SERGERY = #{internalOrSergery,jdbcType=DECIMAL},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="validIndicator != null" >
+        VALID_INDICATOR = #{validIndicator,jdbcType=DECIMAL},
+      </if>
+      <if test="deptLocation != null" >
+        DEPT_LOCATION = #{deptLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="sign != null" >
+        SIGN = #{sign,jdbcType=VARCHAR},
+      </if>
+      <if test="insurDeptCode != null" >
+        INSUR_DEPT_CODE = #{insurDeptCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.DeptDict" >
+    update COMM.DEPT_DICT
+    set SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+      DEPT_ALIAS = #{deptAlias,jdbcType=VARCHAR},
+      CLINIC_ATTR = #{clinicAttr,jdbcType=DECIMAL},
+      OUTP_OR_INP = #{outpOrInp,jdbcType=DECIMAL},
+      INTERNAL_OR_SERGERY = #{internalOrSergery,jdbcType=DECIMAL},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      VALID_INDICATOR = #{validIndicator,jdbcType=DECIMAL},
+      DEPT_LOCATION = #{deptLocation,jdbcType=VARCHAR},
+      SIGN = #{sign,jdbcType=VARCHAR},
+      INSUR_DEPT_CODE = #{insurDeptCode,jdbcType=VARCHAR}
+    where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

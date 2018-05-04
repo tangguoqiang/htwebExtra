@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.UsersToolbarShortcutMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.UsersToolbarShortcut" >
+    <id column="SHORTCUT_ID" property="shortcutId" jdbcType="DECIMAL" />
+    <result column="EMP_NO" property="empNo" jdbcType="VARCHAR" />
+    <result column="SHORTCUT_NAME" property="shortcutName" jdbcType="VARCHAR" />
+    <result column="MENU_ID" property="menuId" jdbcType="VARCHAR" />
+    <result column="LOCALCOMPUTER_EXE_PATH" property="localcomputerExePath" jdbcType="VARCHAR" />
+    <result column="ORDER_BY" property="orderBy" jdbcType="DECIMAL" />
+    <result column="USERTOOLBAR_TYPE" property="usertoolbarType" jdbcType="DECIMAL" />
+    <result column="USER_ROLE" property="userRole" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SHORTCUT_ID, EMP_NO, SHORTCUT_NAME, MENU_ID, LOCALCOMPUTER_EXE_PATH, ORDER_BY, USERTOOLBAR_TYPE, 
+    USER_ROLE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.USERS_TOOLBAR_SHORTCUT
+    where SHORTCUT_ID = #{shortcutId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from COMM.USERS_TOOLBAR_SHORTCUT
+    where SHORTCUT_ID = #{shortcutId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.UsersToolbarShortcut" >
+    insert into COMM.USERS_TOOLBAR_SHORTCUT (SHORTCUT_ID, EMP_NO, SHORTCUT_NAME, 
+      MENU_ID, LOCALCOMPUTER_EXE_PATH, ORDER_BY, 
+      USERTOOLBAR_TYPE, USER_ROLE)
+    values (#{shortcutId,jdbcType=DECIMAL}, #{empNo,jdbcType=VARCHAR}, #{shortcutName,jdbcType=VARCHAR}, 
+      #{menuId,jdbcType=VARCHAR}, #{localcomputerExePath,jdbcType=VARCHAR}, #{orderBy,jdbcType=DECIMAL}, 
+      #{usertoolbarType,jdbcType=DECIMAL}, #{userRole,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.UsersToolbarShortcut" >
+    insert into COMM.USERS_TOOLBAR_SHORTCUT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="shortcutId != null" >
+        SHORTCUT_ID,
+      </if>
+      <if test="empNo != null" >
+        EMP_NO,
+      </if>
+      <if test="shortcutName != null" >
+        SHORTCUT_NAME,
+      </if>
+      <if test="menuId != null" >
+        MENU_ID,
+      </if>
+      <if test="localcomputerExePath != null" >
+        LOCALCOMPUTER_EXE_PATH,
+      </if>
+      <if test="orderBy != null" >
+        ORDER_BY,
+      </if>
+      <if test="usertoolbarType != null" >
+        USERTOOLBAR_TYPE,
+      </if>
+      <if test="userRole != null" >
+        USER_ROLE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="shortcutId != null" >
+        #{shortcutId,jdbcType=DECIMAL},
+      </if>
+      <if test="empNo != null" >
+        #{empNo,jdbcType=VARCHAR},
+      </if>
+      <if test="shortcutName != null" >
+        #{shortcutName,jdbcType=VARCHAR},
+      </if>
+      <if test="menuId != null" >
+        #{menuId,jdbcType=VARCHAR},
+      </if>
+      <if test="localcomputerExePath != null" >
+        #{localcomputerExePath,jdbcType=VARCHAR},
+      </if>
+      <if test="orderBy != null" >
+        #{orderBy,jdbcType=DECIMAL},
+      </if>
+      <if test="usertoolbarType != null" >
+        #{usertoolbarType,jdbcType=DECIMAL},
+      </if>
+      <if test="userRole != null" >
+        #{userRole,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.UsersToolbarShortcut" >
+    update COMM.USERS_TOOLBAR_SHORTCUT
+    <set >
+      <if test="empNo != null" >
+        EMP_NO = #{empNo,jdbcType=VARCHAR},
+      </if>
+      <if test="shortcutName != null" >
+        SHORTCUT_NAME = #{shortcutName,jdbcType=VARCHAR},
+      </if>
+      <if test="menuId != null" >
+        MENU_ID = #{menuId,jdbcType=VARCHAR},
+      </if>
+      <if test="localcomputerExePath != null" >
+        LOCALCOMPUTER_EXE_PATH = #{localcomputerExePath,jdbcType=VARCHAR},
+      </if>
+      <if test="orderBy != null" >
+        ORDER_BY = #{orderBy,jdbcType=DECIMAL},
+      </if>
+      <if test="usertoolbarType != null" >
+        USERTOOLBAR_TYPE = #{usertoolbarType,jdbcType=DECIMAL},
+      </if>
+      <if test="userRole != null" >
+        USER_ROLE = #{userRole,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where SHORTCUT_ID = #{shortcutId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.UsersToolbarShortcut" >
+    update COMM.USERS_TOOLBAR_SHORTCUT
+    set EMP_NO = #{empNo,jdbcType=VARCHAR},
+      SHORTCUT_NAME = #{shortcutName,jdbcType=VARCHAR},
+      MENU_ID = #{menuId,jdbcType=VARCHAR},
+      LOCALCOMPUTER_EXE_PATH = #{localcomputerExePath,jdbcType=VARCHAR},
+      ORDER_BY = #{orderBy,jdbcType=DECIMAL},
+      USERTOOLBAR_TYPE = #{usertoolbarType,jdbcType=DECIMAL},
+      USER_ROLE = #{userRole,jdbcType=DECIMAL}
+    where SHORTCUT_ID = #{shortcutId,jdbcType=DECIMAL}
+  </update>
+</mapper>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.LabItemClassDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.LabItemClassDict" >
+    <id column="CLASS_CODE" property="classCode" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="CLASS_NAME" property="className" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    CLASS_CODE, SERIAL_NO, CLASS_NAME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.LAB_ITEM_CLASS_DICT
+    where CLASS_CODE = #{classCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.LAB_ITEM_CLASS_DICT
+    where CLASS_CODE = #{classCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.LabItemClassDict" >
+    insert into COMM.LAB_ITEM_CLASS_DICT (CLASS_CODE, SERIAL_NO, CLASS_NAME
+      )
+    values (#{classCode,jdbcType=VARCHAR}, #{serialNo,jdbcType=DECIMAL}, #{className,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.LabItemClassDict" >
+    insert into COMM.LAB_ITEM_CLASS_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="classCode != null" >
+        CLASS_CODE,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="className != null" >
+        CLASS_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="classCode != null" >
+        #{classCode,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="className != null" >
+        #{className,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.LabItemClassDict" >
+    update COMM.LAB_ITEM_CLASS_DICT
+    <set >
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="className != null" >
+        CLASS_NAME = #{className,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CLASS_CODE = #{classCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.LabItemClassDict" >
+    update COMM.LAB_ITEM_CLASS_DICT
+    set SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      CLASS_NAME = #{className,jdbcType=VARCHAR}
+    where CLASS_CODE = #{classCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

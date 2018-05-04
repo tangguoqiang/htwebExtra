@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.StandardVsMaterialTempMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.StandardVsMaterialTemp" >
+    <id column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="STANDARD_CODE" property="standardCode" jdbcType="VARCHAR" />
+    <result column="STANDARD_NAME" property="standardName" jdbcType="VARCHAR" />
+    <result column="STANDARD_MATERIAL_NAME" property="standardMaterialName" jdbcType="VARCHAR" />
+    <result column="ITEM_NO" property="itemNo" jdbcType="DECIMAL" />
+    <result column="ITEM_CLASS" property="itemClass" jdbcType="VARCHAR" />
+    <result column="ITEM_CODE" property="itemCode" jdbcType="VARCHAR" />
+    <result column="ITEM_NAME" property="itemName" jdbcType="VARCHAR" />
+    <result column="ITEM_SPEC" property="itemSpec" jdbcType="VARCHAR" />
+    <result column="UNITS" property="units" jdbcType="VARCHAR" />
+    <result column="PRICE" property="price" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SERIAL_NO, STANDARD_CODE, STANDARD_NAME, STANDARD_MATERIAL_NAME, ITEM_NO, ITEM_CLASS, 
+    ITEM_CODE, ITEM_NAME, ITEM_SPEC, UNITS, PRICE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.STANDARD_VS_MATERIAL_TEMP
+    where SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from COMM.STANDARD_VS_MATERIAL_TEMP
+    where SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.StandardVsMaterialTemp" >
+    insert into COMM.STANDARD_VS_MATERIAL_TEMP (SERIAL_NO, STANDARD_CODE, STANDARD_NAME, 
+      STANDARD_MATERIAL_NAME, ITEM_NO, ITEM_CLASS, 
+      ITEM_CODE, ITEM_NAME, ITEM_SPEC, 
+      UNITS, PRICE)
+    values (#{serialNo,jdbcType=DECIMAL}, #{standardCode,jdbcType=VARCHAR}, #{standardName,jdbcType=VARCHAR}, 
+      #{standardMaterialName,jdbcType=VARCHAR}, #{itemNo,jdbcType=DECIMAL}, #{itemClass,jdbcType=VARCHAR}, 
+      #{itemCode,jdbcType=VARCHAR}, #{itemName,jdbcType=VARCHAR}, #{itemSpec,jdbcType=VARCHAR}, 
+      #{units,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.StandardVsMaterialTemp" >
+    insert into COMM.STANDARD_VS_MATERIAL_TEMP
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="standardCode != null" >
+        STANDARD_CODE,
+      </if>
+      <if test="standardName != null" >
+        STANDARD_NAME,
+      </if>
+      <if test="standardMaterialName != null" >
+        STANDARD_MATERIAL_NAME,
+      </if>
+      <if test="itemNo != null" >
+        ITEM_NO,
+      </if>
+      <if test="itemClass != null" >
+        ITEM_CLASS,
+      </if>
+      <if test="itemCode != null" >
+        ITEM_CODE,
+      </if>
+      <if test="itemName != null" >
+        ITEM_NAME,
+      </if>
+      <if test="itemSpec != null" >
+        ITEM_SPEC,
+      </if>
+      <if test="units != null" >
+        UNITS,
+      </if>
+      <if test="price != null" >
+        PRICE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="standardCode != null" >
+        #{standardCode,jdbcType=VARCHAR},
+      </if>
+      <if test="standardName != null" >
+        #{standardName,jdbcType=VARCHAR},
+      </if>
+      <if test="standardMaterialName != null" >
+        #{standardMaterialName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemNo != null" >
+        #{itemNo,jdbcType=DECIMAL},
+      </if>
+      <if test="itemClass != null" >
+        #{itemClass,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode != null" >
+        #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemSpec != null" >
+        #{itemSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="units != null" >
+        #{units,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.StandardVsMaterialTemp" >
+    update COMM.STANDARD_VS_MATERIAL_TEMP
+    <set >
+      <if test="standardCode != null" >
+        STANDARD_CODE = #{standardCode,jdbcType=VARCHAR},
+      </if>
+      <if test="standardName != null" >
+        STANDARD_NAME = #{standardName,jdbcType=VARCHAR},
+      </if>
+      <if test="standardMaterialName != null" >
+        STANDARD_MATERIAL_NAME = #{standardMaterialName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemNo != null" >
+        ITEM_NO = #{itemNo,jdbcType=DECIMAL},
+      </if>
+      <if test="itemClass != null" >
+        ITEM_CLASS = #{itemClass,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode != null" >
+        ITEM_CODE = #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        ITEM_NAME = #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemSpec != null" >
+        ITEM_SPEC = #{itemSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="units != null" >
+        UNITS = #{units,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        PRICE = #{price,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.StandardVsMaterialTemp" >
+    update COMM.STANDARD_VS_MATERIAL_TEMP
+    set STANDARD_CODE = #{standardCode,jdbcType=VARCHAR},
+      STANDARD_NAME = #{standardName,jdbcType=VARCHAR},
+      STANDARD_MATERIAL_NAME = #{standardMaterialName,jdbcType=VARCHAR},
+      ITEM_NO = #{itemNo,jdbcType=DECIMAL},
+      ITEM_CLASS = #{itemClass,jdbcType=VARCHAR},
+      ITEM_CODE = #{itemCode,jdbcType=VARCHAR},
+      ITEM_NAME = #{itemName,jdbcType=VARCHAR},
+      ITEM_SPEC = #{itemSpec,jdbcType=VARCHAR},
+      UNITS = #{units,jdbcType=VARCHAR},
+      PRICE = #{price,jdbcType=DECIMAL}
+    where SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+  </update>
+</mapper>

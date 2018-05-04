@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.ChSgfTempMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.inpbill.ChSgfTemp" >
+    <id column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <id column="VISIT_ID" property="visitId" jdbcType="VARCHAR" />
+    <result column="GFZ_NO" property="gfzNo" jdbcType="VARCHAR" />
+    <result column="BRXM" property="brxm" jdbcType="VARCHAR" />
+    <result column="JIESUAN_DATE" property="jiesuanDate" jdbcType="DATE" />
+    <result column="COSTS" property="costs" jdbcType="DECIMAL" />
+    <result column="CHARGES" property="charges" jdbcType="DECIMAL" />
+    <result column="A" property="a" jdbcType="DECIMAL" />
+    <result column="B" property="b" jdbcType="DECIMAL" />
+    <result column="C" property="c" jdbcType="DECIMAL" />
+    <result column="D" property="d" jdbcType="DECIMAL" />
+    <result column="E" property="e" jdbcType="DECIMAL" />
+    <result column="F" property="f" jdbcType="DECIMAL" />
+    <result column="G" property="g" jdbcType="DECIMAL" />
+    <result column="H" property="h" jdbcType="DECIMAL" />
+    <result column="I" property="i" jdbcType="DECIMAL" />
+    <result column="J" property="j" jdbcType="DECIMAL" />
+    <result column="K" property="k" jdbcType="DECIMAL" />
+    <result column="CA" property="ca" jdbcType="DECIMAL" />
+    <result column="CB" property="cb" jdbcType="DECIMAL" />
+    <result column="CC" property="cc" jdbcType="DECIMAL" />
+    <result column="CD" property="cd" jdbcType="DECIMAL" />
+    <result column="CE" property="ce" jdbcType="DECIMAL" />
+    <result column="CF" property="cf" jdbcType="DECIMAL" />
+    <result column="CG" property="cg" jdbcType="DECIMAL" />
+    <result column="CH" property="ch" jdbcType="DECIMAL" />
+    <result column="CI" property="ci" jdbcType="DECIMAL" />
+    <result column="CJ" property="cj" jdbcType="DECIMAL" />
+    <result column="CK" property="ck" jdbcType="DECIMAL" />
+    <result column="L" property="l" jdbcType="DECIMAL" />
+    <result column="Z" property="z" jdbcType="DECIMAL" />
+    <result column="CL" property="cl" jdbcType="DECIMAL" />
+    <result column="CZ" property="cz" jdbcType="DECIMAL" />
+    <result column="RUYUAN_DATE" property="ruyuanDate" jdbcType="DATE" />
+    <result column="SGF_INP_NO" property="sgfInpNo" jdbcType="VARCHAR" />
+    <result column="DOC_NO" property="docNo" jdbcType="VARCHAR" />
+    <result column="ICD" property="icd" jdbcType="VARCHAR" />
+    <result column="BILL_CODE" property="billCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PATIENT_ID, VISIT_ID, GFZ_NO, BRXM, JIESUAN_DATE, COSTS, CHARGES, A, B, C, D, E, 
+    F, G, H, I, J, K, CA, CB, CC, CD, CE, CF, CG, CH, CI, CJ, CK, L, Z, CL, CZ, RUYUAN_DATE, 
+    SGF_INP_NO, DOC_NO, ICD, BILL_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.inpbill.ChSgfTempKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from INPBILL.CH_SGF_TEMP
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.inpbill.ChSgfTempKey" >
+    delete from INPBILL.CH_SGF_TEMP
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.inpbill.ChSgfTemp" >
+    insert into INPBILL.CH_SGF_TEMP (PATIENT_ID, VISIT_ID, GFZ_NO, 
+      BRXM, JIESUAN_DATE, COSTS, 
+      CHARGES, A, B, C, 
+      D, E, F, G, 
+      H, I, J, K, 
+      CA, CB, CC, CD, 
+      CE, CF, CG, CH, 
+      CI, CJ, CK, L, 
+      Z, CL, CZ, RUYUAN_DATE, 
+      SGF_INP_NO, DOC_NO, ICD, 
+      BILL_CODE)
+    values (#{patientId,jdbcType=VARCHAR}, #{visitId,jdbcType=VARCHAR}, #{gfzNo,jdbcType=VARCHAR}, 
+      #{brxm,jdbcType=VARCHAR}, #{jiesuanDate,jdbcType=DATE}, #{costs,jdbcType=DECIMAL}, 
+      #{charges,jdbcType=DECIMAL}, #{a,jdbcType=DECIMAL}, #{b,jdbcType=DECIMAL}, #{c,jdbcType=DECIMAL}, 
+      #{d,jdbcType=DECIMAL}, #{e,jdbcType=DECIMAL}, #{f,jdbcType=DECIMAL}, #{g,jdbcType=DECIMAL}, 
+      #{h,jdbcType=DECIMAL}, #{i,jdbcType=DECIMAL}, #{j,jdbcType=DECIMAL}, #{k,jdbcType=DECIMAL}, 
+      #{ca,jdbcType=DECIMAL}, #{cb,jdbcType=DECIMAL}, #{cc,jdbcType=DECIMAL}, #{cd,jdbcType=DECIMAL}, 
+      #{ce,jdbcType=DECIMAL}, #{cf,jdbcType=DECIMAL}, #{cg,jdbcType=DECIMAL}, #{ch,jdbcType=DECIMAL}, 
+      #{ci,jdbcType=DECIMAL}, #{cj,jdbcType=DECIMAL}, #{ck,jdbcType=DECIMAL}, #{l,jdbcType=DECIMAL}, 
+      #{z,jdbcType=DECIMAL}, #{cl,jdbcType=DECIMAL}, #{cz,jdbcType=DECIMAL}, #{ruyuanDate,jdbcType=DATE}, 
+      #{sgfInpNo,jdbcType=VARCHAR}, #{docNo,jdbcType=VARCHAR}, #{icd,jdbcType=VARCHAR}, 
+      #{billCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.inpbill.ChSgfTemp" >
+    insert into INPBILL.CH_SGF_TEMP
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="visitId != null" >
+        VISIT_ID,
+      </if>
+      <if test="gfzNo != null" >
+        GFZ_NO,
+      </if>
+      <if test="brxm != null" >
+        BRXM,
+      </if>
+      <if test="jiesuanDate != null" >
+        JIESUAN_DATE,
+      </if>
+      <if test="costs != null" >
+        COSTS,
+      </if>
+      <if test="charges != null" >
+        CHARGES,
+      </if>
+      <if test="a != null" >
+        A,
+      </if>
+      <if test="b != null" >
+        B,
+      </if>
+      <if test="c != null" >
+        C,
+      </if>
+      <if test="d != null" >
+        D,
+      </if>
+      <if test="e != null" >
+        E,
+      </if>
+      <if test="f != null" >
+        F,
+      </if>
+      <if test="g != null" >
+        G,
+      </if>
+      <if test="h != null" >
+        H,
+      </if>
+      <if test="i != null" >
+        I,
+      </if>
+      <if test="j != null" >
+        J,
+      </if>
+      <if test="k != null" >
+        K,
+      </if>
+      <if test="ca != null" >
+        CA,
+      </if>
+      <if test="cb != null" >
+        CB,
+      </if>
+      <if test="cc != null" >
+        CC,
+      </if>
+      <if test="cd != null" >
+        CD,
+      </if>
+      <if test="ce != null" >
+        CE,
+      </if>
+      <if test="cf != null" >
+        CF,
+      </if>
+      <if test="cg != null" >
+        CG,
+      </if>
+      <if test="ch != null" >
+        CH,
+      </if>
+      <if test="ci != null" >
+        CI,
+      </if>
+      <if test="cj != null" >
+        CJ,
+      </if>
+      <if test="ck != null" >
+        CK,
+      </if>
+      <if test="l != null" >
+        L,
+      </if>
+      <if test="z != null" >
+        Z,
+      </if>
+      <if test="cl != null" >
+        CL,
+      </if>
+      <if test="cz != null" >
+        CZ,
+      </if>
+      <if test="ruyuanDate != null" >
+        RUYUAN_DATE,
+      </if>
+      <if test="sgfInpNo != null" >
+        SGF_INP_NO,
+      </if>
+      <if test="docNo != null" >
+        DOC_NO,
+      </if>
+      <if test="icd != null" >
+        ICD,
+      </if>
+      <if test="billCode != null" >
+        BILL_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitId != null" >
+        #{visitId,jdbcType=VARCHAR},
+      </if>
+      <if test="gfzNo != null" >
+        #{gfzNo,jdbcType=VARCHAR},
+      </if>
+      <if test="brxm != null" >
+        #{brxm,jdbcType=VARCHAR},
+      </if>
+      <if test="jiesuanDate != null" >
+        #{jiesuanDate,jdbcType=DATE},
+      </if>
+      <if test="costs != null" >
+        #{costs,jdbcType=DECIMAL},
+      </if>
+      <if test="charges != null" >
+        #{charges,jdbcType=DECIMAL},
+      </if>
+      <if test="a != null" >
+        #{a,jdbcType=DECIMAL},
+      </if>
+      <if test="b != null" >
+        #{b,jdbcType=DECIMAL},
+      </if>
+      <if test="c != null" >
+        #{c,jdbcType=DECIMAL},
+      </if>
+      <if test="d != null" >
+        #{d,jdbcType=DECIMAL},
+      </if>
+      <if test="e != null" >
+        #{e,jdbcType=DECIMAL},
+      </if>
+      <if test="f != null" >
+        #{f,jdbcType=DECIMAL},
+      </if>
+      <if test="g != null" >
+        #{g,jdbcType=DECIMAL},
+      </if>
+      <if test="h != null" >
+        #{h,jdbcType=DECIMAL},
+      </if>
+      <if test="i != null" >
+        #{i,jdbcType=DECIMAL},
+      </if>
+      <if test="j != null" >
+        #{j,jdbcType=DECIMAL},
+      </if>
+      <if test="k != null" >
+        #{k,jdbcType=DECIMAL},
+      </if>
+      <if test="ca != null" >
+        #{ca,jdbcType=DECIMAL},
+      </if>
+      <if test="cb != null" >
+        #{cb,jdbcType=DECIMAL},
+      </if>
+      <if test="cc != null" >
+        #{cc,jdbcType=DECIMAL},
+      </if>
+      <if test="cd != null" >
+        #{cd,jdbcType=DECIMAL},
+      </if>
+      <if test="ce != null" >
+        #{ce,jdbcType=DECIMAL},
+      </if>
+      <if test="cf != null" >
+        #{cf,jdbcType=DECIMAL},
+      </if>
+      <if test="cg != null" >
+        #{cg,jdbcType=DECIMAL},
+      </if>
+      <if test="ch != null" >
+        #{ch,jdbcType=DECIMAL},
+      </if>
+      <if test="ci != null" >
+        #{ci,jdbcType=DECIMAL},
+      </if>
+      <if test="cj != null" >
+        #{cj,jdbcType=DECIMAL},
+      </if>
+      <if test="ck != null" >
+        #{ck,jdbcType=DECIMAL},
+      </if>
+      <if test="l != null" >
+        #{l,jdbcType=DECIMAL},
+      </if>
+      <if test="z != null" >
+        #{z,jdbcType=DECIMAL},
+      </if>
+      <if test="cl != null" >
+        #{cl,jdbcType=DECIMAL},
+      </if>
+      <if test="cz != null" >
+        #{cz,jdbcType=DECIMAL},
+      </if>
+      <if test="ruyuanDate != null" >
+        #{ruyuanDate,jdbcType=DATE},
+      </if>
+      <if test="sgfInpNo != null" >
+        #{sgfInpNo,jdbcType=VARCHAR},
+      </if>
+      <if test="docNo != null" >
+        #{docNo,jdbcType=VARCHAR},
+      </if>
+      <if test="icd != null" >
+        #{icd,jdbcType=VARCHAR},
+      </if>
+      <if test="billCode != null" >
+        #{billCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.inpbill.ChSgfTemp" >
+    update INPBILL.CH_SGF_TEMP
+    <set >
+      <if test="gfzNo != null" >
+        GFZ_NO = #{gfzNo,jdbcType=VARCHAR},
+      </if>
+      <if test="brxm != null" >
+        BRXM = #{brxm,jdbcType=VARCHAR},
+      </if>
+      <if test="jiesuanDate != null" >
+        JIESUAN_DATE = #{jiesuanDate,jdbcType=DATE},
+      </if>
+      <if test="costs != null" >
+        COSTS = #{costs,jdbcType=DECIMAL},
+      </if>
+      <if test="charges != null" >
+        CHARGES = #{charges,jdbcType=DECIMAL},
+      </if>
+      <if test="a != null" >
+        A = #{a,jdbcType=DECIMAL},
+      </if>
+      <if test="b != null" >
+        B = #{b,jdbcType=DECIMAL},
+      </if>
+      <if test="c != null" >
+        C = #{c,jdbcType=DECIMAL},
+      </if>
+      <if test="d != null" >
+        D = #{d,jdbcType=DECIMAL},
+      </if>
+      <if test="e != null" >
+        E = #{e,jdbcType=DECIMAL},
+      </if>
+      <if test="f != null" >
+        F = #{f,jdbcType=DECIMAL},
+      </if>
+      <if test="g != null" >
+        G = #{g,jdbcType=DECIMAL},
+      </if>
+      <if test="h != null" >
+        H = #{h,jdbcType=DECIMAL},
+      </if>
+      <if test="i != null" >
+        I = #{i,jdbcType=DECIMAL},
+      </if>
+      <if test="j != null" >
+        J = #{j,jdbcType=DECIMAL},
+      </if>
+      <if test="k != null" >
+        K = #{k,jdbcType=DECIMAL},
+      </if>
+      <if test="ca != null" >
+        CA = #{ca,jdbcType=DECIMAL},
+      </if>
+      <if test="cb != null" >
+        CB = #{cb,jdbcType=DECIMAL},
+      </if>
+      <if test="cc != null" >
+        CC = #{cc,jdbcType=DECIMAL},
+      </if>
+      <if test="cd != null" >
+        CD = #{cd,jdbcType=DECIMAL},
+      </if>
+      <if test="ce != null" >
+        CE = #{ce,jdbcType=DECIMAL},
+      </if>
+      <if test="cf != null" >
+        CF = #{cf,jdbcType=DECIMAL},
+      </if>
+      <if test="cg != null" >
+        CG = #{cg,jdbcType=DECIMAL},
+      </if>
+      <if test="ch != null" >
+        CH = #{ch,jdbcType=DECIMAL},
+      </if>
+      <if test="ci != null" >
+        CI = #{ci,jdbcType=DECIMAL},
+      </if>
+      <if test="cj != null" >
+        CJ = #{cj,jdbcType=DECIMAL},
+      </if>
+      <if test="ck != null" >
+        CK = #{ck,jdbcType=DECIMAL},
+      </if>
+      <if test="l != null" >
+        L = #{l,jdbcType=DECIMAL},
+      </if>
+      <if test="z != null" >
+        Z = #{z,jdbcType=DECIMAL},
+      </if>
+      <if test="cl != null" >
+        CL = #{cl,jdbcType=DECIMAL},
+      </if>
+      <if test="cz != null" >
+        CZ = #{cz,jdbcType=DECIMAL},
+      </if>
+      <if test="ruyuanDate != null" >
+        RUYUAN_DATE = #{ruyuanDate,jdbcType=DATE},
+      </if>
+      <if test="sgfInpNo != null" >
+        SGF_INP_NO = #{sgfInpNo,jdbcType=VARCHAR},
+      </if>
+      <if test="docNo != null" >
+        DOC_NO = #{docNo,jdbcType=VARCHAR},
+      </if>
+      <if test="icd != null" >
+        ICD = #{icd,jdbcType=VARCHAR},
+      </if>
+      <if test="billCode != null" >
+        BILL_CODE = #{billCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.inpbill.ChSgfTemp" >
+    update INPBILL.CH_SGF_TEMP
+    set GFZ_NO = #{gfzNo,jdbcType=VARCHAR},
+      BRXM = #{brxm,jdbcType=VARCHAR},
+      JIESUAN_DATE = #{jiesuanDate,jdbcType=DATE},
+      COSTS = #{costs,jdbcType=DECIMAL},
+      CHARGES = #{charges,jdbcType=DECIMAL},
+      A = #{a,jdbcType=DECIMAL},
+      B = #{b,jdbcType=DECIMAL},
+      C = #{c,jdbcType=DECIMAL},
+      D = #{d,jdbcType=DECIMAL},
+      E = #{e,jdbcType=DECIMAL},
+      F = #{f,jdbcType=DECIMAL},
+      G = #{g,jdbcType=DECIMAL},
+      H = #{h,jdbcType=DECIMAL},
+      I = #{i,jdbcType=DECIMAL},
+      J = #{j,jdbcType=DECIMAL},
+      K = #{k,jdbcType=DECIMAL},
+      CA = #{ca,jdbcType=DECIMAL},
+      CB = #{cb,jdbcType=DECIMAL},
+      CC = #{cc,jdbcType=DECIMAL},
+      CD = #{cd,jdbcType=DECIMAL},
+      CE = #{ce,jdbcType=DECIMAL},
+      CF = #{cf,jdbcType=DECIMAL},
+      CG = #{cg,jdbcType=DECIMAL},
+      CH = #{ch,jdbcType=DECIMAL},
+      CI = #{ci,jdbcType=DECIMAL},
+      CJ = #{cj,jdbcType=DECIMAL},
+      CK = #{ck,jdbcType=DECIMAL},
+      L = #{l,jdbcType=DECIMAL},
+      Z = #{z,jdbcType=DECIMAL},
+      CL = #{cl,jdbcType=DECIMAL},
+      CZ = #{cz,jdbcType=DECIMAL},
+      RUYUAN_DATE = #{ruyuanDate,jdbcType=DATE},
+      SGF_INP_NO = #{sgfInpNo,jdbcType=VARCHAR},
+      DOC_NO = #{docNo,jdbcType=VARCHAR},
+      ICD = #{icd,jdbcType=VARCHAR},
+      BILL_CODE = #{billCode,jdbcType=VARCHAR}
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.DrugSupplierCatalogMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.DrugSupplierCatalog" >
+    <id column="SUPPLIER_ID" property="supplierId" jdbcType="VARCHAR" />
+    <result column="SUPPLIER" property="supplier" jdbcType="VARCHAR" />
+    <result column="SUPPLIER_CLASS" property="supplierClass" jdbcType="VARCHAR" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SUPPLIER_ID, SUPPLIER, SUPPLIER_CLASS, INPUT_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.DRUG_SUPPLIER_CATALOG
+    where SUPPLIER_ID = #{supplierId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.DRUG_SUPPLIER_CATALOG
+    where SUPPLIER_ID = #{supplierId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.DrugSupplierCatalog" >
+    insert into COMM.DRUG_SUPPLIER_CATALOG (SUPPLIER_ID, SUPPLIER, SUPPLIER_CLASS, 
+      INPUT_CODE)
+    values (#{supplierId,jdbcType=VARCHAR}, #{supplier,jdbcType=VARCHAR}, #{supplierClass,jdbcType=VARCHAR}, 
+      #{inputCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.DrugSupplierCatalog" >
+    insert into COMM.DRUG_SUPPLIER_CATALOG
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="supplierId != null" >
+        SUPPLIER_ID,
+      </if>
+      <if test="supplier != null" >
+        SUPPLIER,
+      </if>
+      <if test="supplierClass != null" >
+        SUPPLIER_CLASS,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="supplierId != null" >
+        #{supplierId,jdbcType=VARCHAR},
+      </if>
+      <if test="supplier != null" >
+        #{supplier,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierClass != null" >
+        #{supplierClass,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.DrugSupplierCatalog" >
+    update COMM.DRUG_SUPPLIER_CATALOG
+    <set >
+      <if test="supplier != null" >
+        SUPPLIER = #{supplier,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierClass != null" >
+        SUPPLIER_CLASS = #{supplierClass,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SUPPLIER_ID = #{supplierId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.DrugSupplierCatalog" >
+    update COMM.DRUG_SUPPLIER_CATALOG
+    set SUPPLIER = #{supplier,jdbcType=VARCHAR},
+      SUPPLIER_CLASS = #{supplierClass,jdbcType=VARCHAR},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR}
+    where SUPPLIER_ID = #{supplierId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.QuestionMrRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.medrec.QuestionMrRecord" >
+    <id column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <id column="VISIT_ID" property="visitId" jdbcType="DECIMAL" />
+    <id column="RETURN_TIME" property="returnTime" jdbcType="VARCHAR" />
+    <result column="INP_NO" property="inpNo" jdbcType="VARCHAR" />
+    <result column="MR_EXAMINATION_DATE" property="mrExaminationDate" jdbcType="DATE" />
+    <result column="MR_EXAMINER" property="mrExaminer" jdbcType="VARCHAR" />
+    <result column="MR_RETURN_DATE" property="mrReturnDate" jdbcType="DATE" />
+    <result column="MR_RETURNER" property="mrReturner" jdbcType="VARCHAR" />
+    <result column="MR_NURSE_CONFIRM_DATE" property="mrNurseConfirmDate" jdbcType="DATE" />
+    <result column="MR_NURSE_CONFIRMER" property="mrNurseConfirmer" jdbcType="VARCHAR" />
+    <result column="MR_SUBMIT_DATE" property="mrSubmitDate" jdbcType="DATE" />
+    <result column="MR_SUBMIT_USER" property="mrSubmitUser" jdbcType="VARCHAR" />
+    <result column="MR_CONFIRM_DATE" property="mrConfirmDate" jdbcType="DATE" />
+    <result column="MR_COFIRMER" property="mrCofirmer" jdbcType="VARCHAR" />
+    <result column="MR_STATUS" property="mrStatus" jdbcType="VARCHAR" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+    <result column="SCORE" property="score" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PATIENT_ID, VISIT_ID, RETURN_TIME, INP_NO, MR_EXAMINATION_DATE, MR_EXAMINER, MR_RETURN_DATE, 
+    MR_RETURNER, MR_NURSE_CONFIRM_DATE, MR_NURSE_CONFIRMER, MR_SUBMIT_DATE, MR_SUBMIT_USER, 
+    MR_CONFIRM_DATE, MR_COFIRMER, MR_STATUS, MEMO, SCORE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.medrec.QuestionMrRecordKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from MEDREC.QUESTION_MR_RECORD
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and RETURN_TIME = #{returnTime,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.medrec.QuestionMrRecordKey" >
+    delete from MEDREC.QUESTION_MR_RECORD
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and RETURN_TIME = #{returnTime,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.medrec.QuestionMrRecord" >
+    insert into MEDREC.QUESTION_MR_RECORD (PATIENT_ID, VISIT_ID, RETURN_TIME, 
+      INP_NO, MR_EXAMINATION_DATE, MR_EXAMINER, 
+      MR_RETURN_DATE, MR_RETURNER, MR_NURSE_CONFIRM_DATE, 
+      MR_NURSE_CONFIRMER, MR_SUBMIT_DATE, MR_SUBMIT_USER, 
+      MR_CONFIRM_DATE, MR_COFIRMER, MR_STATUS, 
+      MEMO, SCORE)
+    values (#{patientId,jdbcType=VARCHAR}, #{visitId,jdbcType=DECIMAL}, #{returnTime,jdbcType=VARCHAR}, 
+      #{inpNo,jdbcType=VARCHAR}, #{mrExaminationDate,jdbcType=DATE}, #{mrExaminer,jdbcType=VARCHAR}, 
+      #{mrReturnDate,jdbcType=DATE}, #{mrReturner,jdbcType=VARCHAR}, #{mrNurseConfirmDate,jdbcType=DATE}, 
+      #{mrNurseConfirmer,jdbcType=VARCHAR}, #{mrSubmitDate,jdbcType=DATE}, #{mrSubmitUser,jdbcType=VARCHAR}, 
+      #{mrConfirmDate,jdbcType=DATE}, #{mrCofirmer,jdbcType=VARCHAR}, #{mrStatus,jdbcType=VARCHAR}, 
+      #{memo,jdbcType=VARCHAR}, #{score,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.medrec.QuestionMrRecord" >
+    insert into MEDREC.QUESTION_MR_RECORD
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="visitId != null" >
+        VISIT_ID,
+      </if>
+      <if test="returnTime != null" >
+        RETURN_TIME,
+      </if>
+      <if test="inpNo != null" >
+        INP_NO,
+      </if>
+      <if test="mrExaminationDate != null" >
+        MR_EXAMINATION_DATE,
+      </if>
+      <if test="mrExaminer != null" >
+        MR_EXAMINER,
+      </if>
+      <if test="mrReturnDate != null" >
+        MR_RETURN_DATE,
+      </if>
+      <if test="mrReturner != null" >
+        MR_RETURNER,
+      </if>
+      <if test="mrNurseConfirmDate != null" >
+        MR_NURSE_CONFIRM_DATE,
+      </if>
+      <if test="mrNurseConfirmer != null" >
+        MR_NURSE_CONFIRMER,
+      </if>
+      <if test="mrSubmitDate != null" >
+        MR_SUBMIT_DATE,
+      </if>
+      <if test="mrSubmitUser != null" >
+        MR_SUBMIT_USER,
+      </if>
+      <if test="mrConfirmDate != null" >
+        MR_CONFIRM_DATE,
+      </if>
+      <if test="mrCofirmer != null" >
+        MR_COFIRMER,
+      </if>
+      <if test="mrStatus != null" >
+        MR_STATUS,
+      </if>
+      <if test="memo != null" >
+        MEMO,
+      </if>
+      <if test="score != null" >
+        SCORE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitId != null" >
+        #{visitId,jdbcType=DECIMAL},
+      </if>
+      <if test="returnTime != null" >
+        #{returnTime,jdbcType=VARCHAR},
+      </if>
+      <if test="inpNo != null" >
+        #{inpNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mrExaminationDate != null" >
+        #{mrExaminationDate,jdbcType=DATE},
+      </if>
+      <if test="mrExaminer != null" >
+        #{mrExaminer,jdbcType=VARCHAR},
+      </if>
+      <if test="mrReturnDate != null" >
+        #{mrReturnDate,jdbcType=DATE},
+      </if>
+      <if test="mrReturner != null" >
+        #{mrReturner,jdbcType=VARCHAR},
+      </if>
+      <if test="mrNurseConfirmDate != null" >
+        #{mrNurseConfirmDate,jdbcType=DATE},
+      </if>
+      <if test="mrNurseConfirmer != null" >
+        #{mrNurseConfirmer,jdbcType=VARCHAR},
+      </if>
+      <if test="mrSubmitDate != null" >
+        #{mrSubmitDate,jdbcType=DATE},
+      </if>
+      <if test="mrSubmitUser != null" >
+        #{mrSubmitUser,jdbcType=VARCHAR},
+      </if>
+      <if test="mrConfirmDate != null" >
+        #{mrConfirmDate,jdbcType=DATE},
+      </if>
+      <if test="mrCofirmer != null" >
+        #{mrCofirmer,jdbcType=VARCHAR},
+      </if>
+      <if test="mrStatus != null" >
+        #{mrStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.medrec.QuestionMrRecord" >
+    update MEDREC.QUESTION_MR_RECORD
+    <set >
+      <if test="inpNo != null" >
+        INP_NO = #{inpNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mrExaminationDate != null" >
+        MR_EXAMINATION_DATE = #{mrExaminationDate,jdbcType=DATE},
+      </if>
+      <if test="mrExaminer != null" >
+        MR_EXAMINER = #{mrExaminer,jdbcType=VARCHAR},
+      </if>
+      <if test="mrReturnDate != null" >
+        MR_RETURN_DATE = #{mrReturnDate,jdbcType=DATE},
+      </if>
+      <if test="mrReturner != null" >
+        MR_RETURNER = #{mrReturner,jdbcType=VARCHAR},
+      </if>
+      <if test="mrNurseConfirmDate != null" >
+        MR_NURSE_CONFIRM_DATE = #{mrNurseConfirmDate,jdbcType=DATE},
+      </if>
+      <if test="mrNurseConfirmer != null" >
+        MR_NURSE_CONFIRMER = #{mrNurseConfirmer,jdbcType=VARCHAR},
+      </if>
+      <if test="mrSubmitDate != null" >
+        MR_SUBMIT_DATE = #{mrSubmitDate,jdbcType=DATE},
+      </if>
+      <if test="mrSubmitUser != null" >
+        MR_SUBMIT_USER = #{mrSubmitUser,jdbcType=VARCHAR},
+      </if>
+      <if test="mrConfirmDate != null" >
+        MR_CONFIRM_DATE = #{mrConfirmDate,jdbcType=DATE},
+      </if>
+      <if test="mrCofirmer != null" >
+        MR_COFIRMER = #{mrCofirmer,jdbcType=VARCHAR},
+      </if>
+      <if test="mrStatus != null" >
+        MR_STATUS = #{mrStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        MEMO = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        SCORE = #{score,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and RETURN_TIME = #{returnTime,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.medrec.QuestionMrRecord" >
+    update MEDREC.QUESTION_MR_RECORD
+    set INP_NO = #{inpNo,jdbcType=VARCHAR},
+      MR_EXAMINATION_DATE = #{mrExaminationDate,jdbcType=DATE},
+      MR_EXAMINER = #{mrExaminer,jdbcType=VARCHAR},
+      MR_RETURN_DATE = #{mrReturnDate,jdbcType=DATE},
+      MR_RETURNER = #{mrReturner,jdbcType=VARCHAR},
+      MR_NURSE_CONFIRM_DATE = #{mrNurseConfirmDate,jdbcType=DATE},
+      MR_NURSE_CONFIRMER = #{mrNurseConfirmer,jdbcType=VARCHAR},
+      MR_SUBMIT_DATE = #{mrSubmitDate,jdbcType=DATE},
+      MR_SUBMIT_USER = #{mrSubmitUser,jdbcType=VARCHAR},
+      MR_CONFIRM_DATE = #{mrConfirmDate,jdbcType=DATE},
+      MR_COFIRMER = #{mrCofirmer,jdbcType=VARCHAR},
+      MR_STATUS = #{mrStatus,jdbcType=VARCHAR},
+      MEMO = #{memo,jdbcType=VARCHAR},
+      SCORE = #{score,jdbcType=DECIMAL}
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and RETURN_TIME = #{returnTime,jdbcType=VARCHAR}
+  </update>
+</mapper>

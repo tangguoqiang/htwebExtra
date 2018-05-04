@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.TClinicMasterMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.outpadm.TClinicMaster" >
+    <result column="VISIT_DATE" property="visitDate" jdbcType="DATE" />
+    <result column="VISIT_TIME" property="visitTime" jdbcType="VARCHAR" />
+    <result column="VISIT_NO" property="visitNo" jdbcType="DECIMAL" />
+    <result column="CLINIC_ID" property="clinicId" jdbcType="DECIMAL" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="NAME_PHONETIC" property="namePhonetic" jdbcType="VARCHAR" />
+    <result column="SEX" property="sex" jdbcType="VARCHAR" />
+    <result column="AGE" property="age" jdbcType="DECIMAL" />
+    <result column="IDENTITY" property="identity" jdbcType="VARCHAR" />
+    <result column="CHARGE_TYPE" property="chargeType" jdbcType="VARCHAR" />
+    <result column="UNIT_IN_CONTRACT" property="unitInContract" jdbcType="VARCHAR" />
+    <result column="CLINIC_TYPE" property="clinicType" jdbcType="VARCHAR" />
+    <result column="FIRST_VISIT_INDICATOR" property="firstVisitIndicator" jdbcType="DECIMAL" />
+    <result column="VISIT_DEPT" property="visitDept" jdbcType="VARCHAR" />
+    <result column="VISIT_SPECIAL_CLINIC" property="visitSpecialClinic" jdbcType="VARCHAR" />
+    <result column="DOCTOR" property="doctor" jdbcType="VARCHAR" />
+    <result column="DOCTOR_TITLE" property="doctorTitle" jdbcType="VARCHAR" />
+    <result column="MR_PROVIDE_INDICATOR" property="mrProvideIndicator" jdbcType="DECIMAL" />
+    <result column="REGISTRY_STATUS" property="registryStatus" jdbcType="DECIMAL" />
+    <result column="REGISTRY_DATE" property="registryDate" jdbcType="DATE" />
+    <result column="CLINIC_PRICE" property="clinicPrice" jdbcType="DECIMAL" />
+    <result column="OPERATOR" property="operator" jdbcType="VARCHAR" />
+    <result column="RETURNED_DATE" property="returnedDate" jdbcType="DATE" />
+    <result column="RETURNED_OPERATOR" property="returnedOperator" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.ht.extra.pojo.outpadm.TClinicMaster" >
+    insert into OUTPADM.T_CLINIC_MASTER (VISIT_DATE, VISIT_TIME, VISIT_NO, 
+      CLINIC_ID, SERIAL_NO, PATIENT_ID, 
+      NAME, NAME_PHONETIC, SEX, 
+      AGE, IDENTITY, CHARGE_TYPE, 
+      UNIT_IN_CONTRACT, CLINIC_TYPE, FIRST_VISIT_INDICATOR, 
+      VISIT_DEPT, VISIT_SPECIAL_CLINIC, DOCTOR, 
+      DOCTOR_TITLE, MR_PROVIDE_INDICATOR, REGISTRY_STATUS, 
+      REGISTRY_DATE, CLINIC_PRICE, OPERATOR, 
+      RETURNED_DATE, RETURNED_OPERATOR)
+    values (#{visitDate,jdbcType=DATE}, #{visitTime,jdbcType=VARCHAR}, #{visitNo,jdbcType=DECIMAL}, 
+      #{clinicId,jdbcType=DECIMAL}, #{serialNo,jdbcType=DECIMAL}, #{patientId,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{namePhonetic,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+      #{age,jdbcType=DECIMAL}, #{identity,jdbcType=VARCHAR}, #{chargeType,jdbcType=VARCHAR}, 
+      #{unitInContract,jdbcType=VARCHAR}, #{clinicType,jdbcType=VARCHAR}, #{firstVisitIndicator,jdbcType=DECIMAL}, 
+      #{visitDept,jdbcType=VARCHAR}, #{visitSpecialClinic,jdbcType=VARCHAR}, #{doctor,jdbcType=VARCHAR}, 
+      #{doctorTitle,jdbcType=VARCHAR}, #{mrProvideIndicator,jdbcType=DECIMAL}, #{registryStatus,jdbcType=DECIMAL}, 
+      #{registryDate,jdbcType=DATE}, #{clinicPrice,jdbcType=DECIMAL}, #{operator,jdbcType=VARCHAR}, 
+      #{returnedDate,jdbcType=DATE}, #{returnedOperator,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.outpadm.TClinicMaster" >
+    insert into OUTPADM.T_CLINIC_MASTER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="visitDate != null" >
+        VISIT_DATE,
+      </if>
+      <if test="visitTime != null" >
+        VISIT_TIME,
+      </if>
+      <if test="visitNo != null" >
+        VISIT_NO,
+      </if>
+      <if test="clinicId != null" >
+        CLINIC_ID,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="namePhonetic != null" >
+        NAME_PHONETIC,
+      </if>
+      <if test="sex != null" >
+        SEX,
+      </if>
+      <if test="age != null" >
+        AGE,
+      </if>
+      <if test="identity != null" >
+        IDENTITY,
+      </if>
+      <if test="chargeType != null" >
+        CHARGE_TYPE,
+      </if>
+      <if test="unitInContract != null" >
+        UNIT_IN_CONTRACT,
+      </if>
+      <if test="clinicType != null" >
+        CLINIC_TYPE,
+      </if>
+      <if test="firstVisitIndicator != null" >
+        FIRST_VISIT_INDICATOR,
+      </if>
+      <if test="visitDept != null" >
+        VISIT_DEPT,
+      </if>
+      <if test="visitSpecialClinic != null" >
+        VISIT_SPECIAL_CLINIC,
+      </if>
+      <if test="doctor != null" >
+        DOCTOR,
+      </if>
+      <if test="doctorTitle != null" >
+        DOCTOR_TITLE,
+      </if>
+      <if test="mrProvideIndicator != null" >
+        MR_PROVIDE_INDICATOR,
+      </if>
+      <if test="registryStatus != null" >
+        REGISTRY_STATUS,
+      </if>
+      <if test="registryDate != null" >
+        REGISTRY_DATE,
+      </if>
+      <if test="clinicPrice != null" >
+        CLINIC_PRICE,
+      </if>
+      <if test="operator != null" >
+        OPERATOR,
+      </if>
+      <if test="returnedDate != null" >
+        RETURNED_DATE,
+      </if>
+      <if test="returnedOperator != null" >
+        RETURNED_OPERATOR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="visitDate != null" >
+        #{visitDate,jdbcType=DATE},
+      </if>
+      <if test="visitTime != null" >
+        #{visitTime,jdbcType=VARCHAR},
+      </if>
+      <if test="visitNo != null" >
+        #{visitNo,jdbcType=DECIMAL},
+      </if>
+      <if test="clinicId != null" >
+        #{clinicId,jdbcType=DECIMAL},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="namePhonetic != null" >
+        #{namePhonetic,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=DECIMAL},
+      </if>
+      <if test="identity != null" >
+        #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeType != null" >
+        #{chargeType,jdbcType=VARCHAR},
+      </if>
+      <if test="unitInContract != null" >
+        #{unitInContract,jdbcType=VARCHAR},
+      </if>
+      <if test="clinicType != null" >
+        #{clinicType,jdbcType=VARCHAR},
+      </if>
+      <if test="firstVisitIndicator != null" >
+        #{firstVisitIndicator,jdbcType=DECIMAL},
+      </if>
+      <if test="visitDept != null" >
+        #{visitDept,jdbcType=VARCHAR},
+      </if>
+      <if test="visitSpecialClinic != null" >
+        #{visitSpecialClinic,jdbcType=VARCHAR},
+      </if>
+      <if test="doctor != null" >
+        #{doctor,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorTitle != null" >
+        #{doctorTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="mrProvideIndicator != null" >
+        #{mrProvideIndicator,jdbcType=DECIMAL},
+      </if>
+      <if test="registryStatus != null" >
+        #{registryStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="registryDate != null" >
+        #{registryDate,jdbcType=DATE},
+      </if>
+      <if test="clinicPrice != null" >
+        #{clinicPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="operator != null" >
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="returnedDate != null" >
+        #{returnedDate,jdbcType=DATE},
+      </if>
+      <if test="returnedOperator != null" >
+        #{returnedOperator,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

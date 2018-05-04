@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.ClinicVsChargeBackupMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.ClinicVsChargeBackup" >
+    <id column="CLINIC_ITEM_CLASS" property="clinicItemClass" jdbcType="VARCHAR" />
+    <id column="CLINIC_ITEM_CODE" property="clinicItemCode" jdbcType="VARCHAR" />
+    <id column="CHARGE_ITEM_NO" property="chargeItemNo" jdbcType="DECIMAL" />
+    <result column="CHARGE_ITEM_CLASS" property="chargeItemClass" jdbcType="VARCHAR" />
+    <result column="CHARGE_ITEM_CODE" property="chargeItemCode" jdbcType="VARCHAR" />
+    <result column="CHARGE_ITEM_SPEC" property="chargeItemSpec" jdbcType="VARCHAR" />
+    <result column="AMOUNT" property="amount" jdbcType="DECIMAL" />
+    <result column="UNITS" property="units" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    CLINIC_ITEM_CLASS, CLINIC_ITEM_CODE, CHARGE_ITEM_NO, CHARGE_ITEM_CLASS, CHARGE_ITEM_CODE, 
+    CHARGE_ITEM_SPEC, AMOUNT, UNITS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.ClinicVsChargeBackupKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.CLINIC_VS_CHARGE_BACKUP
+    where CLINIC_ITEM_CLASS = #{clinicItemClass,jdbcType=VARCHAR}
+      and CLINIC_ITEM_CODE = #{clinicItemCode,jdbcType=VARCHAR}
+      and CHARGE_ITEM_NO = #{chargeItemNo,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.ClinicVsChargeBackupKey" >
+    delete from COMM.CLINIC_VS_CHARGE_BACKUP
+    where CLINIC_ITEM_CLASS = #{clinicItemClass,jdbcType=VARCHAR}
+      and CLINIC_ITEM_CODE = #{clinicItemCode,jdbcType=VARCHAR}
+      and CHARGE_ITEM_NO = #{chargeItemNo,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.ClinicVsChargeBackup" >
+    insert into COMM.CLINIC_VS_CHARGE_BACKUP (CLINIC_ITEM_CLASS, CLINIC_ITEM_CODE, 
+      CHARGE_ITEM_NO, CHARGE_ITEM_CLASS, CHARGE_ITEM_CODE, 
+      CHARGE_ITEM_SPEC, AMOUNT, UNITS
+      )
+    values (#{clinicItemClass,jdbcType=VARCHAR}, #{clinicItemCode,jdbcType=VARCHAR}, 
+      #{chargeItemNo,jdbcType=DECIMAL}, #{chargeItemClass,jdbcType=VARCHAR}, #{chargeItemCode,jdbcType=VARCHAR}, 
+      #{chargeItemSpec,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, #{units,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.ClinicVsChargeBackup" >
+    insert into COMM.CLINIC_VS_CHARGE_BACKUP
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="clinicItemClass != null" >
+        CLINIC_ITEM_CLASS,
+      </if>
+      <if test="clinicItemCode != null" >
+        CLINIC_ITEM_CODE,
+      </if>
+      <if test="chargeItemNo != null" >
+        CHARGE_ITEM_NO,
+      </if>
+      <if test="chargeItemClass != null" >
+        CHARGE_ITEM_CLASS,
+      </if>
+      <if test="chargeItemCode != null" >
+        CHARGE_ITEM_CODE,
+      </if>
+      <if test="chargeItemSpec != null" >
+        CHARGE_ITEM_SPEC,
+      </if>
+      <if test="amount != null" >
+        AMOUNT,
+      </if>
+      <if test="units != null" >
+        UNITS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="clinicItemClass != null" >
+        #{clinicItemClass,jdbcType=VARCHAR},
+      </if>
+      <if test="clinicItemCode != null" >
+        #{clinicItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeItemNo != null" >
+        #{chargeItemNo,jdbcType=DECIMAL},
+      </if>
+      <if test="chargeItemClass != null" >
+        #{chargeItemClass,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeItemCode != null" >
+        #{chargeItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeItemSpec != null" >
+        #{chargeItemSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="units != null" >
+        #{units,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.ClinicVsChargeBackup" >
+    update COMM.CLINIC_VS_CHARGE_BACKUP
+    <set >
+      <if test="chargeItemClass != null" >
+        CHARGE_ITEM_CLASS = #{chargeItemClass,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeItemCode != null" >
+        CHARGE_ITEM_CODE = #{chargeItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeItemSpec != null" >
+        CHARGE_ITEM_SPEC = #{chargeItemSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        AMOUNT = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="units != null" >
+        UNITS = #{units,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CLINIC_ITEM_CLASS = #{clinicItemClass,jdbcType=VARCHAR}
+      and CLINIC_ITEM_CODE = #{clinicItemCode,jdbcType=VARCHAR}
+      and CHARGE_ITEM_NO = #{chargeItemNo,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.ClinicVsChargeBackup" >
+    update COMM.CLINIC_VS_CHARGE_BACKUP
+    set CHARGE_ITEM_CLASS = #{chargeItemClass,jdbcType=VARCHAR},
+      CHARGE_ITEM_CODE = #{chargeItemCode,jdbcType=VARCHAR},
+      CHARGE_ITEM_SPEC = #{chargeItemSpec,jdbcType=VARCHAR},
+      AMOUNT = #{amount,jdbcType=DECIMAL},
+      UNITS = #{units,jdbcType=VARCHAR}
+    where CLINIC_ITEM_CLASS = #{clinicItemClass,jdbcType=VARCHAR}
+      and CLINIC_ITEM_CODE = #{clinicItemCode,jdbcType=VARCHAR}
+      and CHARGE_ITEM_NO = #{chargeItemNo,jdbcType=DECIMAL}
+  </update>
+</mapper>

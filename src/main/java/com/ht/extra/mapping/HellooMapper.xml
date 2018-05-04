@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.HellooMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.Helloo" >
+    <result column="A" property="a" jdbcType="DECIMAL" />
+    <result column="AA" property="aa" jdbcType="CHAR" />
+    <result column="AAA" property="aaa" jdbcType="CHAR" />
+    <result column="AAAA" property="aaaa" jdbcType="CHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.Helloo" >
+    insert into COMM.HELLOO (A, AA, AAA, AAAA
+      )
+    values (#{a,jdbcType=DECIMAL}, #{aa,jdbcType=CHAR}, #{aaa,jdbcType=CHAR}, #{aaaa,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.Helloo" >
+    insert into COMM.HELLOO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="a != null" >
+        A,
+      </if>
+      <if test="aa != null" >
+        AA,
+      </if>
+      <if test="aaa != null" >
+        AAA,
+      </if>
+      <if test="aaaa != null" >
+        AAAA,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="a != null" >
+        #{a,jdbcType=DECIMAL},
+      </if>
+      <if test="aa != null" >
+        #{aa,jdbcType=CHAR},
+      </if>
+      <if test="aaa != null" >
+        #{aaa,jdbcType=CHAR},
+      </if>
+      <if test="aaaa != null" >
+        #{aaaa,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

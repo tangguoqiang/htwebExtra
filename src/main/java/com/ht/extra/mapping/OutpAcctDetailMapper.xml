@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.OutpAcctDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.outpbill.OutpAcctDetail" >
+    <id column="ACCT_NO" property="acctNo" jdbcType="VARCHAR" />
+    <id column="TALLY_FEE_CLASS" property="tallyFeeClass" jdbcType="VARCHAR" />
+    <result column="COSTS" property="costs" jdbcType="DECIMAL" />
+    <result column="INCOME" property="income" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ACCT_NO, TALLY_FEE_CLASS, COSTS, INCOME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.outpbill.OutpAcctDetailKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from OUTPBILL.OUTP_ACCT_DETAIL
+    where ACCT_NO = #{acctNo,jdbcType=VARCHAR}
+      and TALLY_FEE_CLASS = #{tallyFeeClass,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.outpbill.OutpAcctDetailKey" >
+    delete from OUTPBILL.OUTP_ACCT_DETAIL
+    where ACCT_NO = #{acctNo,jdbcType=VARCHAR}
+      and TALLY_FEE_CLASS = #{tallyFeeClass,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.outpbill.OutpAcctDetail" >
+    insert into OUTPBILL.OUTP_ACCT_DETAIL (ACCT_NO, TALLY_FEE_CLASS, COSTS, 
+      INCOME)
+    values (#{acctNo,jdbcType=VARCHAR}, #{tallyFeeClass,jdbcType=VARCHAR}, #{costs,jdbcType=DECIMAL}, 
+      #{income,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.outpbill.OutpAcctDetail" >
+    insert into OUTPBILL.OUTP_ACCT_DETAIL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="acctNo != null" >
+        ACCT_NO,
+      </if>
+      <if test="tallyFeeClass != null" >
+        TALLY_FEE_CLASS,
+      </if>
+      <if test="costs != null" >
+        COSTS,
+      </if>
+      <if test="income != null" >
+        INCOME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="acctNo != null" >
+        #{acctNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tallyFeeClass != null" >
+        #{tallyFeeClass,jdbcType=VARCHAR},
+      </if>
+      <if test="costs != null" >
+        #{costs,jdbcType=DECIMAL},
+      </if>
+      <if test="income != null" >
+        #{income,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.outpbill.OutpAcctDetail" >
+    update OUTPBILL.OUTP_ACCT_DETAIL
+    <set >
+      <if test="costs != null" >
+        COSTS = #{costs,jdbcType=DECIMAL},
+      </if>
+      <if test="income != null" >
+        INCOME = #{income,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ACCT_NO = #{acctNo,jdbcType=VARCHAR}
+      and TALLY_FEE_CLASS = #{tallyFeeClass,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.outpbill.OutpAcctDetail" >
+    update OUTPBILL.OUTP_ACCT_DETAIL
+    set COSTS = #{costs,jdbcType=DECIMAL},
+      INCOME = #{income,jdbcType=DECIMAL}
+    where ACCT_NO = #{acctNo,jdbcType=VARCHAR}
+      and TALLY_FEE_CLASS = #{tallyFeeClass,jdbcType=VARCHAR}
+  </update>
+</mapper>

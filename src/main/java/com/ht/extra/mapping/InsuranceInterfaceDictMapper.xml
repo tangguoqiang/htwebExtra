@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.InsuranceInterfaceDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.insurance.InsuranceInterfaceDict" >
+    <id column="INTERFACECODE" property="interfacecode" jdbcType="VARCHAR" />
+    <result column="INTERFACENAME" property="interfacename" jdbcType="VARCHAR" />
+    <result column="INTERFACETYPE" property="interfacetype" jdbcType="VARCHAR" />
+    <result column="OUTPFLAG" property="outpflag" jdbcType="VARCHAR" />
+    <result column="INPFLAG" property="inpflag" jdbcType="VARCHAR" />
+    <result column="INTERFACEOBJ" property="interfaceobj" jdbcType="VARCHAR" />
+    <result column="MARKS" property="marks" jdbcType="DECIMAL" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    INTERFACECODE, INTERFACENAME, INTERFACETYPE, OUTPFLAG, INPFLAG, INTERFACEOBJ, MARKS, 
+    DESCRIPTION
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from INSURANCE.INSURANCE_INTERFACE_DICT
+    where INTERFACECODE = #{interfacecode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from INSURANCE.INSURANCE_INTERFACE_DICT
+    where INTERFACECODE = #{interfacecode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.insurance.InsuranceInterfaceDict" >
+    insert into INSURANCE.INSURANCE_INTERFACE_DICT (INTERFACECODE, INTERFACENAME, INTERFACETYPE, 
+      OUTPFLAG, INPFLAG, INTERFACEOBJ, 
+      MARKS, DESCRIPTION)
+    values (#{interfacecode,jdbcType=VARCHAR}, #{interfacename,jdbcType=VARCHAR}, #{interfacetype,jdbcType=VARCHAR}, 
+      #{outpflag,jdbcType=VARCHAR}, #{inpflag,jdbcType=VARCHAR}, #{interfaceobj,jdbcType=VARCHAR}, 
+      #{marks,jdbcType=DECIMAL}, #{description,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.insurance.InsuranceInterfaceDict" >
+    insert into INSURANCE.INSURANCE_INTERFACE_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="interfacecode != null" >
+        INTERFACECODE,
+      </if>
+      <if test="interfacename != null" >
+        INTERFACENAME,
+      </if>
+      <if test="interfacetype != null" >
+        INTERFACETYPE,
+      </if>
+      <if test="outpflag != null" >
+        OUTPFLAG,
+      </if>
+      <if test="inpflag != null" >
+        INPFLAG,
+      </if>
+      <if test="interfaceobj != null" >
+        INTERFACEOBJ,
+      </if>
+      <if test="marks != null" >
+        MARKS,
+      </if>
+      <if test="description != null" >
+        DESCRIPTION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="interfacecode != null" >
+        #{interfacecode,jdbcType=VARCHAR},
+      </if>
+      <if test="interfacename != null" >
+        #{interfacename,jdbcType=VARCHAR},
+      </if>
+      <if test="interfacetype != null" >
+        #{interfacetype,jdbcType=VARCHAR},
+      </if>
+      <if test="outpflag != null" >
+        #{outpflag,jdbcType=VARCHAR},
+      </if>
+      <if test="inpflag != null" >
+        #{inpflag,jdbcType=VARCHAR},
+      </if>
+      <if test="interfaceobj != null" >
+        #{interfaceobj,jdbcType=VARCHAR},
+      </if>
+      <if test="marks != null" >
+        #{marks,jdbcType=DECIMAL},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.insurance.InsuranceInterfaceDict" >
+    update INSURANCE.INSURANCE_INTERFACE_DICT
+    <set >
+      <if test="interfacename != null" >
+        INTERFACENAME = #{interfacename,jdbcType=VARCHAR},
+      </if>
+      <if test="interfacetype != null" >
+        INTERFACETYPE = #{interfacetype,jdbcType=VARCHAR},
+      </if>
+      <if test="outpflag != null" >
+        OUTPFLAG = #{outpflag,jdbcType=VARCHAR},
+      </if>
+      <if test="inpflag != null" >
+        INPFLAG = #{inpflag,jdbcType=VARCHAR},
+      </if>
+      <if test="interfaceobj != null" >
+        INTERFACEOBJ = #{interfaceobj,jdbcType=VARCHAR},
+      </if>
+      <if test="marks != null" >
+        MARKS = #{marks,jdbcType=DECIMAL},
+      </if>
+      <if test="description != null" >
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where INTERFACECODE = #{interfacecode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.insurance.InsuranceInterfaceDict" >
+    update INSURANCE.INSURANCE_INTERFACE_DICT
+    set INTERFACENAME = #{interfacename,jdbcType=VARCHAR},
+      INTERFACETYPE = #{interfacetype,jdbcType=VARCHAR},
+      OUTPFLAG = #{outpflag,jdbcType=VARCHAR},
+      INPFLAG = #{inpflag,jdbcType=VARCHAR},
+      INTERFACEOBJ = #{interfaceobj,jdbcType=VARCHAR},
+      MARKS = #{marks,jdbcType=DECIMAL},
+      DESCRIPTION = #{description,jdbcType=VARCHAR}
+    where INTERFACECODE = #{interfacecode,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.ItemClassVsOtherClassMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.ItemClassVsOtherClass" >
+    <result column="ITEM_CLASS" property="itemClass" jdbcType="VARCHAR" />
+    <result column="ITEM_CODE" property="itemCode" jdbcType="VARCHAR" />
+    <result column="CLASS_ON_INP_RCPT" property="classOnInpRcpt" jdbcType="VARCHAR" />
+    <result column="CLASS_ON_OUTP_RCPT" property="classOnOutpRcpt" jdbcType="VARCHAR" />
+    <result column="CLASS_ON_RECKONING" property="classOnReckoning" jdbcType="VARCHAR" />
+    <result column="SUBJ_CODE" property="subjCode" jdbcType="VARCHAR" />
+    <result column="CLASS_ON_MR" property="classOnMr" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.ItemClassVsOtherClass" >
+    insert into COMM.ITEM_CLASS_VS_OTHER_CLASS (ITEM_CLASS, ITEM_CODE, CLASS_ON_INP_RCPT, 
+      CLASS_ON_OUTP_RCPT, CLASS_ON_RECKONING, SUBJ_CODE, 
+      CLASS_ON_MR)
+    values (#{itemClass,jdbcType=VARCHAR}, #{itemCode,jdbcType=VARCHAR}, #{classOnInpRcpt,jdbcType=VARCHAR}, 
+      #{classOnOutpRcpt,jdbcType=VARCHAR}, #{classOnReckoning,jdbcType=VARCHAR}, #{subjCode,jdbcType=VARCHAR}, 
+      #{classOnMr,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.ItemClassVsOtherClass" >
+    insert into COMM.ITEM_CLASS_VS_OTHER_CLASS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="itemClass != null" >
+        ITEM_CLASS,
+      </if>
+      <if test="itemCode != null" >
+        ITEM_CODE,
+      </if>
+      <if test="classOnInpRcpt != null" >
+        CLASS_ON_INP_RCPT,
+      </if>
+      <if test="classOnOutpRcpt != null" >
+        CLASS_ON_OUTP_RCPT,
+      </if>
+      <if test="classOnReckoning != null" >
+        CLASS_ON_RECKONING,
+      </if>
+      <if test="subjCode != null" >
+        SUBJ_CODE,
+      </if>
+      <if test="classOnMr != null" >
+        CLASS_ON_MR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="itemClass != null" >
+        #{itemClass,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode != null" >
+        #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="classOnInpRcpt != null" >
+        #{classOnInpRcpt,jdbcType=VARCHAR},
+      </if>
+      <if test="classOnOutpRcpt != null" >
+        #{classOnOutpRcpt,jdbcType=VARCHAR},
+      </if>
+      <if test="classOnReckoning != null" >
+        #{classOnReckoning,jdbcType=VARCHAR},
+      </if>
+      <if test="subjCode != null" >
+        #{subjCode,jdbcType=VARCHAR},
+      </if>
+      <if test="classOnMr != null" >
+        #{classOnMr,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

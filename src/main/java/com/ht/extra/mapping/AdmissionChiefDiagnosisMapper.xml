@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.AdmissionChiefDiagnosisMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.medrec.AdmissionChiefDiagnosis" >
+    <result column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <result column="VISIT_ID" property="visitId" jdbcType="DECIMAL" />
+    <result column="DIAGNOSIS_NO" property="diagnosisNo" jdbcType="DECIMAL" />
+    <result column="DIAGNOSIS_DESC" property="diagnosisDesc" jdbcType="VARCHAR" />
+    <result column="DIAGNOSIS_DATE" property="diagnosisDate" jdbcType="DATE" />
+    <result column="TREAT_DAYS" property="treatDays" jdbcType="DECIMAL" />
+    <result column="TREAT_RESULT" property="treatResult" jdbcType="VARCHAR" />
+    <result column="OPER_TREAT_INDICATOR" property="operTreatIndicator" jdbcType="DECIMAL" />
+  </resultMap>
+  <insert id="insert" parameterType="com.ht.extra.pojo.medrec.AdmissionChiefDiagnosis" >
+    insert into MEDREC.ADMISSION_CHIEF_DIAGNOSIS (PATIENT_ID, VISIT_ID, DIAGNOSIS_NO, 
+      DIAGNOSIS_DESC, DIAGNOSIS_DATE, TREAT_DAYS, 
+      TREAT_RESULT, OPER_TREAT_INDICATOR)
+    values (#{patientId,jdbcType=VARCHAR}, #{visitId,jdbcType=DECIMAL}, #{diagnosisNo,jdbcType=DECIMAL}, 
+      #{diagnosisDesc,jdbcType=VARCHAR}, #{diagnosisDate,jdbcType=DATE}, #{treatDays,jdbcType=DECIMAL}, 
+      #{treatResult,jdbcType=VARCHAR}, #{operTreatIndicator,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.medrec.AdmissionChiefDiagnosis" >
+    insert into MEDREC.ADMISSION_CHIEF_DIAGNOSIS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="visitId != null" >
+        VISIT_ID,
+      </if>
+      <if test="diagnosisNo != null" >
+        DIAGNOSIS_NO,
+      </if>
+      <if test="diagnosisDesc != null" >
+        DIAGNOSIS_DESC,
+      </if>
+      <if test="diagnosisDate != null" >
+        DIAGNOSIS_DATE,
+      </if>
+      <if test="treatDays != null" >
+        TREAT_DAYS,
+      </if>
+      <if test="treatResult != null" >
+        TREAT_RESULT,
+      </if>
+      <if test="operTreatIndicator != null" >
+        OPER_TREAT_INDICATOR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitId != null" >
+        #{visitId,jdbcType=DECIMAL},
+      </if>
+      <if test="diagnosisNo != null" >
+        #{diagnosisNo,jdbcType=DECIMAL},
+      </if>
+      <if test="diagnosisDesc != null" >
+        #{diagnosisDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnosisDate != null" >
+        #{diagnosisDate,jdbcType=DATE},
+      </if>
+      <if test="treatDays != null" >
+        #{treatDays,jdbcType=DECIMAL},
+      </if>
+      <if test="treatResult != null" >
+        #{treatResult,jdbcType=VARCHAR},
+      </if>
+      <if test="operTreatIndicator != null" >
+        #{operTreatIndicator,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+</mapper>

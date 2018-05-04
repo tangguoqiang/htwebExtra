@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.PayOrderRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.inpbill.PayOrderRecord" >
+    <id column="ORDER_ID" property="orderId" jdbcType="VARCHAR" />
+    <result column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <result column="VISIT_DATE" property="visitDate" jdbcType="DATE" />
+    <result column="VISIT_NO" property="visitNo" jdbcType="DECIMAL" />
+    <result column="RECORD_TIME" property="recordTime" jdbcType="TIMESTAMP" />
+    <result column="TRADE_NO" property="tradeNo" jdbcType="VARCHAR" />
+    <result column="PRINTFLAG" property="printFlag" jdbcType="VARCHAR" />
+    <result column="IS_RETURN" property="isReturn" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ORDER_ID, PATIENT_ID, VISIT_DATE, VISIT_NO, RECORD_TIME,TRADE_NO,PRINTFLAG,IS_RETURN
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from PAY_ORDER_RECORD
+    where ORDER_ID = #{orderId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByRecordTime" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from PAY_ORDER_RECORD
+    where RECORD_TIME =#{0}
+  </select>
+  <select id="selectByVisitDateNo" resultMap="BaseResultMap"  >
+    select
+    <include refid="Base_Column_List" />
+    from PAY_ORDER_RECORD
+    where VISIT_DATE=#{0}
+    AND VISIT_NO=#{1}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from PAY_ORDER_RECORD
+    where ORDER_ID = #{orderId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.inpbill.PayOrderRecord" >
+    insert into PAY_ORDER_RECORD (ORDER_ID, PATIENT_ID, VISIT_DATE, 
+      VISIT_NO, RECORD_TIME, TRADE_NO,PRINTFLAG,IS_RETURN)
+    values (#{orderId,jdbcType=VARCHAR}, #{patientId,jdbcType=VARCHAR}, #{visitDate,jdbcType=DATE}, 
+      #{visitNo,jdbcType=DECIMAL}, #{recordTime,jdbcType=DATE}, #{tradeNo,jdbcType=VARCHAR}, #{printFlag,jdbcType=VARCHAR},
+      #{isReturn,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.inpbill.PayOrderRecord" >
+    insert into PAY_ORDER_RECORD
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        ORDER_ID,
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="visitDate != null" >
+        VISIT_DATE,
+      </if>
+      <if test="visitNo != null" >
+        VISIT_NO,
+      </if>
+      <if test="recordTime != null" >
+        RECORD_TIME,
+      </if>
+      <if test="tradeNo != null" >
+        TRADE_NO,
+      </if>
+      <if test="printFlag != null" >
+        PRINTFLAG,
+      </if>
+      <if test="isReturn != null" >
+        IS_RETURN,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitDate != null" >
+        #{visitDate,jdbcType=DATE},
+      </if>
+      <if test="visitNo != null" >
+        #{visitNo,jdbcType=DECIMAL},
+      </if>
+      <if test="recordTime != null" >
+        #{recordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tradeNo != null" >
+        #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="printFlag != null" >
+        #{printFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="isReturn != null" >
+        #{isReturn,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.inpbill.PayOrderRecord" >
+    update PAY_ORDER_RECORD
+    <set >
+      <if test="patientId != null" >
+        PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitDate != null" >
+        VISIT_DATE = #{visitDate,jdbcType=DATE},
+      </if>
+      <if test="visitNo != null" >
+        VISIT_NO = #{visitNo,jdbcType=DECIMAL},
+      </if>
+      <if test="recordTime != null" >
+        RECORD_TIME = #{recordTime,jdbcType=DATE},
+      </if>
+      <if test="tradeNo != null" >
+        TRADE_NO = #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="printFlag != null" >
+        PRINTFLAG = #{printFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="isReturn != null" >
+        IS_RETURN = #{isReturn,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ORDER_ID = #{orderId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.inpbill.PayOrderRecord" >
+    update PAY_ORDER_RECORD
+    set PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      VISIT_DATE = #{visitDate,jdbcType=DATE},
+      VISIT_NO = #{visitNo,jdbcType=DECIMAL},
+      RECORD_TIME = #{recordTime,jdbcType=DATE},
+      TRADE_NO = #{tradeNo,jdbcType=VARCHAR},
+      PRINTFLAG = #{printFlag,jdbcType=VARCHAR},
+      IS_RETURN = #{isReturn,jdbcType=VARCHAR}
+    where ORDER_ID = #{orderId,jdbcType=VARCHAR}
+  </update>
+</mapper>

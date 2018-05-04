@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.OutpPrescClassMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.OutpPrescClass" >
+    <id column="PRESC_CLASS" property="prescClass" jdbcType="VARCHAR" />
+    <result column="PRESC_NAME" property="prescName" jdbcType="VARCHAR" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+    <result column="PRESC_ALIAS" property="prescAlias" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PRESC_CLASS, PRESC_NAME, MEMO, PRESC_ALIAS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.OUTP_PRESC_CLASS
+    where PRESC_CLASS = #{prescClass,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.OUTP_PRESC_CLASS
+    where PRESC_CLASS = #{prescClass,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.OutpPrescClass" >
+    insert into COMM.OUTP_PRESC_CLASS (PRESC_CLASS, PRESC_NAME, MEMO, 
+      PRESC_ALIAS)
+    values (#{prescClass,jdbcType=VARCHAR}, #{prescName,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, 
+      #{prescAlias,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.OutpPrescClass" >
+    insert into COMM.OUTP_PRESC_CLASS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="prescClass != null" >
+        PRESC_CLASS,
+      </if>
+      <if test="prescName != null" >
+        PRESC_NAME,
+      </if>
+      <if test="memo != null" >
+        MEMO,
+      </if>
+      <if test="prescAlias != null" >
+        PRESC_ALIAS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="prescClass != null" >
+        #{prescClass,jdbcType=VARCHAR},
+      </if>
+      <if test="prescName != null" >
+        #{prescName,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="prescAlias != null" >
+        #{prescAlias,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.OutpPrescClass" >
+    update COMM.OUTP_PRESC_CLASS
+    <set >
+      <if test="prescName != null" >
+        PRESC_NAME = #{prescName,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        MEMO = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="prescAlias != null" >
+        PRESC_ALIAS = #{prescAlias,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PRESC_CLASS = #{prescClass,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.OutpPrescClass" >
+    update COMM.OUTP_PRESC_CLASS
+    set PRESC_NAME = #{prescName,jdbcType=VARCHAR},
+      MEMO = #{memo,jdbcType=VARCHAR},
+      PRESC_ALIAS = #{prescAlias,jdbcType=VARCHAR}
+    where PRESC_CLASS = #{prescClass,jdbcType=VARCHAR}
+  </update>
+</mapper>

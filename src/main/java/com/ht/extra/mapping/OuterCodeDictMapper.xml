@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.OuterCodeDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.OuterCodeDict" >
+    <id column="TOPIC" property="topic" jdbcType="VARCHAR" />
+    <id column="ITEM_NAME" property="itemName" jdbcType="VARCHAR" />
+    <id column="ITEM_CODE" property="itemCode" jdbcType="VARCHAR" />
+    <id column="CODING_SCHM" property="codingSchm" jdbcType="VARCHAR" />
+    <result column="OUTER_CODE" property="outerCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    TOPIC, ITEM_NAME, ITEM_CODE, CODING_SCHM, OUTER_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.OuterCodeDictKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.OUTER_CODE_DICT
+    where TOPIC = #{topic,jdbcType=VARCHAR}
+      and ITEM_NAME = #{itemName,jdbcType=VARCHAR}
+      and ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+      and CODING_SCHM = #{codingSchm,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.OuterCodeDictKey" >
+    delete from COMM.OUTER_CODE_DICT
+    where TOPIC = #{topic,jdbcType=VARCHAR}
+      and ITEM_NAME = #{itemName,jdbcType=VARCHAR}
+      and ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+      and CODING_SCHM = #{codingSchm,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.OuterCodeDict" >
+    insert into COMM.OUTER_CODE_DICT (TOPIC, ITEM_NAME, ITEM_CODE, 
+      CODING_SCHM, OUTER_CODE)
+    values (#{topic,jdbcType=VARCHAR}, #{itemName,jdbcType=VARCHAR}, #{itemCode,jdbcType=VARCHAR}, 
+      #{codingSchm,jdbcType=VARCHAR}, #{outerCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.OuterCodeDict" >
+    insert into COMM.OUTER_CODE_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="topic != null" >
+        TOPIC,
+      </if>
+      <if test="itemName != null" >
+        ITEM_NAME,
+      </if>
+      <if test="itemCode != null" >
+        ITEM_CODE,
+      </if>
+      <if test="codingSchm != null" >
+        CODING_SCHM,
+      </if>
+      <if test="outerCode != null" >
+        OUTER_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="topic != null" >
+        #{topic,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode != null" >
+        #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="codingSchm != null" >
+        #{codingSchm,jdbcType=VARCHAR},
+      </if>
+      <if test="outerCode != null" >
+        #{outerCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.OuterCodeDict" >
+    update COMM.OUTER_CODE_DICT
+    <set >
+      <if test="outerCode != null" >
+        OUTER_CODE = #{outerCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where TOPIC = #{topic,jdbcType=VARCHAR}
+      and ITEM_NAME = #{itemName,jdbcType=VARCHAR}
+      and ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+      and CODING_SCHM = #{codingSchm,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.OuterCodeDict" >
+    update COMM.OUTER_CODE_DICT
+    set OUTER_CODE = #{outerCode,jdbcType=VARCHAR}
+    where TOPIC = #{topic,jdbcType=VARCHAR}
+      and ITEM_NAME = #{itemName,jdbcType=VARCHAR}
+      and ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+      and CODING_SCHM = #{codingSchm,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.ArmedServicesDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.ArmedServicesDict" >
+    <id column="ARMED_SERVICES_NAME" property="armedServicesName" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="ARMED_SERVICES_CODE" property="armedServicesCode" jdbcType="VARCHAR" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ARMED_SERVICES_NAME, SERIAL_NO, ARMED_SERVICES_CODE, INPUT_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.ARMED_SERVICES_DICT
+    where ARMED_SERVICES_NAME = #{armedServicesName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.ARMED_SERVICES_DICT
+    where ARMED_SERVICES_NAME = #{armedServicesName,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.ArmedServicesDict" >
+    insert into COMM.ARMED_SERVICES_DICT (ARMED_SERVICES_NAME, SERIAL_NO, ARMED_SERVICES_CODE, 
+      INPUT_CODE)
+    values (#{armedServicesName,jdbcType=VARCHAR}, #{serialNo,jdbcType=DECIMAL}, #{armedServicesCode,jdbcType=VARCHAR}, 
+      #{inputCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.ArmedServicesDict" >
+    insert into COMM.ARMED_SERVICES_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="armedServicesName != null" >
+        ARMED_SERVICES_NAME,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="armedServicesCode != null" >
+        ARMED_SERVICES_CODE,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="armedServicesName != null" >
+        #{armedServicesName,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="armedServicesCode != null" >
+        #{armedServicesCode,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.ArmedServicesDict" >
+    update COMM.ARMED_SERVICES_DICT
+    <set >
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="armedServicesCode != null" >
+        ARMED_SERVICES_CODE = #{armedServicesCode,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ARMED_SERVICES_NAME = #{armedServicesName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.ArmedServicesDict" >
+    update COMM.ARMED_SERVICES_DICT
+    set SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      ARMED_SERVICES_CODE = #{armedServicesCode,jdbcType=VARCHAR},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR}
+    where ARMED_SERVICES_NAME = #{armedServicesName,jdbcType=VARCHAR}
+  </update>
+</mapper>

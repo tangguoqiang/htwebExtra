@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.MrFileIndexTempMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.medrec.MrFileIndexTemp" >
+    <id column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <id column="VISIT_ID" property="visitId" jdbcType="DECIMAL" />
+    <id column="FILE_NO" property="fileNo" jdbcType="DECIMAL" />
+    <result column="FILE_NAME" property="fileName" jdbcType="VARCHAR" />
+    <result column="TOPIC" property="topic" jdbcType="VARCHAR" />
+    <result column="CREATOR_NAME" property="creatorName" jdbcType="VARCHAR" />
+    <result column="CREATOR_ID" property="creatorId" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE_TIME" property="createDateTime" jdbcType="DATE" />
+    <result column="LAST_MODIFY_DATE_TIME" property="lastModifyDateTime" jdbcType="DATE" />
+    <result column="FILE_FLAG" property="fileFlag" jdbcType="VARCHAR" />
+    <result column="FILE_ATTR" property="fileAttr" jdbcType="VARCHAR" />
+    <result column="PRINT_FLAG" property="printFlag" jdbcType="VARCHAR" />
+    <result column="MR_CODE" property="mrCode" jdbcType="VARCHAR" />
+    <result column="PARENT_NAME" property="parentName" jdbcType="VARCHAR" />
+    <result column="PARENT_ID" property="parentId" jdbcType="VARCHAR" />
+    <result column="MODIFY_DATE_TIME" property="modifyDateTime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PATIENT_ID, VISIT_ID, FILE_NO, FILE_NAME, TOPIC, CREATOR_NAME, CREATOR_ID, CREATE_DATE_TIME, 
+    LAST_MODIFY_DATE_TIME, FILE_FLAG, FILE_ATTR, PRINT_FLAG, MR_CODE, PARENT_NAME, PARENT_ID, 
+    MODIFY_DATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.medrec.MrFileIndexTempKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from MEDREC.MR_FILE_INDEX_TEMP
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and FILE_NO = #{fileNo,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.medrec.MrFileIndexTempKey" >
+    delete from MEDREC.MR_FILE_INDEX_TEMP
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and FILE_NO = #{fileNo,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.medrec.MrFileIndexTemp" >
+    insert into MEDREC.MR_FILE_INDEX_TEMP (PATIENT_ID, VISIT_ID, FILE_NO, 
+      FILE_NAME, TOPIC, CREATOR_NAME, 
+      CREATOR_ID, CREATE_DATE_TIME, LAST_MODIFY_DATE_TIME, 
+      FILE_FLAG, FILE_ATTR, PRINT_FLAG, 
+      MR_CODE, PARENT_NAME, PARENT_ID, 
+      MODIFY_DATE_TIME)
+    values (#{patientId,jdbcType=VARCHAR}, #{visitId,jdbcType=DECIMAL}, #{fileNo,jdbcType=DECIMAL}, 
+      #{fileName,jdbcType=VARCHAR}, #{topic,jdbcType=VARCHAR}, #{creatorName,jdbcType=VARCHAR}, 
+      #{creatorId,jdbcType=VARCHAR}, #{createDateTime,jdbcType=DATE}, #{lastModifyDateTime,jdbcType=DATE}, 
+      #{fileFlag,jdbcType=VARCHAR}, #{fileAttr,jdbcType=VARCHAR}, #{printFlag,jdbcType=VARCHAR}, 
+      #{mrCode,jdbcType=VARCHAR}, #{parentName,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR}, 
+      #{modifyDateTime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.medrec.MrFileIndexTemp" >
+    insert into MEDREC.MR_FILE_INDEX_TEMP
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="visitId != null" >
+        VISIT_ID,
+      </if>
+      <if test="fileNo != null" >
+        FILE_NO,
+      </if>
+      <if test="fileName != null" >
+        FILE_NAME,
+      </if>
+      <if test="topic != null" >
+        TOPIC,
+      </if>
+      <if test="creatorName != null" >
+        CREATOR_NAME,
+      </if>
+      <if test="creatorId != null" >
+        CREATOR_ID,
+      </if>
+      <if test="createDateTime != null" >
+        CREATE_DATE_TIME,
+      </if>
+      <if test="lastModifyDateTime != null" >
+        LAST_MODIFY_DATE_TIME,
+      </if>
+      <if test="fileFlag != null" >
+        FILE_FLAG,
+      </if>
+      <if test="fileAttr != null" >
+        FILE_ATTR,
+      </if>
+      <if test="printFlag != null" >
+        PRINT_FLAG,
+      </if>
+      <if test="mrCode != null" >
+        MR_CODE,
+      </if>
+      <if test="parentName != null" >
+        PARENT_NAME,
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID,
+      </if>
+      <if test="modifyDateTime != null" >
+        MODIFY_DATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitId != null" >
+        #{visitId,jdbcType=DECIMAL},
+      </if>
+      <if test="fileNo != null" >
+        #{fileNo,jdbcType=DECIMAL},
+      </if>
+      <if test="fileName != null" >
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="topic != null" >
+        #{topic,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorName != null" >
+        #{creatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorId != null" >
+        #{creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="createDateTime != null" >
+        #{createDateTime,jdbcType=DATE},
+      </if>
+      <if test="lastModifyDateTime != null" >
+        #{lastModifyDateTime,jdbcType=DATE},
+      </if>
+      <if test="fileFlag != null" >
+        #{fileFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="fileAttr != null" >
+        #{fileAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="printFlag != null" >
+        #{printFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="mrCode != null" >
+        #{mrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentName != null" >
+        #{parentName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDateTime != null" >
+        #{modifyDateTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.medrec.MrFileIndexTemp" >
+    update MEDREC.MR_FILE_INDEX_TEMP
+    <set >
+      <if test="fileName != null" >
+        FILE_NAME = #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="topic != null" >
+        TOPIC = #{topic,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorName != null" >
+        CREATOR_NAME = #{creatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorId != null" >
+        CREATOR_ID = #{creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="createDateTime != null" >
+        CREATE_DATE_TIME = #{createDateTime,jdbcType=DATE},
+      </if>
+      <if test="lastModifyDateTime != null" >
+        LAST_MODIFY_DATE_TIME = #{lastModifyDateTime,jdbcType=DATE},
+      </if>
+      <if test="fileFlag != null" >
+        FILE_FLAG = #{fileFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="fileAttr != null" >
+        FILE_ATTR = #{fileAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="printFlag != null" >
+        PRINT_FLAG = #{printFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="mrCode != null" >
+        MR_CODE = #{mrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentName != null" >
+        PARENT_NAME = #{parentName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID = #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDateTime != null" >
+        MODIFY_DATE_TIME = #{modifyDateTime,jdbcType=DATE},
+      </if>
+    </set>
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and FILE_NO = #{fileNo,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.medrec.MrFileIndexTemp" >
+    update MEDREC.MR_FILE_INDEX_TEMP
+    set FILE_NAME = #{fileName,jdbcType=VARCHAR},
+      TOPIC = #{topic,jdbcType=VARCHAR},
+      CREATOR_NAME = #{creatorName,jdbcType=VARCHAR},
+      CREATOR_ID = #{creatorId,jdbcType=VARCHAR},
+      CREATE_DATE_TIME = #{createDateTime,jdbcType=DATE},
+      LAST_MODIFY_DATE_TIME = #{lastModifyDateTime,jdbcType=DATE},
+      FILE_FLAG = #{fileFlag,jdbcType=VARCHAR},
+      FILE_ATTR = #{fileAttr,jdbcType=VARCHAR},
+      PRINT_FLAG = #{printFlag,jdbcType=VARCHAR},
+      MR_CODE = #{mrCode,jdbcType=VARCHAR},
+      PARENT_NAME = #{parentName,jdbcType=VARCHAR},
+      PARENT_ID = #{parentId,jdbcType=VARCHAR},
+      MODIFY_DATE_TIME = #{modifyDateTime,jdbcType=DATE}
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and FILE_NO = #{fileNo,jdbcType=DECIMAL}
+  </update>
+</mapper>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.InsuranceConstantsMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.insurance.InsuranceConstants" >
+    <id column="INTERFACECODE" property="interfacecode" jdbcType="VARCHAR" />
+    <id column="GUIDECODE" property="guidecode" jdbcType="VARCHAR" />
+    <id column="KEYNAME" property="keyname" jdbcType="VARCHAR" />
+    <result column="KEYVALUE" property="keyvalue" jdbcType="VARCHAR" />
+    <result column="CREATED" property="created" jdbcType="DATE" />
+    <result column="CREATEDBY" property="createdby" jdbcType="VARCHAR" />
+    <result column="UPDATED" property="updated" jdbcType="DATE" />
+    <result column="UPDATEDBY" property="updatedby" jdbcType="VARCHAR" />
+    <result column="ISACTIVE" property="isactive" jdbcType="CHAR" />
+    <result column="ISSYSTEM" property="issystem" jdbcType="CHAR" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    INTERFACECODE, GUIDECODE, KEYNAME, KEYVALUE, CREATED, CREATEDBY, UPDATED, UPDATEDBY, 
+    ISACTIVE, ISSYSTEM, DESCRIPTION
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.insurance.InsuranceConstantsKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from INSURANCE.INSURANCE_CONSTANTS
+    where INTERFACECODE = #{interfacecode,jdbcType=VARCHAR}
+      and GUIDECODE = #{guidecode,jdbcType=VARCHAR}
+      and KEYNAME = #{keyname,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.insurance.InsuranceConstantsKey" >
+    delete from INSURANCE.INSURANCE_CONSTANTS
+    where INTERFACECODE = #{interfacecode,jdbcType=VARCHAR}
+      and GUIDECODE = #{guidecode,jdbcType=VARCHAR}
+      and KEYNAME = #{keyname,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.insurance.InsuranceConstants" >
+    insert into INSURANCE.INSURANCE_CONSTANTS (INTERFACECODE, GUIDECODE, KEYNAME, 
+      KEYVALUE, CREATED, CREATEDBY, 
+      UPDATED, UPDATEDBY, ISACTIVE, 
+      ISSYSTEM, DESCRIPTION)
+    values (#{interfacecode,jdbcType=VARCHAR}, #{guidecode,jdbcType=VARCHAR}, #{keyname,jdbcType=VARCHAR}, 
+      #{keyvalue,jdbcType=VARCHAR}, #{created,jdbcType=DATE}, #{createdby,jdbcType=VARCHAR}, 
+      #{updated,jdbcType=DATE}, #{updatedby,jdbcType=VARCHAR}, #{isactive,jdbcType=CHAR}, 
+      #{issystem,jdbcType=CHAR}, #{description,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.insurance.InsuranceConstants" >
+    insert into INSURANCE.INSURANCE_CONSTANTS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="interfacecode != null" >
+        INTERFACECODE,
+      </if>
+      <if test="guidecode != null" >
+        GUIDECODE,
+      </if>
+      <if test="keyname != null" >
+        KEYNAME,
+      </if>
+      <if test="keyvalue != null" >
+        KEYVALUE,
+      </if>
+      <if test="created != null" >
+        CREATED,
+      </if>
+      <if test="createdby != null" >
+        CREATEDBY,
+      </if>
+      <if test="updated != null" >
+        UPDATED,
+      </if>
+      <if test="updatedby != null" >
+        UPDATEDBY,
+      </if>
+      <if test="isactive != null" >
+        ISACTIVE,
+      </if>
+      <if test="issystem != null" >
+        ISSYSTEM,
+      </if>
+      <if test="description != null" >
+        DESCRIPTION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="interfacecode != null" >
+        #{interfacecode,jdbcType=VARCHAR},
+      </if>
+      <if test="guidecode != null" >
+        #{guidecode,jdbcType=VARCHAR},
+      </if>
+      <if test="keyname != null" >
+        #{keyname,jdbcType=VARCHAR},
+      </if>
+      <if test="keyvalue != null" >
+        #{keyvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=DATE},
+      </if>
+      <if test="createdby != null" >
+        #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null" >
+        #{updated,jdbcType=DATE},
+      </if>
+      <if test="updatedby != null" >
+        #{updatedby,jdbcType=VARCHAR},
+      </if>
+      <if test="isactive != null" >
+        #{isactive,jdbcType=CHAR},
+      </if>
+      <if test="issystem != null" >
+        #{issystem,jdbcType=CHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.insurance.InsuranceConstants" >
+    update INSURANCE.INSURANCE_CONSTANTS
+    <set >
+      <if test="keyvalue != null" >
+        KEYVALUE = #{keyvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null" >
+        CREATED = #{created,jdbcType=DATE},
+      </if>
+      <if test="createdby != null" >
+        CREATEDBY = #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null" >
+        UPDATED = #{updated,jdbcType=DATE},
+      </if>
+      <if test="updatedby != null" >
+        UPDATEDBY = #{updatedby,jdbcType=VARCHAR},
+      </if>
+      <if test="isactive != null" >
+        ISACTIVE = #{isactive,jdbcType=CHAR},
+      </if>
+      <if test="issystem != null" >
+        ISSYSTEM = #{issystem,jdbcType=CHAR},
+      </if>
+      <if test="description != null" >
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where INTERFACECODE = #{interfacecode,jdbcType=VARCHAR}
+      and GUIDECODE = #{guidecode,jdbcType=VARCHAR}
+      and KEYNAME = #{keyname,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.insurance.InsuranceConstants" >
+    update INSURANCE.INSURANCE_CONSTANTS
+    set KEYVALUE = #{keyvalue,jdbcType=VARCHAR},
+      CREATED = #{created,jdbcType=DATE},
+      CREATEDBY = #{createdby,jdbcType=VARCHAR},
+      UPDATED = #{updated,jdbcType=DATE},
+      UPDATEDBY = #{updatedby,jdbcType=VARCHAR},
+      ISACTIVE = #{isactive,jdbcType=CHAR},
+      ISSYSTEM = #{issystem,jdbcType=CHAR},
+      DESCRIPTION = #{description,jdbcType=VARCHAR}
+    where INTERFACECODE = #{interfacecode,jdbcType=VARCHAR}
+      and GUIDECODE = #{guidecode,jdbcType=VARCHAR}
+      and KEYNAME = #{keyname,jdbcType=VARCHAR}
+  </update>
+</mapper>

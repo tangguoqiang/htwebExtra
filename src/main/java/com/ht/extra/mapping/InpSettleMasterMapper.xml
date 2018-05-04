@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.InpSettleMasterMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.inpbill.InpSettleMaster" >
+    <id column="RCPT_NO" property="rcptNo" jdbcType="VARCHAR" />
+    <result column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <result column="VISIT_ID" property="visitId" jdbcType="DECIMAL" />
+    <result column="SETTLING_DATE" property="settlingDate" jdbcType="DATE" />
+    <result column="COSTS" property="costs" jdbcType="DECIMAL" />
+    <result column="CHARGES" property="charges" jdbcType="DECIMAL" />
+    <result column="PAYMENTS" property="payments" jdbcType="DECIMAL" />
+    <result column="REDUCED_CAUSE" property="reducedCause" jdbcType="VARCHAR" />
+    <result column="TRANSACT_TYPE" property="transactType" jdbcType="VARCHAR" />
+    <result column="REFUNDED_RCPT_NO" property="refundedRcptNo" jdbcType="VARCHAR" />
+    <result column="OPERATOR_NO" property="operatorNo" jdbcType="VARCHAR" />
+    <result column="ACCT_NO" property="acctNo" jdbcType="VARCHAR" />
+    <result column="INSUR_RCPT_NO" property="insurRcptNo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    RCPT_NO, PATIENT_ID, VISIT_ID, SETTLING_DATE, COSTS, CHARGES, PAYMENTS, REDUCED_CAUSE, 
+    TRANSACT_TYPE, REFUNDED_RCPT_NO, OPERATOR_NO, ACCT_NO, INSUR_RCPT_NO
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from INPBILL.INP_SETTLE_MASTER
+    where RCPT_NO = #{rcptNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from INPBILL.INP_SETTLE_MASTER
+    where RCPT_NO = #{rcptNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.inpbill.InpSettleMaster" >
+    insert into INPBILL.INP_SETTLE_MASTER (RCPT_NO, PATIENT_ID, VISIT_ID, 
+      SETTLING_DATE, COSTS, CHARGES, 
+      PAYMENTS, REDUCED_CAUSE, TRANSACT_TYPE, 
+      REFUNDED_RCPT_NO, OPERATOR_NO, ACCT_NO, 
+      INSUR_RCPT_NO)
+    values (#{rcptNo,jdbcType=VARCHAR}, #{patientId,jdbcType=VARCHAR}, #{visitId,jdbcType=DECIMAL}, 
+      #{settlingDate,jdbcType=DATE}, #{costs,jdbcType=DECIMAL}, #{charges,jdbcType=DECIMAL}, 
+      #{payments,jdbcType=DECIMAL}, #{reducedCause,jdbcType=VARCHAR}, #{transactType,jdbcType=VARCHAR}, 
+      #{refundedRcptNo,jdbcType=VARCHAR}, #{operatorNo,jdbcType=VARCHAR}, #{acctNo,jdbcType=VARCHAR}, 
+      #{insurRcptNo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.inpbill.InpSettleMaster" >
+    insert into INPBILL.INP_SETTLE_MASTER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rcptNo != null" >
+        RCPT_NO,
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="visitId != null" >
+        VISIT_ID,
+      </if>
+      <if test="settlingDate != null" >
+        SETTLING_DATE,
+      </if>
+      <if test="costs != null" >
+        COSTS,
+      </if>
+      <if test="charges != null" >
+        CHARGES,
+      </if>
+      <if test="payments != null" >
+        PAYMENTS,
+      </if>
+      <if test="reducedCause != null" >
+        REDUCED_CAUSE,
+      </if>
+      <if test="transactType != null" >
+        TRANSACT_TYPE,
+      </if>
+      <if test="refundedRcptNo != null" >
+        REFUNDED_RCPT_NO,
+      </if>
+      <if test="operatorNo != null" >
+        OPERATOR_NO,
+      </if>
+      <if test="acctNo != null" >
+        ACCT_NO,
+      </if>
+      <if test="insurRcptNo != null" >
+        INSUR_RCPT_NO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rcptNo != null" >
+        #{rcptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitId != null" >
+        #{visitId,jdbcType=DECIMAL},
+      </if>
+      <if test="settlingDate != null" >
+        #{settlingDate,jdbcType=DATE},
+      </if>
+      <if test="costs != null" >
+        #{costs,jdbcType=DECIMAL},
+      </if>
+      <if test="charges != null" >
+        #{charges,jdbcType=DECIMAL},
+      </if>
+      <if test="payments != null" >
+        #{payments,jdbcType=DECIMAL},
+      </if>
+      <if test="reducedCause != null" >
+        #{reducedCause,jdbcType=VARCHAR},
+      </if>
+      <if test="transactType != null" >
+        #{transactType,jdbcType=VARCHAR},
+      </if>
+      <if test="refundedRcptNo != null" >
+        #{refundedRcptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorNo != null" >
+        #{operatorNo,jdbcType=VARCHAR},
+      </if>
+      <if test="acctNo != null" >
+        #{acctNo,jdbcType=VARCHAR},
+      </if>
+      <if test="insurRcptNo != null" >
+        #{insurRcptNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.inpbill.InpSettleMaster" >
+    update INPBILL.INP_SETTLE_MASTER
+    <set >
+      <if test="patientId != null" >
+        PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitId != null" >
+        VISIT_ID = #{visitId,jdbcType=DECIMAL},
+      </if>
+      <if test="settlingDate != null" >
+        SETTLING_DATE = #{settlingDate,jdbcType=DATE},
+      </if>
+      <if test="costs != null" >
+        COSTS = #{costs,jdbcType=DECIMAL},
+      </if>
+      <if test="charges != null" >
+        CHARGES = #{charges,jdbcType=DECIMAL},
+      </if>
+      <if test="payments != null" >
+        PAYMENTS = #{payments,jdbcType=DECIMAL},
+      </if>
+      <if test="reducedCause != null" >
+        REDUCED_CAUSE = #{reducedCause,jdbcType=VARCHAR},
+      </if>
+      <if test="transactType != null" >
+        TRANSACT_TYPE = #{transactType,jdbcType=VARCHAR},
+      </if>
+      <if test="refundedRcptNo != null" >
+        REFUNDED_RCPT_NO = #{refundedRcptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorNo != null" >
+        OPERATOR_NO = #{operatorNo,jdbcType=VARCHAR},
+      </if>
+      <if test="acctNo != null" >
+        ACCT_NO = #{acctNo,jdbcType=VARCHAR},
+      </if>
+      <if test="insurRcptNo != null" >
+        INSUR_RCPT_NO = #{insurRcptNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where RCPT_NO = #{rcptNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.inpbill.InpSettleMaster" >
+    update INPBILL.INP_SETTLE_MASTER
+    set PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      VISIT_ID = #{visitId,jdbcType=DECIMAL},
+      SETTLING_DATE = #{settlingDate,jdbcType=DATE},
+      COSTS = #{costs,jdbcType=DECIMAL},
+      CHARGES = #{charges,jdbcType=DECIMAL},
+      PAYMENTS = #{payments,jdbcType=DECIMAL},
+      REDUCED_CAUSE = #{reducedCause,jdbcType=VARCHAR},
+      TRANSACT_TYPE = #{transactType,jdbcType=VARCHAR},
+      REFUNDED_RCPT_NO = #{refundedRcptNo,jdbcType=VARCHAR},
+      OPERATOR_NO = #{operatorNo,jdbcType=VARCHAR},
+      ACCT_NO = #{acctNo,jdbcType=VARCHAR},
+      INSUR_RCPT_NO = #{insurRcptNo,jdbcType=VARCHAR}
+    where RCPT_NO = #{rcptNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

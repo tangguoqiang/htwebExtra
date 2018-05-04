@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.InpMrTraceMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.medrec.InpMrTrace" >
+    <id column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <id column="BORROWED_DEPT" property="borrowedDept" jdbcType="VARCHAR" />
+    <id column="BORROWED_DATE" property="borrowedDate" jdbcType="DATE" />
+    <result column="BORROWER" property="borrower" jdbcType="VARCHAR" />
+    <result column="BORROWED_TYPE" property="borrowedType" jdbcType="VARCHAR" />
+    <result column="RETURNED_DATE" property="returnedDate" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PATIENT_ID, BORROWED_DEPT, BORROWED_DATE, BORROWER, BORROWED_TYPE, RETURNED_DATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.medrec.InpMrTraceKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from MEDREC.INP_MR_TRACE
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and BORROWED_DEPT = #{borrowedDept,jdbcType=VARCHAR}
+      and BORROWED_DATE = #{borrowedDate,jdbcType=DATE}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.medrec.InpMrTraceKey" >
+    delete from MEDREC.INP_MR_TRACE
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and BORROWED_DEPT = #{borrowedDept,jdbcType=VARCHAR}
+      and BORROWED_DATE = #{borrowedDate,jdbcType=DATE}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.medrec.InpMrTrace" >
+    insert into MEDREC.INP_MR_TRACE (PATIENT_ID, BORROWED_DEPT, BORROWED_DATE, 
+      BORROWER, BORROWED_TYPE, RETURNED_DATE
+      )
+    values (#{patientId,jdbcType=VARCHAR}, #{borrowedDept,jdbcType=VARCHAR}, #{borrowedDate,jdbcType=DATE}, 
+      #{borrower,jdbcType=VARCHAR}, #{borrowedType,jdbcType=VARCHAR}, #{returnedDate,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.medrec.InpMrTrace" >
+    insert into MEDREC.INP_MR_TRACE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="borrowedDept != null" >
+        BORROWED_DEPT,
+      </if>
+      <if test="borrowedDate != null" >
+        BORROWED_DATE,
+      </if>
+      <if test="borrower != null" >
+        BORROWER,
+      </if>
+      <if test="borrowedType != null" >
+        BORROWED_TYPE,
+      </if>
+      <if test="returnedDate != null" >
+        RETURNED_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowedDept != null" >
+        #{borrowedDept,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowedDate != null" >
+        #{borrowedDate,jdbcType=DATE},
+      </if>
+      <if test="borrower != null" >
+        #{borrower,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowedType != null" >
+        #{borrowedType,jdbcType=VARCHAR},
+      </if>
+      <if test="returnedDate != null" >
+        #{returnedDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.medrec.InpMrTrace" >
+    update MEDREC.INP_MR_TRACE
+    <set >
+      <if test="borrower != null" >
+        BORROWER = #{borrower,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowedType != null" >
+        BORROWED_TYPE = #{borrowedType,jdbcType=VARCHAR},
+      </if>
+      <if test="returnedDate != null" >
+        RETURNED_DATE = #{returnedDate,jdbcType=DATE},
+      </if>
+    </set>
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and BORROWED_DEPT = #{borrowedDept,jdbcType=VARCHAR}
+      and BORROWED_DATE = #{borrowedDate,jdbcType=DATE}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.medrec.InpMrTrace" >
+    update MEDREC.INP_MR_TRACE
+    set BORROWER = #{borrower,jdbcType=VARCHAR},
+      BORROWED_TYPE = #{borrowedType,jdbcType=VARCHAR},
+      RETURNED_DATE = #{returnedDate,jdbcType=DATE}
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and BORROWED_DEPT = #{borrowedDept,jdbcType=VARCHAR}
+      and BORROWED_DATE = #{borrowedDate,jdbcType=DATE}
+  </update>
+</mapper>

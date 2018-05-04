@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.PrepaymentRcptMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.inpbill.PrepaymentRcpt" >
+    <id column="RCPT_NO" property="rcptNo" jdbcType="VARCHAR" />
+    <result column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <result column="AMOUNT" property="amount" jdbcType="DECIMAL" />
+    <result column="PAY_WAY" property="payWay" jdbcType="VARCHAR" />
+    <result column="BANK" property="bank" jdbcType="VARCHAR" />
+    <result column="CHECK_NO" property="checkNo" jdbcType="VARCHAR" />
+    <result column="TRANSACT_TYPE" property="transactType" jdbcType="VARCHAR" />
+    <result column="TRANSACT_DATE" property="transactDate" jdbcType="TIMESTAMP" />
+    <result column="OPERATOR_NO" property="operatorNo" jdbcType="VARCHAR" />
+    <result column="REFUNDED_RCPT_NO" property="refundedRcptNo" jdbcType="VARCHAR" />
+    <result column="ACCT_NO" property="acctNo" jdbcType="VARCHAR" />
+    <result column="OUTP_OR_INP" property="outpOrInp" jdbcType="VARCHAR" />
+    <result column="SUPER_OPERATOR_NO" property="superOperatorNo" jdbcType="VARCHAR" />
+    <result column="VISIT_ID" property="visitId" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    RCPT_NO, PATIENT_ID, AMOUNT, PAY_WAY, BANK, CHECK_NO, TRANSACT_TYPE, TRANSACT_DATE, 
+    OPERATOR_NO, REFUNDED_RCPT_NO, ACCT_NO, OUTP_OR_INP, SUPER_OPERATOR_NO, VISIT_ID
+  </sql>
+
+  <select id="selectByPatientVisit" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from INPBILL.PREPAYMENT_RCPT
+    where patient_id=#{0}
+  </select>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from INPBILL.PREPAYMENT_RCPT
+    where RCPT_NO = #{rcptNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from INPBILL.PREPAYMENT_RCPT
+    where RCPT_NO = #{rcptNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.inpbill.PrepaymentRcpt" >
+    insert into INPBILL.PREPAYMENT_RCPT (RCPT_NO, PATIENT_ID, AMOUNT, 
+      PAY_WAY, BANK, CHECK_NO, 
+      TRANSACT_TYPE, TRANSACT_DATE, OPERATOR_NO, 
+      REFUNDED_RCPT_NO, ACCT_NO, OUTP_OR_INP, 
+      SUPER_OPERATOR_NO, VISIT_ID)
+    values (#{rcptNo,jdbcType=VARCHAR}, #{patientId,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, 
+      #{payWay,jdbcType=VARCHAR}, #{bank,jdbcType=VARCHAR}, #{checkNo,jdbcType=VARCHAR}, 
+      #{transactType,jdbcType=VARCHAR}, #{transactDate,jdbcType=TIMESTAMP}, #{operatorNo,jdbcType=VARCHAR},
+      #{refundedRcptNo,jdbcType=VARCHAR}, #{acctNo,jdbcType=VARCHAR}, #{outpOrInp,jdbcType=VARCHAR}, 
+      #{superOperatorNo,jdbcType=VARCHAR}, #{visitId,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.inpbill.PrepaymentRcpt" >
+    insert into INPBILL.PREPAYMENT_RCPT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rcptNo != null" >
+        RCPT_NO,
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="amount != null" >
+        AMOUNT,
+      </if>
+      <if test="payWay != null" >
+        PAY_WAY,
+      </if>
+      <if test="bank != null" >
+        BANK,
+      </if>
+      <if test="checkNo != null" >
+        CHECK_NO,
+      </if>
+      <if test="transactType != null" >
+        TRANSACT_TYPE,
+      </if>
+      <if test="transactDate != null" >
+        TRANSACT_DATE,
+      </if>
+      <if test="operatorNo != null" >
+        OPERATOR_NO,
+      </if>
+      <if test="refundedRcptNo != null" >
+        REFUNDED_RCPT_NO,
+      </if>
+      <if test="acctNo != null" >
+        ACCT_NO,
+      </if>
+      <if test="outpOrInp != null" >
+        OUTP_OR_INP,
+      </if>
+      <if test="superOperatorNo != null" >
+        SUPER_OPERATOR_NO,
+      </if>
+      <if test="visitId != null" >
+        VISIT_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rcptNo != null" >
+        #{rcptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="payWay != null" >
+        #{payWay,jdbcType=VARCHAR},
+      </if>
+      <if test="bank != null" >
+        #{bank,jdbcType=VARCHAR},
+      </if>
+      <if test="checkNo != null" >
+        #{checkNo,jdbcType=VARCHAR},
+      </if>
+      <if test="transactType != null" >
+        #{transactType,jdbcType=VARCHAR},
+      </if>
+      <if test="transactDate != null" >
+        #{transactDate,jdbcType=DATE},
+      </if>
+      <if test="operatorNo != null" >
+        #{operatorNo,jdbcType=VARCHAR},
+      </if>
+      <if test="refundedRcptNo != null" >
+        #{refundedRcptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="acctNo != null" >
+        #{acctNo,jdbcType=VARCHAR},
+      </if>
+      <if test="outpOrInp != null" >
+        #{outpOrInp,jdbcType=VARCHAR},
+      </if>
+      <if test="superOperatorNo != null" >
+        #{superOperatorNo,jdbcType=VARCHAR},
+      </if>
+      <if test="visitId != null" >
+        #{visitId,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.inpbill.PrepaymentRcpt" >
+    update INPBILL.PREPAYMENT_RCPT
+    <set >
+      <if test="patientId != null" >
+        PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        AMOUNT = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="payWay != null" >
+        PAY_WAY = #{payWay,jdbcType=VARCHAR},
+      </if>
+      <if test="bank != null" >
+        BANK = #{bank,jdbcType=VARCHAR},
+      </if>
+      <if test="checkNo != null" >
+        CHECK_NO = #{checkNo,jdbcType=VARCHAR},
+      </if>
+      <if test="transactType != null" >
+        TRANSACT_TYPE = #{transactType,jdbcType=VARCHAR},
+      </if>
+      <if test="transactDate != null" >
+        TRANSACT_DATE = #{transactDate,jdbcType=DATE},
+      </if>
+      <if test="operatorNo != null" >
+        OPERATOR_NO = #{operatorNo,jdbcType=VARCHAR},
+      </if>
+      <if test="refundedRcptNo != null" >
+        REFUNDED_RCPT_NO = #{refundedRcptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="acctNo != null" >
+        ACCT_NO = #{acctNo,jdbcType=VARCHAR},
+      </if>
+      <if test="outpOrInp != null" >
+        OUTP_OR_INP = #{outpOrInp,jdbcType=VARCHAR},
+      </if>
+      <if test="superOperatorNo != null" >
+        SUPER_OPERATOR_NO = #{superOperatorNo,jdbcType=VARCHAR},
+      </if>
+      <if test="visitId != null" >
+        VISIT_ID = #{visitId,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where RCPT_NO = #{rcptNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.inpbill.PrepaymentRcpt" >
+    update INPBILL.PREPAYMENT_RCPT
+    set PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      AMOUNT = #{amount,jdbcType=DECIMAL},
+      PAY_WAY = #{payWay,jdbcType=VARCHAR},
+      BANK = #{bank,jdbcType=VARCHAR},
+      CHECK_NO = #{checkNo,jdbcType=VARCHAR},
+      TRANSACT_TYPE = #{transactType,jdbcType=VARCHAR},
+      TRANSACT_DATE = #{transactDate,jdbcType=DATE},
+      OPERATOR_NO = #{operatorNo,jdbcType=VARCHAR},
+      REFUNDED_RCPT_NO = #{refundedRcptNo,jdbcType=VARCHAR},
+      ACCT_NO = #{acctNo,jdbcType=VARCHAR},
+      OUTP_OR_INP = #{outpOrInp,jdbcType=VARCHAR},
+      SUPER_OPERATOR_NO = #{superOperatorNo,jdbcType=VARCHAR},
+      VISIT_ID = #{visitId,jdbcType=DECIMAL}
+    where RCPT_NO = #{rcptNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.HospitalVsInsuranceMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.HospitalVsInsurance" >
+    <id column="HOSPITAL_ITEM_CLASS" property="hospitalItemClass" jdbcType="VARCHAR" />
+    <id column="HOSPITAL_ITEM_CODE" property="hospitalItemCode" jdbcType="VARCHAR" />
+    <id column="HOSPITAL_ITEM_SPEC" property="hospitalItemSpec" jdbcType="VARCHAR" />
+    <id column="HOSPITAL_ITEM_UNITS" property="hospitalItemUnits" jdbcType="VARCHAR" />
+    <result column="HOSPITAL_ITEM_NAME" property="hospitalItemName" jdbcType="VARCHAR" />
+    <result column="INSURANCE_ITEM_NAME" property="insuranceItemName" jdbcType="VARCHAR" />
+    <result column="HOSPITAL_INPUT_CODE" property="hospitalInputCode" jdbcType="VARCHAR" />
+    <result column="ENTER_DATE" property="enterDate" jdbcType="DATE" />
+    <result column="OPERATOR_NO" property="operatorNo" jdbcType="VARCHAR" />
+    <result column="XNHYB_INSUR_ITEM_CODE" property="xnhybInsurItemCode" jdbcType="VARCHAR" />
+    <result column="XNHYB_INSUR_FLAG" property="xnhybInsurFlag" jdbcType="VARCHAR" />
+    <result column="XNHYB_COUNTRY_BASEDIR" property="xnhybCountryBasedir" jdbcType="VARCHAR" />
+    <result column="DRUG_CONF" property="drugConf" jdbcType="VARCHAR" />
+    <result column="XNH_UPFLAG" property="xnhUpflag" jdbcType="VARCHAR" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+    <result column="HOSPITAL_PRICE" property="hospitalPrice" jdbcType="DECIMAL" />
+    <result column="SPECIAL_DIAG_CODE" property="specialDiagCode" jdbcType="VARCHAR" />
+    <result column="XNHYB_INSUR_ITEM_NAME" property="xnhybInsurItemName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    HOSPITAL_ITEM_CLASS, HOSPITAL_ITEM_CODE, HOSPITAL_ITEM_SPEC, HOSPITAL_ITEM_UNITS, 
+    HOSPITAL_ITEM_NAME, INSURANCE_ITEM_NAME, HOSPITAL_INPUT_CODE, ENTER_DATE, OPERATOR_NO, 
+    XNHYB_INSUR_ITEM_CODE, XNHYB_INSUR_FLAG, XNHYB_COUNTRY_BASEDIR, DRUG_CONF, XNH_UPFLAG, 
+    MEMO, HOSPITAL_PRICE, SPECIAL_DIAG_CODE, XNHYB_INSUR_ITEM_NAME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.HospitalVsInsuranceKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.HOSPITAL_VS_INSURANCE
+    where HOSPITAL_ITEM_CLASS = #{hospitalItemClass,jdbcType=VARCHAR}
+      and HOSPITAL_ITEM_CODE = #{hospitalItemCode,jdbcType=VARCHAR}
+      and HOSPITAL_ITEM_SPEC = #{hospitalItemSpec,jdbcType=VARCHAR}
+      and HOSPITAL_ITEM_UNITS = #{hospitalItemUnits,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.HospitalVsInsuranceKey" >
+    delete from COMM.HOSPITAL_VS_INSURANCE
+    where HOSPITAL_ITEM_CLASS = #{hospitalItemClass,jdbcType=VARCHAR}
+      and HOSPITAL_ITEM_CODE = #{hospitalItemCode,jdbcType=VARCHAR}
+      and HOSPITAL_ITEM_SPEC = #{hospitalItemSpec,jdbcType=VARCHAR}
+      and HOSPITAL_ITEM_UNITS = #{hospitalItemUnits,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.HospitalVsInsurance" >
+    insert into COMM.HOSPITAL_VS_INSURANCE (HOSPITAL_ITEM_CLASS, HOSPITAL_ITEM_CODE, 
+      HOSPITAL_ITEM_SPEC, HOSPITAL_ITEM_UNITS, HOSPITAL_ITEM_NAME, 
+      INSURANCE_ITEM_NAME, HOSPITAL_INPUT_CODE, ENTER_DATE, 
+      OPERATOR_NO, XNHYB_INSUR_ITEM_CODE, XNHYB_INSUR_FLAG, 
+      XNHYB_COUNTRY_BASEDIR, DRUG_CONF, XNH_UPFLAG, 
+      MEMO, HOSPITAL_PRICE, SPECIAL_DIAG_CODE, 
+      XNHYB_INSUR_ITEM_NAME)
+    values (#{hospitalItemClass,jdbcType=VARCHAR}, #{hospitalItemCode,jdbcType=VARCHAR}, 
+      #{hospitalItemSpec,jdbcType=VARCHAR}, #{hospitalItemUnits,jdbcType=VARCHAR}, #{hospitalItemName,jdbcType=VARCHAR}, 
+      #{insuranceItemName,jdbcType=VARCHAR}, #{hospitalInputCode,jdbcType=VARCHAR}, #{enterDate,jdbcType=DATE}, 
+      #{operatorNo,jdbcType=VARCHAR}, #{xnhybInsurItemCode,jdbcType=VARCHAR}, #{xnhybInsurFlag,jdbcType=VARCHAR}, 
+      #{xnhybCountryBasedir,jdbcType=VARCHAR}, #{drugConf,jdbcType=VARCHAR}, #{xnhUpflag,jdbcType=VARCHAR}, 
+      #{memo,jdbcType=VARCHAR}, #{hospitalPrice,jdbcType=DECIMAL}, #{specialDiagCode,jdbcType=VARCHAR}, 
+      #{xnhybInsurItemName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.HospitalVsInsurance" >
+    insert into COMM.HOSPITAL_VS_INSURANCE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="hospitalItemClass != null" >
+        HOSPITAL_ITEM_CLASS,
+      </if>
+      <if test="hospitalItemCode != null" >
+        HOSPITAL_ITEM_CODE,
+      </if>
+      <if test="hospitalItemSpec != null" >
+        HOSPITAL_ITEM_SPEC,
+      </if>
+      <if test="hospitalItemUnits != null" >
+        HOSPITAL_ITEM_UNITS,
+      </if>
+      <if test="hospitalItemName != null" >
+        HOSPITAL_ITEM_NAME,
+      </if>
+      <if test="insuranceItemName != null" >
+        INSURANCE_ITEM_NAME,
+      </if>
+      <if test="hospitalInputCode != null" >
+        HOSPITAL_INPUT_CODE,
+      </if>
+      <if test="enterDate != null" >
+        ENTER_DATE,
+      </if>
+      <if test="operatorNo != null" >
+        OPERATOR_NO,
+      </if>
+      <if test="xnhybInsurItemCode != null" >
+        XNHYB_INSUR_ITEM_CODE,
+      </if>
+      <if test="xnhybInsurFlag != null" >
+        XNHYB_INSUR_FLAG,
+      </if>
+      <if test="xnhybCountryBasedir != null" >
+        XNHYB_COUNTRY_BASEDIR,
+      </if>
+      <if test="drugConf != null" >
+        DRUG_CONF,
+      </if>
+      <if test="xnhUpflag != null" >
+        XNH_UPFLAG,
+      </if>
+      <if test="memo != null" >
+        MEMO,
+      </if>
+      <if test="hospitalPrice != null" >
+        HOSPITAL_PRICE,
+      </if>
+      <if test="specialDiagCode != null" >
+        SPECIAL_DIAG_CODE,
+      </if>
+      <if test="xnhybInsurItemName != null" >
+        XNHYB_INSUR_ITEM_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="hospitalItemClass != null" >
+        #{hospitalItemClass,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalItemCode != null" >
+        #{hospitalItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalItemSpec != null" >
+        #{hospitalItemSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalItemUnits != null" >
+        #{hospitalItemUnits,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalItemName != null" >
+        #{hospitalItemName,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceItemName != null" >
+        #{insuranceItemName,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalInputCode != null" >
+        #{hospitalInputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="enterDate != null" >
+        #{enterDate,jdbcType=DATE},
+      </if>
+      <if test="operatorNo != null" >
+        #{operatorNo,jdbcType=VARCHAR},
+      </if>
+      <if test="xnhybInsurItemCode != null" >
+        #{xnhybInsurItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="xnhybInsurFlag != null" >
+        #{xnhybInsurFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="xnhybCountryBasedir != null" >
+        #{xnhybCountryBasedir,jdbcType=VARCHAR},
+      </if>
+      <if test="drugConf != null" >
+        #{drugConf,jdbcType=VARCHAR},
+      </if>
+      <if test="xnhUpflag != null" >
+        #{xnhUpflag,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalPrice != null" >
+        #{hospitalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="specialDiagCode != null" >
+        #{specialDiagCode,jdbcType=VARCHAR},
+      </if>
+      <if test="xnhybInsurItemName != null" >
+        #{xnhybInsurItemName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.HospitalVsInsurance" >
+    update COMM.HOSPITAL_VS_INSURANCE
+    <set >
+      <if test="hospitalItemName != null" >
+        HOSPITAL_ITEM_NAME = #{hospitalItemName,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceItemName != null" >
+        INSURANCE_ITEM_NAME = #{insuranceItemName,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalInputCode != null" >
+        HOSPITAL_INPUT_CODE = #{hospitalInputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="enterDate != null" >
+        ENTER_DATE = #{enterDate,jdbcType=DATE},
+      </if>
+      <if test="operatorNo != null" >
+        OPERATOR_NO = #{operatorNo,jdbcType=VARCHAR},
+      </if>
+      <if test="xnhybInsurItemCode != null" >
+        XNHYB_INSUR_ITEM_CODE = #{xnhybInsurItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="xnhybInsurFlag != null" >
+        XNHYB_INSUR_FLAG = #{xnhybInsurFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="xnhybCountryBasedir != null" >
+        XNHYB_COUNTRY_BASEDIR = #{xnhybCountryBasedir,jdbcType=VARCHAR},
+      </if>
+      <if test="drugConf != null" >
+        DRUG_CONF = #{drugConf,jdbcType=VARCHAR},
+      </if>
+      <if test="xnhUpflag != null" >
+        XNH_UPFLAG = #{xnhUpflag,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        MEMO = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalPrice != null" >
+        HOSPITAL_PRICE = #{hospitalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="specialDiagCode != null" >
+        SPECIAL_DIAG_CODE = #{specialDiagCode,jdbcType=VARCHAR},
+      </if>
+      <if test="xnhybInsurItemName != null" >
+        XNHYB_INSUR_ITEM_NAME = #{xnhybInsurItemName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where HOSPITAL_ITEM_CLASS = #{hospitalItemClass,jdbcType=VARCHAR}
+      and HOSPITAL_ITEM_CODE = #{hospitalItemCode,jdbcType=VARCHAR}
+      and HOSPITAL_ITEM_SPEC = #{hospitalItemSpec,jdbcType=VARCHAR}
+      and HOSPITAL_ITEM_UNITS = #{hospitalItemUnits,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.HospitalVsInsurance" >
+    update COMM.HOSPITAL_VS_INSURANCE
+    set HOSPITAL_ITEM_NAME = #{hospitalItemName,jdbcType=VARCHAR},
+      INSURANCE_ITEM_NAME = #{insuranceItemName,jdbcType=VARCHAR},
+      HOSPITAL_INPUT_CODE = #{hospitalInputCode,jdbcType=VARCHAR},
+      ENTER_DATE = #{enterDate,jdbcType=DATE},
+      OPERATOR_NO = #{operatorNo,jdbcType=VARCHAR},
+      XNHYB_INSUR_ITEM_CODE = #{xnhybInsurItemCode,jdbcType=VARCHAR},
+      XNHYB_INSUR_FLAG = #{xnhybInsurFlag,jdbcType=VARCHAR},
+      XNHYB_COUNTRY_BASEDIR = #{xnhybCountryBasedir,jdbcType=VARCHAR},
+      DRUG_CONF = #{drugConf,jdbcType=VARCHAR},
+      XNH_UPFLAG = #{xnhUpflag,jdbcType=VARCHAR},
+      MEMO = #{memo,jdbcType=VARCHAR},
+      HOSPITAL_PRICE = #{hospitalPrice,jdbcType=DECIMAL},
+      SPECIAL_DIAG_CODE = #{specialDiagCode,jdbcType=VARCHAR},
+      XNHYB_INSUR_ITEM_NAME = #{xnhybInsurItemName,jdbcType=VARCHAR}
+    where HOSPITAL_ITEM_CLASS = #{hospitalItemClass,jdbcType=VARCHAR}
+      and HOSPITAL_ITEM_CODE = #{hospitalItemCode,jdbcType=VARCHAR}
+      and HOSPITAL_ITEM_SPEC = #{hospitalItemSpec,jdbcType=VARCHAR}
+      and HOSPITAL_ITEM_UNITS = #{hospitalItemUnits,jdbcType=VARCHAR}
+  </update>
+</mapper>

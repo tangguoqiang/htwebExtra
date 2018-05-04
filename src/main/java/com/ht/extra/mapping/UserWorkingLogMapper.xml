@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.UserWorkingLogMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.UserWorkingLog" >
+    <id column="USER_ID" property="userId" jdbcType="VARCHAR" />
+    <id column="OPER_DATE_TIME" property="operDateTime" jdbcType="DATE" />
+    <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+    <result column="TABLE_NAME" property="tableName" jdbcType="VARCHAR" />
+    <result column="FIELD_NAME" property="fieldName" jdbcType="VARCHAR" />
+    <result column="OPER_TYPE" property="operType" jdbcType="VARCHAR" />
+    <result column="CONTENTS" property="contents" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    USER_ID, OPER_DATE_TIME, USER_NAME, TABLE_NAME, FIELD_NAME, OPER_TYPE, CONTENTS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.UserWorkingLogKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.USER_WORKING_LOG
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+      and OPER_DATE_TIME = #{operDateTime,jdbcType=DATE}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.UserWorkingLogKey" >
+    delete from COMM.USER_WORKING_LOG
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+      and OPER_DATE_TIME = #{operDateTime,jdbcType=DATE}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.UserWorkingLog" >
+    insert into COMM.USER_WORKING_LOG (USER_ID, OPER_DATE_TIME, USER_NAME, 
+      TABLE_NAME, FIELD_NAME, OPER_TYPE, 
+      CONTENTS)
+    values (#{userId,jdbcType=VARCHAR}, #{operDateTime,jdbcType=DATE}, #{userName,jdbcType=VARCHAR}, 
+      #{tableName,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, #{operType,jdbcType=VARCHAR}, 
+      #{contents,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.UserWorkingLog" >
+    insert into COMM.USER_WORKING_LOG
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="operDateTime != null" >
+        OPER_DATE_TIME,
+      </if>
+      <if test="userName != null" >
+        USER_NAME,
+      </if>
+      <if test="tableName != null" >
+        TABLE_NAME,
+      </if>
+      <if test="fieldName != null" >
+        FIELD_NAME,
+      </if>
+      <if test="operType != null" >
+        OPER_TYPE,
+      </if>
+      <if test="contents != null" >
+        CONTENTS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="operDateTime != null" >
+        #{operDateTime,jdbcType=DATE},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="tableName != null" >
+        #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldName != null" >
+        #{fieldName,jdbcType=VARCHAR},
+      </if>
+      <if test="operType != null" >
+        #{operType,jdbcType=VARCHAR},
+      </if>
+      <if test="contents != null" >
+        #{contents,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.UserWorkingLog" >
+    update COMM.USER_WORKING_LOG
+    <set >
+      <if test="userName != null" >
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="tableName != null" >
+        TABLE_NAME = #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldName != null" >
+        FIELD_NAME = #{fieldName,jdbcType=VARCHAR},
+      </if>
+      <if test="operType != null" >
+        OPER_TYPE = #{operType,jdbcType=VARCHAR},
+      </if>
+      <if test="contents != null" >
+        CONTENTS = #{contents,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+      and OPER_DATE_TIME = #{operDateTime,jdbcType=DATE}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.UserWorkingLog" >
+    update COMM.USER_WORKING_LOG
+    set USER_NAME = #{userName,jdbcType=VARCHAR},
+      TABLE_NAME = #{tableName,jdbcType=VARCHAR},
+      FIELD_NAME = #{fieldName,jdbcType=VARCHAR},
+      OPER_TYPE = #{operType,jdbcType=VARCHAR},
+      CONTENTS = #{contents,jdbcType=VARCHAR}
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+      and OPER_DATE_TIME = #{operDateTime,jdbcType=DATE}
+  </update>
+</mapper>

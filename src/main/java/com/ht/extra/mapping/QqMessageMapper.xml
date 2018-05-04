@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.QqMessageMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.QqMessage" >
+    <id column="SEND_TIME" property="sendTime" jdbcType="DATE" />
+    <id column="HOST_NAME" property="hostName" jdbcType="VARCHAR" />
+    <id column="TARGET_NAME" property="targetName" jdbcType="VARCHAR" />
+    <result column="MESSAGE" property="message" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SEND_TIME, HOST_NAME, TARGET_NAME, MESSAGE, STATUS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.QqMessageKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.QQ_MESSAGE
+    where SEND_TIME = #{sendTime,jdbcType=DATE}
+      and HOST_NAME = #{hostName,jdbcType=VARCHAR}
+      and TARGET_NAME = #{targetName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.QqMessageKey" >
+    delete from COMM.QQ_MESSAGE
+    where SEND_TIME = #{sendTime,jdbcType=DATE}
+      and HOST_NAME = #{hostName,jdbcType=VARCHAR}
+      and TARGET_NAME = #{targetName,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.QqMessage" >
+    insert into COMM.QQ_MESSAGE (SEND_TIME, HOST_NAME, TARGET_NAME, 
+      MESSAGE, STATUS)
+    values (#{sendTime,jdbcType=DATE}, #{hostName,jdbcType=VARCHAR}, #{targetName,jdbcType=VARCHAR}, 
+      #{message,jdbcType=VARCHAR}, #{status,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.QqMessage" >
+    insert into COMM.QQ_MESSAGE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sendTime != null" >
+        SEND_TIME,
+      </if>
+      <if test="hostName != null" >
+        HOST_NAME,
+      </if>
+      <if test="targetName != null" >
+        TARGET_NAME,
+      </if>
+      <if test="message != null" >
+        MESSAGE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sendTime != null" >
+        #{sendTime,jdbcType=DATE},
+      </if>
+      <if test="hostName != null" >
+        #{hostName,jdbcType=VARCHAR},
+      </if>
+      <if test="targetName != null" >
+        #{targetName,jdbcType=VARCHAR},
+      </if>
+      <if test="message != null" >
+        #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.QqMessage" >
+    update COMM.QQ_MESSAGE
+    <set >
+      <if test="message != null" >
+        MESSAGE = #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where SEND_TIME = #{sendTime,jdbcType=DATE}
+      and HOST_NAME = #{hostName,jdbcType=VARCHAR}
+      and TARGET_NAME = #{targetName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.QqMessage" >
+    update COMM.QQ_MESSAGE
+    set MESSAGE = #{message,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=DECIMAL}
+    where SEND_TIME = #{sendTime,jdbcType=DATE}
+      and HOST_NAME = #{hostName,jdbcType=VARCHAR}
+      and TARGET_NAME = #{targetName,jdbcType=VARCHAR}
+  </update>
+</mapper>

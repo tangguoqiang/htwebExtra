@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.PatAdmConditionDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.PatAdmConditionDict" >
+    <id column="PAT_CONDITION_CODE" property="patConditionCode" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="PAT_CONDITION_NAME" property="patConditionName" jdbcType="VARCHAR" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PAT_CONDITION_CODE, SERIAL_NO, PAT_CONDITION_NAME, INPUT_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.PAT_ADM_CONDITION_DICT
+    where PAT_CONDITION_CODE = #{patConditionCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.PAT_ADM_CONDITION_DICT
+    where PAT_CONDITION_CODE = #{patConditionCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.PatAdmConditionDict" >
+    insert into COMM.PAT_ADM_CONDITION_DICT (PAT_CONDITION_CODE, SERIAL_NO, PAT_CONDITION_NAME, 
+      INPUT_CODE)
+    values (#{patConditionCode,jdbcType=VARCHAR}, #{serialNo,jdbcType=DECIMAL}, #{patConditionName,jdbcType=VARCHAR}, 
+      #{inputCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.PatAdmConditionDict" >
+    insert into COMM.PAT_ADM_CONDITION_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="patConditionCode != null" >
+        PAT_CONDITION_CODE,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="patConditionName != null" >
+        PAT_CONDITION_NAME,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="patConditionCode != null" >
+        #{patConditionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="patConditionName != null" >
+        #{patConditionName,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.PatAdmConditionDict" >
+    update COMM.PAT_ADM_CONDITION_DICT
+    <set >
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="patConditionName != null" >
+        PAT_CONDITION_NAME = #{patConditionName,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PAT_CONDITION_CODE = #{patConditionCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.PatAdmConditionDict" >
+    update COMM.PAT_ADM_CONDITION_DICT
+    set SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      PAT_CONDITION_NAME = #{patConditionName,jdbcType=VARCHAR},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR}
+    where PAT_CONDITION_CODE = #{patConditionCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

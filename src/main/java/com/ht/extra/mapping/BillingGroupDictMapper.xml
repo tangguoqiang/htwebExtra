@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.BillingGroupDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.BillingGroupDict" >
+    <id column="GROUP_NAME" property="groupName" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="GROUP_CODE" property="groupCode" jdbcType="VARCHAR" />
+    <result column="START_WINDOW_NO" property="startWindowNo" jdbcType="VARCHAR" />
+    <result column="STOP_WINDOW_NO" property="stopWindowNo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    GROUP_NAME, SERIAL_NO, GROUP_CODE, START_WINDOW_NO, STOP_WINDOW_NO
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.BILLING_GROUP_DICT
+    where GROUP_NAME = #{groupName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.BILLING_GROUP_DICT
+    where GROUP_NAME = #{groupName,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.BillingGroupDict" >
+    insert into COMM.BILLING_GROUP_DICT (GROUP_NAME, SERIAL_NO, GROUP_CODE, 
+      START_WINDOW_NO, STOP_WINDOW_NO)
+    values (#{groupName,jdbcType=VARCHAR}, #{serialNo,jdbcType=DECIMAL}, #{groupCode,jdbcType=VARCHAR}, 
+      #{startWindowNo,jdbcType=VARCHAR}, #{stopWindowNo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.BillingGroupDict" >
+    insert into COMM.BILLING_GROUP_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="groupName != null" >
+        GROUP_NAME,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="groupCode != null" >
+        GROUP_CODE,
+      </if>
+      <if test="startWindowNo != null" >
+        START_WINDOW_NO,
+      </if>
+      <if test="stopWindowNo != null" >
+        STOP_WINDOW_NO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="groupName != null" >
+        #{groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="groupCode != null" >
+        #{groupCode,jdbcType=VARCHAR},
+      </if>
+      <if test="startWindowNo != null" >
+        #{startWindowNo,jdbcType=VARCHAR},
+      </if>
+      <if test="stopWindowNo != null" >
+        #{stopWindowNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.BillingGroupDict" >
+    update COMM.BILLING_GROUP_DICT
+    <set >
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="groupCode != null" >
+        GROUP_CODE = #{groupCode,jdbcType=VARCHAR},
+      </if>
+      <if test="startWindowNo != null" >
+        START_WINDOW_NO = #{startWindowNo,jdbcType=VARCHAR},
+      </if>
+      <if test="stopWindowNo != null" >
+        STOP_WINDOW_NO = #{stopWindowNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where GROUP_NAME = #{groupName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.BillingGroupDict" >
+    update COMM.BILLING_GROUP_DICT
+    set SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      GROUP_CODE = #{groupCode,jdbcType=VARCHAR},
+      START_WINDOW_NO = #{startWindowNo,jdbcType=VARCHAR},
+      STOP_WINDOW_NO = #{stopWindowNo,jdbcType=VARCHAR}
+    where GROUP_NAME = #{groupName,jdbcType=VARCHAR}
+  </update>
+</mapper>

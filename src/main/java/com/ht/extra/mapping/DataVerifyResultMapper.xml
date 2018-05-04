@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.DataVerifyResultMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.DataVerifyResult" >
+    <id column="VERIFY_DATE_TIME" property="verifyDateTime" jdbcType="DATE" />
+    <id column="RESULT_NO" property="resultNo" jdbcType="DECIMAL" />
+    <result column="VERIFY_TYPE" property="verifyType" jdbcType="VARCHAR" />
+    <result column="CONDITION_NO" property="conditionNo" jdbcType="DECIMAL" />
+    <result column="ERROR_INDICATOR" property="errorIndicator" jdbcType="VARCHAR" />
+    <result column="RECTIFY_DATE_TIME" property="rectifyDateTime" jdbcType="DATE" />
+    <result column="OPERATOR" property="operator" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    VERIFY_DATE_TIME, RESULT_NO, VERIFY_TYPE, CONDITION_NO, ERROR_INDICATOR, RECTIFY_DATE_TIME, 
+    OPERATOR
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.DataVerifyResultKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.DATA_VERIFY_RESULT
+    where VERIFY_DATE_TIME = #{verifyDateTime,jdbcType=DATE}
+      and RESULT_NO = #{resultNo,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.DataVerifyResultKey" >
+    delete from COMM.DATA_VERIFY_RESULT
+    where VERIFY_DATE_TIME = #{verifyDateTime,jdbcType=DATE}
+      and RESULT_NO = #{resultNo,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.DataVerifyResult" >
+    insert into COMM.DATA_VERIFY_RESULT (VERIFY_DATE_TIME, RESULT_NO, VERIFY_TYPE, 
+      CONDITION_NO, ERROR_INDICATOR, RECTIFY_DATE_TIME, 
+      OPERATOR)
+    values (#{verifyDateTime,jdbcType=DATE}, #{resultNo,jdbcType=DECIMAL}, #{verifyType,jdbcType=VARCHAR}, 
+      #{conditionNo,jdbcType=DECIMAL}, #{errorIndicator,jdbcType=VARCHAR}, #{rectifyDateTime,jdbcType=DATE}, 
+      #{operator,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.DataVerifyResult" >
+    insert into COMM.DATA_VERIFY_RESULT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="verifyDateTime != null" >
+        VERIFY_DATE_TIME,
+      </if>
+      <if test="resultNo != null" >
+        RESULT_NO,
+      </if>
+      <if test="verifyType != null" >
+        VERIFY_TYPE,
+      </if>
+      <if test="conditionNo != null" >
+        CONDITION_NO,
+      </if>
+      <if test="errorIndicator != null" >
+        ERROR_INDICATOR,
+      </if>
+      <if test="rectifyDateTime != null" >
+        RECTIFY_DATE_TIME,
+      </if>
+      <if test="operator != null" >
+        OPERATOR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="verifyDateTime != null" >
+        #{verifyDateTime,jdbcType=DATE},
+      </if>
+      <if test="resultNo != null" >
+        #{resultNo,jdbcType=DECIMAL},
+      </if>
+      <if test="verifyType != null" >
+        #{verifyType,jdbcType=VARCHAR},
+      </if>
+      <if test="conditionNo != null" >
+        #{conditionNo,jdbcType=DECIMAL},
+      </if>
+      <if test="errorIndicator != null" >
+        #{errorIndicator,jdbcType=VARCHAR},
+      </if>
+      <if test="rectifyDateTime != null" >
+        #{rectifyDateTime,jdbcType=DATE},
+      </if>
+      <if test="operator != null" >
+        #{operator,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.DataVerifyResult" >
+    update COMM.DATA_VERIFY_RESULT
+    <set >
+      <if test="verifyType != null" >
+        VERIFY_TYPE = #{verifyType,jdbcType=VARCHAR},
+      </if>
+      <if test="conditionNo != null" >
+        CONDITION_NO = #{conditionNo,jdbcType=DECIMAL},
+      </if>
+      <if test="errorIndicator != null" >
+        ERROR_INDICATOR = #{errorIndicator,jdbcType=VARCHAR},
+      </if>
+      <if test="rectifyDateTime != null" >
+        RECTIFY_DATE_TIME = #{rectifyDateTime,jdbcType=DATE},
+      </if>
+      <if test="operator != null" >
+        OPERATOR = #{operator,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where VERIFY_DATE_TIME = #{verifyDateTime,jdbcType=DATE}
+      and RESULT_NO = #{resultNo,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.DataVerifyResult" >
+    update COMM.DATA_VERIFY_RESULT
+    set VERIFY_TYPE = #{verifyType,jdbcType=VARCHAR},
+      CONDITION_NO = #{conditionNo,jdbcType=DECIMAL},
+      ERROR_INDICATOR = #{errorIndicator,jdbcType=VARCHAR},
+      RECTIFY_DATE_TIME = #{rectifyDateTime,jdbcType=DATE},
+      OPERATOR = #{operator,jdbcType=VARCHAR}
+    where VERIFY_DATE_TIME = #{verifyDateTime,jdbcType=DATE}
+      and RESULT_NO = #{resultNo,jdbcType=DECIMAL}
+  </update>
+</mapper>

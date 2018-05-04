@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.OlNodesMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.outln.OlNodes" >
+    <result column="OL_NAME" property="olName" jdbcType="VARCHAR" />
+    <result column="CATEGORY" property="category" jdbcType="VARCHAR" />
+    <result column="NODE_ID" property="nodeId" jdbcType="DECIMAL" />
+    <result column="PARENT_ID" property="parentId" jdbcType="DECIMAL" />
+    <result column="NODE_TYPE" property="nodeType" jdbcType="DECIMAL" />
+    <result column="NODE_TEXTLEN" property="nodeTextlen" jdbcType="DECIMAL" />
+    <result column="NODE_TEXTOFF" property="nodeTextoff" jdbcType="DECIMAL" />
+    <result column="NODE_NAME" property="nodeName" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.ht.extra.pojo.outln.OlNodes" >
+    insert into OUTLN.OL$NODES (OL_NAME, CATEGORY, NODE_ID, 
+      PARENT_ID, NODE_TYPE, NODE_TEXTLEN, 
+      NODE_TEXTOFF, NODE_NAME)
+    values (#{olName,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR}, #{nodeId,jdbcType=DECIMAL}, 
+      #{parentId,jdbcType=DECIMAL}, #{nodeType,jdbcType=DECIMAL}, #{nodeTextlen,jdbcType=DECIMAL}, 
+      #{nodeTextoff,jdbcType=DECIMAL}, #{nodeName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.outln.OlNodes" >
+    insert into OUTLN.OL$NODES
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="olName != null" >
+        OL_NAME,
+      </if>
+      <if test="category != null" >
+        CATEGORY,
+      </if>
+      <if test="nodeId != null" >
+        NODE_ID,
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID,
+      </if>
+      <if test="nodeType != null" >
+        NODE_TYPE,
+      </if>
+      <if test="nodeTextlen != null" >
+        NODE_TEXTLEN,
+      </if>
+      <if test="nodeTextoff != null" >
+        NODE_TEXTOFF,
+      </if>
+      <if test="nodeName != null" >
+        NODE_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="olName != null" >
+        #{olName,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null" >
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeId != null" >
+        #{nodeId,jdbcType=DECIMAL},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=DECIMAL},
+      </if>
+      <if test="nodeType != null" >
+        #{nodeType,jdbcType=DECIMAL},
+      </if>
+      <if test="nodeTextlen != null" >
+        #{nodeTextlen,jdbcType=DECIMAL},
+      </if>
+      <if test="nodeTextoff != null" >
+        #{nodeTextoff,jdbcType=DECIMAL},
+      </if>
+      <if test="nodeName != null" >
+        #{nodeName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

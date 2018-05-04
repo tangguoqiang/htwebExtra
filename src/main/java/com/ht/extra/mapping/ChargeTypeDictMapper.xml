@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.ChargeTypeDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.ChargeTypeDict" >
+    <id column="CHARGE_TYPE_NAME" property="chargeTypeName" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="CHARGE_TYPE_CODE" property="chargeTypeCode" jdbcType="VARCHAR" />
+    <result column="CHARGE_PRICE_INDICATOR" property="chargePriceIndicator" jdbcType="DECIMAL" />
+    <result column="CHECK_DRUG" property="checkDrug" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    CHARGE_TYPE_NAME, SERIAL_NO, CHARGE_TYPE_CODE, CHARGE_PRICE_INDICATOR, CHECK_DRUG
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.CHARGE_TYPE_DICT
+    where CHARGE_TYPE_NAME = #{chargeTypeName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.CHARGE_TYPE_DICT
+    where CHARGE_TYPE_NAME = #{chargeTypeName,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.ChargeTypeDict" >
+    insert into COMM.CHARGE_TYPE_DICT (CHARGE_TYPE_NAME, SERIAL_NO, CHARGE_TYPE_CODE, 
+      CHARGE_PRICE_INDICATOR, CHECK_DRUG)
+    values (#{chargeTypeName,jdbcType=VARCHAR}, #{serialNo,jdbcType=DECIMAL}, #{chargeTypeCode,jdbcType=VARCHAR}, 
+      #{chargePriceIndicator,jdbcType=DECIMAL}, #{checkDrug,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.ChargeTypeDict" >
+    insert into COMM.CHARGE_TYPE_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="chargeTypeName != null" >
+        CHARGE_TYPE_NAME,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="chargeTypeCode != null" >
+        CHARGE_TYPE_CODE,
+      </if>
+      <if test="chargePriceIndicator != null" >
+        CHARGE_PRICE_INDICATOR,
+      </if>
+      <if test="checkDrug != null" >
+        CHECK_DRUG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="chargeTypeName != null" >
+        #{chargeTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="chargeTypeCode != null" >
+        #{chargeTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="chargePriceIndicator != null" >
+        #{chargePriceIndicator,jdbcType=DECIMAL},
+      </if>
+      <if test="checkDrug != null" >
+        #{checkDrug,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.ChargeTypeDict" >
+    update COMM.CHARGE_TYPE_DICT
+    <set >
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="chargeTypeCode != null" >
+        CHARGE_TYPE_CODE = #{chargeTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="chargePriceIndicator != null" >
+        CHARGE_PRICE_INDICATOR = #{chargePriceIndicator,jdbcType=DECIMAL},
+      </if>
+      <if test="checkDrug != null" >
+        CHECK_DRUG = #{checkDrug,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CHARGE_TYPE_NAME = #{chargeTypeName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.ChargeTypeDict" >
+    update COMM.CHARGE_TYPE_DICT
+    set SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      CHARGE_TYPE_CODE = #{chargeTypeCode,jdbcType=VARCHAR},
+      CHARGE_PRICE_INDICATOR = #{chargePriceIndicator,jdbcType=DECIMAL},
+      CHECK_DRUG = #{checkDrug,jdbcType=VARCHAR}
+    where CHARGE_TYPE_NAME = #{chargeTypeName,jdbcType=VARCHAR}
+  </update>
+</mapper>

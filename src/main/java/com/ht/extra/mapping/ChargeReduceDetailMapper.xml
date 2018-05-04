@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.ChargeReduceDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.outpbill.ChargeReduceDetail" >
+    <id column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <id column="ITEM_NO" property="itemNo" jdbcType="DECIMAL" />
+    <result column="RCPT_NO" property="rcptNo" jdbcType="VARCHAR" />
+    <result column="REDUCE_AMOUNT" property="reduceAmount" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SERIAL_NO, ITEM_NO, RCPT_NO, REDUCE_AMOUNT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.outpbill.ChargeReduceDetailKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from OUTPBILL.CHARGE_REDUCE_DETAIL
+    where SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.outpbill.ChargeReduceDetailKey" >
+    delete from OUTPBILL.CHARGE_REDUCE_DETAIL
+    where SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.outpbill.ChargeReduceDetail" >
+    insert into OUTPBILL.CHARGE_REDUCE_DETAIL (SERIAL_NO, ITEM_NO, RCPT_NO, 
+      REDUCE_AMOUNT)
+    values (#{serialNo,jdbcType=DECIMAL}, #{itemNo,jdbcType=DECIMAL}, #{rcptNo,jdbcType=VARCHAR}, 
+      #{reduceAmount,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.outpbill.ChargeReduceDetail" >
+    insert into OUTPBILL.CHARGE_REDUCE_DETAIL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="itemNo != null" >
+        ITEM_NO,
+      </if>
+      <if test="rcptNo != null" >
+        RCPT_NO,
+      </if>
+      <if test="reduceAmount != null" >
+        REDUCE_AMOUNT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="itemNo != null" >
+        #{itemNo,jdbcType=DECIMAL},
+      </if>
+      <if test="rcptNo != null" >
+        #{rcptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="reduceAmount != null" >
+        #{reduceAmount,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.outpbill.ChargeReduceDetail" >
+    update OUTPBILL.CHARGE_REDUCE_DETAIL
+    <set >
+      <if test="rcptNo != null" >
+        RCPT_NO = #{rcptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="reduceAmount != null" >
+        REDUCE_AMOUNT = #{reduceAmount,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.outpbill.ChargeReduceDetail" >
+    update OUTPBILL.CHARGE_REDUCE_DETAIL
+    set RCPT_NO = #{rcptNo,jdbcType=VARCHAR},
+      REDUCE_AMOUNT = #{reduceAmount,jdbcType=DECIMAL}
+    where SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+  </update>
+</mapper>

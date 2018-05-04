@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.MdcCaseRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.medrec.MdcCaseRecord" >
+    <id column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <result column="VISIT_ID" property="visitId" jdbcType="DECIMAL" />
+    <result column="CCLASS_CODE" property="cclassCode" jdbcType="VARCHAR" />
+    <result column="CCLASS_NAME" property="cclassName" jdbcType="VARCHAR" />
+    <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+    <result column="DEPT_CODE" property="deptCode" jdbcType="VARCHAR" />
+    <result column="PATIENT_DEPT_CODE" property="patientDeptCode" jdbcType="VARCHAR" />
+    <result column="CREATE_DATA" property="createData" jdbcType="DATE" />
+    <result column="CCLASS_STATE" property="cclassState" jdbcType="DECIMAL" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.ht.extra.pojo.medrec.MdcCaseRecord" extends="BaseResultMap" >
+    <result column="CCASE_CONTEN" property="ccaseConten" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SERIAL_NO, PATIENT_ID, VISIT_ID, CCLASS_CODE, CCLASS_NAME, USER_NAME, USER_ID, DEPT_CODE, 
+    PATIENT_DEPT_CODE, CREATE_DATA, CCLASS_STATE
+  </sql>
+  <sql id="Blob_Column_List" >
+    CCASE_CONTEN
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from MEDREC.MDC_CASE_RECORD
+    where SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from MEDREC.MDC_CASE_RECORD
+    where SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.medrec.MdcCaseRecord" >
+    insert into MEDREC.MDC_CASE_RECORD (SERIAL_NO, PATIENT_ID, VISIT_ID, 
+      CCLASS_CODE, CCLASS_NAME, USER_NAME, 
+      USER_ID, DEPT_CODE, PATIENT_DEPT_CODE, 
+      CREATE_DATA, CCLASS_STATE, CCASE_CONTEN
+      )
+    values (#{serialNo,jdbcType=DECIMAL}, #{patientId,jdbcType=VARCHAR}, #{visitId,jdbcType=DECIMAL}, 
+      #{cclassCode,jdbcType=VARCHAR}, #{cclassName,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=VARCHAR}, #{deptCode,jdbcType=VARCHAR}, #{patientDeptCode,jdbcType=VARCHAR}, 
+      #{createData,jdbcType=DATE}, #{cclassState,jdbcType=DECIMAL}, #{ccaseConten,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.medrec.MdcCaseRecord" >
+    insert into MEDREC.MDC_CASE_RECORD
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="visitId != null" >
+        VISIT_ID,
+      </if>
+      <if test="cclassCode != null" >
+        CCLASS_CODE,
+      </if>
+      <if test="cclassName != null" >
+        CCLASS_NAME,
+      </if>
+      <if test="userName != null" >
+        USER_NAME,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="deptCode != null" >
+        DEPT_CODE,
+      </if>
+      <if test="patientDeptCode != null" >
+        PATIENT_DEPT_CODE,
+      </if>
+      <if test="createData != null" >
+        CREATE_DATA,
+      </if>
+      <if test="cclassState != null" >
+        CCLASS_STATE,
+      </if>
+      <if test="ccaseConten != null" >
+        CCASE_CONTEN,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitId != null" >
+        #{visitId,jdbcType=DECIMAL},
+      </if>
+      <if test="cclassCode != null" >
+        #{cclassCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cclassName != null" >
+        #{cclassName,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="deptCode != null" >
+        #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="patientDeptCode != null" >
+        #{patientDeptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createData != null" >
+        #{createData,jdbcType=DATE},
+      </if>
+      <if test="cclassState != null" >
+        #{cclassState,jdbcType=DECIMAL},
+      </if>
+      <if test="ccaseConten != null" >
+        #{ccaseConten,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.medrec.MdcCaseRecord" >
+    update MEDREC.MDC_CASE_RECORD
+    <set >
+      <if test="patientId != null" >
+        PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitId != null" >
+        VISIT_ID = #{visitId,jdbcType=DECIMAL},
+      </if>
+      <if test="cclassCode != null" >
+        CCLASS_CODE = #{cclassCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cclassName != null" >
+        CCLASS_NAME = #{cclassName,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="deptCode != null" >
+        DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="patientDeptCode != null" >
+        PATIENT_DEPT_CODE = #{patientDeptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createData != null" >
+        CREATE_DATA = #{createData,jdbcType=DATE},
+      </if>
+      <if test="cclassState != null" >
+        CCLASS_STATE = #{cclassState,jdbcType=DECIMAL},
+      </if>
+      <if test="ccaseConten != null" >
+        CCASE_CONTEN = #{ccaseConten,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ht.extra.pojo.medrec.MdcCaseRecord" >
+    update MEDREC.MDC_CASE_RECORD
+    set PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      VISIT_ID = #{visitId,jdbcType=DECIMAL},
+      CCLASS_CODE = #{cclassCode,jdbcType=VARCHAR},
+      CCLASS_NAME = #{cclassName,jdbcType=VARCHAR},
+      USER_NAME = #{userName,jdbcType=VARCHAR},
+      USER_ID = #{userId,jdbcType=VARCHAR},
+      DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+      PATIENT_DEPT_CODE = #{patientDeptCode,jdbcType=VARCHAR},
+      CREATE_DATA = #{createData,jdbcType=DATE},
+      CCLASS_STATE = #{cclassState,jdbcType=DECIMAL},
+      CCASE_CONTEN = #{ccaseConten,jdbcType=LONGVARCHAR}
+    where SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.medrec.MdcCaseRecord" >
+    update MEDREC.MDC_CASE_RECORD
+    set PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      VISIT_ID = #{visitId,jdbcType=DECIMAL},
+      CCLASS_CODE = #{cclassCode,jdbcType=VARCHAR},
+      CCLASS_NAME = #{cclassName,jdbcType=VARCHAR},
+      USER_NAME = #{userName,jdbcType=VARCHAR},
+      USER_ID = #{userId,jdbcType=VARCHAR},
+      DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+      PATIENT_DEPT_CODE = #{patientDeptCode,jdbcType=VARCHAR},
+      CREATE_DATA = #{createData,jdbcType=DATE},
+      CCLASS_STATE = #{cclassState,jdbcType=DECIMAL}
+    where SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+  </update>
+</mapper>

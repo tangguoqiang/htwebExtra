@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.PatIccardRecNewMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.insurance.PatIccardRecNew" >
+    <id column="ICCARD_NO" property="iccardNo" jdbcType="VARCHAR" />
+    <result column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <result column="REG_DATETIME" property="regDatetime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ICCARD_NO, PATIENT_ID, REG_DATETIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from INSURANCE.PAT_ICCARD_REC_NEW
+    where ICCARD_NO = #{iccardNo,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPatientId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from INSURANCE.PAT_ICCARD_REC_NEW
+    where PATIENT_ID = #{0}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from INSURANCE.PAT_ICCARD_REC_NEW
+    where ICCARD_NO = #{iccardNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.insurance.PatIccardRecNew" >
+    insert into INSURANCE.PAT_ICCARD_REC_NEW (ICCARD_NO, PATIENT_ID, REG_DATETIME
+      )
+    values (#{iccardNo,jdbcType=VARCHAR}, #{patientId,jdbcType=VARCHAR}, #{regDatetime,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.insurance.PatIccardRecNew" >
+    insert into INSURANCE.PAT_ICCARD_REC_NEW
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="iccardNo != null" >
+        ICCARD_NO,
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="regDatetime != null" >
+        REG_DATETIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="iccardNo != null" >
+        #{iccardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="regDatetime != null" >
+        #{regDatetime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.insurance.PatIccardRecNew" >
+    update INSURANCE.PAT_ICCARD_REC_NEW
+    <set >
+      <if test="patientId != null" >
+        PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="regDatetime != null" >
+        REG_DATETIME = #{regDatetime,jdbcType=DATE},
+      </if>
+    </set>
+    where ICCARD_NO = #{iccardNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.insurance.PatIccardRecNew" >
+    update INSURANCE.PAT_ICCARD_REC_NEW
+    set PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      REG_DATETIME = #{regDatetime,jdbcType=DATE}
+    where ICCARD_NO = #{iccardNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

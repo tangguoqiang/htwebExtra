@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.SecurityTemplateMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.SecurityTemplate" >
+    <id column="APPLICATION" property="application" jdbcType="VARCHAR" />
+    <id column="WINDOW" property="window" jdbcType="VARCHAR" />
+    <id column="CONTROL" property="control" jdbcType="VARCHAR" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="OBJECT_TYPE" property="objectType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    APPLICATION, WINDOW, CONTROL, DESCRIPTION, OBJECT_TYPE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.SecurityTemplateKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.SECURITY_TEMPLATE
+    where APPLICATION = #{application,jdbcType=VARCHAR}
+      and WINDOW = #{window,jdbcType=VARCHAR}
+      and CONTROL = #{control,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.SecurityTemplateKey" >
+    delete from COMM.SECURITY_TEMPLATE
+    where APPLICATION = #{application,jdbcType=VARCHAR}
+      and WINDOW = #{window,jdbcType=VARCHAR}
+      and CONTROL = #{control,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.SecurityTemplate" >
+    insert into COMM.SECURITY_TEMPLATE (APPLICATION, WINDOW, CONTROL, 
+      DESCRIPTION, OBJECT_TYPE)
+    values (#{application,jdbcType=VARCHAR}, #{window,jdbcType=VARCHAR}, #{control,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{objectType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.SecurityTemplate" >
+    insert into COMM.SECURITY_TEMPLATE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="application != null" >
+        APPLICATION,
+      </if>
+      <if test="window != null" >
+        WINDOW,
+      </if>
+      <if test="control != null" >
+        CONTROL,
+      </if>
+      <if test="description != null" >
+        DESCRIPTION,
+      </if>
+      <if test="objectType != null" >
+        OBJECT_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="application != null" >
+        #{application,jdbcType=VARCHAR},
+      </if>
+      <if test="window != null" >
+        #{window,jdbcType=VARCHAR},
+      </if>
+      <if test="control != null" >
+        #{control,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="objectType != null" >
+        #{objectType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.SecurityTemplate" >
+    update COMM.SECURITY_TEMPLATE
+    <set >
+      <if test="description != null" >
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="objectType != null" >
+        OBJECT_TYPE = #{objectType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where APPLICATION = #{application,jdbcType=VARCHAR}
+      and WINDOW = #{window,jdbcType=VARCHAR}
+      and CONTROL = #{control,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.SecurityTemplate" >
+    update COMM.SECURITY_TEMPLATE
+    set DESCRIPTION = #{description,jdbcType=VARCHAR},
+      OBJECT_TYPE = #{objectType,jdbcType=VARCHAR}
+    where APPLICATION = #{application,jdbcType=VARCHAR}
+      and WINDOW = #{window,jdbcType=VARCHAR}
+      and CONTROL = #{control,jdbcType=VARCHAR}
+  </update>
+</mapper>

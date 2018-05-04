@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.ClinicIndexMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.outpadm.ClinicIndex" >
+    <id column="CLINIC_LABEL" property="clinicLabel" jdbcType="VARCHAR" />
+    <result column="CLINIC_DEPT" property="clinicDept" jdbcType="VARCHAR" />
+    <result column="DOCTOR" property="doctor" jdbcType="VARCHAR" />
+    <result column="DOCTOR_TITLE" property="doctorTitle" jdbcType="VARCHAR" />
+    <result column="CLINIC_TYPE" property="clinicType" jdbcType="VARCHAR" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="PRICE" property="price" jdbcType="DECIMAL"/>
+    <result column="CLINIC_TYPE_NAME" property="clinicTypeName" jdbcType="VARCHAR"/>
+    <association property="doctorTitleDict" javaType="com.ht.extra.pojo.comm.DoctorTitleDict">
+      <id column="TITLE_CODE" property="titleCode" jdbcType="VARCHAR" />
+      <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+      <result column="TITLE_NAME" property="titleName" jdbcType="VARCHAR" />
+      <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    CLINIC_LABEL, CLINIC_DEPT, DOCTOR, DOCTOR_TITLE, CLINIC_TYPE, INPUT_CODE, SERIAL_NO
+  </sql>
+
+  <select id="selectByDept" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select * from (select
+    a.*,b.title_name,(select d.emp_no from COMM.STAFF_DICT d where d.name = a.doctor and rownum=1)emp_no
+    from OUTPADM.CLINIC_INDEX a,comm.doctor_title_dict b
+    where a.doctor_title = b.title_code and  CLINIC_DEPT= #{clinicdept,jdbcType=VARCHAR} )
+    where (emp_no is null or emp_no NOT IN ('1808','597','2559','178','2341','2510','2349','369','2564','2530','3488','3489','2392','3491','698','2425','2899','1787','339','1845','1640'))
+  </select>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+     SELECT a.*,(select price from comm.price_list where
+      item_code =(select charge_item from outpadm.clinic_type_dict where clinic_type = a.clinic_type)
+      and item_spec =(select clinic_type_code from outpadm.clinic_type_dict where clinic_type=a.clinic_type)
+      and stop_date is null
+      ) price,(select clinic_type from outpadm.clinic_type_dict where clinic_type = a.clinic_type) clinic_type_name
+       FROM OUTPADM.CLINIC_INDEX a
+    where a.CLINIC_LABEL = #{clinicLabel,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from OUTPADM.CLINIC_INDEX
+    where CLINIC_LABEL = #{clinicLabel,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.outpadm.ClinicIndex" >
+    insert into OUTPADM.CLINIC_INDEX (CLINIC_LABEL, CLINIC_DEPT, DOCTOR, 
+      DOCTOR_TITLE, CLINIC_TYPE, INPUT_CODE, 
+      SERIAL_NO)
+    values (#{clinicLabel,jdbcType=VARCHAR}, #{clinicDept,jdbcType=VARCHAR}, #{doctor,jdbcType=VARCHAR}, 
+      #{doctorTitle,jdbcType=VARCHAR}, #{clinicType,jdbcType=VARCHAR}, #{inputCode,jdbcType=VARCHAR}, 
+      #{serialNo,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.outpadm.ClinicIndex" >
+    insert into OUTPADM.CLINIC_INDEX
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="clinicLabel != null" >
+        CLINIC_LABEL,
+      </if>
+      <if test="clinicDept != null" >
+        CLINIC_DEPT,
+      </if>
+      <if test="doctor != null" >
+        DOCTOR,
+      </if>
+      <if test="doctorTitle != null" >
+        DOCTOR_TITLE,
+      </if>
+      <if test="clinicType != null" >
+        CLINIC_TYPE,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="clinicLabel != null" >
+        #{clinicLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="clinicDept != null" >
+        #{clinicDept,jdbcType=VARCHAR},
+      </if>
+      <if test="doctor != null" >
+        #{doctor,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorTitle != null" >
+        #{doctorTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="clinicType != null" >
+        #{clinicType,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.outpadm.ClinicIndex" >
+    update OUTPADM.CLINIC_INDEX
+    <set >
+      <if test="clinicDept != null" >
+        CLINIC_DEPT = #{clinicDept,jdbcType=VARCHAR},
+      </if>
+      <if test="doctor != null" >
+        DOCTOR = #{doctor,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorTitle != null" >
+        DOCTOR_TITLE = #{doctorTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="clinicType != null" >
+        CLINIC_TYPE = #{clinicType,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where CLINIC_LABEL = #{clinicLabel,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.outpadm.ClinicIndex" >
+    update OUTPADM.CLINIC_INDEX
+    set CLINIC_DEPT = #{clinicDept,jdbcType=VARCHAR},
+      DOCTOR = #{doctor,jdbcType=VARCHAR},
+      DOCTOR_TITLE = #{doctorTitle,jdbcType=VARCHAR},
+      CLINIC_TYPE = #{clinicType,jdbcType=VARCHAR},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+    where CLINIC_LABEL = #{clinicLabel,jdbcType=VARCHAR}
+  </update>
+</mapper>

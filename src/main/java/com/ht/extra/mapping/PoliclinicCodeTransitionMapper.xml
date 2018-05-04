@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.PoliclinicCodeTransitionMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.PoliclinicCodeTransition" >
+    <id column="DESIGNATED_HOSPITAL" property="designatedHospital" jdbcType="VARCHAR" />
+    <id column="OLD_POLICLINIC_CODE" property="oldPoliclinicCode" jdbcType="VARCHAR" />
+    <result column="OLD_POLICLINIC_NAME" property="oldPoliclinicName" jdbcType="VARCHAR" />
+    <result column="NEW_POLICLINIC_CODE" property="newPoliclinicCode" jdbcType="VARCHAR" />
+    <result column="NEW_POLICLINIC_NAME" property="newPoliclinicName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    DESIGNATED_HOSPITAL, OLD_POLICLINIC_CODE, OLD_POLICLINIC_NAME, NEW_POLICLINIC_CODE, 
+    NEW_POLICLINIC_NAME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.PoliclinicCodeTransitionKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.POLICLINIC_CODE_TRANSITION
+    where DESIGNATED_HOSPITAL = #{designatedHospital,jdbcType=VARCHAR}
+      and OLD_POLICLINIC_CODE = #{oldPoliclinicCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.PoliclinicCodeTransitionKey" >
+    delete from COMM.POLICLINIC_CODE_TRANSITION
+    where DESIGNATED_HOSPITAL = #{designatedHospital,jdbcType=VARCHAR}
+      and OLD_POLICLINIC_CODE = #{oldPoliclinicCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.PoliclinicCodeTransition" >
+    insert into COMM.POLICLINIC_CODE_TRANSITION (DESIGNATED_HOSPITAL, OLD_POLICLINIC_CODE, 
+      OLD_POLICLINIC_NAME, NEW_POLICLINIC_CODE, NEW_POLICLINIC_NAME
+      )
+    values (#{designatedHospital,jdbcType=VARCHAR}, #{oldPoliclinicCode,jdbcType=VARCHAR}, 
+      #{oldPoliclinicName,jdbcType=VARCHAR}, #{newPoliclinicCode,jdbcType=VARCHAR}, #{newPoliclinicName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.PoliclinicCodeTransition" >
+    insert into COMM.POLICLINIC_CODE_TRANSITION
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="designatedHospital != null" >
+        DESIGNATED_HOSPITAL,
+      </if>
+      <if test="oldPoliclinicCode != null" >
+        OLD_POLICLINIC_CODE,
+      </if>
+      <if test="oldPoliclinicName != null" >
+        OLD_POLICLINIC_NAME,
+      </if>
+      <if test="newPoliclinicCode != null" >
+        NEW_POLICLINIC_CODE,
+      </if>
+      <if test="newPoliclinicName != null" >
+        NEW_POLICLINIC_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="designatedHospital != null" >
+        #{designatedHospital,jdbcType=VARCHAR},
+      </if>
+      <if test="oldPoliclinicCode != null" >
+        #{oldPoliclinicCode,jdbcType=VARCHAR},
+      </if>
+      <if test="oldPoliclinicName != null" >
+        #{oldPoliclinicName,jdbcType=VARCHAR},
+      </if>
+      <if test="newPoliclinicCode != null" >
+        #{newPoliclinicCode,jdbcType=VARCHAR},
+      </if>
+      <if test="newPoliclinicName != null" >
+        #{newPoliclinicName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.PoliclinicCodeTransition" >
+    update COMM.POLICLINIC_CODE_TRANSITION
+    <set >
+      <if test="oldPoliclinicName != null" >
+        OLD_POLICLINIC_NAME = #{oldPoliclinicName,jdbcType=VARCHAR},
+      </if>
+      <if test="newPoliclinicCode != null" >
+        NEW_POLICLINIC_CODE = #{newPoliclinicCode,jdbcType=VARCHAR},
+      </if>
+      <if test="newPoliclinicName != null" >
+        NEW_POLICLINIC_NAME = #{newPoliclinicName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DESIGNATED_HOSPITAL = #{designatedHospital,jdbcType=VARCHAR}
+      and OLD_POLICLINIC_CODE = #{oldPoliclinicCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.PoliclinicCodeTransition" >
+    update COMM.POLICLINIC_CODE_TRANSITION
+    set OLD_POLICLINIC_NAME = #{oldPoliclinicName,jdbcType=VARCHAR},
+      NEW_POLICLINIC_CODE = #{newPoliclinicCode,jdbcType=VARCHAR},
+      NEW_POLICLINIC_NAME = #{newPoliclinicName,jdbcType=VARCHAR}
+    where DESIGNATED_HOSPITAL = #{designatedHospital,jdbcType=VARCHAR}
+      and OLD_POLICLINIC_CODE = #{oldPoliclinicCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

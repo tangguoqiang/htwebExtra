@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<serviceGroup>
+    <!--<service name="AxisTest" targetNamespace="http://test.extra.ht.com/" >
+        <description>JNLPGenerator service</description>
+        <schema schemaNamespace="http://test.extra.ht.com/" />
+        <parameter name="ServiceClass" locked="false">com.ht.extra.test.AxisTest</parameter>
+        <operation name="sayHello">
+            <messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+        </operation>
+    </service>-->
+    <service name="AxisReSendData" targetNamespace="http://reSendData.extra.ht.com/" >
+        <description>reSendData service</description>
+        <schema schemaNamespace="http://reSendData.extra.ht.com/" />
+        <parameter name="ServiceClass" locked="true">com.ht.extra.reSendData.AxisReSendData</parameter>
+        <operation name="axisToSend">
+            <messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+        </operation>
+    </service>
+</serviceGroup>

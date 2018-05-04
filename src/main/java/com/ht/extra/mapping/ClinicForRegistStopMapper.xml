@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.ClinicForRegistStopMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.outpadm.ClinicForRegistStop" >
+    <id column="CLINIC_DATE" property="clinicDate" jdbcType="DATE" />
+    <id column="CLINIC_LABEL" property="clinicLabel" jdbcType="VARCHAR" />
+    <id column="TIME_DESC" property="timeDesc" jdbcType="VARCHAR" />
+    <result column="OPERATOR" property="operator" jdbcType="VARCHAR" />
+    <result column="OPER_DATETIME" property="operDatetime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    CLINIC_DATE, CLINIC_LABEL, TIME_DESC, OPERATOR, OPER_DATETIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.outpadm.ClinicForRegistStopKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from OUTPADM.CLINIC_FOR_REGIST_STOP
+    where CLINIC_DATE = #{clinicDate,jdbcType=DATE}
+      and CLINIC_LABEL = #{clinicLabel,jdbcType=VARCHAR}
+      and TIME_DESC = #{timeDesc,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByClinicDate" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    <![CDATA[
+      select
+      *
+      from OUTPADM.CLINIC_FOR_REGIST_STOP
+      where  CLINIC_DATE=to_date(substr(#{1},1,10),'yyyy-MM-dd')
+
+     ]]>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.outpadm.ClinicForRegistStopKey" >
+    delete from OUTPADM.CLINIC_FOR_REGIST_STOP
+    where CLINIC_DATE = #{clinicDate,jdbcType=DATE}
+      and CLINIC_LABEL = #{clinicLabel,jdbcType=VARCHAR}
+      and TIME_DESC = #{timeDesc,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.outpadm.ClinicForRegistStop" >
+    insert into OUTPADM.CLINIC_FOR_REGIST_STOP (CLINIC_DATE, CLINIC_LABEL, TIME_DESC, 
+      OPERATOR, OPER_DATETIME)
+    values (#{clinicDate,jdbcType=DATE}, #{clinicLabel,jdbcType=VARCHAR}, #{timeDesc,jdbcType=VARCHAR}, 
+      #{operator,jdbcType=VARCHAR}, #{operDatetime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.outpadm.ClinicForRegistStop" >
+    insert into OUTPADM.CLINIC_FOR_REGIST_STOP
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="clinicDate != null" >
+        CLINIC_DATE,
+      </if>
+      <if test="clinicLabel != null" >
+        CLINIC_LABEL,
+      </if>
+      <if test="timeDesc != null" >
+        TIME_DESC,
+      </if>
+      <if test="operator != null" >
+        OPERATOR,
+      </if>
+      <if test="operDatetime != null" >
+        OPER_DATETIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="clinicDate != null" >
+        #{clinicDate,jdbcType=DATE},
+      </if>
+      <if test="clinicLabel != null" >
+        #{clinicLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="timeDesc != null" >
+        #{timeDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null" >
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="operDatetime != null" >
+        #{operDatetime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.outpadm.ClinicForRegistStop" >
+    update OUTPADM.CLINIC_FOR_REGIST_STOP
+    <set >
+      <if test="operator != null" >
+        OPERATOR = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="operDatetime != null" >
+        OPER_DATETIME = #{operDatetime,jdbcType=DATE},
+      </if>
+    </set>
+    where CLINIC_DATE = #{clinicDate,jdbcType=DATE}
+      and CLINIC_LABEL = #{clinicLabel,jdbcType=VARCHAR}
+      and TIME_DESC = #{timeDesc,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.outpadm.ClinicForRegistStop" >
+    update OUTPADM.CLINIC_FOR_REGIST_STOP
+    set OPERATOR = #{operator,jdbcType=VARCHAR},
+      OPER_DATETIME = #{operDatetime,jdbcType=DATE}
+    where CLINIC_DATE = #{clinicDate,jdbcType=DATE}
+      and CLINIC_LABEL = #{clinicLabel,jdbcType=VARCHAR}
+      and TIME_DESC = #{timeDesc,jdbcType=VARCHAR}
+  </update>
+</mapper>

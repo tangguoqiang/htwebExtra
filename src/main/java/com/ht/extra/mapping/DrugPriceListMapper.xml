@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.DrugPriceListMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.DrugPriceList" >
+    <id column="DRUG_CODE" property="drugCode" jdbcType="VARCHAR" />
+    <id column="DRUG_SPEC" property="drugSpec" jdbcType="VARCHAR" />
+    <id column="FIRM_ID" property="firmId" jdbcType="VARCHAR" />
+    <id column="START_DATE" property="startDate" jdbcType="DATE" />
+    <result column="UNITS" property="units" jdbcType="VARCHAR" />
+    <result column="TRADE_PRICE" property="tradePrice" jdbcType="DECIMAL" />
+    <result column="RETAIL_PRICE" property="retailPrice" jdbcType="DECIMAL" />
+    <result column="AMOUNT_PER_PACKAGE" property="amountPerPackage" jdbcType="DECIMAL" />
+    <result column="MIN_SPEC" property="minSpec" jdbcType="VARCHAR" />
+    <result column="MIN_UNITS" property="minUnits" jdbcType="VARCHAR" />
+    <result column="STOP_DATE" property="stopDate" jdbcType="DATE" />
+    <result column="MEMOS" property="memos" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    DRUG_CODE, DRUG_SPEC, FIRM_ID, START_DATE, UNITS, TRADE_PRICE, RETAIL_PRICE, AMOUNT_PER_PACKAGE, 
+    MIN_SPEC, MIN_UNITS, STOP_DATE, MEMOS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.DrugPriceListKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.DRUG_PRICE_LIST
+    where DRUG_CODE = #{drugCode,jdbcType=VARCHAR}
+      and DRUG_SPEC = #{drugSpec,jdbcType=VARCHAR}
+      and FIRM_ID = #{firmId,jdbcType=VARCHAR}
+      and START_DATE = #{startDate,jdbcType=DATE}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.DrugPriceListKey" >
+    delete from COMM.DRUG_PRICE_LIST
+    where DRUG_CODE = #{drugCode,jdbcType=VARCHAR}
+      and DRUG_SPEC = #{drugSpec,jdbcType=VARCHAR}
+      and FIRM_ID = #{firmId,jdbcType=VARCHAR}
+      and START_DATE = #{startDate,jdbcType=DATE}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.DrugPriceList" >
+    insert into COMM.DRUG_PRICE_LIST (DRUG_CODE, DRUG_SPEC, FIRM_ID, 
+      START_DATE, UNITS, TRADE_PRICE, 
+      RETAIL_PRICE, AMOUNT_PER_PACKAGE, MIN_SPEC, 
+      MIN_UNITS, STOP_DATE, MEMOS
+      )
+    values (#{drugCode,jdbcType=VARCHAR}, #{drugSpec,jdbcType=VARCHAR}, #{firmId,jdbcType=VARCHAR}, 
+      #{startDate,jdbcType=DATE}, #{units,jdbcType=VARCHAR}, #{tradePrice,jdbcType=DECIMAL}, 
+      #{retailPrice,jdbcType=DECIMAL}, #{amountPerPackage,jdbcType=DECIMAL}, #{minSpec,jdbcType=VARCHAR}, 
+      #{minUnits,jdbcType=VARCHAR}, #{stopDate,jdbcType=DATE}, #{memos,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.DrugPriceList" >
+    insert into COMM.DRUG_PRICE_LIST
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="drugCode != null" >
+        DRUG_CODE,
+      </if>
+      <if test="drugSpec != null" >
+        DRUG_SPEC,
+      </if>
+      <if test="firmId != null" >
+        FIRM_ID,
+      </if>
+      <if test="startDate != null" >
+        START_DATE,
+      </if>
+      <if test="units != null" >
+        UNITS,
+      </if>
+      <if test="tradePrice != null" >
+        TRADE_PRICE,
+      </if>
+      <if test="retailPrice != null" >
+        RETAIL_PRICE,
+      </if>
+      <if test="amountPerPackage != null" >
+        AMOUNT_PER_PACKAGE,
+      </if>
+      <if test="minSpec != null" >
+        MIN_SPEC,
+      </if>
+      <if test="minUnits != null" >
+        MIN_UNITS,
+      </if>
+      <if test="stopDate != null" >
+        STOP_DATE,
+      </if>
+      <if test="memos != null" >
+        MEMOS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="drugCode != null" >
+        #{drugCode,jdbcType=VARCHAR},
+      </if>
+      <if test="drugSpec != null" >
+        #{drugSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="firmId != null" >
+        #{firmId,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=DATE},
+      </if>
+      <if test="units != null" >
+        #{units,jdbcType=VARCHAR},
+      </if>
+      <if test="tradePrice != null" >
+        #{tradePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="retailPrice != null" >
+        #{retailPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="amountPerPackage != null" >
+        #{amountPerPackage,jdbcType=DECIMAL},
+      </if>
+      <if test="minSpec != null" >
+        #{minSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="minUnits != null" >
+        #{minUnits,jdbcType=VARCHAR},
+      </if>
+      <if test="stopDate != null" >
+        #{stopDate,jdbcType=DATE},
+      </if>
+      <if test="memos != null" >
+        #{memos,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.DrugPriceList" >
+    update COMM.DRUG_PRICE_LIST
+    <set >
+      <if test="units != null" >
+        UNITS = #{units,jdbcType=VARCHAR},
+      </if>
+      <if test="tradePrice != null" >
+        TRADE_PRICE = #{tradePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="retailPrice != null" >
+        RETAIL_PRICE = #{retailPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="amountPerPackage != null" >
+        AMOUNT_PER_PACKAGE = #{amountPerPackage,jdbcType=DECIMAL},
+      </if>
+      <if test="minSpec != null" >
+        MIN_SPEC = #{minSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="minUnits != null" >
+        MIN_UNITS = #{minUnits,jdbcType=VARCHAR},
+      </if>
+      <if test="stopDate != null" >
+        STOP_DATE = #{stopDate,jdbcType=DATE},
+      </if>
+      <if test="memos != null" >
+        MEMOS = #{memos,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DRUG_CODE = #{drugCode,jdbcType=VARCHAR}
+      and DRUG_SPEC = #{drugSpec,jdbcType=VARCHAR}
+      and FIRM_ID = #{firmId,jdbcType=VARCHAR}
+      and START_DATE = #{startDate,jdbcType=DATE}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.DrugPriceList" >
+    update COMM.DRUG_PRICE_LIST
+    set UNITS = #{units,jdbcType=VARCHAR},
+      TRADE_PRICE = #{tradePrice,jdbcType=DECIMAL},
+      RETAIL_PRICE = #{retailPrice,jdbcType=DECIMAL},
+      AMOUNT_PER_PACKAGE = #{amountPerPackage,jdbcType=DECIMAL},
+      MIN_SPEC = #{minSpec,jdbcType=VARCHAR},
+      MIN_UNITS = #{minUnits,jdbcType=VARCHAR},
+      STOP_DATE = #{stopDate,jdbcType=DATE},
+      MEMOS = #{memos,jdbcType=VARCHAR}
+    where DRUG_CODE = #{drugCode,jdbcType=VARCHAR}
+      and DRUG_SPEC = #{drugSpec,jdbcType=VARCHAR}
+      and FIRM_ID = #{firmId,jdbcType=VARCHAR}
+      and START_DATE = #{startDate,jdbcType=DATE}
+  </update>
+</mapper>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.InpMrRecMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.medrec.InpMrRec" >
+    <id column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <result column="INP_NO" property="inpNo" jdbcType="VARCHAR" />
+    <result column="INP_MR_TYPE" property="inpMrType" jdbcType="VARCHAR" />
+    <result column="LOCATION" property="location" jdbcType="VARCHAR" />
+    <result column="MR_CREATE_DATE" property="mrCreateDate" jdbcType="DATE" />
+    <result column="MR_STATUS" property="mrStatus" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PATIENT_ID, INP_NO, INP_MR_TYPE, LOCATION, MR_CREATE_DATE, MR_STATUS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from MEDREC.INP_MR_REC
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from MEDREC.INP_MR_REC
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.medrec.InpMrRec" >
+    insert into MEDREC.INP_MR_REC (PATIENT_ID, INP_NO, INP_MR_TYPE, 
+      LOCATION, MR_CREATE_DATE, MR_STATUS
+      )
+    values (#{patientId,jdbcType=VARCHAR}, #{inpNo,jdbcType=VARCHAR}, #{inpMrType,jdbcType=VARCHAR}, 
+      #{location,jdbcType=VARCHAR}, #{mrCreateDate,jdbcType=DATE}, #{mrStatus,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.medrec.InpMrRec" >
+    insert into MEDREC.INP_MR_REC
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="inpNo != null" >
+        INP_NO,
+      </if>
+      <if test="inpMrType != null" >
+        INP_MR_TYPE,
+      </if>
+      <if test="location != null" >
+        LOCATION,
+      </if>
+      <if test="mrCreateDate != null" >
+        MR_CREATE_DATE,
+      </if>
+      <if test="mrStatus != null" >
+        MR_STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="inpNo != null" >
+        #{inpNo,jdbcType=VARCHAR},
+      </if>
+      <if test="inpMrType != null" >
+        #{inpMrType,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="mrCreateDate != null" >
+        #{mrCreateDate,jdbcType=DATE},
+      </if>
+      <if test="mrStatus != null" >
+        #{mrStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.medrec.InpMrRec" >
+    update MEDREC.INP_MR_REC
+    <set >
+      <if test="inpNo != null" >
+        INP_NO = #{inpNo,jdbcType=VARCHAR},
+      </if>
+      <if test="inpMrType != null" >
+        INP_MR_TYPE = #{inpMrType,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        LOCATION = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="mrCreateDate != null" >
+        MR_CREATE_DATE = #{mrCreateDate,jdbcType=DATE},
+      </if>
+      <if test="mrStatus != null" >
+        MR_STATUS = #{mrStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.medrec.InpMrRec" >
+    update MEDREC.INP_MR_REC
+    set INP_NO = #{inpNo,jdbcType=VARCHAR},
+      INP_MR_TYPE = #{inpMrType,jdbcType=VARCHAR},
+      LOCATION = #{location,jdbcType=VARCHAR},
+      MR_CREATE_DATE = #{mrCreateDate,jdbcType=DATE},
+      MR_STATUS = #{mrStatus,jdbcType=VARCHAR}
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+  </update>
+</mapper>

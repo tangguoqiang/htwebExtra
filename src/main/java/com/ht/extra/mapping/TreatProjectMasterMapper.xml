@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.TreatProjectMasterMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.outpdoct.TreatProjectMaster" >
+    <id column="TREAT_PROJECT_ID" property="treatProjectId" jdbcType="VARCHAR" />
+    <result column="TITLE" property="title" jdbcType="VARCHAR" />
+    <result column="DEPT_CODE" property="deptCode" jdbcType="VARCHAR" />
+    <result column="DIAGNOSIS" property="diagnosis" jdbcType="VARCHAR" />
+    <result column="ILLNESS_DESC" property="illnessDesc" jdbcType="VARCHAR" />
+    <result column="MED_HISTORY" property="medHistory" jdbcType="VARCHAR" />
+    <result column="BODY_EXAM" property="bodyExam" jdbcType="VARCHAR" />
+    <result column="ADVICE" property="advice" jdbcType="VARCHAR" />
+    <result column="CREATOR" property="creator" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    TREAT_PROJECT_ID, TITLE, DEPT_CODE, DIAGNOSIS, ILLNESS_DESC, MED_HISTORY, BODY_EXAM, 
+    ADVICE, CREATOR
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from OUTPDOCT.TREAT_PROJECT_MASTER
+    where TREAT_PROJECT_ID = #{treatProjectId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from OUTPDOCT.TREAT_PROJECT_MASTER
+    where TREAT_PROJECT_ID = #{treatProjectId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.outpdoct.TreatProjectMaster" >
+    insert into OUTPDOCT.TREAT_PROJECT_MASTER (TREAT_PROJECT_ID, TITLE, DEPT_CODE, 
+      DIAGNOSIS, ILLNESS_DESC, MED_HISTORY, 
+      BODY_EXAM, ADVICE, CREATOR
+      )
+    values (#{treatProjectId,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{deptCode,jdbcType=VARCHAR}, 
+      #{diagnosis,jdbcType=VARCHAR}, #{illnessDesc,jdbcType=VARCHAR}, #{medHistory,jdbcType=VARCHAR}, 
+      #{bodyExam,jdbcType=VARCHAR}, #{advice,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.outpdoct.TreatProjectMaster" >
+    insert into OUTPDOCT.TREAT_PROJECT_MASTER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="treatProjectId != null" >
+        TREAT_PROJECT_ID,
+      </if>
+      <if test="title != null" >
+        TITLE,
+      </if>
+      <if test="deptCode != null" >
+        DEPT_CODE,
+      </if>
+      <if test="diagnosis != null" >
+        DIAGNOSIS,
+      </if>
+      <if test="illnessDesc != null" >
+        ILLNESS_DESC,
+      </if>
+      <if test="medHistory != null" >
+        MED_HISTORY,
+      </if>
+      <if test="bodyExam != null" >
+        BODY_EXAM,
+      </if>
+      <if test="advice != null" >
+        ADVICE,
+      </if>
+      <if test="creator != null" >
+        CREATOR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="treatProjectId != null" >
+        #{treatProjectId,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="deptCode != null" >
+        #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnosis != null" >
+        #{diagnosis,jdbcType=VARCHAR},
+      </if>
+      <if test="illnessDesc != null" >
+        #{illnessDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="medHistory != null" >
+        #{medHistory,jdbcType=VARCHAR},
+      </if>
+      <if test="bodyExam != null" >
+        #{bodyExam,jdbcType=VARCHAR},
+      </if>
+      <if test="advice != null" >
+        #{advice,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.outpdoct.TreatProjectMaster" >
+    update OUTPDOCT.TREAT_PROJECT_MASTER
+    <set >
+      <if test="title != null" >
+        TITLE = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="deptCode != null" >
+        DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnosis != null" >
+        DIAGNOSIS = #{diagnosis,jdbcType=VARCHAR},
+      </if>
+      <if test="illnessDesc != null" >
+        ILLNESS_DESC = #{illnessDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="medHistory != null" >
+        MED_HISTORY = #{medHistory,jdbcType=VARCHAR},
+      </if>
+      <if test="bodyExam != null" >
+        BODY_EXAM = #{bodyExam,jdbcType=VARCHAR},
+      </if>
+      <if test="advice != null" >
+        ADVICE = #{advice,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null" >
+        CREATOR = #{creator,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where TREAT_PROJECT_ID = #{treatProjectId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.outpdoct.TreatProjectMaster" >
+    update OUTPDOCT.TREAT_PROJECT_MASTER
+    set TITLE = #{title,jdbcType=VARCHAR},
+      DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+      DIAGNOSIS = #{diagnosis,jdbcType=VARCHAR},
+      ILLNESS_DESC = #{illnessDesc,jdbcType=VARCHAR},
+      MED_HISTORY = #{medHistory,jdbcType=VARCHAR},
+      BODY_EXAM = #{bodyExam,jdbcType=VARCHAR},
+      ADVICE = #{advice,jdbcType=VARCHAR},
+      CREATOR = #{creator,jdbcType=VARCHAR}
+    where TREAT_PROJECT_ID = #{treatProjectId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.ExamMasterItemsMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.exam.ExamMasterItems" >
+    <id column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="EXAM_NO" property="examNo" jdbcType="VARCHAR" />
+    <result column="EXAM_SUB_CLASS" property="examSubClass" jdbcType="VARCHAR" />
+    <result column="EXAM_ITEM" property="examItem" jdbcType="VARCHAR" />
+    <result column="EXAM_ITEM_CODE" property="examItemCode" jdbcType="VARCHAR" />
+    <result column="LOCAL_ID_CLASS" property="localIdClass" jdbcType="VARCHAR" />
+    <result column="DICOM_MODALITY" property="dicomModality" jdbcType="VARCHAR" />
+    <result column="PATIENT_LOCAL_ID" property="patientLocalId" jdbcType="VARCHAR" />
+    <result column="DEVICE" property="device" jdbcType="VARCHAR" />
+    <result column="SCHEDULED_DATE_TIME" property="scheduledDateTime" jdbcType="DATE" />
+    <result column="NOTICE" property="notice" jdbcType="VARCHAR" />
+    <result column="EXAM_DATE_TIME" property="examDateTime" jdbcType="DATE" />
+    <result column="REPORT_DATE_TIME" property="reportDateTime" jdbcType="DATE" />
+    <result column="TECHNICIAN" property="technician" jdbcType="VARCHAR" />
+    <result column="REPORTER" property="reporter" jdbcType="VARCHAR" />
+    <result column="VERIFIER" property="verifier" jdbcType="VARCHAR" />
+    <result column="REPORT_NO" property="reportNo" jdbcType="DECIMAL" />
+    <result column="RESULT_STATUS" property="resultStatus" jdbcType="VARCHAR" />
+    <result column="COSTS" property="costs" jdbcType="DECIMAL" />
+    <result column="ITEM_ID" property="itemId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SERIAL_NO, EXAM_NO, EXAM_SUB_CLASS, EXAM_ITEM, EXAM_ITEM_CODE, LOCAL_ID_CLASS, DICOM_MODALITY, 
+    PATIENT_LOCAL_ID, DEVICE, SCHEDULED_DATE_TIME, NOTICE, EXAM_DATE_TIME, REPORT_DATE_TIME, 
+    TECHNICIAN, REPORTER, VERIFIER, REPORT_NO, RESULT_STATUS, COSTS, ITEM_ID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from EXAM.EXAM_MASTER_ITEMS
+    where SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from EXAM.EXAM_MASTER_ITEMS
+    where SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.exam.ExamMasterItems" >
+    insert into EXAM.EXAM_MASTER_ITEMS (SERIAL_NO, EXAM_NO, EXAM_SUB_CLASS, 
+      EXAM_ITEM, EXAM_ITEM_CODE, LOCAL_ID_CLASS, 
+      DICOM_MODALITY, PATIENT_LOCAL_ID, DEVICE, 
+      SCHEDULED_DATE_TIME, NOTICE, EXAM_DATE_TIME, 
+      REPORT_DATE_TIME, TECHNICIAN, REPORTER, 
+      VERIFIER, REPORT_NO, RESULT_STATUS, 
+      COSTS, ITEM_ID)
+    values (#{serialNo,jdbcType=DECIMAL}, #{examNo,jdbcType=VARCHAR}, #{examSubClass,jdbcType=VARCHAR}, 
+      #{examItem,jdbcType=VARCHAR}, #{examItemCode,jdbcType=VARCHAR}, #{localIdClass,jdbcType=VARCHAR}, 
+      #{dicomModality,jdbcType=VARCHAR}, #{patientLocalId,jdbcType=VARCHAR}, #{device,jdbcType=VARCHAR}, 
+      #{scheduledDateTime,jdbcType=DATE}, #{notice,jdbcType=VARCHAR}, #{examDateTime,jdbcType=DATE}, 
+      #{reportDateTime,jdbcType=DATE}, #{technician,jdbcType=VARCHAR}, #{reporter,jdbcType=VARCHAR}, 
+      #{verifier,jdbcType=VARCHAR}, #{reportNo,jdbcType=DECIMAL}, #{resultStatus,jdbcType=VARCHAR}, 
+      #{costs,jdbcType=DECIMAL}, #{itemId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.exam.ExamMasterItems" >
+    insert into EXAM.EXAM_MASTER_ITEMS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="examNo != null" >
+        EXAM_NO,
+      </if>
+      <if test="examSubClass != null" >
+        EXAM_SUB_CLASS,
+      </if>
+      <if test="examItem != null" >
+        EXAM_ITEM,
+      </if>
+      <if test="examItemCode != null" >
+        EXAM_ITEM_CODE,
+      </if>
+      <if test="localIdClass != null" >
+        LOCAL_ID_CLASS,
+      </if>
+      <if test="dicomModality != null" >
+        DICOM_MODALITY,
+      </if>
+      <if test="patientLocalId != null" >
+        PATIENT_LOCAL_ID,
+      </if>
+      <if test="device != null" >
+        DEVICE,
+      </if>
+      <if test="scheduledDateTime != null" >
+        SCHEDULED_DATE_TIME,
+      </if>
+      <if test="notice != null" >
+        NOTICE,
+      </if>
+      <if test="examDateTime != null" >
+        EXAM_DATE_TIME,
+      </if>
+      <if test="reportDateTime != null" >
+        REPORT_DATE_TIME,
+      </if>
+      <if test="technician != null" >
+        TECHNICIAN,
+      </if>
+      <if test="reporter != null" >
+        REPORTER,
+      </if>
+      <if test="verifier != null" >
+        VERIFIER,
+      </if>
+      <if test="reportNo != null" >
+        REPORT_NO,
+      </if>
+      <if test="resultStatus != null" >
+        RESULT_STATUS,
+      </if>
+      <if test="costs != null" >
+        COSTS,
+      </if>
+      <if test="itemId != null" >
+        ITEM_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="examNo != null" >
+        #{examNo,jdbcType=VARCHAR},
+      </if>
+      <if test="examSubClass != null" >
+        #{examSubClass,jdbcType=VARCHAR},
+      </if>
+      <if test="examItem != null" >
+        #{examItem,jdbcType=VARCHAR},
+      </if>
+      <if test="examItemCode != null" >
+        #{examItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="localIdClass != null" >
+        #{localIdClass,jdbcType=VARCHAR},
+      </if>
+      <if test="dicomModality != null" >
+        #{dicomModality,jdbcType=VARCHAR},
+      </if>
+      <if test="patientLocalId != null" >
+        #{patientLocalId,jdbcType=VARCHAR},
+      </if>
+      <if test="device != null" >
+        #{device,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduledDateTime != null" >
+        #{scheduledDateTime,jdbcType=DATE},
+      </if>
+      <if test="notice != null" >
+        #{notice,jdbcType=VARCHAR},
+      </if>
+      <if test="examDateTime != null" >
+        #{examDateTime,jdbcType=DATE},
+      </if>
+      <if test="reportDateTime != null" >
+        #{reportDateTime,jdbcType=DATE},
+      </if>
+      <if test="technician != null" >
+        #{technician,jdbcType=VARCHAR},
+      </if>
+      <if test="reporter != null" >
+        #{reporter,jdbcType=VARCHAR},
+      </if>
+      <if test="verifier != null" >
+        #{verifier,jdbcType=VARCHAR},
+      </if>
+      <if test="reportNo != null" >
+        #{reportNo,jdbcType=DECIMAL},
+      </if>
+      <if test="resultStatus != null" >
+        #{resultStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="costs != null" >
+        #{costs,jdbcType=DECIMAL},
+      </if>
+      <if test="itemId != null" >
+        #{itemId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.exam.ExamMasterItems" >
+    update EXAM.EXAM_MASTER_ITEMS
+    <set >
+      <if test="examNo != null" >
+        EXAM_NO = #{examNo,jdbcType=VARCHAR},
+      </if>
+      <if test="examSubClass != null" >
+        EXAM_SUB_CLASS = #{examSubClass,jdbcType=VARCHAR},
+      </if>
+      <if test="examItem != null" >
+        EXAM_ITEM = #{examItem,jdbcType=VARCHAR},
+      </if>
+      <if test="examItemCode != null" >
+        EXAM_ITEM_CODE = #{examItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="localIdClass != null" >
+        LOCAL_ID_CLASS = #{localIdClass,jdbcType=VARCHAR},
+      </if>
+      <if test="dicomModality != null" >
+        DICOM_MODALITY = #{dicomModality,jdbcType=VARCHAR},
+      </if>
+      <if test="patientLocalId != null" >
+        PATIENT_LOCAL_ID = #{patientLocalId,jdbcType=VARCHAR},
+      </if>
+      <if test="device != null" >
+        DEVICE = #{device,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduledDateTime != null" >
+        SCHEDULED_DATE_TIME = #{scheduledDateTime,jdbcType=DATE},
+      </if>
+      <if test="notice != null" >
+        NOTICE = #{notice,jdbcType=VARCHAR},
+      </if>
+      <if test="examDateTime != null" >
+        EXAM_DATE_TIME = #{examDateTime,jdbcType=DATE},
+      </if>
+      <if test="reportDateTime != null" >
+        REPORT_DATE_TIME = #{reportDateTime,jdbcType=DATE},
+      </if>
+      <if test="technician != null" >
+        TECHNICIAN = #{technician,jdbcType=VARCHAR},
+      </if>
+      <if test="reporter != null" >
+        REPORTER = #{reporter,jdbcType=VARCHAR},
+      </if>
+      <if test="verifier != null" >
+        VERIFIER = #{verifier,jdbcType=VARCHAR},
+      </if>
+      <if test="reportNo != null" >
+        REPORT_NO = #{reportNo,jdbcType=DECIMAL},
+      </if>
+      <if test="resultStatus != null" >
+        RESULT_STATUS = #{resultStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="costs != null" >
+        COSTS = #{costs,jdbcType=DECIMAL},
+      </if>
+      <if test="itemId != null" >
+        ITEM_ID = #{itemId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.exam.ExamMasterItems" >
+    update EXAM.EXAM_MASTER_ITEMS
+    set EXAM_NO = #{examNo,jdbcType=VARCHAR},
+      EXAM_SUB_CLASS = #{examSubClass,jdbcType=VARCHAR},
+      EXAM_ITEM = #{examItem,jdbcType=VARCHAR},
+      EXAM_ITEM_CODE = #{examItemCode,jdbcType=VARCHAR},
+      LOCAL_ID_CLASS = #{localIdClass,jdbcType=VARCHAR},
+      DICOM_MODALITY = #{dicomModality,jdbcType=VARCHAR},
+      PATIENT_LOCAL_ID = #{patientLocalId,jdbcType=VARCHAR},
+      DEVICE = #{device,jdbcType=VARCHAR},
+      SCHEDULED_DATE_TIME = #{scheduledDateTime,jdbcType=DATE},
+      NOTICE = #{notice,jdbcType=VARCHAR},
+      EXAM_DATE_TIME = #{examDateTime,jdbcType=DATE},
+      REPORT_DATE_TIME = #{reportDateTime,jdbcType=DATE},
+      TECHNICIAN = #{technician,jdbcType=VARCHAR},
+      REPORTER = #{reporter,jdbcType=VARCHAR},
+      VERIFIER = #{verifier,jdbcType=VARCHAR},
+      REPORT_NO = #{reportNo,jdbcType=DECIMAL},
+      RESULT_STATUS = #{resultStatus,jdbcType=VARCHAR},
+      COSTS = #{costs,jdbcType=DECIMAL},
+      ITEM_ID = #{itemId,jdbcType=VARCHAR}
+    where SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+  </update>
+</mapper>

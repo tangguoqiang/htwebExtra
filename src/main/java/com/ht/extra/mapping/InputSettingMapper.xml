@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.InputSettingMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.InputSetting" >
+    <id column="DICT_TYPE" property="dictType" jdbcType="VARCHAR" />
+    <id column="DATA_COL" property="dataCol" jdbcType="VARCHAR" />
+    <result column="DATA_TABLE" property="dataTable" jdbcType="VARCHAR" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+    <result column="DATA_TITLE" property="dataTitle" jdbcType="VARCHAR" />
+    <result column="FLAG_SHOW" property="flagShow" jdbcType="VARCHAR" />
+    <result column="SHOW_SORT" property="showSort" jdbcType="DECIMAL" />
+    <result column="FLAG_ISNAME" property="flagIsname" jdbcType="VARCHAR" />
+    <result column="RESULT_SORT" property="resultSort" jdbcType="DECIMAL" />
+    <result column="SHOW_WIDTH" property="showWidth" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    DICT_TYPE, DATA_COL, DATA_TABLE, INPUT_CODE, DATA_TITLE, FLAG_SHOW, SHOW_SORT, FLAG_ISNAME, 
+    RESULT_SORT, SHOW_WIDTH
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.InputSettingKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.INPUT_SETTING
+    where DICT_TYPE = #{dictType,jdbcType=VARCHAR}
+      and DATA_COL = #{dataCol,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.InputSettingKey" >
+    delete from COMM.INPUT_SETTING
+    where DICT_TYPE = #{dictType,jdbcType=VARCHAR}
+      and DATA_COL = #{dataCol,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.InputSetting" >
+    insert into COMM.INPUT_SETTING (DICT_TYPE, DATA_COL, DATA_TABLE, 
+      INPUT_CODE, DATA_TITLE, FLAG_SHOW, 
+      SHOW_SORT, FLAG_ISNAME, RESULT_SORT, 
+      SHOW_WIDTH)
+    values (#{dictType,jdbcType=VARCHAR}, #{dataCol,jdbcType=VARCHAR}, #{dataTable,jdbcType=VARCHAR}, 
+      #{inputCode,jdbcType=VARCHAR}, #{dataTitle,jdbcType=VARCHAR}, #{flagShow,jdbcType=VARCHAR}, 
+      #{showSort,jdbcType=DECIMAL}, #{flagIsname,jdbcType=VARCHAR}, #{resultSort,jdbcType=DECIMAL}, 
+      #{showWidth,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.InputSetting" >
+    insert into COMM.INPUT_SETTING
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dictType != null" >
+        DICT_TYPE,
+      </if>
+      <if test="dataCol != null" >
+        DATA_COL,
+      </if>
+      <if test="dataTable != null" >
+        DATA_TABLE,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+      <if test="dataTitle != null" >
+        DATA_TITLE,
+      </if>
+      <if test="flagShow != null" >
+        FLAG_SHOW,
+      </if>
+      <if test="showSort != null" >
+        SHOW_SORT,
+      </if>
+      <if test="flagIsname != null" >
+        FLAG_ISNAME,
+      </if>
+      <if test="resultSort != null" >
+        RESULT_SORT,
+      </if>
+      <if test="showWidth != null" >
+        SHOW_WIDTH,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dictType != null" >
+        #{dictType,jdbcType=VARCHAR},
+      </if>
+      <if test="dataCol != null" >
+        #{dataCol,jdbcType=VARCHAR},
+      </if>
+      <if test="dataTable != null" >
+        #{dataTable,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dataTitle != null" >
+        #{dataTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="flagShow != null" >
+        #{flagShow,jdbcType=VARCHAR},
+      </if>
+      <if test="showSort != null" >
+        #{showSort,jdbcType=DECIMAL},
+      </if>
+      <if test="flagIsname != null" >
+        #{flagIsname,jdbcType=VARCHAR},
+      </if>
+      <if test="resultSort != null" >
+        #{resultSort,jdbcType=DECIMAL},
+      </if>
+      <if test="showWidth != null" >
+        #{showWidth,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.InputSetting" >
+    update COMM.INPUT_SETTING
+    <set >
+      <if test="dataTable != null" >
+        DATA_TABLE = #{dataTable,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dataTitle != null" >
+        DATA_TITLE = #{dataTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="flagShow != null" >
+        FLAG_SHOW = #{flagShow,jdbcType=VARCHAR},
+      </if>
+      <if test="showSort != null" >
+        SHOW_SORT = #{showSort,jdbcType=DECIMAL},
+      </if>
+      <if test="flagIsname != null" >
+        FLAG_ISNAME = #{flagIsname,jdbcType=VARCHAR},
+      </if>
+      <if test="resultSort != null" >
+        RESULT_SORT = #{resultSort,jdbcType=DECIMAL},
+      </if>
+      <if test="showWidth != null" >
+        SHOW_WIDTH = #{showWidth,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where DICT_TYPE = #{dictType,jdbcType=VARCHAR}
+      and DATA_COL = #{dataCol,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.InputSetting" >
+    update COMM.INPUT_SETTING
+    set DATA_TABLE = #{dataTable,jdbcType=VARCHAR},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      DATA_TITLE = #{dataTitle,jdbcType=VARCHAR},
+      FLAG_SHOW = #{flagShow,jdbcType=VARCHAR},
+      SHOW_SORT = #{showSort,jdbcType=DECIMAL},
+      FLAG_ISNAME = #{flagIsname,jdbcType=VARCHAR},
+      RESULT_SORT = #{resultSort,jdbcType=DECIMAL},
+      SHOW_WIDTH = #{showWidth,jdbcType=DECIMAL}
+    where DICT_TYPE = #{dictType,jdbcType=VARCHAR}
+      and DATA_COL = #{dataCol,jdbcType=VARCHAR}
+  </update>
+</mapper>

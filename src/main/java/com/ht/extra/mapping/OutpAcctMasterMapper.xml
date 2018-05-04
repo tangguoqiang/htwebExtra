@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.OutpAcctMasterMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.outpbill.OutpAcctMaster" >
+    <id column="ACCT_NO" property="acctNo" jdbcType="VARCHAR" />
+    <result column="OPERATOR_NO" property="operatorNo" jdbcType="VARCHAR" />
+    <result column="ACCT_DATE" property="acctDate" jdbcType="DATE" />
+    <result column="MIN_RCPT_NO" property="minRcptNo" jdbcType="VARCHAR" />
+    <result column="MAX_RCPT_NO" property="maxRcptNo" jdbcType="VARCHAR" />
+    <result column="RCPTS_NUM" property="rcptsNum" jdbcType="DECIMAL" />
+    <result column="FREE_OF_CHARGE_NUM" property="freeOfChargeNum" jdbcType="DECIMAL" />
+    <result column="REFUND_NUM" property="refundNum" jdbcType="DECIMAL" />
+    <result column="REFUND_AMOUNT" property="refundAmount" jdbcType="DECIMAL" />
+    <result column="TOTAL_COSTS" property="totalCosts" jdbcType="DECIMAL" />
+    <result column="TOTAL_INCOMES" property="totalIncomes" jdbcType="DECIMAL" />
+    <result column="TALLY_DATE" property="tallyDate" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ACCT_NO, OPERATOR_NO, ACCT_DATE, MIN_RCPT_NO, MAX_RCPT_NO, RCPTS_NUM, FREE_OF_CHARGE_NUM, 
+    REFUND_NUM, REFUND_AMOUNT, TOTAL_COSTS, TOTAL_INCOMES, TALLY_DATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from OUTPBILL.OUTP_ACCT_MASTER
+    where ACCT_NO = #{acctNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from OUTPBILL.OUTP_ACCT_MASTER
+    where ACCT_NO = #{acctNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.outpbill.OutpAcctMaster" >
+    insert into OUTPBILL.OUTP_ACCT_MASTER (ACCT_NO, OPERATOR_NO, ACCT_DATE, 
+      MIN_RCPT_NO, MAX_RCPT_NO, RCPTS_NUM, 
+      FREE_OF_CHARGE_NUM, REFUND_NUM, REFUND_AMOUNT, 
+      TOTAL_COSTS, TOTAL_INCOMES, TALLY_DATE
+      )
+    values (#{acctNo,jdbcType=VARCHAR}, #{operatorNo,jdbcType=VARCHAR}, #{acctDate,jdbcType=DATE}, 
+      #{minRcptNo,jdbcType=VARCHAR}, #{maxRcptNo,jdbcType=VARCHAR}, #{rcptsNum,jdbcType=DECIMAL}, 
+      #{freeOfChargeNum,jdbcType=DECIMAL}, #{refundNum,jdbcType=DECIMAL}, #{refundAmount,jdbcType=DECIMAL}, 
+      #{totalCosts,jdbcType=DECIMAL}, #{totalIncomes,jdbcType=DECIMAL}, #{tallyDate,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.outpbill.OutpAcctMaster" >
+    insert into OUTPBILL.OUTP_ACCT_MASTER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="acctNo != null" >
+        ACCT_NO,
+      </if>
+      <if test="operatorNo != null" >
+        OPERATOR_NO,
+      </if>
+      <if test="acctDate != null" >
+        ACCT_DATE,
+      </if>
+      <if test="minRcptNo != null" >
+        MIN_RCPT_NO,
+      </if>
+      <if test="maxRcptNo != null" >
+        MAX_RCPT_NO,
+      </if>
+      <if test="rcptsNum != null" >
+        RCPTS_NUM,
+      </if>
+      <if test="freeOfChargeNum != null" >
+        FREE_OF_CHARGE_NUM,
+      </if>
+      <if test="refundNum != null" >
+        REFUND_NUM,
+      </if>
+      <if test="refundAmount != null" >
+        REFUND_AMOUNT,
+      </if>
+      <if test="totalCosts != null" >
+        TOTAL_COSTS,
+      </if>
+      <if test="totalIncomes != null" >
+        TOTAL_INCOMES,
+      </if>
+      <if test="tallyDate != null" >
+        TALLY_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="acctNo != null" >
+        #{acctNo,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorNo != null" >
+        #{operatorNo,jdbcType=VARCHAR},
+      </if>
+      <if test="acctDate != null" >
+        #{acctDate,jdbcType=DATE},
+      </if>
+      <if test="minRcptNo != null" >
+        #{minRcptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="maxRcptNo != null" >
+        #{maxRcptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="rcptsNum != null" >
+        #{rcptsNum,jdbcType=DECIMAL},
+      </if>
+      <if test="freeOfChargeNum != null" >
+        #{freeOfChargeNum,jdbcType=DECIMAL},
+      </if>
+      <if test="refundNum != null" >
+        #{refundNum,jdbcType=DECIMAL},
+      </if>
+      <if test="refundAmount != null" >
+        #{refundAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalCosts != null" >
+        #{totalCosts,jdbcType=DECIMAL},
+      </if>
+      <if test="totalIncomes != null" >
+        #{totalIncomes,jdbcType=DECIMAL},
+      </if>
+      <if test="tallyDate != null" >
+        #{tallyDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.outpbill.OutpAcctMaster" >
+    update OUTPBILL.OUTP_ACCT_MASTER
+    <set >
+      <if test="operatorNo != null" >
+        OPERATOR_NO = #{operatorNo,jdbcType=VARCHAR},
+      </if>
+      <if test="acctDate != null" >
+        ACCT_DATE = #{acctDate,jdbcType=DATE},
+      </if>
+      <if test="minRcptNo != null" >
+        MIN_RCPT_NO = #{minRcptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="maxRcptNo != null" >
+        MAX_RCPT_NO = #{maxRcptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="rcptsNum != null" >
+        RCPTS_NUM = #{rcptsNum,jdbcType=DECIMAL},
+      </if>
+      <if test="freeOfChargeNum != null" >
+        FREE_OF_CHARGE_NUM = #{freeOfChargeNum,jdbcType=DECIMAL},
+      </if>
+      <if test="refundNum != null" >
+        REFUND_NUM = #{refundNum,jdbcType=DECIMAL},
+      </if>
+      <if test="refundAmount != null" >
+        REFUND_AMOUNT = #{refundAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalCosts != null" >
+        TOTAL_COSTS = #{totalCosts,jdbcType=DECIMAL},
+      </if>
+      <if test="totalIncomes != null" >
+        TOTAL_INCOMES = #{totalIncomes,jdbcType=DECIMAL},
+      </if>
+      <if test="tallyDate != null" >
+        TALLY_DATE = #{tallyDate,jdbcType=DATE},
+      </if>
+    </set>
+    where ACCT_NO = #{acctNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.outpbill.OutpAcctMaster" >
+    update OUTPBILL.OUTP_ACCT_MASTER
+    set OPERATOR_NO = #{operatorNo,jdbcType=VARCHAR},
+      ACCT_DATE = #{acctDate,jdbcType=DATE},
+      MIN_RCPT_NO = #{minRcptNo,jdbcType=VARCHAR},
+      MAX_RCPT_NO = #{maxRcptNo,jdbcType=VARCHAR},
+      RCPTS_NUM = #{rcptsNum,jdbcType=DECIMAL},
+      FREE_OF_CHARGE_NUM = #{freeOfChargeNum,jdbcType=DECIMAL},
+      REFUND_NUM = #{refundNum,jdbcType=DECIMAL},
+      REFUND_AMOUNT = #{refundAmount,jdbcType=DECIMAL},
+      TOTAL_COSTS = #{totalCosts,jdbcType=DECIMAL},
+      TOTAL_INCOMES = #{totalIncomes,jdbcType=DECIMAL},
+      TALLY_DATE = #{tallyDate,jdbcType=DATE}
+    where ACCT_NO = #{acctNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

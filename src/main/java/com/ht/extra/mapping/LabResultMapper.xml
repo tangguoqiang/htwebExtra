@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.LabResultMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.lab.LabResult" >
+    <id column="TEST_NO" property="testNo" jdbcType="VARCHAR" />
+    <id column="ITEM_NO" property="itemNo" jdbcType="DECIMAL" />
+    <id column="PRINT_ORDER" property="printOrder" jdbcType="DECIMAL" />
+    <result column="REPORT_ITEM_NAME" property="reportItemName" jdbcType="VARCHAR" />
+    <result column="REPORT_ITEM_CODE" property="reportItemCode" jdbcType="VARCHAR" />
+    <result column="RESULT" property="result" jdbcType="VARCHAR" />
+    <result column="UNITS" property="units" jdbcType="VARCHAR" />
+    <result column="ABNORMAL_INDICATOR" property="abnormalIndicator" jdbcType="VARCHAR" />
+    <result column="INSTRUMENT_ID" property="instrumentId" jdbcType="VARCHAR" />
+    <result column="RESULT_DATE_TIME" property="resultDateTime" jdbcType="DATE" />
+    <result column="REFER_CONTEXT" property="referContext" jdbcType="VARCHAR" />
+    <result column="PRINT_CONTEXT" property="printContext" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    TEST_NO, ITEM_NO, PRINT_ORDER, REPORT_ITEM_NAME, REPORT_ITEM_CODE, RESULT, UNITS, 
+    ABNORMAL_INDICATOR, INSTRUMENT_ID, RESULT_DATE_TIME, REFER_CONTEXT, PRINT_CONTEXT
+  </sql>
+
+  <select id="selectByTestNo" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from LAB.LAB_RESULT
+    where TEST_NO = #{0}
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.lab.LabResultKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from LAB.LAB_RESULT
+    where TEST_NO = #{testNo,jdbcType=VARCHAR}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+      and PRINT_ORDER = #{printOrder,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.lab.LabResultKey" >
+    delete from LAB.LAB_RESULT
+    where TEST_NO = #{testNo,jdbcType=VARCHAR}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+      and PRINT_ORDER = #{printOrder,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.lab.LabResult" >
+    insert into LAB.LAB_RESULT (TEST_NO, ITEM_NO, PRINT_ORDER, 
+      REPORT_ITEM_NAME, REPORT_ITEM_CODE, RESULT, 
+      UNITS, ABNORMAL_INDICATOR, INSTRUMENT_ID, 
+      RESULT_DATE_TIME, REFER_CONTEXT, PRINT_CONTEXT
+      )
+    values (#{testNo,jdbcType=VARCHAR}, #{itemNo,jdbcType=DECIMAL}, #{printOrder,jdbcType=DECIMAL}, 
+      #{reportItemName,jdbcType=VARCHAR}, #{reportItemCode,jdbcType=VARCHAR}, #{result,jdbcType=VARCHAR}, 
+      #{units,jdbcType=VARCHAR}, #{abnormalIndicator,jdbcType=VARCHAR}, #{instrumentId,jdbcType=VARCHAR}, 
+      #{resultDateTime,jdbcType=DATE}, #{referContext,jdbcType=VARCHAR}, #{printContext,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.lab.LabResult" >
+    insert into LAB.LAB_RESULT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="testNo != null" >
+        TEST_NO,
+      </if>
+      <if test="itemNo != null" >
+        ITEM_NO,
+      </if>
+      <if test="printOrder != null" >
+        PRINT_ORDER,
+      </if>
+      <if test="reportItemName != null" >
+        REPORT_ITEM_NAME,
+      </if>
+      <if test="reportItemCode != null" >
+        REPORT_ITEM_CODE,
+      </if>
+      <if test="result != null" >
+        RESULT,
+      </if>
+      <if test="units != null" >
+        UNITS,
+      </if>
+      <if test="abnormalIndicator != null" >
+        ABNORMAL_INDICATOR,
+      </if>
+      <if test="instrumentId != null" >
+        INSTRUMENT_ID,
+      </if>
+      <if test="resultDateTime != null" >
+        RESULT_DATE_TIME,
+      </if>
+      <if test="referContext != null" >
+        REFER_CONTEXT,
+      </if>
+      <if test="printContext != null" >
+        PRINT_CONTEXT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="testNo != null" >
+        #{testNo,jdbcType=VARCHAR},
+      </if>
+      <if test="itemNo != null" >
+        #{itemNo,jdbcType=DECIMAL},
+      </if>
+      <if test="printOrder != null" >
+        #{printOrder,jdbcType=DECIMAL},
+      </if>
+      <if test="reportItemName != null" >
+        #{reportItemName,jdbcType=VARCHAR},
+      </if>
+      <if test="reportItemCode != null" >
+        #{reportItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null" >
+        #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="units != null" >
+        #{units,jdbcType=VARCHAR},
+      </if>
+      <if test="abnormalIndicator != null" >
+        #{abnormalIndicator,jdbcType=VARCHAR},
+      </if>
+      <if test="instrumentId != null" >
+        #{instrumentId,jdbcType=VARCHAR},
+      </if>
+      <if test="resultDateTime != null" >
+        #{resultDateTime,jdbcType=DATE},
+      </if>
+      <if test="referContext != null" >
+        #{referContext,jdbcType=VARCHAR},
+      </if>
+      <if test="printContext != null" >
+        #{printContext,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.lab.LabResult" >
+    update LAB.LAB_RESULT
+    <set >
+      <if test="reportItemName != null" >
+        REPORT_ITEM_NAME = #{reportItemName,jdbcType=VARCHAR},
+      </if>
+      <if test="reportItemCode != null" >
+        REPORT_ITEM_CODE = #{reportItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null" >
+        RESULT = #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="units != null" >
+        UNITS = #{units,jdbcType=VARCHAR},
+      </if>
+      <if test="abnormalIndicator != null" >
+        ABNORMAL_INDICATOR = #{abnormalIndicator,jdbcType=VARCHAR},
+      </if>
+      <if test="instrumentId != null" >
+        INSTRUMENT_ID = #{instrumentId,jdbcType=VARCHAR},
+      </if>
+      <if test="resultDateTime != null" >
+        RESULT_DATE_TIME = #{resultDateTime,jdbcType=DATE},
+      </if>
+      <if test="referContext != null" >
+        REFER_CONTEXT = #{referContext,jdbcType=VARCHAR},
+      </if>
+      <if test="printContext != null" >
+        PRINT_CONTEXT = #{printContext,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where TEST_NO = #{testNo,jdbcType=VARCHAR}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+      and PRINT_ORDER = #{printOrder,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.lab.LabResult" >
+    update LAB.LAB_RESULT
+    set REPORT_ITEM_NAME = #{reportItemName,jdbcType=VARCHAR},
+      REPORT_ITEM_CODE = #{reportItemCode,jdbcType=VARCHAR},
+      RESULT = #{result,jdbcType=VARCHAR},
+      UNITS = #{units,jdbcType=VARCHAR},
+      ABNORMAL_INDICATOR = #{abnormalIndicator,jdbcType=VARCHAR},
+      INSTRUMENT_ID = #{instrumentId,jdbcType=VARCHAR},
+      RESULT_DATE_TIME = #{resultDateTime,jdbcType=DATE},
+      REFER_CONTEXT = #{referContext,jdbcType=VARCHAR},
+      PRINT_CONTEXT = #{printContext,jdbcType=VARCHAR}
+    where TEST_NO = #{testNo,jdbcType=VARCHAR}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+      and PRINT_ORDER = #{printOrder,jdbcType=DECIMAL}
+  </update>
+</mapper>

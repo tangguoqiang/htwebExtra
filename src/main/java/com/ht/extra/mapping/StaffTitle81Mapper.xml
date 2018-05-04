@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.StaffTitle81Mapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.StaffTitle81" >
+    <id column="TITLE_CODE" property="titleCode" jdbcType="VARCHAR" />
+    <result column="TITLE_NAME" property="titleName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    TITLE_CODE, TITLE_NAME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.STAFF_TITLE_81
+    where TITLE_CODE = #{titleCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.STAFF_TITLE_81
+    where TITLE_CODE = #{titleCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.StaffTitle81" >
+    insert into COMM.STAFF_TITLE_81 (TITLE_CODE, TITLE_NAME)
+    values (#{titleCode,jdbcType=VARCHAR}, #{titleName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.StaffTitle81" >
+    insert into COMM.STAFF_TITLE_81
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="titleCode != null" >
+        TITLE_CODE,
+      </if>
+      <if test="titleName != null" >
+        TITLE_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="titleCode != null" >
+        #{titleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="titleName != null" >
+        #{titleName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.StaffTitle81" >
+    update COMM.STAFF_TITLE_81
+    <set >
+      <if test="titleName != null" >
+        TITLE_NAME = #{titleName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where TITLE_CODE = #{titleCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.StaffTitle81" >
+    update COMM.STAFF_TITLE_81
+    set TITLE_NAME = #{titleName,jdbcType=VARCHAR}
+    where TITLE_CODE = #{titleCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

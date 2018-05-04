@@ -1,0 +1,1356 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.InpatientMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.Inpatient" >
+    <id column="IPID" property="ipid" jdbcType="VARCHAR" />
+    <result column="PID" property="pid" jdbcType="VARCHAR" />
+    <result column="ADMINISSION_NO" property="adminissionNo" jdbcType="VARCHAR" />
+    <result column="ADMISSION_TIMES" property="admissionTimes" jdbcType="DECIMAL" />
+    <result column="PATIENT_NAME" property="patientName" jdbcType="VARCHAR" />
+    <result column="SEX" property="sex" jdbcType="VARCHAR" />
+    <result column="SEX_CODE" property="sexCode" jdbcType="VARCHAR" />
+    <result column="AGE" property="age" jdbcType="DECIMAL" />
+    <result column="AGE_DESC" property="ageDesc" jdbcType="VARCHAR" />
+    <result column="MARRIAGE_STATUS" property="marriageStatus" jdbcType="VARCHAR" />
+    <result column="MARRIAGE_STATUS_CODE" property="marriageStatusCode" jdbcType="VARCHAR" />
+    <result column="FEE_TYPE_CODE" property="feeTypeCode" jdbcType="VARCHAR" />
+    <result column="FEE_TYPE_NAME" property="feeTypeName" jdbcType="VARCHAR" />
+    <result column="PATIENT_CLASS" property="patientClass" jdbcType="VARCHAR" />
+    <result column="ADMISSION_REGISTER_TIME" property="admissionRegisterTime" jdbcType="VARCHAR" />
+    <result column="ADMISSION_WAY" property="admissionWay" jdbcType="VARCHAR" />
+    <result column="ADMISSION_PURPOSE" property="admissionPurpose" jdbcType="VARCHAR" />
+    <result column="ADMISSION_TIME" property="admissionTime" jdbcType="VARCHAR" />
+    <result column="ADMISSION_HOSPITAL" property="admissionHospital" jdbcType="VARCHAR" />
+    <result column="ADMISSION_DEPT" property="admissionDept" jdbcType="VARCHAR" />
+    <result column="ADMISSION_DEPT_CODE" property="admissionDeptCode" jdbcType="VARCHAR" />
+    <result column="ADMISSION_WARD" property="admissionWard" jdbcType="VARCHAR" />
+    <result column="ADMISSION_WARD_CODE" property="admissionWardCode" jdbcType="VARCHAR" />
+    <result column="HOSPITAL" property="hospital" jdbcType="VARCHAR" />
+    <result column="DEPT_NAME" property="deptName" jdbcType="VARCHAR" />
+    <result column="DEPT_CODE" property="deptCode" jdbcType="VARCHAR" />
+    <result column="WARD_NAME" property="wardName" jdbcType="VARCHAR" />
+    <result column="WARD_CODE" property="wardCode" jdbcType="VARCHAR" />
+    <result column="DISCHARGE_TIME" property="dischargeTime" jdbcType="VARCHAR" />
+    <result column="BED_NO" property="bedNo" jdbcType="VARCHAR" />
+    <result column="BED_FEE_TYPE" property="bedFeeType" jdbcType="VARCHAR" />
+    <result column="ROOM" property="room" jdbcType="VARCHAR" />
+    <result column="STATE_OF_ILLNESS" property="stateOfIllness" jdbcType="VARCHAR" />
+    <result column="DOCTOR" property="doctor" jdbcType="VARCHAR" />
+    <result column="DOCTOR_ID" property="doctorId" jdbcType="VARCHAR" />
+    <result column="MEDICAL_FRP_CODE" property="medicalFrpCode" jdbcType="VARCHAR" />
+    <result column="MEDICAL_GRP" property="medicalGrp" jdbcType="VARCHAR" />
+    <result column="NURSIONG_LEVEL" property="nursiongLevel" jdbcType="VARCHAR" />
+    <result column="NURSE" property="nurse" jdbcType="VARCHAR" />
+    <result column="NURSIONG_GRP" property="nursiongGrp" jdbcType="VARCHAR" />
+    <result column="NURSING_GRP_CODE" property="nursingGrpCode" jdbcType="VARCHAR" />
+    <result column="IN_STATUS" property="inStatus" jdbcType="VARCHAR" />
+    <result column="MR_STATUS" property="mrStatus" jdbcType="VARCHAR" />
+    <result column="ARCHIVE_TIME" property="archiveTime" jdbcType="VARCHAR" />
+    <result column="ARCHIVE_OPERATOR" property="archiveOperator" jdbcType="VARCHAR" />
+    <result column="DISCHARGE_WAY" property="dischargeWay" jdbcType="VARCHAR" />
+    <result column="NURSE_ID" property="nurseId" jdbcType="VARCHAR" />
+    <result column="MEAL" property="meal" jdbcType="VARCHAR" />
+    <result column="PRINCIPAL_DIAGNOSIS" property="principalDiagnosis" jdbcType="VARCHAR" />
+    <result column="PRINCIPAL_DIAGNOSIS_CODE" property="principalDiagnosisCode" jdbcType="VARCHAR" />
+    <result column="LOCK_STATUS" property="lockStatus" jdbcType="VARCHAR" />
+    <result column="SAFETY_STATUS" property="safetyStatus" jdbcType="VARCHAR" />
+    <result column="DISEASE_CODE" property="diseaseCode" jdbcType="VARCHAR" />
+    <result column="DISEASE_NAME" property="diseaseName" jdbcType="VARCHAR" />
+    <result column="GROUP_FLAG" property="groupFlag" jdbcType="VARCHAR" />
+    <result column="ZZ_DOCTOR_CODE" property="zzDoctorCode" jdbcType="VARCHAR" />
+    <result column="ZZ_DOCTOR_NAME" property="zzDoctorName" jdbcType="VARCHAR" />
+    <result column="ZR_DOCTOR_CODE" property="zrDoctorCode" jdbcType="VARCHAR" />
+    <result column="ZR_DOCTOR_NAME" property="zrDoctorName" jdbcType="VARCHAR" />
+    <result column="IS_QA_SCORE" property="isQaScore" jdbcType="VARCHAR" />
+    <result column="HOSPITAL_DISCHARGE_TIME" property="hospitalDischargeTime" jdbcType="VARCHAR" />
+    <result column="ADMISSION_TYPE" property="admissionType" jdbcType="VARCHAR" />
+    <result column="CPP_FLOW" property="cppFlow" jdbcType="VARCHAR" />
+    <result column="CPP_IN_FLAG" property="cppInFlag" jdbcType="VARCHAR" />
+    <result column="LOCK_REASON" property="lockReason" jdbcType="VARCHAR" />
+    <result column="IS_PAPERY_CASE_SUBMIT" property="isPaperyCaseSubmit" jdbcType="VARCHAR" />
+    <result column="FILE_INPUT_FLAG" property="fileInputFlag" jdbcType="VARCHAR" />
+    <result column="IS_DEAD" property="isDead" jdbcType="VARCHAR" />
+    <result column="LOCK_TIME" property="lockTime" jdbcType="VARCHAR" />
+    <result column="ZK_NURSE" property="zkNurse" jdbcType="VARCHAR" />
+    <result column="ZK_NURSE_ID" property="zkNurseId" jdbcType="VARCHAR" />
+    <result column="LOCK_USER_ID" property="lockUserId" jdbcType="VARCHAR" />
+    <result column="LOCK_USER_NAME" property="lockUserName" jdbcType="VARCHAR" />
+    <result column="UNLOCK_TIME" property="unlockTime" jdbcType="VARCHAR" />
+    <result column="UNLOCK_USER_ID" property="unlockUserId" jdbcType="VARCHAR" />
+    <result column="UNLOCK_USER_NAME" property="unlockUserName" jdbcType="VARCHAR" />
+    <result column="OTHER_INFORMATION" property="otherInformation" jdbcType="VARCHAR" />
+    <result column="CHANGE_ARCHIVE" property="changeArchive" jdbcType="VARCHAR" />
+    <result column="ADMISSION_TIMES_DISEASES" property="admissionTimesDiseases" jdbcType="DECIMAL" />
+    <result column="IS_CHILD" property="isChild" jdbcType="VARCHAR" />
+    <result column="MUM_IPID" property="mumIpid" jdbcType="VARCHAR" />
+    <result column="MEDICINE_CENTER_TYPE" property="medicineCenterType" jdbcType="VARCHAR" />
+    <result column="MEDICINE_PATIENT_TYPE" property="medicinePatientType" jdbcType="VARCHAR" />
+    <result column="IS_FIT_ICD" property="isFitIcd" jdbcType="VARCHAR" />
+    <result column="DSPLAY_STATUS" property="dsplayStatus" jdbcType="VARCHAR" />
+    <result column="CRISIS_VALUE" property="crisisValue" jdbcType="VARCHAR" />
+    <result column="PG_VALUE" property="pgValue" jdbcType="VARCHAR" />
+    <result column="TEMP_OUT_PATIENT_ID" property="tempOutPatientId" jdbcType="VARCHAR" />
+    <result column="TEMP_OUT_PATIENT_NUM" property="tempOutPatientNum" jdbcType="VARCHAR" />
+    <result column="ADMISSION_BED_NO" property="admissionBedNo" jdbcType="VARCHAR" />
+    <result column="BED_NO_FLAG" property="bedNoFlag" jdbcType="VARCHAR" />
+    <result column="FZR_DOCTOR_CODE" property="fzrDoctorCode" jdbcType="VARCHAR" />
+    <result column="FZR_DOCTOR_NAME" property="fzrDoctorName" jdbcType="VARCHAR" />
+    <result column="RJSS_PA_FLAG" property="rjssPaFlag" jdbcType="VARCHAR" />
+    <result column="MEDICARE_AUDIT_STATUS" property="medicareAuditStatus" jdbcType="VARCHAR" />
+    <result column="ZZHEN_DOCTOR_CODE" property="zzhenDoctorCode" jdbcType="VARCHAR" />
+    <result column="ZZHEN_DOCTOR_NAME" property="zzhenDoctorName" jdbcType="VARCHAR" />
+    <result column="PRE_DISCHARGE_FLAG" property="preDischargeFlag" jdbcType="VARCHAR" />
+    <result column="ZLZZ_DOCTOR_CODE" property="zlzzDoctorCode" jdbcType="VARCHAR" />
+    <result column="ZLZZ_DOCTOR_NAME" property="zlzzDoctorName" jdbcType="VARCHAR" />
+    <result column="VIP_FLAG" property="vipFlag" jdbcType="VARCHAR" />
+    <result column="SYSTEM_STATUS" property="systemStatus" jdbcType="VARCHAR" />
+    <result column="ZY_DOCTOR_CODE" property="zyDoctorCode" jdbcType="VARCHAR" />
+    <result column="ZY_DOCTOR_NAME" property="zyDoctorName" jdbcType="VARCHAR" />
+    <result column="DCNYJYX_FLAG" property="dcnyjyxFlag" jdbcType="VARCHAR" />
+    <result column="CONTACTISOLATION_FLAG" property="contactisolationFlag" jdbcType="VARCHAR" />
+    <result column="ADMISSION_INSURE_TIME" property="admissionInsureTime" jdbcType="VARCHAR" />
+    <result column="HEAD_NURSE_SUBMIT" property="headNurseSubmit" jdbcType="VARCHAR" />
+    <result column="HLZZ_SUBMIT" property="hlzzSubmit" jdbcType="VARCHAR" />
+    <result column="PIGEONHOLE_NO" property="pigeonholeNo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    IPID, PID, ADMINISSION_NO, ADMISSION_TIMES, PATIENT_NAME, SEX, SEX_CODE, AGE, AGE_DESC, 
+    MARRIAGE_STATUS, MARRIAGE_STATUS_CODE, FEE_TYPE_CODE, FEE_TYPE_NAME, PATIENT_CLASS, 
+    ADMISSION_REGISTER_TIME, ADMISSION_WAY, ADMISSION_PURPOSE, ADMISSION_TIME, ADMISSION_HOSPITAL, 
+    ADMISSION_DEPT, ADMISSION_DEPT_CODE, ADMISSION_WARD, ADMISSION_WARD_CODE, HOSPITAL, 
+    DEPT_NAME, DEPT_CODE, WARD_NAME, WARD_CODE, DISCHARGE_TIME, BED_NO, BED_FEE_TYPE, 
+    ROOM, STATE_OF_ILLNESS, DOCTOR, DOCTOR_ID, MEDICAL_FRP_CODE, MEDICAL_GRP, NURSIONG_LEVEL, 
+    NURSE, NURSIONG_GRP, NURSING_GRP_CODE, IN_STATUS, MR_STATUS, ARCHIVE_TIME, ARCHIVE_OPERATOR, 
+    DISCHARGE_WAY, NURSE_ID, MEAL, PRINCIPAL_DIAGNOSIS, PRINCIPAL_DIAGNOSIS_CODE, LOCK_STATUS, 
+    SAFETY_STATUS, DISEASE_CODE, DISEASE_NAME, GROUP_FLAG, ZZ_DOCTOR_CODE, ZZ_DOCTOR_NAME, 
+    ZR_DOCTOR_CODE, ZR_DOCTOR_NAME, IS_QA_SCORE, HOSPITAL_DISCHARGE_TIME, ADMISSION_TYPE, 
+    CPP_FLOW, CPP_IN_FLAG, LOCK_REASON, IS_PAPERY_CASE_SUBMIT, FILE_INPUT_FLAG, IS_DEAD, 
+    LOCK_TIME, ZK_NURSE, ZK_NURSE_ID, LOCK_USER_ID, LOCK_USER_NAME, UNLOCK_TIME, UNLOCK_USER_ID, 
+    UNLOCK_USER_NAME, OTHER_INFORMATION, CHANGE_ARCHIVE, ADMISSION_TIMES_DISEASES, IS_CHILD, 
+    MUM_IPID, MEDICINE_CENTER_TYPE, MEDICINE_PATIENT_TYPE, IS_FIT_ICD, DSPLAY_STATUS, 
+    CRISIS_VALUE, PG_VALUE, TEMP_OUT_PATIENT_ID, TEMP_OUT_PATIENT_NUM, ADMISSION_BED_NO, 
+    BED_NO_FLAG, FZR_DOCTOR_CODE, FZR_DOCTOR_NAME, RJSS_PA_FLAG, MEDICARE_AUDIT_STATUS, 
+    ZZHEN_DOCTOR_CODE, ZZHEN_DOCTOR_NAME, PRE_DISCHARGE_FLAG, ZLZZ_DOCTOR_CODE, ZLZZ_DOCTOR_NAME, 
+    VIP_FLAG, SYSTEM_STATUS, ZY_DOCTOR_CODE, ZY_DOCTOR_NAME, DCNYJYX_FLAG, CONTACTISOLATION_FLAG, 
+    ADMISSION_INSURE_TIME, HEAD_NURSE_SUBMIT, HLZZ_SUBMIT, PIGEONHOLE_NO
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from ADT.INPATIENT
+    <![CDATA[ where ADMISSION_TIME > #{0} and ADMISSION_TIME < #{1}]]>
+  </select>
+  <select id="selectByTime" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from ADT.INPATIENT
+    where IPID = #{ipid,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByOutTime" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from ADT.INPATIENT
+    <![CDATA[ where HOSPITAL_DISCHARGE_TIME >#{0} and HOSPITAL_DISCHARGE_TIME <#{1} ]]>
+  </select>
+  <select id="selectLikeOutTime" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from ADT.INPATIENT
+    <![CDATA[ where HOSPITAL_DISCHARGE_TIME LIKE #{0}||'%']]>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from ADT.INPATIENT
+    where IPID = #{ipid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.Inpatient" >
+    insert into ADT.INPATIENT (IPID, PID, ADMINISSION_NO, 
+      ADMISSION_TIMES, PATIENT_NAME, SEX, 
+      SEX_CODE, AGE, AGE_DESC, 
+      MARRIAGE_STATUS, MARRIAGE_STATUS_CODE, FEE_TYPE_CODE, 
+      FEE_TYPE_NAME, PATIENT_CLASS, ADMISSION_REGISTER_TIME, 
+      ADMISSION_WAY, ADMISSION_PURPOSE, ADMISSION_TIME, 
+      ADMISSION_HOSPITAL, ADMISSION_DEPT, ADMISSION_DEPT_CODE, 
+      ADMISSION_WARD, ADMISSION_WARD_CODE, HOSPITAL, 
+      DEPT_NAME, DEPT_CODE, WARD_NAME, 
+      WARD_CODE, DISCHARGE_TIME, BED_NO, 
+      BED_FEE_TYPE, ROOM, STATE_OF_ILLNESS, 
+      DOCTOR, DOCTOR_ID, MEDICAL_FRP_CODE, 
+      MEDICAL_GRP, NURSIONG_LEVEL, NURSE, 
+      NURSIONG_GRP, NURSING_GRP_CODE, IN_STATUS, 
+      MR_STATUS, ARCHIVE_TIME, ARCHIVE_OPERATOR, 
+      DISCHARGE_WAY, NURSE_ID, MEAL, 
+      PRINCIPAL_DIAGNOSIS, PRINCIPAL_DIAGNOSIS_CODE, 
+      LOCK_STATUS, SAFETY_STATUS, DISEASE_CODE, 
+      DISEASE_NAME, GROUP_FLAG, ZZ_DOCTOR_CODE, 
+      ZZ_DOCTOR_NAME, ZR_DOCTOR_CODE, ZR_DOCTOR_NAME, 
+      IS_QA_SCORE, HOSPITAL_DISCHARGE_TIME, ADMISSION_TYPE, 
+      CPP_FLOW, CPP_IN_FLAG, LOCK_REASON, 
+      IS_PAPERY_CASE_SUBMIT, FILE_INPUT_FLAG, IS_DEAD, 
+      LOCK_TIME, ZK_NURSE, ZK_NURSE_ID, 
+      LOCK_USER_ID, LOCK_USER_NAME, UNLOCK_TIME, 
+      UNLOCK_USER_ID, UNLOCK_USER_NAME, OTHER_INFORMATION, 
+      CHANGE_ARCHIVE, ADMISSION_TIMES_DISEASES, 
+      IS_CHILD, MUM_IPID, MEDICINE_CENTER_TYPE, 
+      MEDICINE_PATIENT_TYPE, IS_FIT_ICD, DSPLAY_STATUS, 
+      CRISIS_VALUE, PG_VALUE, TEMP_OUT_PATIENT_ID, 
+      TEMP_OUT_PATIENT_NUM, ADMISSION_BED_NO, BED_NO_FLAG, 
+      FZR_DOCTOR_CODE, FZR_DOCTOR_NAME, RJSS_PA_FLAG, 
+      MEDICARE_AUDIT_STATUS, ZZHEN_DOCTOR_CODE, ZZHEN_DOCTOR_NAME, 
+      PRE_DISCHARGE_FLAG, ZLZZ_DOCTOR_CODE, ZLZZ_DOCTOR_NAME, 
+      VIP_FLAG, SYSTEM_STATUS, ZY_DOCTOR_CODE, 
+      ZY_DOCTOR_NAME, DCNYJYX_FLAG, CONTACTISOLATION_FLAG, 
+      ADMISSION_INSURE_TIME, HEAD_NURSE_SUBMIT, HLZZ_SUBMIT, 
+      PIGEONHOLE_NO)
+    values (#{ipid,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR}, #{adminissionNo,jdbcType=VARCHAR}, 
+      #{admissionTimes,jdbcType=DECIMAL}, #{patientName,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+      #{sexCode,jdbcType=VARCHAR}, #{age,jdbcType=DECIMAL}, #{ageDesc,jdbcType=VARCHAR}, 
+      #{marriageStatus,jdbcType=VARCHAR}, #{marriageStatusCode,jdbcType=VARCHAR}, #{feeTypeCode,jdbcType=VARCHAR}, 
+      #{feeTypeName,jdbcType=VARCHAR}, #{patientClass,jdbcType=VARCHAR}, #{admissionRegisterTime,jdbcType=VARCHAR}, 
+      #{admissionWay,jdbcType=VARCHAR}, #{admissionPurpose,jdbcType=VARCHAR}, #{admissionTime,jdbcType=VARCHAR}, 
+      #{admissionHospital,jdbcType=VARCHAR}, #{admissionDept,jdbcType=VARCHAR}, #{admissionDeptCode,jdbcType=VARCHAR}, 
+      #{admissionWard,jdbcType=VARCHAR}, #{admissionWardCode,jdbcType=VARCHAR}, #{hospital,jdbcType=VARCHAR}, 
+      #{deptName,jdbcType=VARCHAR}, #{deptCode,jdbcType=VARCHAR}, #{wardName,jdbcType=VARCHAR}, 
+      #{wardCode,jdbcType=VARCHAR}, #{dischargeTime,jdbcType=VARCHAR}, #{bedNo,jdbcType=VARCHAR}, 
+      #{bedFeeType,jdbcType=VARCHAR}, #{room,jdbcType=VARCHAR}, #{stateOfIllness,jdbcType=VARCHAR}, 
+      #{doctor,jdbcType=VARCHAR}, #{doctorId,jdbcType=VARCHAR}, #{medicalFrpCode,jdbcType=VARCHAR}, 
+      #{medicalGrp,jdbcType=VARCHAR}, #{nursiongLevel,jdbcType=VARCHAR}, #{nurse,jdbcType=VARCHAR}, 
+      #{nursiongGrp,jdbcType=VARCHAR}, #{nursingGrpCode,jdbcType=VARCHAR}, #{inStatus,jdbcType=VARCHAR}, 
+      #{mrStatus,jdbcType=VARCHAR}, #{archiveTime,jdbcType=VARCHAR}, #{archiveOperator,jdbcType=VARCHAR}, 
+      #{dischargeWay,jdbcType=VARCHAR}, #{nurseId,jdbcType=VARCHAR}, #{meal,jdbcType=VARCHAR}, 
+      #{principalDiagnosis,jdbcType=VARCHAR}, #{principalDiagnosisCode,jdbcType=VARCHAR}, 
+      #{lockStatus,jdbcType=VARCHAR}, #{safetyStatus,jdbcType=VARCHAR}, #{diseaseCode,jdbcType=VARCHAR}, 
+      #{diseaseName,jdbcType=VARCHAR}, #{groupFlag,jdbcType=VARCHAR}, #{zzDoctorCode,jdbcType=VARCHAR}, 
+      #{zzDoctorName,jdbcType=VARCHAR}, #{zrDoctorCode,jdbcType=VARCHAR}, #{zrDoctorName,jdbcType=VARCHAR}, 
+      #{isQaScore,jdbcType=VARCHAR}, #{hospitalDischargeTime,jdbcType=VARCHAR}, #{admissionType,jdbcType=VARCHAR}, 
+      #{cppFlow,jdbcType=VARCHAR}, #{cppInFlag,jdbcType=VARCHAR}, #{lockReason,jdbcType=VARCHAR}, 
+      #{isPaperyCaseSubmit,jdbcType=VARCHAR}, #{fileInputFlag,jdbcType=VARCHAR}, #{isDead,jdbcType=VARCHAR}, 
+      #{lockTime,jdbcType=VARCHAR}, #{zkNurse,jdbcType=VARCHAR}, #{zkNurseId,jdbcType=VARCHAR}, 
+      #{lockUserId,jdbcType=VARCHAR}, #{lockUserName,jdbcType=VARCHAR}, #{unlockTime,jdbcType=VARCHAR}, 
+      #{unlockUserId,jdbcType=VARCHAR}, #{unlockUserName,jdbcType=VARCHAR}, #{otherInformation,jdbcType=VARCHAR}, 
+      #{changeArchive,jdbcType=VARCHAR}, #{admissionTimesDiseases,jdbcType=DECIMAL}, 
+      #{isChild,jdbcType=VARCHAR}, #{mumIpid,jdbcType=VARCHAR}, #{medicineCenterType,jdbcType=VARCHAR}, 
+      #{medicinePatientType,jdbcType=VARCHAR}, #{isFitIcd,jdbcType=VARCHAR}, #{dsplayStatus,jdbcType=VARCHAR}, 
+      #{crisisValue,jdbcType=VARCHAR}, #{pgValue,jdbcType=VARCHAR}, #{tempOutPatientId,jdbcType=VARCHAR}, 
+      #{tempOutPatientNum,jdbcType=VARCHAR}, #{admissionBedNo,jdbcType=VARCHAR}, #{bedNoFlag,jdbcType=VARCHAR}, 
+      #{fzrDoctorCode,jdbcType=VARCHAR}, #{fzrDoctorName,jdbcType=VARCHAR}, #{rjssPaFlag,jdbcType=VARCHAR}, 
+      #{medicareAuditStatus,jdbcType=VARCHAR}, #{zzhenDoctorCode,jdbcType=VARCHAR}, #{zzhenDoctorName,jdbcType=VARCHAR}, 
+      #{preDischargeFlag,jdbcType=VARCHAR}, #{zlzzDoctorCode,jdbcType=VARCHAR}, #{zlzzDoctorName,jdbcType=VARCHAR}, 
+      #{vipFlag,jdbcType=VARCHAR}, #{systemStatus,jdbcType=VARCHAR}, #{zyDoctorCode,jdbcType=VARCHAR}, 
+      #{zyDoctorName,jdbcType=VARCHAR}, #{dcnyjyxFlag,jdbcType=VARCHAR}, #{contactisolationFlag,jdbcType=VARCHAR}, 
+      #{admissionInsureTime,jdbcType=VARCHAR}, #{headNurseSubmit,jdbcType=VARCHAR}, #{hlzzSubmit,jdbcType=VARCHAR}, 
+      #{pigeonholeNo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.Inpatient" >
+    insert into ADT.INPATIENT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ipid != null" >
+        IPID,
+      </if>
+      <if test="pid != null" >
+        PID,
+      </if>
+      <if test="adminissionNo != null" >
+        ADMINISSION_NO,
+      </if>
+      <if test="admissionTimes != null" >
+        ADMISSION_TIMES,
+      </if>
+      <if test="patientName != null" >
+        PATIENT_NAME,
+      </if>
+      <if test="sex != null" >
+        SEX,
+      </if>
+      <if test="sexCode != null" >
+        SEX_CODE,
+      </if>
+      <if test="age != null" >
+        AGE,
+      </if>
+      <if test="ageDesc != null" >
+        AGE_DESC,
+      </if>
+      <if test="marriageStatus != null" >
+        MARRIAGE_STATUS,
+      </if>
+      <if test="marriageStatusCode != null" >
+        MARRIAGE_STATUS_CODE,
+      </if>
+      <if test="feeTypeCode != null" >
+        FEE_TYPE_CODE,
+      </if>
+      <if test="feeTypeName != null" >
+        FEE_TYPE_NAME,
+      </if>
+      <if test="patientClass != null" >
+        PATIENT_CLASS,
+      </if>
+      <if test="admissionRegisterTime != null" >
+        ADMISSION_REGISTER_TIME,
+      </if>
+      <if test="admissionWay != null" >
+        ADMISSION_WAY,
+      </if>
+      <if test="admissionPurpose != null" >
+        ADMISSION_PURPOSE,
+      </if>
+      <if test="admissionTime != null" >
+        ADMISSION_TIME,
+      </if>
+      <if test="admissionHospital != null" >
+        ADMISSION_HOSPITAL,
+      </if>
+      <if test="admissionDept != null" >
+        ADMISSION_DEPT,
+      </if>
+      <if test="admissionDeptCode != null" >
+        ADMISSION_DEPT_CODE,
+      </if>
+      <if test="admissionWard != null" >
+        ADMISSION_WARD,
+      </if>
+      <if test="admissionWardCode != null" >
+        ADMISSION_WARD_CODE,
+      </if>
+      <if test="hospital != null" >
+        HOSPITAL,
+      </if>
+      <if test="deptName != null" >
+        DEPT_NAME,
+      </if>
+      <if test="deptCode != null" >
+        DEPT_CODE,
+      </if>
+      <if test="wardName != null" >
+        WARD_NAME,
+      </if>
+      <if test="wardCode != null" >
+        WARD_CODE,
+      </if>
+      <if test="dischargeTime != null" >
+        DISCHARGE_TIME,
+      </if>
+      <if test="bedNo != null" >
+        BED_NO,
+      </if>
+      <if test="bedFeeType != null" >
+        BED_FEE_TYPE,
+      </if>
+      <if test="room != null" >
+        ROOM,
+      </if>
+      <if test="stateOfIllness != null" >
+        STATE_OF_ILLNESS,
+      </if>
+      <if test="doctor != null" >
+        DOCTOR,
+      </if>
+      <if test="doctorId != null" >
+        DOCTOR_ID,
+      </if>
+      <if test="medicalFrpCode != null" >
+        MEDICAL_FRP_CODE,
+      </if>
+      <if test="medicalGrp != null" >
+        MEDICAL_GRP,
+      </if>
+      <if test="nursiongLevel != null" >
+        NURSIONG_LEVEL,
+      </if>
+      <if test="nurse != null" >
+        NURSE,
+      </if>
+      <if test="nursiongGrp != null" >
+        NURSIONG_GRP,
+      </if>
+      <if test="nursingGrpCode != null" >
+        NURSING_GRP_CODE,
+      </if>
+      <if test="inStatus != null" >
+        IN_STATUS,
+      </if>
+      <if test="mrStatus != null" >
+        MR_STATUS,
+      </if>
+      <if test="archiveTime != null" >
+        ARCHIVE_TIME,
+      </if>
+      <if test="archiveOperator != null" >
+        ARCHIVE_OPERATOR,
+      </if>
+      <if test="dischargeWay != null" >
+        DISCHARGE_WAY,
+      </if>
+      <if test="nurseId != null" >
+        NURSE_ID,
+      </if>
+      <if test="meal != null" >
+        MEAL,
+      </if>
+      <if test="principalDiagnosis != null" >
+        PRINCIPAL_DIAGNOSIS,
+      </if>
+      <if test="principalDiagnosisCode != null" >
+        PRINCIPAL_DIAGNOSIS_CODE,
+      </if>
+      <if test="lockStatus != null" >
+        LOCK_STATUS,
+      </if>
+      <if test="safetyStatus != null" >
+        SAFETY_STATUS,
+      </if>
+      <if test="diseaseCode != null" >
+        DISEASE_CODE,
+      </if>
+      <if test="diseaseName != null" >
+        DISEASE_NAME,
+      </if>
+      <if test="groupFlag != null" >
+        GROUP_FLAG,
+      </if>
+      <if test="zzDoctorCode != null" >
+        ZZ_DOCTOR_CODE,
+      </if>
+      <if test="zzDoctorName != null" >
+        ZZ_DOCTOR_NAME,
+      </if>
+      <if test="zrDoctorCode != null" >
+        ZR_DOCTOR_CODE,
+      </if>
+      <if test="zrDoctorName != null" >
+        ZR_DOCTOR_NAME,
+      </if>
+      <if test="isQaScore != null" >
+        IS_QA_SCORE,
+      </if>
+      <if test="hospitalDischargeTime != null" >
+        HOSPITAL_DISCHARGE_TIME,
+      </if>
+      <if test="admissionType != null" >
+        ADMISSION_TYPE,
+      </if>
+      <if test="cppFlow != null" >
+        CPP_FLOW,
+      </if>
+      <if test="cppInFlag != null" >
+        CPP_IN_FLAG,
+      </if>
+      <if test="lockReason != null" >
+        LOCK_REASON,
+      </if>
+      <if test="isPaperyCaseSubmit != null" >
+        IS_PAPERY_CASE_SUBMIT,
+      </if>
+      <if test="fileInputFlag != null" >
+        FILE_INPUT_FLAG,
+      </if>
+      <if test="isDead != null" >
+        IS_DEAD,
+      </if>
+      <if test="lockTime != null" >
+        LOCK_TIME,
+      </if>
+      <if test="zkNurse != null" >
+        ZK_NURSE,
+      </if>
+      <if test="zkNurseId != null" >
+        ZK_NURSE_ID,
+      </if>
+      <if test="lockUserId != null" >
+        LOCK_USER_ID,
+      </if>
+      <if test="lockUserName != null" >
+        LOCK_USER_NAME,
+      </if>
+      <if test="unlockTime != null" >
+        UNLOCK_TIME,
+      </if>
+      <if test="unlockUserId != null" >
+        UNLOCK_USER_ID,
+      </if>
+      <if test="unlockUserName != null" >
+        UNLOCK_USER_NAME,
+      </if>
+      <if test="otherInformation != null" >
+        OTHER_INFORMATION,
+      </if>
+      <if test="changeArchive != null" >
+        CHANGE_ARCHIVE,
+      </if>
+      <if test="admissionTimesDiseases != null" >
+        ADMISSION_TIMES_DISEASES,
+      </if>
+      <if test="isChild != null" >
+        IS_CHILD,
+      </if>
+      <if test="mumIpid != null" >
+        MUM_IPID,
+      </if>
+      <if test="medicineCenterType != null" >
+        MEDICINE_CENTER_TYPE,
+      </if>
+      <if test="medicinePatientType != null" >
+        MEDICINE_PATIENT_TYPE,
+      </if>
+      <if test="isFitIcd != null" >
+        IS_FIT_ICD,
+      </if>
+      <if test="dsplayStatus != null" >
+        DSPLAY_STATUS,
+      </if>
+      <if test="crisisValue != null" >
+        CRISIS_VALUE,
+      </if>
+      <if test="pgValue != null" >
+        PG_VALUE,
+      </if>
+      <if test="tempOutPatientId != null" >
+        TEMP_OUT_PATIENT_ID,
+      </if>
+      <if test="tempOutPatientNum != null" >
+        TEMP_OUT_PATIENT_NUM,
+      </if>
+      <if test="admissionBedNo != null" >
+        ADMISSION_BED_NO,
+      </if>
+      <if test="bedNoFlag != null" >
+        BED_NO_FLAG,
+      </if>
+      <if test="fzrDoctorCode != null" >
+        FZR_DOCTOR_CODE,
+      </if>
+      <if test="fzrDoctorName != null" >
+        FZR_DOCTOR_NAME,
+      </if>
+      <if test="rjssPaFlag != null" >
+        RJSS_PA_FLAG,
+      </if>
+      <if test="medicareAuditStatus != null" >
+        MEDICARE_AUDIT_STATUS,
+      </if>
+      <if test="zzhenDoctorCode != null" >
+        ZZHEN_DOCTOR_CODE,
+      </if>
+      <if test="zzhenDoctorName != null" >
+        ZZHEN_DOCTOR_NAME,
+      </if>
+      <if test="preDischargeFlag != null" >
+        PRE_DISCHARGE_FLAG,
+      </if>
+      <if test="zlzzDoctorCode != null" >
+        ZLZZ_DOCTOR_CODE,
+      </if>
+      <if test="zlzzDoctorName != null" >
+        ZLZZ_DOCTOR_NAME,
+      </if>
+      <if test="vipFlag != null" >
+        VIP_FLAG,
+      </if>
+      <if test="systemStatus != null" >
+        SYSTEM_STATUS,
+      </if>
+      <if test="zyDoctorCode != null" >
+        ZY_DOCTOR_CODE,
+      </if>
+      <if test="zyDoctorName != null" >
+        ZY_DOCTOR_NAME,
+      </if>
+      <if test="dcnyjyxFlag != null" >
+        DCNYJYX_FLAG,
+      </if>
+      <if test="contactisolationFlag != null" >
+        CONTACTISOLATION_FLAG,
+      </if>
+      <if test="admissionInsureTime != null" >
+        ADMISSION_INSURE_TIME,
+      </if>
+      <if test="headNurseSubmit != null" >
+        HEAD_NURSE_SUBMIT,
+      </if>
+      <if test="hlzzSubmit != null" >
+        HLZZ_SUBMIT,
+      </if>
+      <if test="pigeonholeNo != null" >
+        PIGEONHOLE_NO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ipid != null" >
+        #{ipid,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="adminissionNo != null" >
+        #{adminissionNo,jdbcType=VARCHAR},
+      </if>
+      <if test="admissionTimes != null" >
+        #{admissionTimes,jdbcType=DECIMAL},
+      </if>
+      <if test="patientName != null" >
+        #{patientName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="sexCode != null" >
+        #{sexCode,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=DECIMAL},
+      </if>
+      <if test="ageDesc != null" >
+        #{ageDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="marriageStatus != null" >
+        #{marriageStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="marriageStatusCode != null" >
+        #{marriageStatusCode,jdbcType=VARCHAR},
+      </if>
+      <if test="feeTypeCode != null" >
+        #{feeTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="feeTypeName != null" >
+        #{feeTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="patientClass != null" >
+        #{patientClass,jdbcType=VARCHAR},
+      </if>
+      <if test="admissionRegisterTime != null" >
+        #{admissionRegisterTime,jdbcType=VARCHAR},
+      </if>
+      <if test="admissionWay != null" >
+        #{admissionWay,jdbcType=VARCHAR},
+      </if>
+      <if test="admissionPurpose != null" >
+        #{admissionPurpose,jdbcType=VARCHAR},
+      </if>
+      <if test="admissionTime != null" >
+        #{admissionTime,jdbcType=VARCHAR},
+      </if>
+      <if test="admissionHospital != null" >
+        #{admissionHospital,jdbcType=VARCHAR},
+      </if>
+      <if test="admissionDept != null" >
+        #{admissionDept,jdbcType=VARCHAR},
+      </if>
+      <if test="admissionDeptCode != null" >
+        #{admissionDeptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="admissionWard != null" >
+        #{admissionWard,jdbcType=VARCHAR},
+      </if>
+      <if test="admissionWardCode != null" >
+        #{admissionWardCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hospital != null" >
+        #{hospital,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null" >
+        #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptCode != null" >
+        #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="wardName != null" >
+        #{wardName,jdbcType=VARCHAR},
+      </if>
+      <if test="wardCode != null" >
+        #{wardCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dischargeTime != null" >
+        #{dischargeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="bedNo != null" >
+        #{bedNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bedFeeType != null" >
+        #{bedFeeType,jdbcType=VARCHAR},
+      </if>
+      <if test="room != null" >
+        #{room,jdbcType=VARCHAR},
+      </if>
+      <if test="stateOfIllness != null" >
+        #{stateOfIllness,jdbcType=VARCHAR},
+      </if>
+      <if test="doctor != null" >
+        #{doctor,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorId != null" >
+        #{doctorId,jdbcType=VARCHAR},
+      </if>
+      <if test="medicalFrpCode != null" >
+        #{medicalFrpCode,jdbcType=VARCHAR},
+      </if>
+      <if test="medicalGrp != null" >
+        #{medicalGrp,jdbcType=VARCHAR},
+      </if>
+      <if test="nursiongLevel != null" >
+        #{nursiongLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="nurse != null" >
+        #{nurse,jdbcType=VARCHAR},
+      </if>
+      <if test="nursiongGrp != null" >
+        #{nursiongGrp,jdbcType=VARCHAR},
+      </if>
+      <if test="nursingGrpCode != null" >
+        #{nursingGrpCode,jdbcType=VARCHAR},
+      </if>
+      <if test="inStatus != null" >
+        #{inStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="mrStatus != null" >
+        #{mrStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveTime != null" >
+        #{archiveTime,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveOperator != null" >
+        #{archiveOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="dischargeWay != null" >
+        #{dischargeWay,jdbcType=VARCHAR},
+      </if>
+      <if test="nurseId != null" >
+        #{nurseId,jdbcType=VARCHAR},
+      </if>
+      <if test="meal != null" >
+        #{meal,jdbcType=VARCHAR},
+      </if>
+      <if test="principalDiagnosis != null" >
+        #{principalDiagnosis,jdbcType=VARCHAR},
+      </if>
+      <if test="principalDiagnosisCode != null" >
+        #{principalDiagnosisCode,jdbcType=VARCHAR},
+      </if>
+      <if test="lockStatus != null" >
+        #{lockStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="safetyStatus != null" >
+        #{safetyStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="diseaseCode != null" >
+        #{diseaseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="diseaseName != null" >
+        #{diseaseName,jdbcType=VARCHAR},
+      </if>
+      <if test="groupFlag != null" >
+        #{groupFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="zzDoctorCode != null" >
+        #{zzDoctorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="zzDoctorName != null" >
+        #{zzDoctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="zrDoctorCode != null" >
+        #{zrDoctorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="zrDoctorName != null" >
+        #{zrDoctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="isQaScore != null" >
+        #{isQaScore,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalDischargeTime != null" >
+        #{hospitalDischargeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="admissionType != null" >
+        #{admissionType,jdbcType=VARCHAR},
+      </if>
+      <if test="cppFlow != null" >
+        #{cppFlow,jdbcType=VARCHAR},
+      </if>
+      <if test="cppInFlag != null" >
+        #{cppInFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="lockReason != null" >
+        #{lockReason,jdbcType=VARCHAR},
+      </if>
+      <if test="isPaperyCaseSubmit != null" >
+        #{isPaperyCaseSubmit,jdbcType=VARCHAR},
+      </if>
+      <if test="fileInputFlag != null" >
+        #{fileInputFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="isDead != null" >
+        #{isDead,jdbcType=VARCHAR},
+      </if>
+      <if test="lockTime != null" >
+        #{lockTime,jdbcType=VARCHAR},
+      </if>
+      <if test="zkNurse != null" >
+        #{zkNurse,jdbcType=VARCHAR},
+      </if>
+      <if test="zkNurseId != null" >
+        #{zkNurseId,jdbcType=VARCHAR},
+      </if>
+      <if test="lockUserId != null" >
+        #{lockUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="lockUserName != null" >
+        #{lockUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="unlockTime != null" >
+        #{unlockTime,jdbcType=VARCHAR},
+      </if>
+      <if test="unlockUserId != null" >
+        #{unlockUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="unlockUserName != null" >
+        #{unlockUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="otherInformation != null" >
+        #{otherInformation,jdbcType=VARCHAR},
+      </if>
+      <if test="changeArchive != null" >
+        #{changeArchive,jdbcType=VARCHAR},
+      </if>
+      <if test="admissionTimesDiseases != null" >
+        #{admissionTimesDiseases,jdbcType=DECIMAL},
+      </if>
+      <if test="isChild != null" >
+        #{isChild,jdbcType=VARCHAR},
+      </if>
+      <if test="mumIpid != null" >
+        #{mumIpid,jdbcType=VARCHAR},
+      </if>
+      <if test="medicineCenterType != null" >
+        #{medicineCenterType,jdbcType=VARCHAR},
+      </if>
+      <if test="medicinePatientType != null" >
+        #{medicinePatientType,jdbcType=VARCHAR},
+      </if>
+      <if test="isFitIcd != null" >
+        #{isFitIcd,jdbcType=VARCHAR},
+      </if>
+      <if test="dsplayStatus != null" >
+        #{dsplayStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="crisisValue != null" >
+        #{crisisValue,jdbcType=VARCHAR},
+      </if>
+      <if test="pgValue != null" >
+        #{pgValue,jdbcType=VARCHAR},
+      </if>
+      <if test="tempOutPatientId != null" >
+        #{tempOutPatientId,jdbcType=VARCHAR},
+      </if>
+      <if test="tempOutPatientNum != null" >
+        #{tempOutPatientNum,jdbcType=VARCHAR},
+      </if>
+      <if test="admissionBedNo != null" >
+        #{admissionBedNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bedNoFlag != null" >
+        #{bedNoFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="fzrDoctorCode != null" >
+        #{fzrDoctorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fzrDoctorName != null" >
+        #{fzrDoctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="rjssPaFlag != null" >
+        #{rjssPaFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="medicareAuditStatus != null" >
+        #{medicareAuditStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="zzhenDoctorCode != null" >
+        #{zzhenDoctorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="zzhenDoctorName != null" >
+        #{zzhenDoctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="preDischargeFlag != null" >
+        #{preDischargeFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="zlzzDoctorCode != null" >
+        #{zlzzDoctorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="zlzzDoctorName != null" >
+        #{zlzzDoctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="vipFlag != null" >
+        #{vipFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="systemStatus != null" >
+        #{systemStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="zyDoctorCode != null" >
+        #{zyDoctorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="zyDoctorName != null" >
+        #{zyDoctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="dcnyjyxFlag != null" >
+        #{dcnyjyxFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="contactisolationFlag != null" >
+        #{contactisolationFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="admissionInsureTime != null" >
+        #{admissionInsureTime,jdbcType=VARCHAR},
+      </if>
+      <if test="headNurseSubmit != null" >
+        #{headNurseSubmit,jdbcType=VARCHAR},
+      </if>
+      <if test="hlzzSubmit != null" >
+        #{hlzzSubmit,jdbcType=VARCHAR},
+      </if>
+      <if test="pigeonholeNo != null" >
+        #{pigeonholeNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.Inpatient" >
+    update ADT.INPATIENT
+    <set >
+      <if test="pid != null" >
+        PID = #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="adminissionNo != null" >
+        ADMINISSION_NO = #{adminissionNo,jdbcType=VARCHAR},
+      </if>
+      <if test="admissionTimes != null" >
+        ADMISSION_TIMES = #{admissionTimes,jdbcType=DECIMAL},
+      </if>
+      <if test="patientName != null" >
+        PATIENT_NAME = #{patientName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        SEX = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="sexCode != null" >
+        SEX_CODE = #{sexCode,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        AGE = #{age,jdbcType=DECIMAL},
+      </if>
+      <if test="ageDesc != null" >
+        AGE_DESC = #{ageDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="marriageStatus != null" >
+        MARRIAGE_STATUS = #{marriageStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="marriageStatusCode != null" >
+        MARRIAGE_STATUS_CODE = #{marriageStatusCode,jdbcType=VARCHAR},
+      </if>
+      <if test="feeTypeCode != null" >
+        FEE_TYPE_CODE = #{feeTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="feeTypeName != null" >
+        FEE_TYPE_NAME = #{feeTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="patientClass != null" >
+        PATIENT_CLASS = #{patientClass,jdbcType=VARCHAR},
+      </if>
+      <if test="admissionRegisterTime != null" >
+        ADMISSION_REGISTER_TIME = #{admissionRegisterTime,jdbcType=VARCHAR},
+      </if>
+      <if test="admissionWay != null" >
+        ADMISSION_WAY = #{admissionWay,jdbcType=VARCHAR},
+      </if>
+      <if test="admissionPurpose != null" >
+        ADMISSION_PURPOSE = #{admissionPurpose,jdbcType=VARCHAR},
+      </if>
+      <if test="admissionTime != null" >
+        ADMISSION_TIME = #{admissionTime,jdbcType=VARCHAR},
+      </if>
+      <if test="admissionHospital != null" >
+        ADMISSION_HOSPITAL = #{admissionHospital,jdbcType=VARCHAR},
+      </if>
+      <if test="admissionDept != null" >
+        ADMISSION_DEPT = #{admissionDept,jdbcType=VARCHAR},
+      </if>
+      <if test="admissionDeptCode != null" >
+        ADMISSION_DEPT_CODE = #{admissionDeptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="admissionWard != null" >
+        ADMISSION_WARD = #{admissionWard,jdbcType=VARCHAR},
+      </if>
+      <if test="admissionWardCode != null" >
+        ADMISSION_WARD_CODE = #{admissionWardCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hospital != null" >
+        HOSPITAL = #{hospital,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null" >
+        DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptCode != null" >
+        DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="wardName != null" >
+        WARD_NAME = #{wardName,jdbcType=VARCHAR},
+      </if>
+      <if test="wardCode != null" >
+        WARD_CODE = #{wardCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dischargeTime != null" >
+        DISCHARGE_TIME = #{dischargeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="bedNo != null" >
+        BED_NO = #{bedNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bedFeeType != null" >
+        BED_FEE_TYPE = #{bedFeeType,jdbcType=VARCHAR},
+      </if>
+      <if test="room != null" >
+        ROOM = #{room,jdbcType=VARCHAR},
+      </if>
+      <if test="stateOfIllness != null" >
+        STATE_OF_ILLNESS = #{stateOfIllness,jdbcType=VARCHAR},
+      </if>
+      <if test="doctor != null" >
+        DOCTOR = #{doctor,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorId != null" >
+        DOCTOR_ID = #{doctorId,jdbcType=VARCHAR},
+      </if>
+      <if test="medicalFrpCode != null" >
+        MEDICAL_FRP_CODE = #{medicalFrpCode,jdbcType=VARCHAR},
+      </if>
+      <if test="medicalGrp != null" >
+        MEDICAL_GRP = #{medicalGrp,jdbcType=VARCHAR},
+      </if>
+      <if test="nursiongLevel != null" >
+        NURSIONG_LEVEL = #{nursiongLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="nurse != null" >
+        NURSE = #{nurse,jdbcType=VARCHAR},
+      </if>
+      <if test="nursiongGrp != null" >
+        NURSIONG_GRP = #{nursiongGrp,jdbcType=VARCHAR},
+      </if>
+      <if test="nursingGrpCode != null" >
+        NURSING_GRP_CODE = #{nursingGrpCode,jdbcType=VARCHAR},
+      </if>
+      <if test="inStatus != null" >
+        IN_STATUS = #{inStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="mrStatus != null" >
+        MR_STATUS = #{mrStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveTime != null" >
+        ARCHIVE_TIME = #{archiveTime,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveOperator != null" >
+        ARCHIVE_OPERATOR = #{archiveOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="dischargeWay != null" >
+        DISCHARGE_WAY = #{dischargeWay,jdbcType=VARCHAR},
+      </if>
+      <if test="nurseId != null" >
+        NURSE_ID = #{nurseId,jdbcType=VARCHAR},
+      </if>
+      <if test="meal != null" >
+        MEAL = #{meal,jdbcType=VARCHAR},
+      </if>
+      <if test="principalDiagnosis != null" >
+        PRINCIPAL_DIAGNOSIS = #{principalDiagnosis,jdbcType=VARCHAR},
+      </if>
+      <if test="principalDiagnosisCode != null" >
+        PRINCIPAL_DIAGNOSIS_CODE = #{principalDiagnosisCode,jdbcType=VARCHAR},
+      </if>
+      <if test="lockStatus != null" >
+        LOCK_STATUS = #{lockStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="safetyStatus != null" >
+        SAFETY_STATUS = #{safetyStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="diseaseCode != null" >
+        DISEASE_CODE = #{diseaseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="diseaseName != null" >
+        DISEASE_NAME = #{diseaseName,jdbcType=VARCHAR},
+      </if>
+      <if test="groupFlag != null" >
+        GROUP_FLAG = #{groupFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="zzDoctorCode != null" >
+        ZZ_DOCTOR_CODE = #{zzDoctorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="zzDoctorName != null" >
+        ZZ_DOCTOR_NAME = #{zzDoctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="zrDoctorCode != null" >
+        ZR_DOCTOR_CODE = #{zrDoctorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="zrDoctorName != null" >
+        ZR_DOCTOR_NAME = #{zrDoctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="isQaScore != null" >
+        IS_QA_SCORE = #{isQaScore,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalDischargeTime != null" >
+        HOSPITAL_DISCHARGE_TIME = #{hospitalDischargeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="admissionType != null" >
+        ADMISSION_TYPE = #{admissionType,jdbcType=VARCHAR},
+      </if>
+      <if test="cppFlow != null" >
+        CPP_FLOW = #{cppFlow,jdbcType=VARCHAR},
+      </if>
+      <if test="cppInFlag != null" >
+        CPP_IN_FLAG = #{cppInFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="lockReason != null" >
+        LOCK_REASON = #{lockReason,jdbcType=VARCHAR},
+      </if>
+      <if test="isPaperyCaseSubmit != null" >
+        IS_PAPERY_CASE_SUBMIT = #{isPaperyCaseSubmit,jdbcType=VARCHAR},
+      </if>
+      <if test="fileInputFlag != null" >
+        FILE_INPUT_FLAG = #{fileInputFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="isDead != null" >
+        IS_DEAD = #{isDead,jdbcType=VARCHAR},
+      </if>
+      <if test="lockTime != null" >
+        LOCK_TIME = #{lockTime,jdbcType=VARCHAR},
+      </if>
+      <if test="zkNurse != null" >
+        ZK_NURSE = #{zkNurse,jdbcType=VARCHAR},
+      </if>
+      <if test="zkNurseId != null" >
+        ZK_NURSE_ID = #{zkNurseId,jdbcType=VARCHAR},
+      </if>
+      <if test="lockUserId != null" >
+        LOCK_USER_ID = #{lockUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="lockUserName != null" >
+        LOCK_USER_NAME = #{lockUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="unlockTime != null" >
+        UNLOCK_TIME = #{unlockTime,jdbcType=VARCHAR},
+      </if>
+      <if test="unlockUserId != null" >
+        UNLOCK_USER_ID = #{unlockUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="unlockUserName != null" >
+        UNLOCK_USER_NAME = #{unlockUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="otherInformation != null" >
+        OTHER_INFORMATION = #{otherInformation,jdbcType=VARCHAR},
+      </if>
+      <if test="changeArchive != null" >
+        CHANGE_ARCHIVE = #{changeArchive,jdbcType=VARCHAR},
+      </if>
+      <if test="admissionTimesDiseases != null" >
+        ADMISSION_TIMES_DISEASES = #{admissionTimesDiseases,jdbcType=DECIMAL},
+      </if>
+      <if test="isChild != null" >
+        IS_CHILD = #{isChild,jdbcType=VARCHAR},
+      </if>
+      <if test="mumIpid != null" >
+        MUM_IPID = #{mumIpid,jdbcType=VARCHAR},
+      </if>
+      <if test="medicineCenterType != null" >
+        MEDICINE_CENTER_TYPE = #{medicineCenterType,jdbcType=VARCHAR},
+      </if>
+      <if test="medicinePatientType != null" >
+        MEDICINE_PATIENT_TYPE = #{medicinePatientType,jdbcType=VARCHAR},
+      </if>
+      <if test="isFitIcd != null" >
+        IS_FIT_ICD = #{isFitIcd,jdbcType=VARCHAR},
+      </if>
+      <if test="dsplayStatus != null" >
+        DSPLAY_STATUS = #{dsplayStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="crisisValue != null" >
+        CRISIS_VALUE = #{crisisValue,jdbcType=VARCHAR},
+      </if>
+      <if test="pgValue != null" >
+        PG_VALUE = #{pgValue,jdbcType=VARCHAR},
+      </if>
+      <if test="tempOutPatientId != null" >
+        TEMP_OUT_PATIENT_ID = #{tempOutPatientId,jdbcType=VARCHAR},
+      </if>
+      <if test="tempOutPatientNum != null" >
+        TEMP_OUT_PATIENT_NUM = #{tempOutPatientNum,jdbcType=VARCHAR},
+      </if>
+      <if test="admissionBedNo != null" >
+        ADMISSION_BED_NO = #{admissionBedNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bedNoFlag != null" >
+        BED_NO_FLAG = #{bedNoFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="fzrDoctorCode != null" >
+        FZR_DOCTOR_CODE = #{fzrDoctorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fzrDoctorName != null" >
+        FZR_DOCTOR_NAME = #{fzrDoctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="rjssPaFlag != null" >
+        RJSS_PA_FLAG = #{rjssPaFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="medicareAuditStatus != null" >
+        MEDICARE_AUDIT_STATUS = #{medicareAuditStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="zzhenDoctorCode != null" >
+        ZZHEN_DOCTOR_CODE = #{zzhenDoctorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="zzhenDoctorName != null" >
+        ZZHEN_DOCTOR_NAME = #{zzhenDoctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="preDischargeFlag != null" >
+        PRE_DISCHARGE_FLAG = #{preDischargeFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="zlzzDoctorCode != null" >
+        ZLZZ_DOCTOR_CODE = #{zlzzDoctorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="zlzzDoctorName != null" >
+        ZLZZ_DOCTOR_NAME = #{zlzzDoctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="vipFlag != null" >
+        VIP_FLAG = #{vipFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="systemStatus != null" >
+        SYSTEM_STATUS = #{systemStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="zyDoctorCode != null" >
+        ZY_DOCTOR_CODE = #{zyDoctorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="zyDoctorName != null" >
+        ZY_DOCTOR_NAME = #{zyDoctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="dcnyjyxFlag != null" >
+        DCNYJYX_FLAG = #{dcnyjyxFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="contactisolationFlag != null" >
+        CONTACTISOLATION_FLAG = #{contactisolationFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="admissionInsureTime != null" >
+        ADMISSION_INSURE_TIME = #{admissionInsureTime,jdbcType=VARCHAR},
+      </if>
+      <if test="headNurseSubmit != null" >
+        HEAD_NURSE_SUBMIT = #{headNurseSubmit,jdbcType=VARCHAR},
+      </if>
+      <if test="hlzzSubmit != null" >
+        HLZZ_SUBMIT = #{hlzzSubmit,jdbcType=VARCHAR},
+      </if>
+      <if test="pigeonholeNo != null" >
+        PIGEONHOLE_NO = #{pigeonholeNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where IPID = #{ipid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.Inpatient" >
+    update ADT.INPATIENT
+    set PID = #{pid,jdbcType=VARCHAR},
+      ADMINISSION_NO = #{adminissionNo,jdbcType=VARCHAR},
+      ADMISSION_TIMES = #{admissionTimes,jdbcType=DECIMAL},
+      PATIENT_NAME = #{patientName,jdbcType=VARCHAR},
+      SEX = #{sex,jdbcType=VARCHAR},
+      SEX_CODE = #{sexCode,jdbcType=VARCHAR},
+      AGE = #{age,jdbcType=DECIMAL},
+      AGE_DESC = #{ageDesc,jdbcType=VARCHAR},
+      MARRIAGE_STATUS = #{marriageStatus,jdbcType=VARCHAR},
+      MARRIAGE_STATUS_CODE = #{marriageStatusCode,jdbcType=VARCHAR},
+      FEE_TYPE_CODE = #{feeTypeCode,jdbcType=VARCHAR},
+      FEE_TYPE_NAME = #{feeTypeName,jdbcType=VARCHAR},
+      PATIENT_CLASS = #{patientClass,jdbcType=VARCHAR},
+      ADMISSION_REGISTER_TIME = #{admissionRegisterTime,jdbcType=VARCHAR},
+      ADMISSION_WAY = #{admissionWay,jdbcType=VARCHAR},
+      ADMISSION_PURPOSE = #{admissionPurpose,jdbcType=VARCHAR},
+      ADMISSION_TIME = #{admissionTime,jdbcType=VARCHAR},
+      ADMISSION_HOSPITAL = #{admissionHospital,jdbcType=VARCHAR},
+      ADMISSION_DEPT = #{admissionDept,jdbcType=VARCHAR},
+      ADMISSION_DEPT_CODE = #{admissionDeptCode,jdbcType=VARCHAR},
+      ADMISSION_WARD = #{admissionWard,jdbcType=VARCHAR},
+      ADMISSION_WARD_CODE = #{admissionWardCode,jdbcType=VARCHAR},
+      HOSPITAL = #{hospital,jdbcType=VARCHAR},
+      DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+      DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+      WARD_NAME = #{wardName,jdbcType=VARCHAR},
+      WARD_CODE = #{wardCode,jdbcType=VARCHAR},
+      DISCHARGE_TIME = #{dischargeTime,jdbcType=VARCHAR},
+      BED_NO = #{bedNo,jdbcType=VARCHAR},
+      BED_FEE_TYPE = #{bedFeeType,jdbcType=VARCHAR},
+      ROOM = #{room,jdbcType=VARCHAR},
+      STATE_OF_ILLNESS = #{stateOfIllness,jdbcType=VARCHAR},
+      DOCTOR = #{doctor,jdbcType=VARCHAR},
+      DOCTOR_ID = #{doctorId,jdbcType=VARCHAR},
+      MEDICAL_FRP_CODE = #{medicalFrpCode,jdbcType=VARCHAR},
+      MEDICAL_GRP = #{medicalGrp,jdbcType=VARCHAR},
+      NURSIONG_LEVEL = #{nursiongLevel,jdbcType=VARCHAR},
+      NURSE = #{nurse,jdbcType=VARCHAR},
+      NURSIONG_GRP = #{nursiongGrp,jdbcType=VARCHAR},
+      NURSING_GRP_CODE = #{nursingGrpCode,jdbcType=VARCHAR},
+      IN_STATUS = #{inStatus,jdbcType=VARCHAR},
+      MR_STATUS = #{mrStatus,jdbcType=VARCHAR},
+      ARCHIVE_TIME = #{archiveTime,jdbcType=VARCHAR},
+      ARCHIVE_OPERATOR = #{archiveOperator,jdbcType=VARCHAR},
+      DISCHARGE_WAY = #{dischargeWay,jdbcType=VARCHAR},
+      NURSE_ID = #{nurseId,jdbcType=VARCHAR},
+      MEAL = #{meal,jdbcType=VARCHAR},
+      PRINCIPAL_DIAGNOSIS = #{principalDiagnosis,jdbcType=VARCHAR},
+      PRINCIPAL_DIAGNOSIS_CODE = #{principalDiagnosisCode,jdbcType=VARCHAR},
+      LOCK_STATUS = #{lockStatus,jdbcType=VARCHAR},
+      SAFETY_STATUS = #{safetyStatus,jdbcType=VARCHAR},
+      DISEASE_CODE = #{diseaseCode,jdbcType=VARCHAR},
+      DISEASE_NAME = #{diseaseName,jdbcType=VARCHAR},
+      GROUP_FLAG = #{groupFlag,jdbcType=VARCHAR},
+      ZZ_DOCTOR_CODE = #{zzDoctorCode,jdbcType=VARCHAR},
+      ZZ_DOCTOR_NAME = #{zzDoctorName,jdbcType=VARCHAR},
+      ZR_DOCTOR_CODE = #{zrDoctorCode,jdbcType=VARCHAR},
+      ZR_DOCTOR_NAME = #{zrDoctorName,jdbcType=VARCHAR},
+      IS_QA_SCORE = #{isQaScore,jdbcType=VARCHAR},
+      HOSPITAL_DISCHARGE_TIME = #{hospitalDischargeTime,jdbcType=VARCHAR},
+      ADMISSION_TYPE = #{admissionType,jdbcType=VARCHAR},
+      CPP_FLOW = #{cppFlow,jdbcType=VARCHAR},
+      CPP_IN_FLAG = #{cppInFlag,jdbcType=VARCHAR},
+      LOCK_REASON = #{lockReason,jdbcType=VARCHAR},
+      IS_PAPERY_CASE_SUBMIT = #{isPaperyCaseSubmit,jdbcType=VARCHAR},
+      FILE_INPUT_FLAG = #{fileInputFlag,jdbcType=VARCHAR},
+      IS_DEAD = #{isDead,jdbcType=VARCHAR},
+      LOCK_TIME = #{lockTime,jdbcType=VARCHAR},
+      ZK_NURSE = #{zkNurse,jdbcType=VARCHAR},
+      ZK_NURSE_ID = #{zkNurseId,jdbcType=VARCHAR},
+      LOCK_USER_ID = #{lockUserId,jdbcType=VARCHAR},
+      LOCK_USER_NAME = #{lockUserName,jdbcType=VARCHAR},
+      UNLOCK_TIME = #{unlockTime,jdbcType=VARCHAR},
+      UNLOCK_USER_ID = #{unlockUserId,jdbcType=VARCHAR},
+      UNLOCK_USER_NAME = #{unlockUserName,jdbcType=VARCHAR},
+      OTHER_INFORMATION = #{otherInformation,jdbcType=VARCHAR},
+      CHANGE_ARCHIVE = #{changeArchive,jdbcType=VARCHAR},
+      ADMISSION_TIMES_DISEASES = #{admissionTimesDiseases,jdbcType=DECIMAL},
+      IS_CHILD = #{isChild,jdbcType=VARCHAR},
+      MUM_IPID = #{mumIpid,jdbcType=VARCHAR},
+      MEDICINE_CENTER_TYPE = #{medicineCenterType,jdbcType=VARCHAR},
+      MEDICINE_PATIENT_TYPE = #{medicinePatientType,jdbcType=VARCHAR},
+      IS_FIT_ICD = #{isFitIcd,jdbcType=VARCHAR},
+      DSPLAY_STATUS = #{dsplayStatus,jdbcType=VARCHAR},
+      CRISIS_VALUE = #{crisisValue,jdbcType=VARCHAR},
+      PG_VALUE = #{pgValue,jdbcType=VARCHAR},
+      TEMP_OUT_PATIENT_ID = #{tempOutPatientId,jdbcType=VARCHAR},
+      TEMP_OUT_PATIENT_NUM = #{tempOutPatientNum,jdbcType=VARCHAR},
+      ADMISSION_BED_NO = #{admissionBedNo,jdbcType=VARCHAR},
+      BED_NO_FLAG = #{bedNoFlag,jdbcType=VARCHAR},
+      FZR_DOCTOR_CODE = #{fzrDoctorCode,jdbcType=VARCHAR},
+      FZR_DOCTOR_NAME = #{fzrDoctorName,jdbcType=VARCHAR},
+      RJSS_PA_FLAG = #{rjssPaFlag,jdbcType=VARCHAR},
+      MEDICARE_AUDIT_STATUS = #{medicareAuditStatus,jdbcType=VARCHAR},
+      ZZHEN_DOCTOR_CODE = #{zzhenDoctorCode,jdbcType=VARCHAR},
+      ZZHEN_DOCTOR_NAME = #{zzhenDoctorName,jdbcType=VARCHAR},
+      PRE_DISCHARGE_FLAG = #{preDischargeFlag,jdbcType=VARCHAR},
+      ZLZZ_DOCTOR_CODE = #{zlzzDoctorCode,jdbcType=VARCHAR},
+      ZLZZ_DOCTOR_NAME = #{zlzzDoctorName,jdbcType=VARCHAR},
+      VIP_FLAG = #{vipFlag,jdbcType=VARCHAR},
+      SYSTEM_STATUS = #{systemStatus,jdbcType=VARCHAR},
+      ZY_DOCTOR_CODE = #{zyDoctorCode,jdbcType=VARCHAR},
+      ZY_DOCTOR_NAME = #{zyDoctorName,jdbcType=VARCHAR},
+      DCNYJYX_FLAG = #{dcnyjyxFlag,jdbcType=VARCHAR},
+      CONTACTISOLATION_FLAG = #{contactisolationFlag,jdbcType=VARCHAR},
+      ADMISSION_INSURE_TIME = #{admissionInsureTime,jdbcType=VARCHAR},
+      HEAD_NURSE_SUBMIT = #{headNurseSubmit,jdbcType=VARCHAR},
+      HLZZ_SUBMIT = #{hlzzSubmit,jdbcType=VARCHAR},
+      PIGEONHOLE_NO = #{pigeonholeNo,jdbcType=VARCHAR}
+    where IPID = #{ipid,jdbcType=VARCHAR}
+  </update>
+</mapper>

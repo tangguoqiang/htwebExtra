@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.ExamRptPatternMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.ExamRptPattern" >
+    <id column="EXAM_CLASS" property="examClass" jdbcType="VARCHAR" />
+    <id column="EXAM_SUB_CLASS" property="examSubClass" jdbcType="VARCHAR" />
+    <id column="DESC_ITEM" property="descItem" jdbcType="VARCHAR" />
+    <id column="DESC_NAME" property="descName" jdbcType="VARCHAR" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="DESCRIPTION_CODE" property="descriptionCode" jdbcType="VARCHAR" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+    <result column="PERFORMED_BY" property="performedBy" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    EXAM_CLASS, EXAM_SUB_CLASS, DESC_ITEM, DESC_NAME, DESCRIPTION, DESCRIPTION_CODE, 
+    INPUT_CODE, PERFORMED_BY
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.ExamRptPatternKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.EXAM_RPT_PATTERN
+    where EXAM_CLASS = #{examClass,jdbcType=VARCHAR}
+      and EXAM_SUB_CLASS = #{examSubClass,jdbcType=VARCHAR}
+      and DESC_ITEM = #{descItem,jdbcType=VARCHAR}
+      and DESC_NAME = #{descName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.ExamRptPatternKey" >
+    delete from COMM.EXAM_RPT_PATTERN
+    where EXAM_CLASS = #{examClass,jdbcType=VARCHAR}
+      and EXAM_SUB_CLASS = #{examSubClass,jdbcType=VARCHAR}
+      and DESC_ITEM = #{descItem,jdbcType=VARCHAR}
+      and DESC_NAME = #{descName,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.ExamRptPattern" >
+    insert into COMM.EXAM_RPT_PATTERN (EXAM_CLASS, EXAM_SUB_CLASS, DESC_ITEM, 
+      DESC_NAME, DESCRIPTION, DESCRIPTION_CODE, 
+      INPUT_CODE, PERFORMED_BY)
+    values (#{examClass,jdbcType=VARCHAR}, #{examSubClass,jdbcType=VARCHAR}, #{descItem,jdbcType=VARCHAR}, 
+      #{descName,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{descriptionCode,jdbcType=VARCHAR}, 
+      #{inputCode,jdbcType=VARCHAR}, #{performedBy,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.ExamRptPattern" >
+    insert into COMM.EXAM_RPT_PATTERN
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="examClass != null" >
+        EXAM_CLASS,
+      </if>
+      <if test="examSubClass != null" >
+        EXAM_SUB_CLASS,
+      </if>
+      <if test="descItem != null" >
+        DESC_ITEM,
+      </if>
+      <if test="descName != null" >
+        DESC_NAME,
+      </if>
+      <if test="description != null" >
+        DESCRIPTION,
+      </if>
+      <if test="descriptionCode != null" >
+        DESCRIPTION_CODE,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+      <if test="performedBy != null" >
+        PERFORMED_BY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="examClass != null" >
+        #{examClass,jdbcType=VARCHAR},
+      </if>
+      <if test="examSubClass != null" >
+        #{examSubClass,jdbcType=VARCHAR},
+      </if>
+      <if test="descItem != null" >
+        #{descItem,jdbcType=VARCHAR},
+      </if>
+      <if test="descName != null" >
+        #{descName,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="descriptionCode != null" >
+        #{descriptionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="performedBy != null" >
+        #{performedBy,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.ExamRptPattern" >
+    update COMM.EXAM_RPT_PATTERN
+    <set >
+      <if test="description != null" >
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="descriptionCode != null" >
+        DESCRIPTION_CODE = #{descriptionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="performedBy != null" >
+        PERFORMED_BY = #{performedBy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where EXAM_CLASS = #{examClass,jdbcType=VARCHAR}
+      and EXAM_SUB_CLASS = #{examSubClass,jdbcType=VARCHAR}
+      and DESC_ITEM = #{descItem,jdbcType=VARCHAR}
+      and DESC_NAME = #{descName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.ExamRptPattern" >
+    update COMM.EXAM_RPT_PATTERN
+    set DESCRIPTION = #{description,jdbcType=VARCHAR},
+      DESCRIPTION_CODE = #{descriptionCode,jdbcType=VARCHAR},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      PERFORMED_BY = #{performedBy,jdbcType=VARCHAR}
+    where EXAM_CLASS = #{examClass,jdbcType=VARCHAR}
+      and EXAM_SUB_CLASS = #{examSubClass,jdbcType=VARCHAR}
+      and DESC_ITEM = #{descItem,jdbcType=VARCHAR}
+      and DESC_NAME = #{descName,jdbcType=VARCHAR}
+  </update>
+</mapper>

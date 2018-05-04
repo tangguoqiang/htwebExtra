@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.InsuOutpBillDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.insurance.InsuOutpBillDetail" >
+    <id column="PAT_NAME" property="patName" jdbcType="VARCHAR" />
+    <id column="ITEM_NO" property="itemNo" jdbcType="DECIMAL" />
+    <id column="VISIT_DATE" property="visitDate" jdbcType="VARCHAR" />
+    <id column="ITEM_CODE" property="itemCode" jdbcType="VARCHAR" />
+    <id column="UNITS" property="units" jdbcType="VARCHAR" />
+    <id column="ITEM_SPEC" property="itemSpec" jdbcType="VARCHAR" />
+    <result column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <result column="ITEM_CLASS" property="itemClass" jdbcType="VARCHAR" />
+    <result column="INSU_ITEM_NAME" property="insuItemName" jdbcType="VARCHAR" />
+    <result column="PRICE" property="price" jdbcType="DECIMAL" />
+    <result column="AMOUNT" property="amount" jdbcType="DECIMAL" />
+    <result column="OPERATOR_NO" property="operatorNo" jdbcType="VARCHAR" />
+    <result column="INSU_PHAM_PRODUCING_AREA" property="insuPhamProducingArea" jdbcType="VARCHAR" />
+    <result column="INSU_PHAM_PRODUCING_AREA_SIGN" property="insuPhamProducingAreaSign" jdbcType="VARCHAR" />
+    <result column="RCPT_NO" property="rcptNo" jdbcType="VARCHAR" />
+    <result column="INSU_ITEM_CODE" property="insuItemCode" jdbcType="VARCHAR" />
+    <result column="INSU_CARD_NO" property="insuCardNo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PAT_NAME, ITEM_NO, VISIT_DATE, ITEM_CODE, UNITS, ITEM_SPEC, PATIENT_ID, ITEM_CLASS, 
+    INSU_ITEM_NAME, PRICE, AMOUNT, OPERATOR_NO, INSU_PHAM_PRODUCING_AREA, INSU_PHAM_PRODUCING_AREA_SIGN, 
+    RCPT_NO, INSU_ITEM_CODE, INSU_CARD_NO
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.insurance.InsuOutpBillDetailKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from INSURANCE.INSU_OUTP_BILL_DETAIL
+    where PAT_NAME = #{patName,jdbcType=VARCHAR}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+      and VISIT_DATE = #{visitDate,jdbcType=VARCHAR}
+      and ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+      and UNITS = #{units,jdbcType=VARCHAR}
+      and ITEM_SPEC = #{itemSpec,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.insurance.InsuOutpBillDetailKey" >
+    delete from INSURANCE.INSU_OUTP_BILL_DETAIL
+    where PAT_NAME = #{patName,jdbcType=VARCHAR}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+      and VISIT_DATE = #{visitDate,jdbcType=VARCHAR}
+      and ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+      and UNITS = #{units,jdbcType=VARCHAR}
+      and ITEM_SPEC = #{itemSpec,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.insurance.InsuOutpBillDetail" >
+    insert into INSURANCE.INSU_OUTP_BILL_DETAIL (PAT_NAME, ITEM_NO, VISIT_DATE, 
+      ITEM_CODE, UNITS, ITEM_SPEC, 
+      PATIENT_ID, ITEM_CLASS, INSU_ITEM_NAME, 
+      PRICE, AMOUNT, OPERATOR_NO, 
+      INSU_PHAM_PRODUCING_AREA, INSU_PHAM_PRODUCING_AREA_SIGN, 
+      RCPT_NO, INSU_ITEM_CODE, INSU_CARD_NO
+      )
+    values (#{patName,jdbcType=VARCHAR}, #{itemNo,jdbcType=DECIMAL}, #{visitDate,jdbcType=VARCHAR}, 
+      #{itemCode,jdbcType=VARCHAR}, #{units,jdbcType=VARCHAR}, #{itemSpec,jdbcType=VARCHAR}, 
+      #{patientId,jdbcType=VARCHAR}, #{itemClass,jdbcType=VARCHAR}, #{insuItemName,jdbcType=VARCHAR}, 
+      #{price,jdbcType=DECIMAL}, #{amount,jdbcType=DECIMAL}, #{operatorNo,jdbcType=VARCHAR}, 
+      #{insuPhamProducingArea,jdbcType=VARCHAR}, #{insuPhamProducingAreaSign,jdbcType=VARCHAR}, 
+      #{rcptNo,jdbcType=VARCHAR}, #{insuItemCode,jdbcType=VARCHAR}, #{insuCardNo,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.insurance.InsuOutpBillDetail" >
+    insert into INSURANCE.INSU_OUTP_BILL_DETAIL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="patName != null" >
+        PAT_NAME,
+      </if>
+      <if test="itemNo != null" >
+        ITEM_NO,
+      </if>
+      <if test="visitDate != null" >
+        VISIT_DATE,
+      </if>
+      <if test="itemCode != null" >
+        ITEM_CODE,
+      </if>
+      <if test="units != null" >
+        UNITS,
+      </if>
+      <if test="itemSpec != null" >
+        ITEM_SPEC,
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="itemClass != null" >
+        ITEM_CLASS,
+      </if>
+      <if test="insuItemName != null" >
+        INSU_ITEM_NAME,
+      </if>
+      <if test="price != null" >
+        PRICE,
+      </if>
+      <if test="amount != null" >
+        AMOUNT,
+      </if>
+      <if test="operatorNo != null" >
+        OPERATOR_NO,
+      </if>
+      <if test="insuPhamProducingArea != null" >
+        INSU_PHAM_PRODUCING_AREA,
+      </if>
+      <if test="insuPhamProducingAreaSign != null" >
+        INSU_PHAM_PRODUCING_AREA_SIGN,
+      </if>
+      <if test="rcptNo != null" >
+        RCPT_NO,
+      </if>
+      <if test="insuItemCode != null" >
+        INSU_ITEM_CODE,
+      </if>
+      <if test="insuCardNo != null" >
+        INSU_CARD_NO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="patName != null" >
+        #{patName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemNo != null" >
+        #{itemNo,jdbcType=DECIMAL},
+      </if>
+      <if test="visitDate != null" >
+        #{visitDate,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode != null" >
+        #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="units != null" >
+        #{units,jdbcType=VARCHAR},
+      </if>
+      <if test="itemSpec != null" >
+        #{itemSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="itemClass != null" >
+        #{itemClass,jdbcType=VARCHAR},
+      </if>
+      <if test="insuItemName != null" >
+        #{insuItemName,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="operatorNo != null" >
+        #{operatorNo,jdbcType=VARCHAR},
+      </if>
+      <if test="insuPhamProducingArea != null" >
+        #{insuPhamProducingArea,jdbcType=VARCHAR},
+      </if>
+      <if test="insuPhamProducingAreaSign != null" >
+        #{insuPhamProducingAreaSign,jdbcType=VARCHAR},
+      </if>
+      <if test="rcptNo != null" >
+        #{rcptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="insuItemCode != null" >
+        #{insuItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="insuCardNo != null" >
+        #{insuCardNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.insurance.InsuOutpBillDetail" >
+    update INSURANCE.INSU_OUTP_BILL_DETAIL
+    <set >
+      <if test="patientId != null" >
+        PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="itemClass != null" >
+        ITEM_CLASS = #{itemClass,jdbcType=VARCHAR},
+      </if>
+      <if test="insuItemName != null" >
+        INSU_ITEM_NAME = #{insuItemName,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        PRICE = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="amount != null" >
+        AMOUNT = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="operatorNo != null" >
+        OPERATOR_NO = #{operatorNo,jdbcType=VARCHAR},
+      </if>
+      <if test="insuPhamProducingArea != null" >
+        INSU_PHAM_PRODUCING_AREA = #{insuPhamProducingArea,jdbcType=VARCHAR},
+      </if>
+      <if test="insuPhamProducingAreaSign != null" >
+        INSU_PHAM_PRODUCING_AREA_SIGN = #{insuPhamProducingAreaSign,jdbcType=VARCHAR},
+      </if>
+      <if test="rcptNo != null" >
+        RCPT_NO = #{rcptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="insuItemCode != null" >
+        INSU_ITEM_CODE = #{insuItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="insuCardNo != null" >
+        INSU_CARD_NO = #{insuCardNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PAT_NAME = #{patName,jdbcType=VARCHAR}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+      and VISIT_DATE = #{visitDate,jdbcType=VARCHAR}
+      and ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+      and UNITS = #{units,jdbcType=VARCHAR}
+      and ITEM_SPEC = #{itemSpec,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.insurance.InsuOutpBillDetail" >
+    update INSURANCE.INSU_OUTP_BILL_DETAIL
+    set PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      ITEM_CLASS = #{itemClass,jdbcType=VARCHAR},
+      INSU_ITEM_NAME = #{insuItemName,jdbcType=VARCHAR},
+      PRICE = #{price,jdbcType=DECIMAL},
+      AMOUNT = #{amount,jdbcType=DECIMAL},
+      OPERATOR_NO = #{operatorNo,jdbcType=VARCHAR},
+      INSU_PHAM_PRODUCING_AREA = #{insuPhamProducingArea,jdbcType=VARCHAR},
+      INSU_PHAM_PRODUCING_AREA_SIGN = #{insuPhamProducingAreaSign,jdbcType=VARCHAR},
+      RCPT_NO = #{rcptNo,jdbcType=VARCHAR},
+      INSU_ITEM_CODE = #{insuItemCode,jdbcType=VARCHAR},
+      INSU_CARD_NO = #{insuCardNo,jdbcType=VARCHAR}
+    where PAT_NAME = #{patName,jdbcType=VARCHAR}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+      and VISIT_DATE = #{visitDate,jdbcType=VARCHAR}
+      and ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+      and UNITS = #{units,jdbcType=VARCHAR}
+      and ITEM_SPEC = #{itemSpec,jdbcType=VARCHAR}
+  </update>
+</mapper>

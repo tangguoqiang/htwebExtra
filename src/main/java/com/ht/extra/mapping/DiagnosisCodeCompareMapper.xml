@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.DiagnosisCodeCompareMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.DiagnosisCodeCompare" >
+    <id column="OLD_CODE" property="oldCode" jdbcType="VARCHAR" />
+    <id column="OLD_NAME" property="oldName" jdbcType="VARCHAR" />
+    <result column="NEW_CODE" property="newCode" jdbcType="VARCHAR" />
+    <result column="NEW_NAME" property="newName" jdbcType="VARCHAR" />
+    <result column="OLD_CODE_VERSION" property="oldCodeVersion" jdbcType="VARCHAR" />
+    <result column="NEW_CODE_VERSION" property="newCodeVersion" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    OLD_CODE, OLD_NAME, NEW_CODE, NEW_NAME, OLD_CODE_VERSION, NEW_CODE_VERSION
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.DiagnosisCodeCompareKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.DIAGNOSIS_CODE_COMPARE
+    where OLD_CODE = #{oldCode,jdbcType=VARCHAR}
+      and OLD_NAME = #{oldName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.DiagnosisCodeCompareKey" >
+    delete from COMM.DIAGNOSIS_CODE_COMPARE
+    where OLD_CODE = #{oldCode,jdbcType=VARCHAR}
+      and OLD_NAME = #{oldName,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.DiagnosisCodeCompare" >
+    insert into COMM.DIAGNOSIS_CODE_COMPARE (OLD_CODE, OLD_NAME, NEW_CODE, 
+      NEW_NAME, OLD_CODE_VERSION, NEW_CODE_VERSION
+      )
+    values (#{oldCode,jdbcType=VARCHAR}, #{oldName,jdbcType=VARCHAR}, #{newCode,jdbcType=VARCHAR}, 
+      #{newName,jdbcType=VARCHAR}, #{oldCodeVersion,jdbcType=VARCHAR}, #{newCodeVersion,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.DiagnosisCodeCompare" >
+    insert into COMM.DIAGNOSIS_CODE_COMPARE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="oldCode != null" >
+        OLD_CODE,
+      </if>
+      <if test="oldName != null" >
+        OLD_NAME,
+      </if>
+      <if test="newCode != null" >
+        NEW_CODE,
+      </if>
+      <if test="newName != null" >
+        NEW_NAME,
+      </if>
+      <if test="oldCodeVersion != null" >
+        OLD_CODE_VERSION,
+      </if>
+      <if test="newCodeVersion != null" >
+        NEW_CODE_VERSION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="oldCode != null" >
+        #{oldCode,jdbcType=VARCHAR},
+      </if>
+      <if test="oldName != null" >
+        #{oldName,jdbcType=VARCHAR},
+      </if>
+      <if test="newCode != null" >
+        #{newCode,jdbcType=VARCHAR},
+      </if>
+      <if test="newName != null" >
+        #{newName,jdbcType=VARCHAR},
+      </if>
+      <if test="oldCodeVersion != null" >
+        #{oldCodeVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="newCodeVersion != null" >
+        #{newCodeVersion,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.DiagnosisCodeCompare" >
+    update COMM.DIAGNOSIS_CODE_COMPARE
+    <set >
+      <if test="newCode != null" >
+        NEW_CODE = #{newCode,jdbcType=VARCHAR},
+      </if>
+      <if test="newName != null" >
+        NEW_NAME = #{newName,jdbcType=VARCHAR},
+      </if>
+      <if test="oldCodeVersion != null" >
+        OLD_CODE_VERSION = #{oldCodeVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="newCodeVersion != null" >
+        NEW_CODE_VERSION = #{newCodeVersion,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where OLD_CODE = #{oldCode,jdbcType=VARCHAR}
+      and OLD_NAME = #{oldName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.DiagnosisCodeCompare" >
+    update COMM.DIAGNOSIS_CODE_COMPARE
+    set NEW_CODE = #{newCode,jdbcType=VARCHAR},
+      NEW_NAME = #{newName,jdbcType=VARCHAR},
+      OLD_CODE_VERSION = #{oldCodeVersion,jdbcType=VARCHAR},
+      NEW_CODE_VERSION = #{newCodeVersion,jdbcType=VARCHAR}
+    where OLD_CODE = #{oldCode,jdbcType=VARCHAR}
+      and OLD_NAME = #{oldName,jdbcType=VARCHAR}
+  </update>
+</mapper>

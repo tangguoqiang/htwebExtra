@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.AppConfigerParameterMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.AppConfigerParameter" >
+    <id column="APP_NAME" property="appName" jdbcType="VARCHAR" />
+    <id column="DEPT_CODE" property="deptCode" jdbcType="VARCHAR" />
+    <id column="EMP_NO" property="empNo" jdbcType="VARCHAR" />
+    <id column="PARAMETER_NAME" property="parameterName" jdbcType="VARCHAR" />
+    <result column="PARAMETER_VALUE" property="parameterValue" jdbcType="VARCHAR" />
+    <result column="POSITION" property="position" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    APP_NAME, DEPT_CODE, EMP_NO, PARAMETER_NAME, PARAMETER_VALUE, POSITION
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.AppConfigerParameterKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.APP_CONFIGER_PARAMETER
+    where APP_NAME = #{appName,jdbcType=VARCHAR}
+      and DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+      and EMP_NO = #{empNo,jdbcType=VARCHAR}
+      and PARAMETER_NAME = #{parameterName,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByParameterName" resultMap="BaseResultMap"  parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from COMM.APP_CONFIGER_PARAMETER
+    where  PARAMETER_NAME ='NJJB_CONTROL'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.AppConfigerParameterKey" >
+    delete from COMM.APP_CONFIGER_PARAMETER
+    where APP_NAME = #{appName,jdbcType=VARCHAR}
+      and DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+      and EMP_NO = #{empNo,jdbcType=VARCHAR}
+      and PARAMETER_NAME = #{parameterName,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.AppConfigerParameter" >
+    insert into COMM.APP_CONFIGER_PARAMETER (APP_NAME, DEPT_CODE, EMP_NO, 
+      PARAMETER_NAME, PARAMETER_VALUE, POSITION
+      )
+    values (#{appName,jdbcType=VARCHAR}, #{deptCode,jdbcType=VARCHAR}, #{empNo,jdbcType=VARCHAR}, 
+      #{parameterName,jdbcType=VARCHAR}, #{parameterValue,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.AppConfigerParameter" >
+    insert into COMM.APP_CONFIGER_PARAMETER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="appName != null" >
+        APP_NAME,
+      </if>
+      <if test="deptCode != null" >
+        DEPT_CODE,
+      </if>
+      <if test="empNo != null" >
+        EMP_NO,
+      </if>
+      <if test="parameterName != null" >
+        PARAMETER_NAME,
+      </if>
+      <if test="parameterValue != null" >
+        PARAMETER_VALUE,
+      </if>
+      <if test="position != null" >
+        POSITION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="appName != null" >
+        #{appName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptCode != null" >
+        #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="empNo != null" >
+        #{empNo,jdbcType=VARCHAR},
+      </if>
+      <if test="parameterName != null" >
+        #{parameterName,jdbcType=VARCHAR},
+      </if>
+      <if test="parameterValue != null" >
+        #{parameterValue,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.AppConfigerParameter" >
+    update COMM.APP_CONFIGER_PARAMETER
+    <set >
+      <if test="parameterValue != null" >
+        PARAMETER_VALUE = #{parameterValue,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        POSITION = #{position,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where APP_NAME = #{appName,jdbcType=VARCHAR}
+      and DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+      and EMP_NO = #{empNo,jdbcType=VARCHAR}
+      and PARAMETER_NAME = #{parameterName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.AppConfigerParameter" >
+    update COMM.APP_CONFIGER_PARAMETER
+    set PARAMETER_VALUE = #{parameterValue,jdbcType=VARCHAR},
+      POSITION = #{position,jdbcType=VARCHAR}
+    where APP_NAME = #{appName,jdbcType=VARCHAR}
+      and DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+      and EMP_NO = #{empNo,jdbcType=VARCHAR}
+      and PARAMETER_NAME = #{parameterName,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.StaffJob81Mapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.StaffJob81" >
+    <id column="JOB_CODE" property="jobCode" jdbcType="VARCHAR" />
+    <result column="JOB_NAME" property="jobName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    JOB_CODE, JOB_NAME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.STAFF_JOB_81
+    where JOB_CODE = #{jobCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.STAFF_JOB_81
+    where JOB_CODE = #{jobCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.StaffJob81" >
+    insert into COMM.STAFF_JOB_81 (JOB_CODE, JOB_NAME)
+    values (#{jobCode,jdbcType=VARCHAR}, #{jobName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.StaffJob81" >
+    insert into COMM.STAFF_JOB_81
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="jobCode != null" >
+        JOB_CODE,
+      </if>
+      <if test="jobName != null" >
+        JOB_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="jobCode != null" >
+        #{jobCode,jdbcType=VARCHAR},
+      </if>
+      <if test="jobName != null" >
+        #{jobName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.StaffJob81" >
+    update COMM.STAFF_JOB_81
+    <set >
+      <if test="jobName != null" >
+        JOB_NAME = #{jobName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where JOB_CODE = #{jobCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.StaffJob81" >
+    update COMM.STAFF_JOB_81
+    set JOB_NAME = #{jobName,jdbcType=VARCHAR}
+    where JOB_CODE = #{jobCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

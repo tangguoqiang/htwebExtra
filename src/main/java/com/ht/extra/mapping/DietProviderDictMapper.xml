@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.DietProviderDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.DietProviderDict" >
+    <id column="SECTION_CODE" property="sectionCode" jdbcType="VARCHAR" />
+    <result column="SECTION_NAME" property="sectionName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SECTION_CODE, SECTION_NAME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.DIET_PROVIDER_DICT
+    where SECTION_CODE = #{sectionCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.DIET_PROVIDER_DICT
+    where SECTION_CODE = #{sectionCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.DietProviderDict" >
+    insert into COMM.DIET_PROVIDER_DICT (SECTION_CODE, SECTION_NAME)
+    values (#{sectionCode,jdbcType=VARCHAR}, #{sectionName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.DietProviderDict" >
+    insert into COMM.DIET_PROVIDER_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sectionCode != null" >
+        SECTION_CODE,
+      </if>
+      <if test="sectionName != null" >
+        SECTION_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sectionCode != null" >
+        #{sectionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sectionName != null" >
+        #{sectionName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.DietProviderDict" >
+    update COMM.DIET_PROVIDER_DICT
+    <set >
+      <if test="sectionName != null" >
+        SECTION_NAME = #{sectionName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SECTION_CODE = #{sectionCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.DietProviderDict" >
+    update COMM.DIET_PROVIDER_DICT
+    set SECTION_NAME = #{sectionName,jdbcType=VARCHAR}
+    where SECTION_CODE = #{sectionCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.ExamItemsMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.exam.ExamItems" >
+    <id column="EXAM_NO" property="examNo" jdbcType="VARCHAR" />
+    <id column="EXAM_ITEM_NO" property="examItemNo" jdbcType="DECIMAL" />
+    <result column="EXAM_ITEM" property="examItem" jdbcType="VARCHAR" />
+    <result column="EXAM_ITEM_CODE" property="examItemCode" jdbcType="VARCHAR" />
+    <result column="COSTS" property="costs" jdbcType="DECIMAL" />
+    <result column="EXAM_SUB_CLASS" property="examSubClass" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    EXAM_NO, EXAM_ITEM_NO, EXAM_ITEM, EXAM_ITEM_CODE, COSTS, EXAM_SUB_CLASS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.exam.ExamItemsKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from EXAM.EXAM_ITEMS
+    where EXAM_NO = #{examNo,jdbcType=VARCHAR}
+      and EXAM_ITEM_NO = #{examItemNo,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.exam.ExamItemsKey" >
+    delete from EXAM.EXAM_ITEMS
+    where EXAM_NO = #{examNo,jdbcType=VARCHAR}
+      and EXAM_ITEM_NO = #{examItemNo,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.exam.ExamItems" >
+    insert into EXAM.EXAM_ITEMS (EXAM_NO, EXAM_ITEM_NO, EXAM_ITEM, 
+      EXAM_ITEM_CODE, COSTS, EXAM_SUB_CLASS
+      )
+    values (#{examNo,jdbcType=VARCHAR}, #{examItemNo,jdbcType=DECIMAL}, #{examItem,jdbcType=VARCHAR}, 
+      #{examItemCode,jdbcType=VARCHAR}, #{costs,jdbcType=DECIMAL}, #{examSubClass,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.exam.ExamItems" >
+    insert into EXAM.EXAM_ITEMS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="examNo != null" >
+        EXAM_NO,
+      </if>
+      <if test="examItemNo != null" >
+        EXAM_ITEM_NO,
+      </if>
+      <if test="examItem != null" >
+        EXAM_ITEM,
+      </if>
+      <if test="examItemCode != null" >
+        EXAM_ITEM_CODE,
+      </if>
+      <if test="costs != null" >
+        COSTS,
+      </if>
+      <if test="examSubClass != null" >
+        EXAM_SUB_CLASS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="examNo != null" >
+        #{examNo,jdbcType=VARCHAR},
+      </if>
+      <if test="examItemNo != null" >
+        #{examItemNo,jdbcType=DECIMAL},
+      </if>
+      <if test="examItem != null" >
+        #{examItem,jdbcType=VARCHAR},
+      </if>
+      <if test="examItemCode != null" >
+        #{examItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="costs != null" >
+        #{costs,jdbcType=DECIMAL},
+      </if>
+      <if test="examSubClass != null" >
+        #{examSubClass,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.exam.ExamItems" >
+    update EXAM.EXAM_ITEMS
+    <set >
+      <if test="examItem != null" >
+        EXAM_ITEM = #{examItem,jdbcType=VARCHAR},
+      </if>
+      <if test="examItemCode != null" >
+        EXAM_ITEM_CODE = #{examItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="costs != null" >
+        COSTS = #{costs,jdbcType=DECIMAL},
+      </if>
+      <if test="examSubClass != null" >
+        EXAM_SUB_CLASS = #{examSubClass,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where EXAM_NO = #{examNo,jdbcType=VARCHAR}
+      and EXAM_ITEM_NO = #{examItemNo,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.exam.ExamItems" >
+    update EXAM.EXAM_ITEMS
+    set EXAM_ITEM = #{examItem,jdbcType=VARCHAR},
+      EXAM_ITEM_CODE = #{examItemCode,jdbcType=VARCHAR},
+      COSTS = #{costs,jdbcType=DECIMAL},
+      EXAM_SUB_CLASS = #{examSubClass,jdbcType=VARCHAR}
+    where EXAM_NO = #{examNo,jdbcType=VARCHAR}
+      and EXAM_ITEM_NO = #{examItemNo,jdbcType=DECIMAL}
+  </update>
+</mapper>

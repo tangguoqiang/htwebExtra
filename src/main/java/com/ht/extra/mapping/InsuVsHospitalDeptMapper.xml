@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.InsuVsHospitalDeptMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.insurance.InsuVsHospitalDept" >
+    <id column="INSU_DEPT_CODE" property="insuDeptCode" jdbcType="VARCHAR" />
+    <id column="DEPT_CODE" property="deptCode" jdbcType="VARCHAR" />
+    <result column="INSU_DEPT_NAME" property="insuDeptName" jdbcType="VARCHAR" />
+    <result column="DEPT_NAME" property="deptName" jdbcType="VARCHAR" />
+    <result column="BED_NUMBER" property="bedNumber" jdbcType="DECIMAL" />
+    <result column="CHIEF_PHYSICIAN_NUM" property="chiefPhysicianNum" jdbcType="DECIMAL" />
+    <result column="ATTENDING_DOCTOR_NUM" property="attendingDoctorNum" jdbcType="DECIMAL" />
+    <result column="RESIGENT_NUM" property="resigentNum" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    INSU_DEPT_CODE, DEPT_CODE, INSU_DEPT_NAME, DEPT_NAME, BED_NUMBER, CHIEF_PHYSICIAN_NUM, 
+    ATTENDING_DOCTOR_NUM, RESIGENT_NUM
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.insurance.InsuVsHospitalDeptKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from INSURANCE.INSU_VS_HOSPITAL_DEPT
+    where INSU_DEPT_CODE = #{insuDeptCode,jdbcType=VARCHAR}
+      and DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPrimaryByDeptCode" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from INSURANCE.INSU_VS_HOSPITAL_DEPT
+    where  DEPT_CODE = #{0}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.insurance.InsuVsHospitalDeptKey" >
+    delete from INSURANCE.INSU_VS_HOSPITAL_DEPT
+    where INSU_DEPT_CODE = #{insuDeptCode,jdbcType=VARCHAR}
+      and DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.insurance.InsuVsHospitalDept" >
+    insert into INSURANCE.INSU_VS_HOSPITAL_DEPT (INSU_DEPT_CODE, DEPT_CODE, INSU_DEPT_NAME, 
+      DEPT_NAME, BED_NUMBER, CHIEF_PHYSICIAN_NUM, 
+      ATTENDING_DOCTOR_NUM, RESIGENT_NUM)
+    values (#{insuDeptCode,jdbcType=VARCHAR}, #{deptCode,jdbcType=VARCHAR}, #{insuDeptName,jdbcType=VARCHAR}, 
+      #{deptName,jdbcType=VARCHAR}, #{bedNumber,jdbcType=DECIMAL}, #{chiefPhysicianNum,jdbcType=DECIMAL}, 
+      #{attendingDoctorNum,jdbcType=DECIMAL}, #{resigentNum,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.insurance.InsuVsHospitalDept" >
+    insert into INSURANCE.INSU_VS_HOSPITAL_DEPT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="insuDeptCode != null" >
+        INSU_DEPT_CODE,
+      </if>
+      <if test="deptCode != null" >
+        DEPT_CODE,
+      </if>
+      <if test="insuDeptName != null" >
+        INSU_DEPT_NAME,
+      </if>
+      <if test="deptName != null" >
+        DEPT_NAME,
+      </if>
+      <if test="bedNumber != null" >
+        BED_NUMBER,
+      </if>
+      <if test="chiefPhysicianNum != null" >
+        CHIEF_PHYSICIAN_NUM,
+      </if>
+      <if test="attendingDoctorNum != null" >
+        ATTENDING_DOCTOR_NUM,
+      </if>
+      <if test="resigentNum != null" >
+        RESIGENT_NUM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="insuDeptCode != null" >
+        #{insuDeptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptCode != null" >
+        #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="insuDeptName != null" >
+        #{insuDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null" >
+        #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="bedNumber != null" >
+        #{bedNumber,jdbcType=DECIMAL},
+      </if>
+      <if test="chiefPhysicianNum != null" >
+        #{chiefPhysicianNum,jdbcType=DECIMAL},
+      </if>
+      <if test="attendingDoctorNum != null" >
+        #{attendingDoctorNum,jdbcType=DECIMAL},
+      </if>
+      <if test="resigentNum != null" >
+        #{resigentNum,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.insurance.InsuVsHospitalDept" >
+    update INSURANCE.INSU_VS_HOSPITAL_DEPT
+    <set >
+      <if test="insuDeptName != null" >
+        INSU_DEPT_NAME = #{insuDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null" >
+        DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="bedNumber != null" >
+        BED_NUMBER = #{bedNumber,jdbcType=DECIMAL},
+      </if>
+      <if test="chiefPhysicianNum != null" >
+        CHIEF_PHYSICIAN_NUM = #{chiefPhysicianNum,jdbcType=DECIMAL},
+      </if>
+      <if test="attendingDoctorNum != null" >
+        ATTENDING_DOCTOR_NUM = #{attendingDoctorNum,jdbcType=DECIMAL},
+      </if>
+      <if test="resigentNum != null" >
+        RESIGENT_NUM = #{resigentNum,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where INSU_DEPT_CODE = #{insuDeptCode,jdbcType=VARCHAR}
+      and DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.insurance.InsuVsHospitalDept" >
+    update INSURANCE.INSU_VS_HOSPITAL_DEPT
+    set INSU_DEPT_NAME = #{insuDeptName,jdbcType=VARCHAR},
+      DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+      BED_NUMBER = #{bedNumber,jdbcType=DECIMAL},
+      CHIEF_PHYSICIAN_NUM = #{chiefPhysicianNum,jdbcType=DECIMAL},
+      ATTENDING_DOCTOR_NUM = #{attendingDoctorNum,jdbcType=DECIMAL},
+      RESIGENT_NUM = #{resigentNum,jdbcType=DECIMAL}
+    where INSU_DEPT_CODE = #{insuDeptCode,jdbcType=VARCHAR}
+      and DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

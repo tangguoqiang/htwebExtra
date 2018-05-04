@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.DrugImportClassDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.DrugImportClassDict" >
+    <id column="IMPORT_CLASS" property="importClass" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    IMPORT_CLASS, SERIAL_NO
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.DRUG_IMPORT_CLASS_DICT
+    where IMPORT_CLASS = #{importClass,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.DRUG_IMPORT_CLASS_DICT
+    where IMPORT_CLASS = #{importClass,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.DrugImportClassDict" >
+    insert into COMM.DRUG_IMPORT_CLASS_DICT (IMPORT_CLASS, SERIAL_NO)
+    values (#{importClass,jdbcType=VARCHAR}, #{serialNo,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.DrugImportClassDict" >
+    insert into COMM.DRUG_IMPORT_CLASS_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="importClass != null" >
+        IMPORT_CLASS,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="importClass != null" >
+        #{importClass,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.DrugImportClassDict" >
+    update COMM.DRUG_IMPORT_CLASS_DICT
+    <set >
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where IMPORT_CLASS = #{importClass,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.DrugImportClassDict" >
+    update COMM.DRUG_IMPORT_CLASS_DICT
+    set SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+    where IMPORT_CLASS = #{importClass,jdbcType=VARCHAR}
+  </update>
+</mapper>

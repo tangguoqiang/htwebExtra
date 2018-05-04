@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.CountryDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.CountryDict" >
+    <id column="COUNTRY_CODE" property="countryCode" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="COUNTRY_NAME" property="countryName" jdbcType="VARCHAR" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    COUNTRY_CODE, SERIAL_NO, COUNTRY_NAME, INPUT_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.COUNTRY_DICT
+    where COUNTRY_CODE = #{countryCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.COUNTRY_DICT
+    where COUNTRY_CODE = #{countryCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.CountryDict" >
+    insert into COMM.COUNTRY_DICT (COUNTRY_CODE, SERIAL_NO, COUNTRY_NAME, 
+      INPUT_CODE)
+    values (#{countryCode,jdbcType=VARCHAR}, #{serialNo,jdbcType=DECIMAL}, #{countryName,jdbcType=VARCHAR}, 
+      #{inputCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.CountryDict" >
+    insert into COMM.COUNTRY_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="countryCode != null" >
+        COUNTRY_CODE,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="countryName != null" >
+        COUNTRY_NAME,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="countryCode != null" >
+        #{countryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="countryName != null" >
+        #{countryName,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.CountryDict" >
+    update COMM.COUNTRY_DICT
+    <set >
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="countryName != null" >
+        COUNTRY_NAME = #{countryName,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where COUNTRY_CODE = #{countryCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.CountryDict" >
+    update COMM.COUNTRY_DICT
+    set SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      COUNTRY_NAME = #{countryName,jdbcType=VARCHAR},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR}
+    where COUNTRY_CODE = #{countryCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.DeptreckVsDeptMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.DeptreckVsDept" >
+    <id column="DEPT_CODE" property="deptCode" jdbcType="VARCHAR" />
+    <result column="DEPT_CODEHS" property="deptCodehs" jdbcType="VARCHAR" />
+    <result column="DEPT_ATTR" property="deptAttr" jdbcType="VARCHAR" />
+    <result column="DEPT_HSNAME" property="deptHsname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    DEPT_CODE, DEPT_CODEHS, DEPT_ATTR, DEPT_HSNAME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.DEPTRECK_VS_DEPT
+    where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.DEPTRECK_VS_DEPT
+    where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.DeptreckVsDept" >
+    insert into COMM.DEPTRECK_VS_DEPT (DEPT_CODE, DEPT_CODEHS, DEPT_ATTR, 
+      DEPT_HSNAME)
+    values (#{deptCode,jdbcType=VARCHAR}, #{deptCodehs,jdbcType=VARCHAR}, #{deptAttr,jdbcType=VARCHAR}, 
+      #{deptHsname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.DeptreckVsDept" >
+    insert into COMM.DEPTRECK_VS_DEPT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="deptCode != null" >
+        DEPT_CODE,
+      </if>
+      <if test="deptCodehs != null" >
+        DEPT_CODEHS,
+      </if>
+      <if test="deptAttr != null" >
+        DEPT_ATTR,
+      </if>
+      <if test="deptHsname != null" >
+        DEPT_HSNAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="deptCode != null" >
+        #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptCodehs != null" >
+        #{deptCodehs,jdbcType=VARCHAR},
+      </if>
+      <if test="deptAttr != null" >
+        #{deptAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="deptHsname != null" >
+        #{deptHsname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.DeptreckVsDept" >
+    update COMM.DEPTRECK_VS_DEPT
+    <set >
+      <if test="deptCodehs != null" >
+        DEPT_CODEHS = #{deptCodehs,jdbcType=VARCHAR},
+      </if>
+      <if test="deptAttr != null" >
+        DEPT_ATTR = #{deptAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="deptHsname != null" >
+        DEPT_HSNAME = #{deptHsname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.DeptreckVsDept" >
+    update COMM.DEPTRECK_VS_DEPT
+    set DEPT_CODEHS = #{deptCodehs,jdbcType=VARCHAR},
+      DEPT_ATTR = #{deptAttr,jdbcType=VARCHAR},
+      DEPT_HSNAME = #{deptHsname,jdbcType=VARCHAR}
+    where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.MetadictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.Metadict" >
+    <id column="TABLE_NAME" property="tableName" jdbcType="VARCHAR" />
+    <result column="TABLE_DESCRIPTION" property="tableDescription" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    TABLE_NAME, TABLE_DESCRIPTION
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.METADICT
+    where TABLE_NAME = #{tableName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.METADICT
+    where TABLE_NAME = #{tableName,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.Metadict" >
+    insert into COMM.METADICT (TABLE_NAME, TABLE_DESCRIPTION)
+    values (#{tableName,jdbcType=VARCHAR}, #{tableDescription,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.Metadict" >
+    insert into COMM.METADICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tableName != null" >
+        TABLE_NAME,
+      </if>
+      <if test="tableDescription != null" >
+        TABLE_DESCRIPTION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tableName != null" >
+        #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="tableDescription != null" >
+        #{tableDescription,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.Metadict" >
+    update COMM.METADICT
+    <set >
+      <if test="tableDescription != null" >
+        TABLE_DESCRIPTION = #{tableDescription,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where TABLE_NAME = #{tableName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.Metadict" >
+    update COMM.METADICT
+    set TABLE_DESCRIPTION = #{tableDescription,jdbcType=VARCHAR}
+    where TABLE_NAME = #{tableName,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.LabSheetMasterMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.LabSheetMaster" >
+    <id column="LAB_SHEET_ID" property="labSheetId" jdbcType="VARCHAR" />
+    <result column="PERFORMED_BY" property="performedBy" jdbcType="VARCHAR" />
+    <result column="SHEET_TITLE" property="sheetTitle" jdbcType="VARCHAR" />
+    <result column="CHARGE_ITEM_CLASS" property="chargeItemClass" jdbcType="VARCHAR" />
+    <result column="CHARGE_ITEM_CODE" property="chargeItemCode" jdbcType="VARCHAR" />
+    <result column="CHARGE_ITEM_SPEC" property="chargeItemSpec" jdbcType="VARCHAR" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+    <result column="CLASS_NAME" property="className" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    LAB_SHEET_ID, PERFORMED_BY, SHEET_TITLE, CHARGE_ITEM_CLASS, CHARGE_ITEM_CODE, CHARGE_ITEM_SPEC, 
+    INPUT_CODE, CLASS_NAME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.LAB_SHEET_MASTER
+    where LAB_SHEET_ID = #{labSheetId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.LAB_SHEET_MASTER
+    where LAB_SHEET_ID = #{labSheetId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.LabSheetMaster" >
+    insert into COMM.LAB_SHEET_MASTER (LAB_SHEET_ID, PERFORMED_BY, SHEET_TITLE, 
+      CHARGE_ITEM_CLASS, CHARGE_ITEM_CODE, CHARGE_ITEM_SPEC, 
+      INPUT_CODE, CLASS_NAME)
+    values (#{labSheetId,jdbcType=VARCHAR}, #{performedBy,jdbcType=VARCHAR}, #{sheetTitle,jdbcType=VARCHAR}, 
+      #{chargeItemClass,jdbcType=VARCHAR}, #{chargeItemCode,jdbcType=VARCHAR}, #{chargeItemSpec,jdbcType=VARCHAR}, 
+      #{inputCode,jdbcType=VARCHAR}, #{className,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.LabSheetMaster" >
+    insert into COMM.LAB_SHEET_MASTER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="labSheetId != null" >
+        LAB_SHEET_ID,
+      </if>
+      <if test="performedBy != null" >
+        PERFORMED_BY,
+      </if>
+      <if test="sheetTitle != null" >
+        SHEET_TITLE,
+      </if>
+      <if test="chargeItemClass != null" >
+        CHARGE_ITEM_CLASS,
+      </if>
+      <if test="chargeItemCode != null" >
+        CHARGE_ITEM_CODE,
+      </if>
+      <if test="chargeItemSpec != null" >
+        CHARGE_ITEM_SPEC,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+      <if test="className != null" >
+        CLASS_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="labSheetId != null" >
+        #{labSheetId,jdbcType=VARCHAR},
+      </if>
+      <if test="performedBy != null" >
+        #{performedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="sheetTitle != null" >
+        #{sheetTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeItemClass != null" >
+        #{chargeItemClass,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeItemCode != null" >
+        #{chargeItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeItemSpec != null" >
+        #{chargeItemSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="className != null" >
+        #{className,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.LabSheetMaster" >
+    update COMM.LAB_SHEET_MASTER
+    <set >
+      <if test="performedBy != null" >
+        PERFORMED_BY = #{performedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="sheetTitle != null" >
+        SHEET_TITLE = #{sheetTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeItemClass != null" >
+        CHARGE_ITEM_CLASS = #{chargeItemClass,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeItemCode != null" >
+        CHARGE_ITEM_CODE = #{chargeItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeItemSpec != null" >
+        CHARGE_ITEM_SPEC = #{chargeItemSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="className != null" >
+        CLASS_NAME = #{className,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where LAB_SHEET_ID = #{labSheetId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.LabSheetMaster" >
+    update COMM.LAB_SHEET_MASTER
+    set PERFORMED_BY = #{performedBy,jdbcType=VARCHAR},
+      SHEET_TITLE = #{sheetTitle,jdbcType=VARCHAR},
+      CHARGE_ITEM_CLASS = #{chargeItemClass,jdbcType=VARCHAR},
+      CHARGE_ITEM_CODE = #{chargeItemCode,jdbcType=VARCHAR},
+      CHARGE_ITEM_SPEC = #{chargeItemSpec,jdbcType=VARCHAR},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      CLASS_NAME = #{className,jdbcType=VARCHAR}
+    where LAB_SHEET_ID = #{labSheetId,jdbcType=VARCHAR}
+  </update>
+</mapper>

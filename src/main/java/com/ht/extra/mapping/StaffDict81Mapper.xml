@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.StaffDict81Mapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.StaffDict81" >
+    <id column="NAME_ID" property="nameId" jdbcType="VARCHAR" />
+    <result column="EMP_NO" property="empNo" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="DEPT_CODE" property="deptCode" jdbcType="VARCHAR" />
+    <result column="JOB" property="job" jdbcType="VARCHAR" />
+    <result column="TITLE" property="title" jdbcType="VARCHAR" />
+    <result column="ADMIN_BUS" property="adminBus" jdbcType="VARCHAR" />
+    <result column="ART_ORDER" property="artOrder" jdbcType="VARCHAR" />
+    <result column="JOB_DATE" property="jobDate" jdbcType="DATE" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    NAME_ID, EMP_NO, NAME, DEPT_CODE, JOB, TITLE, ADMIN_BUS, ART_ORDER, JOB_DATE, INPUT_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.STAFF_DICT_81
+    where NAME_ID = #{nameId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.STAFF_DICT_81
+    where NAME_ID = #{nameId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.StaffDict81" >
+    insert into COMM.STAFF_DICT_81 (NAME_ID, EMP_NO, NAME, 
+      DEPT_CODE, JOB, TITLE, 
+      ADMIN_BUS, ART_ORDER, JOB_DATE, 
+      INPUT_CODE)
+    values (#{nameId,jdbcType=VARCHAR}, #{empNo,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{deptCode,jdbcType=VARCHAR}, #{job,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{adminBus,jdbcType=VARCHAR}, #{artOrder,jdbcType=VARCHAR}, #{jobDate,jdbcType=DATE}, 
+      #{inputCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.StaffDict81" >
+    insert into COMM.STAFF_DICT_81
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="nameId != null" >
+        NAME_ID,
+      </if>
+      <if test="empNo != null" >
+        EMP_NO,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="deptCode != null" >
+        DEPT_CODE,
+      </if>
+      <if test="job != null" >
+        JOB,
+      </if>
+      <if test="title != null" >
+        TITLE,
+      </if>
+      <if test="adminBus != null" >
+        ADMIN_BUS,
+      </if>
+      <if test="artOrder != null" >
+        ART_ORDER,
+      </if>
+      <if test="jobDate != null" >
+        JOB_DATE,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="nameId != null" >
+        #{nameId,jdbcType=VARCHAR},
+      </if>
+      <if test="empNo != null" >
+        #{empNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="deptCode != null" >
+        #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null" >
+        #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="adminBus != null" >
+        #{adminBus,jdbcType=VARCHAR},
+      </if>
+      <if test="artOrder != null" >
+        #{artOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="jobDate != null" >
+        #{jobDate,jdbcType=DATE},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.StaffDict81" >
+    update COMM.STAFF_DICT_81
+    <set >
+      <if test="empNo != null" >
+        EMP_NO = #{empNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="deptCode != null" >
+        DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null" >
+        JOB = #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        TITLE = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="adminBus != null" >
+        ADMIN_BUS = #{adminBus,jdbcType=VARCHAR},
+      </if>
+      <if test="artOrder != null" >
+        ART_ORDER = #{artOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="jobDate != null" >
+        JOB_DATE = #{jobDate,jdbcType=DATE},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where NAME_ID = #{nameId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.StaffDict81" >
+    update COMM.STAFF_DICT_81
+    set EMP_NO = #{empNo,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+      JOB = #{job,jdbcType=VARCHAR},
+      TITLE = #{title,jdbcType=VARCHAR},
+      ADMIN_BUS = #{adminBus,jdbcType=VARCHAR},
+      ART_ORDER = #{artOrder,jdbcType=VARCHAR},
+      JOB_DATE = #{jobDate,jdbcType=DATE},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR}
+    where NAME_ID = #{nameId,jdbcType=VARCHAR}
+  </update>
+</mapper>

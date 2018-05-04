@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.FileServersMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.FileServers" >
+    <id column="APPLICATION" property="application" jdbcType="VARCHAR" />
+    <id column="FILE_CLASS" property="fileClass" jdbcType="VARCHAR" />
+    <result column="IP_ADDR" property="ipAddr" jdbcType="VARCHAR" />
+    <result column="PORT" property="port" jdbcType="DECIMAL" />
+    <result column="PROTOCOL" property="protocol" jdbcType="VARCHAR" />
+    <result column="FILE_USER" property="fileUser" jdbcType="VARCHAR" />
+    <result column="FILE_PWD" property="filePwd" jdbcType="VARCHAR" />
+    <result column="FILE_PATH" property="filePath" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    APPLICATION, FILE_CLASS, IP_ADDR, PORT, PROTOCOL, FILE_USER, FILE_PWD, FILE_PATH
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.FileServersKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.FILE_SERVERS
+    where APPLICATION = #{application,jdbcType=VARCHAR}
+      and FILE_CLASS = #{fileClass,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.FileServersKey" >
+    delete from COMM.FILE_SERVERS
+    where APPLICATION = #{application,jdbcType=VARCHAR}
+      and FILE_CLASS = #{fileClass,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.FileServers" >
+    insert into COMM.FILE_SERVERS (APPLICATION, FILE_CLASS, IP_ADDR, 
+      PORT, PROTOCOL, FILE_USER, 
+      FILE_PWD, FILE_PATH)
+    values (#{application,jdbcType=VARCHAR}, #{fileClass,jdbcType=VARCHAR}, #{ipAddr,jdbcType=VARCHAR}, 
+      #{port,jdbcType=DECIMAL}, #{protocol,jdbcType=VARCHAR}, #{fileUser,jdbcType=VARCHAR}, 
+      #{filePwd,jdbcType=VARCHAR}, #{filePath,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.FileServers" >
+    insert into COMM.FILE_SERVERS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="application != null" >
+        APPLICATION,
+      </if>
+      <if test="fileClass != null" >
+        FILE_CLASS,
+      </if>
+      <if test="ipAddr != null" >
+        IP_ADDR,
+      </if>
+      <if test="port != null" >
+        PORT,
+      </if>
+      <if test="protocol != null" >
+        PROTOCOL,
+      </if>
+      <if test="fileUser != null" >
+        FILE_USER,
+      </if>
+      <if test="filePwd != null" >
+        FILE_PWD,
+      </if>
+      <if test="filePath != null" >
+        FILE_PATH,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="application != null" >
+        #{application,jdbcType=VARCHAR},
+      </if>
+      <if test="fileClass != null" >
+        #{fileClass,jdbcType=VARCHAR},
+      </if>
+      <if test="ipAddr != null" >
+        #{ipAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="port != null" >
+        #{port,jdbcType=DECIMAL},
+      </if>
+      <if test="protocol != null" >
+        #{protocol,jdbcType=VARCHAR},
+      </if>
+      <if test="fileUser != null" >
+        #{fileUser,jdbcType=VARCHAR},
+      </if>
+      <if test="filePwd != null" >
+        #{filePwd,jdbcType=VARCHAR},
+      </if>
+      <if test="filePath != null" >
+        #{filePath,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.FileServers" >
+    update COMM.FILE_SERVERS
+    <set >
+      <if test="ipAddr != null" >
+        IP_ADDR = #{ipAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="port != null" >
+        PORT = #{port,jdbcType=DECIMAL},
+      </if>
+      <if test="protocol != null" >
+        PROTOCOL = #{protocol,jdbcType=VARCHAR},
+      </if>
+      <if test="fileUser != null" >
+        FILE_USER = #{fileUser,jdbcType=VARCHAR},
+      </if>
+      <if test="filePwd != null" >
+        FILE_PWD = #{filePwd,jdbcType=VARCHAR},
+      </if>
+      <if test="filePath != null" >
+        FILE_PATH = #{filePath,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where APPLICATION = #{application,jdbcType=VARCHAR}
+      and FILE_CLASS = #{fileClass,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.FileServers" >
+    update COMM.FILE_SERVERS
+    set IP_ADDR = #{ipAddr,jdbcType=VARCHAR},
+      PORT = #{port,jdbcType=DECIMAL},
+      PROTOCOL = #{protocol,jdbcType=VARCHAR},
+      FILE_USER = #{fileUser,jdbcType=VARCHAR},
+      FILE_PWD = #{filePwd,jdbcType=VARCHAR},
+      FILE_PATH = #{filePath,jdbcType=VARCHAR}
+    where APPLICATION = #{application,jdbcType=VARCHAR}
+      and FILE_CLASS = #{fileClass,jdbcType=VARCHAR}
+  </update>
+</mapper>

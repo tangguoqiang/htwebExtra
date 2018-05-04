@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.TransferMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.medrec.Transfer" >
+    <id column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <id column="VISIT_ID" property="visitId" jdbcType="DECIMAL" />
+    <id column="ADMISSION_DATE_TIME" property="admissionDateTime" jdbcType="DATE" />
+    <result column="DEPT_STAYED" property="deptStayed" jdbcType="VARCHAR" />
+    <result column="DISCHARGE_DATE_TIME" property="dischargeDateTime" jdbcType="DATE" />
+    <result column="DEPT_TRANSFERED_TO" property="deptTransferedTo" jdbcType="VARCHAR" />
+    <result column="DOCTOR_IN_CHARGE" property="doctorInCharge" jdbcType="VARCHAR" />
+    <result column="DOCTOR_DEPT" property="doctorDept" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PATIENT_ID, VISIT_ID, ADMISSION_DATE_TIME, DEPT_STAYED, DISCHARGE_DATE_TIME, DEPT_TRANSFERED_TO, 
+    DOCTOR_IN_CHARGE, DOCTOR_DEPT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.medrec.TransferKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from MEDREC.TRANSFER
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and ADMISSION_DATE_TIME = #{admissionDateTime,jdbcType=DATE}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.medrec.TransferKey" >
+    delete from MEDREC.TRANSFER
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and ADMISSION_DATE_TIME = #{admissionDateTime,jdbcType=DATE}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.medrec.Transfer" >
+    insert into MEDREC.TRANSFER (PATIENT_ID, VISIT_ID, ADMISSION_DATE_TIME, 
+      DEPT_STAYED, DISCHARGE_DATE_TIME, DEPT_TRANSFERED_TO, 
+      DOCTOR_IN_CHARGE, DOCTOR_DEPT)
+    values (#{patientId,jdbcType=VARCHAR}, #{visitId,jdbcType=DECIMAL}, #{admissionDateTime,jdbcType=DATE}, 
+      #{deptStayed,jdbcType=VARCHAR}, #{dischargeDateTime,jdbcType=DATE}, #{deptTransferedTo,jdbcType=VARCHAR}, 
+      #{doctorInCharge,jdbcType=VARCHAR}, #{doctorDept,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.medrec.Transfer" >
+    insert into MEDREC.TRANSFER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="visitId != null" >
+        VISIT_ID,
+      </if>
+      <if test="admissionDateTime != null" >
+        ADMISSION_DATE_TIME,
+      </if>
+      <if test="deptStayed != null" >
+        DEPT_STAYED,
+      </if>
+      <if test="dischargeDateTime != null" >
+        DISCHARGE_DATE_TIME,
+      </if>
+      <if test="deptTransferedTo != null" >
+        DEPT_TRANSFERED_TO,
+      </if>
+      <if test="doctorInCharge != null" >
+        DOCTOR_IN_CHARGE,
+      </if>
+      <if test="doctorDept != null" >
+        DOCTOR_DEPT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitId != null" >
+        #{visitId,jdbcType=DECIMAL},
+      </if>
+      <if test="admissionDateTime != null" >
+        #{admissionDateTime,jdbcType=DATE},
+      </if>
+      <if test="deptStayed != null" >
+        #{deptStayed,jdbcType=VARCHAR},
+      </if>
+      <if test="dischargeDateTime != null" >
+        #{dischargeDateTime,jdbcType=DATE},
+      </if>
+      <if test="deptTransferedTo != null" >
+        #{deptTransferedTo,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorInCharge != null" >
+        #{doctorInCharge,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorDept != null" >
+        #{doctorDept,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.medrec.Transfer" >
+    update MEDREC.TRANSFER
+    <set >
+      <if test="deptStayed != null" >
+        DEPT_STAYED = #{deptStayed,jdbcType=VARCHAR},
+      </if>
+      <if test="dischargeDateTime != null" >
+        DISCHARGE_DATE_TIME = #{dischargeDateTime,jdbcType=DATE},
+      </if>
+      <if test="deptTransferedTo != null" >
+        DEPT_TRANSFERED_TO = #{deptTransferedTo,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorInCharge != null" >
+        DOCTOR_IN_CHARGE = #{doctorInCharge,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorDept != null" >
+        DOCTOR_DEPT = #{doctorDept,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and ADMISSION_DATE_TIME = #{admissionDateTime,jdbcType=DATE}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.medrec.Transfer" >
+    update MEDREC.TRANSFER
+    set DEPT_STAYED = #{deptStayed,jdbcType=VARCHAR},
+      DISCHARGE_DATE_TIME = #{dischargeDateTime,jdbcType=DATE},
+      DEPT_TRANSFERED_TO = #{deptTransferedTo,jdbcType=VARCHAR},
+      DOCTOR_IN_CHARGE = #{doctorInCharge,jdbcType=VARCHAR},
+      DOCTOR_DEPT = #{doctorDept,jdbcType=VARCHAR}
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and ADMISSION_DATE_TIME = #{admissionDateTime,jdbcType=DATE}
+  </update>
+</mapper>

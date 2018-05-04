@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.MdcRouteMatchResultMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.MdcRouteMatchResult" >
+    <result column="SUSER_ID" property="suserId" jdbcType="VARCHAR" />
+    <result column="SSYS_NAME" property="ssysName" jdbcType="VARCHAR" />
+    <result column="SMATCH_USER" property="smatchUser" jdbcType="VARCHAR" />
+    <result column="SMATCH_TIME" property="smatchTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.MdcRouteMatchResult" >
+    insert into COMM.MDC_ROUTE_MATCH_RESULT (SUSER_ID, SSYS_NAME, SMATCH_USER, 
+      SMATCH_TIME)
+    values (#{suserId,jdbcType=VARCHAR}, #{ssysName,jdbcType=VARCHAR}, #{smatchUser,jdbcType=VARCHAR}, 
+      #{smatchTime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.MdcRouteMatchResult" >
+    insert into COMM.MDC_ROUTE_MATCH_RESULT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="suserId != null" >
+        SUSER_ID,
+      </if>
+      <if test="ssysName != null" >
+        SSYS_NAME,
+      </if>
+      <if test="smatchUser != null" >
+        SMATCH_USER,
+      </if>
+      <if test="smatchTime != null" >
+        SMATCH_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="suserId != null" >
+        #{suserId,jdbcType=VARCHAR},
+      </if>
+      <if test="ssysName != null" >
+        #{ssysName,jdbcType=VARCHAR},
+      </if>
+      <if test="smatchUser != null" >
+        #{smatchUser,jdbcType=VARCHAR},
+      </if>
+      <if test="smatchTime != null" >
+        #{smatchTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

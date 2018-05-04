@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.ClientInstallationMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.ClientInstallation" >
+    <id column="IP_ADDRESS" property="ipAddress" jdbcType="VARCHAR" />
+    <result column="CLIENT_NAME" property="clientName" jdbcType="VARCHAR" />
+    <result column="APPLICATION" property="application" jdbcType="VARCHAR" />
+    <result column="LOCATION" property="location" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    IP_ADDRESS, CLIENT_NAME, APPLICATION, LOCATION
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.CLIENT_INSTALLATION
+    where IP_ADDRESS = #{ipAddress,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.CLIENT_INSTALLATION
+    where IP_ADDRESS = #{ipAddress,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.ClientInstallation" >
+    insert into COMM.CLIENT_INSTALLATION (IP_ADDRESS, CLIENT_NAME, APPLICATION, 
+      LOCATION)
+    values (#{ipAddress,jdbcType=VARCHAR}, #{clientName,jdbcType=VARCHAR}, #{application,jdbcType=VARCHAR}, 
+      #{location,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.ClientInstallation" >
+    insert into COMM.CLIENT_INSTALLATION
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ipAddress != null" >
+        IP_ADDRESS,
+      </if>
+      <if test="clientName != null" >
+        CLIENT_NAME,
+      </if>
+      <if test="application != null" >
+        APPLICATION,
+      </if>
+      <if test="location != null" >
+        LOCATION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ipAddress != null" >
+        #{ipAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="clientName != null" >
+        #{clientName,jdbcType=VARCHAR},
+      </if>
+      <if test="application != null" >
+        #{application,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        #{location,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.ClientInstallation" >
+    update COMM.CLIENT_INSTALLATION
+    <set >
+      <if test="clientName != null" >
+        CLIENT_NAME = #{clientName,jdbcType=VARCHAR},
+      </if>
+      <if test="application != null" >
+        APPLICATION = #{application,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        LOCATION = #{location,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where IP_ADDRESS = #{ipAddress,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.ClientInstallation" >
+    update COMM.CLIENT_INSTALLATION
+    set CLIENT_NAME = #{clientName,jdbcType=VARCHAR},
+      APPLICATION = #{application,jdbcType=VARCHAR},
+      LOCATION = #{location,jdbcType=VARCHAR}
+    where IP_ADDRESS = #{ipAddress,jdbcType=VARCHAR}
+  </update>
+</mapper>

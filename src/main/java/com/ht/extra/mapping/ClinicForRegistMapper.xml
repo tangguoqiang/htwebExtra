@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.ClinicForRegistMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.outpadm.ClinicForRegist" >
+    <id column="CLINIC_DATE" property="clinicDate" jdbcType="DATE" />
+    <id column="CLINIC_LABEL" property="clinicLabel" jdbcType="VARCHAR" />
+    <id column="TIME_DESC" property="timeDesc" jdbcType="VARCHAR" />
+    <result column="REGISTRATION_LIMITS" property="registrationLimits" jdbcType="DECIMAL" />
+    <result column="APPOINTMENT_LIMITS" property="appointmentLimits" jdbcType="DECIMAL" />
+    <result column="CURRENT_NO" property="currentNo" jdbcType="DECIMAL" />
+    <result column="REGISTRATION_NUM" property="registrationNum" jdbcType="DECIMAL" />
+    <result column="APPOINTMENT_NUM" property="appointmentNum" jdbcType="DECIMAL" />
+    <result column="REGIST_PRICE" property="registPrice" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    CLINIC_DATE, CLINIC_LABEL, TIME_DESC, REGISTRATION_LIMITS, APPOINTMENT_LIMITS, CURRENT_NO, 
+    REGISTRATION_NUM, APPOINTMENT_NUM, REGIST_PRICE
+  </sql>
+
+  <select id="selectByClinicLabel" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List" />
+    from OUTPADM.CLINIC_FOR_REGIST
+    WHERE CLINIC_LABEL = #{0}
+    and clinic_date>=trunc(sysdate)
+    and CLINIC_DATE=to_date(substr(#{1},1,10),'yyyy-MM-dd')
+  </select>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.outpadm.ClinicForRegistKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from OUTPADM.CLINIC_FOR_REGIST
+    where CLINIC_DATE = #{clinicDate,jdbcType=DATE}
+      and CLINIC_LABEL = #{clinicLabel,jdbcType=VARCHAR}
+      and TIME_DESC = #{timeDesc,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByDeptAndDocIdForRegist" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    <![CDATA[
+      select
+       a.CLINIC_DATE,a.CLINIC_LABEL,a.TIME_DESC
+      from OUTPADM.CLINIC_FOR_REGIST a,outpadm.clinic_index b
+      where a.clinic_label = b.clinic_label
+      and  CLINIC_DEPT= #{0}
+      and DOCTOR =#{1}
+      and CLINIC_DATE>=to_date(substr(#{2},1,10),'yyyy-MM-dd')
+      and CLINIC_DATE<=to_date(substr(#{3},1,10),'yyyy-MM-dd')
+       UNION  ALL
+      select
+      CLINIC_DATE,CLINIC_LABEL,TIME_DESC
+      from OUTPADM.CLINIC_FOR_REGIST_STOP
+      where
+      CLINIC_DATE>=to_date(substr(#{2},1,10),'yyyy-MM-dd')
+      and CLINIC_DATE<=to_date(substr(#{3},1,10),'yyyy-MM-dd')
+     ]]>
+  </select>
+
+  <select id="selectByDeptForRegist" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    <![CDATA[
+      select
+      a.CLINIC_DATE,a.CLINIC_LABEL,a.TIME_DESC
+      from OUTPADM.CLINIC_FOR_REGIST a,outpadm.clinic_index b
+      where a.clinic_label = b.clinic_label
+      and  CLINIC_DEPT= #{0}
+      and CLINIC_DATE>=to_date(substr(#{1},1,10),'yyyy-MM-dd')
+      and CLINIC_DATE<=to_date(substr(#{2},1,10),'yyyy-MM-dd')
+      UNION  ALL
+      select
+      CLINIC_DATE,CLINIC_LABEL,TIME_DESC
+      from OUTPADM.CLINIC_FOR_REGIST_STOP
+      WHERE
+      CLINIC_DATE>=to_date(substr(#{1},1,10),'yyyy-MM-dd')
+      and CLINIC_DATE<=to_date(substr(#{2},1,10),'yyyy-MM-dd')
+     ]]>
+  </select>
+
+  <select id="selectByDeptForRegistByTime" resultMap="BaseResultMap"   parameterType="java.lang.String" >
+    <![CDATA[
+      select
+      a.*
+      from OUTPADM.CLINIC_FOR_REGIST a,outpadm.clinic_index b
+      where a.clinic_label = b.clinic_label
+      and a.CLINIC_DATE>=to_date(substr(#{0},1,10),'yyyy-MM-dd')
+      and a.CLINIC_DATE<=to_date(substr(#{1},1,10),'yyyy-MM-dd')
+      and b.clinic_dept<>'53'
+     ]]>
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.outpadm.ClinicForRegistKey" >
+    delete from OUTPADM.CLINIC_FOR_REGIST
+    where CLINIC_DATE = #{clinicDate,jdbcType=DATE}
+      and CLINIC_LABEL = #{clinicLabel,jdbcType=VARCHAR}
+      and TIME_DESC = #{timeDesc,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.outpadm.ClinicForRegist" >
+    insert into OUTPADM.CLINIC_FOR_REGIST (CLINIC_DATE, CLINIC_LABEL, TIME_DESC, 
+      REGISTRATION_LIMITS, APPOINTMENT_LIMITS, 
+      CURRENT_NO, REGISTRATION_NUM, APPOINTMENT_NUM, 
+      REGIST_PRICE)
+    values (#{clinicDate,jdbcType=DATE}, #{clinicLabel,jdbcType=VARCHAR}, #{timeDesc,jdbcType=VARCHAR}, 
+      #{registrationLimits,jdbcType=DECIMAL}, #{appointmentLimits,jdbcType=DECIMAL}, 
+      #{currentNo,jdbcType=DECIMAL}, #{registrationNum,jdbcType=DECIMAL}, #{appointmentNum,jdbcType=DECIMAL}, 
+      #{registPrice,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.outpadm.ClinicForRegist" >
+    insert into OUTPADM.CLINIC_FOR_REGIST
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="clinicDate != null" >
+        CLINIC_DATE,
+      </if>
+      <if test="clinicLabel != null" >
+        CLINIC_LABEL,
+      </if>
+      <if test="timeDesc != null" >
+        TIME_DESC,
+      </if>
+      <if test="registrationLimits != null" >
+        REGISTRATION_LIMITS,
+      </if>
+      <if test="appointmentLimits != null" >
+        APPOINTMENT_LIMITS,
+      </if>
+      <if test="currentNo != null" >
+        CURRENT_NO,
+      </if>
+      <if test="registrationNum != null" >
+        REGISTRATION_NUM,
+      </if>
+      <if test="appointmentNum != null" >
+        APPOINTMENT_NUM,
+      </if>
+      <if test="registPrice != null" >
+        REGIST_PRICE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="clinicDate != null" >
+        #{clinicDate,jdbcType=DATE},
+      </if>
+      <if test="clinicLabel != null" >
+        #{clinicLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="timeDesc != null" >
+        #{timeDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationLimits != null" >
+        #{registrationLimits,jdbcType=DECIMAL},
+      </if>
+      <if test="appointmentLimits != null" >
+        #{appointmentLimits,jdbcType=DECIMAL},
+      </if>
+      <if test="currentNo != null" >
+        #{currentNo,jdbcType=DECIMAL},
+      </if>
+      <if test="registrationNum != null" >
+        #{registrationNum,jdbcType=DECIMAL},
+      </if>
+      <if test="appointmentNum != null" >
+        #{appointmentNum,jdbcType=DECIMAL},
+      </if>
+      <if test="registPrice != null" >
+        #{registPrice,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.outpadm.ClinicForRegist" >
+    update OUTPADM.CLINIC_FOR_REGIST
+    <set >
+      <if test="registrationLimits != null" >
+        REGISTRATION_LIMITS = #{registrationLimits,jdbcType=DECIMAL},
+      </if>
+      <if test="appointmentLimits != null" >
+        APPOINTMENT_LIMITS = #{appointmentLimits,jdbcType=DECIMAL},
+      </if>
+      <if test="currentNo != null" >
+        CURRENT_NO = #{currentNo,jdbcType=DECIMAL},
+      </if>
+      <if test="registrationNum != null" >
+        REGISTRATION_NUM = #{registrationNum,jdbcType=DECIMAL},
+      </if>
+      <if test="appointmentNum != null" >
+        APPOINTMENT_NUM = #{appointmentNum,jdbcType=DECIMAL},
+      </if>
+      <if test="registPrice != null" >
+        REGIST_PRICE = #{registPrice,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where CLINIC_DATE = #{clinicDate,jdbcType=DATE}
+      and CLINIC_LABEL = #{clinicLabel,jdbcType=VARCHAR}
+      and TIME_DESC = #{timeDesc,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.outpadm.ClinicForRegist" >
+    update OUTPADM.CLINIC_FOR_REGIST
+    set REGISTRATION_LIMITS = #{registrationLimits,jdbcType=DECIMAL},
+      APPOINTMENT_LIMITS = #{appointmentLimits,jdbcType=DECIMAL},
+      CURRENT_NO = #{currentNo,jdbcType=DECIMAL},
+      REGISTRATION_NUM = #{registrationNum,jdbcType=DECIMAL},
+      APPOINTMENT_NUM = #{appointmentNum,jdbcType=DECIMAL},
+      REGIST_PRICE = #{registPrice,jdbcType=DECIMAL}
+    where CLINIC_DATE = #{clinicDate,jdbcType=DATE}
+      and CLINIC_LABEL = #{clinicLabel,jdbcType=VARCHAR}
+      and TIME_DESC = #{timeDesc,jdbcType=VARCHAR}
+  </update>
+</mapper>

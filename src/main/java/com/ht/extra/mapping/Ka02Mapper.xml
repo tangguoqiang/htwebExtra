@@ -1,0 +1,763 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.Ka02Mapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.Ka02" >
+    <id column="AKA060" property="aka060" jdbcType="VARCHAR" />
+    <id column="AAE030" property="aae030" jdbcType="DATE" />
+    <result column="OAE001" property="oae001" jdbcType="DECIMAL" />
+    <result column="AKA061" property="aka061" jdbcType="VARCHAR" />
+    <result column="AKA062" property="aka062" jdbcType="VARCHAR" />
+    <result column="AKA063" property="aka063" jdbcType="VARCHAR" />
+    <result column="AKA064" property="aka064" jdbcType="VARCHAR" />
+    <result column="AKA065" property="aka065" jdbcType="VARCHAR" />
+    <result column="AKA066" property="aka066" jdbcType="VARCHAR" />
+    <result column="AKA067" property="aka067" jdbcType="VARCHAR" />
+    <result column="AKA068" property="aka068" jdbcType="DECIMAL" />
+    <result column="AKA600" property="aka600" jdbcType="DECIMAL" />
+    <result column="AKA108" property="aka108" jdbcType="DECIMAL" />
+    <result column="AKA069" property="aka069" jdbcType="DECIMAL" />
+    <result column="AKA075" property="aka075" jdbcType="DECIMAL" />
+    <result column="AKA086" property="aka086" jdbcType="DECIMAL" />
+    <result column="AKA087" property="aka087" jdbcType="DECIMAL" />
+    <result column="AKA088" property="aka088" jdbcType="DECIMAL" />
+    <result column="AKA089" property="aka089" jdbcType="DECIMAL" />
+    <result column="AKA601" property="aka601" jdbcType="DECIMAL" />
+    <result column="AKA084" property="aka084" jdbcType="VARCHAR" />
+    <result column="AKB020" property="akb020" jdbcType="VARCHAR" />
+    <result column="AKC173" property="akc173" jdbcType="VARCHAR" />
+    <result column="AKA101" property="aka101" jdbcType="VARCHAR" />
+    <result column="AKA602" property="aka602" jdbcType="VARCHAR" />
+    <result column="AKA603" property="aka603" jdbcType="VARCHAR" />
+    <result column="AKA604" property="aka604" jdbcType="VARCHAR" />
+    <result column="AKA606" property="aka606" jdbcType="VARCHAR" />
+    <result column="AKA607" property="aka607" jdbcType="DECIMAL" />
+    <result column="AKA608" property="aka608" jdbcType="VARCHAR" />
+    <result column="AKA609" property="aka609" jdbcType="VARCHAR" />
+    <result column="AKA070" property="aka070" jdbcType="VARCHAR" />
+    <result column="AKA071" property="aka071" jdbcType="DECIMAL" />
+    <result column="AKA072" property="aka072" jdbcType="VARCHAR" />
+    <result column="AKA073" property="aka073" jdbcType="VARCHAR" />
+    <result column="AKA074" property="aka074" jdbcType="VARCHAR" />
+    <result column="AKA076" property="aka076" jdbcType="VARCHAR" />
+    <result column="AKA077" property="aka077" jdbcType="VARCHAR" />
+    <result column="AKA078" property="aka078" jdbcType="DECIMAL" />
+    <result column="AKA079" property="aka079" jdbcType="VARCHAR" />
+    <result column="AKA080" property="aka080" jdbcType="DECIMAL" />
+    <result column="AKA081" property="aka081" jdbcType="VARCHAR" />
+    <result column="AKA082" property="aka082" jdbcType="VARCHAR" />
+    <result column="AKA083" property="aka083" jdbcType="VARCHAR" />
+    <result column="AKA085" property="aka085" jdbcType="VARCHAR" />
+    <result column="AAE013" property="aae013" jdbcType="VARCHAR" />
+    <result column="AKA605" property="aka605" jdbcType="VARCHAR" />
+    <result column="AKA610" property="aka610" jdbcType="VARCHAR" />
+    <result column="AKA611" property="aka611" jdbcType="DECIMAL" />
+    <result column="AKA612" property="aka612" jdbcType="VARCHAR" />
+    <result column="AKA613" property="aka613" jdbcType="VARCHAR" />
+    <result column="AAE011" property="aae011" jdbcType="VARCHAR" />
+    <result column="AAE036" property="aae036" jdbcType="DATE" />
+    <result column="AAE031" property="aae031" jdbcType="DATE" />
+    <result column="OAE300" property="oae300" jdbcType="DECIMAL" />
+    <result column="OAE301" property="oae301" jdbcType="DECIMAL" />
+    <result column="AKA616" property="aka616" jdbcType="VARCHAR" />
+    <result column="AAE100" property="aae100" jdbcType="VARCHAR" />
+    <result column="AKA630" property="aka630" jdbcType="VARCHAR" />
+    <result column="CKA063" property="cka063" jdbcType="VARCHAR" />
+    <result column="DKA063" property="dka063" jdbcType="VARCHAR" />
+    <result column="AKA900" property="aka900" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    AKA060, AAE030, OAE001, AKA061, AKA062, AKA063, AKA064, AKA065, AKA066, AKA067, AKA068, 
+    AKA600, AKA108, AKA069, AKA075, AKA086, AKA087, AKA088, AKA089, AKA601, AKA084, AKB020, 
+    AKC173, AKA101, AKA602, AKA603, AKA604, AKA606, AKA607, AKA608, AKA609, AKA070, AKA071, 
+    AKA072, AKA073, AKA074, AKA076, AKA077, AKA078, AKA079, AKA080, AKA081, AKA082, AKA083, 
+    AKA085, AAE013, AKA605, AKA610, AKA611, AKA612, AKA613, AAE011, AAE036, AAE031, OAE300, 
+    OAE301, AKA616, AAE100, AKA630, CKA063, DKA063, AKA900
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.Ka02Key" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.KA02
+    where AKA060 = #{aka060,jdbcType=VARCHAR}
+      and AAE030 = #{aae030,jdbcType=DATE}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.Ka02Key" >
+    delete from COMM.KA02
+    where AKA060 = #{aka060,jdbcType=VARCHAR}
+      and AAE030 = #{aae030,jdbcType=DATE}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.Ka02" >
+    insert into COMM.KA02 (AKA060, AAE030, OAE001, 
+      AKA061, AKA062, AKA063, 
+      AKA064, AKA065, AKA066, 
+      AKA067, AKA068, AKA600, 
+      AKA108, AKA069, AKA075, 
+      AKA086, AKA087, AKA088, 
+      AKA089, AKA601, AKA084, 
+      AKB020, AKC173, AKA101, 
+      AKA602, AKA603, AKA604, 
+      AKA606, AKA607, AKA608, 
+      AKA609, AKA070, AKA071, 
+      AKA072, AKA073, AKA074, 
+      AKA076, AKA077, AKA078, 
+      AKA079, AKA080, AKA081, 
+      AKA082, AKA083, AKA085, 
+      AAE013, AKA605, AKA610, 
+      AKA611, AKA612, AKA613, 
+      AAE011, AAE036, AAE031, OAE300, 
+      OAE301, AKA616, AAE100, 
+      AKA630, CKA063, DKA063, 
+      AKA900)
+    values (#{aka060,jdbcType=VARCHAR}, #{aae030,jdbcType=DATE}, #{oae001,jdbcType=DECIMAL}, 
+      #{aka061,jdbcType=VARCHAR}, #{aka062,jdbcType=VARCHAR}, #{aka063,jdbcType=VARCHAR}, 
+      #{aka064,jdbcType=VARCHAR}, #{aka065,jdbcType=VARCHAR}, #{aka066,jdbcType=VARCHAR}, 
+      #{aka067,jdbcType=VARCHAR}, #{aka068,jdbcType=DECIMAL}, #{aka600,jdbcType=DECIMAL}, 
+      #{aka108,jdbcType=DECIMAL}, #{aka069,jdbcType=DECIMAL}, #{aka075,jdbcType=DECIMAL}, 
+      #{aka086,jdbcType=DECIMAL}, #{aka087,jdbcType=DECIMAL}, #{aka088,jdbcType=DECIMAL}, 
+      #{aka089,jdbcType=DECIMAL}, #{aka601,jdbcType=DECIMAL}, #{aka084,jdbcType=VARCHAR}, 
+      #{akb020,jdbcType=VARCHAR}, #{akc173,jdbcType=VARCHAR}, #{aka101,jdbcType=VARCHAR}, 
+      #{aka602,jdbcType=VARCHAR}, #{aka603,jdbcType=VARCHAR}, #{aka604,jdbcType=VARCHAR}, 
+      #{aka606,jdbcType=VARCHAR}, #{aka607,jdbcType=DECIMAL}, #{aka608,jdbcType=VARCHAR}, 
+      #{aka609,jdbcType=VARCHAR}, #{aka070,jdbcType=VARCHAR}, #{aka071,jdbcType=DECIMAL}, 
+      #{aka072,jdbcType=VARCHAR}, #{aka073,jdbcType=VARCHAR}, #{aka074,jdbcType=VARCHAR}, 
+      #{aka076,jdbcType=VARCHAR}, #{aka077,jdbcType=VARCHAR}, #{aka078,jdbcType=DECIMAL}, 
+      #{aka079,jdbcType=VARCHAR}, #{aka080,jdbcType=DECIMAL}, #{aka081,jdbcType=VARCHAR}, 
+      #{aka082,jdbcType=VARCHAR}, #{aka083,jdbcType=VARCHAR}, #{aka085,jdbcType=VARCHAR}, 
+      #{aae013,jdbcType=VARCHAR}, #{aka605,jdbcType=VARCHAR}, #{aka610,jdbcType=VARCHAR}, 
+      #{aka611,jdbcType=DECIMAL}, #{aka612,jdbcType=VARCHAR}, #{aka613,jdbcType=VARCHAR}, 
+      #{aae011,jdbcType=VARCHAR}, #{aae036,jdbcType=DATE}, #{aae031,jdbcType=DATE}, #{oae300,jdbcType=DECIMAL}, 
+      #{oae301,jdbcType=DECIMAL}, #{aka616,jdbcType=VARCHAR}, #{aae100,jdbcType=VARCHAR}, 
+      #{aka630,jdbcType=VARCHAR}, #{cka063,jdbcType=VARCHAR}, #{dka063,jdbcType=VARCHAR}, 
+      #{aka900,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.Ka02" >
+    insert into COMM.KA02
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="aka060 != null" >
+        AKA060,
+      </if>
+      <if test="aae030 != null" >
+        AAE030,
+      </if>
+      <if test="oae001 != null" >
+        OAE001,
+      </if>
+      <if test="aka061 != null" >
+        AKA061,
+      </if>
+      <if test="aka062 != null" >
+        AKA062,
+      </if>
+      <if test="aka063 != null" >
+        AKA063,
+      </if>
+      <if test="aka064 != null" >
+        AKA064,
+      </if>
+      <if test="aka065 != null" >
+        AKA065,
+      </if>
+      <if test="aka066 != null" >
+        AKA066,
+      </if>
+      <if test="aka067 != null" >
+        AKA067,
+      </if>
+      <if test="aka068 != null" >
+        AKA068,
+      </if>
+      <if test="aka600 != null" >
+        AKA600,
+      </if>
+      <if test="aka108 != null" >
+        AKA108,
+      </if>
+      <if test="aka069 != null" >
+        AKA069,
+      </if>
+      <if test="aka075 != null" >
+        AKA075,
+      </if>
+      <if test="aka086 != null" >
+        AKA086,
+      </if>
+      <if test="aka087 != null" >
+        AKA087,
+      </if>
+      <if test="aka088 != null" >
+        AKA088,
+      </if>
+      <if test="aka089 != null" >
+        AKA089,
+      </if>
+      <if test="aka601 != null" >
+        AKA601,
+      </if>
+      <if test="aka084 != null" >
+        AKA084,
+      </if>
+      <if test="akb020 != null" >
+        AKB020,
+      </if>
+      <if test="akc173 != null" >
+        AKC173,
+      </if>
+      <if test="aka101 != null" >
+        AKA101,
+      </if>
+      <if test="aka602 != null" >
+        AKA602,
+      </if>
+      <if test="aka603 != null" >
+        AKA603,
+      </if>
+      <if test="aka604 != null" >
+        AKA604,
+      </if>
+      <if test="aka606 != null" >
+        AKA606,
+      </if>
+      <if test="aka607 != null" >
+        AKA607,
+      </if>
+      <if test="aka608 != null" >
+        AKA608,
+      </if>
+      <if test="aka609 != null" >
+        AKA609,
+      </if>
+      <if test="aka070 != null" >
+        AKA070,
+      </if>
+      <if test="aka071 != null" >
+        AKA071,
+      </if>
+      <if test="aka072 != null" >
+        AKA072,
+      </if>
+      <if test="aka073 != null" >
+        AKA073,
+      </if>
+      <if test="aka074 != null" >
+        AKA074,
+      </if>
+      <if test="aka076 != null" >
+        AKA076,
+      </if>
+      <if test="aka077 != null" >
+        AKA077,
+      </if>
+      <if test="aka078 != null" >
+        AKA078,
+      </if>
+      <if test="aka079 != null" >
+        AKA079,
+      </if>
+      <if test="aka080 != null" >
+        AKA080,
+      </if>
+      <if test="aka081 != null" >
+        AKA081,
+      </if>
+      <if test="aka082 != null" >
+        AKA082,
+      </if>
+      <if test="aka083 != null" >
+        AKA083,
+      </if>
+      <if test="aka085 != null" >
+        AKA085,
+      </if>
+      <if test="aae013 != null" >
+        AAE013,
+      </if>
+      <if test="aka605 != null" >
+        AKA605,
+      </if>
+      <if test="aka610 != null" >
+        AKA610,
+      </if>
+      <if test="aka611 != null" >
+        AKA611,
+      </if>
+      <if test="aka612 != null" >
+        AKA612,
+      </if>
+      <if test="aka613 != null" >
+        AKA613,
+      </if>
+      <if test="aae011 != null" >
+        AAE011,
+      </if>
+      <if test="aae036 != null" >
+        AAE036,
+      </if>
+      <if test="aae031 != null" >
+        AAE031,
+      </if>
+      <if test="oae300 != null" >
+        OAE300,
+      </if>
+      <if test="oae301 != null" >
+        OAE301,
+      </if>
+      <if test="aka616 != null" >
+        AKA616,
+      </if>
+      <if test="aae100 != null" >
+        AAE100,
+      </if>
+      <if test="aka630 != null" >
+        AKA630,
+      </if>
+      <if test="cka063 != null" >
+        CKA063,
+      </if>
+      <if test="dka063 != null" >
+        DKA063,
+      </if>
+      <if test="aka900 != null" >
+        AKA900,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="aka060 != null" >
+        #{aka060,jdbcType=VARCHAR},
+      </if>
+      <if test="aae030 != null" >
+        #{aae030,jdbcType=DATE},
+      </if>
+      <if test="oae001 != null" >
+        #{oae001,jdbcType=DECIMAL},
+      </if>
+      <if test="aka061 != null" >
+        #{aka061,jdbcType=VARCHAR},
+      </if>
+      <if test="aka062 != null" >
+        #{aka062,jdbcType=VARCHAR},
+      </if>
+      <if test="aka063 != null" >
+        #{aka063,jdbcType=VARCHAR},
+      </if>
+      <if test="aka064 != null" >
+        #{aka064,jdbcType=VARCHAR},
+      </if>
+      <if test="aka065 != null" >
+        #{aka065,jdbcType=VARCHAR},
+      </if>
+      <if test="aka066 != null" >
+        #{aka066,jdbcType=VARCHAR},
+      </if>
+      <if test="aka067 != null" >
+        #{aka067,jdbcType=VARCHAR},
+      </if>
+      <if test="aka068 != null" >
+        #{aka068,jdbcType=DECIMAL},
+      </if>
+      <if test="aka600 != null" >
+        #{aka600,jdbcType=DECIMAL},
+      </if>
+      <if test="aka108 != null" >
+        #{aka108,jdbcType=DECIMAL},
+      </if>
+      <if test="aka069 != null" >
+        #{aka069,jdbcType=DECIMAL},
+      </if>
+      <if test="aka075 != null" >
+        #{aka075,jdbcType=DECIMAL},
+      </if>
+      <if test="aka086 != null" >
+        #{aka086,jdbcType=DECIMAL},
+      </if>
+      <if test="aka087 != null" >
+        #{aka087,jdbcType=DECIMAL},
+      </if>
+      <if test="aka088 != null" >
+        #{aka088,jdbcType=DECIMAL},
+      </if>
+      <if test="aka089 != null" >
+        #{aka089,jdbcType=DECIMAL},
+      </if>
+      <if test="aka601 != null" >
+        #{aka601,jdbcType=DECIMAL},
+      </if>
+      <if test="aka084 != null" >
+        #{aka084,jdbcType=VARCHAR},
+      </if>
+      <if test="akb020 != null" >
+        #{akb020,jdbcType=VARCHAR},
+      </if>
+      <if test="akc173 != null" >
+        #{akc173,jdbcType=VARCHAR},
+      </if>
+      <if test="aka101 != null" >
+        #{aka101,jdbcType=VARCHAR},
+      </if>
+      <if test="aka602 != null" >
+        #{aka602,jdbcType=VARCHAR},
+      </if>
+      <if test="aka603 != null" >
+        #{aka603,jdbcType=VARCHAR},
+      </if>
+      <if test="aka604 != null" >
+        #{aka604,jdbcType=VARCHAR},
+      </if>
+      <if test="aka606 != null" >
+        #{aka606,jdbcType=VARCHAR},
+      </if>
+      <if test="aka607 != null" >
+        #{aka607,jdbcType=DECIMAL},
+      </if>
+      <if test="aka608 != null" >
+        #{aka608,jdbcType=VARCHAR},
+      </if>
+      <if test="aka609 != null" >
+        #{aka609,jdbcType=VARCHAR},
+      </if>
+      <if test="aka070 != null" >
+        #{aka070,jdbcType=VARCHAR},
+      </if>
+      <if test="aka071 != null" >
+        #{aka071,jdbcType=DECIMAL},
+      </if>
+      <if test="aka072 != null" >
+        #{aka072,jdbcType=VARCHAR},
+      </if>
+      <if test="aka073 != null" >
+        #{aka073,jdbcType=VARCHAR},
+      </if>
+      <if test="aka074 != null" >
+        #{aka074,jdbcType=VARCHAR},
+      </if>
+      <if test="aka076 != null" >
+        #{aka076,jdbcType=VARCHAR},
+      </if>
+      <if test="aka077 != null" >
+        #{aka077,jdbcType=VARCHAR},
+      </if>
+      <if test="aka078 != null" >
+        #{aka078,jdbcType=DECIMAL},
+      </if>
+      <if test="aka079 != null" >
+        #{aka079,jdbcType=VARCHAR},
+      </if>
+      <if test="aka080 != null" >
+        #{aka080,jdbcType=DECIMAL},
+      </if>
+      <if test="aka081 != null" >
+        #{aka081,jdbcType=VARCHAR},
+      </if>
+      <if test="aka082 != null" >
+        #{aka082,jdbcType=VARCHAR},
+      </if>
+      <if test="aka083 != null" >
+        #{aka083,jdbcType=VARCHAR},
+      </if>
+      <if test="aka085 != null" >
+        #{aka085,jdbcType=VARCHAR},
+      </if>
+      <if test="aae013 != null" >
+        #{aae013,jdbcType=VARCHAR},
+      </if>
+      <if test="aka605 != null" >
+        #{aka605,jdbcType=VARCHAR},
+      </if>
+      <if test="aka610 != null" >
+        #{aka610,jdbcType=VARCHAR},
+      </if>
+      <if test="aka611 != null" >
+        #{aka611,jdbcType=DECIMAL},
+      </if>
+      <if test="aka612 != null" >
+        #{aka612,jdbcType=VARCHAR},
+      </if>
+      <if test="aka613 != null" >
+        #{aka613,jdbcType=VARCHAR},
+      </if>
+      <if test="aae011 != null" >
+        #{aae011,jdbcType=VARCHAR},
+      </if>
+      <if test="aae036 != null" >
+        #{aae036,jdbcType=DATE},
+      </if>
+      <if test="aae031 != null" >
+        #{aae031,jdbcType=DATE},
+      </if>
+      <if test="oae300 != null" >
+        #{oae300,jdbcType=DECIMAL},
+      </if>
+      <if test="oae301 != null" >
+        #{oae301,jdbcType=DECIMAL},
+      </if>
+      <if test="aka616 != null" >
+        #{aka616,jdbcType=VARCHAR},
+      </if>
+      <if test="aae100 != null" >
+        #{aae100,jdbcType=VARCHAR},
+      </if>
+      <if test="aka630 != null" >
+        #{aka630,jdbcType=VARCHAR},
+      </if>
+      <if test="cka063 != null" >
+        #{cka063,jdbcType=VARCHAR},
+      </if>
+      <if test="dka063 != null" >
+        #{dka063,jdbcType=VARCHAR},
+      </if>
+      <if test="aka900 != null" >
+        #{aka900,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.Ka02" >
+    update COMM.KA02
+    <set >
+      <if test="oae001 != null" >
+        OAE001 = #{oae001,jdbcType=DECIMAL},
+      </if>
+      <if test="aka061 != null" >
+        AKA061 = #{aka061,jdbcType=VARCHAR},
+      </if>
+      <if test="aka062 != null" >
+        AKA062 = #{aka062,jdbcType=VARCHAR},
+      </if>
+      <if test="aka063 != null" >
+        AKA063 = #{aka063,jdbcType=VARCHAR},
+      </if>
+      <if test="aka064 != null" >
+        AKA064 = #{aka064,jdbcType=VARCHAR},
+      </if>
+      <if test="aka065 != null" >
+        AKA065 = #{aka065,jdbcType=VARCHAR},
+      </if>
+      <if test="aka066 != null" >
+        AKA066 = #{aka066,jdbcType=VARCHAR},
+      </if>
+      <if test="aka067 != null" >
+        AKA067 = #{aka067,jdbcType=VARCHAR},
+      </if>
+      <if test="aka068 != null" >
+        AKA068 = #{aka068,jdbcType=DECIMAL},
+      </if>
+      <if test="aka600 != null" >
+        AKA600 = #{aka600,jdbcType=DECIMAL},
+      </if>
+      <if test="aka108 != null" >
+        AKA108 = #{aka108,jdbcType=DECIMAL},
+      </if>
+      <if test="aka069 != null" >
+        AKA069 = #{aka069,jdbcType=DECIMAL},
+      </if>
+      <if test="aka075 != null" >
+        AKA075 = #{aka075,jdbcType=DECIMAL},
+      </if>
+      <if test="aka086 != null" >
+        AKA086 = #{aka086,jdbcType=DECIMAL},
+      </if>
+      <if test="aka087 != null" >
+        AKA087 = #{aka087,jdbcType=DECIMAL},
+      </if>
+      <if test="aka088 != null" >
+        AKA088 = #{aka088,jdbcType=DECIMAL},
+      </if>
+      <if test="aka089 != null" >
+        AKA089 = #{aka089,jdbcType=DECIMAL},
+      </if>
+      <if test="aka601 != null" >
+        AKA601 = #{aka601,jdbcType=DECIMAL},
+      </if>
+      <if test="aka084 != null" >
+        AKA084 = #{aka084,jdbcType=VARCHAR},
+      </if>
+      <if test="akb020 != null" >
+        AKB020 = #{akb020,jdbcType=VARCHAR},
+      </if>
+      <if test="akc173 != null" >
+        AKC173 = #{akc173,jdbcType=VARCHAR},
+      </if>
+      <if test="aka101 != null" >
+        AKA101 = #{aka101,jdbcType=VARCHAR},
+      </if>
+      <if test="aka602 != null" >
+        AKA602 = #{aka602,jdbcType=VARCHAR},
+      </if>
+      <if test="aka603 != null" >
+        AKA603 = #{aka603,jdbcType=VARCHAR},
+      </if>
+      <if test="aka604 != null" >
+        AKA604 = #{aka604,jdbcType=VARCHAR},
+      </if>
+      <if test="aka606 != null" >
+        AKA606 = #{aka606,jdbcType=VARCHAR},
+      </if>
+      <if test="aka607 != null" >
+        AKA607 = #{aka607,jdbcType=DECIMAL},
+      </if>
+      <if test="aka608 != null" >
+        AKA608 = #{aka608,jdbcType=VARCHAR},
+      </if>
+      <if test="aka609 != null" >
+        AKA609 = #{aka609,jdbcType=VARCHAR},
+      </if>
+      <if test="aka070 != null" >
+        AKA070 = #{aka070,jdbcType=VARCHAR},
+      </if>
+      <if test="aka071 != null" >
+        AKA071 = #{aka071,jdbcType=DECIMAL},
+      </if>
+      <if test="aka072 != null" >
+        AKA072 = #{aka072,jdbcType=VARCHAR},
+      </if>
+      <if test="aka073 != null" >
+        AKA073 = #{aka073,jdbcType=VARCHAR},
+      </if>
+      <if test="aka074 != null" >
+        AKA074 = #{aka074,jdbcType=VARCHAR},
+      </if>
+      <if test="aka076 != null" >
+        AKA076 = #{aka076,jdbcType=VARCHAR},
+      </if>
+      <if test="aka077 != null" >
+        AKA077 = #{aka077,jdbcType=VARCHAR},
+      </if>
+      <if test="aka078 != null" >
+        AKA078 = #{aka078,jdbcType=DECIMAL},
+      </if>
+      <if test="aka079 != null" >
+        AKA079 = #{aka079,jdbcType=VARCHAR},
+      </if>
+      <if test="aka080 != null" >
+        AKA080 = #{aka080,jdbcType=DECIMAL},
+      </if>
+      <if test="aka081 != null" >
+        AKA081 = #{aka081,jdbcType=VARCHAR},
+      </if>
+      <if test="aka082 != null" >
+        AKA082 = #{aka082,jdbcType=VARCHAR},
+      </if>
+      <if test="aka083 != null" >
+        AKA083 = #{aka083,jdbcType=VARCHAR},
+      </if>
+      <if test="aka085 != null" >
+        AKA085 = #{aka085,jdbcType=VARCHAR},
+      </if>
+      <if test="aae013 != null" >
+        AAE013 = #{aae013,jdbcType=VARCHAR},
+      </if>
+      <if test="aka605 != null" >
+        AKA605 = #{aka605,jdbcType=VARCHAR},
+      </if>
+      <if test="aka610 != null" >
+        AKA610 = #{aka610,jdbcType=VARCHAR},
+      </if>
+      <if test="aka611 != null" >
+        AKA611 = #{aka611,jdbcType=DECIMAL},
+      </if>
+      <if test="aka612 != null" >
+        AKA612 = #{aka612,jdbcType=VARCHAR},
+      </if>
+      <if test="aka613 != null" >
+        AKA613 = #{aka613,jdbcType=VARCHAR},
+      </if>
+      <if test="aae011 != null" >
+        AAE011 = #{aae011,jdbcType=VARCHAR},
+      </if>
+      <if test="aae036 != null" >
+        AAE036 = #{aae036,jdbcType=DATE},
+      </if>
+      <if test="aae031 != null" >
+        AAE031 = #{aae031,jdbcType=DATE},
+      </if>
+      <if test="oae300 != null" >
+        OAE300 = #{oae300,jdbcType=DECIMAL},
+      </if>
+      <if test="oae301 != null" >
+        OAE301 = #{oae301,jdbcType=DECIMAL},
+      </if>
+      <if test="aka616 != null" >
+        AKA616 = #{aka616,jdbcType=VARCHAR},
+      </if>
+      <if test="aae100 != null" >
+        AAE100 = #{aae100,jdbcType=VARCHAR},
+      </if>
+      <if test="aka630 != null" >
+        AKA630 = #{aka630,jdbcType=VARCHAR},
+      </if>
+      <if test="cka063 != null" >
+        CKA063 = #{cka063,jdbcType=VARCHAR},
+      </if>
+      <if test="dka063 != null" >
+        DKA063 = #{dka063,jdbcType=VARCHAR},
+      </if>
+      <if test="aka900 != null" >
+        AKA900 = #{aka900,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where AKA060 = #{aka060,jdbcType=VARCHAR}
+      and AAE030 = #{aae030,jdbcType=DATE}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.Ka02" >
+    update COMM.KA02
+    set OAE001 = #{oae001,jdbcType=DECIMAL},
+      AKA061 = #{aka061,jdbcType=VARCHAR},
+      AKA062 = #{aka062,jdbcType=VARCHAR},
+      AKA063 = #{aka063,jdbcType=VARCHAR},
+      AKA064 = #{aka064,jdbcType=VARCHAR},
+      AKA065 = #{aka065,jdbcType=VARCHAR},
+      AKA066 = #{aka066,jdbcType=VARCHAR},
+      AKA067 = #{aka067,jdbcType=VARCHAR},
+      AKA068 = #{aka068,jdbcType=DECIMAL},
+      AKA600 = #{aka600,jdbcType=DECIMAL},
+      AKA108 = #{aka108,jdbcType=DECIMAL},
+      AKA069 = #{aka069,jdbcType=DECIMAL},
+      AKA075 = #{aka075,jdbcType=DECIMAL},
+      AKA086 = #{aka086,jdbcType=DECIMAL},
+      AKA087 = #{aka087,jdbcType=DECIMAL},
+      AKA088 = #{aka088,jdbcType=DECIMAL},
+      AKA089 = #{aka089,jdbcType=DECIMAL},
+      AKA601 = #{aka601,jdbcType=DECIMAL},
+      AKA084 = #{aka084,jdbcType=VARCHAR},
+      AKB020 = #{akb020,jdbcType=VARCHAR},
+      AKC173 = #{akc173,jdbcType=VARCHAR},
+      AKA101 = #{aka101,jdbcType=VARCHAR},
+      AKA602 = #{aka602,jdbcType=VARCHAR},
+      AKA603 = #{aka603,jdbcType=VARCHAR},
+      AKA604 = #{aka604,jdbcType=VARCHAR},
+      AKA606 = #{aka606,jdbcType=VARCHAR},
+      AKA607 = #{aka607,jdbcType=DECIMAL},
+      AKA608 = #{aka608,jdbcType=VARCHAR},
+      AKA609 = #{aka609,jdbcType=VARCHAR},
+      AKA070 = #{aka070,jdbcType=VARCHAR},
+      AKA071 = #{aka071,jdbcType=DECIMAL},
+      AKA072 = #{aka072,jdbcType=VARCHAR},
+      AKA073 = #{aka073,jdbcType=VARCHAR},
+      AKA074 = #{aka074,jdbcType=VARCHAR},
+      AKA076 = #{aka076,jdbcType=VARCHAR},
+      AKA077 = #{aka077,jdbcType=VARCHAR},
+      AKA078 = #{aka078,jdbcType=DECIMAL},
+      AKA079 = #{aka079,jdbcType=VARCHAR},
+      AKA080 = #{aka080,jdbcType=DECIMAL},
+      AKA081 = #{aka081,jdbcType=VARCHAR},
+      AKA082 = #{aka082,jdbcType=VARCHAR},
+      AKA083 = #{aka083,jdbcType=VARCHAR},
+      AKA085 = #{aka085,jdbcType=VARCHAR},
+      AAE013 = #{aae013,jdbcType=VARCHAR},
+      AKA605 = #{aka605,jdbcType=VARCHAR},
+      AKA610 = #{aka610,jdbcType=VARCHAR},
+      AKA611 = #{aka611,jdbcType=DECIMAL},
+      AKA612 = #{aka612,jdbcType=VARCHAR},
+      AKA613 = #{aka613,jdbcType=VARCHAR},
+      AAE011 = #{aae011,jdbcType=VARCHAR},
+      AAE036 = #{aae036,jdbcType=DATE},
+      AAE031 = #{aae031,jdbcType=DATE},
+      OAE300 = #{oae300,jdbcType=DECIMAL},
+      OAE301 = #{oae301,jdbcType=DECIMAL},
+      AKA616 = #{aka616,jdbcType=VARCHAR},
+      AAE100 = #{aae100,jdbcType=VARCHAR},
+      AKA630 = #{aka630,jdbcType=VARCHAR},
+      CKA063 = #{cka063,jdbcType=VARCHAR},
+      DKA063 = #{dka063,jdbcType=VARCHAR},
+      AKA900 = #{aka900,jdbcType=VARCHAR}
+    where AKA060 = #{aka060,jdbcType=VARCHAR}
+      and AAE030 = #{aae030,jdbcType=DATE}
+  </update>
+</mapper>

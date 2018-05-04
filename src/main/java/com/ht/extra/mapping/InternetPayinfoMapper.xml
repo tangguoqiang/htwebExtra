@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.InternetPayinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.inpbill.InternetPayinfo" >
+    <id column="TRADE_NO" property="tradeNo" jdbcType="VARCHAR" />
+    <result column="RECPT_NO" property="recptNo" jdbcType="VARCHAR" />
+    <result column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <result column="CHANGE_DATE_TIME" property="changeDateTime" jdbcType="DATE" />
+    <result column="INOUT_FLAG" property="inoutFlag" jdbcType="VARCHAR" />
+    <result column="PAY_METHOD" property="payMethod" jdbcType="VARCHAR" />
+    <result column="MCH_ID" property="mchId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    TRADE_NO, RECPT_NO, PATIENT_ID, CHANGE_DATE_TIME, INOUT_FLAG, PAY_METHOD, MCH_ID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from INTERNET_PAYINFO
+    where TRADE_NO = #{tradeNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from INTERNET_PAYINFO
+    where TRADE_NO = #{tradeNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.inpbill.InternetPayinfo" >
+    insert into INTERNET_PAYINFO (TRADE_NO, RECPT_NO, PATIENT_ID,
+      CHANGE_DATE_TIME, INOUT_FLAG, PAY_METHOD, 
+      MCH_ID)
+    values (#{tradeNo,jdbcType=VARCHAR}, #{recptNo,jdbcType=VARCHAR}, #{patientId,jdbcType=VARCHAR}, 
+      #{changeDateTime,jdbcType=DATE}, #{inoutFlag,jdbcType=VARCHAR}, #{payMethod,jdbcType=VARCHAR}, 
+      #{mchId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.inpbill.InternetPayinfo" >
+    insert into INTERNET_PAYINFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tradeNo != null" >
+        TRADE_NO,
+      </if>
+      <if test="recptNo != null" >
+        RECPT_NO,
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="changeDateTime != null" >
+        CHANGE_DATE_TIME,
+      </if>
+      <if test="inoutFlag != null" >
+        INOUT_FLAG,
+      </if>
+      <if test="payMethod != null" >
+        PAY_METHOD,
+      </if>
+      <if test="mchId != null" >
+        MCH_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tradeNo != null" >
+        #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="recptNo != null" >
+        #{recptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="changeDateTime != null" >
+        #{changeDateTime,jdbcType=DATE},
+      </if>
+      <if test="inoutFlag != null" >
+        #{inoutFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="payMethod != null" >
+        #{payMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="mchId != null" >
+        #{mchId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.inpbill.InternetPayinfo" >
+    update INTERNET_PAYINFO
+    <set >
+      <if test="recptNo != null" >
+        RECPT_NO = #{recptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="changeDateTime != null" >
+        CHANGE_DATE_TIME = #{changeDateTime,jdbcType=DATE},
+      </if>
+      <if test="inoutFlag != null" >
+        INOUT_FLAG = #{inoutFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="payMethod != null" >
+        PAY_METHOD = #{payMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="mchId != null" >
+        MCH_ID = #{mchId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where TRADE_NO = #{tradeNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.inpbill.InternetPayinfo" >
+    update INTERNET_PAYINFO
+    set RECPT_NO = #{recptNo,jdbcType=VARCHAR},
+      PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      CHANGE_DATE_TIME = #{changeDateTime,jdbcType=DATE},
+      INOUT_FLAG = #{inoutFlag,jdbcType=VARCHAR},
+      PAY_METHOD = #{payMethod,jdbcType=VARCHAR},
+      MCH_ID = #{mchId,jdbcType=VARCHAR}
+    where TRADE_NO = #{tradeNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

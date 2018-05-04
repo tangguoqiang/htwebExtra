@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.PhamBasicTempMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.PhamBasicTemp" >
+    <id column="PHAM_STD_CODE" property="phamStdCode" jdbcType="VARCHAR" />
+    <result column="PHAM_NAME" property="phamName" jdbcType="VARCHAR" />
+    <result column="PHAM_CODE" property="phamCode" jdbcType="VARCHAR" />
+    <result column="PHAM_SPEC" property="phamSpec" jdbcType="VARCHAR" />
+    <result column="PACKAGE_SPEC" property="packageSpec" jdbcType="VARCHAR" />
+    <result column="DRUG_SPEC" property="drugSpec" jdbcType="VARCHAR" />
+    <result column="AMOUNT_PER_PACKAGE" property="amountPerPackage" jdbcType="DECIMAL" />
+    <result column="MIN_UNIT" property="minUnit" jdbcType="VARCHAR" />
+    <result column="FIRM_ID" property="firmId" jdbcType="VARCHAR" />
+    <result column="PHAM_UNIT" property="phamUnit" jdbcType="VARCHAR" />
+    <result column="PHAM_FORM" property="phamForm" jdbcType="VARCHAR" />
+    <result column="TRADE_PRICE" property="tradePrice" jdbcType="DECIMAL" />
+    <result column="RETAIL_PRICE" property="retailPrice" jdbcType="DECIMAL" />
+    <result column="HIGH_LIMIT" property="highLimit" jdbcType="DECIMAL" />
+    <result column="LOW_LIMIT" property="lowLimit" jdbcType="DECIMAL" />
+    <result column="TOXICOLOGY_PROPERTY" property="toxicologyProperty" jdbcType="VARCHAR" />
+    <result column="PRICE_PROPERTY" property="priceProperty" jdbcType="VARCHAR" />
+    <result column="DOSE_PER_UNIT" property="dosePerUnit" jdbcType="DECIMAL" />
+    <result column="DOSE_UNIT" property="doseUnit" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PHAM_STD_CODE, PHAM_NAME, PHAM_CODE, PHAM_SPEC, PACKAGE_SPEC, DRUG_SPEC, AMOUNT_PER_PACKAGE, 
+    MIN_UNIT, FIRM_ID, PHAM_UNIT, PHAM_FORM, TRADE_PRICE, RETAIL_PRICE, HIGH_LIMIT, LOW_LIMIT, 
+    TOXICOLOGY_PROPERTY, PRICE_PROPERTY, DOSE_PER_UNIT, DOSE_UNIT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.PHAM_BASIC_TEMP
+    where PHAM_STD_CODE = #{phamStdCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.PHAM_BASIC_TEMP
+    where PHAM_STD_CODE = #{phamStdCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.PhamBasicTemp" >
+    insert into COMM.PHAM_BASIC_TEMP (PHAM_STD_CODE, PHAM_NAME, PHAM_CODE, 
+      PHAM_SPEC, PACKAGE_SPEC, DRUG_SPEC, 
+      AMOUNT_PER_PACKAGE, MIN_UNIT, FIRM_ID, 
+      PHAM_UNIT, PHAM_FORM, TRADE_PRICE, 
+      RETAIL_PRICE, HIGH_LIMIT, LOW_LIMIT, 
+      TOXICOLOGY_PROPERTY, PRICE_PROPERTY, DOSE_PER_UNIT, 
+      DOSE_UNIT)
+    values (#{phamStdCode,jdbcType=VARCHAR}, #{phamName,jdbcType=VARCHAR}, #{phamCode,jdbcType=VARCHAR}, 
+      #{phamSpec,jdbcType=VARCHAR}, #{packageSpec,jdbcType=VARCHAR}, #{drugSpec,jdbcType=VARCHAR}, 
+      #{amountPerPackage,jdbcType=DECIMAL}, #{minUnit,jdbcType=VARCHAR}, #{firmId,jdbcType=VARCHAR}, 
+      #{phamUnit,jdbcType=VARCHAR}, #{phamForm,jdbcType=VARCHAR}, #{tradePrice,jdbcType=DECIMAL}, 
+      #{retailPrice,jdbcType=DECIMAL}, #{highLimit,jdbcType=DECIMAL}, #{lowLimit,jdbcType=DECIMAL}, 
+      #{toxicologyProperty,jdbcType=VARCHAR}, #{priceProperty,jdbcType=VARCHAR}, #{dosePerUnit,jdbcType=DECIMAL}, 
+      #{doseUnit,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.PhamBasicTemp" >
+    insert into COMM.PHAM_BASIC_TEMP
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="phamStdCode != null" >
+        PHAM_STD_CODE,
+      </if>
+      <if test="phamName != null" >
+        PHAM_NAME,
+      </if>
+      <if test="phamCode != null" >
+        PHAM_CODE,
+      </if>
+      <if test="phamSpec != null" >
+        PHAM_SPEC,
+      </if>
+      <if test="packageSpec != null" >
+        PACKAGE_SPEC,
+      </if>
+      <if test="drugSpec != null" >
+        DRUG_SPEC,
+      </if>
+      <if test="amountPerPackage != null" >
+        AMOUNT_PER_PACKAGE,
+      </if>
+      <if test="minUnit != null" >
+        MIN_UNIT,
+      </if>
+      <if test="firmId != null" >
+        FIRM_ID,
+      </if>
+      <if test="phamUnit != null" >
+        PHAM_UNIT,
+      </if>
+      <if test="phamForm != null" >
+        PHAM_FORM,
+      </if>
+      <if test="tradePrice != null" >
+        TRADE_PRICE,
+      </if>
+      <if test="retailPrice != null" >
+        RETAIL_PRICE,
+      </if>
+      <if test="highLimit != null" >
+        HIGH_LIMIT,
+      </if>
+      <if test="lowLimit != null" >
+        LOW_LIMIT,
+      </if>
+      <if test="toxicologyProperty != null" >
+        TOXICOLOGY_PROPERTY,
+      </if>
+      <if test="priceProperty != null" >
+        PRICE_PROPERTY,
+      </if>
+      <if test="dosePerUnit != null" >
+        DOSE_PER_UNIT,
+      </if>
+      <if test="doseUnit != null" >
+        DOSE_UNIT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="phamStdCode != null" >
+        #{phamStdCode,jdbcType=VARCHAR},
+      </if>
+      <if test="phamName != null" >
+        #{phamName,jdbcType=VARCHAR},
+      </if>
+      <if test="phamCode != null" >
+        #{phamCode,jdbcType=VARCHAR},
+      </if>
+      <if test="phamSpec != null" >
+        #{phamSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="packageSpec != null" >
+        #{packageSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="drugSpec != null" >
+        #{drugSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="amountPerPackage != null" >
+        #{amountPerPackage,jdbcType=DECIMAL},
+      </if>
+      <if test="minUnit != null" >
+        #{minUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="firmId != null" >
+        #{firmId,jdbcType=VARCHAR},
+      </if>
+      <if test="phamUnit != null" >
+        #{phamUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="phamForm != null" >
+        #{phamForm,jdbcType=VARCHAR},
+      </if>
+      <if test="tradePrice != null" >
+        #{tradePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="retailPrice != null" >
+        #{retailPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="highLimit != null" >
+        #{highLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="lowLimit != null" >
+        #{lowLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="toxicologyProperty != null" >
+        #{toxicologyProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="priceProperty != null" >
+        #{priceProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="dosePerUnit != null" >
+        #{dosePerUnit,jdbcType=DECIMAL},
+      </if>
+      <if test="doseUnit != null" >
+        #{doseUnit,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.PhamBasicTemp" >
+    update COMM.PHAM_BASIC_TEMP
+    <set >
+      <if test="phamName != null" >
+        PHAM_NAME = #{phamName,jdbcType=VARCHAR},
+      </if>
+      <if test="phamCode != null" >
+        PHAM_CODE = #{phamCode,jdbcType=VARCHAR},
+      </if>
+      <if test="phamSpec != null" >
+        PHAM_SPEC = #{phamSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="packageSpec != null" >
+        PACKAGE_SPEC = #{packageSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="drugSpec != null" >
+        DRUG_SPEC = #{drugSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="amountPerPackage != null" >
+        AMOUNT_PER_PACKAGE = #{amountPerPackage,jdbcType=DECIMAL},
+      </if>
+      <if test="minUnit != null" >
+        MIN_UNIT = #{minUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="firmId != null" >
+        FIRM_ID = #{firmId,jdbcType=VARCHAR},
+      </if>
+      <if test="phamUnit != null" >
+        PHAM_UNIT = #{phamUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="phamForm != null" >
+        PHAM_FORM = #{phamForm,jdbcType=VARCHAR},
+      </if>
+      <if test="tradePrice != null" >
+        TRADE_PRICE = #{tradePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="retailPrice != null" >
+        RETAIL_PRICE = #{retailPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="highLimit != null" >
+        HIGH_LIMIT = #{highLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="lowLimit != null" >
+        LOW_LIMIT = #{lowLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="toxicologyProperty != null" >
+        TOXICOLOGY_PROPERTY = #{toxicologyProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="priceProperty != null" >
+        PRICE_PROPERTY = #{priceProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="dosePerUnit != null" >
+        DOSE_PER_UNIT = #{dosePerUnit,jdbcType=DECIMAL},
+      </if>
+      <if test="doseUnit != null" >
+        DOSE_UNIT = #{doseUnit,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PHAM_STD_CODE = #{phamStdCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.PhamBasicTemp" >
+    update COMM.PHAM_BASIC_TEMP
+    set PHAM_NAME = #{phamName,jdbcType=VARCHAR},
+      PHAM_CODE = #{phamCode,jdbcType=VARCHAR},
+      PHAM_SPEC = #{phamSpec,jdbcType=VARCHAR},
+      PACKAGE_SPEC = #{packageSpec,jdbcType=VARCHAR},
+      DRUG_SPEC = #{drugSpec,jdbcType=VARCHAR},
+      AMOUNT_PER_PACKAGE = #{amountPerPackage,jdbcType=DECIMAL},
+      MIN_UNIT = #{minUnit,jdbcType=VARCHAR},
+      FIRM_ID = #{firmId,jdbcType=VARCHAR},
+      PHAM_UNIT = #{phamUnit,jdbcType=VARCHAR},
+      PHAM_FORM = #{phamForm,jdbcType=VARCHAR},
+      TRADE_PRICE = #{tradePrice,jdbcType=DECIMAL},
+      RETAIL_PRICE = #{retailPrice,jdbcType=DECIMAL},
+      HIGH_LIMIT = #{highLimit,jdbcType=DECIMAL},
+      LOW_LIMIT = #{lowLimit,jdbcType=DECIMAL},
+      TOXICOLOGY_PROPERTY = #{toxicologyProperty,jdbcType=VARCHAR},
+      PRICE_PROPERTY = #{priceProperty,jdbcType=VARCHAR},
+      DOSE_PER_UNIT = #{dosePerUnit,jdbcType=DECIMAL},
+      DOSE_UNIT = #{doseUnit,jdbcType=VARCHAR}
+    where PHAM_STD_CODE = #{phamStdCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

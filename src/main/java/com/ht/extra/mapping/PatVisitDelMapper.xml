@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.PatVisitDelMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.medrec.PatVisitDel" >
+    <id column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <id column="VISIT_ID" property="visitId" jdbcType="DECIMAL" />
+    <id column="DEL_DATE_TIME" property="delDateTime" jdbcType="DATE" />
+    <result column="DEL_USER" property="delUser" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PATIENT_ID, VISIT_ID, DEL_DATE_TIME, DEL_USER
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.medrec.PatVisitDelKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from MEDREC.PAT_VISIT_DEL
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and DEL_DATE_TIME = #{delDateTime,jdbcType=DATE}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.medrec.PatVisitDelKey" >
+    delete from MEDREC.PAT_VISIT_DEL
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and DEL_DATE_TIME = #{delDateTime,jdbcType=DATE}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.medrec.PatVisitDel" >
+    insert into MEDREC.PAT_VISIT_DEL (PATIENT_ID, VISIT_ID, DEL_DATE_TIME, 
+      DEL_USER)
+    values (#{patientId,jdbcType=VARCHAR}, #{visitId,jdbcType=DECIMAL}, #{delDateTime,jdbcType=DATE}, 
+      #{delUser,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.medrec.PatVisitDel" >
+    insert into MEDREC.PAT_VISIT_DEL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="visitId != null" >
+        VISIT_ID,
+      </if>
+      <if test="delDateTime != null" >
+        DEL_DATE_TIME,
+      </if>
+      <if test="delUser != null" >
+        DEL_USER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitId != null" >
+        #{visitId,jdbcType=DECIMAL},
+      </if>
+      <if test="delDateTime != null" >
+        #{delDateTime,jdbcType=DATE},
+      </if>
+      <if test="delUser != null" >
+        #{delUser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.medrec.PatVisitDel" >
+    update MEDREC.PAT_VISIT_DEL
+    <set >
+      <if test="delUser != null" >
+        DEL_USER = #{delUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and DEL_DATE_TIME = #{delDateTime,jdbcType=DATE}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.medrec.PatVisitDel" >
+    update MEDREC.PAT_VISIT_DEL
+    set DEL_USER = #{delUser,jdbcType=VARCHAR}
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and DEL_DATE_TIME = #{delDateTime,jdbcType=DATE}
+  </update>
+</mapper>

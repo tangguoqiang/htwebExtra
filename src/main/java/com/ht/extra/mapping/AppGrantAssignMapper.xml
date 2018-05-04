@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.AppGrantAssignMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.AppGrantAssign" >
+    <id column="APPLICATION" property="application" jdbcType="VARCHAR" />
+    <id column="GRANT_CODE" property="grantCode" jdbcType="VARCHAR" />
+    <result column="GRANT_NAME" property="grantName" jdbcType="VARCHAR" />
+    <result column="GRANT_DESC" property="grantDesc" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    APPLICATION, GRANT_CODE, GRANT_NAME, GRANT_DESC
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.AppGrantAssignKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.APP_GRANT_ASSIGN
+    where APPLICATION = #{application,jdbcType=VARCHAR}
+      and GRANT_CODE = #{grantCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.AppGrantAssignKey" >
+    delete from COMM.APP_GRANT_ASSIGN
+    where APPLICATION = #{application,jdbcType=VARCHAR}
+      and GRANT_CODE = #{grantCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.AppGrantAssign" >
+    insert into COMM.APP_GRANT_ASSIGN (APPLICATION, GRANT_CODE, GRANT_NAME, 
+      GRANT_DESC)
+    values (#{application,jdbcType=VARCHAR}, #{grantCode,jdbcType=VARCHAR}, #{grantName,jdbcType=VARCHAR}, 
+      #{grantDesc,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.AppGrantAssign" >
+    insert into COMM.APP_GRANT_ASSIGN
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="application != null" >
+        APPLICATION,
+      </if>
+      <if test="grantCode != null" >
+        GRANT_CODE,
+      </if>
+      <if test="grantName != null" >
+        GRANT_NAME,
+      </if>
+      <if test="grantDesc != null" >
+        GRANT_DESC,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="application != null" >
+        #{application,jdbcType=VARCHAR},
+      </if>
+      <if test="grantCode != null" >
+        #{grantCode,jdbcType=VARCHAR},
+      </if>
+      <if test="grantName != null" >
+        #{grantName,jdbcType=VARCHAR},
+      </if>
+      <if test="grantDesc != null" >
+        #{grantDesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.AppGrantAssign" >
+    update COMM.APP_GRANT_ASSIGN
+    <set >
+      <if test="grantName != null" >
+        GRANT_NAME = #{grantName,jdbcType=VARCHAR},
+      </if>
+      <if test="grantDesc != null" >
+        GRANT_DESC = #{grantDesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where APPLICATION = #{application,jdbcType=VARCHAR}
+      and GRANT_CODE = #{grantCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.AppGrantAssign" >
+    update COMM.APP_GRANT_ASSIGN
+    set GRANT_NAME = #{grantName,jdbcType=VARCHAR},
+      GRANT_DESC = #{grantDesc,jdbcType=VARCHAR}
+    where APPLICATION = #{application,jdbcType=VARCHAR}
+      and GRANT_CODE = #{grantCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

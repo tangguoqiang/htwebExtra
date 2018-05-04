@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.InsuVsPriceMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.insurance.InsuVsPrice" >
+    <id column="ITEM_CLASS" property="itemClass" jdbcType="VARCHAR" />
+    <id column="ITEM_CODE" property="itemCode" jdbcType="VARCHAR" />
+    <id column="ITEM_SPEC" property="itemSpec" jdbcType="VARCHAR" />
+    <id column="UNITS" property="units" jdbcType="VARCHAR" />
+    <result column="INSU_CODE" property="insuCode" jdbcType="VARCHAR" />
+    <result column="INSU_NAME" property="insuName" jdbcType="VARCHAR" />
+    <result column="INSU_NAME_ALIAS" property="insuNameAlias" jdbcType="VARCHAR" />
+    <result column="ITEM_NAME" property="itemName" jdbcType="VARCHAR" />
+    <result column="PRICE" property="price" jdbcType="DECIMAL" />
+    <result column="INSU_PHAM_PRODUCING_AREA" property="insuPhamProducingArea" jdbcType="VARCHAR" />
+    <result column="INSU_PHAM_PRODUCING_AREA_SIGN" property="insuPhamProducingAreaSign" jdbcType="VARCHAR" />
+    <result column="INSU_ITEMS_CODE" property="insuItemsCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ITEM_CLASS, ITEM_CODE, ITEM_SPEC, UNITS, INSU_CODE, INSU_NAME, INSU_NAME_ALIAS, ITEM_NAME, 
+    PRICE, INSU_PHAM_PRODUCING_AREA, INSU_PHAM_PRODUCING_AREA_SIGN, INSU_ITEMS_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.insurance.InsuVsPriceKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from INSURANCE.INSU_VS_PRICE
+    where ITEM_CLASS = #{itemClass,jdbcType=VARCHAR}
+      and ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+      and ITEM_SPEC = #{itemSpec,jdbcType=VARCHAR}
+      and UNITS = #{units,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.insurance.InsuVsPriceKey" >
+    delete from INSURANCE.INSU_VS_PRICE
+    where ITEM_CLASS = #{itemClass,jdbcType=VARCHAR}
+      and ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+      and ITEM_SPEC = #{itemSpec,jdbcType=VARCHAR}
+      and UNITS = #{units,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.insurance.InsuVsPrice" >
+    insert into INSURANCE.INSU_VS_PRICE (ITEM_CLASS, ITEM_CODE, ITEM_SPEC, 
+      UNITS, INSU_CODE, INSU_NAME, 
+      INSU_NAME_ALIAS, ITEM_NAME, PRICE, 
+      INSU_PHAM_PRODUCING_AREA, INSU_PHAM_PRODUCING_AREA_SIGN, 
+      INSU_ITEMS_CODE)
+    values (#{itemClass,jdbcType=VARCHAR}, #{itemCode,jdbcType=VARCHAR}, #{itemSpec,jdbcType=VARCHAR}, 
+      #{units,jdbcType=VARCHAR}, #{insuCode,jdbcType=VARCHAR}, #{insuName,jdbcType=VARCHAR}, 
+      #{insuNameAlias,jdbcType=VARCHAR}, #{itemName,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, 
+      #{insuPhamProducingArea,jdbcType=VARCHAR}, #{insuPhamProducingAreaSign,jdbcType=VARCHAR}, 
+      #{insuItemsCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.insurance.InsuVsPrice" >
+    insert into INSURANCE.INSU_VS_PRICE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="itemClass != null" >
+        ITEM_CLASS,
+      </if>
+      <if test="itemCode != null" >
+        ITEM_CODE,
+      </if>
+      <if test="itemSpec != null" >
+        ITEM_SPEC,
+      </if>
+      <if test="units != null" >
+        UNITS,
+      </if>
+      <if test="insuCode != null" >
+        INSU_CODE,
+      </if>
+      <if test="insuName != null" >
+        INSU_NAME,
+      </if>
+      <if test="insuNameAlias != null" >
+        INSU_NAME_ALIAS,
+      </if>
+      <if test="itemName != null" >
+        ITEM_NAME,
+      </if>
+      <if test="price != null" >
+        PRICE,
+      </if>
+      <if test="insuPhamProducingArea != null" >
+        INSU_PHAM_PRODUCING_AREA,
+      </if>
+      <if test="insuPhamProducingAreaSign != null" >
+        INSU_PHAM_PRODUCING_AREA_SIGN,
+      </if>
+      <if test="insuItemsCode != null" >
+        INSU_ITEMS_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="itemClass != null" >
+        #{itemClass,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode != null" >
+        #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemSpec != null" >
+        #{itemSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="units != null" >
+        #{units,jdbcType=VARCHAR},
+      </if>
+      <if test="insuCode != null" >
+        #{insuCode,jdbcType=VARCHAR},
+      </if>
+      <if test="insuName != null" >
+        #{insuName,jdbcType=VARCHAR},
+      </if>
+      <if test="insuNameAlias != null" >
+        #{insuNameAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="insuPhamProducingArea != null" >
+        #{insuPhamProducingArea,jdbcType=VARCHAR},
+      </if>
+      <if test="insuPhamProducingAreaSign != null" >
+        #{insuPhamProducingAreaSign,jdbcType=VARCHAR},
+      </if>
+      <if test="insuItemsCode != null" >
+        #{insuItemsCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.insurance.InsuVsPrice" >
+    update INSURANCE.INSU_VS_PRICE
+    <set >
+      <if test="insuCode != null" >
+        INSU_CODE = #{insuCode,jdbcType=VARCHAR},
+      </if>
+      <if test="insuName != null" >
+        INSU_NAME = #{insuName,jdbcType=VARCHAR},
+      </if>
+      <if test="insuNameAlias != null" >
+        INSU_NAME_ALIAS = #{insuNameAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        ITEM_NAME = #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        PRICE = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="insuPhamProducingArea != null" >
+        INSU_PHAM_PRODUCING_AREA = #{insuPhamProducingArea,jdbcType=VARCHAR},
+      </if>
+      <if test="insuPhamProducingAreaSign != null" >
+        INSU_PHAM_PRODUCING_AREA_SIGN = #{insuPhamProducingAreaSign,jdbcType=VARCHAR},
+      </if>
+      <if test="insuItemsCode != null" >
+        INSU_ITEMS_CODE = #{insuItemsCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ITEM_CLASS = #{itemClass,jdbcType=VARCHAR}
+      and ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+      and ITEM_SPEC = #{itemSpec,jdbcType=VARCHAR}
+      and UNITS = #{units,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.insurance.InsuVsPrice" >
+    update INSURANCE.INSU_VS_PRICE
+    set INSU_CODE = #{insuCode,jdbcType=VARCHAR},
+      INSU_NAME = #{insuName,jdbcType=VARCHAR},
+      INSU_NAME_ALIAS = #{insuNameAlias,jdbcType=VARCHAR},
+      ITEM_NAME = #{itemName,jdbcType=VARCHAR},
+      PRICE = #{price,jdbcType=DECIMAL},
+      INSU_PHAM_PRODUCING_AREA = #{insuPhamProducingArea,jdbcType=VARCHAR},
+      INSU_PHAM_PRODUCING_AREA_SIGN = #{insuPhamProducingAreaSign,jdbcType=VARCHAR},
+      INSU_ITEMS_CODE = #{insuItemsCode,jdbcType=VARCHAR}
+    where ITEM_CLASS = #{itemClass,jdbcType=VARCHAR}
+      and ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+      and ITEM_SPEC = #{itemSpec,jdbcType=VARCHAR}
+      and UNITS = #{units,jdbcType=VARCHAR}
+  </update>
+</mapper>

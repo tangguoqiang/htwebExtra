@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.AppGrantsMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.AppGrants" >
+    <id column="APPLICATION" property="application" jdbcType="VARCHAR" />
+    <id column="USER_ID" property="userId" jdbcType="VARCHAR" />
+    <id column="CAPABILITY" property="capability" jdbcType="VARCHAR" />
+    <result column="CAPABILITY_DETAIL" property="capabilityDetail" jdbcType="VARCHAR" />
+    <result column="MEMO1" property="memo1" jdbcType="VARCHAR" />
+    <result column="MEMO2" property="memo2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    APPLICATION, USER_ID, CAPABILITY, CAPABILITY_DETAIL, MEMO1, MEMO2
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.AppGrantsKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.APP_GRANTS
+    where APPLICATION = #{application,jdbcType=VARCHAR}
+      and USER_ID = #{userId,jdbcType=VARCHAR}
+      and CAPABILITY = #{capability,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.AppGrantsKey" >
+    delete from COMM.APP_GRANTS
+    where APPLICATION = #{application,jdbcType=VARCHAR}
+      and USER_ID = #{userId,jdbcType=VARCHAR}
+      and CAPABILITY = #{capability,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.AppGrants" >
+    insert into COMM.APP_GRANTS (APPLICATION, USER_ID, CAPABILITY, 
+      CAPABILITY_DETAIL, MEMO1, MEMO2
+      )
+    values (#{application,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{capability,jdbcType=VARCHAR}, 
+      #{capabilityDetail,jdbcType=VARCHAR}, #{memo1,jdbcType=VARCHAR}, #{memo2,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.AppGrants" >
+    insert into COMM.APP_GRANTS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="application != null" >
+        APPLICATION,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="capability != null" >
+        CAPABILITY,
+      </if>
+      <if test="capabilityDetail != null" >
+        CAPABILITY_DETAIL,
+      </if>
+      <if test="memo1 != null" >
+        MEMO1,
+      </if>
+      <if test="memo2 != null" >
+        MEMO2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="application != null" >
+        #{application,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="capability != null" >
+        #{capability,jdbcType=VARCHAR},
+      </if>
+      <if test="capabilityDetail != null" >
+        #{capabilityDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="memo1 != null" >
+        #{memo1,jdbcType=VARCHAR},
+      </if>
+      <if test="memo2 != null" >
+        #{memo2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.AppGrants" >
+    update COMM.APP_GRANTS
+    <set >
+      <if test="capabilityDetail != null" >
+        CAPABILITY_DETAIL = #{capabilityDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="memo1 != null" >
+        MEMO1 = #{memo1,jdbcType=VARCHAR},
+      </if>
+      <if test="memo2 != null" >
+        MEMO2 = #{memo2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where APPLICATION = #{application,jdbcType=VARCHAR}
+      and USER_ID = #{userId,jdbcType=VARCHAR}
+      and CAPABILITY = #{capability,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.AppGrants" >
+    update COMM.APP_GRANTS
+    set CAPABILITY_DETAIL = #{capabilityDetail,jdbcType=VARCHAR},
+      MEMO1 = #{memo1,jdbcType=VARCHAR},
+      MEMO2 = #{memo2,jdbcType=VARCHAR}
+    where APPLICATION = #{application,jdbcType=VARCHAR}
+      and USER_ID = #{userId,jdbcType=VARCHAR}
+      and CAPABILITY = #{capability,jdbcType=VARCHAR}
+  </update>
+</mapper>

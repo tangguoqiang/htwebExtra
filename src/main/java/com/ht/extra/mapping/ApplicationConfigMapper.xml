@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.ApplicationConfigMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.ApplicationConfig" >
+    <id column="APPLICATION" property="application" jdbcType="VARCHAR" />
+    <id column="ITEM_NAME" property="itemName" jdbcType="VARCHAR" />
+    <id column="DEPT" property="dept" jdbcType="VARCHAR" />
+    <result column="VALUE" property="value" jdbcType="VARCHAR" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    APPLICATION, ITEM_NAME, DEPT, VALUE, MEMO
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.ApplicationConfigKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.APPLICATION_CONFIG
+    where APPLICATION = #{application,jdbcType=VARCHAR}
+      and ITEM_NAME = #{itemName,jdbcType=VARCHAR}
+      and DEPT = #{dept,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.ApplicationConfigKey" >
+    delete from COMM.APPLICATION_CONFIG
+    where APPLICATION = #{application,jdbcType=VARCHAR}
+      and ITEM_NAME = #{itemName,jdbcType=VARCHAR}
+      and DEPT = #{dept,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.ApplicationConfig" >
+    insert into COMM.APPLICATION_CONFIG (APPLICATION, ITEM_NAME, DEPT, 
+      VALUE, MEMO)
+    values (#{application,jdbcType=VARCHAR}, #{itemName,jdbcType=VARCHAR}, #{dept,jdbcType=VARCHAR}, 
+      #{value,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.ApplicationConfig" >
+    insert into COMM.APPLICATION_CONFIG
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="application != null" >
+        APPLICATION,
+      </if>
+      <if test="itemName != null" >
+        ITEM_NAME,
+      </if>
+      <if test="dept != null" >
+        DEPT,
+      </if>
+      <if test="value != null" >
+        VALUE,
+      </if>
+      <if test="memo != null" >
+        MEMO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="application != null" >
+        #{application,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="dept != null" >
+        #{dept,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null" >
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.ApplicationConfig" >
+    update COMM.APPLICATION_CONFIG
+    <set >
+      <if test="value != null" >
+        VALUE = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        MEMO = #{memo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where APPLICATION = #{application,jdbcType=VARCHAR}
+      and ITEM_NAME = #{itemName,jdbcType=VARCHAR}
+      and DEPT = #{dept,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.ApplicationConfig" >
+    update COMM.APPLICATION_CONFIG
+    set VALUE = #{value,jdbcType=VARCHAR},
+      MEMO = #{memo,jdbcType=VARCHAR}
+    where APPLICATION = #{application,jdbcType=VARCHAR}
+      and ITEM_NAME = #{itemName,jdbcType=VARCHAR}
+      and DEPT = #{dept,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.InputTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.InputType" >
+    <id column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+    <result column="INPUT_NAME" property="inputName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    INPUT_CODE, INPUT_NAME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.INPUT_TYPE
+    where INPUT_CODE = #{inputCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.INPUT_TYPE
+    where INPUT_CODE = #{inputCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.InputType" >
+    insert into COMM.INPUT_TYPE (INPUT_CODE, INPUT_NAME)
+    values (#{inputCode,jdbcType=VARCHAR}, #{inputName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.InputType" >
+    insert into COMM.INPUT_TYPE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+      <if test="inputName != null" >
+        INPUT_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="inputName != null" >
+        #{inputName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.InputType" >
+    update COMM.INPUT_TYPE
+    <set >
+      <if test="inputName != null" >
+        INPUT_NAME = #{inputName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where INPUT_CODE = #{inputCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.InputType" >
+    update COMM.INPUT_TYPE
+    set INPUT_NAME = #{inputName,jdbcType=VARCHAR}
+    where INPUT_CODE = #{inputCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

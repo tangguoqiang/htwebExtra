@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.MrAddDaysMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.medrec.MrAddDays" >
+    <id column="DATE_TYPE" property="dateType" jdbcType="VARCHAR" />
+    <id column="INPUT_TIME" property="inputTime" jdbcType="DATE" />
+    <result column="DATE_START" property="dateStart" jdbcType="DATE" />
+    <result column="DATE_END" property="dateEnd" jdbcType="DATE" />
+    <result column="DATE_YEAR" property="dateYear" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    DATE_TYPE, INPUT_TIME, DATE_START, DATE_END, DATE_YEAR, TYPE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.medrec.MrAddDaysKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from MEDREC.MR_ADD_DAYS
+    where DATE_TYPE = #{dateType,jdbcType=VARCHAR}
+      and INPUT_TIME = #{inputTime,jdbcType=DATE}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.medrec.MrAddDaysKey" >
+    delete from MEDREC.MR_ADD_DAYS
+    where DATE_TYPE = #{dateType,jdbcType=VARCHAR}
+      and INPUT_TIME = #{inputTime,jdbcType=DATE}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.medrec.MrAddDays" >
+    insert into MEDREC.MR_ADD_DAYS (DATE_TYPE, INPUT_TIME, DATE_START, 
+      DATE_END, DATE_YEAR, TYPE
+      )
+    values (#{dateType,jdbcType=VARCHAR}, #{inputTime,jdbcType=DATE}, #{dateStart,jdbcType=DATE}, 
+      #{dateEnd,jdbcType=DATE}, #{dateYear,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.medrec.MrAddDays" >
+    insert into MEDREC.MR_ADD_DAYS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dateType != null" >
+        DATE_TYPE,
+      </if>
+      <if test="inputTime != null" >
+        INPUT_TIME,
+      </if>
+      <if test="dateStart != null" >
+        DATE_START,
+      </if>
+      <if test="dateEnd != null" >
+        DATE_END,
+      </if>
+      <if test="dateYear != null" >
+        DATE_YEAR,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dateType != null" >
+        #{dateType,jdbcType=VARCHAR},
+      </if>
+      <if test="inputTime != null" >
+        #{inputTime,jdbcType=DATE},
+      </if>
+      <if test="dateStart != null" >
+        #{dateStart,jdbcType=DATE},
+      </if>
+      <if test="dateEnd != null" >
+        #{dateEnd,jdbcType=DATE},
+      </if>
+      <if test="dateYear != null" >
+        #{dateYear,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.medrec.MrAddDays" >
+    update MEDREC.MR_ADD_DAYS
+    <set >
+      <if test="dateStart != null" >
+        DATE_START = #{dateStart,jdbcType=DATE},
+      </if>
+      <if test="dateEnd != null" >
+        DATE_END = #{dateEnd,jdbcType=DATE},
+      </if>
+      <if test="dateYear != null" >
+        DATE_YEAR = #{dateYear,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DATE_TYPE = #{dateType,jdbcType=VARCHAR}
+      and INPUT_TIME = #{inputTime,jdbcType=DATE}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.medrec.MrAddDays" >
+    update MEDREC.MR_ADD_DAYS
+    set DATE_START = #{dateStart,jdbcType=DATE},
+      DATE_END = #{dateEnd,jdbcType=DATE},
+      DATE_YEAR = #{dateYear,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=VARCHAR}
+    where DATE_TYPE = #{dateType,jdbcType=VARCHAR}
+      and INPUT_TIME = #{inputTime,jdbcType=DATE}
+  </update>
+</mapper>

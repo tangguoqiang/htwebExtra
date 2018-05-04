@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.ChargeReduceMasterMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.outpbill.ChargeReduceMaster" >
+    <id column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="RCPT_NO" property="rcptNo" jdbcType="VARCHAR" />
+    <result column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <result column="VISIT_ID" property="visitId" jdbcType="DECIMAL" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="CHARGE_TYPE" property="chargeType" jdbcType="VARCHAR" />
+    <result column="UNIT" property="unit" jdbcType="VARCHAR" />
+    <result column="CARD_NO" property="cardNo" jdbcType="VARCHAR" />
+    <result column="REDUCE_AMOUNT" property="reduceAmount" jdbcType="DECIMAL" />
+    <result column="REDUCE_CAUSE" property="reduceCause" jdbcType="VARCHAR" />
+    <result column="RATIFIER" property="ratifier" jdbcType="VARCHAR" />
+    <result column="UNDERTAKER" property="undertaker" jdbcType="VARCHAR" />
+    <result column="UNDERTAKER_UNIT" property="undertakerUnit" jdbcType="VARCHAR" />
+    <result column="OPER_NO" property="operNo" jdbcType="VARCHAR" />
+    <result column="OPER_NAME" property="operName" jdbcType="VARCHAR" />
+    <result column="OPER_DATE_TIME" property="operDateTime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SERIAL_NO, RCPT_NO, PATIENT_ID, VISIT_ID, NAME, CHARGE_TYPE, UNIT, CARD_NO, REDUCE_AMOUNT, 
+    REDUCE_CAUSE, RATIFIER, UNDERTAKER, UNDERTAKER_UNIT, OPER_NO, OPER_NAME, OPER_DATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from OUTPBILL.CHARGE_REDUCE_MASTER
+    where SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from OUTPBILL.CHARGE_REDUCE_MASTER
+    where SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.outpbill.ChargeReduceMaster" >
+    insert into OUTPBILL.CHARGE_REDUCE_MASTER (SERIAL_NO, RCPT_NO, PATIENT_ID, 
+      VISIT_ID, NAME, CHARGE_TYPE, 
+      UNIT, CARD_NO, REDUCE_AMOUNT, 
+      REDUCE_CAUSE, RATIFIER, UNDERTAKER, 
+      UNDERTAKER_UNIT, OPER_NO, OPER_NAME, 
+      OPER_DATE_TIME)
+    values (#{serialNo,jdbcType=DECIMAL}, #{rcptNo,jdbcType=VARCHAR}, #{patientId,jdbcType=VARCHAR}, 
+      #{visitId,jdbcType=DECIMAL}, #{name,jdbcType=VARCHAR}, #{chargeType,jdbcType=VARCHAR}, 
+      #{unit,jdbcType=VARCHAR}, #{cardNo,jdbcType=VARCHAR}, #{reduceAmount,jdbcType=DECIMAL}, 
+      #{reduceCause,jdbcType=VARCHAR}, #{ratifier,jdbcType=VARCHAR}, #{undertaker,jdbcType=VARCHAR}, 
+      #{undertakerUnit,jdbcType=VARCHAR}, #{operNo,jdbcType=VARCHAR}, #{operName,jdbcType=VARCHAR}, 
+      #{operDateTime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.outpbill.ChargeReduceMaster" >
+    insert into OUTPBILL.CHARGE_REDUCE_MASTER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="rcptNo != null" >
+        RCPT_NO,
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="visitId != null" >
+        VISIT_ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="chargeType != null" >
+        CHARGE_TYPE,
+      </if>
+      <if test="unit != null" >
+        UNIT,
+      </if>
+      <if test="cardNo != null" >
+        CARD_NO,
+      </if>
+      <if test="reduceAmount != null" >
+        REDUCE_AMOUNT,
+      </if>
+      <if test="reduceCause != null" >
+        REDUCE_CAUSE,
+      </if>
+      <if test="ratifier != null" >
+        RATIFIER,
+      </if>
+      <if test="undertaker != null" >
+        UNDERTAKER,
+      </if>
+      <if test="undertakerUnit != null" >
+        UNDERTAKER_UNIT,
+      </if>
+      <if test="operNo != null" >
+        OPER_NO,
+      </if>
+      <if test="operName != null" >
+        OPER_NAME,
+      </if>
+      <if test="operDateTime != null" >
+        OPER_DATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="rcptNo != null" >
+        #{rcptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitId != null" >
+        #{visitId,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeType != null" >
+        #{chargeType,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNo != null" >
+        #{cardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="reduceAmount != null" >
+        #{reduceAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="reduceCause != null" >
+        #{reduceCause,jdbcType=VARCHAR},
+      </if>
+      <if test="ratifier != null" >
+        #{ratifier,jdbcType=VARCHAR},
+      </if>
+      <if test="undertaker != null" >
+        #{undertaker,jdbcType=VARCHAR},
+      </if>
+      <if test="undertakerUnit != null" >
+        #{undertakerUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="operNo != null" >
+        #{operNo,jdbcType=VARCHAR},
+      </if>
+      <if test="operName != null" >
+        #{operName,jdbcType=VARCHAR},
+      </if>
+      <if test="operDateTime != null" >
+        #{operDateTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.outpbill.ChargeReduceMaster" >
+    update OUTPBILL.CHARGE_REDUCE_MASTER
+    <set >
+      <if test="rcptNo != null" >
+        RCPT_NO = #{rcptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitId != null" >
+        VISIT_ID = #{visitId,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeType != null" >
+        CHARGE_TYPE = #{chargeType,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        UNIT = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNo != null" >
+        CARD_NO = #{cardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="reduceAmount != null" >
+        REDUCE_AMOUNT = #{reduceAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="reduceCause != null" >
+        REDUCE_CAUSE = #{reduceCause,jdbcType=VARCHAR},
+      </if>
+      <if test="ratifier != null" >
+        RATIFIER = #{ratifier,jdbcType=VARCHAR},
+      </if>
+      <if test="undertaker != null" >
+        UNDERTAKER = #{undertaker,jdbcType=VARCHAR},
+      </if>
+      <if test="undertakerUnit != null" >
+        UNDERTAKER_UNIT = #{undertakerUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="operNo != null" >
+        OPER_NO = #{operNo,jdbcType=VARCHAR},
+      </if>
+      <if test="operName != null" >
+        OPER_NAME = #{operName,jdbcType=VARCHAR},
+      </if>
+      <if test="operDateTime != null" >
+        OPER_DATE_TIME = #{operDateTime,jdbcType=DATE},
+      </if>
+    </set>
+    where SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.outpbill.ChargeReduceMaster" >
+    update OUTPBILL.CHARGE_REDUCE_MASTER
+    set RCPT_NO = #{rcptNo,jdbcType=VARCHAR},
+      PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      VISIT_ID = #{visitId,jdbcType=DECIMAL},
+      NAME = #{name,jdbcType=VARCHAR},
+      CHARGE_TYPE = #{chargeType,jdbcType=VARCHAR},
+      UNIT = #{unit,jdbcType=VARCHAR},
+      CARD_NO = #{cardNo,jdbcType=VARCHAR},
+      REDUCE_AMOUNT = #{reduceAmount,jdbcType=DECIMAL},
+      REDUCE_CAUSE = #{reduceCause,jdbcType=VARCHAR},
+      RATIFIER = #{ratifier,jdbcType=VARCHAR},
+      UNDERTAKER = #{undertaker,jdbcType=VARCHAR},
+      UNDERTAKER_UNIT = #{undertakerUnit,jdbcType=VARCHAR},
+      OPER_NO = #{operNo,jdbcType=VARCHAR},
+      OPER_NAME = #{operName,jdbcType=VARCHAR},
+      OPER_DATE_TIME = #{operDateTime,jdbcType=DATE}
+    where SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+  </update>
+</mapper>

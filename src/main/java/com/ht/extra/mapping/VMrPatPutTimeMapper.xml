@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.VMrPatPutTimeMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.medrec.VMrPatPutTime" >
+    <result column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <result column="VISIT_ID" property="visitId" jdbcType="DECIMAL" />
+    <result column="INP_NO" property="inpNo" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="DEPT_CODE" property="deptCode" jdbcType="VARCHAR" />
+    <result column="DOCTOR_IN_CHARGE" property="doctorInCharge" jdbcType="VARCHAR" />
+    <result column="PUT_DAY" property="putDay" jdbcType="DATE" />
+    <result column="DISCHARGE_DATE_TIME" property="dischargeDateTime" jdbcType="DATE" />
+  </resultMap>
+  <insert id="insert" parameterType="com.ht.extra.pojo.medrec.VMrPatPutTime" >
+    insert into MEDREC.V_MR_PAT_PUT_TIME (PATIENT_ID, VISIT_ID, INP_NO, 
+      NAME, DEPT_CODE, DOCTOR_IN_CHARGE, 
+      PUT_DAY, DISCHARGE_DATE_TIME)
+    values (#{patientId,jdbcType=VARCHAR}, #{visitId,jdbcType=DECIMAL}, #{inpNo,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{deptCode,jdbcType=VARCHAR}, #{doctorInCharge,jdbcType=VARCHAR}, 
+      #{putDay,jdbcType=DATE}, #{dischargeDateTime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.medrec.VMrPatPutTime" >
+    insert into MEDREC.V_MR_PAT_PUT_TIME
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="visitId != null" >
+        VISIT_ID,
+      </if>
+      <if test="inpNo != null" >
+        INP_NO,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="deptCode != null" >
+        DEPT_CODE,
+      </if>
+      <if test="doctorInCharge != null" >
+        DOCTOR_IN_CHARGE,
+      </if>
+      <if test="putDay != null" >
+        PUT_DAY,
+      </if>
+      <if test="dischargeDateTime != null" >
+        DISCHARGE_DATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitId != null" >
+        #{visitId,jdbcType=DECIMAL},
+      </if>
+      <if test="inpNo != null" >
+        #{inpNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="deptCode != null" >
+        #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorInCharge != null" >
+        #{doctorInCharge,jdbcType=VARCHAR},
+      </if>
+      <if test="putDay != null" >
+        #{putDay,jdbcType=DATE},
+      </if>
+      <if test="dischargeDateTime != null" >
+        #{dischargeDateTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+</mapper>

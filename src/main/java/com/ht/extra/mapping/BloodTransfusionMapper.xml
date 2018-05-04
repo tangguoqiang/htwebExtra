@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.BloodTransfusionMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.medrec.BloodTransfusion" >
+    <id column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <id column="VISIT_ID" property="visitId" jdbcType="DECIMAL" />
+    <result column="WHOLE_BLOOD" property="wholeBlood" jdbcType="DECIMAL" />
+    <result column="RED_CELL" property="redCell" jdbcType="DECIMAL" />
+    <result column="PURE_RED_CELL" property="pureRedCell" jdbcType="DECIMAL" />
+    <result column="PLATELET" property="platelet" jdbcType="DECIMAL" />
+    <result column="CRYOAGGLUTININ" property="cryoagglutinin" jdbcType="DECIMAL" />
+    <result column="PLASMA" property="plasma" jdbcType="DECIMAL" />
+    <result column="AUTOTRANSFUSION" property="autotransfusion" jdbcType="DECIMAL" />
+    <result column="OTHERS" property="others" jdbcType="DECIMAL" />
+    <result column="WHOLE_BLOOD_2" property="wholeBlood2" jdbcType="DECIMAL" />
+    <result column="RED_CELL_2" property="redCell2" jdbcType="DECIMAL" />
+    <result column="PURE_RED_CELL_2" property="pureRedCell2" jdbcType="DECIMAL" />
+    <result column="PLATELET_2_1" property="platelet21" jdbcType="DECIMAL" />
+    <result column="PLATELET_2_2" property="platelet22" jdbcType="DECIMAL" />
+    <result column="PLASMA_2" property="plasma2" jdbcType="DECIMAL" />
+    <result column="AUTOTRANSFUSION_2" property="autotransfusion2" jdbcType="DECIMAL" />
+    <result column="OTHER_BLOOD_NAME" property="otherBloodName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PATIENT_ID, VISIT_ID, WHOLE_BLOOD, RED_CELL, PURE_RED_CELL, PLATELET, CRYOAGGLUTININ, 
+    PLASMA, AUTOTRANSFUSION, OTHERS, WHOLE_BLOOD_2, RED_CELL_2, PURE_RED_CELL_2, PLATELET_2_1, 
+    PLATELET_2_2, PLASMA_2, AUTOTRANSFUSION_2, OTHER_BLOOD_NAME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.medrec.BloodTransfusionKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from MEDREC.BLOOD_TRANSFUSION
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.medrec.BloodTransfusionKey" >
+    delete from MEDREC.BLOOD_TRANSFUSION
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.medrec.BloodTransfusion" >
+    insert into MEDREC.BLOOD_TRANSFUSION (PATIENT_ID, VISIT_ID, WHOLE_BLOOD, 
+      RED_CELL, PURE_RED_CELL, PLATELET, 
+      CRYOAGGLUTININ, PLASMA, AUTOTRANSFUSION, 
+      OTHERS, WHOLE_BLOOD_2, RED_CELL_2, 
+      PURE_RED_CELL_2, PLATELET_2_1, PLATELET_2_2, 
+      PLASMA_2, AUTOTRANSFUSION_2, OTHER_BLOOD_NAME
+      )
+    values (#{patientId,jdbcType=VARCHAR}, #{visitId,jdbcType=DECIMAL}, #{wholeBlood,jdbcType=DECIMAL}, 
+      #{redCell,jdbcType=DECIMAL}, #{pureRedCell,jdbcType=DECIMAL}, #{platelet,jdbcType=DECIMAL}, 
+      #{cryoagglutinin,jdbcType=DECIMAL}, #{plasma,jdbcType=DECIMAL}, #{autotransfusion,jdbcType=DECIMAL}, 
+      #{others,jdbcType=DECIMAL}, #{wholeBlood2,jdbcType=DECIMAL}, #{redCell2,jdbcType=DECIMAL}, 
+      #{pureRedCell2,jdbcType=DECIMAL}, #{platelet21,jdbcType=DECIMAL}, #{platelet22,jdbcType=DECIMAL}, 
+      #{plasma2,jdbcType=DECIMAL}, #{autotransfusion2,jdbcType=DECIMAL}, #{otherBloodName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.medrec.BloodTransfusion" >
+    insert into MEDREC.BLOOD_TRANSFUSION
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="visitId != null" >
+        VISIT_ID,
+      </if>
+      <if test="wholeBlood != null" >
+        WHOLE_BLOOD,
+      </if>
+      <if test="redCell != null" >
+        RED_CELL,
+      </if>
+      <if test="pureRedCell != null" >
+        PURE_RED_CELL,
+      </if>
+      <if test="platelet != null" >
+        PLATELET,
+      </if>
+      <if test="cryoagglutinin != null" >
+        CRYOAGGLUTININ,
+      </if>
+      <if test="plasma != null" >
+        PLASMA,
+      </if>
+      <if test="autotransfusion != null" >
+        AUTOTRANSFUSION,
+      </if>
+      <if test="others != null" >
+        OTHERS,
+      </if>
+      <if test="wholeBlood2 != null" >
+        WHOLE_BLOOD_2,
+      </if>
+      <if test="redCell2 != null" >
+        RED_CELL_2,
+      </if>
+      <if test="pureRedCell2 != null" >
+        PURE_RED_CELL_2,
+      </if>
+      <if test="platelet21 != null" >
+        PLATELET_2_1,
+      </if>
+      <if test="platelet22 != null" >
+        PLATELET_2_2,
+      </if>
+      <if test="plasma2 != null" >
+        PLASMA_2,
+      </if>
+      <if test="autotransfusion2 != null" >
+        AUTOTRANSFUSION_2,
+      </if>
+      <if test="otherBloodName != null" >
+        OTHER_BLOOD_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitId != null" >
+        #{visitId,jdbcType=DECIMAL},
+      </if>
+      <if test="wholeBlood != null" >
+        #{wholeBlood,jdbcType=DECIMAL},
+      </if>
+      <if test="redCell != null" >
+        #{redCell,jdbcType=DECIMAL},
+      </if>
+      <if test="pureRedCell != null" >
+        #{pureRedCell,jdbcType=DECIMAL},
+      </if>
+      <if test="platelet != null" >
+        #{platelet,jdbcType=DECIMAL},
+      </if>
+      <if test="cryoagglutinin != null" >
+        #{cryoagglutinin,jdbcType=DECIMAL},
+      </if>
+      <if test="plasma != null" >
+        #{plasma,jdbcType=DECIMAL},
+      </if>
+      <if test="autotransfusion != null" >
+        #{autotransfusion,jdbcType=DECIMAL},
+      </if>
+      <if test="others != null" >
+        #{others,jdbcType=DECIMAL},
+      </if>
+      <if test="wholeBlood2 != null" >
+        #{wholeBlood2,jdbcType=DECIMAL},
+      </if>
+      <if test="redCell2 != null" >
+        #{redCell2,jdbcType=DECIMAL},
+      </if>
+      <if test="pureRedCell2 != null" >
+        #{pureRedCell2,jdbcType=DECIMAL},
+      </if>
+      <if test="platelet21 != null" >
+        #{platelet21,jdbcType=DECIMAL},
+      </if>
+      <if test="platelet22 != null" >
+        #{platelet22,jdbcType=DECIMAL},
+      </if>
+      <if test="plasma2 != null" >
+        #{plasma2,jdbcType=DECIMAL},
+      </if>
+      <if test="autotransfusion2 != null" >
+        #{autotransfusion2,jdbcType=DECIMAL},
+      </if>
+      <if test="otherBloodName != null" >
+        #{otherBloodName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.medrec.BloodTransfusion" >
+    update MEDREC.BLOOD_TRANSFUSION
+    <set >
+      <if test="wholeBlood != null" >
+        WHOLE_BLOOD = #{wholeBlood,jdbcType=DECIMAL},
+      </if>
+      <if test="redCell != null" >
+        RED_CELL = #{redCell,jdbcType=DECIMAL},
+      </if>
+      <if test="pureRedCell != null" >
+        PURE_RED_CELL = #{pureRedCell,jdbcType=DECIMAL},
+      </if>
+      <if test="platelet != null" >
+        PLATELET = #{platelet,jdbcType=DECIMAL},
+      </if>
+      <if test="cryoagglutinin != null" >
+        CRYOAGGLUTININ = #{cryoagglutinin,jdbcType=DECIMAL},
+      </if>
+      <if test="plasma != null" >
+        PLASMA = #{plasma,jdbcType=DECIMAL},
+      </if>
+      <if test="autotransfusion != null" >
+        AUTOTRANSFUSION = #{autotransfusion,jdbcType=DECIMAL},
+      </if>
+      <if test="others != null" >
+        OTHERS = #{others,jdbcType=DECIMAL},
+      </if>
+      <if test="wholeBlood2 != null" >
+        WHOLE_BLOOD_2 = #{wholeBlood2,jdbcType=DECIMAL},
+      </if>
+      <if test="redCell2 != null" >
+        RED_CELL_2 = #{redCell2,jdbcType=DECIMAL},
+      </if>
+      <if test="pureRedCell2 != null" >
+        PURE_RED_CELL_2 = #{pureRedCell2,jdbcType=DECIMAL},
+      </if>
+      <if test="platelet21 != null" >
+        PLATELET_2_1 = #{platelet21,jdbcType=DECIMAL},
+      </if>
+      <if test="platelet22 != null" >
+        PLATELET_2_2 = #{platelet22,jdbcType=DECIMAL},
+      </if>
+      <if test="plasma2 != null" >
+        PLASMA_2 = #{plasma2,jdbcType=DECIMAL},
+      </if>
+      <if test="autotransfusion2 != null" >
+        AUTOTRANSFUSION_2 = #{autotransfusion2,jdbcType=DECIMAL},
+      </if>
+      <if test="otherBloodName != null" >
+        OTHER_BLOOD_NAME = #{otherBloodName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.medrec.BloodTransfusion" >
+    update MEDREC.BLOOD_TRANSFUSION
+    set WHOLE_BLOOD = #{wholeBlood,jdbcType=DECIMAL},
+      RED_CELL = #{redCell,jdbcType=DECIMAL},
+      PURE_RED_CELL = #{pureRedCell,jdbcType=DECIMAL},
+      PLATELET = #{platelet,jdbcType=DECIMAL},
+      CRYOAGGLUTININ = #{cryoagglutinin,jdbcType=DECIMAL},
+      PLASMA = #{plasma,jdbcType=DECIMAL},
+      AUTOTRANSFUSION = #{autotransfusion,jdbcType=DECIMAL},
+      OTHERS = #{others,jdbcType=DECIMAL},
+      WHOLE_BLOOD_2 = #{wholeBlood2,jdbcType=DECIMAL},
+      RED_CELL_2 = #{redCell2,jdbcType=DECIMAL},
+      PURE_RED_CELL_2 = #{pureRedCell2,jdbcType=DECIMAL},
+      PLATELET_2_1 = #{platelet21,jdbcType=DECIMAL},
+      PLATELET_2_2 = #{platelet22,jdbcType=DECIMAL},
+      PLASMA_2 = #{plasma2,jdbcType=DECIMAL},
+      AUTOTRANSFUSION_2 = #{autotransfusion2,jdbcType=DECIMAL},
+      OTHER_BLOOD_NAME = #{otherBloodName,jdbcType=VARCHAR}
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+  </update>
+</mapper>

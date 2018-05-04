@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.ExamImageIndexMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.exam.ExamImageIndex" >
+    <id column="FILE_NAME" property="fileName" jdbcType="VARCHAR" />
+    <result column="EXAM_NO" property="examNo" jdbcType="VARCHAR" />
+    <result column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <result column="EXAM_CLASS" property="examClass" jdbcType="VARCHAR" />
+    <result column="IMAGE_TYPE" property="imageType" jdbcType="VARCHAR" />
+    <result column="VOLUME_ID" property="volumeId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    FILE_NAME, EXAM_NO, PATIENT_ID, EXAM_CLASS, IMAGE_TYPE, VOLUME_ID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from EXAM.EXAM_IMAGE_INDEX
+    where FILE_NAME = #{fileName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from EXAM.EXAM_IMAGE_INDEX
+    where FILE_NAME = #{fileName,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.exam.ExamImageIndex" >
+    insert into EXAM.EXAM_IMAGE_INDEX (FILE_NAME, EXAM_NO, PATIENT_ID, 
+      EXAM_CLASS, IMAGE_TYPE, VOLUME_ID
+      )
+    values (#{fileName,jdbcType=VARCHAR}, #{examNo,jdbcType=VARCHAR}, #{patientId,jdbcType=VARCHAR}, 
+      #{examClass,jdbcType=VARCHAR}, #{imageType,jdbcType=VARCHAR}, #{volumeId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.exam.ExamImageIndex" >
+    insert into EXAM.EXAM_IMAGE_INDEX
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fileName != null" >
+        FILE_NAME,
+      </if>
+      <if test="examNo != null" >
+        EXAM_NO,
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="examClass != null" >
+        EXAM_CLASS,
+      </if>
+      <if test="imageType != null" >
+        IMAGE_TYPE,
+      </if>
+      <if test="volumeId != null" >
+        VOLUME_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fileName != null" >
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="examNo != null" >
+        #{examNo,jdbcType=VARCHAR},
+      </if>
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="examClass != null" >
+        #{examClass,jdbcType=VARCHAR},
+      </if>
+      <if test="imageType != null" >
+        #{imageType,jdbcType=VARCHAR},
+      </if>
+      <if test="volumeId != null" >
+        #{volumeId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.exam.ExamImageIndex" >
+    update EXAM.EXAM_IMAGE_INDEX
+    <set >
+      <if test="examNo != null" >
+        EXAM_NO = #{examNo,jdbcType=VARCHAR},
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="examClass != null" >
+        EXAM_CLASS = #{examClass,jdbcType=VARCHAR},
+      </if>
+      <if test="imageType != null" >
+        IMAGE_TYPE = #{imageType,jdbcType=VARCHAR},
+      </if>
+      <if test="volumeId != null" >
+        VOLUME_ID = #{volumeId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where FILE_NAME = #{fileName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.exam.ExamImageIndex" >
+    update EXAM.EXAM_IMAGE_INDEX
+    set EXAM_NO = #{examNo,jdbcType=VARCHAR},
+      PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      EXAM_CLASS = #{examClass,jdbcType=VARCHAR},
+      IMAGE_TYPE = #{imageType,jdbcType=VARCHAR},
+      VOLUME_ID = #{volumeId,jdbcType=VARCHAR}
+    where FILE_NAME = #{fileName,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.ChargePriceScheduleMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.ChargePriceSchedule" >
+    <id column="CHARGE_TYPE" property="chargeType" jdbcType="VARCHAR" />
+    <result column="PRICE_COEFF_NUMERATOR" property="priceCoeffNumerator" jdbcType="DECIMAL" />
+    <result column="PRICE_COEFF_DENOMINATOR" property="priceCoeffDenominator" jdbcType="DECIMAL" />
+    <result column="CHARGE_SPECIAL_INDICATOR" property="chargeSpecialIndicator" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    CHARGE_TYPE, PRICE_COEFF_NUMERATOR, PRICE_COEFF_DENOMINATOR, CHARGE_SPECIAL_INDICATOR
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.CHARGE_PRICE_SCHEDULE
+    where CHARGE_TYPE = #{chargeType,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.CHARGE_PRICE_SCHEDULE
+    where CHARGE_TYPE = #{chargeType,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.ChargePriceSchedule" >
+    insert into COMM.CHARGE_PRICE_SCHEDULE (CHARGE_TYPE, PRICE_COEFF_NUMERATOR, 
+      PRICE_COEFF_DENOMINATOR, CHARGE_SPECIAL_INDICATOR
+      )
+    values (#{chargeType,jdbcType=VARCHAR}, #{priceCoeffNumerator,jdbcType=DECIMAL}, 
+      #{priceCoeffDenominator,jdbcType=DECIMAL}, #{chargeSpecialIndicator,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.ChargePriceSchedule" >
+    insert into COMM.CHARGE_PRICE_SCHEDULE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="chargeType != null" >
+        CHARGE_TYPE,
+      </if>
+      <if test="priceCoeffNumerator != null" >
+        PRICE_COEFF_NUMERATOR,
+      </if>
+      <if test="priceCoeffDenominator != null" >
+        PRICE_COEFF_DENOMINATOR,
+      </if>
+      <if test="chargeSpecialIndicator != null" >
+        CHARGE_SPECIAL_INDICATOR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="chargeType != null" >
+        #{chargeType,jdbcType=VARCHAR},
+      </if>
+      <if test="priceCoeffNumerator != null" >
+        #{priceCoeffNumerator,jdbcType=DECIMAL},
+      </if>
+      <if test="priceCoeffDenominator != null" >
+        #{priceCoeffDenominator,jdbcType=DECIMAL},
+      </if>
+      <if test="chargeSpecialIndicator != null" >
+        #{chargeSpecialIndicator,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.ChargePriceSchedule" >
+    update COMM.CHARGE_PRICE_SCHEDULE
+    <set >
+      <if test="priceCoeffNumerator != null" >
+        PRICE_COEFF_NUMERATOR = #{priceCoeffNumerator,jdbcType=DECIMAL},
+      </if>
+      <if test="priceCoeffDenominator != null" >
+        PRICE_COEFF_DENOMINATOR = #{priceCoeffDenominator,jdbcType=DECIMAL},
+      </if>
+      <if test="chargeSpecialIndicator != null" >
+        CHARGE_SPECIAL_INDICATOR = #{chargeSpecialIndicator,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where CHARGE_TYPE = #{chargeType,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.ChargePriceSchedule" >
+    update COMM.CHARGE_PRICE_SCHEDULE
+    set PRICE_COEFF_NUMERATOR = #{priceCoeffNumerator,jdbcType=DECIMAL},
+      PRICE_COEFF_DENOMINATOR = #{priceCoeffDenominator,jdbcType=DECIMAL},
+      CHARGE_SPECIAL_INDICATOR = #{chargeSpecialIndicator,jdbcType=DECIMAL}
+    where CHARGE_TYPE = #{chargeType,jdbcType=VARCHAR}
+  </update>
+</mapper>

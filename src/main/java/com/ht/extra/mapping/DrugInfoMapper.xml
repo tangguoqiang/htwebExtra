@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.DrugInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.DrugInfo" >
+    <id column="DRUG_CODE" property="drugCode" jdbcType="VARCHAR" />
+    <result column="DRUG_NAME" property="drugName" jdbcType="VARCHAR" />
+    <result column="DRUG_E_NAME" property="drugEName" jdbcType="VARCHAR" />
+    <result column="ACTION" property="action" jdbcType="VARCHAR" />
+    <result column="INDICATION" property="indication" jdbcType="VARCHAR" />
+    <result column="DOSAGE" property="dosage" jdbcType="VARCHAR" />
+    <result column="FORM" property="form" jdbcType="VARCHAR" />
+    <result column="PHARMACOKINETICS" property="pharmacokinetics" jdbcType="VARCHAR" />
+    <result column="ADVERSE_REACTION" property="adverseReaction" jdbcType="VARCHAR" />
+    <result column="ATTENTION" property="attention" jdbcType="VARCHAR" />
+    <result column="CONTRAINDICATION" property="contraindication" jdbcType="VARCHAR" />
+    <result column="FIRM" property="firm" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    DRUG_CODE, DRUG_NAME, DRUG_E_NAME, ACTION, INDICATION, DOSAGE, FORM, PHARMACOKINETICS, 
+    ADVERSE_REACTION, ATTENTION, CONTRAINDICATION, FIRM
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.DRUG_INFO
+    where DRUG_CODE = #{drugCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.DRUG_INFO
+    where DRUG_CODE = #{drugCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.DrugInfo" >
+    insert into COMM.DRUG_INFO (DRUG_CODE, DRUG_NAME, DRUG_E_NAME, 
+      ACTION, INDICATION, DOSAGE, 
+      FORM, PHARMACOKINETICS, ADVERSE_REACTION, 
+      ATTENTION, CONTRAINDICATION, FIRM
+      )
+    values (#{drugCode,jdbcType=VARCHAR}, #{drugName,jdbcType=VARCHAR}, #{drugEName,jdbcType=VARCHAR}, 
+      #{action,jdbcType=VARCHAR}, #{indication,jdbcType=VARCHAR}, #{dosage,jdbcType=VARCHAR}, 
+      #{form,jdbcType=VARCHAR}, #{pharmacokinetics,jdbcType=VARCHAR}, #{adverseReaction,jdbcType=VARCHAR}, 
+      #{attention,jdbcType=VARCHAR}, #{contraindication,jdbcType=VARCHAR}, #{firm,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.DrugInfo" >
+    insert into COMM.DRUG_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="drugCode != null" >
+        DRUG_CODE,
+      </if>
+      <if test="drugName != null" >
+        DRUG_NAME,
+      </if>
+      <if test="drugEName != null" >
+        DRUG_E_NAME,
+      </if>
+      <if test="action != null" >
+        ACTION,
+      </if>
+      <if test="indication != null" >
+        INDICATION,
+      </if>
+      <if test="dosage != null" >
+        DOSAGE,
+      </if>
+      <if test="form != null" >
+        FORM,
+      </if>
+      <if test="pharmacokinetics != null" >
+        PHARMACOKINETICS,
+      </if>
+      <if test="adverseReaction != null" >
+        ADVERSE_REACTION,
+      </if>
+      <if test="attention != null" >
+        ATTENTION,
+      </if>
+      <if test="contraindication != null" >
+        CONTRAINDICATION,
+      </if>
+      <if test="firm != null" >
+        FIRM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="drugCode != null" >
+        #{drugCode,jdbcType=VARCHAR},
+      </if>
+      <if test="drugName != null" >
+        #{drugName,jdbcType=VARCHAR},
+      </if>
+      <if test="drugEName != null" >
+        #{drugEName,jdbcType=VARCHAR},
+      </if>
+      <if test="action != null" >
+        #{action,jdbcType=VARCHAR},
+      </if>
+      <if test="indication != null" >
+        #{indication,jdbcType=VARCHAR},
+      </if>
+      <if test="dosage != null" >
+        #{dosage,jdbcType=VARCHAR},
+      </if>
+      <if test="form != null" >
+        #{form,jdbcType=VARCHAR},
+      </if>
+      <if test="pharmacokinetics != null" >
+        #{pharmacokinetics,jdbcType=VARCHAR},
+      </if>
+      <if test="adverseReaction != null" >
+        #{adverseReaction,jdbcType=VARCHAR},
+      </if>
+      <if test="attention != null" >
+        #{attention,jdbcType=VARCHAR},
+      </if>
+      <if test="contraindication != null" >
+        #{contraindication,jdbcType=VARCHAR},
+      </if>
+      <if test="firm != null" >
+        #{firm,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.DrugInfo" >
+    update COMM.DRUG_INFO
+    <set >
+      <if test="drugName != null" >
+        DRUG_NAME = #{drugName,jdbcType=VARCHAR},
+      </if>
+      <if test="drugEName != null" >
+        DRUG_E_NAME = #{drugEName,jdbcType=VARCHAR},
+      </if>
+      <if test="action != null" >
+        ACTION = #{action,jdbcType=VARCHAR},
+      </if>
+      <if test="indication != null" >
+        INDICATION = #{indication,jdbcType=VARCHAR},
+      </if>
+      <if test="dosage != null" >
+        DOSAGE = #{dosage,jdbcType=VARCHAR},
+      </if>
+      <if test="form != null" >
+        FORM = #{form,jdbcType=VARCHAR},
+      </if>
+      <if test="pharmacokinetics != null" >
+        PHARMACOKINETICS = #{pharmacokinetics,jdbcType=VARCHAR},
+      </if>
+      <if test="adverseReaction != null" >
+        ADVERSE_REACTION = #{adverseReaction,jdbcType=VARCHAR},
+      </if>
+      <if test="attention != null" >
+        ATTENTION = #{attention,jdbcType=VARCHAR},
+      </if>
+      <if test="contraindication != null" >
+        CONTRAINDICATION = #{contraindication,jdbcType=VARCHAR},
+      </if>
+      <if test="firm != null" >
+        FIRM = #{firm,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DRUG_CODE = #{drugCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.DrugInfo" >
+    update COMM.DRUG_INFO
+    set DRUG_NAME = #{drugName,jdbcType=VARCHAR},
+      DRUG_E_NAME = #{drugEName,jdbcType=VARCHAR},
+      ACTION = #{action,jdbcType=VARCHAR},
+      INDICATION = #{indication,jdbcType=VARCHAR},
+      DOSAGE = #{dosage,jdbcType=VARCHAR},
+      FORM = #{form,jdbcType=VARCHAR},
+      PHARMACOKINETICS = #{pharmacokinetics,jdbcType=VARCHAR},
+      ADVERSE_REACTION = #{adverseReaction,jdbcType=VARCHAR},
+      ATTENTION = #{attention,jdbcType=VARCHAR},
+      CONTRAINDICATION = #{contraindication,jdbcType=VARCHAR},
+      FIRM = #{firm,jdbcType=VARCHAR}
+    where DRUG_CODE = #{drugCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

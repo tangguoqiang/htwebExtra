@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.DrugNameDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.DrugNameDict" >
+    <id column="DRUG_CODE" property="drugCode" jdbcType="VARCHAR" />
+    <id column="DRUG_NAME" property="drugName" jdbcType="VARCHAR" />
+    <result column="STD_INDICATOR" property="stdIndicator" jdbcType="DECIMAL" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+    <result column="YBAPPLY_FLAG" property="ybapplyFlag" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    DRUG_CODE, DRUG_NAME, STD_INDICATOR, INPUT_CODE, YBAPPLY_FLAG
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.DrugNameDictKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.DRUG_NAME_DICT
+    where DRUG_CODE = #{drugCode,jdbcType=VARCHAR}
+      and DRUG_NAME = #{drugName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.DrugNameDictKey" >
+    delete from COMM.DRUG_NAME_DICT
+    where DRUG_CODE = #{drugCode,jdbcType=VARCHAR}
+      and DRUG_NAME = #{drugName,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.DrugNameDict" >
+    insert into COMM.DRUG_NAME_DICT (DRUG_CODE, DRUG_NAME, STD_INDICATOR, 
+      INPUT_CODE, YBAPPLY_FLAG)
+    values (#{drugCode,jdbcType=VARCHAR}, #{drugName,jdbcType=VARCHAR}, #{stdIndicator,jdbcType=DECIMAL}, 
+      #{inputCode,jdbcType=VARCHAR}, #{ybapplyFlag,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.DrugNameDict" >
+    insert into COMM.DRUG_NAME_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="drugCode != null" >
+        DRUG_CODE,
+      </if>
+      <if test="drugName != null" >
+        DRUG_NAME,
+      </if>
+      <if test="stdIndicator != null" >
+        STD_INDICATOR,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+      <if test="ybapplyFlag != null" >
+        YBAPPLY_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="drugCode != null" >
+        #{drugCode,jdbcType=VARCHAR},
+      </if>
+      <if test="drugName != null" >
+        #{drugName,jdbcType=VARCHAR},
+      </if>
+      <if test="stdIndicator != null" >
+        #{stdIndicator,jdbcType=DECIMAL},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ybapplyFlag != null" >
+        #{ybapplyFlag,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.DrugNameDict" >
+    update COMM.DRUG_NAME_DICT
+    <set >
+      <if test="stdIndicator != null" >
+        STD_INDICATOR = #{stdIndicator,jdbcType=DECIMAL},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ybapplyFlag != null" >
+        YBAPPLY_FLAG = #{ybapplyFlag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DRUG_CODE = #{drugCode,jdbcType=VARCHAR}
+      and DRUG_NAME = #{drugName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.DrugNameDict" >
+    update COMM.DRUG_NAME_DICT
+    set STD_INDICATOR = #{stdIndicator,jdbcType=DECIMAL},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      YBAPPLY_FLAG = #{ybapplyFlag,jdbcType=VARCHAR}
+    where DRUG_CODE = #{drugCode,jdbcType=VARCHAR}
+      and DRUG_NAME = #{drugName,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.PriceStandardJswjMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.PriceStandardJswj" >
+    <id column="ITEM_CODE" property="itemCode" jdbcType="VARCHAR" />
+    <result column="ITEM_NAME" property="itemName" jdbcType="VARCHAR" />
+    <result column="ITEM_CONTENT" property="itemContent" jdbcType="VARCHAR" />
+    <result column="ITEM_EXCEPT_CONTENT" property="itemExceptContent" jdbcType="VARCHAR" />
+    <result column="UNIT" property="unit" jdbcType="VARCHAR" />
+    <result column="THREE_SOUTH_PRICE" property="threeSouthPrice" jdbcType="DECIMAL" />
+    <result column="THIRD_MIDDLE_PRICE" property="thirdMiddlePrice" jdbcType="DECIMAL" />
+    <result column="THIRD_NORTH_PRICE" property="thirdNorthPrice" jdbcType="DECIMAL" />
+    <result column="TWO_SOUTH_PRICE" property="twoSouthPrice" jdbcType="DECIMAL" />
+    <result column="TWO_MIDDLE_PRICE" property="twoMiddlePrice" jdbcType="DECIMAL" />
+    <result column="TWO_NORTH_PRICE" property="twoNorthPrice" jdbcType="DECIMAL" />
+    <result column="ONE_SOUTH_PRICE" property="oneSouthPrice" jdbcType="DECIMAL" />
+    <result column="ONE_MIDDLE_PRICE" property="oneMiddlePrice" jdbcType="DECIMAL" />
+    <result column="ONE_NORTH_PRICE" property="oneNorthPrice" jdbcType="DECIMAL" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ITEM_CODE, ITEM_NAME, ITEM_CONTENT, ITEM_EXCEPT_CONTENT, UNIT, THREE_SOUTH_PRICE, 
+    THIRD_MIDDLE_PRICE, THIRD_NORTH_PRICE, TWO_SOUTH_PRICE, TWO_MIDDLE_PRICE, TWO_NORTH_PRICE, 
+    ONE_SOUTH_PRICE, ONE_MIDDLE_PRICE, ONE_NORTH_PRICE, MEMO
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.PRICE_STANDARD_JSWJ
+    where ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.PRICE_STANDARD_JSWJ
+    where ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.PriceStandardJswj" >
+    insert into COMM.PRICE_STANDARD_JSWJ (ITEM_CODE, ITEM_NAME, ITEM_CONTENT, 
+      ITEM_EXCEPT_CONTENT, UNIT, THREE_SOUTH_PRICE, 
+      THIRD_MIDDLE_PRICE, THIRD_NORTH_PRICE, TWO_SOUTH_PRICE, 
+      TWO_MIDDLE_PRICE, TWO_NORTH_PRICE, ONE_SOUTH_PRICE, 
+      ONE_MIDDLE_PRICE, ONE_NORTH_PRICE, MEMO
+      )
+    values (#{itemCode,jdbcType=VARCHAR}, #{itemName,jdbcType=VARCHAR}, #{itemContent,jdbcType=VARCHAR}, 
+      #{itemExceptContent,jdbcType=VARCHAR}, #{unit,jdbcType=VARCHAR}, #{threeSouthPrice,jdbcType=DECIMAL}, 
+      #{thirdMiddlePrice,jdbcType=DECIMAL}, #{thirdNorthPrice,jdbcType=DECIMAL}, #{twoSouthPrice,jdbcType=DECIMAL}, 
+      #{twoMiddlePrice,jdbcType=DECIMAL}, #{twoNorthPrice,jdbcType=DECIMAL}, #{oneSouthPrice,jdbcType=DECIMAL}, 
+      #{oneMiddlePrice,jdbcType=DECIMAL}, #{oneNorthPrice,jdbcType=DECIMAL}, #{memo,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.PriceStandardJswj" >
+    insert into COMM.PRICE_STANDARD_JSWJ
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="itemCode != null" >
+        ITEM_CODE,
+      </if>
+      <if test="itemName != null" >
+        ITEM_NAME,
+      </if>
+      <if test="itemContent != null" >
+        ITEM_CONTENT,
+      </if>
+      <if test="itemExceptContent != null" >
+        ITEM_EXCEPT_CONTENT,
+      </if>
+      <if test="unit != null" >
+        UNIT,
+      </if>
+      <if test="threeSouthPrice != null" >
+        THREE_SOUTH_PRICE,
+      </if>
+      <if test="thirdMiddlePrice != null" >
+        THIRD_MIDDLE_PRICE,
+      </if>
+      <if test="thirdNorthPrice != null" >
+        THIRD_NORTH_PRICE,
+      </if>
+      <if test="twoSouthPrice != null" >
+        TWO_SOUTH_PRICE,
+      </if>
+      <if test="twoMiddlePrice != null" >
+        TWO_MIDDLE_PRICE,
+      </if>
+      <if test="twoNorthPrice != null" >
+        TWO_NORTH_PRICE,
+      </if>
+      <if test="oneSouthPrice != null" >
+        ONE_SOUTH_PRICE,
+      </if>
+      <if test="oneMiddlePrice != null" >
+        ONE_MIDDLE_PRICE,
+      </if>
+      <if test="oneNorthPrice != null" >
+        ONE_NORTH_PRICE,
+      </if>
+      <if test="memo != null" >
+        MEMO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="itemCode != null" >
+        #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemContent != null" >
+        #{itemContent,jdbcType=VARCHAR},
+      </if>
+      <if test="itemExceptContent != null" >
+        #{itemExceptContent,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="threeSouthPrice != null" >
+        #{threeSouthPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="thirdMiddlePrice != null" >
+        #{thirdMiddlePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="thirdNorthPrice != null" >
+        #{thirdNorthPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="twoSouthPrice != null" >
+        #{twoSouthPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="twoMiddlePrice != null" >
+        #{twoMiddlePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="twoNorthPrice != null" >
+        #{twoNorthPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="oneSouthPrice != null" >
+        #{oneSouthPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="oneMiddlePrice != null" >
+        #{oneMiddlePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="oneNorthPrice != null" >
+        #{oneNorthPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.PriceStandardJswj" >
+    update COMM.PRICE_STANDARD_JSWJ
+    <set >
+      <if test="itemName != null" >
+        ITEM_NAME = #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemContent != null" >
+        ITEM_CONTENT = #{itemContent,jdbcType=VARCHAR},
+      </if>
+      <if test="itemExceptContent != null" >
+        ITEM_EXCEPT_CONTENT = #{itemExceptContent,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        UNIT = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="threeSouthPrice != null" >
+        THREE_SOUTH_PRICE = #{threeSouthPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="thirdMiddlePrice != null" >
+        THIRD_MIDDLE_PRICE = #{thirdMiddlePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="thirdNorthPrice != null" >
+        THIRD_NORTH_PRICE = #{thirdNorthPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="twoSouthPrice != null" >
+        TWO_SOUTH_PRICE = #{twoSouthPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="twoMiddlePrice != null" >
+        TWO_MIDDLE_PRICE = #{twoMiddlePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="twoNorthPrice != null" >
+        TWO_NORTH_PRICE = #{twoNorthPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="oneSouthPrice != null" >
+        ONE_SOUTH_PRICE = #{oneSouthPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="oneMiddlePrice != null" >
+        ONE_MIDDLE_PRICE = #{oneMiddlePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="oneNorthPrice != null" >
+        ONE_NORTH_PRICE = #{oneNorthPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="memo != null" >
+        MEMO = #{memo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.PriceStandardJswj" >
+    update COMM.PRICE_STANDARD_JSWJ
+    set ITEM_NAME = #{itemName,jdbcType=VARCHAR},
+      ITEM_CONTENT = #{itemContent,jdbcType=VARCHAR},
+      ITEM_EXCEPT_CONTENT = #{itemExceptContent,jdbcType=VARCHAR},
+      UNIT = #{unit,jdbcType=VARCHAR},
+      THREE_SOUTH_PRICE = #{threeSouthPrice,jdbcType=DECIMAL},
+      THIRD_MIDDLE_PRICE = #{thirdMiddlePrice,jdbcType=DECIMAL},
+      THIRD_NORTH_PRICE = #{thirdNorthPrice,jdbcType=DECIMAL},
+      TWO_SOUTH_PRICE = #{twoSouthPrice,jdbcType=DECIMAL},
+      TWO_MIDDLE_PRICE = #{twoMiddlePrice,jdbcType=DECIMAL},
+      TWO_NORTH_PRICE = #{twoNorthPrice,jdbcType=DECIMAL},
+      ONE_SOUTH_PRICE = #{oneSouthPrice,jdbcType=DECIMAL},
+      ONE_MIDDLE_PRICE = #{oneMiddlePrice,jdbcType=DECIMAL},
+      ONE_NORTH_PRICE = #{oneNorthPrice,jdbcType=DECIMAL},
+      MEMO = #{memo,jdbcType=VARCHAR}
+    where ITEM_CODE = #{itemCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

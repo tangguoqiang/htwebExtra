@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.UnsettleRecMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.inpbill.UnsettleRec" >
+    <id column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <id column="VISIT_ID" property="visitId" jdbcType="DECIMAL" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="DEPT_NAME" property="deptName" jdbcType="VARCHAR" />
+    <result column="CHARGE_TYPE_NAME" property="chargeTypeName" jdbcType="VARCHAR" />
+    <result column="MAILING_ADDRESS" property="mailingAddress" jdbcType="VARCHAR" />
+    <result column="UNIT_OF_WORK" property="unitOfWork" jdbcType="VARCHAR" />
+    <result column="PHONE_NUMBER_HOME" property="phoneNumberHome" jdbcType="VARCHAR" />
+    <result column="PHONE_NUMBER_BUSINESS" property="phoneNumberBusiness" jdbcType="VARCHAR" />
+    <result column="TOTAL_COST" property="totalCost" jdbcType="DECIMAL" />
+    <result column="PREPAYMENTS" property="prepayments" jdbcType="DECIMAL" />
+    <result column="GUARANTOR" property="guarantor" jdbcType="VARCHAR" />
+    <result column="UNIT_OF_GUARANTOR" property="unitOfGuarantor" jdbcType="VARCHAR" />
+    <result column="OPERATOR" property="operator" jdbcType="VARCHAR" />
+    <result column="ENTER_DATE" property="enterDate" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PATIENT_ID, VISIT_ID, NAME, DEPT_NAME, CHARGE_TYPE_NAME, MAILING_ADDRESS, UNIT_OF_WORK, 
+    PHONE_NUMBER_HOME, PHONE_NUMBER_BUSINESS, TOTAL_COST, PREPAYMENTS, GUARANTOR, UNIT_OF_GUARANTOR, 
+    OPERATOR, ENTER_DATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.inpbill.UnsettleRecKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from INPBILL.UNSETTLE_REC
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.inpbill.UnsettleRecKey" >
+    delete from INPBILL.UNSETTLE_REC
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.inpbill.UnsettleRec" >
+    insert into INPBILL.UNSETTLE_REC (PATIENT_ID, VISIT_ID, NAME, 
+      DEPT_NAME, CHARGE_TYPE_NAME, MAILING_ADDRESS, 
+      UNIT_OF_WORK, PHONE_NUMBER_HOME, PHONE_NUMBER_BUSINESS, 
+      TOTAL_COST, PREPAYMENTS, GUARANTOR, 
+      UNIT_OF_GUARANTOR, OPERATOR, ENTER_DATE
+      )
+    values (#{patientId,jdbcType=VARCHAR}, #{visitId,jdbcType=DECIMAL}, #{name,jdbcType=VARCHAR}, 
+      #{deptName,jdbcType=VARCHAR}, #{chargeTypeName,jdbcType=VARCHAR}, #{mailingAddress,jdbcType=VARCHAR}, 
+      #{unitOfWork,jdbcType=VARCHAR}, #{phoneNumberHome,jdbcType=VARCHAR}, #{phoneNumberBusiness,jdbcType=VARCHAR}, 
+      #{totalCost,jdbcType=DECIMAL}, #{prepayments,jdbcType=DECIMAL}, #{guarantor,jdbcType=VARCHAR}, 
+      #{unitOfGuarantor,jdbcType=VARCHAR}, #{operator,jdbcType=VARCHAR}, #{enterDate,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.inpbill.UnsettleRec" >
+    insert into INPBILL.UNSETTLE_REC
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="visitId != null" >
+        VISIT_ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="deptName != null" >
+        DEPT_NAME,
+      </if>
+      <if test="chargeTypeName != null" >
+        CHARGE_TYPE_NAME,
+      </if>
+      <if test="mailingAddress != null" >
+        MAILING_ADDRESS,
+      </if>
+      <if test="unitOfWork != null" >
+        UNIT_OF_WORK,
+      </if>
+      <if test="phoneNumberHome != null" >
+        PHONE_NUMBER_HOME,
+      </if>
+      <if test="phoneNumberBusiness != null" >
+        PHONE_NUMBER_BUSINESS,
+      </if>
+      <if test="totalCost != null" >
+        TOTAL_COST,
+      </if>
+      <if test="prepayments != null" >
+        PREPAYMENTS,
+      </if>
+      <if test="guarantor != null" >
+        GUARANTOR,
+      </if>
+      <if test="unitOfGuarantor != null" >
+        UNIT_OF_GUARANTOR,
+      </if>
+      <if test="operator != null" >
+        OPERATOR,
+      </if>
+      <if test="enterDate != null" >
+        ENTER_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitId != null" >
+        #{visitId,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null" >
+        #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeTypeName != null" >
+        #{chargeTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="mailingAddress != null" >
+        #{mailingAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="unitOfWork != null" >
+        #{unitOfWork,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumberHome != null" >
+        #{phoneNumberHome,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumberBusiness != null" >
+        #{phoneNumberBusiness,jdbcType=VARCHAR},
+      </if>
+      <if test="totalCost != null" >
+        #{totalCost,jdbcType=DECIMAL},
+      </if>
+      <if test="prepayments != null" >
+        #{prepayments,jdbcType=DECIMAL},
+      </if>
+      <if test="guarantor != null" >
+        #{guarantor,jdbcType=VARCHAR},
+      </if>
+      <if test="unitOfGuarantor != null" >
+        #{unitOfGuarantor,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null" >
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="enterDate != null" >
+        #{enterDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.inpbill.UnsettleRec" >
+    update INPBILL.UNSETTLE_REC
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null" >
+        DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeTypeName != null" >
+        CHARGE_TYPE_NAME = #{chargeTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="mailingAddress != null" >
+        MAILING_ADDRESS = #{mailingAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="unitOfWork != null" >
+        UNIT_OF_WORK = #{unitOfWork,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumberHome != null" >
+        PHONE_NUMBER_HOME = #{phoneNumberHome,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumberBusiness != null" >
+        PHONE_NUMBER_BUSINESS = #{phoneNumberBusiness,jdbcType=VARCHAR},
+      </if>
+      <if test="totalCost != null" >
+        TOTAL_COST = #{totalCost,jdbcType=DECIMAL},
+      </if>
+      <if test="prepayments != null" >
+        PREPAYMENTS = #{prepayments,jdbcType=DECIMAL},
+      </if>
+      <if test="guarantor != null" >
+        GUARANTOR = #{guarantor,jdbcType=VARCHAR},
+      </if>
+      <if test="unitOfGuarantor != null" >
+        UNIT_OF_GUARANTOR = #{unitOfGuarantor,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null" >
+        OPERATOR = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="enterDate != null" >
+        ENTER_DATE = #{enterDate,jdbcType=DATE},
+      </if>
+    </set>
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.inpbill.UnsettleRec" >
+    update INPBILL.UNSETTLE_REC
+    set NAME = #{name,jdbcType=VARCHAR},
+      DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+      CHARGE_TYPE_NAME = #{chargeTypeName,jdbcType=VARCHAR},
+      MAILING_ADDRESS = #{mailingAddress,jdbcType=VARCHAR},
+      UNIT_OF_WORK = #{unitOfWork,jdbcType=VARCHAR},
+      PHONE_NUMBER_HOME = #{phoneNumberHome,jdbcType=VARCHAR},
+      PHONE_NUMBER_BUSINESS = #{phoneNumberBusiness,jdbcType=VARCHAR},
+      TOTAL_COST = #{totalCost,jdbcType=DECIMAL},
+      PREPAYMENTS = #{prepayments,jdbcType=DECIMAL},
+      GUARANTOR = #{guarantor,jdbcType=VARCHAR},
+      UNIT_OF_GUARANTOR = #{unitOfGuarantor,jdbcType=VARCHAR},
+      OPERATOR = #{operator,jdbcType=VARCHAR},
+      ENTER_DATE = #{enterDate,jdbcType=DATE}
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+  </update>
+</mapper>

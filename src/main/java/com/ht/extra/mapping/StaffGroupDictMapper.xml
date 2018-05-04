@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.StaffGroupDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.StaffGroupDict" >
+    <id column="GROUP_CLASS" property="groupClass" jdbcType="VARCHAR" />
+    <id column="GROUP_CODE" property="groupCode" jdbcType="VARCHAR" />
+    <result column="GROUP_NAME" property="groupName" jdbcType="VARCHAR" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    GROUP_CLASS, GROUP_CODE, GROUP_NAME, INPUT_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.StaffGroupDictKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.STAFF_GROUP_DICT
+    where GROUP_CLASS = #{groupClass,jdbcType=VARCHAR}
+      and GROUP_CODE = #{groupCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.StaffGroupDictKey" >
+    delete from COMM.STAFF_GROUP_DICT
+    where GROUP_CLASS = #{groupClass,jdbcType=VARCHAR}
+      and GROUP_CODE = #{groupCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.StaffGroupDict" >
+    insert into COMM.STAFF_GROUP_DICT (GROUP_CLASS, GROUP_CODE, GROUP_NAME, 
+      INPUT_CODE)
+    values (#{groupClass,jdbcType=VARCHAR}, #{groupCode,jdbcType=VARCHAR}, #{groupName,jdbcType=VARCHAR}, 
+      #{inputCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.StaffGroupDict" >
+    insert into COMM.STAFF_GROUP_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="groupClass != null" >
+        GROUP_CLASS,
+      </if>
+      <if test="groupCode != null" >
+        GROUP_CODE,
+      </if>
+      <if test="groupName != null" >
+        GROUP_NAME,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="groupClass != null" >
+        #{groupClass,jdbcType=VARCHAR},
+      </if>
+      <if test="groupCode != null" >
+        #{groupCode,jdbcType=VARCHAR},
+      </if>
+      <if test="groupName != null" >
+        #{groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.StaffGroupDict" >
+    update COMM.STAFF_GROUP_DICT
+    <set >
+      <if test="groupName != null" >
+        GROUP_NAME = #{groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where GROUP_CLASS = #{groupClass,jdbcType=VARCHAR}
+      and GROUP_CODE = #{groupCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.StaffGroupDict" >
+    update COMM.STAFF_GROUP_DICT
+    set GROUP_NAME = #{groupName,jdbcType=VARCHAR},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR}
+    where GROUP_CLASS = #{groupClass,jdbcType=VARCHAR}
+      and GROUP_CODE = #{groupCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

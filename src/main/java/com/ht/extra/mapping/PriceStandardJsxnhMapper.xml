@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.PriceStandardJsxnhMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.PriceStandardJsxnh" >
+    <id column="ITEM_NO" property="itemNo" jdbcType="VARCHAR" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+    <result column="ITEM_CODE" property="itemCode" jdbcType="VARCHAR" />
+    <result column="ITEM_NAME" property="itemName" jdbcType="VARCHAR" />
+    <result column="ITEM_CONTENT" property="itemContent" jdbcType="VARCHAR" />
+    <result column="UNIT" property="unit" jdbcType="VARCHAR" />
+    <result column="OUTP_RATE" property="outpRate" jdbcType="DECIMAL" />
+    <result column="INP_RATE" property="inpRate" jdbcType="DECIMAL" />
+    <result column="ONE_LIMIT_PRICE" property="oneLimitPrice" jdbcType="DECIMAL" />
+    <result column="TWO_LIMIT_PRICE" property="twoLimitPrice" jdbcType="DECIMAL" />
+    <result column="THIRD_LIMIT_PRICE" property="thirdLimitPrice" jdbcType="DECIMAL" />
+    <result column="ITEM_CLASS_XNH" property="itemClassXnh" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ITEM_NO, MEMO, ITEM_CODE, ITEM_NAME, ITEM_CONTENT, UNIT, OUTP_RATE, INP_RATE, ONE_LIMIT_PRICE, 
+    TWO_LIMIT_PRICE, THIRD_LIMIT_PRICE, ITEM_CLASS_XNH
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.PRICE_STANDARD_JSXNH
+    where ITEM_NO = #{itemNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.PRICE_STANDARD_JSXNH
+    where ITEM_NO = #{itemNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.PriceStandardJsxnh" >
+    insert into COMM.PRICE_STANDARD_JSXNH (ITEM_NO, MEMO, ITEM_CODE, 
+      ITEM_NAME, ITEM_CONTENT, UNIT, 
+      OUTP_RATE, INP_RATE, ONE_LIMIT_PRICE, 
+      TWO_LIMIT_PRICE, THIRD_LIMIT_PRICE, ITEM_CLASS_XNH
+      )
+    values (#{itemNo,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, #{itemCode,jdbcType=VARCHAR}, 
+      #{itemName,jdbcType=VARCHAR}, #{itemContent,jdbcType=VARCHAR}, #{unit,jdbcType=VARCHAR}, 
+      #{outpRate,jdbcType=DECIMAL}, #{inpRate,jdbcType=DECIMAL}, #{oneLimitPrice,jdbcType=DECIMAL}, 
+      #{twoLimitPrice,jdbcType=DECIMAL}, #{thirdLimitPrice,jdbcType=DECIMAL}, #{itemClassXnh,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.PriceStandardJsxnh" >
+    insert into COMM.PRICE_STANDARD_JSXNH
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="itemNo != null" >
+        ITEM_NO,
+      </if>
+      <if test="memo != null" >
+        MEMO,
+      </if>
+      <if test="itemCode != null" >
+        ITEM_CODE,
+      </if>
+      <if test="itemName != null" >
+        ITEM_NAME,
+      </if>
+      <if test="itemContent != null" >
+        ITEM_CONTENT,
+      </if>
+      <if test="unit != null" >
+        UNIT,
+      </if>
+      <if test="outpRate != null" >
+        OUTP_RATE,
+      </if>
+      <if test="inpRate != null" >
+        INP_RATE,
+      </if>
+      <if test="oneLimitPrice != null" >
+        ONE_LIMIT_PRICE,
+      </if>
+      <if test="twoLimitPrice != null" >
+        TWO_LIMIT_PRICE,
+      </if>
+      <if test="thirdLimitPrice != null" >
+        THIRD_LIMIT_PRICE,
+      </if>
+      <if test="itemClassXnh != null" >
+        ITEM_CLASS_XNH,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="itemNo != null" >
+        #{itemNo,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode != null" >
+        #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemContent != null" >
+        #{itemContent,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="outpRate != null" >
+        #{outpRate,jdbcType=DECIMAL},
+      </if>
+      <if test="inpRate != null" >
+        #{inpRate,jdbcType=DECIMAL},
+      </if>
+      <if test="oneLimitPrice != null" >
+        #{oneLimitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="twoLimitPrice != null" >
+        #{twoLimitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="thirdLimitPrice != null" >
+        #{thirdLimitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="itemClassXnh != null" >
+        #{itemClassXnh,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.PriceStandardJsxnh" >
+    update COMM.PRICE_STANDARD_JSXNH
+    <set >
+      <if test="memo != null" >
+        MEMO = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode != null" >
+        ITEM_CODE = #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        ITEM_NAME = #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemContent != null" >
+        ITEM_CONTENT = #{itemContent,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        UNIT = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="outpRate != null" >
+        OUTP_RATE = #{outpRate,jdbcType=DECIMAL},
+      </if>
+      <if test="inpRate != null" >
+        INP_RATE = #{inpRate,jdbcType=DECIMAL},
+      </if>
+      <if test="oneLimitPrice != null" >
+        ONE_LIMIT_PRICE = #{oneLimitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="twoLimitPrice != null" >
+        TWO_LIMIT_PRICE = #{twoLimitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="thirdLimitPrice != null" >
+        THIRD_LIMIT_PRICE = #{thirdLimitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="itemClassXnh != null" >
+        ITEM_CLASS_XNH = #{itemClassXnh,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ITEM_NO = #{itemNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.PriceStandardJsxnh" >
+    update COMM.PRICE_STANDARD_JSXNH
+    set MEMO = #{memo,jdbcType=VARCHAR},
+      ITEM_CODE = #{itemCode,jdbcType=VARCHAR},
+      ITEM_NAME = #{itemName,jdbcType=VARCHAR},
+      ITEM_CONTENT = #{itemContent,jdbcType=VARCHAR},
+      UNIT = #{unit,jdbcType=VARCHAR},
+      OUTP_RATE = #{outpRate,jdbcType=DECIMAL},
+      INP_RATE = #{inpRate,jdbcType=DECIMAL},
+      ONE_LIMIT_PRICE = #{oneLimitPrice,jdbcType=DECIMAL},
+      TWO_LIMIT_PRICE = #{twoLimitPrice,jdbcType=DECIMAL},
+      THIRD_LIMIT_PRICE = #{thirdLimitPrice,jdbcType=DECIMAL},
+      ITEM_CLASS_XNH = #{itemClassXnh,jdbcType=VARCHAR}
+    where ITEM_NO = #{itemNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

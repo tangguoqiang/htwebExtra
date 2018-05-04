@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.OutpDoctorScheduleMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.outpadm.OutpDoctorSchedule" >
+    <id column="CLINIC_DEPT" property="clinicDept" jdbcType="VARCHAR" />
+    <id column="DAY_OF_WEEK" property="dayOfWeek" jdbcType="DECIMAL" />
+    <id column="DOCTOR" property="doctor" jdbcType="VARCHAR" />
+    <result column="CLINIC_DURATION" property="clinicDuration" jdbcType="VARCHAR" />
+    <result column="QUEUE_NAME" property="queueName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    CLINIC_DEPT, DAY_OF_WEEK, DOCTOR, CLINIC_DURATION, QUEUE_NAME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.outpadm.OutpDoctorScheduleKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from OUTPADM.OUTP_DOCTOR_SCHEDULE
+    where CLINIC_DEPT = #{clinicDept,jdbcType=VARCHAR}
+      and DAY_OF_WEEK = #{dayOfWeek,jdbcType=DECIMAL}
+      and DOCTOR = #{doctor,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.outpadm.OutpDoctorScheduleKey" >
+    delete from OUTPADM.OUTP_DOCTOR_SCHEDULE
+    where CLINIC_DEPT = #{clinicDept,jdbcType=VARCHAR}
+      and DAY_OF_WEEK = #{dayOfWeek,jdbcType=DECIMAL}
+      and DOCTOR = #{doctor,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.outpadm.OutpDoctorSchedule" >
+    insert into OUTPADM.OUTP_DOCTOR_SCHEDULE (CLINIC_DEPT, DAY_OF_WEEK, DOCTOR, 
+      CLINIC_DURATION, QUEUE_NAME)
+    values (#{clinicDept,jdbcType=VARCHAR}, #{dayOfWeek,jdbcType=DECIMAL}, #{doctor,jdbcType=VARCHAR}, 
+      #{clinicDuration,jdbcType=VARCHAR}, #{queueName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.outpadm.OutpDoctorSchedule" >
+    insert into OUTPADM.OUTP_DOCTOR_SCHEDULE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="clinicDept != null" >
+        CLINIC_DEPT,
+      </if>
+      <if test="dayOfWeek != null" >
+        DAY_OF_WEEK,
+      </if>
+      <if test="doctor != null" >
+        DOCTOR,
+      </if>
+      <if test="clinicDuration != null" >
+        CLINIC_DURATION,
+      </if>
+      <if test="queueName != null" >
+        QUEUE_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="clinicDept != null" >
+        #{clinicDept,jdbcType=VARCHAR},
+      </if>
+      <if test="dayOfWeek != null" >
+        #{dayOfWeek,jdbcType=DECIMAL},
+      </if>
+      <if test="doctor != null" >
+        #{doctor,jdbcType=VARCHAR},
+      </if>
+      <if test="clinicDuration != null" >
+        #{clinicDuration,jdbcType=VARCHAR},
+      </if>
+      <if test="queueName != null" >
+        #{queueName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.outpadm.OutpDoctorSchedule" >
+    update OUTPADM.OUTP_DOCTOR_SCHEDULE
+    <set >
+      <if test="clinicDuration != null" >
+        CLINIC_DURATION = #{clinicDuration,jdbcType=VARCHAR},
+      </if>
+      <if test="queueName != null" >
+        QUEUE_NAME = #{queueName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CLINIC_DEPT = #{clinicDept,jdbcType=VARCHAR}
+      and DAY_OF_WEEK = #{dayOfWeek,jdbcType=DECIMAL}
+      and DOCTOR = #{doctor,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.outpadm.OutpDoctorSchedule" >
+    update OUTPADM.OUTP_DOCTOR_SCHEDULE
+    set CLINIC_DURATION = #{clinicDuration,jdbcType=VARCHAR},
+      QUEUE_NAME = #{queueName,jdbcType=VARCHAR}
+    where CLINIC_DEPT = #{clinicDept,jdbcType=VARCHAR}
+      and DAY_OF_WEEK = #{dayOfWeek,jdbcType=DECIMAL}
+      and DOCTOR = #{doctor,jdbcType=VARCHAR}
+  </update>
+</mapper>

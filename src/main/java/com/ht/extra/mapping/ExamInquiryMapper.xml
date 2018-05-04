@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.ExamInquiryMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.exam.ExamInquiry" >
+    <id column="EXAM_NO" property="examNo" jdbcType="VARCHAR" />
+    <result column="OPER_DATE" property="operDate" jdbcType="DATE" />
+    <result column="OPER_DIAGNOSIS" property="operDiagnosis" jdbcType="VARCHAR" />
+    <result column="OPER_DIAG_DOCTOR" property="operDiagDoctor" jdbcType="VARCHAR" />
+    <result column="ACCORD_WITH_OPER" property="accordWithOper" jdbcType="VARCHAR" />
+    <result column="PATH_NO" property="pathNo" jdbcType="VARCHAR" />
+    <result column="PATH_DIAGNOSIS" property="pathDiagnosis" jdbcType="VARCHAR" />
+    <result column="PATH_DIAG_DOCTOR" property="pathDiagDoctor" jdbcType="VARCHAR" />
+    <result column="ACCORD_WITH_PATH" property="accordWithPath" jdbcType="VARCHAR" />
+    <result column="FINAL_DIAGNOSIS" property="finalDiagnosis" jdbcType="VARCHAR" />
+    <result column="ACCORD_WITH_FINAL" property="accordWithFinal" jdbcType="VARCHAR" />
+    <result column="INQU_DATE_TIME" property="inquDateTime" jdbcType="DATE" />
+    <result column="INQU_DOCTOR" property="inquDoctor" jdbcType="VARCHAR" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    EXAM_NO, OPER_DATE, OPER_DIAGNOSIS, OPER_DIAG_DOCTOR, ACCORD_WITH_OPER, PATH_NO, 
+    PATH_DIAGNOSIS, PATH_DIAG_DOCTOR, ACCORD_WITH_PATH, FINAL_DIAGNOSIS, ACCORD_WITH_FINAL, 
+    INQU_DATE_TIME, INQU_DOCTOR, MEMO
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from EXAM.EXAM_INQUIRY
+    where EXAM_NO = #{examNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from EXAM.EXAM_INQUIRY
+    where EXAM_NO = #{examNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.exam.ExamInquiry" >
+    insert into EXAM.EXAM_INQUIRY (EXAM_NO, OPER_DATE, OPER_DIAGNOSIS, 
+      OPER_DIAG_DOCTOR, ACCORD_WITH_OPER, PATH_NO, 
+      PATH_DIAGNOSIS, PATH_DIAG_DOCTOR, ACCORD_WITH_PATH, 
+      FINAL_DIAGNOSIS, ACCORD_WITH_FINAL, INQU_DATE_TIME, 
+      INQU_DOCTOR, MEMO)
+    values (#{examNo,jdbcType=VARCHAR}, #{operDate,jdbcType=DATE}, #{operDiagnosis,jdbcType=VARCHAR}, 
+      #{operDiagDoctor,jdbcType=VARCHAR}, #{accordWithOper,jdbcType=VARCHAR}, #{pathNo,jdbcType=VARCHAR}, 
+      #{pathDiagnosis,jdbcType=VARCHAR}, #{pathDiagDoctor,jdbcType=VARCHAR}, #{accordWithPath,jdbcType=VARCHAR}, 
+      #{finalDiagnosis,jdbcType=VARCHAR}, #{accordWithFinal,jdbcType=VARCHAR}, #{inquDateTime,jdbcType=DATE}, 
+      #{inquDoctor,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.exam.ExamInquiry" >
+    insert into EXAM.EXAM_INQUIRY
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="examNo != null" >
+        EXAM_NO,
+      </if>
+      <if test="operDate != null" >
+        OPER_DATE,
+      </if>
+      <if test="operDiagnosis != null" >
+        OPER_DIAGNOSIS,
+      </if>
+      <if test="operDiagDoctor != null" >
+        OPER_DIAG_DOCTOR,
+      </if>
+      <if test="accordWithOper != null" >
+        ACCORD_WITH_OPER,
+      </if>
+      <if test="pathNo != null" >
+        PATH_NO,
+      </if>
+      <if test="pathDiagnosis != null" >
+        PATH_DIAGNOSIS,
+      </if>
+      <if test="pathDiagDoctor != null" >
+        PATH_DIAG_DOCTOR,
+      </if>
+      <if test="accordWithPath != null" >
+        ACCORD_WITH_PATH,
+      </if>
+      <if test="finalDiagnosis != null" >
+        FINAL_DIAGNOSIS,
+      </if>
+      <if test="accordWithFinal != null" >
+        ACCORD_WITH_FINAL,
+      </if>
+      <if test="inquDateTime != null" >
+        INQU_DATE_TIME,
+      </if>
+      <if test="inquDoctor != null" >
+        INQU_DOCTOR,
+      </if>
+      <if test="memo != null" >
+        MEMO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="examNo != null" >
+        #{examNo,jdbcType=VARCHAR},
+      </if>
+      <if test="operDate != null" >
+        #{operDate,jdbcType=DATE},
+      </if>
+      <if test="operDiagnosis != null" >
+        #{operDiagnosis,jdbcType=VARCHAR},
+      </if>
+      <if test="operDiagDoctor != null" >
+        #{operDiagDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="accordWithOper != null" >
+        #{accordWithOper,jdbcType=VARCHAR},
+      </if>
+      <if test="pathNo != null" >
+        #{pathNo,jdbcType=VARCHAR},
+      </if>
+      <if test="pathDiagnosis != null" >
+        #{pathDiagnosis,jdbcType=VARCHAR},
+      </if>
+      <if test="pathDiagDoctor != null" >
+        #{pathDiagDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="accordWithPath != null" >
+        #{accordWithPath,jdbcType=VARCHAR},
+      </if>
+      <if test="finalDiagnosis != null" >
+        #{finalDiagnosis,jdbcType=VARCHAR},
+      </if>
+      <if test="accordWithFinal != null" >
+        #{accordWithFinal,jdbcType=VARCHAR},
+      </if>
+      <if test="inquDateTime != null" >
+        #{inquDateTime,jdbcType=DATE},
+      </if>
+      <if test="inquDoctor != null" >
+        #{inquDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.exam.ExamInquiry" >
+    update EXAM.EXAM_INQUIRY
+    <set >
+      <if test="operDate != null" >
+        OPER_DATE = #{operDate,jdbcType=DATE},
+      </if>
+      <if test="operDiagnosis != null" >
+        OPER_DIAGNOSIS = #{operDiagnosis,jdbcType=VARCHAR},
+      </if>
+      <if test="operDiagDoctor != null" >
+        OPER_DIAG_DOCTOR = #{operDiagDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="accordWithOper != null" >
+        ACCORD_WITH_OPER = #{accordWithOper,jdbcType=VARCHAR},
+      </if>
+      <if test="pathNo != null" >
+        PATH_NO = #{pathNo,jdbcType=VARCHAR},
+      </if>
+      <if test="pathDiagnosis != null" >
+        PATH_DIAGNOSIS = #{pathDiagnosis,jdbcType=VARCHAR},
+      </if>
+      <if test="pathDiagDoctor != null" >
+        PATH_DIAG_DOCTOR = #{pathDiagDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="accordWithPath != null" >
+        ACCORD_WITH_PATH = #{accordWithPath,jdbcType=VARCHAR},
+      </if>
+      <if test="finalDiagnosis != null" >
+        FINAL_DIAGNOSIS = #{finalDiagnosis,jdbcType=VARCHAR},
+      </if>
+      <if test="accordWithFinal != null" >
+        ACCORD_WITH_FINAL = #{accordWithFinal,jdbcType=VARCHAR},
+      </if>
+      <if test="inquDateTime != null" >
+        INQU_DATE_TIME = #{inquDateTime,jdbcType=DATE},
+      </if>
+      <if test="inquDoctor != null" >
+        INQU_DOCTOR = #{inquDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        MEMO = #{memo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where EXAM_NO = #{examNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.exam.ExamInquiry" >
+    update EXAM.EXAM_INQUIRY
+    set OPER_DATE = #{operDate,jdbcType=DATE},
+      OPER_DIAGNOSIS = #{operDiagnosis,jdbcType=VARCHAR},
+      OPER_DIAG_DOCTOR = #{operDiagDoctor,jdbcType=VARCHAR},
+      ACCORD_WITH_OPER = #{accordWithOper,jdbcType=VARCHAR},
+      PATH_NO = #{pathNo,jdbcType=VARCHAR},
+      PATH_DIAGNOSIS = #{pathDiagnosis,jdbcType=VARCHAR},
+      PATH_DIAG_DOCTOR = #{pathDiagDoctor,jdbcType=VARCHAR},
+      ACCORD_WITH_PATH = #{accordWithPath,jdbcType=VARCHAR},
+      FINAL_DIAGNOSIS = #{finalDiagnosis,jdbcType=VARCHAR},
+      ACCORD_WITH_FINAL = #{accordWithFinal,jdbcType=VARCHAR},
+      INQU_DATE_TIME = #{inquDateTime,jdbcType=DATE},
+      INQU_DOCTOR = #{inquDoctor,jdbcType=VARCHAR},
+      MEMO = #{memo,jdbcType=VARCHAR}
+    where EXAM_NO = #{examNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

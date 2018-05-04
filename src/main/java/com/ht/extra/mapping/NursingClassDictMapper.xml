@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.NursingClassDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.NursingClassDict" >
+    <id column="NURSING_CLASS_CODE" property="nursingClassCode" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="NURSING_CLASS_NAME" property="nursingClassName" jdbcType="VARCHAR" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    NURSING_CLASS_CODE, SERIAL_NO, NURSING_CLASS_NAME, INPUT_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.NURSING_CLASS_DICT
+    where NURSING_CLASS_CODE = #{nursingClassCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.NURSING_CLASS_DICT
+    where NURSING_CLASS_CODE = #{nursingClassCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.NursingClassDict" >
+    insert into COMM.NURSING_CLASS_DICT (NURSING_CLASS_CODE, SERIAL_NO, NURSING_CLASS_NAME, 
+      INPUT_CODE)
+    values (#{nursingClassCode,jdbcType=VARCHAR}, #{serialNo,jdbcType=DECIMAL}, #{nursingClassName,jdbcType=VARCHAR}, 
+      #{inputCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.NursingClassDict" >
+    insert into COMM.NURSING_CLASS_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="nursingClassCode != null" >
+        NURSING_CLASS_CODE,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="nursingClassName != null" >
+        NURSING_CLASS_NAME,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="nursingClassCode != null" >
+        #{nursingClassCode,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="nursingClassName != null" >
+        #{nursingClassName,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.NursingClassDict" >
+    update COMM.NURSING_CLASS_DICT
+    <set >
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="nursingClassName != null" >
+        NURSING_CLASS_NAME = #{nursingClassName,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where NURSING_CLASS_CODE = #{nursingClassCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.NursingClassDict" >
+    update COMM.NURSING_CLASS_DICT
+    set SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      NURSING_CLASS_NAME = #{nursingClassName,jdbcType=VARCHAR},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR}
+    where NURSING_CLASS_CODE = #{nursingClassCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

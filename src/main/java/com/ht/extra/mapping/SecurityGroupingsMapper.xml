@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.SecurityGroupingsMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.SecurityGroupingsKey" >
+    <id column="GROUP_NAME" property="groupName" jdbcType="VARCHAR" />
+    <id column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.SecurityGroupingsKey" >
+    delete from COMM.SECURITY_GROUPINGS
+    where GROUP_NAME = #{groupName,jdbcType=VARCHAR}
+      and USER_NAME = #{userName,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.SecurityGroupingsKey" >
+    insert into COMM.SECURITY_GROUPINGS (GROUP_NAME, USER_NAME)
+    values (#{groupName,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.SecurityGroupingsKey" >
+    insert into COMM.SECURITY_GROUPINGS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="groupName != null" >
+        GROUP_NAME,
+      </if>
+      <if test="userName != null" >
+        USER_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="groupName != null" >
+        #{groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.OutpOrderDescBackMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.outpbill.OutpOrderDescBack" >
+    <id column="VISIT_DATE" property="visitDate" jdbcType="DATE" />
+    <id column="VISIT_NO" property="visitNo" jdbcType="DECIMAL" />
+    <result column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <result column="PRESC_INDICATOR" property="prescIndicator" jdbcType="DECIMAL" />
+    <result column="ORDERED_BY_DEPT" property="orderedByDept" jdbcType="VARCHAR" />
+    <result column="ORDERED_BY_DOCTOR" property="orderedByDoctor" jdbcType="VARCHAR" />
+    <result column="RCPT_NO" property="rcptNo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    VISIT_DATE, VISIT_NO, PATIENT_ID, PRESC_INDICATOR, ORDERED_BY_DEPT, ORDERED_BY_DOCTOR, 
+    RCPT_NO
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.outpbill.OutpOrderDescBackKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from OUTPBILL.OUTP_ORDER_DESC_BACK
+    where VISIT_DATE = #{visitDate,jdbcType=DATE}
+      and VISIT_NO = #{visitNo,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.outpbill.OutpOrderDescBackKey" >
+    delete from OUTPBILL.OUTP_ORDER_DESC_BACK
+    where VISIT_DATE = #{visitDate,jdbcType=DATE}
+      and VISIT_NO = #{visitNo,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.outpbill.OutpOrderDescBack" >
+    insert into OUTPBILL.OUTP_ORDER_DESC_BACK (VISIT_DATE, VISIT_NO, PATIENT_ID, 
+      PRESC_INDICATOR, ORDERED_BY_DEPT, ORDERED_BY_DOCTOR, 
+      RCPT_NO)
+    values (#{visitDate,jdbcType=DATE}, #{visitNo,jdbcType=DECIMAL}, #{patientId,jdbcType=VARCHAR}, 
+      #{prescIndicator,jdbcType=DECIMAL}, #{orderedByDept,jdbcType=VARCHAR}, #{orderedByDoctor,jdbcType=VARCHAR}, 
+      #{rcptNo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.outpbill.OutpOrderDescBack" >
+    insert into OUTPBILL.OUTP_ORDER_DESC_BACK
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="visitDate != null" >
+        VISIT_DATE,
+      </if>
+      <if test="visitNo != null" >
+        VISIT_NO,
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="prescIndicator != null" >
+        PRESC_INDICATOR,
+      </if>
+      <if test="orderedByDept != null" >
+        ORDERED_BY_DEPT,
+      </if>
+      <if test="orderedByDoctor != null" >
+        ORDERED_BY_DOCTOR,
+      </if>
+      <if test="rcptNo != null" >
+        RCPT_NO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="visitDate != null" >
+        #{visitDate,jdbcType=DATE},
+      </if>
+      <if test="visitNo != null" >
+        #{visitNo,jdbcType=DECIMAL},
+      </if>
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="prescIndicator != null" >
+        #{prescIndicator,jdbcType=DECIMAL},
+      </if>
+      <if test="orderedByDept != null" >
+        #{orderedByDept,jdbcType=VARCHAR},
+      </if>
+      <if test="orderedByDoctor != null" >
+        #{orderedByDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="rcptNo != null" >
+        #{rcptNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.outpbill.OutpOrderDescBack" >
+    update OUTPBILL.OUTP_ORDER_DESC_BACK
+    <set >
+      <if test="patientId != null" >
+        PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="prescIndicator != null" >
+        PRESC_INDICATOR = #{prescIndicator,jdbcType=DECIMAL},
+      </if>
+      <if test="orderedByDept != null" >
+        ORDERED_BY_DEPT = #{orderedByDept,jdbcType=VARCHAR},
+      </if>
+      <if test="orderedByDoctor != null" >
+        ORDERED_BY_DOCTOR = #{orderedByDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="rcptNo != null" >
+        RCPT_NO = #{rcptNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where VISIT_DATE = #{visitDate,jdbcType=DATE}
+      and VISIT_NO = #{visitNo,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.outpbill.OutpOrderDescBack" >
+    update OUTPBILL.OUTP_ORDER_DESC_BACK
+    set PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      PRESC_INDICATOR = #{prescIndicator,jdbcType=DECIMAL},
+      ORDERED_BY_DEPT = #{orderedByDept,jdbcType=VARCHAR},
+      ORDERED_BY_DOCTOR = #{orderedByDoctor,jdbcType=VARCHAR},
+      RCPT_NO = #{rcptNo,jdbcType=VARCHAR}
+    where VISIT_DATE = #{visitDate,jdbcType=DATE}
+      and VISIT_NO = #{visitNo,jdbcType=DECIMAL}
+  </update>
+</mapper>

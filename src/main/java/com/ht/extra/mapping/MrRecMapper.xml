@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.MrRecMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.medrec.MrRec" >
+    <id column="MR_CLASS" property="mrClass" jdbcType="VARCHAR" />
+    <id column="MR_NO" property="mrNo" jdbcType="VARCHAR" />
+    <result column="MR_ATTR" property="mrAttr" jdbcType="VARCHAR" />
+    <result column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <result column="MR_CREATE_DATE" property="mrCreateDate" jdbcType="DATE" />
+    <result column="CURRENT_LOCATION" property="currentLocation" jdbcType="VARCHAR" />
+    <result column="STORE_LOCATION" property="storeLocation" jdbcType="VARCHAR" />
+    <result column="MR_STATUS" property="mrStatus" jdbcType="VARCHAR" />
+    <result column="LAST_BORROWED_DATE" property="lastBorrowedDate" jdbcType="DATE" />
+    <result column="LAST_RETURNED_DATE" property="lastReturnedDate" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    MR_CLASS, MR_NO, MR_ATTR, PATIENT_ID, MR_CREATE_DATE, CURRENT_LOCATION, STORE_LOCATION, 
+    MR_STATUS, LAST_BORROWED_DATE, LAST_RETURNED_DATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.medrec.MrRecKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from MEDREC.MR_REC
+    where MR_CLASS = #{mrClass,jdbcType=VARCHAR}
+      and MR_NO = #{mrNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.medrec.MrRecKey" >
+    delete from MEDREC.MR_REC
+    where MR_CLASS = #{mrClass,jdbcType=VARCHAR}
+      and MR_NO = #{mrNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.medrec.MrRec" >
+    insert into MEDREC.MR_REC (MR_CLASS, MR_NO, MR_ATTR, 
+      PATIENT_ID, MR_CREATE_DATE, CURRENT_LOCATION, 
+      STORE_LOCATION, MR_STATUS, LAST_BORROWED_DATE, 
+      LAST_RETURNED_DATE)
+    values (#{mrClass,jdbcType=VARCHAR}, #{mrNo,jdbcType=VARCHAR}, #{mrAttr,jdbcType=VARCHAR}, 
+      #{patientId,jdbcType=VARCHAR}, #{mrCreateDate,jdbcType=DATE}, #{currentLocation,jdbcType=VARCHAR}, 
+      #{storeLocation,jdbcType=VARCHAR}, #{mrStatus,jdbcType=VARCHAR}, #{lastBorrowedDate,jdbcType=DATE}, 
+      #{lastReturnedDate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.medrec.MrRec" >
+    insert into MEDREC.MR_REC
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mrClass != null" >
+        MR_CLASS,
+      </if>
+      <if test="mrNo != null" >
+        MR_NO,
+      </if>
+      <if test="mrAttr != null" >
+        MR_ATTR,
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="mrCreateDate != null" >
+        MR_CREATE_DATE,
+      </if>
+      <if test="currentLocation != null" >
+        CURRENT_LOCATION,
+      </if>
+      <if test="storeLocation != null" >
+        STORE_LOCATION,
+      </if>
+      <if test="mrStatus != null" >
+        MR_STATUS,
+      </if>
+      <if test="lastBorrowedDate != null" >
+        LAST_BORROWED_DATE,
+      </if>
+      <if test="lastReturnedDate != null" >
+        LAST_RETURNED_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mrClass != null" >
+        #{mrClass,jdbcType=VARCHAR},
+      </if>
+      <if test="mrNo != null" >
+        #{mrNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mrAttr != null" >
+        #{mrAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="mrCreateDate != null" >
+        #{mrCreateDate,jdbcType=DATE},
+      </if>
+      <if test="currentLocation != null" >
+        #{currentLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="storeLocation != null" >
+        #{storeLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="mrStatus != null" >
+        #{mrStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="lastBorrowedDate != null" >
+        #{lastBorrowedDate,jdbcType=DATE},
+      </if>
+      <if test="lastReturnedDate != null" >
+        #{lastReturnedDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.medrec.MrRec" >
+    update MEDREC.MR_REC
+    <set >
+      <if test="mrAttr != null" >
+        MR_ATTR = #{mrAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="mrCreateDate != null" >
+        MR_CREATE_DATE = #{mrCreateDate,jdbcType=DATE},
+      </if>
+      <if test="currentLocation != null" >
+        CURRENT_LOCATION = #{currentLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="storeLocation != null" >
+        STORE_LOCATION = #{storeLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="mrStatus != null" >
+        MR_STATUS = #{mrStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="lastBorrowedDate != null" >
+        LAST_BORROWED_DATE = #{lastBorrowedDate,jdbcType=DATE},
+      </if>
+      <if test="lastReturnedDate != null" >
+        LAST_RETURNED_DATE = #{lastReturnedDate,jdbcType=DATE},
+      </if>
+    </set>
+    where MR_CLASS = #{mrClass,jdbcType=VARCHAR}
+      and MR_NO = #{mrNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.medrec.MrRec" >
+    update MEDREC.MR_REC
+    set MR_ATTR = #{mrAttr,jdbcType=VARCHAR},
+      PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      MR_CREATE_DATE = #{mrCreateDate,jdbcType=DATE},
+      CURRENT_LOCATION = #{currentLocation,jdbcType=VARCHAR},
+      STORE_LOCATION = #{storeLocation,jdbcType=VARCHAR},
+      MR_STATUS = #{mrStatus,jdbcType=VARCHAR},
+      LAST_BORROWED_DATE = #{lastBorrowedDate,jdbcType=DATE},
+      LAST_RETURNED_DATE = #{lastReturnedDate,jdbcType=DATE}
+    where MR_CLASS = #{mrClass,jdbcType=VARCHAR}
+      and MR_NO = #{mrNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

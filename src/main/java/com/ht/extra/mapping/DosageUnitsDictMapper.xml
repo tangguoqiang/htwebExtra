@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.DosageUnitsDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.DosageUnitsDict" >
+    <id column="DOSAGE_UNITS" property="dosageUnits" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="BASE_UNITS" property="baseUnits" jdbcType="VARCHAR" />
+    <result column="CONVERSION_RATIO" property="conversionRatio" jdbcType="DECIMAL" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    DOSAGE_UNITS, SERIAL_NO, BASE_UNITS, CONVERSION_RATIO, INPUT_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.DOSAGE_UNITS_DICT
+    where DOSAGE_UNITS = #{dosageUnits,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.DOSAGE_UNITS_DICT
+    where DOSAGE_UNITS = #{dosageUnits,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.DosageUnitsDict" >
+    insert into COMM.DOSAGE_UNITS_DICT (DOSAGE_UNITS, SERIAL_NO, BASE_UNITS, 
+      CONVERSION_RATIO, INPUT_CODE)
+    values (#{dosageUnits,jdbcType=VARCHAR}, #{serialNo,jdbcType=DECIMAL}, #{baseUnits,jdbcType=VARCHAR}, 
+      #{conversionRatio,jdbcType=DECIMAL}, #{inputCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.DosageUnitsDict" >
+    insert into COMM.DOSAGE_UNITS_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dosageUnits != null" >
+        DOSAGE_UNITS,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="baseUnits != null" >
+        BASE_UNITS,
+      </if>
+      <if test="conversionRatio != null" >
+        CONVERSION_RATIO,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dosageUnits != null" >
+        #{dosageUnits,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="baseUnits != null" >
+        #{baseUnits,jdbcType=VARCHAR},
+      </if>
+      <if test="conversionRatio != null" >
+        #{conversionRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.DosageUnitsDict" >
+    update COMM.DOSAGE_UNITS_DICT
+    <set >
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="baseUnits != null" >
+        BASE_UNITS = #{baseUnits,jdbcType=VARCHAR},
+      </if>
+      <if test="conversionRatio != null" >
+        CONVERSION_RATIO = #{conversionRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DOSAGE_UNITS = #{dosageUnits,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.DosageUnitsDict" >
+    update COMM.DOSAGE_UNITS_DICT
+    set SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      BASE_UNITS = #{baseUnits,jdbcType=VARCHAR},
+      CONVERSION_RATIO = #{conversionRatio,jdbcType=DECIMAL},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR}
+    where DOSAGE_UNITS = #{dosageUnits,jdbcType=VARCHAR}
+  </update>
+</mapper>

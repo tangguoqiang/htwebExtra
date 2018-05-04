@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.CasherNoRecMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.inpbill.CasherNoRec" >
+    <id column="LOCAL_NO" property="localNo" jdbcType="VARCHAR" />
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    LOCAL_NO, USER_ID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from INPBILL.CASHER_NO_REC
+    where LOCAL_NO = #{localNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from INPBILL.CASHER_NO_REC
+    where LOCAL_NO = #{localNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.inpbill.CasherNoRec" >
+    insert into INPBILL.CASHER_NO_REC (LOCAL_NO, USER_ID)
+    values (#{localNo,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.inpbill.CasherNoRec" >
+    insert into INPBILL.CASHER_NO_REC
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="localNo != null" >
+        LOCAL_NO,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="localNo != null" >
+        #{localNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.inpbill.CasherNoRec" >
+    update INPBILL.CASHER_NO_REC
+    <set >
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where LOCAL_NO = #{localNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.inpbill.CasherNoRec" >
+    update INPBILL.CASHER_NO_REC
+    set USER_ID = #{userId,jdbcType=VARCHAR}
+    where LOCAL_NO = #{localNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

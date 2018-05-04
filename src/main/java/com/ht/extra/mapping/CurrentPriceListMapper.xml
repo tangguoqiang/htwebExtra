@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.CurrentPriceListMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.CurrentPriceList" >
+    <result column="ITEM_CLASS" property="itemClass" jdbcType="VARCHAR" />
+    <result column="ITEM_CODE" property="itemCode" jdbcType="VARCHAR" />
+    <result column="ITEM_NAME" property="itemName" jdbcType="VARCHAR" />
+    <result column="ITEM_SPEC" property="itemSpec" jdbcType="VARCHAR" />
+    <result column="UNITS" property="units" jdbcType="VARCHAR" />
+    <result column="PRICE" property="price" jdbcType="DECIMAL" />
+    <result column="PREFER_PRICE" property="preferPrice" jdbcType="DECIMAL" />
+    <result column="FOREIGNER_PRICE" property="foreignerPrice" jdbcType="DECIMAL" />
+    <result column="PERFORMED_BY" property="performedBy" jdbcType="VARCHAR" />
+    <result column="FEE_TYPE_MASK" property="feeTypeMask" jdbcType="DECIMAL" />
+    <result column="CLASS_ON_INP_RCPT" property="classOnInpRcpt" jdbcType="VARCHAR" />
+    <result column="CLASS_ON_OUTP_RCPT" property="classOnOutpRcpt" jdbcType="VARCHAR" />
+    <result column="CLASS_ON_RECKONING" property="classOnReckoning" jdbcType="VARCHAR" />
+    <result column="SUBJ_CODE" property="subjCode" jdbcType="VARCHAR" />
+    <result column="CLASS_ON_MR" property="classOnMr" jdbcType="VARCHAR" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+    <result column="OPERATOR" property="operator" jdbcType="VARCHAR" />
+    <result column="ENTER_DATE" property="enterDate" jdbcType="DATE" />
+  </resultMap>
+  <select id="selectByItemClassAndCode" resultMap="BaseResultMap"  >
+      select
+        *
+      from COMM.CURRENT_PRICE_LIST
+      where ITEM_CLASS = 'E'
+      and ITEM_CODE ='120400006'
+      and ITEM_SPEC='/'
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap"  parameterType="java.lang.String"  >
+    <![CDATA[
+           select
+            *
+            from COMM.CURRENT_PRICE_LIST
+            where ITEM_CLASS = #{0}
+            and ITEM_CODE =#{1}
+            and ITEM_SPEC=#{2}
+            and UNITS=#{3}
+     ]]>
+  </select>
+  <select id="selectByInputCode" resultMap="BaseResultMap"  >
+    select
+    *
+    from COMM.CURRENT_PRICE_LIST
+    where ITEM_CLASS not IN('A','B')
+    AND ITEM_CODE in ( select  b.ITEM_CODE from price_item_name_dict b where b.input_code like #{0})
+    and  ITEM_CLASS in ( select  b.ITEM_CLASS from price_item_name_dict b where b.input_code like #{0} )
+  </select>
+  <select id="selectByInputCodeForDrug" resultMap="BaseResultMap"  >
+    select
+    *
+    from COMM.CURRENT_PRICE_LIST
+    where ITEM_CLASS IN('A','B')
+     and  ITEM_CODE in ( select  b.ITEM_CODE from price_item_name_dict b where b.input_code like #{0})
+    and  ITEM_CLASS in ( select  b.ITEM_CLASS from price_item_name_dict b where b.input_code like #{0} )
+  </select>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.CurrentPriceList" >
+    insert into COMM.CURRENT_PRICE_LIST (ITEM_CLASS, ITEM_CODE, ITEM_NAME, 
+      ITEM_SPEC, UNITS, PRICE, 
+      PREFER_PRICE, FOREIGNER_PRICE, PERFORMED_BY, 
+      FEE_TYPE_MASK, CLASS_ON_INP_RCPT, CLASS_ON_OUTP_RCPT, 
+      CLASS_ON_RECKONING, SUBJ_CODE, CLASS_ON_MR, 
+      MEMO, OPERATOR, ENTER_DATE
+      )
+    values (#{itemClass,jdbcType=VARCHAR}, #{itemCode,jdbcType=VARCHAR}, #{itemName,jdbcType=VARCHAR}, 
+      #{itemSpec,jdbcType=VARCHAR}, #{units,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, 
+      #{preferPrice,jdbcType=DECIMAL}, #{foreignerPrice,jdbcType=DECIMAL}, #{performedBy,jdbcType=VARCHAR}, 
+      #{feeTypeMask,jdbcType=DECIMAL}, #{classOnInpRcpt,jdbcType=VARCHAR}, #{classOnOutpRcpt,jdbcType=VARCHAR}, 
+      #{classOnReckoning,jdbcType=VARCHAR}, #{subjCode,jdbcType=VARCHAR}, #{classOnMr,jdbcType=VARCHAR}, 
+      #{memo,jdbcType=VARCHAR}, #{operator,jdbcType=VARCHAR}, #{enterDate,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.CurrentPriceList" >
+    insert into COMM.CURRENT_PRICE_LIST
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="itemClass != null" >
+        ITEM_CLASS,
+      </if>
+      <if test="itemCode != null" >
+        ITEM_CODE,
+      </if>
+      <if test="itemName != null" >
+        ITEM_NAME,
+      </if>
+      <if test="itemSpec != null" >
+        ITEM_SPEC,
+      </if>
+      <if test="units != null" >
+        UNITS,
+      </if>
+      <if test="price != null" >
+        PRICE,
+      </if>
+      <if test="preferPrice != null" >
+        PREFER_PRICE,
+      </if>
+      <if test="foreignerPrice != null" >
+        FOREIGNER_PRICE,
+      </if>
+      <if test="performedBy != null" >
+        PERFORMED_BY,
+      </if>
+      <if test="feeTypeMask != null" >
+        FEE_TYPE_MASK,
+      </if>
+      <if test="classOnInpRcpt != null" >
+        CLASS_ON_INP_RCPT,
+      </if>
+      <if test="classOnOutpRcpt != null" >
+        CLASS_ON_OUTP_RCPT,
+      </if>
+      <if test="classOnReckoning != null" >
+        CLASS_ON_RECKONING,
+      </if>
+      <if test="subjCode != null" >
+        SUBJ_CODE,
+      </if>
+      <if test="classOnMr != null" >
+        CLASS_ON_MR,
+      </if>
+      <if test="memo != null" >
+        MEMO,
+      </if>
+      <if test="operator != null" >
+        OPERATOR,
+      </if>
+      <if test="enterDate != null" >
+        ENTER_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="itemClass != null" >
+        #{itemClass,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode != null" >
+        #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemSpec != null" >
+        #{itemSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="units != null" >
+        #{units,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="preferPrice != null" >
+        #{preferPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="foreignerPrice != null" >
+        #{foreignerPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="performedBy != null" >
+        #{performedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="feeTypeMask != null" >
+        #{feeTypeMask,jdbcType=DECIMAL},
+      </if>
+      <if test="classOnInpRcpt != null" >
+        #{classOnInpRcpt,jdbcType=VARCHAR},
+      </if>
+      <if test="classOnOutpRcpt != null" >
+        #{classOnOutpRcpt,jdbcType=VARCHAR},
+      </if>
+      <if test="classOnReckoning != null" >
+        #{classOnReckoning,jdbcType=VARCHAR},
+      </if>
+      <if test="subjCode != null" >
+        #{subjCode,jdbcType=VARCHAR},
+      </if>
+      <if test="classOnMr != null" >
+        #{classOnMr,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null" >
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="enterDate != null" >
+        #{enterDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+</mapper>

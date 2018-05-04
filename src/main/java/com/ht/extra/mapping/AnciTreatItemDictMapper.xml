@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.AnciTreatItemDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.AnciTreatItemDict" >
+    <id column="DIAG_TREAT_CODE" property="diagTreatCode" jdbcType="VARCHAR" />
+    <result column="DIAG_TREAT_NAME" property="diagTreatName" jdbcType="VARCHAR" />
+    <result column="COUNT_UNIT" property="countUnit" jdbcType="VARCHAR" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    DIAG_TREAT_CODE, DIAG_TREAT_NAME, COUNT_UNIT, INPUT_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.ANCI_TREAT_ITEM_DICT
+    where DIAG_TREAT_CODE = #{diagTreatCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.ANCI_TREAT_ITEM_DICT
+    where DIAG_TREAT_CODE = #{diagTreatCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.AnciTreatItemDict" >
+    insert into COMM.ANCI_TREAT_ITEM_DICT (DIAG_TREAT_CODE, DIAG_TREAT_NAME, COUNT_UNIT, 
+      INPUT_CODE)
+    values (#{diagTreatCode,jdbcType=VARCHAR}, #{diagTreatName,jdbcType=VARCHAR}, #{countUnit,jdbcType=VARCHAR}, 
+      #{inputCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.AnciTreatItemDict" >
+    insert into COMM.ANCI_TREAT_ITEM_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="diagTreatCode != null" >
+        DIAG_TREAT_CODE,
+      </if>
+      <if test="diagTreatName != null" >
+        DIAG_TREAT_NAME,
+      </if>
+      <if test="countUnit != null" >
+        COUNT_UNIT,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="diagTreatCode != null" >
+        #{diagTreatCode,jdbcType=VARCHAR},
+      </if>
+      <if test="diagTreatName != null" >
+        #{diagTreatName,jdbcType=VARCHAR},
+      </if>
+      <if test="countUnit != null" >
+        #{countUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.AnciTreatItemDict" >
+    update COMM.ANCI_TREAT_ITEM_DICT
+    <set >
+      <if test="diagTreatName != null" >
+        DIAG_TREAT_NAME = #{diagTreatName,jdbcType=VARCHAR},
+      </if>
+      <if test="countUnit != null" >
+        COUNT_UNIT = #{countUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DIAG_TREAT_CODE = #{diagTreatCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.AnciTreatItemDict" >
+    update COMM.ANCI_TREAT_ITEM_DICT
+    set DIAG_TREAT_NAME = #{diagTreatName,jdbcType=VARCHAR},
+      COUNT_UNIT = #{countUnit,jdbcType=VARCHAR},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR}
+    where DIAG_TREAT_CODE = #{diagTreatCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

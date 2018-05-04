@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.OperationDictPyMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.OperationDictPy" >
+    <result column="OPERATION_CODE" property="operationCode" jdbcType="VARCHAR" />
+    <result column="OPERATION_NAME" property="operationName" jdbcType="VARCHAR" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+    <result column="CODE_VERSION" property="codeVersion" jdbcType="VARCHAR" />
+    <result column="OPERATION_LEVEL" property="operationLevel" jdbcType="DECIMAL" />
+    <result column="OPERATION_SCALE" property="operationScale" jdbcType="VARCHAR" />
+    <result column="STD_INDICATOR" property="stdIndicator" jdbcType="DECIMAL" />
+    <result column="APPROVED_INDICATOR" property="approvedIndicator" jdbcType="DECIMAL" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="DATE" />
+  </resultMap>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.OperationDictPy" >
+    insert into COMM.OPERATION_DICT_PY (OPERATION_CODE, OPERATION_NAME, INPUT_CODE, 
+      CODE_VERSION, OPERATION_LEVEL, OPERATION_SCALE, 
+      STD_INDICATOR, APPROVED_INDICATOR, CREATE_DATE
+      )
+    values (#{operationCode,jdbcType=VARCHAR}, #{operationName,jdbcType=VARCHAR}, #{inputCode,jdbcType=VARCHAR}, 
+      #{codeVersion,jdbcType=VARCHAR}, #{operationLevel,jdbcType=DECIMAL}, #{operationScale,jdbcType=VARCHAR}, 
+      #{stdIndicator,jdbcType=DECIMAL}, #{approvedIndicator,jdbcType=DECIMAL}, #{createDate,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.OperationDictPy" >
+    insert into COMM.OPERATION_DICT_PY
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="operationCode != null" >
+        OPERATION_CODE,
+      </if>
+      <if test="operationName != null" >
+        OPERATION_NAME,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+      <if test="codeVersion != null" >
+        CODE_VERSION,
+      </if>
+      <if test="operationLevel != null" >
+        OPERATION_LEVEL,
+      </if>
+      <if test="operationScale != null" >
+        OPERATION_SCALE,
+      </if>
+      <if test="stdIndicator != null" >
+        STD_INDICATOR,
+      </if>
+      <if test="approvedIndicator != null" >
+        APPROVED_INDICATOR,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="operationCode != null" >
+        #{operationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="operationName != null" >
+        #{operationName,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="codeVersion != null" >
+        #{codeVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="operationLevel != null" >
+        #{operationLevel,jdbcType=DECIMAL},
+      </if>
+      <if test="operationScale != null" >
+        #{operationScale,jdbcType=VARCHAR},
+      </if>
+      <if test="stdIndicator != null" >
+        #{stdIndicator,jdbcType=DECIMAL},
+      </if>
+      <if test="approvedIndicator != null" >
+        #{approvedIndicator,jdbcType=DECIMAL},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+</mapper>

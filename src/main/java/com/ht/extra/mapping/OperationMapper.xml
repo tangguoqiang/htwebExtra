@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.OperationMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.medrec.Operation" >
+    <id column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <id column="VISIT_ID" property="visitId" jdbcType="DECIMAL" />
+    <id column="OPERATION_NO" property="operationNo" jdbcType="DECIMAL" />
+    <result column="OPERATION_DESC" property="operationDesc" jdbcType="VARCHAR" />
+    <result column="OPERATION_CODE" property="operationCode" jdbcType="VARCHAR" />
+    <result column="HEAL" property="heal" jdbcType="VARCHAR" />
+    <result column="WOUND_GRADE" property="woundGrade" jdbcType="VARCHAR" />
+    <result column="OPERATING_DATE" property="operatingDate" jdbcType="DATE" />
+    <result column="ANAESTHESIA_METHOD" property="anaesthesiaMethod" jdbcType="VARCHAR" />
+    <result column="OPERATOR" property="operator" jdbcType="VARCHAR" />
+    <result column="FIRST_ASSISTANT" property="firstAssistant" jdbcType="VARCHAR" />
+    <result column="SECOND_ASSISTANT" property="secondAssistant" jdbcType="VARCHAR" />
+    <result column="ANESTHESIA_DOCTOR" property="anesthesiaDoctor" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PATIENT_ID, VISIT_ID, OPERATION_NO, OPERATION_DESC, OPERATION_CODE, HEAL, WOUND_GRADE, 
+    OPERATING_DATE, ANAESTHESIA_METHOD, OPERATOR, FIRST_ASSISTANT, SECOND_ASSISTANT, 
+    ANESTHESIA_DOCTOR
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.medrec.OperationKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from MEDREC.OPERATION
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and OPERATION_NO = #{operationNo,jdbcType=DECIMAL}
+  </select>
+
+  <select id="selectByPatient" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.medrec.OperationKey" >
+    select
+    <include refid="Base_Column_List" />
+    from MEDREC.OPERATION
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+    and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.medrec.OperationKey" >
+    delete from MEDREC.OPERATION
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and OPERATION_NO = #{operationNo,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.medrec.Operation" >
+    insert into MEDREC.OPERATION (PATIENT_ID, VISIT_ID, OPERATION_NO, 
+      OPERATION_DESC, OPERATION_CODE, HEAL, 
+      WOUND_GRADE, OPERATING_DATE, ANAESTHESIA_METHOD, 
+      OPERATOR, FIRST_ASSISTANT, SECOND_ASSISTANT, 
+      ANESTHESIA_DOCTOR)
+    values (#{patientId,jdbcType=VARCHAR}, #{visitId,jdbcType=DECIMAL}, #{operationNo,jdbcType=DECIMAL}, 
+      #{operationDesc,jdbcType=VARCHAR}, #{operationCode,jdbcType=VARCHAR}, #{heal,jdbcType=VARCHAR}, 
+      #{woundGrade,jdbcType=VARCHAR}, #{operatingDate,jdbcType=DATE}, #{anaesthesiaMethod,jdbcType=VARCHAR}, 
+      #{operator,jdbcType=VARCHAR}, #{firstAssistant,jdbcType=VARCHAR}, #{secondAssistant,jdbcType=VARCHAR}, 
+      #{anesthesiaDoctor,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.medrec.Operation" >
+    insert into MEDREC.OPERATION
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="visitId != null" >
+        VISIT_ID,
+      </if>
+      <if test="operationNo != null" >
+        OPERATION_NO,
+      </if>
+      <if test="operationDesc != null" >
+        OPERATION_DESC,
+      </if>
+      <if test="operationCode != null" >
+        OPERATION_CODE,
+      </if>
+      <if test="heal != null" >
+        HEAL,
+      </if>
+      <if test="woundGrade != null" >
+        WOUND_GRADE,
+      </if>
+      <if test="operatingDate != null" >
+        OPERATING_DATE,
+      </if>
+      <if test="anaesthesiaMethod != null" >
+        ANAESTHESIA_METHOD,
+      </if>
+      <if test="operator != null" >
+        OPERATOR,
+      </if>
+      <if test="firstAssistant != null" >
+        FIRST_ASSISTANT,
+      </if>
+      <if test="secondAssistant != null" >
+        SECOND_ASSISTANT,
+      </if>
+      <if test="anesthesiaDoctor != null" >
+        ANESTHESIA_DOCTOR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitId != null" >
+        #{visitId,jdbcType=DECIMAL},
+      </if>
+      <if test="operationNo != null" >
+        #{operationNo,jdbcType=DECIMAL},
+      </if>
+      <if test="operationDesc != null" >
+        #{operationDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="operationCode != null" >
+        #{operationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="heal != null" >
+        #{heal,jdbcType=VARCHAR},
+      </if>
+      <if test="woundGrade != null" >
+        #{woundGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="operatingDate != null" >
+        #{operatingDate,jdbcType=DATE},
+      </if>
+      <if test="anaesthesiaMethod != null" >
+        #{anaesthesiaMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null" >
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="firstAssistant != null" >
+        #{firstAssistant,jdbcType=VARCHAR},
+      </if>
+      <if test="secondAssistant != null" >
+        #{secondAssistant,jdbcType=VARCHAR},
+      </if>
+      <if test="anesthesiaDoctor != null" >
+        #{anesthesiaDoctor,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.medrec.Operation" >
+    update MEDREC.OPERATION
+    <set >
+      <if test="operationDesc != null" >
+        OPERATION_DESC = #{operationDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="operationCode != null" >
+        OPERATION_CODE = #{operationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="heal != null" >
+        HEAL = #{heal,jdbcType=VARCHAR},
+      </if>
+      <if test="woundGrade != null" >
+        WOUND_GRADE = #{woundGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="operatingDate != null" >
+        OPERATING_DATE = #{operatingDate,jdbcType=DATE},
+      </if>
+      <if test="anaesthesiaMethod != null" >
+        ANAESTHESIA_METHOD = #{anaesthesiaMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null" >
+        OPERATOR = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="firstAssistant != null" >
+        FIRST_ASSISTANT = #{firstAssistant,jdbcType=VARCHAR},
+      </if>
+      <if test="secondAssistant != null" >
+        SECOND_ASSISTANT = #{secondAssistant,jdbcType=VARCHAR},
+      </if>
+      <if test="anesthesiaDoctor != null" >
+        ANESTHESIA_DOCTOR = #{anesthesiaDoctor,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and OPERATION_NO = #{operationNo,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.medrec.Operation" >
+    update MEDREC.OPERATION
+    set OPERATION_DESC = #{operationDesc,jdbcType=VARCHAR},
+      OPERATION_CODE = #{operationCode,jdbcType=VARCHAR},
+      HEAL = #{heal,jdbcType=VARCHAR},
+      WOUND_GRADE = #{woundGrade,jdbcType=VARCHAR},
+      OPERATING_DATE = #{operatingDate,jdbcType=DATE},
+      ANAESTHESIA_METHOD = #{anaesthesiaMethod,jdbcType=VARCHAR},
+      OPERATOR = #{operator,jdbcType=VARCHAR},
+      FIRST_ASSISTANT = #{firstAssistant,jdbcType=VARCHAR},
+      SECOND_ASSISTANT = #{secondAssistant,jdbcType=VARCHAR},
+      ANESTHESIA_DOCTOR = #{anesthesiaDoctor,jdbcType=VARCHAR}
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+      and OPERATION_NO = #{operationNo,jdbcType=DECIMAL}
+  </update>
+</mapper>

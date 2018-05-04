@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.MrIndexMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.medrec.MrIndex" >
+    <id column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <id column="VISIT_ID" property="visitId" jdbcType="DECIMAL" />
+    <result column="MR_STATUS" property="mrStatus" jdbcType="VARCHAR" />
+    <result column="STORAGE_VOLUME_LABEL" property="storageVolumeLabel" jdbcType="VARCHAR" />
+    <result column="ACCESS_PATH" property="accessPath" jdbcType="VARCHAR" />
+    <result column="LAST_ACCESS_DATE_TIME" property="lastAccessDateTime" jdbcType="DATE" />
+    <result column="SUBMIT_DOCTOR_ID" property="submitDoctorId" jdbcType="VARCHAR" />
+    <result column="SELF_COMMENT" property="selfComment" jdbcType="VARCHAR" />
+    <result column="DEPT_COMMENT" property="deptComment" jdbcType="VARCHAR" />
+    <result column="HOS_COMMENT" property="hosComment" jdbcType="VARCHAR" />
+    <result column="SELF_ASSESS" property="selfAssess" jdbcType="DECIMAL" />
+    <result column="SELF_DATE" property="selfDate" jdbcType="DATE" />
+    <result column="DEPT_ASSESS" property="deptAssess" jdbcType="DECIMAL" />
+    <result column="DEPT_DATE" property="deptDate" jdbcType="DATE" />
+    <result column="DEPT_DIRECTOR" property="deptDirector" jdbcType="VARCHAR" />
+    <result column="HOS_ASSESS" property="hosAssess" jdbcType="DECIMAL" />
+    <result column="HOS_DATE" property="hosDate" jdbcType="DATE" />
+    <result column="HOS_QCMAN" property="hosQcman" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PATIENT_ID, VISIT_ID, MR_STATUS, STORAGE_VOLUME_LABEL, ACCESS_PATH, LAST_ACCESS_DATE_TIME, 
+    SUBMIT_DOCTOR_ID, SELF_COMMENT, DEPT_COMMENT, HOS_COMMENT, SELF_ASSESS, SELF_DATE, 
+    DEPT_ASSESS, DEPT_DATE, DEPT_DIRECTOR, HOS_ASSESS, HOS_DATE, HOS_QCMAN
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.medrec.MrIndexKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from MEDREC.MR_INDEX
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.medrec.MrIndexKey" >
+    delete from MEDREC.MR_INDEX
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.medrec.MrIndex" >
+    insert into MEDREC.MR_INDEX (PATIENT_ID, VISIT_ID, MR_STATUS, 
+      STORAGE_VOLUME_LABEL, ACCESS_PATH, LAST_ACCESS_DATE_TIME, 
+      SUBMIT_DOCTOR_ID, SELF_COMMENT, DEPT_COMMENT, 
+      HOS_COMMENT, SELF_ASSESS, SELF_DATE, 
+      DEPT_ASSESS, DEPT_DATE, DEPT_DIRECTOR, 
+      HOS_ASSESS, HOS_DATE, HOS_QCMAN
+      )
+    values (#{patientId,jdbcType=VARCHAR}, #{visitId,jdbcType=DECIMAL}, #{mrStatus,jdbcType=VARCHAR}, 
+      #{storageVolumeLabel,jdbcType=VARCHAR}, #{accessPath,jdbcType=VARCHAR}, #{lastAccessDateTime,jdbcType=DATE}, 
+      #{submitDoctorId,jdbcType=VARCHAR}, #{selfComment,jdbcType=VARCHAR}, #{deptComment,jdbcType=VARCHAR}, 
+      #{hosComment,jdbcType=VARCHAR}, #{selfAssess,jdbcType=DECIMAL}, #{selfDate,jdbcType=DATE}, 
+      #{deptAssess,jdbcType=DECIMAL}, #{deptDate,jdbcType=DATE}, #{deptDirector,jdbcType=VARCHAR}, 
+      #{hosAssess,jdbcType=DECIMAL}, #{hosDate,jdbcType=DATE}, #{hosQcman,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.medrec.MrIndex" >
+    insert into MEDREC.MR_INDEX
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="visitId != null" >
+        VISIT_ID,
+      </if>
+      <if test="mrStatus != null" >
+        MR_STATUS,
+      </if>
+      <if test="storageVolumeLabel != null" >
+        STORAGE_VOLUME_LABEL,
+      </if>
+      <if test="accessPath != null" >
+        ACCESS_PATH,
+      </if>
+      <if test="lastAccessDateTime != null" >
+        LAST_ACCESS_DATE_TIME,
+      </if>
+      <if test="submitDoctorId != null" >
+        SUBMIT_DOCTOR_ID,
+      </if>
+      <if test="selfComment != null" >
+        SELF_COMMENT,
+      </if>
+      <if test="deptComment != null" >
+        DEPT_COMMENT,
+      </if>
+      <if test="hosComment != null" >
+        HOS_COMMENT,
+      </if>
+      <if test="selfAssess != null" >
+        SELF_ASSESS,
+      </if>
+      <if test="selfDate != null" >
+        SELF_DATE,
+      </if>
+      <if test="deptAssess != null" >
+        DEPT_ASSESS,
+      </if>
+      <if test="deptDate != null" >
+        DEPT_DATE,
+      </if>
+      <if test="deptDirector != null" >
+        DEPT_DIRECTOR,
+      </if>
+      <if test="hosAssess != null" >
+        HOS_ASSESS,
+      </if>
+      <if test="hosDate != null" >
+        HOS_DATE,
+      </if>
+      <if test="hosQcman != null" >
+        HOS_QCMAN,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitId != null" >
+        #{visitId,jdbcType=DECIMAL},
+      </if>
+      <if test="mrStatus != null" >
+        #{mrStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="storageVolumeLabel != null" >
+        #{storageVolumeLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="accessPath != null" >
+        #{accessPath,jdbcType=VARCHAR},
+      </if>
+      <if test="lastAccessDateTime != null" >
+        #{lastAccessDateTime,jdbcType=DATE},
+      </if>
+      <if test="submitDoctorId != null" >
+        #{submitDoctorId,jdbcType=VARCHAR},
+      </if>
+      <if test="selfComment != null" >
+        #{selfComment,jdbcType=VARCHAR},
+      </if>
+      <if test="deptComment != null" >
+        #{deptComment,jdbcType=VARCHAR},
+      </if>
+      <if test="hosComment != null" >
+        #{hosComment,jdbcType=VARCHAR},
+      </if>
+      <if test="selfAssess != null" >
+        #{selfAssess,jdbcType=DECIMAL},
+      </if>
+      <if test="selfDate != null" >
+        #{selfDate,jdbcType=DATE},
+      </if>
+      <if test="deptAssess != null" >
+        #{deptAssess,jdbcType=DECIMAL},
+      </if>
+      <if test="deptDate != null" >
+        #{deptDate,jdbcType=DATE},
+      </if>
+      <if test="deptDirector != null" >
+        #{deptDirector,jdbcType=VARCHAR},
+      </if>
+      <if test="hosAssess != null" >
+        #{hosAssess,jdbcType=DECIMAL},
+      </if>
+      <if test="hosDate != null" >
+        #{hosDate,jdbcType=DATE},
+      </if>
+      <if test="hosQcman != null" >
+        #{hosQcman,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.medrec.MrIndex" >
+    update MEDREC.MR_INDEX
+    <set >
+      <if test="mrStatus != null" >
+        MR_STATUS = #{mrStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="storageVolumeLabel != null" >
+        STORAGE_VOLUME_LABEL = #{storageVolumeLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="accessPath != null" >
+        ACCESS_PATH = #{accessPath,jdbcType=VARCHAR},
+      </if>
+      <if test="lastAccessDateTime != null" >
+        LAST_ACCESS_DATE_TIME = #{lastAccessDateTime,jdbcType=DATE},
+      </if>
+      <if test="submitDoctorId != null" >
+        SUBMIT_DOCTOR_ID = #{submitDoctorId,jdbcType=VARCHAR},
+      </if>
+      <if test="selfComment != null" >
+        SELF_COMMENT = #{selfComment,jdbcType=VARCHAR},
+      </if>
+      <if test="deptComment != null" >
+        DEPT_COMMENT = #{deptComment,jdbcType=VARCHAR},
+      </if>
+      <if test="hosComment != null" >
+        HOS_COMMENT = #{hosComment,jdbcType=VARCHAR},
+      </if>
+      <if test="selfAssess != null" >
+        SELF_ASSESS = #{selfAssess,jdbcType=DECIMAL},
+      </if>
+      <if test="selfDate != null" >
+        SELF_DATE = #{selfDate,jdbcType=DATE},
+      </if>
+      <if test="deptAssess != null" >
+        DEPT_ASSESS = #{deptAssess,jdbcType=DECIMAL},
+      </if>
+      <if test="deptDate != null" >
+        DEPT_DATE = #{deptDate,jdbcType=DATE},
+      </if>
+      <if test="deptDirector != null" >
+        DEPT_DIRECTOR = #{deptDirector,jdbcType=VARCHAR},
+      </if>
+      <if test="hosAssess != null" >
+        HOS_ASSESS = #{hosAssess,jdbcType=DECIMAL},
+      </if>
+      <if test="hosDate != null" >
+        HOS_DATE = #{hosDate,jdbcType=DATE},
+      </if>
+      <if test="hosQcman != null" >
+        HOS_QCMAN = #{hosQcman,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.medrec.MrIndex" >
+    update MEDREC.MR_INDEX
+    set MR_STATUS = #{mrStatus,jdbcType=VARCHAR},
+      STORAGE_VOLUME_LABEL = #{storageVolumeLabel,jdbcType=VARCHAR},
+      ACCESS_PATH = #{accessPath,jdbcType=VARCHAR},
+      LAST_ACCESS_DATE_TIME = #{lastAccessDateTime,jdbcType=DATE},
+      SUBMIT_DOCTOR_ID = #{submitDoctorId,jdbcType=VARCHAR},
+      SELF_COMMENT = #{selfComment,jdbcType=VARCHAR},
+      DEPT_COMMENT = #{deptComment,jdbcType=VARCHAR},
+      HOS_COMMENT = #{hosComment,jdbcType=VARCHAR},
+      SELF_ASSESS = #{selfAssess,jdbcType=DECIMAL},
+      SELF_DATE = #{selfDate,jdbcType=DATE},
+      DEPT_ASSESS = #{deptAssess,jdbcType=DECIMAL},
+      DEPT_DATE = #{deptDate,jdbcType=DATE},
+      DEPT_DIRECTOR = #{deptDirector,jdbcType=VARCHAR},
+      HOS_ASSESS = #{hosAssess,jdbcType=DECIMAL},
+      HOS_DATE = #{hosDate,jdbcType=DATE},
+      HOS_QCMAN = #{hosQcman,jdbcType=VARCHAR}
+    where PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+      and VISIT_ID = #{visitId,jdbcType=DECIMAL}
+  </update>
+</mapper>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.ExamWorkingPlanMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.exam.ExamWorkingPlan" >
+    <id column="EXAM_CLASS" property="examClass" jdbcType="VARCHAR" />
+    <id column="EXAM_GROUP" property="examGroup" jdbcType="VARCHAR" />
+    <id column="DAY_OF_THE_WEEK" property="dayOfTheWeek" jdbcType="VARCHAR" />
+    <result column="MORN_BEGIN" property="mornBegin" jdbcType="VARCHAR" />
+    <result column="MORN_END" property="mornEnd" jdbcType="VARCHAR" />
+    <result column="NOON_BEGIN" property="noonBegin" jdbcType="VARCHAR" />
+    <result column="NOON_END" property="noonEnd" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    EXAM_CLASS, EXAM_GROUP, DAY_OF_THE_WEEK, MORN_BEGIN, MORN_END, NOON_BEGIN, NOON_END
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.exam.ExamWorkingPlanKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from EXAM.EXAM_WORKING_PLAN
+    where EXAM_CLASS = #{examClass,jdbcType=VARCHAR}
+      and EXAM_GROUP = #{examGroup,jdbcType=VARCHAR}
+      and DAY_OF_THE_WEEK = #{dayOfTheWeek,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.exam.ExamWorkingPlanKey" >
+    delete from EXAM.EXAM_WORKING_PLAN
+    where EXAM_CLASS = #{examClass,jdbcType=VARCHAR}
+      and EXAM_GROUP = #{examGroup,jdbcType=VARCHAR}
+      and DAY_OF_THE_WEEK = #{dayOfTheWeek,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.exam.ExamWorkingPlan" >
+    insert into EXAM.EXAM_WORKING_PLAN (EXAM_CLASS, EXAM_GROUP, DAY_OF_THE_WEEK, 
+      MORN_BEGIN, MORN_END, NOON_BEGIN, 
+      NOON_END)
+    values (#{examClass,jdbcType=VARCHAR}, #{examGroup,jdbcType=VARCHAR}, #{dayOfTheWeek,jdbcType=VARCHAR}, 
+      #{mornBegin,jdbcType=VARCHAR}, #{mornEnd,jdbcType=VARCHAR}, #{noonBegin,jdbcType=VARCHAR}, 
+      #{noonEnd,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.exam.ExamWorkingPlan" >
+    insert into EXAM.EXAM_WORKING_PLAN
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="examClass != null" >
+        EXAM_CLASS,
+      </if>
+      <if test="examGroup != null" >
+        EXAM_GROUP,
+      </if>
+      <if test="dayOfTheWeek != null" >
+        DAY_OF_THE_WEEK,
+      </if>
+      <if test="mornBegin != null" >
+        MORN_BEGIN,
+      </if>
+      <if test="mornEnd != null" >
+        MORN_END,
+      </if>
+      <if test="noonBegin != null" >
+        NOON_BEGIN,
+      </if>
+      <if test="noonEnd != null" >
+        NOON_END,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="examClass != null" >
+        #{examClass,jdbcType=VARCHAR},
+      </if>
+      <if test="examGroup != null" >
+        #{examGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="dayOfTheWeek != null" >
+        #{dayOfTheWeek,jdbcType=VARCHAR},
+      </if>
+      <if test="mornBegin != null" >
+        #{mornBegin,jdbcType=VARCHAR},
+      </if>
+      <if test="mornEnd != null" >
+        #{mornEnd,jdbcType=VARCHAR},
+      </if>
+      <if test="noonBegin != null" >
+        #{noonBegin,jdbcType=VARCHAR},
+      </if>
+      <if test="noonEnd != null" >
+        #{noonEnd,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.exam.ExamWorkingPlan" >
+    update EXAM.EXAM_WORKING_PLAN
+    <set >
+      <if test="mornBegin != null" >
+        MORN_BEGIN = #{mornBegin,jdbcType=VARCHAR},
+      </if>
+      <if test="mornEnd != null" >
+        MORN_END = #{mornEnd,jdbcType=VARCHAR},
+      </if>
+      <if test="noonBegin != null" >
+        NOON_BEGIN = #{noonBegin,jdbcType=VARCHAR},
+      </if>
+      <if test="noonEnd != null" >
+        NOON_END = #{noonEnd,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where EXAM_CLASS = #{examClass,jdbcType=VARCHAR}
+      and EXAM_GROUP = #{examGroup,jdbcType=VARCHAR}
+      and DAY_OF_THE_WEEK = #{dayOfTheWeek,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.exam.ExamWorkingPlan" >
+    update EXAM.EXAM_WORKING_PLAN
+    set MORN_BEGIN = #{mornBegin,jdbcType=VARCHAR},
+      MORN_END = #{mornEnd,jdbcType=VARCHAR},
+      NOON_BEGIN = #{noonBegin,jdbcType=VARCHAR},
+      NOON_END = #{noonEnd,jdbcType=VARCHAR}
+    where EXAM_CLASS = #{examClass,jdbcType=VARCHAR}
+      and EXAM_GROUP = #{examGroup,jdbcType=VARCHAR}
+      and DAY_OF_THE_WEEK = #{dayOfTheWeek,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.InvoiceInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.outpbill.InvoiceInfo" >
+    <id column="INVOICE_NO" property="invoiceNo" jdbcType="VARCHAR" />
+    <id column="RCPT_TYPE" property="rcptType" jdbcType="VARCHAR" />
+    <result column="DISK_NO" property="diskNo" jdbcType="VARCHAR" />
+    <result column="APP_TYPE" property="appType" jdbcType="VARCHAR" />
+    <result column="RCPT_DATE" property="rcptDate" jdbcType="DATE" />
+    <result column="RCPT_NO" property="rcptNo" jdbcType="VARCHAR" />
+    <result column="INVOICE_CONTENT" property="invoiceContent" jdbcType="VARCHAR" />
+    <result column="INVOICE_COSTS" property="invoiceCosts" jdbcType="DECIMAL" />
+    <result column="VERIFY_CODE" property="verifyCode" jdbcType="VARCHAR" />
+    <result column="REPORT_DATE" property="reportDate" jdbcType="DATE" />
+    <result column="INVOICE_STATUS" property="invoiceStatus" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    INVOICE_NO, RCPT_TYPE, DISK_NO, APP_TYPE, RCPT_DATE, RCPT_NO, INVOICE_CONTENT, INVOICE_COSTS, 
+    VERIFY_CODE, REPORT_DATE, INVOICE_STATUS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.outpbill.InvoiceInfoKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from OUTPBILL.INVOICE_INFO
+    where INVOICE_NO = #{invoiceNo,jdbcType=VARCHAR}
+      and RCPT_TYPE = #{rcptType,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.outpbill.InvoiceInfoKey" >
+    delete from OUTPBILL.INVOICE_INFO
+    where INVOICE_NO = #{invoiceNo,jdbcType=VARCHAR}
+      and RCPT_TYPE = #{rcptType,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.outpbill.InvoiceInfo" >
+    insert into OUTPBILL.INVOICE_INFO (INVOICE_NO, RCPT_TYPE, DISK_NO, 
+      APP_TYPE, RCPT_DATE, RCPT_NO, 
+      INVOICE_CONTENT, INVOICE_COSTS, VERIFY_CODE, 
+      REPORT_DATE, INVOICE_STATUS)
+    values (#{invoiceNo,jdbcType=VARCHAR}, #{rcptType,jdbcType=VARCHAR}, #{diskNo,jdbcType=VARCHAR}, 
+      #{appType,jdbcType=VARCHAR}, #{rcptDate,jdbcType=DATE}, #{rcptNo,jdbcType=VARCHAR}, 
+      #{invoiceContent,jdbcType=VARCHAR}, #{invoiceCosts,jdbcType=DECIMAL}, #{verifyCode,jdbcType=VARCHAR}, 
+      #{reportDate,jdbcType=DATE}, #{invoiceStatus,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.outpbill.InvoiceInfo" >
+    insert into OUTPBILL.INVOICE_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="invoiceNo != null" >
+        INVOICE_NO,
+      </if>
+      <if test="rcptType != null" >
+        RCPT_TYPE,
+      </if>
+      <if test="diskNo != null" >
+        DISK_NO,
+      </if>
+      <if test="appType != null" >
+        APP_TYPE,
+      </if>
+      <if test="rcptDate != null" >
+        RCPT_DATE,
+      </if>
+      <if test="rcptNo != null" >
+        RCPT_NO,
+      </if>
+      <if test="invoiceContent != null" >
+        INVOICE_CONTENT,
+      </if>
+      <if test="invoiceCosts != null" >
+        INVOICE_COSTS,
+      </if>
+      <if test="verifyCode != null" >
+        VERIFY_CODE,
+      </if>
+      <if test="reportDate != null" >
+        REPORT_DATE,
+      </if>
+      <if test="invoiceStatus != null" >
+        INVOICE_STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="invoiceNo != null" >
+        #{invoiceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="rcptType != null" >
+        #{rcptType,jdbcType=VARCHAR},
+      </if>
+      <if test="diskNo != null" >
+        #{diskNo,jdbcType=VARCHAR},
+      </if>
+      <if test="appType != null" >
+        #{appType,jdbcType=VARCHAR},
+      </if>
+      <if test="rcptDate != null" >
+        #{rcptDate,jdbcType=DATE},
+      </if>
+      <if test="rcptNo != null" >
+        #{rcptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceContent != null" >
+        #{invoiceContent,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceCosts != null" >
+        #{invoiceCosts,jdbcType=DECIMAL},
+      </if>
+      <if test="verifyCode != null" >
+        #{verifyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="reportDate != null" >
+        #{reportDate,jdbcType=DATE},
+      </if>
+      <if test="invoiceStatus != null" >
+        #{invoiceStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.outpbill.InvoiceInfo" >
+    update OUTPBILL.INVOICE_INFO
+    <set >
+      <if test="diskNo != null" >
+        DISK_NO = #{diskNo,jdbcType=VARCHAR},
+      </if>
+      <if test="appType != null" >
+        APP_TYPE = #{appType,jdbcType=VARCHAR},
+      </if>
+      <if test="rcptDate != null" >
+        RCPT_DATE = #{rcptDate,jdbcType=DATE},
+      </if>
+      <if test="rcptNo != null" >
+        RCPT_NO = #{rcptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceContent != null" >
+        INVOICE_CONTENT = #{invoiceContent,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceCosts != null" >
+        INVOICE_COSTS = #{invoiceCosts,jdbcType=DECIMAL},
+      </if>
+      <if test="verifyCode != null" >
+        VERIFY_CODE = #{verifyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="reportDate != null" >
+        REPORT_DATE = #{reportDate,jdbcType=DATE},
+      </if>
+      <if test="invoiceStatus != null" >
+        INVOICE_STATUS = #{invoiceStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where INVOICE_NO = #{invoiceNo,jdbcType=VARCHAR}
+      and RCPT_TYPE = #{rcptType,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.outpbill.InvoiceInfo" >
+    update OUTPBILL.INVOICE_INFO
+    set DISK_NO = #{diskNo,jdbcType=VARCHAR},
+      APP_TYPE = #{appType,jdbcType=VARCHAR},
+      RCPT_DATE = #{rcptDate,jdbcType=DATE},
+      RCPT_NO = #{rcptNo,jdbcType=VARCHAR},
+      INVOICE_CONTENT = #{invoiceContent,jdbcType=VARCHAR},
+      INVOICE_COSTS = #{invoiceCosts,jdbcType=DECIMAL},
+      VERIFY_CODE = #{verifyCode,jdbcType=VARCHAR},
+      REPORT_DATE = #{reportDate,jdbcType=DATE},
+      INVOICE_STATUS = #{invoiceStatus,jdbcType=VARCHAR}
+    where INVOICE_NO = #{invoiceNo,jdbcType=VARCHAR}
+      and RCPT_TYPE = #{rcptType,jdbcType=VARCHAR}
+  </update>
+</mapper>

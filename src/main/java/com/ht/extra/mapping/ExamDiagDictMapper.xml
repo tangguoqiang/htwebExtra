@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.ExamDiagDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.ExamDiagDict" >
+    <id column="EXAM_CLASS" property="examClass" jdbcType="VARCHAR" />
+    <id column="EXAM_SUB_CLASS" property="examSubClass" jdbcType="VARCHAR" />
+    <id column="DIAG_CODE" property="diagCode" jdbcType="VARCHAR" />
+    <result column="DIAG_NAME" property="diagName" jdbcType="VARCHAR" />
+    <result column="DIAG_INPUT_CODE" property="diagInputCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    EXAM_CLASS, EXAM_SUB_CLASS, DIAG_CODE, DIAG_NAME, DIAG_INPUT_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.comm.ExamDiagDictKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.EXAM_DIAG_DICT
+    where EXAM_CLASS = #{examClass,jdbcType=VARCHAR}
+      and EXAM_SUB_CLASS = #{examSubClass,jdbcType=VARCHAR}
+      and DIAG_CODE = #{diagCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.comm.ExamDiagDictKey" >
+    delete from COMM.EXAM_DIAG_DICT
+    where EXAM_CLASS = #{examClass,jdbcType=VARCHAR}
+      and EXAM_SUB_CLASS = #{examSubClass,jdbcType=VARCHAR}
+      and DIAG_CODE = #{diagCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.ExamDiagDict" >
+    insert into COMM.EXAM_DIAG_DICT (EXAM_CLASS, EXAM_SUB_CLASS, DIAG_CODE, 
+      DIAG_NAME, DIAG_INPUT_CODE)
+    values (#{examClass,jdbcType=VARCHAR}, #{examSubClass,jdbcType=VARCHAR}, #{diagCode,jdbcType=VARCHAR}, 
+      #{diagName,jdbcType=VARCHAR}, #{diagInputCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.ExamDiagDict" >
+    insert into COMM.EXAM_DIAG_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="examClass != null" >
+        EXAM_CLASS,
+      </if>
+      <if test="examSubClass != null" >
+        EXAM_SUB_CLASS,
+      </if>
+      <if test="diagCode != null" >
+        DIAG_CODE,
+      </if>
+      <if test="diagName != null" >
+        DIAG_NAME,
+      </if>
+      <if test="diagInputCode != null" >
+        DIAG_INPUT_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="examClass != null" >
+        #{examClass,jdbcType=VARCHAR},
+      </if>
+      <if test="examSubClass != null" >
+        #{examSubClass,jdbcType=VARCHAR},
+      </if>
+      <if test="diagCode != null" >
+        #{diagCode,jdbcType=VARCHAR},
+      </if>
+      <if test="diagName != null" >
+        #{diagName,jdbcType=VARCHAR},
+      </if>
+      <if test="diagInputCode != null" >
+        #{diagInputCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.ExamDiagDict" >
+    update COMM.EXAM_DIAG_DICT
+    <set >
+      <if test="diagName != null" >
+        DIAG_NAME = #{diagName,jdbcType=VARCHAR},
+      </if>
+      <if test="diagInputCode != null" >
+        DIAG_INPUT_CODE = #{diagInputCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where EXAM_CLASS = #{examClass,jdbcType=VARCHAR}
+      and EXAM_SUB_CLASS = #{examSubClass,jdbcType=VARCHAR}
+      and DIAG_CODE = #{diagCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.ExamDiagDict" >
+    update COMM.EXAM_DIAG_DICT
+    set DIAG_NAME = #{diagName,jdbcType=VARCHAR},
+      DIAG_INPUT_CODE = #{diagInputCode,jdbcType=VARCHAR}
+    where EXAM_CLASS = #{examClass,jdbcType=VARCHAR}
+      and EXAM_SUB_CLASS = #{examSubClass,jdbcType=VARCHAR}
+      and DIAG_CODE = #{diagCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

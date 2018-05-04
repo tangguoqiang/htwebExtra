@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.OccupationDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.OccupationDict" >
+    <id column="OCCUPATION_CODE" property="occupationCode" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="OCCUPATION_NAME" property="occupationName" jdbcType="VARCHAR" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    OCCUPATION_CODE, SERIAL_NO, OCCUPATION_NAME, INPUT_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.OCCUPATION_DICT
+    where OCCUPATION_CODE = #{occupationCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.OCCUPATION_DICT
+    where OCCUPATION_CODE = #{occupationCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.OccupationDict" >
+    insert into COMM.OCCUPATION_DICT (OCCUPATION_CODE, SERIAL_NO, OCCUPATION_NAME, 
+      INPUT_CODE)
+    values (#{occupationCode,jdbcType=VARCHAR}, #{serialNo,jdbcType=DECIMAL}, #{occupationName,jdbcType=VARCHAR}, 
+      #{inputCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.OccupationDict" >
+    insert into COMM.OCCUPATION_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="occupationCode != null" >
+        OCCUPATION_CODE,
+      </if>
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="occupationName != null" >
+        OCCUPATION_NAME,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="occupationCode != null" >
+        #{occupationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="occupationName != null" >
+        #{occupationName,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.OccupationDict" >
+    update COMM.OCCUPATION_DICT
+    <set >
+      <if test="serialNo != null" >
+        SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="occupationName != null" >
+        OCCUPATION_NAME = #{occupationName,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE = #{inputCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where OCCUPATION_CODE = #{occupationCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.OccupationDict" >
+    update COMM.OCCUPATION_DICT
+    set SERIAL_NO = #{serialNo,jdbcType=DECIMAL},
+      OCCUPATION_NAME = #{occupationName,jdbcType=VARCHAR},
+      INPUT_CODE = #{inputCode,jdbcType=VARCHAR}
+    where OCCUPATION_CODE = #{occupationCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

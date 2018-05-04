@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.BindingPrescDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.outpdoct.BindingPrescDetail" >
+    <id column="PRESC_ID" property="prescId" jdbcType="DECIMAL" />
+    <id column="ITEM_NO" property="itemNo" jdbcType="DECIMAL" />
+    <result column="DRUG_CODE" property="drugCode" jdbcType="VARCHAR" />
+    <result column="DRUG_NAME" property="drugName" jdbcType="VARCHAR" />
+    <result column="PACKAGE_SPEC" property="packageSpec" jdbcType="VARCHAR" />
+    <result column="PACKAGE_UNITS" property="packageUnits" jdbcType="VARCHAR" />
+    <result column="FIRM_ID" property="firmId" jdbcType="VARCHAR" />
+    <result column="QUANTITY" property="quantity" jdbcType="DECIMAL" />
+    <result column="DOSAGE" property="dosage" jdbcType="DECIMAL" />
+    <result column="DOSAGE_UNITS" property="dosageUnits" jdbcType="VARCHAR" />
+    <result column="ADMINISTRATION" property="administration" jdbcType="VARCHAR" />
+    <result column="MENO" property="meno" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PRESC_ID, ITEM_NO, DRUG_CODE, DRUG_NAME, PACKAGE_SPEC, PACKAGE_UNITS, FIRM_ID, QUANTITY, 
+    DOSAGE, DOSAGE_UNITS, ADMINISTRATION, MENO
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.outpdoct.BindingPrescDetailKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from OUTPDOCT.BINDING_PRESC_DETAIL
+    where PRESC_ID = #{prescId,jdbcType=DECIMAL}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ht.extra.pojo.outpdoct.BindingPrescDetailKey" >
+    delete from OUTPDOCT.BINDING_PRESC_DETAIL
+    where PRESC_ID = #{prescId,jdbcType=DECIMAL}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.outpdoct.BindingPrescDetail" >
+    insert into OUTPDOCT.BINDING_PRESC_DETAIL (PRESC_ID, ITEM_NO, DRUG_CODE, 
+      DRUG_NAME, PACKAGE_SPEC, PACKAGE_UNITS, 
+      FIRM_ID, QUANTITY, DOSAGE, 
+      DOSAGE_UNITS, ADMINISTRATION, MENO
+      )
+    values (#{prescId,jdbcType=DECIMAL}, #{itemNo,jdbcType=DECIMAL}, #{drugCode,jdbcType=VARCHAR}, 
+      #{drugName,jdbcType=VARCHAR}, #{packageSpec,jdbcType=VARCHAR}, #{packageUnits,jdbcType=VARCHAR}, 
+      #{firmId,jdbcType=VARCHAR}, #{quantity,jdbcType=DECIMAL}, #{dosage,jdbcType=DECIMAL}, 
+      #{dosageUnits,jdbcType=VARCHAR}, #{administration,jdbcType=VARCHAR}, #{meno,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.outpdoct.BindingPrescDetail" >
+    insert into OUTPDOCT.BINDING_PRESC_DETAIL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="prescId != null" >
+        PRESC_ID,
+      </if>
+      <if test="itemNo != null" >
+        ITEM_NO,
+      </if>
+      <if test="drugCode != null" >
+        DRUG_CODE,
+      </if>
+      <if test="drugName != null" >
+        DRUG_NAME,
+      </if>
+      <if test="packageSpec != null" >
+        PACKAGE_SPEC,
+      </if>
+      <if test="packageUnits != null" >
+        PACKAGE_UNITS,
+      </if>
+      <if test="firmId != null" >
+        FIRM_ID,
+      </if>
+      <if test="quantity != null" >
+        QUANTITY,
+      </if>
+      <if test="dosage != null" >
+        DOSAGE,
+      </if>
+      <if test="dosageUnits != null" >
+        DOSAGE_UNITS,
+      </if>
+      <if test="administration != null" >
+        ADMINISTRATION,
+      </if>
+      <if test="meno != null" >
+        MENO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="prescId != null" >
+        #{prescId,jdbcType=DECIMAL},
+      </if>
+      <if test="itemNo != null" >
+        #{itemNo,jdbcType=DECIMAL},
+      </if>
+      <if test="drugCode != null" >
+        #{drugCode,jdbcType=VARCHAR},
+      </if>
+      <if test="drugName != null" >
+        #{drugName,jdbcType=VARCHAR},
+      </if>
+      <if test="packageSpec != null" >
+        #{packageSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="packageUnits != null" >
+        #{packageUnits,jdbcType=VARCHAR},
+      </if>
+      <if test="firmId != null" >
+        #{firmId,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null" >
+        #{quantity,jdbcType=DECIMAL},
+      </if>
+      <if test="dosage != null" >
+        #{dosage,jdbcType=DECIMAL},
+      </if>
+      <if test="dosageUnits != null" >
+        #{dosageUnits,jdbcType=VARCHAR},
+      </if>
+      <if test="administration != null" >
+        #{administration,jdbcType=VARCHAR},
+      </if>
+      <if test="meno != null" >
+        #{meno,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.outpdoct.BindingPrescDetail" >
+    update OUTPDOCT.BINDING_PRESC_DETAIL
+    <set >
+      <if test="drugCode != null" >
+        DRUG_CODE = #{drugCode,jdbcType=VARCHAR},
+      </if>
+      <if test="drugName != null" >
+        DRUG_NAME = #{drugName,jdbcType=VARCHAR},
+      </if>
+      <if test="packageSpec != null" >
+        PACKAGE_SPEC = #{packageSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="packageUnits != null" >
+        PACKAGE_UNITS = #{packageUnits,jdbcType=VARCHAR},
+      </if>
+      <if test="firmId != null" >
+        FIRM_ID = #{firmId,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null" >
+        QUANTITY = #{quantity,jdbcType=DECIMAL},
+      </if>
+      <if test="dosage != null" >
+        DOSAGE = #{dosage,jdbcType=DECIMAL},
+      </if>
+      <if test="dosageUnits != null" >
+        DOSAGE_UNITS = #{dosageUnits,jdbcType=VARCHAR},
+      </if>
+      <if test="administration != null" >
+        ADMINISTRATION = #{administration,jdbcType=VARCHAR},
+      </if>
+      <if test="meno != null" >
+        MENO = #{meno,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PRESC_ID = #{prescId,jdbcType=DECIMAL}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.outpdoct.BindingPrescDetail" >
+    update OUTPDOCT.BINDING_PRESC_DETAIL
+    set DRUG_CODE = #{drugCode,jdbcType=VARCHAR},
+      DRUG_NAME = #{drugName,jdbcType=VARCHAR},
+      PACKAGE_SPEC = #{packageSpec,jdbcType=VARCHAR},
+      PACKAGE_UNITS = #{packageUnits,jdbcType=VARCHAR},
+      FIRM_ID = #{firmId,jdbcType=VARCHAR},
+      QUANTITY = #{quantity,jdbcType=DECIMAL},
+      DOSAGE = #{dosage,jdbcType=DECIMAL},
+      DOSAGE_UNITS = #{dosageUnits,jdbcType=VARCHAR},
+      ADMINISTRATION = #{administration,jdbcType=VARCHAR},
+      MENO = #{meno,jdbcType=VARCHAR}
+    where PRESC_ID = #{prescId,jdbcType=DECIMAL}
+      and ITEM_NO = #{itemNo,jdbcType=DECIMAL}
+  </update>
+</mapper>

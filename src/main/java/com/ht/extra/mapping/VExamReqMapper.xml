@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.VExamReqMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.exam.VExamReq" >
+    <result column="EXAM_NO" property="examNo" jdbcType="VARCHAR" />
+    <result column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <result column="VISIT_ID" property="visitId" jdbcType="DECIMAL" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="SEX" property="sex" jdbcType="VARCHAR" />
+    <result column="DATE_OF_BIRTH" property="dateOfBirth" jdbcType="DATE" />
+    <result column="EXAM_CLASS" property="examClass" jdbcType="VARCHAR" />
+    <result column="EXAM_SUB_CLASS" property="examSubClass" jdbcType="VARCHAR" />
+    <result column="CLIN_SYMP" property="clinSymp" jdbcType="VARCHAR" />
+    <result column="PHYS_SIGN" property="physSign" jdbcType="VARCHAR" />
+    <result column="CHARGE_TYPE" property="chargeType" jdbcType="VARCHAR" />
+    <result column="RELEVANT_LAB_TEST" property="relevantLabTest" jdbcType="VARCHAR" />
+    <result column="RELEVANT_DIAG" property="relevantDiag" jdbcType="VARCHAR" />
+    <result column="CLIN_DIAG" property="clinDiag" jdbcType="VARCHAR" />
+    <result column="PERFORMED_BY" property="performedBy" jdbcType="VARCHAR" />
+    <result column="PERFORMED_DEPTNAME" property="performedDeptname" jdbcType="VARCHAR" />
+    <result column="PATIENT_SOURCE" property="patientSource" jdbcType="VARCHAR" />
+    <result column="REQ_DATE_TIME" property="reqDateTime" jdbcType="DATE" />
+    <result column="REQ_DEPT" property="reqDept" jdbcType="VARCHAR" />
+    <result column="REQ_DEPTNAME" property="reqDeptname" jdbcType="VARCHAR" />
+    <result column="REQ_PHYSICIAN" property="reqPhysician" jdbcType="VARCHAR" />
+    <result column="EXAM_ITEM_NO" property="examItemNo" jdbcType="DECIMAL" />
+    <result column="EXAM_ITEM_CODE" property="examItemCode" jdbcType="VARCHAR" />
+    <result column="EXAM_ITEM" property="examItem" jdbcType="VARCHAR" />
+    <result column="BED_NO" property="bedNo" jdbcType="DECIMAL" />
+    <result column="INP_NO" property="inpNo" jdbcType="VARCHAR" />
+    <result column="MAILING_ADDRESS" property="mailingAddress" jdbcType="VARCHAR" />
+    <result column="ZIP_CODE" property="zipCode" jdbcType="VARCHAR" />
+    <result column="PHONE_NUMBER" property="phoneNumber" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.ht.extra.pojo.exam.VExamReq" >
+    insert into EXAM.V_EXAM_REQ (EXAM_NO, PATIENT_ID, VISIT_ID, 
+      NAME, SEX, DATE_OF_BIRTH, 
+      EXAM_CLASS, EXAM_SUB_CLASS, CLIN_SYMP, 
+      PHYS_SIGN, CHARGE_TYPE, RELEVANT_LAB_TEST, 
+      RELEVANT_DIAG, CLIN_DIAG, PERFORMED_BY, 
+      PERFORMED_DEPTNAME, PATIENT_SOURCE, REQ_DATE_TIME, 
+      REQ_DEPT, REQ_DEPTNAME, REQ_PHYSICIAN, 
+      EXAM_ITEM_NO, EXAM_ITEM_CODE, EXAM_ITEM, 
+      BED_NO, INP_NO, MAILING_ADDRESS, 
+      ZIP_CODE, PHONE_NUMBER)
+    values (#{examNo,jdbcType=VARCHAR}, #{patientId,jdbcType=VARCHAR}, #{visitId,jdbcType=DECIMAL}, 
+      #{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{dateOfBirth,jdbcType=DATE}, 
+      #{examClass,jdbcType=VARCHAR}, #{examSubClass,jdbcType=VARCHAR}, #{clinSymp,jdbcType=VARCHAR}, 
+      #{physSign,jdbcType=VARCHAR}, #{chargeType,jdbcType=VARCHAR}, #{relevantLabTest,jdbcType=VARCHAR}, 
+      #{relevantDiag,jdbcType=VARCHAR}, #{clinDiag,jdbcType=VARCHAR}, #{performedBy,jdbcType=VARCHAR}, 
+      #{performedDeptname,jdbcType=VARCHAR}, #{patientSource,jdbcType=VARCHAR}, #{reqDateTime,jdbcType=DATE}, 
+      #{reqDept,jdbcType=VARCHAR}, #{reqDeptname,jdbcType=VARCHAR}, #{reqPhysician,jdbcType=VARCHAR}, 
+      #{examItemNo,jdbcType=DECIMAL}, #{examItemCode,jdbcType=VARCHAR}, #{examItem,jdbcType=VARCHAR}, 
+      #{bedNo,jdbcType=DECIMAL}, #{inpNo,jdbcType=VARCHAR}, #{mailingAddress,jdbcType=VARCHAR}, 
+      #{zipCode,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.exam.VExamReq" >
+    insert into EXAM.V_EXAM_REQ
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="examNo != null" >
+        EXAM_NO,
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="visitId != null" >
+        VISIT_ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="sex != null" >
+        SEX,
+      </if>
+      <if test="dateOfBirth != null" >
+        DATE_OF_BIRTH,
+      </if>
+      <if test="examClass != null" >
+        EXAM_CLASS,
+      </if>
+      <if test="examSubClass != null" >
+        EXAM_SUB_CLASS,
+      </if>
+      <if test="clinSymp != null" >
+        CLIN_SYMP,
+      </if>
+      <if test="physSign != null" >
+        PHYS_SIGN,
+      </if>
+      <if test="chargeType != null" >
+        CHARGE_TYPE,
+      </if>
+      <if test="relevantLabTest != null" >
+        RELEVANT_LAB_TEST,
+      </if>
+      <if test="relevantDiag != null" >
+        RELEVANT_DIAG,
+      </if>
+      <if test="clinDiag != null" >
+        CLIN_DIAG,
+      </if>
+      <if test="performedBy != null" >
+        PERFORMED_BY,
+      </if>
+      <if test="performedDeptname != null" >
+        PERFORMED_DEPTNAME,
+      </if>
+      <if test="patientSource != null" >
+        PATIENT_SOURCE,
+      </if>
+      <if test="reqDateTime != null" >
+        REQ_DATE_TIME,
+      </if>
+      <if test="reqDept != null" >
+        REQ_DEPT,
+      </if>
+      <if test="reqDeptname != null" >
+        REQ_DEPTNAME,
+      </if>
+      <if test="reqPhysician != null" >
+        REQ_PHYSICIAN,
+      </if>
+      <if test="examItemNo != null" >
+        EXAM_ITEM_NO,
+      </if>
+      <if test="examItemCode != null" >
+        EXAM_ITEM_CODE,
+      </if>
+      <if test="examItem != null" >
+        EXAM_ITEM,
+      </if>
+      <if test="bedNo != null" >
+        BED_NO,
+      </if>
+      <if test="inpNo != null" >
+        INP_NO,
+      </if>
+      <if test="mailingAddress != null" >
+        MAILING_ADDRESS,
+      </if>
+      <if test="zipCode != null" >
+        ZIP_CODE,
+      </if>
+      <if test="phoneNumber != null" >
+        PHONE_NUMBER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="examNo != null" >
+        #{examNo,jdbcType=VARCHAR},
+      </if>
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitId != null" >
+        #{visitId,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="dateOfBirth != null" >
+        #{dateOfBirth,jdbcType=DATE},
+      </if>
+      <if test="examClass != null" >
+        #{examClass,jdbcType=VARCHAR},
+      </if>
+      <if test="examSubClass != null" >
+        #{examSubClass,jdbcType=VARCHAR},
+      </if>
+      <if test="clinSymp != null" >
+        #{clinSymp,jdbcType=VARCHAR},
+      </if>
+      <if test="physSign != null" >
+        #{physSign,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeType != null" >
+        #{chargeType,jdbcType=VARCHAR},
+      </if>
+      <if test="relevantLabTest != null" >
+        #{relevantLabTest,jdbcType=VARCHAR},
+      </if>
+      <if test="relevantDiag != null" >
+        #{relevantDiag,jdbcType=VARCHAR},
+      </if>
+      <if test="clinDiag != null" >
+        #{clinDiag,jdbcType=VARCHAR},
+      </if>
+      <if test="performedBy != null" >
+        #{performedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="performedDeptname != null" >
+        #{performedDeptname,jdbcType=VARCHAR},
+      </if>
+      <if test="patientSource != null" >
+        #{patientSource,jdbcType=VARCHAR},
+      </if>
+      <if test="reqDateTime != null" >
+        #{reqDateTime,jdbcType=DATE},
+      </if>
+      <if test="reqDept != null" >
+        #{reqDept,jdbcType=VARCHAR},
+      </if>
+      <if test="reqDeptname != null" >
+        #{reqDeptname,jdbcType=VARCHAR},
+      </if>
+      <if test="reqPhysician != null" >
+        #{reqPhysician,jdbcType=VARCHAR},
+      </if>
+      <if test="examItemNo != null" >
+        #{examItemNo,jdbcType=DECIMAL},
+      </if>
+      <if test="examItemCode != null" >
+        #{examItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="examItem != null" >
+        #{examItem,jdbcType=VARCHAR},
+      </if>
+      <if test="bedNo != null" >
+        #{bedNo,jdbcType=DECIMAL},
+      </if>
+      <if test="inpNo != null" >
+        #{inpNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mailingAddress != null" >
+        #{mailingAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null" >
+        #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null" >
+        #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

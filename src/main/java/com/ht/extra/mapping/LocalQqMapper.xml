@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.LocalQqMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.LocalQq" >
+    <id column="HOST_NAME" property="hostName" jdbcType="VARCHAR" />
+    <result column="DEPT_CODE" property="deptCode" jdbcType="VARCHAR" />
+    <result column="IPADDRESS" property="ipaddress" jdbcType="VARCHAR" />
+    <result column="NICKNAME" property="nickname" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="DECIMAL" />
+    <result column="SEX" property="sex" jdbcType="VARCHAR" />
+    <result column="CONTRACT" property="contract" jdbcType="VARCHAR" />
+    <result column="MAIL" property="mail" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    HOST_NAME, DEPT_CODE, IPADDRESS, NICKNAME, STATUS, SEX, CONTRACT, MAIL
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMM.LOCAL_QQ
+    where HOST_NAME = #{hostName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COMM.LOCAL_QQ
+    where HOST_NAME = #{hostName,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.LocalQq" >
+    insert into COMM.LOCAL_QQ (HOST_NAME, DEPT_CODE, IPADDRESS, 
+      NICKNAME, STATUS, SEX, 
+      CONTRACT, MAIL)
+    values (#{hostName,jdbcType=VARCHAR}, #{deptCode,jdbcType=VARCHAR}, #{ipaddress,jdbcType=VARCHAR}, 
+      #{nickname,jdbcType=VARCHAR}, #{status,jdbcType=DECIMAL}, #{sex,jdbcType=VARCHAR}, 
+      #{contract,jdbcType=VARCHAR}, #{mail,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.LocalQq" >
+    insert into COMM.LOCAL_QQ
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="hostName != null" >
+        HOST_NAME,
+      </if>
+      <if test="deptCode != null" >
+        DEPT_CODE,
+      </if>
+      <if test="ipaddress != null" >
+        IPADDRESS,
+      </if>
+      <if test="nickname != null" >
+        NICKNAME,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="sex != null" >
+        SEX,
+      </if>
+      <if test="contract != null" >
+        CONTRACT,
+      </if>
+      <if test="mail != null" >
+        MAIL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="hostName != null" >
+        #{hostName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptCode != null" >
+        #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ipaddress != null" >
+        #{ipaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null" >
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="contract != null" >
+        #{contract,jdbcType=VARCHAR},
+      </if>
+      <if test="mail != null" >
+        #{mail,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.comm.LocalQq" >
+    update COMM.LOCAL_QQ
+    <set >
+      <if test="deptCode != null" >
+        DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ipaddress != null" >
+        IPADDRESS = #{ipaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null" >
+        NICKNAME = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="sex != null" >
+        SEX = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="contract != null" >
+        CONTRACT = #{contract,jdbcType=VARCHAR},
+      </if>
+      <if test="mail != null" >
+        MAIL = #{mail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where HOST_NAME = #{hostName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.comm.LocalQq" >
+    update COMM.LOCAL_QQ
+    set DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+      IPADDRESS = #{ipaddress,jdbcType=VARCHAR},
+      NICKNAME = #{nickname,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=DECIMAL},
+      SEX = #{sex,jdbcType=VARCHAR},
+      CONTRACT = #{contract,jdbcType=VARCHAR},
+      MAIL = #{mail,jdbcType=VARCHAR}
+    where HOST_NAME = #{hostName,jdbcType=VARCHAR}
+  </update>
+</mapper>

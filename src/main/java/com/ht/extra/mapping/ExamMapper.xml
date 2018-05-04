@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.ExamMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.lab.Exam" >
+    <id column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="ITEM_CODE1" property="itemCode1" jdbcType="VARCHAR" />
+    <result column="ITEM_CODE2" property="itemCode2" jdbcType="VARCHAR" />
+    <result column="ITEM_CODE3" property="itemCode3" jdbcType="VARCHAR" />
+    <result column="ITEM_CODE4" property="itemCode4" jdbcType="VARCHAR" />
+    <result column="ITEM_CODE5" property="itemCode5" jdbcType="VARCHAR" />
+    <result column="X" property="x" jdbcType="DECIMAL" />
+    <result column="Y" property="y" jdbcType="DECIMAL" />
+    <result column="CONDITION" property="condition" jdbcType="VARCHAR" />
+    <result column="DESC_EXAM" property="descExam" jdbcType="VARCHAR" />
+    <result column="EXAM_CLASS" property="examClass" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SERIAL_NO, ITEM_CODE1, ITEM_CODE2, ITEM_CODE3, ITEM_CODE4, ITEM_CODE5, X, Y, CONDITION, 
+    DESC_EXAM, EXAM_CLASS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select 
+    <include refid="Base_Column_List" />
+    from LAB.EXAM
+    where SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from LAB.EXAM
+    where SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ht.extra.pojo.lab.Exam" >
+    insert into LAB.EXAM (SERIAL_NO, ITEM_CODE1, ITEM_CODE2, 
+      ITEM_CODE3, ITEM_CODE4, ITEM_CODE5, 
+      X, Y, CONDITION, DESC_EXAM, 
+      EXAM_CLASS)
+    values (#{serialNo,jdbcType=DECIMAL}, #{itemCode1,jdbcType=VARCHAR}, #{itemCode2,jdbcType=VARCHAR}, 
+      #{itemCode3,jdbcType=VARCHAR}, #{itemCode4,jdbcType=VARCHAR}, #{itemCode5,jdbcType=VARCHAR}, 
+      #{x,jdbcType=DECIMAL}, #{y,jdbcType=DECIMAL}, #{condition,jdbcType=VARCHAR}, #{descExam,jdbcType=VARCHAR}, 
+      #{examClass,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.lab.Exam" >
+    insert into LAB.EXAM
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="serialNo != null" >
+        SERIAL_NO,
+      </if>
+      <if test="itemCode1 != null" >
+        ITEM_CODE1,
+      </if>
+      <if test="itemCode2 != null" >
+        ITEM_CODE2,
+      </if>
+      <if test="itemCode3 != null" >
+        ITEM_CODE3,
+      </if>
+      <if test="itemCode4 != null" >
+        ITEM_CODE4,
+      </if>
+      <if test="itemCode5 != null" >
+        ITEM_CODE5,
+      </if>
+      <if test="x != null" >
+        X,
+      </if>
+      <if test="y != null" >
+        Y,
+      </if>
+      <if test="condition != null" >
+        CONDITION,
+      </if>
+      <if test="descExam != null" >
+        DESC_EXAM,
+      </if>
+      <if test="examClass != null" >
+        EXAM_CLASS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=DECIMAL},
+      </if>
+      <if test="itemCode1 != null" >
+        #{itemCode1,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode2 != null" >
+        #{itemCode2,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode3 != null" >
+        #{itemCode3,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode4 != null" >
+        #{itemCode4,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode5 != null" >
+        #{itemCode5,jdbcType=VARCHAR},
+      </if>
+      <if test="x != null" >
+        #{x,jdbcType=DECIMAL},
+      </if>
+      <if test="y != null" >
+        #{y,jdbcType=DECIMAL},
+      </if>
+      <if test="condition != null" >
+        #{condition,jdbcType=VARCHAR},
+      </if>
+      <if test="descExam != null" >
+        #{descExam,jdbcType=VARCHAR},
+      </if>
+      <if test="examClass != null" >
+        #{examClass,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.extra.pojo.lab.Exam" >
+    update LAB.EXAM
+    <set >
+      <if test="itemCode1 != null" >
+        ITEM_CODE1 = #{itemCode1,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode2 != null" >
+        ITEM_CODE2 = #{itemCode2,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode3 != null" >
+        ITEM_CODE3 = #{itemCode3,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode4 != null" >
+        ITEM_CODE4 = #{itemCode4,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode5 != null" >
+        ITEM_CODE5 = #{itemCode5,jdbcType=VARCHAR},
+      </if>
+      <if test="x != null" >
+        X = #{x,jdbcType=DECIMAL},
+      </if>
+      <if test="y != null" >
+        Y = #{y,jdbcType=DECIMAL},
+      </if>
+      <if test="condition != null" >
+        CONDITION = #{condition,jdbcType=VARCHAR},
+      </if>
+      <if test="descExam != null" >
+        DESC_EXAM = #{descExam,jdbcType=VARCHAR},
+      </if>
+      <if test="examClass != null" >
+        EXAM_CLASS = #{examClass,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.extra.pojo.lab.Exam" >
+    update LAB.EXAM
+    set ITEM_CODE1 = #{itemCode1,jdbcType=VARCHAR},
+      ITEM_CODE2 = #{itemCode2,jdbcType=VARCHAR},
+      ITEM_CODE3 = #{itemCode3,jdbcType=VARCHAR},
+      ITEM_CODE4 = #{itemCode4,jdbcType=VARCHAR},
+      ITEM_CODE5 = #{itemCode5,jdbcType=VARCHAR},
+      X = #{x,jdbcType=DECIMAL},
+      Y = #{y,jdbcType=DECIMAL},
+      CONDITION = #{condition,jdbcType=VARCHAR},
+      DESC_EXAM = #{descExam,jdbcType=VARCHAR},
+      EXAM_CLASS = #{examClass,jdbcType=VARCHAR}
+    where SERIAL_NO = #{serialNo,jdbcType=DECIMAL}
+  </update>
+</mapper>

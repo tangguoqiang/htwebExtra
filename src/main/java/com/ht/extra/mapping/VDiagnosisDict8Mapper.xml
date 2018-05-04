@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.VDiagnosisDict8Mapper" >
+  <resultMap id="BaseResultMap" type="com.ht.extra.pojo.comm.VDiagnosisDict8" >
+    <result column="DIAGNOSIS_CODE" property="diagnosisCode" jdbcType="VARCHAR" />
+    <result column="DIAGNOSIS_NAME" property="diagnosisName" jdbcType="VARCHAR" />
+    <result column="STD_INDICATOR" property="stdIndicator" jdbcType="DECIMAL" />
+    <result column="APPROVED_INDICATOR" property="approvedIndicator" jdbcType="DECIMAL" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="DATE" />
+    <result column="INPUT_CODE" property="inputCode" jdbcType="VARCHAR" />
+    <result column="CODE_VERSION" property="codeVersion" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.ht.extra.pojo.comm.VDiagnosisDict8" >
+    insert into COMM.V_DIAGNOSIS_DICT_8 (DIAGNOSIS_CODE, DIAGNOSIS_NAME, STD_INDICATOR, 
+      APPROVED_INDICATOR, CREATE_DATE, INPUT_CODE, 
+      CODE_VERSION)
+    values (#{diagnosisCode,jdbcType=VARCHAR}, #{diagnosisName,jdbcType=VARCHAR}, #{stdIndicator,jdbcType=DECIMAL}, 
+      #{approvedIndicator,jdbcType=DECIMAL}, #{createDate,jdbcType=DATE}, #{inputCode,jdbcType=VARCHAR}, 
+      #{codeVersion,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.extra.pojo.comm.VDiagnosisDict8" >
+    insert into COMM.V_DIAGNOSIS_DICT_8
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="diagnosisCode != null" >
+        DIAGNOSIS_CODE,
+      </if>
+      <if test="diagnosisName != null" >
+        DIAGNOSIS_NAME,
+      </if>
+      <if test="stdIndicator != null" >
+        STD_INDICATOR,
+      </if>
+      <if test="approvedIndicator != null" >
+        APPROVED_INDICATOR,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="inputCode != null" >
+        INPUT_CODE,
+      </if>
+      <if test="codeVersion != null" >
+        CODE_VERSION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="diagnosisCode != null" >
+        #{diagnosisCode,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnosisName != null" >
+        #{diagnosisName,jdbcType=VARCHAR},
+      </if>
+      <if test="stdIndicator != null" >
+        #{stdIndicator,jdbcType=DECIMAL},
+      </if>
+      <if test="approvedIndicator != null" >
+        #{approvedIndicator,jdbcType=DECIMAL},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=DATE},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="codeVersion != null" >
+        #{codeVersion,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
