@@ -3,6 +3,8 @@ package com.ht.extra.dao;
 import com.ht.extra.pojo.outpbill.OutpPaymentsMoney;
 import com.ht.extra.pojo.outpbill.OutpPaymentsMoneyKey;
 
+import java.util.List;
+
 public interface OutpPaymentsMoneyMapper {
     int deleteByPrimaryKey(OutpPaymentsMoneyKey key);
 
@@ -15,4 +17,6 @@ public interface OutpPaymentsMoneyMapper {
     int updateByPrimaryKeySelective(OutpPaymentsMoney record);
 
     int updateByPrimaryKey(OutpPaymentsMoney record);
+
+    List<OutpPaymentsMoney> selectByRcptNo(String repoNo);
 }

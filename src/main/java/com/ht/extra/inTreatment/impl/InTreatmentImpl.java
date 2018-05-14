@@ -976,7 +976,13 @@ public class InTreatmentImpl implements InTreatment {
                                 payInfoElement.addElement("itemCodeYB").setText("");//
                                 payInfoElement.addElement("detail_item_name").setText(StringUtil.Iso_GBK(outpOrdersCosts.getItemName()));//计价项目名称
                                 payInfoElement.addElement("std").setText(StringUtil.Iso_GBK(outpOrdersCosts.getItemSpec()));//计价项目规格
-                                payInfoElement.addElement("amt").setText(StringUtil.Iso_GBK(outpOrdersCosts.getAmount()+""));//数量
+                                if(outpOrdersCosts.getRepetition() > 1){
+                                    payInfoElement.addElement("amt").setText(outpOrdersCosts.getAmount()
+                                            .multiply(new BigDecimal(outpOrdersCosts.getRepetition()))+"");//数量
+                                }else{
+                                    payInfoElement.addElement("amt").setText(outpOrdersCosts.getAmount()+"");//数量
+                                }
+
                                 payInfoElement.addElement("unit").setText(StringUtil.Iso_GBK(outpOrdersCosts.getUnits()));//计价单位
                                 payInfoElement.addElement("price").setText(outpOrdersCosts.getCosts().divide(outpOrdersCosts.getAmount(), 2, RoundingMode.HALF_UP)+""); //单价
                                 payInfoElement.addElement("detailPayAmt").setText(StringUtil.Iso_GBK(outpOrdersCosts.getCosts()+""));//计价费用

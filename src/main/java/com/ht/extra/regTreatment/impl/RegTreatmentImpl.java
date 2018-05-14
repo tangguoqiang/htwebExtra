@@ -3,7 +3,6 @@ package com.ht.extra.regTreatment.impl;
 import com.haitaiinc.Util;
 import com.ht.extra.dao.*;
 import com.ht.extra.njyb.*;
-import com.ht.extra.pojo.*;
 import com.ht.extra.pojo.RecordNo;
 import com.ht.extra.pojo.comm.*;
 import com.ht.extra.pojo.inpbill.InternetPayinfo;
@@ -22,12 +21,11 @@ import com.ht.extra.util.DateToWeek;
 import com.ht.extra.util.PinyinTool;
 import com.ht.extra.util.SiClassUtil;
 import com.ht.extra.util.StringUtil;
+import org.apache.log4j.Logger;
 import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 import org.springframework.transaction.annotation.Transactional;
-
-import org.apache.log4j.Logger;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
@@ -38,9 +36,10 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.Timestamp;
 import java.text.ParseException;
-import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created by jpzhang on 2017/9/13.
@@ -388,7 +387,7 @@ public class RegTreatmentImpl implements RegTreatment {
             }else if("建筑业农民工".equals( personalTypeName)){
                 chargeType="农工医保";
             }else{
-                chargeType="未知";
+                chargeType=personalTypeName;
             }
             if (idenNo != null && idenNo.length() > 0) {
                 if (cCardNo != null && cCardNo.length() > 0) { //市民卡不为空
@@ -1024,26 +1023,28 @@ public class RegTreatmentImpl implements RegTreatment {
                             patIccardRecNewMapper.insert(pirnIdNo);
                             patMasterIndexMapper.updateByPrimaryKeySelective(pmi);
 
-                            //重新校验是否插入
-                            PatIccardRecNew patIccardRecNew = new PatIccardRecNew();
-                            if (cardNo != null && cardNo.length() > 0) {
-                                patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(cardNo);
-                            } else if (idenNo != null && idenNo.length() > 0) {
-                                patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(idenNo);
-                            } else if (cCardNo != null && cCardNo.length() > 0) {
-                                patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(cCardNo);
-                            }
+                            //重新校验是否插入 只需校验身份证号
+                            PatIccardRecNew patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(idenNo);
+//                            if (cardNo != null && cardNo.length() > 0) {
+//                                patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(cardNo);
+//                            } else if (idenNo != null && idenNo.length() > 0) {
+//                                patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(idenNo);
+//                            } else if (cCardNo != null && cCardNo.length() > 0) {
+//                                patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(cCardNo);
+//                            }
                             if(patIccardRecNew==null){
                                 patIccardRecNewMapper.insert(pirnIdNo);
                             }
+                            patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(idenNo);
 
-                            if (cardNo != null && cardNo.length() > 0) {
-                                patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(cardNo);
-                            } else if (idenNo != null && idenNo.length() > 0) {
-                                patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(idenNo);
-                            } else if (cCardNo != null && cCardNo.length() > 0) {
-                                patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(cCardNo);
-                            }
+
+//                            if (cardNo != null && cardNo.length() > 0) {
+//                                patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(cardNo);
+//                            } else if (idenNo != null && idenNo.length() > 0) {
+//                                patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(idenNo);
+//                            } else if (cCardNo != null && cCardNo.length() > 0) {
+//                                patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(cCardNo);
+//                            }
 
                             PatMasterIndex patMasterIndex = patMasterIndexMapper.selectByPatientId(patCardNo.getPatientId()); //没有增加军队医改的限制
                             if(!(patMasterIndex.getIdNo()!=null&& patMasterIndex.getIdNo().length()>0)){
@@ -1133,26 +1134,27 @@ public class RegTreatmentImpl implements RegTreatment {
                             patIccardRecNewMapper.insert(pirn);
                             patMasterIndexMapper.updateByPrimaryKeySelective(pmi);
 
-                            //重新校验是否插入
-                            PatIccardRecNew patIccardRecNew = new PatIccardRecNew();
-                            if (cardNo != null && cardNo.length() > 0) {
-                                patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(cardNo);
-                            } else if (idenNo != null && idenNo.length() > 0) {
-                                patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(idenNo);
-                            } else if (cCardNo != null && cCardNo.length() > 0) {
-                                patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(cCardNo);
-                            }
+                            //重新校验是否插入 只需要检查市民卡号
+                            PatIccardRecNew patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(cCardNo);
+//                            if (cardNo != null && cardNo.length() > 0) {
+//                                patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(cardNo);
+//                            } else if (idenNo != null && idenNo.length() > 0) {
+//                                patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(idenNo);
+//                            } else if (cCardNo != null && cCardNo.length() > 0) {
+//                                patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(cCardNo);
+//                            }
                             if(patIccardRecNew==null){
                                 patIccardRecNewMapper.insert(pirn);
                             }
 
-                            if (cardNo != null && cardNo.length() > 0) {
-                                patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(cardNo);
-                            } else if (idenNo != null && idenNo.length() > 0) {
-                                patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(idenNo);
-                            } else if (cCardNo != null && cCardNo.length() > 0) {
-                                patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(cCardNo);
-                            }
+                            patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(cCardNo);
+//                            if (cardNo != null && cardNo.length() > 0) {
+//                                patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(cardNo);
+//                            } else if (idenNo != null && idenNo.length() > 0) {
+//                                patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(idenNo);
+//                            } else if (cCardNo != null && cCardNo.length() > 0) {
+//                                patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(cCardNo);
+//                            }
 
                             PatMasterIndex patMasterIndex = patMasterIndexMapper.selectByPatientId(patIdNo.getPatientId()); //没有增加军队医改的限制
                             if(!(patMasterIndex.getIdNo()!=null&& patMasterIndex.getIdNo().length()>0)){
@@ -1930,27 +1932,27 @@ public class RegTreatmentImpl implements RegTreatment {
                                 patIccardRecNewMapper.insert(pirnIdNo);
                                 patMasterIndexMapper.updateByPrimaryKeySelective(pmi);
 
-                                //重新校验是否插入
-                                PatIccardRecNew patIccardRecNew = new PatIccardRecNew();
-                                if (cardNo != null && cardNo.length() > 0) {
-                                    patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(cardNo);
-                                } else if (idenNo != null && idenNo.length() > 0) {
-                                    patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(idenNo);
-                                } else if (cCardNo != null && cCardNo.length() > 0) {
-                                    patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(cCardNo);
-                                }
+                                //重新校验是否插入 只需要检验身份证
+                                PatIccardRecNew patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(idenNo);
+//                                if (cardNo != null && cardNo.length() > 0) {
+//                                    patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(cardNo);
+//                                } else if (idenNo != null && idenNo.length() > 0) {
+//                                    patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(idenNo);
+//                                } else if (cCardNo != null && cCardNo.length() > 0) {
+//                                    patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(cCardNo);
+//                                }
                                 if(patIccardRecNew==null){
                                     patIccardRecNewMapper.insert(pirnIdNo);
                                 }
 
-                                if (cardNo != null && cardNo.length() > 0) {
-                                    patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(cardNo);
-                                } else if (idenNo != null && idenNo.length() > 0) {
-                                    patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(idenNo);
-                                } else if (cCardNo != null && cCardNo.length() > 0) {
-                                    patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(cCardNo);
-                                }
-
+//                                if (cardNo != null && cardNo.length() > 0) {
+//                                    patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(cardNo);
+//                                } else if (idenNo != null && idenNo.length() > 0) {
+//                                    patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(idenNo);
+//                                } else if (cCardNo != null && cCardNo.length() > 0) {
+//                                    patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(cCardNo);
+//                                }
+                                patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(idenNo);
 
                                 PatMasterIndex patMasterIndex = patMasterIndexMapper.selectByPatientId(patCardNo.getPatientId()); //没有增加军队医改的限制
                                 if(!(patMasterIndex.getIdNo()!=null&& patMasterIndex.getIdNo().length()>0)){
@@ -2038,26 +2040,11 @@ public class RegTreatmentImpl implements RegTreatment {
                                 patIccardRecNewMapper.insert(pirn);
                                 patMasterIndexMapper.updateByPrimaryKeySelective(pmi);
 
-                                //重新校验是否插入
-                                PatIccardRecNew patIccardRecNew = new PatIccardRecNew();
-                                if (cardNo != null && cardNo.length() > 0) {
-                                    patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(cardNo);
-                                } else if (idenNo != null && idenNo.length() > 0) {
-                                    patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(idenNo);
-                                } else if (cCardNo != null && cCardNo.length() > 0) {
-                                    patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(cCardNo);
-                                }
-                                if(patIccardRecNew==null){
+                                //重新校验是否插入,只需要检查cardNo
+                                PatIccardRecNew patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(cardNo);
+                                if(patIccardRecNew==null)
                                     patIccardRecNewMapper.insert(pirn);
-                                }
-
-                                if (cardNo != null && cardNo.length() > 0) {
-                                    patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(cardNo);
-                                } else if (idenNo != null && idenNo.length() > 0) {
-                                    patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(idenNo);
-                                } else if (cCardNo != null && cCardNo.length() > 0) {
-                                    patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(cCardNo);
-                                }
+                                patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(cardNo);
 
                                 PatMasterIndex patMasterIndex = patMasterIndexMapper.selectByPatientId(patIdNo.getPatientId()); //没有增加军队医改的限制
                                 if(!(patMasterIndex.getIdNo()!=null&& patMasterIndex.getIdNo().length()>0)){
@@ -2148,6 +2135,10 @@ public class RegTreatmentImpl implements RegTreatment {
                                 patIccardRecNewMapper.insert(pirnIdNo);
                                 patMasterIndexMapper.insertSelective(pmi);
 
+                                //插入cardNo 2018-05-09修改
+                                pirnIdNo.setIccardNo(cardNo);
+                                patIccardRecNewMapper.insert(pirnIdNo);
+
                                 //重新校验是否插入,只需要检查身份证号
                                 PatIccardRecNew patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(idenNo);
 //                                PatIccardRecNew patIccardRecNew = new PatIccardRecNew();
@@ -2158,13 +2149,11 @@ public class RegTreatmentImpl implements RegTreatment {
 //                                } else if (cCardNo != null && cCardNo.length() > 0) {
 //                                    patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(cCardNo);
 //                                }
-                                if(patIccardRecNew==null){
+                                if(patIccardRecNew==null)
                                     patIccardRecNewMapper.insert(pirnIdNo);
-                                }
                                 PatMasterIndex patMasterIndex = patMasterIndexMapper.selectByPatientId(patientID); //没有增加军队医改的限制
-                                if(patMasterIndex==null){
+                                if(patMasterIndex==null)
                                     patMasterIndexMapper.insertSelective(pmi);
-                                }
 
 //                                if (cardNo != null && cardNo.length() > 0) {
 //                                    patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(cardNo);
@@ -3430,7 +3419,7 @@ public class RegTreatmentImpl implements RegTreatment {
                             payInfoElement.addElement("itemCodeYB").setText(insuVsPrice.getInsuItemsCode());
                             payInfoElement.addElement("detail_item_name").setText(StringUtil.Iso_GBK(outpOrdersCosts.getItemName()));//计价项目名称
                             payInfoElement.addElement("std").setText(StringUtil.Iso_GBK(outpOrdersCosts.getItemSpec()));//计价项目规格
-                            payInfoElement.addElement("amt").setText(StringUtil.Iso_GBK(outpOrdersCosts.getAmount() + ""));//数量
+//                            payInfoElement.addElement("amt").setText(StringUtil.Iso_GBK(outpOrdersCosts.getAmount() + ""));//数量
                             payInfoElement.addElement("unit").setText(StringUtil.Iso_GBK(outpOrdersCosts.getUnits()));//计价单位
                             PriceList priceList = priceListMapper.selectPriceListForAdministration(outpOrdersCosts.getItemClass(), outpOrdersCosts.getItemCode(), outpOrdersCosts.getItemSpec(), outpOrdersCosts.getUnits());
                             if(priceList!=null ){
@@ -3511,8 +3500,10 @@ public class RegTreatmentImpl implements RegTreatment {
                                 outpPrescKey.setItemNo(outpOrdersCosts.getItemNo());
                                 OutpPresc outpPresc =  outpPrescMapper.selectByPrimaryKey(outpPrescKey);
                                 payInfoElement.addElement("cfts").setText(outpPresc.getRepetition()+"");//处方帖数
+                                payInfoElement.addElement("amt").setText(outpOrdersCosts.getAmount().multiply(new BigDecimal(outpPresc.getRepetition())).toString());//数量
                             }else{
-                                payInfoElement.addElement("cfts").setText("");
+                                payInfoElement.addElement("cfts").setText("1");
+                                payInfoElement.addElement("amt").setText(StringUtil.Iso_GBK(outpOrdersCosts.getAmount() + ""));//数量
                             }
 
 
@@ -3682,6 +3673,14 @@ public class RegTreatmentImpl implements RegTreatment {
                                     moneyType = "自助银联";
                                 }
                             }
+
+                            // add by tang 2018-05-14, 计算payment_no, start
+                            short paymentNo = (short)1;
+                            List<OutpPaymentsMoney> moneyList = outpPaymentsMoneyMapper.selectByRcptNo(rcptNo);
+                            if(moneyList != null && !moneyList.isEmpty())
+                                paymentNo = (short) (moneyList.get(0).getPaymentNo() + 1);
+                            // add by tang 2018-05-14, 计算payment_no, end
+
                             //2.门诊病人支付方式记录 OUTP_PAYMENTS_MONEY
                             if ("1".equals(feeType)) { //现金   统筹 医保账户
                                 BigDecimal casePay = new BigDecimal(inCashPay);
@@ -3692,7 +3691,7 @@ public class RegTreatmentImpl implements RegTreatment {
 
                                     OutpPaymentsMoney opm = new OutpPaymentsMoney();
                                     opm.setRcptNo(rcptNo);
-                                    opm.setPaymentNo((short) 1);
+                                    opm.setPaymentNo(paymentNo);
 
                                     opm.setMoneyType(StringUtil.Utf_Iso(moneyType)); // 现金
                                     opm.setPaymentAmount(casePay);
@@ -3703,7 +3702,7 @@ public class RegTreatmentImpl implements RegTreatment {
                                 if (fundPay.compareTo(amount) == 1) {
                                     OutpPaymentsMoney opm = new OutpPaymentsMoney();
                                     opm.setRcptNo(rcptNo);
-                                    opm.setPaymentNo((short) 1);
+                                    opm.setPaymentNo(paymentNo);
                                     opm.setMoneyType(StringUtil.Utf_Iso("统筹支付")); // 统筹
                                     opm.setPaymentAmount(fundPay);
                                     opm.setRefundedAmount(BigDecimal.valueOf(0));
@@ -3713,7 +3712,7 @@ public class RegTreatmentImpl implements RegTreatment {
                                 if (accountPay.compareTo(amount) == 1) {
                                     OutpPaymentsMoney opm = new OutpPaymentsMoney();
                                     opm.setRcptNo(rcptNo);
-                                    opm.setPaymentNo((short) 1);
+                                    opm.setPaymentNo(paymentNo);
                                     opm.setMoneyType(StringUtil.Utf_Iso("账户支付")); // 医保账户
                                     opm.setPaymentAmount(accountPay);
                                     opm.setRefundedAmount(BigDecimal.valueOf(0));
@@ -3724,7 +3723,7 @@ public class RegTreatmentImpl implements RegTreatment {
                                 BigDecimal casePay = new BigDecimal(inCashPay);
                                 OutpPaymentsMoney opm = new OutpPaymentsMoney();
                                 opm.setRcptNo(rcptNo);
-                                opm.setPaymentNo((short) 1);
+                                opm.setPaymentNo(paymentNo);
                                 opm.setMoneyType(StringUtil.Utf_Iso(moneyType)); //   自助阿里5  自助微信6  自助银联9  医保支付0
                                 opm.setPaymentAmount(casePay);
                                 opm.setRefundedAmount(BigDecimal.valueOf(0));
@@ -4484,7 +4483,7 @@ public class RegTreatmentImpl implements RegTreatment {
      * @return
      */
     public String registrationRecord(String xmlParam) {
-        logger.info("[获取价格列表  入参 :]" + xmlParam);
+        logger.info("[挂号对账  入参 :]" + xmlParam);
         Document document = null;
         try {
             document = DocumentHelper.parseText(xmlParam);

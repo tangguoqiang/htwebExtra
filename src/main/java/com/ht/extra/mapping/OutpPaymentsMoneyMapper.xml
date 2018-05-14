@@ -103,4 +103,13 @@
     where RCPT_NO = #{rcptNo,jdbcType=VARCHAR}
       and MONEY_TYPE = #{moneyType,jdbcType=VARCHAR}
   </update>
+    <!-- add by tang 2018-05-14, 计算payment_no, start -->
+  <select id="selectByRcptNo" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from OUTPBILL.OUTP_PAYMENTS_MONEY
+    where RCPT_NO = #{0}
+    ORDER BY PAYMENT_NO DESC
+  </select>
+    <!-- add by tang 2018-05-14, 计算payment_no, end -->
 </mapper>
