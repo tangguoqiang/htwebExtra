@@ -427,12 +427,7 @@ public class RegTreatmentImpl implements RegTreatment {
                                     pmi.setMailingAddress(null);
                                 }else{
                                     pmi.setNation(StringUtil.Utf_Iso(nation+"族"));
-                                    if(address.length()>40){
-                                        pmi.setMailingAddress(StringUtil.Utf_Iso(address.substring(0,40)));
-                                    }else{
-                                        pmi.setMailingAddress(StringUtil.Utf_Iso(address));
-                                    }
-
+                                    pmi.setMailingAddress(truncateStr(address,40));
                                 }
                                 pmi.setIdNo(idenNo);
                                 pmi.setIdentity(StringUtil.Utf_Iso(identity));
@@ -511,11 +506,7 @@ public class RegTreatmentImpl implements RegTreatment {
                                             pmi.setMailingAddress(null);
                                         }else{
                                             pmi.setNation(StringUtil.Utf_Iso(nation+"族"));
-                                            if(address.length()>40){
-                                                pmi.setMailingAddress(StringUtil.Utf_Iso(address.substring(0,40)));
-                                            }else{
-                                                pmi.setMailingAddress(StringUtil.Utf_Iso(address));
-                                            }
+                                            pmi.setMailingAddress(truncateStr(address,40));
                                         }
                                         pmi.setIdNo(idenNo);
                                         pmi.setIdentity(StringUtil.Utf_Iso(identity));
@@ -590,11 +581,7 @@ public class RegTreatmentImpl implements RegTreatment {
                                             pmi.setMailingAddress(null);
                                         }else{
                                             pmi.setNation(StringUtil.Utf_Iso(nation+"族"));
-                                            if(address.length()>40){
-                                                pmi.setMailingAddress(StringUtil.Utf_Iso(address.substring(0,40)));
-                                            }else{
-                                                pmi.setMailingAddress(StringUtil.Utf_Iso(address));
-                                            }
+                                            pmi.setMailingAddress(truncateStr(address,40));
                                         }
                                         pmi.setIdNo(idenNo);
                                         pmi.setIdentity(StringUtil.Utf_Iso(identity));
@@ -671,11 +658,7 @@ public class RegTreatmentImpl implements RegTreatment {
                                             pmi.setMailingAddress(null);
                                         }else{
                                             pmi.setNation(StringUtil.Utf_Iso(nation+"族"));
-                                            if(address.length()>40){
-                                                pmi.setMailingAddress(StringUtil.Utf_Iso(address.substring(0,40)));
-                                            }else{
-                                                pmi.setMailingAddress(StringUtil.Utf_Iso(address));
-                                            }
+                                            pmi.setMailingAddress(truncateStr(address,40));
                                         }
                                         pmi.setIdNo(idenNo);
                                         pmi.setIdentity(StringUtil.Utf_Iso(identity));
@@ -750,11 +733,7 @@ public class RegTreatmentImpl implements RegTreatment {
                                             pmi.setMailingAddress(null);
                                         }else{
                                             pmi.setNation(StringUtil.Utf_Iso(nation+"族"));
-                                            if(address.length()>40){
-                                                pmi.setMailingAddress(StringUtil.Utf_Iso(address.substring(0,40)));
-                                            }else{
-                                                pmi.setMailingAddress(StringUtil.Utf_Iso(address));
-                                            }
+                                            pmi.setMailingAddress(truncateStr(address,40));
                                         }
                                         pmi.setIdNo(idenNo);
                                         pmi.setIdentity(StringUtil.Utf_Iso(identity));
@@ -830,11 +809,7 @@ public class RegTreatmentImpl implements RegTreatment {
                                                 pmi.setMailingAddress(null);
                                             }else{
                                                 pmi.setNation(StringUtil.Utf_Iso(nation+"族"));
-                                                if(address.length()>40){
-                                                    pmi.setMailingAddress(StringUtil.Utf_Iso(address.substring(0,40)));
-                                                }else{
-                                                    pmi.setMailingAddress(StringUtil.Utf_Iso(address));
-                                                }
+                                                pmi.setMailingAddress(truncateStr(address,40));
                                             }
                                             pmi.setIdNo(idenNo);
                                             pmi.setIdentity(StringUtil.Utf_Iso(identity));
@@ -909,11 +884,7 @@ public class RegTreatmentImpl implements RegTreatment {
                                                 pmi.setMailingAddress(null);
                                             }else{
                                                 pmi.setNation(StringUtil.Utf_Iso(nation+"族"));
-                                                if(address.length()>40){
-                                                    pmi.setMailingAddress(StringUtil.Utf_Iso(address.substring(0,40)));
-                                                }else{
-                                                    pmi.setMailingAddress(StringUtil.Utf_Iso(address));
-                                                }
+                                                pmi.setMailingAddress(truncateStr(address,40));
                                             }
                                             pmi.setIdNo(idenNo);
                                             pmi.setIdentity(StringUtil.Utf_Iso(identity));
@@ -996,11 +967,7 @@ public class RegTreatmentImpl implements RegTreatment {
                                 pmi.setMailingAddress(null);
                             }else{
                                 pmi.setNation(StringUtil.Utf_Iso(nation+"族"));
-                                if(address.length()>40){
-                                    pmi.setMailingAddress(StringUtil.Utf_Iso(address.substring(0,40)));
-                                }else{
-                                    pmi.setMailingAddress(StringUtil.Utf_Iso(address));
-                                }
+                                pmi.setMailingAddress(truncateStr(address,40));
                             }
                             pmi.setIdNo(idenNo);
                             pmi.setIdentity(StringUtil.Utf_Iso(identity));
@@ -1106,11 +1073,7 @@ public class RegTreatmentImpl implements RegTreatment {
                                 pmi.setMailingAddress(null);
                             }else{
                                 pmi.setNation(StringUtil.Utf_Iso(nation+"族"));
-                                if(address.length()>40){
-                                    pmi.setMailingAddress(StringUtil.Utf_Iso(address.substring(0,40)));
-                                }else{
-                                    pmi.setMailingAddress(StringUtil.Utf_Iso(address));
-                                }
+                                pmi.setMailingAddress(truncateStr(address,40));
                             }
                             pmi.setIdNo(idenNo);
                             pmi.setIdentity(StringUtil.Utf_Iso(identity));
@@ -1233,11 +1196,8 @@ public class RegTreatmentImpl implements RegTreatment {
                             pmi.setIdentity(StringUtil.Utf_Iso(identity));
                             pmi.setChargeType(StringUtil.Utf_Iso(chargeType));
                             pmi.setUnitInContract("");
-                            if(address.length()>40){
-                                pmi.setMailingAddress(StringUtil.Utf_Iso(address.substring(0,40)));
-                            }else{
-                                pmi.setMailingAddress(StringUtil.Utf_Iso(address));
-                            }
+
+                            pmi.setMailingAddress(truncateStr(address,40));
                             pmi.setZipCode("");
                             pmi.setPhoneNumberHome(homeTel);
                             pmi.setPhoneNumberBusiness("");
@@ -1335,11 +1295,7 @@ public class RegTreatmentImpl implements RegTreatment {
                                         pmi.setMailingAddress(null);
                                     }else{
                                         pmi.setNation(StringUtil.Utf_Iso(nation+"族"));
-                                        if(address.length()>40){
-                                            pmi.setMailingAddress(StringUtil.Utf_Iso(address.substring(0,40)));
-                                        }else{
-                                            pmi.setMailingAddress(StringUtil.Utf_Iso(address));
-                                        }
+                                        pmi.setMailingAddress(truncateStr(address,40));
                                     }
                                     pmi.setIdNo(idenNo);
                                     pmi.setIdentity(StringUtil.Utf_Iso(identity));
@@ -1418,11 +1374,7 @@ public class RegTreatmentImpl implements RegTreatment {
                                                 pmi.setMailingAddress(null);
                                             }else{
                                                 pmi.setNation(StringUtil.Utf_Iso(nation+"族"));
-                                                if(address.length()>40){
-                                                    pmi.setMailingAddress(StringUtil.Utf_Iso(address.substring(0,40)));
-                                                }else{
-                                                    pmi.setMailingAddress(StringUtil.Utf_Iso(address));
-                                                }
+                                                pmi.setMailingAddress(truncateStr(address,40));
                                             }
                                             pmi.setIdNo(idenNo);
                                             pmi.setIdentity(StringUtil.Utf_Iso(identity));
@@ -1497,11 +1449,7 @@ public class RegTreatmentImpl implements RegTreatment {
                                                 pmi.setMailingAddress(null);
                                             }else{
                                                 pmi.setNation(StringUtil.Utf_Iso(nation+"族"));
-                                                if(address.length()>40){
-                                                    pmi.setMailingAddress(StringUtil.Utf_Iso(address.substring(0,40)));
-                                                }else{
-                                                    pmi.setMailingAddress(StringUtil.Utf_Iso(address));
-                                                }
+                                                pmi.setMailingAddress(truncateStr(address,40));
                                             }
                                             pmi.setIdNo(idenNo);
                                             pmi.setIdentity(StringUtil.Utf_Iso(identity));
@@ -1579,11 +1527,7 @@ public class RegTreatmentImpl implements RegTreatment {
                                                 pmi.setMailingAddress(null);
                                             }else{
                                                 pmi.setNation(StringUtil.Utf_Iso(nation+"族"));
-                                                if(address.length()>40){
-                                                    pmi.setMailingAddress(StringUtil.Utf_Iso(address.substring(0,40)));
-                                                }else{
-                                                    pmi.setMailingAddress(StringUtil.Utf_Iso(address));
-                                                }
+                                                pmi.setMailingAddress(truncateStr(address,40));
                                             }
                                             pmi.setIdNo(idenNo);
                                             pmi.setIdentity(StringUtil.Utf_Iso(identity));
@@ -1659,11 +1603,7 @@ public class RegTreatmentImpl implements RegTreatment {
                                                 pmi.setMailingAddress(null);
                                             }else{
                                                 pmi.setNation(StringUtil.Utf_Iso(nation+"族"));
-                                                if(address.length()>40){
-                                                    pmi.setMailingAddress(StringUtil.Utf_Iso(address.substring(0,40)));
-                                                }else{
-                                                    pmi.setMailingAddress(StringUtil.Utf_Iso(address));
-                                                }
+                                                pmi.setMailingAddress(truncateStr(address,40));
                                             }
                                             pmi.setIdNo(idenNo);
                                             pmi.setIdentity(StringUtil.Utf_Iso(identity));
@@ -1740,11 +1680,7 @@ public class RegTreatmentImpl implements RegTreatment {
                                                     pmi.setMailingAddress(null);
                                                 }else{
                                                     pmi.setNation(StringUtil.Utf_Iso(nation+"族"));
-                                                    if(address.length()>40){
-                                                        pmi.setMailingAddress(StringUtil.Utf_Iso(address.substring(0,40)));
-                                                    }else{
-                                                        pmi.setMailingAddress(StringUtil.Utf_Iso(address));
-                                                    }
+                                                    pmi.setMailingAddress(truncateStr(address,40));
                                                 }
                                                 pmi.setIdNo(idenNo);
                                                 pmi.setIdentity(StringUtil.Utf_Iso(identity));
@@ -1820,7 +1756,7 @@ public class RegTreatmentImpl implements RegTreatment {
                                                     pmi.setMailingAddress(null);
                                                 }else{
                                                     pmi.setNation(StringUtil.Utf_Iso(nation+"族"));
-                                                    pmi.setMailingAddress(StringUtil.Utf_Iso(address));
+                                                    pmi.setMailingAddress(truncateStr(address,40));
                                                 }
                                                 pmi.setIdNo(idenNo);
                                                 pmi.setIdentity(StringUtil.Utf_Iso(identity));
@@ -1904,11 +1840,7 @@ public class RegTreatmentImpl implements RegTreatment {
                                     pmi.setMailingAddress(null);
                                 }else{
                                     pmi.setNation(StringUtil.Utf_Iso(nation+"族"));
-                                    if(address.length()>40){
-                                        pmi.setMailingAddress(StringUtil.Utf_Iso(address.substring(0,40)));
-                                    }else{
-                                        pmi.setMailingAddress(StringUtil.Utf_Iso(address));
-                                    }
+                                    pmi.setMailingAddress(truncateStr(address,40));
                                 }
                                 pmi.setIdNo(idenNo);
                                 pmi.setIdentity(StringUtil.Utf_Iso(identity));
@@ -2012,11 +1944,7 @@ public class RegTreatmentImpl implements RegTreatment {
                                     pmi.setMailingAddress(null);
                                 }else{
                                     pmi.setNation(StringUtil.Utf_Iso(nation+"族"));
-                                    if(address.length()>40){
-                                        pmi.setMailingAddress(StringUtil.Utf_Iso(address.substring(0,40)));
-                                    }else{
-                                        pmi.setMailingAddress(StringUtil.Utf_Iso(address));
-                                    }
+                                    pmi.setMailingAddress(truncateStr(address,40));
                                 }
                                 pmi.setIdNo(idenNo);
                                 pmi.setIdentity(StringUtil.Utf_Iso(identity));
@@ -2113,11 +2041,7 @@ public class RegTreatmentImpl implements RegTreatment {
                                 pmi.setIdentity(StringUtil.Utf_Iso(identity));
                                 pmi.setChargeType(StringUtil.Utf_Iso(chargeType));
                                 pmi.setUnitInContract("");
-                                if(address.length()>40){
-                                    pmi.setMailingAddress(StringUtil.Utf_Iso(address.substring(0,40)));
-                                }else{
-                                    pmi.setMailingAddress(StringUtil.Utf_Iso(address));
-                                }
+                                pmi.setMailingAddress(truncateStr(address,40));
                                 pmi.setZipCode("");
                                 pmi.setPhoneNumberHome(homeTel);
                                 pmi.setPhoneNumberBusiness("");
@@ -2214,11 +2138,7 @@ public class RegTreatmentImpl implements RegTreatment {
                                 pmi.setMailingAddress(null);
                             }else{
                                 pmi.setNation(StringUtil.Utf_Iso(nation+"族"));
-                                if(address.length()>40){
-                                    pmi.setMailingAddress(StringUtil.Utf_Iso(address.substring(0,40)));
-                                }else{
-                                    pmi.setMailingAddress(StringUtil.Utf_Iso(address));
-                                }
+                                pmi.setMailingAddress(truncateStr(address,40));
                             }
                             pmi.setIdNo(idenNo);
                             pmi.setIdentity(StringUtil.Utf_Iso(identity));
@@ -2302,11 +2222,7 @@ public class RegTreatmentImpl implements RegTreatment {
                             pmi.setIdentity(StringUtil.Utf_Iso(identity));
                             pmi.setChargeType(StringUtil.Utf_Iso(chargeType));
                             pmi.setUnitInContract("");
-                            if(address.length()>40){
-                                pmi.setMailingAddress(StringUtil.Utf_Iso(address.substring(0,40)));
-                            }else{
-                                pmi.setMailingAddress(StringUtil.Utf_Iso(address));
-                            }
+                            pmi.setMailingAddress(truncateStr(address,40));
                             pmi.setZipCode("");
                             pmi.setPhoneNumberHome(homeTel);
                             pmi.setPhoneNumberBusiness("");
@@ -2650,7 +2566,7 @@ public class RegTreatmentImpl implements RegTreatment {
             header.addElement("desc").setText("成功");
             //预约订单号=主键：就诊日期、号别、病人标识号、午别。
             data.addElement("orderId").setText(inClinicDate+"^"+clinicLabel+"^"+patientId+"^"+timeDesc);
-            data.addElement("orderNo").setText(clinicForRegist.getCurrentNo()+"");
+            data.addElement("orderNo").setText(clinicAppoints.getSerialNo()+"");
             return doc.asXML();
         } catch (Exception e) {
             e.printStackTrace();
@@ -2775,52 +2691,65 @@ public class RegTreatmentImpl implements RegTreatment {
                 Element data = root.addElement("body");
                 header.addElement("code").setText("0");
                 header.addElement("desc").setText("成功");
-                List<PriceList> priceList = new ArrayList<PriceList>();
-                String ptice = "";
+//                List<PriceList> priceList = new ArrayList<PriceList>();
+                //update bt tang 2018-05-22 获取诊疗费编码
+                PriceList priceList = null;
+                String price = null;
                 if (inExpertID != null && inExpertID.length() > 0) {
-                    ptice = priceListMapper.selectPriceListByDoctor(StringUtil.Utf_Iso(inExpertID), StringUtil.Utf_Iso(clinicLabel)).getPrice().toString();
+                    priceList = priceListMapper.selectPriceListByDoctor(StringUtil.Utf_Iso(inExpertID), StringUtil.Utf_Iso(clinicLabel));
                 } else {
-                    ptice = priceListMapper.selectPriceList(StringUtil.Utf_Iso(clinicLabel)).getPrice().toString();
+                    priceList =  priceListMapper.selectPriceList(StringUtil.Utf_Iso(clinicLabel));
                 }
-                if (ptice != null && ptice.length() > 0) {
-                    if ("0".equals(inPersonnelType)) { //自费
-                        data.addElement("outFee").setText(ptice);
-                        data.addElement("mzNO").setText("");
-                        data.addElement("djh").setText("");
-                        data.addElement("cfh").setText("");
-                    } else {
-                        data.addElement("outghfzbm").setText("110100001");
-                        data.addElement("outybghfkzfjr").setText("0.00");
-                        if (2 == Integer.valueOf(ptice)) {
-                            data.addElement("outZLFZBM").setText("110200008");
-                            data.addElement("outYBZLFZFJE").setText("2");
-                        } else if (12 == Integer.valueOf(ptice) && "jz".equals(inRegisterClassId)) {
-                            data.addElement("outZLFZBM").setText("110200003");
-                            data.addElement("outYBZLFZFJE").setText("12");
-                        } else if (12 == Integer.valueOf(ptice)) {
-                            data.addElement("outZLFZBM").setText("110200006a");
-                            data.addElement("outYBZLFZFJE").setText("12");
-                        } else if (22 == Integer.valueOf(ptice)) {
-                            data.addElement("outZLFZBM").setText("110200006b");
-                            data.addElement("outYBZLFZFJE").setText("22");
-                        } else if (35 == Integer.valueOf(ptice)) {
-                            data.addElement("outZLFZBM").setText("110200006c");
-                            data.addElement("outYBZLFZFJE").setText("35");
-                        } else if (100 == Integer.valueOf(ptice)) {
-                            data.addElement("outZLFZBM").setText("110200002a");
-                            data.addElement("outYBZLFZFJE").setText("100");
-                        } else if (300 == Integer.valueOf(ptice)) {
-                            data.addElement("outZLFZBM").setText("110200002a");
-                            data.addElement("outYBZLFZFJE").setText("300");
-                        }
-                        data.addElement("outybghhbbm").setText("");
-                        data.addElement("outYBKESIDB").setText(inDepartmentID);
-                        data.addElement("outFee").setText(ptice);
+
+                if(priceList != null){
+                    price = priceList.getPrice().toString();
+                    if (price != null && price.length() > 0) {
+                        if ("0".equals(inPersonnelType)) { //自费
+                            data.addElement("outFee").setText(price);
+                            data.addElement("mzNO").setText("");
+                            data.addElement("djh").setText("");
+                            data.addElement("cfh").setText("");
+                        } else {
+                            data.addElement("outghfzbm").setText("110100001");
+                            data.addElement("outybghfkzfjr").setText("0.00");
+                            if (2 == Integer.valueOf(price)) {
+                                data.addElement("outZLFZBM").setText("110200008");
+                                data.addElement("outYBZLFZFJE").setText("2");
+                            } else if (12 == Integer.valueOf(price) && "jz".equals(inRegisterClassId)) {
+                                data.addElement("outZLFZBM").setText("110200003");
+                                data.addElement("outYBZLFZFJE").setText("12");
+                            } else if (12 == Integer.valueOf(price)) {
+                                data.addElement("outZLFZBM").setText("110200006a");
+                                data.addElement("outYBZLFZFJE").setText("12");
+                            } else if (22 == Integer.valueOf(price)) {
+                                data.addElement("outZLFZBM").setText("110200006b");
+                                data.addElement("outYBZLFZFJE").setText("22");
+                            } else if (35 == Integer.valueOf(price)) {
+                                data.addElement("outZLFZBM").setText("110200006c");
+                                data.addElement("outYBZLFZFJE").setText("35");
+                            } else if (100 == Integer.valueOf(price)) {
+                                data.addElement("outZLFZBM").setText("110200002a");
+                                data.addElement("outYBZLFZFJE").setText("100");
+                            } else if (300 == Integer.valueOf(price)) {
+                                data.addElement("outZLFZBM").setText("110200002a");
+                                data.addElement("outYBZLFZFJE").setText("300");
+                            }else{
+                                if(StringUtils.isEmpty(priceList.getItemCode()))
+                                    data.addElement("outZLFZBM").setText("");
+                                else
+                                    data.addElement("outZLFZBM").setText(priceList.getItemCode());
+                                data.addElement("outYBZLFZFJE").setText(price);
+                            }
+                            //update bt tang 2018-05-22 获取诊疗费编码
+                            data.addElement("outybghhbbm").setText("");
+                            data.addElement("outYBKESIDB").setText(inDepartmentID);
+                            data.addElement("outFee").setText(price);
 //                       String  rcptNo = "O" + recpNoMapper.selectRecpNo().getRecpNo();
-                        String rcptNo =Util.getCurrentDate("yyyyMMddHHmmss");
-                        data.addElement("mzNO").setText(rcptNo);
-                        data.addElement("djh").setText(rcptNo);
-                        data.addElement("cfh").setText(rcptNo);
+                            String rcptNo =Util.getCurrentDate("yyyyMMddHHmmss");
+                            data.addElement("mzNO").setText(rcptNo);
+                            data.addElement("djh").setText(rcptNo);
+                            data.addElement("cfh").setText(rcptNo);
+                        }
                     }
                 }
 
@@ -3445,7 +3374,8 @@ public class RegTreatmentImpl implements RegTreatment {
                             if (idd != null && idd.size() > 0) {
                                 payInfoElement.addElement("ybysbm").setText(idd.get(0).getDoctCode());
                             } else {
-                                payInfoElement.addElement("ybysbm").setText("");
+                                // update by tang 2018-05-22 医生找不到编码,默认传医生名字
+                                payInfoElement.addElement("ybysbm").setText(outpOrdersT.getDoctor());
                             }
                             String itemClass = "1";  // 1 药品  2  诊疗   3 医疗器材
                             if (outpOrdersCosts.getItemClass().equals("A") || outpOrdersCosts.getItemClass().equals("B")) {
@@ -3641,17 +3571,20 @@ public class RegTreatmentImpl implements RegTreatment {
                             }else{
                                 rcptNo = "O" + recpNoMapper.selectRecpNo().getRecpNo();
                             }
-
-
-
                             //1.门诊医疗收据记录 OUTP_RCPT_MASTER
                             OutpRcptMaster outpRcptMaster = new OutpRcptMaster();
                             outpRcptMaster.setRcptNo(rcptNo);
                             outpRcptMaster.setPatientId(clinicMaster.getPatientId());
                             outpRcptMaster.setName(clinicMaster.getName());
                             outpRcptMaster.setNamePhonetic(clinicMaster.getNamePhonetic());
-                            outpRcptMaster.setIdentity(clinicMaster.getIdentity());
-                            outpRcptMaster.setChargeType(clinicMaster.getChargeType());
+                            if("1".equals(feeType)){
+                                outpRcptMaster.setIdentity(clinicMaster.getIdentity());
+                                outpRcptMaster.setChargeType(clinicMaster.getChargeType());
+                            }else{
+                                outpRcptMaster.setIdentity(StringUtil.Utf_Iso("地方人员"));
+                                outpRcptMaster.setChargeType(StringUtil.Utf_Iso("自费"));
+                            }
+
                             outpRcptMaster.setUnitInContract(clinicMaster.getUnitInContract());
                             outpRcptMaster.setVisitDate(new Timestamp(DateToWeek.formatDate(payTime, "yyyy-MM-dd HH:mm:ss").getTime()));
                             outpRcptMaster.setTotalCosts(new BigDecimal(payAmt));
@@ -3676,9 +3609,9 @@ public class RegTreatmentImpl implements RegTreatment {
 
                             // add by tang 2018-05-14, 计算payment_no, start
                             short paymentNo = (short)1;
-                            List<OutpPaymentsMoney> moneyList = outpPaymentsMoneyMapper.selectByRcptNo(rcptNo);
-                            if(moneyList != null && !moneyList.isEmpty())
-                                paymentNo = (short) (moneyList.get(0).getPaymentNo() + 1);
+//                            List<OutpPaymentsMoney> moneyList = outpPaymentsMoneyMapper.selectByRcptNo(rcptNo);
+//                            if(moneyList != null && !moneyList.isEmpty())
+//                                paymentNo = (short) (moneyList.get(0).getPaymentNo() + 1);
                             // add by tang 2018-05-14, 计算payment_no, end
 
                             //2.门诊病人支付方式记录 OUTP_PAYMENTS_MONEY
@@ -3691,7 +3624,7 @@ public class RegTreatmentImpl implements RegTreatment {
 
                                     OutpPaymentsMoney opm = new OutpPaymentsMoney();
                                     opm.setRcptNo(rcptNo);
-                                    opm.setPaymentNo(paymentNo);
+                                    opm.setPaymentNo(paymentNo++);
 
                                     opm.setMoneyType(StringUtil.Utf_Iso(moneyType)); // 现金
                                     opm.setPaymentAmount(casePay);
@@ -3702,7 +3635,7 @@ public class RegTreatmentImpl implements RegTreatment {
                                 if (fundPay.compareTo(amount) == 1) {
                                     OutpPaymentsMoney opm = new OutpPaymentsMoney();
                                     opm.setRcptNo(rcptNo);
-                                    opm.setPaymentNo(paymentNo);
+                                    opm.setPaymentNo(paymentNo++);
                                     opm.setMoneyType(StringUtil.Utf_Iso("统筹支付")); // 统筹
                                     opm.setPaymentAmount(fundPay);
                                     opm.setRefundedAmount(BigDecimal.valueOf(0));
@@ -3712,7 +3645,7 @@ public class RegTreatmentImpl implements RegTreatment {
                                 if (accountPay.compareTo(amount) == 1) {
                                     OutpPaymentsMoney opm = new OutpPaymentsMoney();
                                     opm.setRcptNo(rcptNo);
-                                    opm.setPaymentNo(paymentNo);
+                                    opm.setPaymentNo(paymentNo++);
                                     opm.setMoneyType(StringUtil.Utf_Iso("账户支付")); // 医保账户
                                     opm.setPaymentAmount(accountPay);
                                     opm.setRefundedAmount(BigDecimal.valueOf(0));
@@ -4622,6 +4555,13 @@ public class RegTreatmentImpl implements RegTreatment {
         header.addElement("code").setText("1");
         header.addElement("desc").setText(desc);
         return document.asXML();
+    }
+
+    private String truncateStr(String str, int maxLength){
+        String tmpStr = StringUtil.Utf_Iso(str);
+        if(tmpStr.toCharArray().length > maxLength)
+            return new String(tmpStr.toCharArray(), 0, maxLength);
+        return tmpStr;
     }
 
 }

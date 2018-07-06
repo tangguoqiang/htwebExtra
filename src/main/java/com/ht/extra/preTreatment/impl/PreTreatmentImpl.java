@@ -563,6 +563,9 @@ public class PreTreatmentImpl implements PreTreatment{
             header.addElement("desc").setText("成功");
             //预约订单号=主键：就诊日期、号别、病人标识号、午别。
             data.addElement("orderId").setText(srcId+"^"+clinicLabel+"^"+clinicNo+"^"+timeDesc);
+
+            // add by tang 2018-06-21,返回记录新增serialNo
+            data.addElement("orderNo").setText(clinicAppoints.getSerialNo()+"");
             data.addElement("hisTakeNo").setText("");
             return doc.asXML();
         }catch (Exception e){
@@ -762,7 +765,7 @@ public class PreTreatmentImpl implements PreTreatment{
                 //更新预约中预约状态
                 clinicAppointsMapper.updateByPrimaryKey(clinicAppoints);
                 //   ClinicMaster clinicMasters = clinicMasterMapper.selectByVisitDate(clinicMaster.getVisitDate());
-                String visitNo = recpNoMapper.selectVisitNo().getRecpNo();
+                String visitNo = generateVisitNo(clinicMaster.getVisitDate());
                 clinicMaster.setVisitNo(Short.parseShort(visitNo));
 
                 clinicMasterMapper.insert(clinicMaster);
@@ -993,12 +996,24 @@ public class PreTreatmentImpl implements PreTreatment{
                     }else{
                         clinicForRegist.setRegistrationNum((short)1);
                     }
-                    clinicForRegist.setCurrentNo( (short) (clinicForRegist.getCurrentNo()+1));
+                    // clinicForRegist.setCurrentNo( (short) (clinicForRegist.getCurrentNo()+1));
+                    //   ClinicMaster clinicMasters = clinicMasterMapper.selectByVisitDate(clinicMaster.getVisitDate());
+
+                    String visitNo;
+                    while (true){
+                        visitNo = recpNoMapper.selectVisitNo().getRecpNo();
+                        ClinicMasterKey masterKey = new ClinicMasterKey();
+                        masterKey.setVisitDate(clinicMaster.getVisitDate());
+                        masterKey.setVisitNo(Short.parseShort(visitNo));
+                        if(clinicMasterMapper.selectByPrimaryKey(masterKey) == null)
+                            break;
+                    }
+                    clinicMaster.setVisitNo(Short.parseShort(generateVisitNo(clinicMaster.getVisitDate())));
+
+                    checkSerialNo(clinicMaster);
+                    clinicForRegist.setCurrentNo((short)(clinicMaster.getSerialNo() + 1));
                     //更新最新可用号和当日已挂号
                     clinicForRegistMapper.updateByPrimaryKeySelective(clinicForRegist);
-                    //   ClinicMaster clinicMasters = clinicMasterMapper.selectByVisitDate(clinicMaster.getVisitDate());
-                    String visitNo = recpNoMapper.selectVisitNo().getRecpNo();
-                    clinicMaster.setVisitNo(Short.parseShort(visitNo));
 
                     clinicMasterMapper.insert(clinicMaster);
                     //支付记录
@@ -1019,6 +1034,8 @@ public class PreTreatmentImpl implements PreTreatment{
                     header.addElement("desc").setText("成功");
                     data.addElement("visitId").setText(visitDate+"^"+clinicMaster.getVisitNo());
                     data.addElement("orderId").setText(orderId);
+                    // add by tang 2018-06-21,返回记录新增serialNo
+                    data.addElement("orderNo").setText(clinicMaster.getSerialNo()+"");
                     return doc.asXML();
                 }else{
                     return getErrorlMsg("clinicLabel不能为空！");
@@ -1080,6 +1097,9 @@ public class PreTreatmentImpl implements PreTreatment{
                     cfrk.setClinicLabel(StringUtil.Utf_Iso(clinicLabel));
                     cfrk.setTimeDesc(StringUtil.Utf_Iso(timeDesc));
                     ClinicForRegist clinicForRegist = clinicForRegistMapper.selectByPrimaryKey(cfrk);
+
+                    // 自助机取号不能更新currentNo, add by tang 2018-05-15
+                    short serialNo = clinicForRegist.getCurrentNo();
                     // 2 预约挂号
                     if("2".equals(schedueType)){
                         ClinicAppointsKey clinicAppointsKey = new ClinicAppoints();
@@ -1093,7 +1113,8 @@ public class PreTreatmentImpl implements PreTreatment{
                         //更新预约中预约状态
                         clinicAppointsMapper.updateByPrimaryKey(clinicAppoints);
                         //预约序号
-                        clinicForRegist.setCurrentNo(clinicAppoints.getSerialNo());
+//                        clinicForRegist.setCurrentNo(clinicAppoints.getSerialNo());
+                        serialNo = clinicAppoints.getSerialNo();
                     }
 
                     PatMasterIndex pmi = patMasterIndexMapper.selectByPatientId(patientID);
@@ -1105,7 +1126,7 @@ public class PreTreatmentImpl implements PreTreatment{
                     clinicMaster.setVisitDate(DateToWeek.formatDate(visitDate,"yyyy-MM-dd"));
                     clinicMaster.setClinicLabel(StringUtil.Utf_Iso(clinicLabel));
                     clinicMaster.setVisitTimeDesc(StringUtil.Utf_Iso(timeDesc));
-                    clinicMaster.setSerialNo(clinicForRegist.getCurrentNo()); //
+                    clinicMaster.setSerialNo(serialNo); //
                     clinicMaster.setPatientId(pmi.getPatientId());
                     clinicMaster.setName(pmi.getName());
                     clinicMaster.setNamePhonetic(pmi.getNamePhonetic());
@@ -1211,14 +1232,20 @@ public class PreTreatmentImpl implements PreTreatment{
                     }else{
                         clinicForRegist.setRegistrationNum((short)1);
                     }
+
+                    //   ClinicMaster clinicMasters = clinicMasterMapper.selectByVisitDate(clinicMaster.getVisitDate());
+                    String visitNo = generateVisitNo(clinicMaster.getVisitDate());
+                    clinicMaster.setVisitNo(Short.parseShort(visitNo));
+
+                    checkSerialNo(clinicMaster);
+
                     if("1".equals(schedueType)){
-                        clinicForRegist.setCurrentNo((short)(clinicForRegist.getCurrentNo()+1));
+                        clinicForRegist.setCurrentNo((short)(clinicMaster.getSerialNo() + 1));
                     }
+
                     //更新最新可用号和当日已挂号
                     clinicForRegistMapper.updateByPrimaryKeySelective(clinicForRegist);
-                    //   ClinicMaster clinicMasters = clinicMasterMapper.selectByVisitDate(clinicMaster.getVisitDate());
-                    String visitNo = recpNoMapper.selectVisitNo().getRecpNo();
-                    clinicMaster.setVisitNo(Short.parseShort(visitNo));
+
                     clinicMasterMapper.insert(clinicMaster);
 //                    //支付记录 走刘彤的退费接口
 //                    payOrderRecord.setOrderId(StringUtil.Utf_Iso(orderId));
@@ -1240,7 +1267,8 @@ public class PreTreatmentImpl implements PreTreatment{
                        scanPay.setVisitDate(DateToWeek.formatDate(visitDate,"yyyy-MM-dd"));
                        scanPay.setAmPm(StringUtil.Utf_Iso(timeDesc));
                        BigDecimal b1 = new BigDecimal(100);
-                       scanPay.setTotalCosts(tot.multiply(b1).intValue()+"");
+                       // update by tang 2018-5-22 只需要存入现金缴费,不要存入全部费用
+                       scanPay.setTotalCosts(new BigDecimal(clinicCharge).multiply(b1).intValue()+"");
                        scanPay.setChargeType(StringUtil.Utf_Iso("挂号费"));
                        scanPay.setPayWay(payMethod);
                        scanPay.setHospitalMark(StringUtil.Utf_Iso("中国人民解放军81医院"));
@@ -1809,6 +1837,30 @@ public class PreTreatmentImpl implements PreTreatment{
             logger.info(unitld);
         } catch (DocumentException e) {
             e.printStackTrace();
+        }
+    }
+
+    private String generateVisitNo(Date visitDate){
+        String visitNo;
+        while (true){
+            visitNo = recpNoMapper.selectVisitNo().getRecpNo();
+            ClinicMasterKey masterKey = new ClinicMasterKey();
+            masterKey.setVisitDate(visitDate);
+            masterKey.setVisitNo(Short.parseShort(visitNo));
+            if(clinicMasterMapper.selectByPrimaryKey(masterKey) == null)
+                return visitNo;
+        }
+    }
+
+    /**
+     * add by Tang, 并发保护
+     * @param clinicMaster ClinicMaster
+     */
+    private void checkSerialNo(ClinicMaster clinicMaster){
+        int maxSerialNo = clinicMasterMapper.getMaxSerialNo(clinicMaster.getVisitDate(),
+                clinicMaster.getClinicLabel(),clinicMaster.getVisitTimeDesc());
+        if(maxSerialNo >= clinicMaster.getSerialNo()){
+            clinicMaster.setSerialNo((short)(maxSerialNo + 1));
         }
     }
 

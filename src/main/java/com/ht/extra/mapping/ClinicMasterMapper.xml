@@ -60,7 +60,7 @@
     RETURNED_ACCT_NO, ACCT_NO, AGE_UNIT,TRADE_NO,SERVICE_CLASS
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ht.extra.pojo.outpadm.ClinicMasterKey" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from OUTPADM.CLINIC_MASTER
     where VISIT_DATE = #{visitDate,jdbcType=DATE}
@@ -620,4 +620,13 @@
     where VISIT_DATE = #{visitDate,jdbcType=DATE}
       and VISIT_NO = #{visitNo,jdbcType=DECIMAL}
   </update>
+
+  <select id="getMaxSerialNo" resultType="java.lang.Integer"  >
+    select
+    CASE WHEN MAX(SERIAL_NO) IS NULL THEN 0 ELSE MAX(SERIAL_NO) END
+    from OUTPADM.CLINIC_MASTER
+    where VISIT_DATE = #{0}
+    and CLINIC_LABEL =#{1}
+    and VISIT_TIME_DESC = #{2}
+  </select>
 </mapper>

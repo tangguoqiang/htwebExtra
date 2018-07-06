@@ -26,4 +26,6 @@ public interface ClinicMasterMapper {
     List<ClinicMaster> selectByClinicLabel(String time, String patientId, String clinicLabel, String seeTime);
 
     List<ClinicMaster> selectRegesters(Date clinicDate, String clinicLabel);
+
+    int getMaxSerialNo(Date visitDate, String clinicLabel, String timeDesc);
 }

@@ -87,7 +87,7 @@
       #{namePhonetic,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{dateOfBirth,jdbcType=DATE}, 
       #{birthPlace,jdbcType=VARCHAR}, #{citizenship,jdbcType=VARCHAR}, #{nation,jdbcType=VARCHAR}, 
       #{idNo,jdbcType=VARCHAR}, #{identity,jdbcType=VARCHAR}, #{chargeType,jdbcType=VARCHAR}, 
-      #{unitInContract,jdbcType=VARCHAR}, #{mailingAddress,jdbcType=VARCHAR}, #{zipCode,jdbcType=VARCHAR}, 
+      #{unitInContract,jdbcType=VARCHAR}, #{mailingAddress,jdbcType=VARCHAR}, #{zipCode,jdbcType=VARCHAR},
       #{phoneNumberHome,jdbcType=VARCHAR}, #{phoneNumberBusiness,jdbcType=VARCHAR}, #{nextOfKin,jdbcType=VARCHAR}, 
       #{relationship,jdbcType=VARCHAR}, #{nextOfKinAddr,jdbcType=VARCHAR}, #{nextOfKinZipCode,jdbcType=VARCHAR}, 
       #{nextOfKinPhone,jdbcType=VARCHAR}, #{lastVisitDate,jdbcType=DATE}, #{vipIndicator,jdbcType=DECIMAL}, 

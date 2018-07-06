@@ -66,7 +66,7 @@
 
   <select id="selectPriceList" resultMap="BaseResultMap" parameterType="java.lang.String" >
     <![CDATA[
-    select p.price PRICE
+    select p.price PRICE,p.item_code
    from OUTPADM.clinic_index c, OUTPADM.CLINIC_TYPE_DICT t, comm.price_list p
   where c.clinic_label =  #{0}
     and c.clinic_type = t.clinic_type
