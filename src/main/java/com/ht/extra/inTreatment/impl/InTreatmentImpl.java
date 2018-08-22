@@ -746,7 +746,14 @@ public class InTreatmentImpl implements InTreatment {
                                                             outpOrdersCostsJM.setItemCode(priceList.getItemCode());
                                                             outpOrdersCostsJM.setItemSpec(priceList.getItemSpec());
                                                             outpOrdersCostsJM.setUnits(priceList.getUnits());
-                                                            BigDecimal amount = new BigDecimal(clinicVsCharge.getAmount()).multiply(new BigDecimal(ordersCosts.getDays()));
+
+                                                            BigDecimal amount;
+                                                            if(ordersCosts.getDays() == null || ordersCosts.getDays() < 1){
+                                                                amount = new BigDecimal(clinicVsCharge.getAmount());
+                                                            }else{
+                                                                amount = new BigDecimal(clinicVsCharge.getAmount()).multiply(new BigDecimal(ordersCosts.getDays()));
+                                                            }
+
                                                             outpOrdersCostsJM.setAmount(amount);
                                                             outpOrdersCostsJM.setDays(ordersCosts.getDays());
                                                             //BigDecimal amount = new BigDecimal(clinicVsCharge.getAmount());
@@ -793,10 +800,16 @@ public class InTreatmentImpl implements InTreatment {
                                                         outpOrdersCostsZS.setItemCode(priceList.getItemCode());
                                                         outpOrdersCostsZS.setItemSpec(priceList.getItemSpec());
                                                         outpOrdersCostsZS.setUnits(priceList.getUnits());
-                                                        outpOrdersCostsZS.setAmount(new BigDecimal(ordersCosts.getDays()));
-                                                        outpOrdersCostsZS.setDays(ordersCosts.getDays());
 
-                                                        BigDecimal cost = new BigDecimal(ordersCosts.getDays()).multiply(new BigDecimal(String.valueOf(priceList.getPrice())));
+                                                        BigDecimal cost;
+                                                        if(ordersCosts.getDays() == 0 || ordersCosts.getDays() < 1){
+                                                            outpOrdersCostsZS.setAmount(new BigDecimal(1));
+                                                            cost = new BigDecimal(String.valueOf(priceList.getPrice()));
+                                                        }else{
+                                                            outpOrdersCostsZS.setAmount(new BigDecimal(ordersCosts.getDays()));
+                                                            cost = new BigDecimal(ordersCosts.getDays()).multiply(new BigDecimal(String.valueOf(priceList.getPrice())));
+                                                        }
+                                                        outpOrdersCostsZS.setDays(ordersCosts.getDays());
                                                         outpOrdersCostsZS.setCosts(cost);
                                                         outpOrdersCostsZS.setCharges(cost);
                                                         outpOrdersCostsZS.setOrderedByDept(outpOrdersT.getOrderedBy());
@@ -854,7 +867,13 @@ public class InTreatmentImpl implements InTreatment {
                                                                 outpOrdersCostsJM.setItemCode(priceList.getItemCode());
                                                                 outpOrdersCostsJM.setItemSpec(priceList.getItemSpec());
                                                                 outpOrdersCostsJM.setUnits(priceList.getUnits());
-                                                                BigDecimal amount = new BigDecimal(clinicVsCharge.getAmount()).multiply(days);
+
+                                                                BigDecimal amount;
+                                                                if(days.compareTo(new BigDecimal(1)) < 0){
+                                                                    amount = new BigDecimal(clinicVsCharge.getAmount());
+                                                                }else{
+                                                                    amount = new BigDecimal(clinicVsCharge.getAmount()).multiply(days);
+                                                                }
                                                                 outpOrdersCostsJM.setAmount(amount);
                                                                 outpOrdersCostsJM.setDays(ordersCosts.getDays());
                                                                 //BigDecimal amount = new BigDecimal(clinicVsCharge.getAmount());
@@ -916,7 +935,13 @@ public class InTreatmentImpl implements InTreatment {
                                                             outpOrdersCostsJM.setItemCode(priceList.getItemCode());
                                                             outpOrdersCostsJM.setItemSpec(priceList.getItemSpec());
                                                             outpOrdersCostsJM.setUnits(priceList.getUnits());
-                                                            BigDecimal amount = new BigDecimal(clinicVsCharge.getAmount()).multiply(days);
+
+                                                            BigDecimal amount;
+                                                            if(days.compareTo(new BigDecimal(1)) < 0){
+                                                                amount = new BigDecimal(clinicVsCharge.getAmount());
+                                                            }else{
+                                                                amount = new BigDecimal(clinicVsCharge.getAmount()).multiply(days);
+                                                            }
                                                             outpOrdersCostsJM.setAmount(amount);
                                                             outpOrdersCostsJM.setDays(ordersCosts.getDays());
                                                             //BigDecimal amount = new BigDecimal(clinicVsCharge.getAmount());

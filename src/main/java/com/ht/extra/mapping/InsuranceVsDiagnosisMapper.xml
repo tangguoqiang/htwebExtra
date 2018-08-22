@@ -26,6 +26,13 @@
       and ICD_TYPE = #{icdType,jdbcType=VARCHAR}
   </select>
 
+  <select id="selectByIcdCode" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List" />
+    from INSURANCE.INSURANCE_VS_DIAGNOSIS
+    where  ICD_CODE = #{0} AND ICD_TYPE != 'ICD10'
+  </select>
+
   <select id="selectByDiagnosisCode" resultMap="BaseResultMap" parameterType="java.lang.String">
     select
     <include refid="Base_Column_List" />

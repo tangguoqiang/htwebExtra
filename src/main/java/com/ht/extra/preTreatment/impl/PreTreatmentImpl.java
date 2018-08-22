@@ -28,6 +28,7 @@ import javax.xml.ws.WebServiceContext;
 import javax.xml.ws.handler.MessageContext;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -293,6 +294,16 @@ public class PreTreatmentImpl implements PreTreatment{
             header.addElement("desc").setText("成功");
             if(clinicForRegists!=null && clinicForRegists.size()>0) {
                 for (ClinicForRegist clinicForRegist : clinicForRegists) {
+                    // 新增急诊儿科的过滤
+                    if("急诊儿科".equals(StringUtil.Iso_GBK(clinicForRegist.getClinicLabel()))) {
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                        Calendar cal = Calendar.getInstance(), now = Calendar.getInstance();
+                        cal.setTime(sdf.parse("2018-08-10"));
+                        now.setTime(clinicForRegist.getClinicDate());
+                        if(now.after(cal)){
+                            continue;
+                        }
+                    }
                     Element list = data.addElement("list");
                     String date = DateToWeek.formatDateString(clinicForRegist.getClinicDate(),"yyyy-MM-dd");
                     String clinicWeek = DateToWeek.getWeek(clinicForRegist.getClinicDate());
@@ -1108,6 +1119,11 @@ public class PreTreatmentImpl implements PreTreatment{
                         clinicAppointsKey.setVisitDateAppted(DateToWeek.formatDate(visitDate,"yyyy-MM-dd"));
                         clinicAppointsKey.setVisitTimeAppted(StringUtil.Utf_Iso(timeDesc));
                         ClinicAppoints clinicAppoints = clinicAppointsMapper.selectByPrimaryKey(clinicAppointsKey);
+
+                        // add by Tang 2018-07-23 clinic_attr = '0'才可以取号
+                        if(!"0".equals(clinicAppoints.getClinicAttr())){
+                            return getErrorlMsg("您已取号,请直接就诊！");
+                        }
                         //1为取号，当作支付成功。
                         clinicAppoints.setClinicAttr("1");
                         //更新预约中预约状态
@@ -1237,7 +1253,9 @@ public class PreTreatmentImpl implements PreTreatment{
                     String visitNo = generateVisitNo(clinicMaster.getVisitDate());
                     clinicMaster.setVisitNo(Short.parseShort(visitNo));
 
-                    checkSerialNo(clinicMaster);
+                    // 如果是预约挂号取号不需要进行判断
+                    if(!"2".equals(schedueType))
+                        checkSerialNo(clinicMaster);
 
                     if("1".equals(schedueType)){
                         clinicForRegist.setCurrentNo((short)(clinicMaster.getSerialNo() + 1));

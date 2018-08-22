@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.extra.dao.ReconcileAccountMapper">
+    <resultMap id="BaseResultMap" type="com.ht.extra.pojo.ReconcileAccount">
+        <result column="RECP_NO" property="recpNo" jdbcType="VARCHAR"/>
+        <result column="ORDER_ID" property="orderId" jdbcType="VARCHAR"/>
+        <result column="ORDER_DATE" property="orderDate" jdbcType="DATE"/>
+        <result column="ORDER_TIME" property="orderTime" jdbcType="DATE"/>
+        <result column="PAY_NAME" property="payName" jdbcType="VARCHAR"/>
+        <result column="COST" property="cost" jdbcType="NUMERIC"/>
+        <result column="STATUS" property="status" jdbcType="VARCHAR"/>
+        <result column="PATIENT_ID" property="patientId" jdbcType="VARCHAR"/>
+        <result column="PATIENT_NAME" property="patientName" jdbcType="VARCHAR"/>
+        <result column="PAY_TYPE" property="payType" jdbcType="VARCHAR"/>
+        <result column="PAY_ACCOUNT" property="payAccount" jdbcType="VARCHAR"/>
+        <result column="SYSTEM_ID" property="systemId" jdbcType="VARCHAR"/>
+        <result column="SYSTEM_TYPE" property="systemType" jdbcType="VARCHAR"/>
+        <result column="OPERATOR_ID" property="operateId" jdbcType="VARCHAR"/>
+        <result column="FLAG" property="flag" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="reconcileAccount" resultMap="BaseResultMap">
+    SELECT * FROM (
+    SELECT T1.rcpt_no,T1.tra_no AS ORDER_ID,TO_DATE(tra_date,'yyyyMMdd') AS ORDER_DATE,TO_DATE(tra_time,'yyyy-MM-dd HH24:mi:ss') AS ORDER_TIME,
+    TYPE AS PAY_NAME,tra_total * 100 AS COST,
+    CASE WHEN tra_type='00' THEN '收费' ELSE '退费' END AS STATUS,
+    T1.patient_id,T2.NAME AS patient_name,
+    '银行卡' AS PAY_TYPE,bank_card AS PAY_ACCOUNT,
+    CASE WHEN USER_ID='ZZJ' THEN 'ZZJ' ELSE 'HIS' END AS SYSTEM_ID,USER_ID AS OPERATOR_ID,T1.TYPE AS SYSTEM_TYPE,'0' AS FLAG
+    FROM INSURANCE.BANK_TRADE_LOG T1
+    LEFT JOIN MEDREC.PAT_MASTER_INDEX T2 ON T2.PATIENT_ID=T1.PATIENT_ID
+    WHERE TRA_DATE=REPLACE(#{0},'-','')
+    UNION ALL
+    SELECT rcpt_no,CASE WHEN TOTAL_COSTS &lt; 0 THEN ORIG_TRADE_NO ELSE trande_no END AS ORDER_ID,TO_DATE(oper_date,'yyyy-MM-dd HH24:mi:ss') AS ORDER_DATE,TO_DATE(oper_date,'yyyy-MM-dd HH24:mi:ss') AS ORDER_TIME,
+    charge_type AS PAY_NAME,TO_NUMBER(total_costs) AS COST,
+    CASE WHEN TOTAL_COSTS &lt; 0 THEN '退费' ELSE '收费' END AS STATUS,
+    patient_id,patient_name,
+    pay_way AS PAY_TYPE,trande_no AS PAY_ACCOUNT,
+    CASE WHEN OPERATER_ID='ZZJ' THEN 'ZZJ' ELSE 'HIS' END AS SYSTEM_ID,OPERATER_ID AS OPERATOR_ID,CHARGE_TYPE AS SYSTEM_TYPE,'1' AS FLAG
+    FROM INSURANCE.SCAN_PAY
+    WHERE OPER_DATE BETWEEN #{0} AND #{1}
+    UNION ALL
+    SELECT T1.RECPT_NO AS REPT_NO,T1.trade_no AS ORDER_ID,CHANGE_DATE_TIME AS ORDER_DATE,CHANGE_DATE_TIME AS ORDER_TIME,
+    T2.CHARGE_TYPE AS PAY_NAME,T2.TOTAL_COSTS * 100 AS COST,
+    CASE WHEN T2.TOTAL_COSTS &lt; 0 THEN '退费' ELSE '收费' END AS STATUS,T1.PATIENT_ID,T3.NAME,
+    T1.PAY_METHOD AS PAY_TYPE,T1.TRADE_NO AS PAY_ACCOUNT,
+    '160' AS SYSTEM_ID,T2.OPERATOR_NO AS OPERATOR_ID,CASE WHEN T2.TOTAL_COSTS &lt; 0 THEN '门诊退费' ELSE '门诊收费' END AS SYSTEM_TYPE,'2' AS FLAG
+    FROM INPBILL.INTERNET_PAYINFO T1
+    INNER JOIN OUTPBILL.OUTP_RCPT_MASTER T2 ON T2.RCPT_NO= T1.RECPT_NO
+    LEFT JOIN MEDREC.PAT_MASTER_INDEX T3 ON T3.PATIENT_ID=T1.PATIENT_ID
+    WHERE INOUT_FLAG ='o' AND CHANGE_DATE_TIME BETWEEN TO_DATE(#{0},'yyyy-MM-dd') AND TO_DATE(#{1},'yyyy-MM-dd')
+    UNION ALL
+    SELECT T1.RECPT_NO AS REPT_NO,T1.trade_no AS ORDER_ID,CHANGE_DATE_TIME AS ORDER_DATE,CHANGE_DATE_TIME AS ORDER_TIME,
+    '住院预缴金' AS PAY_NAME,T2.AMOUNT * 100 AS COST,
+    CASE WHEN T2.AMOUNT &lt; 0 THEN '退费' ELSE '收费' END AS STATUS,
+    T1.PATIENT_ID,T3.NAME,
+    T1.PAY_METHOD AS PAY_TYPE,T1.TRADE_NO AS PAY_ACCOUNT,
+    '160' AS SYSTEM_ID,T2.OPERATOR_NO AS OPERATOR_ID,'住院预缴金' AS SYSTEM_TYPE,'3' AS FLAG
+    FROM INPBILL.INTERNET_PAYINFO T1
+    INNER JOIN INPBILL.PREPAYMENT_RCPT T2 ON T2.RCPT_NO= T1.RECPT_NO
+    LEFT JOIN MEDREC.PAT_MASTER_INDEX T3 ON T3.PATIENT_ID=T1.PATIENT_ID
+    WHERE INOUT_FLAG ='I' AND CHANGE_DATE_TIME BETWEEN TO_DATE(#{0},'yyyy-MM-dd') AND TO_DATE(#{1},'yyyy-MM-dd')
+    UNION ALL
+    SELECT TO_CHAR(T1.VISIT_DATE,'yyyy-MM-dd')||'_'||T1.visit_no AS REPT_NO,order_id,T1.record_time AS ORDER_DATE,record_time AS ORDER_TIME,
+    '挂号' AS PAY_NAME,T2.CLINIC_CHARGE AS COST,
+    CASE WHEN is_return='Y' THEN '退费' ELSE '收费' END AS STATUS,
+    T1.PATIENT_ID,T3.NAME,
+    T2.PAY_WAY AS PAY_TYPE,T1.TRADE_NO AS PAY_ACCOUNT,
+    '160' AS SYSTEM_ID,T2.OPERATOR AS OPERATOR_ID,'挂号' AS SYSTEM_TYPE,'4' AS FLAG
+    FROM INPBILL.PAY_ORDER_RECORD T1
+    JOIN OUTPADM.CLINIC_MASTER T2 ON T2.PATIENT_ID=T1.PATIENT_ID
+    LEFT JOIN MEDREC.PAT_MASTER_INDEX T3 ON T3.PATIENT_ID=T1.PATIENT_ID
+    WHERE record_time BETWEEN TO_DATE(#{0},'yyyy-MM-dd') AND TO_DATE(#{1},'yyyy-MM-dd')
+    ) ORDER BY ORDER_TIME ASC
+  </select>
+</mapper>

@@ -18,5 +18,6 @@ public interface InsuranceVsDiagnosisMapper {
 
     int updateByPrimaryKey(InsuranceVsDiagnosis record);
 
+    List<InsuranceVsDiagnosis> selectByIcdCode(String diagCode);
     List<InsuranceVsDiagnosis> selectByDiagnosisCode(String diagCode);
 }

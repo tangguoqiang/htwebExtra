@@ -29,6 +29,7 @@
     <jaxws:endpoint id="EndTreatment" implementor="com.ht.extra.endTreatment.impl.EndTreatmentImpl" address="/EndTreatment"/>
     <jaxws:endpoint id="ReSendData" implementor="com.ht.extra.reSendData.impl.ReSendDataImpl" address="/ReSendData"/>
     <jaxws:endpoint id="RegTreatment" implementor="com.ht.extra.regTreatment.impl.RegTreatmentImpl" address="/RegTreatment"/>
+    <jaxws:endpoint id="ReconcileAccount" implementor="com.ht.extra.account.impl.ReconcileAccountImpl" address="/ReconcileAccount"/>
 
     <!--<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"-->
           <!--destroy-method="close">-->

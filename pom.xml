@@ -162,6 +162,7 @@
          <groupId>org.apache.axis2</groupId>
         <artifactId>axis2</artifactId>
       <version>1.7.4</version>
+      <type>pom</type>
     </dependency>
  <dependency>
      <groupId>org.apache.axis2</groupId>

@@ -38,6 +38,7 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -110,33 +111,32 @@ public class RegTreatmentImpl implements RegTreatment {
     @Resource
     private CurrentPriceListMapper currentPriceListMapper;
     @Resource
-    private  ScanPayMapper scanPayMapper;
+    private ScanPayMapper scanPayMapper;
     @Resource
     private InsuranceAccountsNjjbMapper insuranceAccountsNjjbMapper;
     @Resource
-    private  Njjb2100Mapper njjb2100Mapper;
+    private Njjb2100Mapper njjb2100Mapper;
     @Resource
-    private  BankTradeLogMapper bankTradeLogMapper;
+    private BankTradeLogMapper bankTradeLogMapper;
     @Resource
-    private  OutpMrMapper outpMrMapper;
+    private OutpMrMapper outpMrMapper;
     @Resource
-    private  OutpPrescMapper outpPrescMapper;
+    private OutpPrescMapper outpPrescMapper;
     @Resource
     private NjjbOutp2210Mapper njjbOutp2210Mapper;
     @Resource
-    private  NjjbOutp2420Mapper njjbOutp2420Mapper;
+    private NjjbOutp2420Mapper njjbOutp2420Mapper;
     @Resource
-    private  NjjbOutp2410Mapper  njjbOutp2410Mapper;
+    private NjjbOutp2410Mapper njjbOutp2410Mapper;
     @Resource
-    private  NjjbOutp2310Mapper njjbOutp2310Mapper;
+    private NjjbOutp2310Mapper njjbOutp2310Mapper;
     @Resource
-    private  AppConfigerParameterMapper appConfigerParameterMapper;
+    private AppConfigerParameterMapper appConfigerParameterMapper;
     @Resource
-    private  InsuranceVsDiagnosisMapper insuranceVsDiagnosisMapper;
+    private InsuranceVsDiagnosisMapper insuranceVsDiagnosisMapper;
 
     /**
-     * 获取用户信息接口
-     * 用户信息查询和用户信息验证
+     * 获取用户信息接口 用户信息查询和用户信息验证
      *
      * @param xmlParam
      * @return
@@ -168,17 +168,18 @@ public class RegTreatmentImpl implements RegTreatment {
                 Element rootElement = doc.addElement("response");
                 Element header = rootElement.addElement("head");
                 if (patIccardRecNew != null) {
-                    PatMasterIndex patMasterIndex = patMasterIndexMapper.selectByPatientId(patIccardRecNew.getPatientId()); //没有增加军队医改的限制
+                    PatMasterIndex patMasterIndex =
+                            patMasterIndexMapper.selectByPatientId(patIccardRecNew.getPatientId()); //没有增加军队医改的限制
 
                     // 1.如果用户以身份证登陆,且身份证号和库中不一致
                     // 2.如果用户以医保卡登陆,且医保卡号和库中不一致
                     // 3.如果用户以市民卡登陆,且市民卡号和库中不一致
-                    if((!StringUtils.isEmpty(idenNo) && !idenNo.equals(patMasterIndex.getIdNo()))
+                    if ((!StringUtils.isEmpty(idenNo) && !idenNo.equals(patMasterIndex.getIdNo()))
                             || (!StringUtils.isEmpty(cardNo) && !cardNo.equals(patMasterIndex.getInsurancesNo()))
-                            || (!StringUtils.isEmpty(cCardNo) && !cCardNo.equals(patIccardRecNew.getIccardNo()))){
+                            || (!StringUtils.isEmpty(cCardNo) && !cCardNo.equals(patIccardRecNew.getIccardNo()))) {
                         header.addElement("code").setText("2");
                         header.addElement("desc").setText("此患者信息有误,请到柜台挂号!!");
-                    }else{
+                    } else {
                         header.addElement("code").setText("0");
                         header.addElement("desc").setText("此患者已注册");
                         Element data = rootElement.addElement("body");
@@ -205,26 +206,27 @@ public class RegTreatmentImpl implements RegTreatment {
                         }
 
                         data.addElement("birthday").setText(DateToWeek.formatDateString(patMasterIndex.getDateOfBirth(), "yyyy-MM-dd"));
-                        if(patMasterIndex.getIdNo()!=null){
-                            if(patMasterIndex.getIdNo().length()!=15 && patMasterIndex.getIdNo().length() !=18 ){
+                        if (patMasterIndex.getIdNo() != null) {
+                            if (patMasterIndex.getIdNo().length() != 15 && patMasterIndex.getIdNo().length() != 18) {
                                 data.addElement("idenNo").setText("");
-                            }else{
+                            } else {
                                 data.addElement("idenNo").setText(patMasterIndex.getIdNo());
                             }
-                        }else{
+                        } else {
                             data.addElement("idenNo").setText("");
                         }
-                        if(patMasterIndex.getMailingAddress()!=null){
+                        if (patMasterIndex.getMailingAddress() != null) {
                             data.addElement("home").setText(StringUtil.Iso_GBK(patMasterIndex.getMailingAddress()));
-                        }else{
+                        } else {
                             data.addElement("home").setText("");
                         }
-                        if(patMasterIndex.getPhoneNumberHome()!=null){
+                        if (patMasterIndex.getPhoneNumberHome() != null) {
                             data.addElement("homeTel").setText(patMasterIndex.getPhoneNumberHome());
-                        }else {
+                        } else {
                             data.addElement("homeTel").setText("");
                         }
-                        ChargeTypeDict chargeTypeDict = chargeTypeDictMapper.selectByPrimaryKey(patMasterIndex.getChargeType());
+                        ChargeTypeDict chargeTypeDict =
+                                chargeTypeDictMapper.selectByPrimaryKey(patMasterIndex.getChargeType());
                         if (chargeTypeDict != null) {
                             data.addElement("personalType").setText(chargeTypeDict.getChargeTypeCode());
                         } else {
@@ -276,27 +278,29 @@ public class RegTreatmentImpl implements RegTreatment {
                         data.addElement("sexName").setText("其他");
                     }
 
-                    data.addElement("birthday").setText(DateToWeek.formatDateString(patMasterIndex.getDateOfBirth(), "yyyy-MM-dd"));
-                    if(patMasterIndex.getIdNo()!=null){
-                        if(patMasterIndex.getIdNo().length()!=15 && patMasterIndex.getIdNo().length() !=18 ){
+                    data.addElement("birthday").setText(DateToWeek.formatDateString(patMasterIndex.getDateOfBirth(),
+                            "yyyy-MM-dd"));
+                    if (patMasterIndex.getIdNo() != null) {
+                        if (patMasterIndex.getIdNo().length() != 15 && patMasterIndex.getIdNo().length() != 18) {
                             data.addElement("idenNo").setText("");
-                        }else{
+                        } else {
                             data.addElement("idenNo").setText(patMasterIndex.getIdNo());
                         }
-                    }else{
+                    } else {
                         data.addElement("idenNo").setText("");
                     }
-                    if(patMasterIndex.getMailingAddress()!=null){
+                    if (patMasterIndex.getMailingAddress() != null) {
                         data.addElement("home").setText(StringUtil.Iso_GBK(patMasterIndex.getMailingAddress()));
-                    }else{
+                    } else {
                         data.addElement("home").setText("");
                     }
-                    if(patMasterIndex.getPhoneNumberHome()!=null){
+                    if (patMasterIndex.getPhoneNumberHome() != null) {
                         data.addElement("homeTel").setText(patMasterIndex.getPhoneNumberHome());
-                    }else {
+                    } else {
                         data.addElement("homeTel").setText("");
                     }
-                    ChargeTypeDict chargeTypeDict = chargeTypeDictMapper.selectByPrimaryKey(patMasterIndex.getChargeType());
+                    ChargeTypeDict chargeTypeDict =
+                            chargeTypeDictMapper.selectByPrimaryKey(patMasterIndex.getChargeType());
                     if (chargeTypeDict != null) {
                         data.addElement("personalType").setText(chargeTypeDict.getChargeTypeCode());
                     } else {
@@ -328,8 +332,7 @@ public class RegTreatmentImpl implements RegTreatment {
     }
 
     /**
-     * 用户HIS信息注册
-     * 用户初诊信息注册(如果用户所持的医疗卡未在当前HIS系统中注册过，需要调用该接口将用户的信息在HIS系统中进行注册。)
+     * 用户HIS信息注册 用户初诊信息注册(如果用户所持的医疗卡未在当前HIS系统中注册过，需要调用该接口将用户的信息在HIS系统中进行注册。)
      *
      * @param xmlParam
      * @return
@@ -353,41 +356,41 @@ public class RegTreatmentImpl implements RegTreatment {
             String identity = root.element("body").element("identity").getText(); //患者身份
             String personalTypeName = root.element("body").element("personalTypeName").getText();
             String nation = root.element("body").element("nation").getText();//民族
-            String address =root.element("body").element("address").getText();//地址
+            String address = root.element("body").element("address").getText();//地址
             String namePhonetic = PinyinTool.toPinYin(name, " ", PinyinTool.Type.UPPERCASE);
             Document doc = DocumentHelper.createDocument();
             doc.setXMLEncoding("GBK");
             Element rootElement = doc.addElement("response");
             Element header = rootElement.addElement("head");
-            String chargeType="";
-            if ("在职".equals(personalTypeName)){
-                chargeType="职工医保";
-            }else if("退休".equals(personalTypeName)){
-                chargeType="职工医保";
-            }else if("退职".equals(personalTypeName)){
-                chargeType="职工医保";
-            }else if("70岁以上退休".equals( personalTypeName)){
-                chargeType="职工医保";
-            }else if("退休待审核".equals( personalTypeName)){
-                chargeType="职工医保";
-            }else if("离休".equals( personalTypeName)){
-                chargeType="市统筹";
-            }else if("地市级离休".equals( personalTypeName)){
-                chargeType="市统筹";
-            }else if("建国前老工人".equals( personalTypeName)){
-                chargeType="市统筹";
-            }else if("二乙伤残军人".equals( personalTypeName)){
-                chargeType="市统筹";
-            }else if("普通居民".equals( personalTypeName)){
-                chargeType="居民医保";
-            }else if("儿童学生".equals( personalTypeName)){
-                chargeType="儿童医保";
-            }else if("大学生".equals( personalTypeName)){
-                chargeType="大学生";
-            }else if("建筑业农民工".equals( personalTypeName)){
-                chargeType="农工医保";
-            }else{
-                chargeType=personalTypeName;
+            String chargeType = "";
+            if ("在职".equals(personalTypeName)) {
+                chargeType = "职工医保";
+            } else if ("退休".equals(personalTypeName)) {
+                chargeType = "职工医保";
+            } else if ("退职".equals(personalTypeName)) {
+                chargeType = "职工医保";
+            } else if ("70岁以上退休".equals(personalTypeName)) {
+                chargeType = "职工医保";
+            } else if ("退休待审核".equals(personalTypeName)) {
+                chargeType = "职工医保";
+            } else if ("离休".equals(personalTypeName)) {
+                chargeType = "市统筹";
+            } else if ("地市级离休".equals(personalTypeName)) {
+                chargeType = "市统筹";
+            } else if ("建国前老工人".equals(personalTypeName)) {
+                chargeType = "市统筹";
+            } else if ("二乙伤残军人".equals(personalTypeName)) {
+                chargeType = "市统筹";
+            } else if ("普通居民".equals(personalTypeName)) {
+                chargeType = "居民医保";
+            } else if ("儿童学生".equals(personalTypeName)) {
+                chargeType = "儿童医保";
+            } else if ("大学生".equals(personalTypeName)) {
+                chargeType = "大学生";
+            } else if ("建筑业农民工".equals(personalTypeName)) {
+                chargeType = "农工医保";
+            } else {
+                chargeType = personalTypeName;
             }
             if (idenNo != null && idenNo.length() > 0) {
                 if (cCardNo != null && cCardNo.length() > 0) { //市民卡不为空
@@ -395,19 +398,19 @@ public class RegTreatmentImpl implements RegTreatment {
                     if (patCardNo != null) { //市民卡卡存在
                         PatIccardRecNew patIdNo = patIccardRecNewMapper.selectByPrimaryKey(idenNo);//身份证号
                         if (patIdNo != null) {//市民卡存在,身份证存在（不做处理直接返回）
-                            if(patCardNo.getPatientId().equals(patIdNo.getPatientId())){ //只有一个patientId
+                            if (patCardNo.getPatientId().equals(patIdNo.getPatientId())) { //只有一个patientId
                                 PatMasterIndex pmi = new PatMasterIndex();
                                 pmi.setPatientId(patIdNo.getPatientId());
 //                            pmi.setInpNo("");
-                                if(name.length()>4){
-                                    pmi.setName(StringUtil.Utf_Iso(name.substring(0,4)));
-                                }else{
+                                if (name.length() > 4) {
+                                    pmi.setName(StringUtil.Utf_Iso(name.substring(0, 4)));
+                                } else {
                                     pmi.setName(StringUtil.Utf_Iso(name));
                                 }
                                 logger.info("zjp----->" + namePhonetic);
-                                if (namePhonetic.length()>16){
-                                    pmi.setNamePhonetic(namePhonetic.substring(0,16)); //姓名拼音
-                                }else{
+                                if (namePhonetic.length() > 16) {
+                                    pmi.setNamePhonetic(namePhonetic.substring(0, 16)); //姓名拼音
+                                } else {
                                     pmi.setNamePhonetic(namePhonetic); //姓名拼音
                                 }
                                 String sexDecs = "";
@@ -420,14 +423,14 @@ public class RegTreatmentImpl implements RegTreatment {
                                 }
                                 pmi.setSex(StringUtil.Utf_Iso(sexDecs));
                                 pmi.setDateOfBirth(new Timestamp(DateToWeek.formatDate(birthday, "yyyy-MM-dd").getTime())); //出生日期
-                                pmi.setBirthPlace(idenNo.substring(0,6));
+                                pmi.setBirthPlace(idenNo.substring(0, 6));
                                 pmi.setCitizenship("CN");
-                                if(cardNoType!=null && cardNoType.length()>0 &&"1".equals(cardNoType)){
+                                if (cardNoType != null && cardNoType.length() > 0 && "1".equals(cardNoType)) {
                                     pmi.setNation(null);
                                     pmi.setMailingAddress(null);
-                                }else{
-                                    pmi.setNation(StringUtil.Utf_Iso(nation+"族"));
-                                    pmi.setMailingAddress(truncateStr(address,40));
+                                } else {
+                                    pmi.setNation(StringUtil.Utf_Iso(nation + "族"));
+                                    pmi.setMailingAddress(truncateStr(address, 40));
                                 }
                                 pmi.setIdNo(idenNo);
                                 pmi.setIdentity(StringUtil.Utf_Iso(identity));
@@ -450,26 +453,30 @@ public class RegTreatmentImpl implements RegTreatment {
 
                                 patMasterIndexMapper.updateByPrimaryKeySelective(pmi);
                                 //校验
-                                PatMasterIndex patMasterIndex = patMasterIndexMapper.selectByPatientId(patIdNo.getPatientId()); //没有增加军队医改的限制
-                                if(!(patMasterIndex.getIdNo()!=null&& patMasterIndex.getIdNo().length()>0)){
+                                PatMasterIndex patMasterIndex =
+                                        patMasterIndexMapper.selectByPatientId(patIdNo.getPatientId()); //没有增加军队医改的限制
+                                if (!(patMasterIndex.getIdNo() != null && patMasterIndex.getIdNo().length() > 0)) {
                                     patMasterIndexMapper.updateByPrimaryKeySelective(pmi);
                                 }
-                                patMasterIndex = patMasterIndexMapper.selectByPatientId(patIdNo.getPatientId()); //没有增加军队医改的限制
-                                if(patMasterIndex.getIdNo()!=null&& patMasterIndex.getIdNo().length()>0){
+                                patMasterIndex = patMasterIndexMapper.selectByPatientId(patIdNo.getPatientId());
+                                //没有增加军队医改的限制
+                                if (patMasterIndex.getIdNo() != null && patMasterIndex.getIdNo().length() > 0) {
                                     header.addElement("code").setText("0");
                                     header.addElement("desc").setText("成功");
                                     header.addElement("patientId").setText(patIdNo.getPatientId());
-                                }else{
+                                } else {
                                     header.addElement("code").setText("1");
                                     header.addElement("desc").setText("身份证更新失败！！！");
                                     header.addElement("patientId").setText(patIdNo.getPatientId());
                                 }
 
-                            }else{ //两个patientId
-                                PatMasterIndex  pacCardNo= patMasterIndexMapper.selectByPatientId(patCardNo.getPatientId());
-                                PatMasterIndex  pacIdenNo= patMasterIndexMapper.selectByPatientId(patIdNo.getPatientId());
-                                if(pacCardNo.getInpNo()!=null && pacCardNo.getInpNo().length()>0 && pacIdenNo.getInpNo()!=null && pacIdenNo.getInpNo().length()>0){ //两个住院号都不为空
-                                    if(new BigDecimal(pacCardNo.getInpNo()).compareTo(new BigDecimal(pacIdenNo.getInpNo()))<0){ //
+                            } else { //两个patientId
+                                PatMasterIndex pacCardNo =
+                                        patMasterIndexMapper.selectByPatientId(patCardNo.getPatientId());
+                                PatMasterIndex pacIdenNo =
+                                        patMasterIndexMapper.selectByPatientId(patIdNo.getPatientId());
+                                if (pacCardNo.getInpNo() != null && pacCardNo.getInpNo().length() > 0 && pacIdenNo.getInpNo() != null && pacIdenNo.getInpNo().length() > 0) { //两个住院号都不为空
+                                    if (new BigDecimal(pacCardNo.getInpNo()).compareTo(new BigDecimal(pacIdenNo.getInpNo())) < 0) { //
                                         PatIccardRecNew pirnIdNo = new PatIccardRecNew();
                                         pirnIdNo.setPatientId(pacCardNo.getPatientId());
                                         pirnIdNo.setIccardNo(patIdNo.getIccardNo());
@@ -478,15 +485,15 @@ public class RegTreatmentImpl implements RegTreatment {
                                         PatMasterIndex pmi = new PatMasterIndex();
                                         pmi.setPatientId(pacCardNo.getPatientId());
 //                            pmi.setInpNo("");
-                                        if(name.length()>4){
-                                            pmi.setName(StringUtil.Utf_Iso(name.substring(0,4)));
-                                        }else{
+                                        if (name.length() > 4) {
+                                            pmi.setName(StringUtil.Utf_Iso(name.substring(0, 4)));
+                                        } else {
                                             pmi.setName(StringUtil.Utf_Iso(name));
                                         }
                                         logger.info("zjp----->" + namePhonetic);
-                                        if (namePhonetic.length()>16){
-                                            pmi.setNamePhonetic(namePhonetic.substring(0,16)); //姓名拼音
-                                        }else{
+                                        if (namePhonetic.length() > 16) {
+                                            pmi.setNamePhonetic(namePhonetic.substring(0, 16)); //姓名拼音
+                                        } else {
                                             pmi.setNamePhonetic(namePhonetic); //姓名拼音
                                         }
                                         String sexDecs = "";
@@ -498,15 +505,16 @@ public class RegTreatmentImpl implements RegTreatment {
                                             sexDecs = "未知";
                                         }
                                         pmi.setSex(StringUtil.Utf_Iso(sexDecs));
-                                        pmi.setDateOfBirth(new Timestamp(DateToWeek.formatDate(birthday, "yyyy-MM-dd").getTime())); //出生日期
-                                        pmi.setBirthPlace(idenNo.substring(0,6));
+                                        pmi.setDateOfBirth(new Timestamp(DateToWeek.formatDate(birthday,
+                                                "yyyy-MM-dd").getTime())); //出生日期
+                                        pmi.setBirthPlace(idenNo.substring(0, 6));
                                         pmi.setCitizenship("CN");
-                                        if(cardNoType!=null && cardNoType.length()>0 &&"1".equals(cardNoType)){
+                                        if (cardNoType != null && cardNoType.length() > 0 && "1".equals(cardNoType)) {
                                             pmi.setNation(null);
                                             pmi.setMailingAddress(null);
-                                        }else{
-                                            pmi.setNation(StringUtil.Utf_Iso(nation+"族"));
-                                            pmi.setMailingAddress(truncateStr(address,40));
+                                        } else {
+                                            pmi.setNation(StringUtil.Utf_Iso(nation + "族"));
+                                            pmi.setMailingAddress(truncateStr(address, 40));
                                         }
                                         pmi.setIdNo(idenNo);
                                         pmi.setIdentity(StringUtil.Utf_Iso(identity));
@@ -530,21 +538,23 @@ public class RegTreatmentImpl implements RegTreatment {
                                         patIccardRecNewMapper.updateByPrimaryKeySelective(pirnIdNo);
                                         patMasterIndexMapper.updateByPrimaryKeySelective(pmi);
                                         //校验
-                                        PatMasterIndex patMasterIndex = patMasterIndexMapper.selectByPatientId(pacCardNo.getPatientId()); //没有增加军队医改的限制
-                                        if(!(patMasterIndex.getIdNo()!=null&& patMasterIndex.getIdNo().length()>0)){
+                                        PatMasterIndex patMasterIndex =
+                                                patMasterIndexMapper.selectByPatientId(pacCardNo.getPatientId()); //没有增加军队医改的限制
+                                        if (!(patMasterIndex.getIdNo() != null && patMasterIndex.getIdNo().length() > 0)) {
                                             patMasterIndexMapper.updateByPrimaryKeySelective(pmi);
                                         }
-                                        patMasterIndex = patMasterIndexMapper.selectByPatientId(pacCardNo.getPatientId()); //没有增加军队医改的限制
-                                        if(patMasterIndex.getIdNo()!=null&& patMasterIndex.getIdNo().length()>0){
+                                        patMasterIndex =
+                                                patMasterIndexMapper.selectByPatientId(pacCardNo.getPatientId()); //没有增加军队医改的限制
+                                        if (patMasterIndex.getIdNo() != null && patMasterIndex.getIdNo().length() > 0) {
                                             header.addElement("code").setText("0");
                                             header.addElement("desc").setText("成功");
                                             header.addElement("patientId").setText(pacCardNo.getPatientId());
-                                        }else{
+                                        } else {
                                             header.addElement("code").setText("1");
                                             header.addElement("desc").setText("身份证更新失败！！！");
                                             header.addElement("patientId").setText(pacCardNo.getPatientId());
                                         }
-                                    }else{
+                                    } else {
                                         PatIccardRecNew pirnIdNo = new PatIccardRecNew();
                                         pirnIdNo.setPatientId(pacIdenNo.getPatientId());
                                         pirnIdNo.setIccardNo(patCardNo.getIccardNo());
@@ -553,15 +563,15 @@ public class RegTreatmentImpl implements RegTreatment {
                                         PatMasterIndex pmi = new PatMasterIndex();
                                         pmi.setPatientId(pacIdenNo.getPatientId());
 //                            pmi.setInpNo("");
-                                        if(name.length()>4){
-                                            pmi.setName(StringUtil.Utf_Iso(name.substring(0,4)));
-                                        }else{
+                                        if (name.length() > 4) {
+                                            pmi.setName(StringUtil.Utf_Iso(name.substring(0, 4)));
+                                        } else {
                                             pmi.setName(StringUtil.Utf_Iso(name));
                                         }
                                         logger.info("zjp----->" + namePhonetic);
-                                        if (namePhonetic.length()>16){
-                                            pmi.setNamePhonetic(namePhonetic.substring(0,16)); //姓名拼音
-                                        }else{
+                                        if (namePhonetic.length() > 16) {
+                                            pmi.setNamePhonetic(namePhonetic.substring(0, 16)); //姓名拼音
+                                        } else {
                                             pmi.setNamePhonetic(namePhonetic); //姓名拼音
                                         }
                                         String sexDecs = "";
@@ -573,15 +583,16 @@ public class RegTreatmentImpl implements RegTreatment {
                                             sexDecs = "未知";
                                         }
                                         pmi.setSex(StringUtil.Utf_Iso(sexDecs));
-                                        pmi.setDateOfBirth(new Timestamp(DateToWeek.formatDate(birthday, "yyyy-MM-dd").getTime())); //出生日期
-                                        pmi.setBirthPlace(idenNo.substring(0,6));
+                                        pmi.setDateOfBirth(new Timestamp(DateToWeek.formatDate(birthday,
+                                                "yyyy-MM-dd").getTime())); //出生日期
+                                        pmi.setBirthPlace(idenNo.substring(0, 6));
                                         pmi.setCitizenship("CN");
-                                        if(cardNoType!=null && cardNoType.length()>0 &&"1".equals(cardNoType)){
+                                        if (cardNoType != null && cardNoType.length() > 0 && "1".equals(cardNoType)) {
                                             pmi.setNation(null);
                                             pmi.setMailingAddress(null);
-                                        }else{
-                                            pmi.setNation(StringUtil.Utf_Iso(nation+"族"));
-                                            pmi.setMailingAddress(truncateStr(address,40));
+                                        } else {
+                                            pmi.setNation(StringUtil.Utf_Iso(nation + "族"));
+                                            pmi.setMailingAddress(truncateStr(address, 40));
                                         }
                                         pmi.setIdNo(idenNo);
                                         pmi.setIdentity(StringUtil.Utf_Iso(identity));
@@ -605,23 +616,25 @@ public class RegTreatmentImpl implements RegTreatment {
                                         patIccardRecNewMapper.updateByPrimaryKeySelective(pirnIdNo);
                                         patMasterIndexMapper.updateByPrimaryKeySelective(pmi);
                                         //校验
-                                        PatMasterIndex patMasterIndex = patMasterIndexMapper.selectByPatientId(pacIdenNo.getPatientId()); //没有增加军队医改的限制
-                                        if(!(patMasterIndex.getIdNo()!=null&& patMasterIndex.getIdNo().length()>0)){
+                                        PatMasterIndex patMasterIndex =
+                                                patMasterIndexMapper.selectByPatientId(pacIdenNo.getPatientId()); //没有增加军队医改的限制
+                                        if (!(patMasterIndex.getIdNo() != null && patMasterIndex.getIdNo().length() > 0)) {
                                             patMasterIndexMapper.updateByPrimaryKeySelective(pmi);
                                         }
-                                        patMasterIndex = patMasterIndexMapper.selectByPatientId(pacIdenNo.getPatientId()); //没有增加军队医改的限制
-                                        if(patMasterIndex.getIdNo()!=null&& patMasterIndex.getIdNo().length()>0){
+                                        patMasterIndex =
+                                                patMasterIndexMapper.selectByPatientId(pacIdenNo.getPatientId()); //没有增加军队医改的限制
+                                        if (patMasterIndex.getIdNo() != null && patMasterIndex.getIdNo().length() > 0) {
                                             header.addElement("code").setText("0");
                                             header.addElement("desc").setText("成功");
                                             header.addElement("patientId").setText(pacIdenNo.getPatientId());
-                                        }else{
+                                        } else {
                                             header.addElement("code").setText("1");
                                             header.addElement("desc").setText("身份证更新失败！！！");
                                             header.addElement("patientId").setText(pacIdenNo.getPatientId());
                                         }
                                     }
-                                }else{
-                                    if(pacCardNo.getInpNo()!=null && pacCardNo.getInpNo().length()>0 ){ //
+                                } else {
+                                    if (pacCardNo.getInpNo() != null && pacCardNo.getInpNo().length() > 0) { //
                                         PatIccardRecNew pirnIdNo = new PatIccardRecNew();
                                         pirnIdNo.setPatientId(pacCardNo.getPatientId());
                                         pirnIdNo.setIccardNo(patIdNo.getIccardNo());
@@ -630,15 +643,15 @@ public class RegTreatmentImpl implements RegTreatment {
                                         PatMasterIndex pmi = new PatMasterIndex();
                                         pmi.setPatientId(pacCardNo.getPatientId());
 //                            pmi.setInpNo("");
-                                        if(name.length()>4){
-                                            pmi.setName(StringUtil.Utf_Iso(name.substring(0,4)));
-                                        }else{
+                                        if (name.length() > 4) {
+                                            pmi.setName(StringUtil.Utf_Iso(name.substring(0, 4)));
+                                        } else {
                                             pmi.setName(StringUtil.Utf_Iso(name));
                                         }
                                         logger.info("zjp----->" + namePhonetic);
-                                        if (namePhonetic.length()>16){
-                                            pmi.setNamePhonetic(namePhonetic.substring(0,16)); //姓名拼音
-                                        }else{
+                                        if (namePhonetic.length() > 16) {
+                                            pmi.setNamePhonetic(namePhonetic.substring(0, 16)); //姓名拼音
+                                        } else {
                                             pmi.setNamePhonetic(namePhonetic); //姓名拼音
                                         }
                                         String sexDecs = "";
@@ -650,15 +663,16 @@ public class RegTreatmentImpl implements RegTreatment {
                                             sexDecs = "未知";
                                         }
                                         pmi.setSex(StringUtil.Utf_Iso(sexDecs));
-                                        pmi.setDateOfBirth(new Timestamp(DateToWeek.formatDate(birthday, "yyyy-MM-dd").getTime())); //出生日期
-                                        pmi.setBirthPlace(idenNo.substring(0,6));
+                                        pmi.setDateOfBirth(new Timestamp(DateToWeek.formatDate(birthday,
+                                                "yyyy-MM-dd").getTime())); //出生日期
+                                        pmi.setBirthPlace(idenNo.substring(0, 6));
                                         pmi.setCitizenship("CN");
-                                        if(cardNoType!=null && cardNoType.length()>0 &&"1".equals(cardNoType)){
+                                        if (cardNoType != null && cardNoType.length() > 0 && "1".equals(cardNoType)) {
                                             pmi.setNation(null);
                                             pmi.setMailingAddress(null);
-                                        }else{
-                                            pmi.setNation(StringUtil.Utf_Iso(nation+"族"));
-                                            pmi.setMailingAddress(truncateStr(address,40));
+                                        } else {
+                                            pmi.setNation(StringUtil.Utf_Iso(nation + "族"));
+                                            pmi.setMailingAddress(truncateStr(address, 40));
                                         }
                                         pmi.setIdNo(idenNo);
                                         pmi.setIdentity(StringUtil.Utf_Iso(identity));
@@ -682,21 +696,23 @@ public class RegTreatmentImpl implements RegTreatment {
                                         patIccardRecNewMapper.updateByPrimaryKeySelective(pirnIdNo);
                                         patMasterIndexMapper.updateByPrimaryKeySelective(pmi);
                                         //校验
-                                        PatMasterIndex patMasterIndex = patMasterIndexMapper.selectByPatientId(pacCardNo.getPatientId()); //没有增加军队医改的限制
-                                        if(!(patMasterIndex.getIdNo()!=null&& patMasterIndex.getIdNo().length()>0)){
+                                        PatMasterIndex patMasterIndex =
+                                                patMasterIndexMapper.selectByPatientId(pacCardNo.getPatientId()); //没有增加军队医改的限制
+                                        if (!(patMasterIndex.getIdNo() != null && patMasterIndex.getIdNo().length() > 0)) {
                                             patMasterIndexMapper.updateByPrimaryKeySelective(pmi);
                                         }
-                                        patMasterIndex = patMasterIndexMapper.selectByPatientId(pacCardNo.getPatientId()); //没有增加军队医改的限制
-                                        if(patMasterIndex.getIdNo()!=null&& patMasterIndex.getIdNo().length()>0){
+                                        patMasterIndex =
+                                                patMasterIndexMapper.selectByPatientId(pacCardNo.getPatientId()); //没有增加军队医改的限制
+                                        if (patMasterIndex.getIdNo() != null && patMasterIndex.getIdNo().length() > 0) {
                                             header.addElement("code").setText("0");
                                             header.addElement("desc").setText("成功");
                                             header.addElement("patientId").setText(pacCardNo.getPatientId());
-                                        }else{
+                                        } else {
                                             header.addElement("code").setText("1");
                                             header.addElement("desc").setText("身份证更新失败！！！");
                                             header.addElement("patientId").setText(pacCardNo.getPatientId());
                                         }
-                                    }else if(pacIdenNo.getInpNo()!=null && pacIdenNo.getInpNo().length()>0){
+                                    } else if (pacIdenNo.getInpNo() != null && pacIdenNo.getInpNo().length() > 0) {
                                         PatIccardRecNew pirnIdNo = new PatIccardRecNew();
                                         pirnIdNo.setPatientId(pacIdenNo.getPatientId());
                                         pirnIdNo.setIccardNo(patCardNo.getIccardNo());
@@ -705,15 +721,15 @@ public class RegTreatmentImpl implements RegTreatment {
                                         PatMasterIndex pmi = new PatMasterIndex();
                                         pmi.setPatientId(pacIdenNo.getPatientId());
 //                            pmi.setInpNo("");
-                                        if(name.length()>4){
-                                            pmi.setName(StringUtil.Utf_Iso(name.substring(0,4)));
-                                        }else{
+                                        if (name.length() > 4) {
+                                            pmi.setName(StringUtil.Utf_Iso(name.substring(0, 4)));
+                                        } else {
                                             pmi.setName(StringUtil.Utf_Iso(name));
                                         }
                                         logger.info("zjp----->" + namePhonetic);
-                                        if (namePhonetic.length()>16){
-                                            pmi.setNamePhonetic(namePhonetic.substring(0,16)); //姓名拼音
-                                        }else{
+                                        if (namePhonetic.length() > 16) {
+                                            pmi.setNamePhonetic(namePhonetic.substring(0, 16)); //姓名拼音
+                                        } else {
                                             pmi.setNamePhonetic(namePhonetic); //姓名拼音
                                         }
                                         String sexDecs = "";
@@ -725,15 +741,16 @@ public class RegTreatmentImpl implements RegTreatment {
                                             sexDecs = "未知";
                                         }
                                         pmi.setSex(StringUtil.Utf_Iso(sexDecs));
-                                        pmi.setDateOfBirth(new Timestamp(DateToWeek.formatDate(birthday, "yyyy-MM-dd").getTime())); //出生日期
-                                        pmi.setBirthPlace(idenNo.substring(0,6));
+                                        pmi.setDateOfBirth(new Timestamp(DateToWeek.formatDate(birthday,
+                                                "yyyy-MM-dd").getTime())); //出生日期
+                                        pmi.setBirthPlace(idenNo.substring(0, 6));
                                         pmi.setCitizenship("CN");
-                                        if(cardNoType!=null && cardNoType.length()>0 &&"1".equals(cardNoType)){
+                                        if (cardNoType != null && cardNoType.length() > 0 && "1".equals(cardNoType)) {
                                             pmi.setNation(null);
                                             pmi.setMailingAddress(null);
-                                        }else{
-                                            pmi.setNation(StringUtil.Utf_Iso(nation+"族"));
-                                            pmi.setMailingAddress(truncateStr(address,40));
+                                        } else {
+                                            pmi.setNation(StringUtil.Utf_Iso(nation + "族"));
+                                            pmi.setMailingAddress(truncateStr(address, 40));
                                         }
                                         pmi.setIdNo(idenNo);
                                         pmi.setIdentity(StringUtil.Utf_Iso(identity));
@@ -757,22 +774,24 @@ public class RegTreatmentImpl implements RegTreatment {
                                         patIccardRecNewMapper.updateByPrimaryKeySelective(pirnIdNo);
                                         patMasterIndexMapper.updateByPrimaryKeySelective(pmi);
                                         //校验
-                                        PatMasterIndex patMasterIndex = patMasterIndexMapper.selectByPatientId(pacIdenNo.getPatientId()); //没有增加军队医改的限制
-                                        if(!(patMasterIndex.getIdNo()!=null&& patMasterIndex.getIdNo().length()>0)){
+                                        PatMasterIndex patMasterIndex =
+                                                patMasterIndexMapper.selectByPatientId(pacIdenNo.getPatientId()); //没有增加军队医改的限制
+                                        if (!(patMasterIndex.getIdNo() != null && patMasterIndex.getIdNo().length() > 0)) {
                                             patMasterIndexMapper.updateByPrimaryKeySelective(pmi);
                                         }
-                                        patMasterIndex = patMasterIndexMapper.selectByPatientId(pacIdenNo.getPatientId()); //没有增加军队医改的限制
-                                        if(patMasterIndex.getIdNo()!=null&& patMasterIndex.getIdNo().length()>0){
+                                        patMasterIndex =
+                                                patMasterIndexMapper.selectByPatientId(pacIdenNo.getPatientId()); //没有增加军队医改的限制
+                                        if (patMasterIndex.getIdNo() != null && patMasterIndex.getIdNo().length() > 0) {
                                             header.addElement("code").setText("0");
                                             header.addElement("desc").setText("成功");
                                             header.addElement("patientId").setText(pacIdenNo.getPatientId());
-                                        }else{
+                                        } else {
                                             header.addElement("code").setText("1");
                                             header.addElement("desc").setText("身份证更新失败！！！");
                                             header.addElement("patientId").setText(pacIdenNo.getPatientId());
                                         }
-                                    }else{ //都为空
-                                        if(pacCardNo.getIdNo()!=null &&pacCardNo.getIdNo().length()>0 ){
+                                    } else { //都为空
+                                        if (pacCardNo.getIdNo() != null && pacCardNo.getIdNo().length() > 0) {
                                             PatIccardRecNew pirnIdNo = new PatIccardRecNew();
                                             pirnIdNo.setPatientId(pacCardNo.getPatientId());
                                             pirnIdNo.setIccardNo(patIdNo.getIccardNo());
@@ -781,15 +800,15 @@ public class RegTreatmentImpl implements RegTreatment {
                                             PatMasterIndex pmi = new PatMasterIndex();
                                             pmi.setPatientId(pacCardNo.getPatientId());
 //                            pmi.setInpNo("");
-                                            if(name.length()>4){
-                                                pmi.setName(StringUtil.Utf_Iso(name.substring(0,4)));
-                                            }else{
+                                            if (name.length() > 4) {
+                                                pmi.setName(StringUtil.Utf_Iso(name.substring(0, 4)));
+                                            } else {
                                                 pmi.setName(StringUtil.Utf_Iso(name));
                                             }
                                             logger.info("zjp----->" + namePhonetic);
-                                            if (namePhonetic.length()>16){
-                                                pmi.setNamePhonetic(namePhonetic.substring(0,16)); //姓名拼音
-                                            }else{
+                                            if (namePhonetic.length() > 16) {
+                                                pmi.setNamePhonetic(namePhonetic.substring(0, 16)); //姓名拼音
+                                            } else {
                                                 pmi.setNamePhonetic(namePhonetic); //姓名拼音
                                             }
                                             String sexDecs = "";
@@ -801,15 +820,16 @@ public class RegTreatmentImpl implements RegTreatment {
                                                 sexDecs = "未知";
                                             }
                                             pmi.setSex(StringUtil.Utf_Iso(sexDecs));
-                                            pmi.setDateOfBirth(new Timestamp(DateToWeek.formatDate(birthday, "yyyy-MM-dd").getTime())); //出生日期
-                                            pmi.setBirthPlace(idenNo.substring(0,6));
+                                            pmi.setDateOfBirth(new Timestamp(DateToWeek.formatDate(birthday, "yyyy-MM" +
+                                                    "-dd").getTime())); //出生日期
+                                            pmi.setBirthPlace(idenNo.substring(0, 6));
                                             pmi.setCitizenship("CN");
-                                            if(cardNoType!=null && cardNoType.length()>0 &&"1".equals(cardNoType)){
+                                            if (cardNoType != null && cardNoType.length() > 0 && "1".equals(cardNoType)) {
                                                 pmi.setNation(null);
                                                 pmi.setMailingAddress(null);
-                                            }else{
-                                                pmi.setNation(StringUtil.Utf_Iso(nation+"族"));
-                                                pmi.setMailingAddress(truncateStr(address,40));
+                                            } else {
+                                                pmi.setNation(StringUtil.Utf_Iso(nation + "族"));
+                                                pmi.setMailingAddress(truncateStr(address, 40));
                                             }
                                             pmi.setIdNo(idenNo);
                                             pmi.setIdentity(StringUtil.Utf_Iso(identity));
@@ -833,21 +853,25 @@ public class RegTreatmentImpl implements RegTreatment {
                                             patIccardRecNewMapper.updateByPrimaryKeySelective(pirnIdNo);
                                             patMasterIndexMapper.updateByPrimaryKeySelective(pmi);
                                             //校验
-                                            PatMasterIndex patMasterIndex = patMasterIndexMapper.selectByPatientId(pacCardNo.getPatientId()); //没有增加军队医改的限制
-                                            if(!(patMasterIndex.getIdNo()!=null&& patMasterIndex.getIdNo().length()>0)){
+                                            PatMasterIndex patMasterIndex =
+                                                    patMasterIndexMapper.selectByPatientId(pacCardNo.getPatientId());
+                                            //没有增加军队医改的限制
+                                            if (!(patMasterIndex.getIdNo() != null && patMasterIndex.getIdNo().length() > 0)) {
                                                 patMasterIndexMapper.updateByPrimaryKeySelective(pmi);
                                             }
-                                            patMasterIndex = patMasterIndexMapper.selectByPatientId(pacCardNo.getPatientId()); //没有增加军队医改的限制
-                                            if(patMasterIndex.getIdNo()!=null&& patMasterIndex.getIdNo().length()>0){
+                                            patMasterIndex =
+                                                    patMasterIndexMapper.selectByPatientId(pacCardNo.getPatientId());
+                                            //没有增加军队医改的限制
+                                            if (patMasterIndex.getIdNo() != null && patMasterIndex.getIdNo().length() > 0) {
                                                 header.addElement("code").setText("0");
                                                 header.addElement("desc").setText("成功");
                                                 header.addElement("patientId").setText(pacCardNo.getPatientId());
-                                            }else{
+                                            } else {
                                                 header.addElement("code").setText("1");
                                                 header.addElement("desc").setText("身份证更新失败！！！");
                                                 header.addElement("patientId").setText(pacCardNo.getPatientId());
                                             }
-                                        }else{
+                                        } else {
                                             PatIccardRecNew pirnIdNo = new PatIccardRecNew();
                                             pirnIdNo.setPatientId(pacIdenNo.getPatientId());
                                             pirnIdNo.setIccardNo(patCardNo.getIccardNo());
@@ -856,15 +880,15 @@ public class RegTreatmentImpl implements RegTreatment {
                                             PatMasterIndex pmi = new PatMasterIndex();
                                             pmi.setPatientId(pacIdenNo.getPatientId());
 //                            pmi.setInpNo("");
-                                            if(name.length()>4){
-                                                pmi.setName(StringUtil.Utf_Iso(name.substring(0,4)));
-                                            }else{
+                                            if (name.length() > 4) {
+                                                pmi.setName(StringUtil.Utf_Iso(name.substring(0, 4)));
+                                            } else {
                                                 pmi.setName(StringUtil.Utf_Iso(name));
                                             }
                                             logger.info("zjp----->" + namePhonetic);
-                                            if (namePhonetic.length()>16){
-                                                pmi.setNamePhonetic(namePhonetic.substring(0,16)); //姓名拼音
-                                            }else{
+                                            if (namePhonetic.length() > 16) {
+                                                pmi.setNamePhonetic(namePhonetic.substring(0, 16)); //姓名拼音
+                                            } else {
                                                 pmi.setNamePhonetic(namePhonetic); //姓名拼音
                                             }
                                             String sexDecs = "";
@@ -876,15 +900,16 @@ public class RegTreatmentImpl implements RegTreatment {
                                                 sexDecs = "未知";
                                             }
                                             pmi.setSex(StringUtil.Utf_Iso(sexDecs));
-                                            pmi.setDateOfBirth(new Timestamp(DateToWeek.formatDate(birthday, "yyyy-MM-dd").getTime())); //出生日期
-                                            pmi.setBirthPlace(idenNo.substring(0,6));
+                                            pmi.setDateOfBirth(new Timestamp(DateToWeek.formatDate(birthday, "yyyy-MM" +
+                                                    "-dd").getTime())); //出生日期
+                                            pmi.setBirthPlace(idenNo.substring(0, 6));
                                             pmi.setCitizenship("CN");
-                                            if(cardNoType!=null && cardNoType.length()>0 &&"1".equals(cardNoType)){
+                                            if (cardNoType != null && cardNoType.length() > 0 && "1".equals(cardNoType)) {
                                                 pmi.setNation(null);
                                                 pmi.setMailingAddress(null);
-                                            }else{
-                                                pmi.setNation(StringUtil.Utf_Iso(nation+"族"));
-                                                pmi.setMailingAddress(truncateStr(address,40));
+                                            } else {
+                                                pmi.setNation(StringUtil.Utf_Iso(nation + "族"));
+                                                pmi.setMailingAddress(truncateStr(address, 40));
                                             }
                                             pmi.setIdNo(idenNo);
                                             pmi.setIdentity(StringUtil.Utf_Iso(identity));
@@ -908,16 +933,20 @@ public class RegTreatmentImpl implements RegTreatment {
                                             patIccardRecNewMapper.updateByPrimaryKeySelective(pirnIdNo);
                                             patMasterIndexMapper.updateByPrimaryKeySelective(pmi);
                                             //校验
-                                            PatMasterIndex patMasterIndex = patMasterIndexMapper.selectByPatientId(pacIdenNo.getPatientId()); //没有增加军队医改的限制
-                                            if(!(patMasterIndex.getIdNo()!=null&& patMasterIndex.getIdNo().length()>0)){
+                                            PatMasterIndex patMasterIndex =
+                                                    patMasterIndexMapper.selectByPatientId(pacIdenNo.getPatientId());
+                                            //没有增加军队医改的限制
+                                            if (!(patMasterIndex.getIdNo() != null && patMasterIndex.getIdNo().length() > 0)) {
                                                 patMasterIndexMapper.updateByPrimaryKeySelective(pmi);
                                             }
-                                            patMasterIndex = patMasterIndexMapper.selectByPatientId(pacIdenNo.getPatientId()); //没有增加军队医改的限制
-                                            if(patMasterIndex.getIdNo()!=null&& patMasterIndex.getIdNo().length()>0){
+                                            patMasterIndex =
+                                                    patMasterIndexMapper.selectByPatientId(pacIdenNo.getPatientId());
+                                            //没有增加军队医改的限制
+                                            if (patMasterIndex.getIdNo() != null && patMasterIndex.getIdNo().length() > 0) {
                                                 header.addElement("code").setText("0");
                                                 header.addElement("desc").setText("成功");
                                                 header.addElement("patientId").setText(pacIdenNo.getPatientId());
-                                            }else{
+                                            } else {
                                                 header.addElement("code").setText("1");
                                                 header.addElement("desc").setText("身份证更新失败！！！");
                                                 header.addElement("patientId").setText(pacIdenNo.getPatientId());
@@ -934,20 +963,21 @@ public class RegTreatmentImpl implements RegTreatment {
                             PatIccardRecNew pirnIdNo = new PatIccardRecNew();
                             pirnIdNo.setPatientId(patCardNo.getPatientId());
                             pirnIdNo.setIccardNo(idenNo);
-                            pirnIdNo.setRegDatetime(new Timestamp(DateToWeek.formatDate(Util.getCurrentDate("yyyy-MM-dd"), "yyyy-MM-dd").getTime()));
+                            pirnIdNo.setRegDatetime(new Timestamp(DateToWeek.formatDate(Util.getCurrentDate("yyyy-MM" +
+                                    "-dd"), "yyyy-MM-dd").getTime()));
                             //2.insert  patMasterIndex
                             PatMasterIndex pmi = new PatMasterIndex();
                             pmi.setPatientId(patCardNo.getPatientId());
 //                            pmi.setInpNo("");
-                            if(name.length()>4){
-                                pmi.setName(StringUtil.Utf_Iso(name.substring(0,4)));
-                            }else{
+                            if (name.length() > 4) {
+                                pmi.setName(StringUtil.Utf_Iso(name.substring(0, 4)));
+                            } else {
                                 pmi.setName(StringUtil.Utf_Iso(name));
                             }
                             logger.info("zjp----->" + namePhonetic);
-                            if (namePhonetic.length()>16){
-                                pmi.setNamePhonetic(namePhonetic.substring(0,16)); //姓名拼音
-                            }else{
+                            if (namePhonetic.length() > 16) {
+                                pmi.setNamePhonetic(namePhonetic.substring(0, 16)); //姓名拼音
+                            } else {
                                 pmi.setNamePhonetic(namePhonetic); //姓名拼音
                             }
                             String sexDecs = "";
@@ -960,14 +990,14 @@ public class RegTreatmentImpl implements RegTreatment {
                             }
                             pmi.setSex(StringUtil.Utf_Iso(sexDecs));
                             pmi.setDateOfBirth(new Timestamp(DateToWeek.formatDate(birthday, "yyyy-MM-dd").getTime())); //出生日期
-                            pmi.setBirthPlace(idenNo.substring(0,6));
+                            pmi.setBirthPlace(idenNo.substring(0, 6));
                             pmi.setCitizenship("CN");
-                            if(cardNoType!=null && cardNoType.length()>0 &&"1".equals(cardNoType)){
+                            if (cardNoType != null && cardNoType.length() > 0 && "1".equals(cardNoType)) {
                                 pmi.setNation(null);
                                 pmi.setMailingAddress(null);
-                            }else{
-                                pmi.setNation(StringUtil.Utf_Iso(nation+"族"));
-                                pmi.setMailingAddress(truncateStr(address,40));
+                            } else {
+                                pmi.setNation(StringUtil.Utf_Iso(nation + "族"));
+                                pmi.setMailingAddress(truncateStr(address, 40));
                             }
                             pmi.setIdNo(idenNo);
                             pmi.setIdentity(StringUtil.Utf_Iso(identity));
@@ -999,7 +1029,7 @@ public class RegTreatmentImpl implements RegTreatment {
 //                            } else if (cCardNo != null && cCardNo.length() > 0) {
 //                                patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(cCardNo);
 //                            }
-                            if(patIccardRecNew==null){
+                            if (patIccardRecNew == null) {
                                 patIccardRecNewMapper.insert(pirnIdNo);
                             }
                             patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(idenNo);
@@ -1013,20 +1043,22 @@ public class RegTreatmentImpl implements RegTreatment {
 //                                patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(cCardNo);
 //                            }
 
-                            PatMasterIndex patMasterIndex = patMasterIndexMapper.selectByPatientId(patCardNo.getPatientId()); //没有增加军队医改的限制
-                            if(!(patMasterIndex.getIdNo()!=null&& patMasterIndex.getIdNo().length()>0)){
+                            PatMasterIndex patMasterIndex =
+                                    patMasterIndexMapper.selectByPatientId(patCardNo.getPatientId()); //没有增加军队医改的限制
+                            if (!(patMasterIndex.getIdNo() != null && patMasterIndex.getIdNo().length() > 0)) {
                                 patMasterIndexMapper.updateByPrimaryKeySelective(pmi);
                             }
-                            patMasterIndex = patMasterIndexMapper.selectByPatientId(patCardNo.getPatientId()); //没有增加军队医改的限制
+                            patMasterIndex = patMasterIndexMapper.selectByPatientId(patCardNo.getPatientId());
+                            //没有增加军队医改的限制
 
-                            if(patIccardRecNew==null){
+                            if (patIccardRecNew == null) {
                                 header.addElement("code").setText("1");
                                 header.addElement("desc").setText("注册失败,注册表未插入信息");
-                            }else if(!(patMasterIndex.getIdNo()!=null&& patMasterIndex.getIdNo().length()>0)){
+                            } else if (!(patMasterIndex.getIdNo() != null && patMasterIndex.getIdNo().length() > 0)) {
                                 header.addElement("code").setText("1");
                                 header.addElement("desc").setText("身份证更新失败！！！");
                                 header.addElement("patientId").setText(patCardNo.getPatientId());
-                            }else{
+                            } else {
                                 header.addElement("code").setText("0");
                                 header.addElement("desc").setText("成功");
                                 header.addElement("patientId").setText(patCardNo.getPatientId());
@@ -1040,20 +1072,21 @@ public class RegTreatmentImpl implements RegTreatment {
                             PatIccardRecNew pirn = new PatIccardRecNew();
                             pirn.setPatientId(patIdNo.getPatientId());
                             pirn.setIccardNo(cCardNo);
-                            pirn.setRegDatetime(new Timestamp(DateToWeek.formatDate(Util.getCurrentDate("yyyy-MM-dd"), "yyyy-MM-dd").getTime()));
+                            pirn.setRegDatetime(new Timestamp(DateToWeek.formatDate(Util.getCurrentDate("yyyy-MM-dd")
+                                    , "yyyy-MM-dd").getTime()));
                             //2.update patMasterIndex
                             PatMasterIndex pmi = new PatMasterIndex();
                             pmi.setPatientId(patIdNo.getPatientId());
 //                            pmi.setInpNo("");
-                            if(name.length()>4){
-                                pmi.setName(StringUtil.Utf_Iso(name.substring(0,4)));
-                            }else{
+                            if (name.length() > 4) {
+                                pmi.setName(StringUtil.Utf_Iso(name.substring(0, 4)));
+                            } else {
                                 pmi.setName(StringUtil.Utf_Iso(name));
                             }
                             logger.info("zjp----->" + namePhonetic);
-                            if (namePhonetic.length()>16){
-                                pmi.setNamePhonetic(namePhonetic.substring(0,16)); //姓名拼音
-                            }else{
+                            if (namePhonetic.length() > 16) {
+                                pmi.setNamePhonetic(namePhonetic.substring(0, 16)); //姓名拼音
+                            } else {
                                 pmi.setNamePhonetic(namePhonetic); //姓名拼音
                             }
                             String sexDecs = "";
@@ -1066,14 +1099,14 @@ public class RegTreatmentImpl implements RegTreatment {
                             }
                             pmi.setSex(StringUtil.Utf_Iso(sexDecs));
                             pmi.setDateOfBirth(new Timestamp(DateToWeek.formatDate(birthday, "yyyy-MM-dd").getTime())); //出生日期
-                            pmi.setBirthPlace(idenNo.substring(0,6));
+                            pmi.setBirthPlace(idenNo.substring(0, 6));
                             pmi.setCitizenship("CN");
-                            if(cardNoType!=null && cardNoType.length()>0 &&"1".equals(cardNoType)){
+                            if (cardNoType != null && cardNoType.length() > 0 && "1".equals(cardNoType)) {
                                 pmi.setNation(null);
                                 pmi.setMailingAddress(null);
-                            }else{
-                                pmi.setNation(StringUtil.Utf_Iso(nation+"族"));
-                                pmi.setMailingAddress(truncateStr(address,40));
+                            } else {
+                                pmi.setNation(StringUtil.Utf_Iso(nation + "族"));
+                                pmi.setMailingAddress(truncateStr(address, 40));
                             }
                             pmi.setIdNo(idenNo);
                             pmi.setIdentity(StringUtil.Utf_Iso(identity));
@@ -1106,7 +1139,7 @@ public class RegTreatmentImpl implements RegTreatment {
 //                            } else if (cCardNo != null && cCardNo.length() > 0) {
 //                                patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(cCardNo);
 //                            }
-                            if(patIccardRecNew==null){
+                            if (patIccardRecNew == null) {
                                 patIccardRecNewMapper.insert(pirn);
                             }
 
@@ -1119,20 +1152,22 @@ public class RegTreatmentImpl implements RegTreatment {
 //                                patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(cCardNo);
 //                            }
 
-                            PatMasterIndex patMasterIndex = patMasterIndexMapper.selectByPatientId(patIdNo.getPatientId()); //没有增加军队医改的限制
-                            if(!(patMasterIndex.getIdNo()!=null&& patMasterIndex.getIdNo().length()>0)){
+                            PatMasterIndex patMasterIndex =
+                                    patMasterIndexMapper.selectByPatientId(patIdNo.getPatientId()); //没有增加军队医改的限制
+                            if (!(patMasterIndex.getIdNo() != null && patMasterIndex.getIdNo().length() > 0)) {
                                 patMasterIndexMapper.updateByPrimaryKeySelective(pmi);
                             }
-                            patMasterIndex = patMasterIndexMapper.selectByPatientId(patIdNo.getPatientId()); //没有增加军队医改的限制
+                            patMasterIndex = patMasterIndexMapper.selectByPatientId(patIdNo.getPatientId());
+                            //没有增加军队医改的限制
 
-                            if(patIccardRecNew==null){
+                            if (patIccardRecNew == null) {
                                 header.addElement("code").setText("1");
                                 header.addElement("desc").setText("注册失败,注册表未插入信息");
-                            }else if(!(patMasterIndex.getIdNo()!=null&& patMasterIndex.getIdNo().length()>0)){
+                            } else if (!(patMasterIndex.getIdNo() != null && patMasterIndex.getIdNo().length() > 0)) {
                                 header.addElement("code").setText("1");
                                 header.addElement("desc").setText("身份证更新失败！！！");
                                 header.addElement("patientId").setText(patIdNo.getPatientId());
-                            }else{
+                            } else {
                                 header.addElement("code").setText("0");
                                 header.addElement("desc").setText("成功");
                                 header.addElement("patientId").setText(patIdNo.getPatientId());
@@ -1160,22 +1195,23 @@ public class RegTreatmentImpl implements RegTreatment {
                             PatIccardRecNew pirnIdNo = new PatIccardRecNew();
                             pirnIdNo.setPatientId(patientID);
                             pirnIdNo.setIccardNo(idenNo);
-                            pirnIdNo.setRegDatetime(new Timestamp(DateToWeek.formatDate(Util.getCurrentDate("yyyy-MM-dd"), "yyyy-MM-dd").getTime()));
+                            pirnIdNo.setRegDatetime(new Timestamp(DateToWeek.formatDate(Util.getCurrentDate("yyyy-MM" +
+                                    "-dd"), "yyyy-MM-dd").getTime()));
                             //1.2 插入身份证
 
                             //2.insert  patMasterIndex
                             PatMasterIndex pmi = new PatMasterIndex();
                             pmi.setPatientId(patientID);
 //                            pmi.setInpNo("");
-                            if(name.length()>4){
-                                pmi.setName(StringUtil.Utf_Iso(name.substring(0,4)));
-                            }else{
+                            if (name.length() > 4) {
+                                pmi.setName(StringUtil.Utf_Iso(name.substring(0, 4)));
+                            } else {
                                 pmi.setName(StringUtil.Utf_Iso(name));
                             }
                             logger.info("zjp----->" + namePhonetic);
-                            if (namePhonetic.length()>16){
-                                pmi.setNamePhonetic(namePhonetic.substring(0,16)); //姓名拼音
-                            }else{
+                            if (namePhonetic.length() > 16) {
+                                pmi.setNamePhonetic(namePhonetic.substring(0, 16)); //姓名拼音
+                            } else {
                                 pmi.setNamePhonetic(namePhonetic); //姓名拼音
                             }
 
@@ -1189,15 +1225,15 @@ public class RegTreatmentImpl implements RegTreatment {
                             }
                             pmi.setSex(StringUtil.Utf_Iso(sexDecs));
                             pmi.setDateOfBirth(new Timestamp(DateToWeek.formatDate(birthday, "yyyy-MM-dd").getTime())); //出生日期
-                            pmi.setBirthPlace(idenNo.substring(0,6));
+                            pmi.setBirthPlace(idenNo.substring(0, 6));
                             pmi.setCitizenship("CN");
-                            pmi.setNation(StringUtil.Utf_Iso(nation+"族"));
+                            pmi.setNation(StringUtil.Utf_Iso(nation + "族"));
                             pmi.setIdNo(idenNo);
                             pmi.setIdentity(StringUtil.Utf_Iso(identity));
                             pmi.setChargeType(StringUtil.Utf_Iso(chargeType));
                             pmi.setUnitInContract("");
 
-                            pmi.setMailingAddress(truncateStr(address,40));
+                            pmi.setMailingAddress(truncateStr(address, 40));
                             pmi.setZipCode("");
                             pmi.setPhoneNumberHome(homeTel);
                             pmi.setPhoneNumberBusiness("");
@@ -1224,11 +1260,12 @@ public class RegTreatmentImpl implements RegTreatment {
                             } else if (cCardNo != null && cCardNo.length() > 0) {
                                 patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(cCardNo);
                             }
-                            if(patIccardRecNew==null){
+                            if (patIccardRecNew == null) {
                                 patIccardRecNewMapper.insert(pirnIdNo);
                             }
-                            PatMasterIndex patMasterIndex = patMasterIndexMapper.selectByPatientId(patientID); //没有增加军队医改的限制
-                            if(patMasterIndex==null){
+                            PatMasterIndex patMasterIndex = patMasterIndexMapper.selectByPatientId(patientID);
+                            //没有增加军队医改的限制
+                            if (patMasterIndex == null) {
                                 patMasterIndexMapper.insertSelective(pmi);
                             }
 
@@ -1241,15 +1278,15 @@ public class RegTreatmentImpl implements RegTreatment {
                             }
                             patMasterIndex = patMasterIndexMapper.selectByPatientId(patientID); //没有增加军队医改的限制
 
-                            if(patIccardRecNew==null){
+                            if (patIccardRecNew == null) {
                                 header.addElement("code").setText("1");
                                 header.addElement("desc").setText("注册失败,注册表未插入信息");
                                 header.addElement("patientId").setText(patientID);
-                            }else if(patMasterIndex==null){
+                            } else if (patMasterIndex == null) {
                                 header.addElement("code").setText("1");
                                 header.addElement("desc").setText("注册失败,主表未插入信息");
                                 header.addElement("patientId").setText(patientID);
-                            }else{
+                            } else {
                                 header.addElement("code").setText("0");
                                 header.addElement("desc").setText("成功");
                                 header.addElement("patientId").setText(patientID);
@@ -1263,19 +1300,19 @@ public class RegTreatmentImpl implements RegTreatment {
                         if (patCardNo != null) { //诊疗卡存在
                             PatIccardRecNew patIdNo = patIccardRecNewMapper.selectByPrimaryKey(idenNo);//身份证号
                             if (patIdNo != null) {//诊疗卡存在,身份证存在（不做处理直接返回）
-                                if(patCardNo.getPatientId().equals(patIdNo.getPatientId())){ //只有一个patientId
+                                if (patCardNo.getPatientId().equals(patIdNo.getPatientId())) { //只有一个patientId
                                     PatMasterIndex pmi = new PatMasterIndex();
                                     pmi.setPatientId(patIdNo.getPatientId());
 //                            pmi.setInpNo("");
-                                    if(name.length()>4){
-                                        pmi.setName(StringUtil.Utf_Iso(name.substring(0,4)));
-                                    }else{
+                                    if (name.length() > 4) {
+                                        pmi.setName(StringUtil.Utf_Iso(name.substring(0, 4)));
+                                    } else {
                                         pmi.setName(StringUtil.Utf_Iso(name));
                                     }
                                     logger.info("zjp----->" + namePhonetic);
-                                    if (namePhonetic.length()>16){
-                                        pmi.setNamePhonetic(namePhonetic.substring(0,16)); //姓名拼音
-                                    }else{
+                                    if (namePhonetic.length() > 16) {
+                                        pmi.setNamePhonetic(namePhonetic.substring(0, 16)); //姓名拼音
+                                    } else {
                                         pmi.setNamePhonetic(namePhonetic); //姓名拼音
                                     }
                                     String sexDecs = "";
@@ -1288,14 +1325,14 @@ public class RegTreatmentImpl implements RegTreatment {
                                     }
                                     pmi.setSex(StringUtil.Utf_Iso(sexDecs));
                                     pmi.setDateOfBirth(new Timestamp(DateToWeek.formatDate(birthday, "yyyy-MM-dd").getTime())); //出生日期
-                                    pmi.setBirthPlace(idenNo.substring(0,6));
+                                    pmi.setBirthPlace(idenNo.substring(0, 6));
                                     pmi.setCitizenship("CN");
-                                    if(cardNoType!=null && cardNoType.length()>0 &&"1".equals(cardNoType)){
+                                    if (cardNoType != null && cardNoType.length() > 0 && "1".equals(cardNoType)) {
                                         pmi.setNation(null);
                                         pmi.setMailingAddress(null);
-                                    }else{
-                                        pmi.setNation(StringUtil.Utf_Iso(nation+"族"));
-                                        pmi.setMailingAddress(truncateStr(address,40));
+                                    } else {
+                                        pmi.setNation(StringUtil.Utf_Iso(nation + "族"));
+                                        pmi.setMailingAddress(truncateStr(address, 40));
                                     }
                                     pmi.setIdNo(idenNo);
                                     pmi.setIdentity(StringUtil.Utf_Iso(identity));
@@ -1318,26 +1355,30 @@ public class RegTreatmentImpl implements RegTreatment {
 
                                     patMasterIndexMapper.updateByPrimaryKeySelective(pmi);
 
-                                    PatMasterIndex patMasterIndex = patMasterIndexMapper.selectByPatientId(patIdNo.getPatientId()); //没有增加军队医改的限制
-                                    if(!(patMasterIndex.getIdNo()!=null&& patMasterIndex.getIdNo().length()>0)){
+                                    PatMasterIndex patMasterIndex =
+                                            patMasterIndexMapper.selectByPatientId(patIdNo.getPatientId()); //没有增加军队医改的限制
+                                    if (!(patMasterIndex.getIdNo() != null && patMasterIndex.getIdNo().length() > 0)) {
                                         patMasterIndexMapper.updateByPrimaryKeySelective(pmi);
                                     }
-                                    patMasterIndex = patMasterIndexMapper.selectByPatientId(patIdNo.getPatientId()); //没有增加军队医改的限制
+                                    patMasterIndex = patMasterIndexMapper.selectByPatientId(patIdNo.getPatientId());
+                                    //没有增加军队医改的限制
 
-                                   if(!(patMasterIndex.getIdNo()!=null&& patMasterIndex.getIdNo().length()>0)){
+                                    if (!(patMasterIndex.getIdNo() != null && patMasterIndex.getIdNo().length() > 0)) {
                                         header.addElement("code").setText("1");
                                         header.addElement("desc").setText("身份证更新失败！！！");
                                         header.addElement("patientId").setText(patIdNo.getPatientId());
-                                    }else{
+                                    } else {
                                         header.addElement("code").setText("0");
                                         header.addElement("desc").setText("成功");
                                         header.addElement("patientId").setText(patIdNo.getPatientId());
                                     }
-                                }else{ //两个patientId
-                                    PatMasterIndex  pacCardNo= patMasterIndexMapper.selectByPatientId(patCardNo.getPatientId());
-                                    PatMasterIndex  pacIdenNo= patMasterIndexMapper.selectByPatientId(patIdNo.getPatientId());
-                                    if(pacCardNo.getInpNo()!=null && pacCardNo.getInpNo().length()>0 && pacIdenNo.getInpNo()!=null && pacIdenNo.getInpNo().length()>0){ //两个住院号都不为空
-                                        if(new BigDecimal(pacCardNo.getInpNo()).compareTo(new BigDecimal(pacIdenNo.getInpNo()))<0){ //
+                                } else { //两个patientId
+                                    PatMasterIndex pacCardNo =
+                                            patMasterIndexMapper.selectByPatientId(patCardNo.getPatientId());
+                                    PatMasterIndex pacIdenNo =
+                                            patMasterIndexMapper.selectByPatientId(patIdNo.getPatientId());
+                                    if (pacCardNo.getInpNo() != null && pacCardNo.getInpNo().length() > 0 && pacIdenNo.getInpNo() != null && pacIdenNo.getInpNo().length() > 0) { //两个住院号都不为空
+                                        if (new BigDecimal(pacCardNo.getInpNo()).compareTo(new BigDecimal(pacIdenNo.getInpNo())) < 0) { //
                                             PatIccardRecNew pirnIdNo = new PatIccardRecNew();
                                             pirnIdNo.setPatientId(pacCardNo.getPatientId());
                                             pirnIdNo.setIccardNo(patIdNo.getIccardNo());
@@ -1346,15 +1387,15 @@ public class RegTreatmentImpl implements RegTreatment {
                                             PatMasterIndex pmi = new PatMasterIndex();
                                             pmi.setPatientId(pacCardNo.getPatientId());
 //                            pmi.setInpNo("");
-                                            if(name.length()>4){
-                                                pmi.setName(StringUtil.Utf_Iso(name.substring(0,4)));
-                                            }else{
+                                            if (name.length() > 4) {
+                                                pmi.setName(StringUtil.Utf_Iso(name.substring(0, 4)));
+                                            } else {
                                                 pmi.setName(StringUtil.Utf_Iso(name));
                                             }
                                             logger.info("zjp----->" + namePhonetic);
-                                            if (namePhonetic.length()>16){
-                                                pmi.setNamePhonetic(namePhonetic.substring(0,16)); //姓名拼音
-                                            }else{
+                                            if (namePhonetic.length() > 16) {
+                                                pmi.setNamePhonetic(namePhonetic.substring(0, 16)); //姓名拼音
+                                            } else {
                                                 pmi.setNamePhonetic(namePhonetic); //姓名拼音
                                             }
                                             String sexDecs = "";
@@ -1366,15 +1407,16 @@ public class RegTreatmentImpl implements RegTreatment {
                                                 sexDecs = "未知";
                                             }
                                             pmi.setSex(StringUtil.Utf_Iso(sexDecs));
-                                            pmi.setDateOfBirth(new Timestamp(DateToWeek.formatDate(birthday, "yyyy-MM-dd").getTime())); //出生日期
-                                            pmi.setBirthPlace(idenNo.substring(0,6));
+                                            pmi.setDateOfBirth(new Timestamp(DateToWeek.formatDate(birthday, "yyyy-MM" +
+                                                    "-dd").getTime())); //出生日期
+                                            pmi.setBirthPlace(idenNo.substring(0, 6));
                                             pmi.setCitizenship("CN");
-                                            if(cardNoType!=null && cardNoType.length()>0 &&"1".equals(cardNoType)){
+                                            if (cardNoType != null && cardNoType.length() > 0 && "1".equals(cardNoType)) {
                                                 pmi.setNation(null);
                                                 pmi.setMailingAddress(null);
-                                            }else{
-                                                pmi.setNation(StringUtil.Utf_Iso(nation+"族"));
-                                                pmi.setMailingAddress(truncateStr(address,40));
+                                            } else {
+                                                pmi.setNation(StringUtil.Utf_Iso(nation + "族"));
+                                                pmi.setMailingAddress(truncateStr(address, 40));
                                             }
                                             pmi.setIdNo(idenNo);
                                             pmi.setIdentity(StringUtil.Utf_Iso(identity));
@@ -1397,22 +1439,26 @@ public class RegTreatmentImpl implements RegTreatment {
 
                                             patIccardRecNewMapper.updateByPrimaryKeySelective(pirnIdNo);
                                             patMasterIndexMapper.updateByPrimaryKeySelective(pmi);
-                                            PatMasterIndex patMasterIndex = patMasterIndexMapper.selectByPatientId(pacCardNo.getPatientId()); //没有增加军队医改的限制
-                                            if(!(patMasterIndex.getIdNo()!=null&& patMasterIndex.getIdNo().length()>0)){
+                                            PatMasterIndex patMasterIndex =
+                                                    patMasterIndexMapper.selectByPatientId(pacCardNo.getPatientId());
+                                            //没有增加军队医改的限制
+                                            if (!(patMasterIndex.getIdNo() != null && patMasterIndex.getIdNo().length() > 0)) {
                                                 patMasterIndexMapper.updateByPrimaryKeySelective(pmi);
                                             }
-                                            patMasterIndex = patMasterIndexMapper.selectByPatientId(pacCardNo.getPatientId()); //没有增加军队医改的限制
+                                            patMasterIndex =
+                                                    patMasterIndexMapper.selectByPatientId(pacCardNo.getPatientId());
+                                            //没有增加军队医改的限制
 
-                                            if(!(patMasterIndex.getIdNo()!=null&& patMasterIndex.getIdNo().length()>0)){
+                                            if (!(patMasterIndex.getIdNo() != null && patMasterIndex.getIdNo().length() > 0)) {
                                                 header.addElement("code").setText("1");
                                                 header.addElement("desc").setText("身份证更新失败！！！");
                                                 header.addElement("patientId").setText(pacCardNo.getPatientId());
-                                            }else{
+                                            } else {
                                                 header.addElement("code").setText("0");
                                                 header.addElement("desc").setText("成功");
                                                 header.addElement("patientId").setText(pacCardNo.getPatientId());
                                             }
-                                        }else{
+                                        } else {
                                             PatIccardRecNew pirnIdNo = new PatIccardRecNew();
                                             pirnIdNo.setPatientId(pacIdenNo.getPatientId());
                                             pirnIdNo.setIccardNo(patCardNo.getIccardNo());
@@ -1421,15 +1467,15 @@ public class RegTreatmentImpl implements RegTreatment {
                                             PatMasterIndex pmi = new PatMasterIndex();
                                             pmi.setPatientId(pacIdenNo.getPatientId());
 //                            pmi.setInpNo("");
-                                            if(name.length()>4){
-                                                pmi.setName(StringUtil.Utf_Iso(name.substring(0,4)));
-                                            }else{
+                                            if (name.length() > 4) {
+                                                pmi.setName(StringUtil.Utf_Iso(name.substring(0, 4)));
+                                            } else {
                                                 pmi.setName(StringUtil.Utf_Iso(name));
                                             }
                                             logger.info("zjp----->" + namePhonetic);
-                                            if (namePhonetic.length()>16){
-                                                pmi.setNamePhonetic(namePhonetic.substring(0,16)); //姓名拼音
-                                            }else{
+                                            if (namePhonetic.length() > 16) {
+                                                pmi.setNamePhonetic(namePhonetic.substring(0, 16)); //姓名拼音
+                                            } else {
                                                 pmi.setNamePhonetic(namePhonetic); //姓名拼音
                                             }
                                             String sexDecs = "";
@@ -1441,15 +1487,16 @@ public class RegTreatmentImpl implements RegTreatment {
                                                 sexDecs = "未知";
                                             }
                                             pmi.setSex(StringUtil.Utf_Iso(sexDecs));
-                                            pmi.setDateOfBirth(new Timestamp(DateToWeek.formatDate(birthday, "yyyy-MM-dd").getTime())); //出生日期
-                                            pmi.setBirthPlace(idenNo.substring(0,6));
+                                            pmi.setDateOfBirth(new Timestamp(DateToWeek.formatDate(birthday, "yyyy-MM" +
+                                                    "-dd").getTime())); //出生日期
+                                            pmi.setBirthPlace(idenNo.substring(0, 6));
                                             pmi.setCitizenship("CN");
-                                            if(cardNoType!=null && cardNoType.length()>0 &&"1".equals(cardNoType)){
+                                            if (cardNoType != null && cardNoType.length() > 0 && "1".equals(cardNoType)) {
                                                 pmi.setNation(null);
                                                 pmi.setMailingAddress(null);
-                                            }else{
-                                                pmi.setNation(StringUtil.Utf_Iso(nation+"族"));
-                                                pmi.setMailingAddress(truncateStr(address,40));
+                                            } else {
+                                                pmi.setNation(StringUtil.Utf_Iso(nation + "族"));
+                                                pmi.setMailingAddress(truncateStr(address, 40));
                                             }
                                             pmi.setIdNo(idenNo);
                                             pmi.setIdentity(StringUtil.Utf_Iso(identity));
@@ -1473,24 +1520,28 @@ public class RegTreatmentImpl implements RegTreatment {
                                             patIccardRecNewMapper.updateByPrimaryKeySelective(pirnIdNo);
                                             patMasterIndexMapper.updateByPrimaryKeySelective(pmi);
 
-                                            PatMasterIndex patMasterIndex = patMasterIndexMapper.selectByPatientId(pacIdenNo.getPatientId()); //没有增加军队医改的限制
-                                            if(!(patMasterIndex.getIdNo()!=null&& patMasterIndex.getIdNo().length()>0)){
+                                            PatMasterIndex patMasterIndex =
+                                                    patMasterIndexMapper.selectByPatientId(pacIdenNo.getPatientId());
+                                            //没有增加军队医改的限制
+                                            if (!(patMasterIndex.getIdNo() != null && patMasterIndex.getIdNo().length() > 0)) {
                                                 patMasterIndexMapper.updateByPrimaryKeySelective(pmi);
                                             }
-                                            patMasterIndex = patMasterIndexMapper.selectByPatientId(pacIdenNo.getPatientId()); //没有增加军队医改的限制
+                                            patMasterIndex =
+                                                    patMasterIndexMapper.selectByPatientId(pacIdenNo.getPatientId());
+                                            //没有增加军队医改的限制
 
-                                            if(!(patMasterIndex.getIdNo()!=null&& patMasterIndex.getIdNo().length()>0)){
+                                            if (!(patMasterIndex.getIdNo() != null && patMasterIndex.getIdNo().length() > 0)) {
                                                 header.addElement("code").setText("1");
                                                 header.addElement("desc").setText("身份证更新失败！！！");
                                                 header.addElement("patientId").setText(pacIdenNo.getPatientId());
-                                            }else{
+                                            } else {
                                                 header.addElement("code").setText("0");
                                                 header.addElement("desc").setText("成功");
                                                 header.addElement("patientId").setText(pacIdenNo.getPatientId());
                                             }
                                         }
-                                    }else{
-                                        if(pacCardNo.getInpNo()!=null && pacCardNo.getInpNo().length()>0 ){ //
+                                    } else {
+                                        if (pacCardNo.getInpNo() != null && pacCardNo.getInpNo().length() > 0) { //
                                             PatIccardRecNew pirnIdNo = new PatIccardRecNew();
                                             pirnIdNo.setPatientId(pacCardNo.getPatientId());
                                             pirnIdNo.setIccardNo(patIdNo.getIccardNo());
@@ -1499,15 +1550,15 @@ public class RegTreatmentImpl implements RegTreatment {
                                             PatMasterIndex pmi = new PatMasterIndex();
                                             pmi.setPatientId(pacCardNo.getPatientId());
 //                            pmi.setInpNo("");
-                                            if(name.length()>4){
-                                                pmi.setName(StringUtil.Utf_Iso(name.substring(0,4)));
-                                            }else{
+                                            if (name.length() > 4) {
+                                                pmi.setName(StringUtil.Utf_Iso(name.substring(0, 4)));
+                                            } else {
                                                 pmi.setName(StringUtil.Utf_Iso(name));
                                             }
                                             logger.info("zjp----->" + namePhonetic);
-                                            if (namePhonetic.length()>16){
-                                                pmi.setNamePhonetic(namePhonetic.substring(0,16)); //姓名拼音
-                                            }else{
+                                            if (namePhonetic.length() > 16) {
+                                                pmi.setNamePhonetic(namePhonetic.substring(0, 16)); //姓名拼音
+                                            } else {
                                                 pmi.setNamePhonetic(namePhonetic); //姓名拼音
                                             }
                                             String sexDecs = "";
@@ -1519,15 +1570,16 @@ public class RegTreatmentImpl implements RegTreatment {
                                                 sexDecs = "未知";
                                             }
                                             pmi.setSex(StringUtil.Utf_Iso(sexDecs));
-                                            pmi.setDateOfBirth(new Timestamp(DateToWeek.formatDate(birthday, "yyyy-MM-dd").getTime())); //出生日期
-                                            pmi.setBirthPlace(idenNo.substring(0,6));
+                                            pmi.setDateOfBirth(new Timestamp(DateToWeek.formatDate(birthday, "yyyy-MM" +
+                                                    "-dd").getTime())); //出生日期
+                                            pmi.setBirthPlace(idenNo.substring(0, 6));
                                             pmi.setCitizenship("CN");
-                                            if(cardNoType!=null && cardNoType.length()>0 &&"1".equals(cardNoType)){
+                                            if (cardNoType != null && cardNoType.length() > 0 && "1".equals(cardNoType)) {
                                                 pmi.setNation(null);
                                                 pmi.setMailingAddress(null);
-                                            }else{
-                                                pmi.setNation(StringUtil.Utf_Iso(nation+"族"));
-                                                pmi.setMailingAddress(truncateStr(address,40));
+                                            } else {
+                                                pmi.setNation(StringUtil.Utf_Iso(nation + "族"));
+                                                pmi.setMailingAddress(truncateStr(address, 40));
                                             }
                                             pmi.setIdNo(idenNo);
                                             pmi.setIdentity(StringUtil.Utf_Iso(identity));
@@ -1551,22 +1603,26 @@ public class RegTreatmentImpl implements RegTreatment {
                                             patIccardRecNewMapper.updateByPrimaryKeySelective(pirnIdNo);
                                             patMasterIndexMapper.updateByPrimaryKeySelective(pmi);
 
-                                            PatMasterIndex patMasterIndex = patMasterIndexMapper.selectByPatientId(pacCardNo.getPatientId()); //没有增加军队医改的限制
-                                            if(!(patMasterIndex.getIdNo()!=null&& patMasterIndex.getIdNo().length()>0)){
+                                            PatMasterIndex patMasterIndex =
+                                                    patMasterIndexMapper.selectByPatientId(pacCardNo.getPatientId());
+                                            //没有增加军队医改的限制
+                                            if (!(patMasterIndex.getIdNo() != null && patMasterIndex.getIdNo().length() > 0)) {
                                                 patMasterIndexMapper.updateByPrimaryKeySelective(pmi);
                                             }
-                                            patMasterIndex = patMasterIndexMapper.selectByPatientId(pacCardNo.getPatientId()); //没有增加军队医改的限制
+                                            patMasterIndex =
+                                                    patMasterIndexMapper.selectByPatientId(pacCardNo.getPatientId());
+                                            //没有增加军队医改的限制
 
-                                            if(!(patMasterIndex.getIdNo()!=null&& patMasterIndex.getIdNo().length()>0)){
+                                            if (!(patMasterIndex.getIdNo() != null && patMasterIndex.getIdNo().length() > 0)) {
                                                 header.addElement("code").setText("1");
                                                 header.addElement("desc").setText("身份证更新失败！！！");
                                                 header.addElement("patientId").setText(pacCardNo.getPatientId());
-                                            }else{
+                                            } else {
                                                 header.addElement("code").setText("0");
                                                 header.addElement("desc").setText("成功");
                                                 header.addElement("patientId").setText(pacCardNo.getPatientId());
                                             }
-                                        }else if(pacIdenNo.getInpNo()!=null && pacIdenNo.getInpNo().length()>0){
+                                        } else if (pacIdenNo.getInpNo() != null && pacIdenNo.getInpNo().length() > 0) {
                                             PatIccardRecNew pirnIdNo = new PatIccardRecNew();
                                             pirnIdNo.setPatientId(pacIdenNo.getPatientId());
                                             pirnIdNo.setIccardNo(patCardNo.getIccardNo());
@@ -1575,15 +1631,15 @@ public class RegTreatmentImpl implements RegTreatment {
                                             PatMasterIndex pmi = new PatMasterIndex();
                                             pmi.setPatientId(pacIdenNo.getPatientId());
 //                            pmi.setInpNo("");
-                                            if(name.length()>4){
-                                                pmi.setName(StringUtil.Utf_Iso(name.substring(0,4)));
-                                            }else{
+                                            if (name.length() > 4) {
+                                                pmi.setName(StringUtil.Utf_Iso(name.substring(0, 4)));
+                                            } else {
                                                 pmi.setName(StringUtil.Utf_Iso(name));
                                             }
                                             logger.info("zjp----->" + namePhonetic);
-                                            if (namePhonetic.length()>16){
-                                                pmi.setNamePhonetic(namePhonetic.substring(0,16)); //姓名拼音
-                                            }else{
+                                            if (namePhonetic.length() > 16) {
+                                                pmi.setNamePhonetic(namePhonetic.substring(0, 16)); //姓名拼音
+                                            } else {
                                                 pmi.setNamePhonetic(namePhonetic); //姓名拼音
                                             }
                                             String sexDecs = "";
@@ -1595,15 +1651,16 @@ public class RegTreatmentImpl implements RegTreatment {
                                                 sexDecs = "未知";
                                             }
                                             pmi.setSex(StringUtil.Utf_Iso(sexDecs));
-                                            pmi.setDateOfBirth(new Timestamp(DateToWeek.formatDate(birthday, "yyyy-MM-dd").getTime())); //出生日期
-                                            pmi.setBirthPlace(idenNo.substring(0,6));
+                                            pmi.setDateOfBirth(new Timestamp(DateToWeek.formatDate(birthday, "yyyy-MM" +
+                                                    "-dd").getTime())); //出生日期
+                                            pmi.setBirthPlace(idenNo.substring(0, 6));
                                             pmi.setCitizenship("CN");
-                                            if(cardNoType!=null && cardNoType.length()>0 &&"1".equals(cardNoType)){
+                                            if (cardNoType != null && cardNoType.length() > 0 && "1".equals(cardNoType)) {
                                                 pmi.setNation(null);
                                                 pmi.setMailingAddress(null);
-                                            }else{
-                                                pmi.setNation(StringUtil.Utf_Iso(nation+"族"));
-                                                pmi.setMailingAddress(truncateStr(address,40));
+                                            } else {
+                                                pmi.setNation(StringUtil.Utf_Iso(nation + "族"));
+                                                pmi.setMailingAddress(truncateStr(address, 40));
                                             }
                                             pmi.setIdNo(idenNo);
                                             pmi.setIdentity(StringUtil.Utf_Iso(identity));
@@ -1627,23 +1684,27 @@ public class RegTreatmentImpl implements RegTreatment {
                                             patIccardRecNewMapper.updateByPrimaryKeySelective(pirnIdNo);
                                             patMasterIndexMapper.updateByPrimaryKeySelective(pmi);
 
-                                            PatMasterIndex patMasterIndex = patMasterIndexMapper.selectByPatientId(pacIdenNo.getPatientId()); //没有增加军队医改的限制
-                                            if(!(patMasterIndex.getIdNo()!=null&& patMasterIndex.getIdNo().length()>0)){
+                                            PatMasterIndex patMasterIndex =
+                                                    patMasterIndexMapper.selectByPatientId(pacIdenNo.getPatientId());
+                                            //没有增加军队医改的限制
+                                            if (!(patMasterIndex.getIdNo() != null && patMasterIndex.getIdNo().length() > 0)) {
                                                 patMasterIndexMapper.updateByPrimaryKeySelective(pmi);
                                             }
-                                            patMasterIndex = patMasterIndexMapper.selectByPatientId(pacIdenNo.getPatientId()); //没有增加军队医改的限制
+                                            patMasterIndex =
+                                                    patMasterIndexMapper.selectByPatientId(pacIdenNo.getPatientId());
+                                            //没有增加军队医改的限制
 
-                                            if(!(patMasterIndex.getIdNo()!=null&& patMasterIndex.getIdNo().length()>0)){
+                                            if (!(patMasterIndex.getIdNo() != null && patMasterIndex.getIdNo().length() > 0)) {
                                                 header.addElement("code").setText("1");
                                                 header.addElement("desc").setText("身份证更新失败！！！");
                                                 header.addElement("patientId").setText(pacIdenNo.getPatientId());
-                                            }else{
+                                            } else {
                                                 header.addElement("code").setText("0");
                                                 header.addElement("desc").setText("成功");
                                                 header.addElement("patientId").setText(pacIdenNo.getPatientId());
                                             }
-                                        }else{ //都为空
-                                            if(pacCardNo.getIdNo()!=null &&pacCardNo.getIdNo().length()>0 ){
+                                        } else { //都为空
+                                            if (pacCardNo.getIdNo() != null && pacCardNo.getIdNo().length() > 0) {
                                                 PatIccardRecNew pirnIdNo = new PatIccardRecNew();
                                                 pirnIdNo.setPatientId(pacCardNo.getPatientId());
                                                 pirnIdNo.setIccardNo(patIdNo.getIccardNo());
@@ -1652,15 +1713,15 @@ public class RegTreatmentImpl implements RegTreatment {
                                                 PatMasterIndex pmi = new PatMasterIndex();
                                                 pmi.setPatientId(pacCardNo.getPatientId());
 //                            pmi.setInpNo("");
-                                                if(name.length()>4){
-                                                    pmi.setName(StringUtil.Utf_Iso(name.substring(0,4)));
-                                                }else{
+                                                if (name.length() > 4) {
+                                                    pmi.setName(StringUtil.Utf_Iso(name.substring(0, 4)));
+                                                } else {
                                                     pmi.setName(StringUtil.Utf_Iso(name));
                                                 }
                                                 logger.info("zjp----->" + namePhonetic);
-                                                if (namePhonetic.length()>16){
-                                                    pmi.setNamePhonetic(namePhonetic.substring(0,16)); //姓名拼音
-                                                }else{
+                                                if (namePhonetic.length() > 16) {
+                                                    pmi.setNamePhonetic(namePhonetic.substring(0, 16)); //姓名拼音
+                                                } else {
                                                     pmi.setNamePhonetic(namePhonetic); //姓名拼音
                                                 }
                                                 String sexDecs = "";
@@ -1672,15 +1733,16 @@ public class RegTreatmentImpl implements RegTreatment {
                                                     sexDecs = "未知";
                                                 }
                                                 pmi.setSex(StringUtil.Utf_Iso(sexDecs));
-                                                pmi.setDateOfBirth(new Timestamp(DateToWeek.formatDate(birthday, "yyyy-MM-dd").getTime())); //出生日期
-                                                pmi.setBirthPlace(idenNo.substring(0,6));
+                                                pmi.setDateOfBirth(new Timestamp(DateToWeek.formatDate(birthday,
+                                                        "yyyy-MM-dd").getTime())); //出生日期
+                                                pmi.setBirthPlace(idenNo.substring(0, 6));
                                                 pmi.setCitizenship("CN");
-                                                if(cardNoType!=null && cardNoType.length()>0 &&"1".equals(cardNoType)){
+                                                if (cardNoType != null && cardNoType.length() > 0 && "1".equals(cardNoType)) {
                                                     pmi.setNation(null);
                                                     pmi.setMailingAddress(null);
-                                                }else{
-                                                    pmi.setNation(StringUtil.Utf_Iso(nation+"族"));
-                                                    pmi.setMailingAddress(truncateStr(address,40));
+                                                } else {
+                                                    pmi.setNation(StringUtil.Utf_Iso(nation + "族"));
+                                                    pmi.setMailingAddress(truncateStr(address, 40));
                                                 }
                                                 pmi.setIdNo(idenNo);
                                                 pmi.setIdentity(StringUtil.Utf_Iso(identity));
@@ -1704,22 +1766,26 @@ public class RegTreatmentImpl implements RegTreatment {
                                                 patIccardRecNewMapper.updateByPrimaryKeySelective(pirnIdNo);
                                                 patMasterIndexMapper.updateByPrimaryKeySelective(pmi);
 
-                                                PatMasterIndex patMasterIndex = patMasterIndexMapper.selectByPatientId(pacCardNo.getPatientId()); //没有增加军队医改的限制
-                                                if(!(patMasterIndex.getIdNo()!=null&& patMasterIndex.getIdNo().length()>0)){
+                                                PatMasterIndex patMasterIndex =
+                                                        patMasterIndexMapper.selectByPatientId(pacCardNo.getPatientId());
+                                                //没有增加军队医改的限制
+                                                if (!(patMasterIndex.getIdNo() != null && patMasterIndex.getIdNo().length() > 0)) {
                                                     patMasterIndexMapper.updateByPrimaryKeySelective(pmi);
                                                 }
-                                                patMasterIndex = patMasterIndexMapper.selectByPatientId(pacCardNo.getPatientId()); //没有增加军队医改的限制
+                                                patMasterIndex =
+                                                        patMasterIndexMapper.selectByPatientId(pacCardNo.getPatientId());
+                                                //没有增加军队医改的限制
 
-                                                if(!(patMasterIndex.getIdNo()!=null&& patMasterIndex.getIdNo().length()>0)){
+                                                if (!(patMasterIndex.getIdNo() != null && patMasterIndex.getIdNo().length() > 0)) {
                                                     header.addElement("code").setText("1");
                                                     header.addElement("desc").setText("身份证更新失败！！！");
                                                     header.addElement("patientId").setText(pacCardNo.getPatientId());
-                                                }else{
+                                                } else {
                                                     header.addElement("code").setText("0");
                                                     header.addElement("desc").setText("成功");
                                                     header.addElement("patientId").setText(pacCardNo.getPatientId());
                                                 }
-                                            }else{
+                                            } else {
                                                 PatIccardRecNew pirnIdNo = new PatIccardRecNew();
                                                 pirnIdNo.setPatientId(pacIdenNo.getPatientId());
                                                 pirnIdNo.setIccardNo(patCardNo.getIccardNo());
@@ -1728,15 +1794,15 @@ public class RegTreatmentImpl implements RegTreatment {
                                                 PatMasterIndex pmi = new PatMasterIndex();
                                                 pmi.setPatientId(pacIdenNo.getPatientId());
 //                            pmi.setInpNo("");
-                                                if(name.length()>4){
-                                                    pmi.setName(StringUtil.Utf_Iso(name.substring(0,4)));
-                                                }else{
+                                                if (name.length() > 4) {
+                                                    pmi.setName(StringUtil.Utf_Iso(name.substring(0, 4)));
+                                                } else {
                                                     pmi.setName(StringUtil.Utf_Iso(name));
                                                 }
                                                 logger.info("zjp----->" + namePhonetic);
-                                                if (namePhonetic.length()>16){
-                                                    pmi.setNamePhonetic(namePhonetic.substring(0,16)); //姓名拼音
-                                                }else{
+                                                if (namePhonetic.length() > 16) {
+                                                    pmi.setNamePhonetic(namePhonetic.substring(0, 16)); //姓名拼音
+                                                } else {
                                                     pmi.setNamePhonetic(namePhonetic); //姓名拼音
                                                 }
                                                 String sexDecs = "";
@@ -1748,15 +1814,16 @@ public class RegTreatmentImpl implements RegTreatment {
                                                     sexDecs = "未知";
                                                 }
                                                 pmi.setSex(StringUtil.Utf_Iso(sexDecs));
-                                                pmi.setDateOfBirth(new Timestamp(DateToWeek.formatDate(birthday, "yyyy-MM-dd").getTime())); //出生日期
-                                                pmi.setBirthPlace(idenNo.substring(0,6));
+                                                pmi.setDateOfBirth(new Timestamp(DateToWeek.formatDate(birthday,
+                                                        "yyyy-MM-dd").getTime())); //出生日期
+                                                pmi.setBirthPlace(idenNo.substring(0, 6));
                                                 pmi.setCitizenship("CN");
-                                                if(cardNoType!=null && cardNoType.length()>0 &&"1".equals(cardNoType)){
+                                                if (cardNoType != null && cardNoType.length() > 0 && "1".equals(cardNoType)) {
                                                     pmi.setNation(null);
                                                     pmi.setMailingAddress(null);
-                                                }else{
-                                                    pmi.setNation(StringUtil.Utf_Iso(nation+"族"));
-                                                    pmi.setMailingAddress(truncateStr(address,40));
+                                                } else {
+                                                    pmi.setNation(StringUtil.Utf_Iso(nation + "族"));
+                                                    pmi.setMailingAddress(truncateStr(address, 40));
                                                 }
                                                 pmi.setIdNo(idenNo);
                                                 pmi.setIdentity(StringUtil.Utf_Iso(identity));
@@ -1780,17 +1847,21 @@ public class RegTreatmentImpl implements RegTreatment {
                                                 patIccardRecNewMapper.updateByPrimaryKeySelective(pirnIdNo);
                                                 patMasterIndexMapper.updateByPrimaryKeySelective(pmi);
 
-                                                PatMasterIndex patMasterIndex = patMasterIndexMapper.selectByPatientId(pacIdenNo.getPatientId()); //没有增加军队医改的限制
-                                                if(!(patMasterIndex.getIdNo()!=null&& patMasterIndex.getIdNo().length()>0)){
+                                                PatMasterIndex patMasterIndex =
+                                                        patMasterIndexMapper.selectByPatientId(pacIdenNo.getPatientId());
+                                                //没有增加军队医改的限制
+                                                if (!(patMasterIndex.getIdNo() != null && patMasterIndex.getIdNo().length() > 0)) {
                                                     patMasterIndexMapper.updateByPrimaryKeySelective(pmi);
                                                 }
-                                                patMasterIndex = patMasterIndexMapper.selectByPatientId(pacIdenNo.getPatientId()); //没有增加军队医改的限制
+                                                patMasterIndex =
+                                                        patMasterIndexMapper.selectByPatientId(pacIdenNo.getPatientId());
+                                                //没有增加军队医改的限制
 
-                                                if(!(patMasterIndex.getIdNo()!=null&& patMasterIndex.getIdNo().length()>0)){
+                                                if (!(patMasterIndex.getIdNo() != null && patMasterIndex.getIdNo().length() > 0)) {
                                                     header.addElement("code").setText("1");
                                                     header.addElement("desc").setText("身份证更新失败！！！");
                                                     header.addElement("patientId").setText(pacIdenNo.getPatientId());
-                                                }else{
+                                                } else {
                                                     header.addElement("code").setText("0");
                                                     header.addElement("desc").setText("成功");
                                                     header.addElement("patientId").setText(pacIdenNo.getPatientId());
@@ -1806,21 +1877,22 @@ public class RegTreatmentImpl implements RegTreatment {
                                 PatIccardRecNew pirnIdNo = new PatIccardRecNew();
                                 pirnIdNo.setPatientId(patCardNo.getPatientId());
                                 pirnIdNo.setIccardNo(idenNo);
-                                pirnIdNo.setRegDatetime(new Timestamp(DateToWeek.formatDate(Util.getCurrentDate("yyyy-MM-dd"), "yyyy-MM-dd").getTime()));
+                                pirnIdNo.setRegDatetime(new Timestamp(DateToWeek.formatDate(Util.getCurrentDate("yyyy" +
+                                        "-MM-dd"), "yyyy-MM-dd").getTime()));
                                 //2.update  patMasterIndex
 
                                 PatMasterIndex pmi = new PatMasterIndex();
                                 pmi.setPatientId(patCardNo.getPatientId());
 //                                pmi.setInpNo("");
-                                if(name.length()>4){
-                                    pmi.setName(StringUtil.Utf_Iso(name.substring(0,4)));
-                                }else{
+                                if (name.length() > 4) {
+                                    pmi.setName(StringUtil.Utf_Iso(name.substring(0, 4)));
+                                } else {
                                     pmi.setName(StringUtil.Utf_Iso(name));
                                 }
                                 logger.info("zjp----->" + namePhonetic);
-                                if (namePhonetic.length()>16){
-                                    pmi.setNamePhonetic(namePhonetic.substring(0,16)); //姓名拼音
-                                }else{
+                                if (namePhonetic.length() > 16) {
+                                    pmi.setNamePhonetic(namePhonetic.substring(0, 16)); //姓名拼音
+                                } else {
                                     pmi.setNamePhonetic(namePhonetic); //姓名拼音
                                 }
                                 String sexDecs = "";
@@ -1833,14 +1905,14 @@ public class RegTreatmentImpl implements RegTreatment {
                                 }
                                 pmi.setSex(StringUtil.Utf_Iso(sexDecs));
                                 pmi.setDateOfBirth(new Timestamp(DateToWeek.formatDate(birthday, "yyyy-MM-dd").getTime())); //出生日期
-                                pmi.setBirthPlace(idenNo.substring(0,6));
+                                pmi.setBirthPlace(idenNo.substring(0, 6));
                                 pmi.setCitizenship("CN");
-                                if(cardNoType!=null && cardNoType.length()>0 &&"1".equals(cardNoType)){
+                                if (cardNoType != null && cardNoType.length() > 0 && "1".equals(cardNoType)) {
                                     pmi.setNation(null);
                                     pmi.setMailingAddress(null);
-                                }else{
-                                    pmi.setNation(StringUtil.Utf_Iso(nation+"族"));
-                                    pmi.setMailingAddress(truncateStr(address,40));
+                                } else {
+                                    pmi.setNation(StringUtil.Utf_Iso(nation + "族"));
+                                    pmi.setMailingAddress(truncateStr(address, 40));
                                 }
                                 pmi.setIdNo(idenNo);
                                 pmi.setIdentity(StringUtil.Utf_Iso(identity));
@@ -1873,7 +1945,7 @@ public class RegTreatmentImpl implements RegTreatment {
 //                                } else if (cCardNo != null && cCardNo.length() > 0) {
 //                                    patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(cCardNo);
 //                                }
-                                if(patIccardRecNew==null){
+                                if (patIccardRecNew == null) {
                                     patIccardRecNewMapper.insert(pirnIdNo);
                                 }
 
@@ -1886,19 +1958,21 @@ public class RegTreatmentImpl implements RegTreatment {
 //                                }
                                 patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(idenNo);
 
-                                PatMasterIndex patMasterIndex = patMasterIndexMapper.selectByPatientId(patCardNo.getPatientId()); //没有增加军队医改的限制
-                                if(!(patMasterIndex.getIdNo()!=null&& patMasterIndex.getIdNo().length()>0)){
+                                PatMasterIndex patMasterIndex =
+                                        patMasterIndexMapper.selectByPatientId(patCardNo.getPatientId()); //没有增加军队医改的限制
+                                if (!(patMasterIndex.getIdNo() != null && patMasterIndex.getIdNo().length() > 0)) {
                                     patMasterIndexMapper.updateByPrimaryKeySelective(pmi);
                                 }
-                                patMasterIndex = patMasterIndexMapper.selectByPatientId(patCardNo.getPatientId()); //没有增加军队医改的限制
+                                patMasterIndex = patMasterIndexMapper.selectByPatientId(patCardNo.getPatientId());
+                                //没有增加军队医改的限制
 
-                                if(patIccardRecNew==null){
+                                if (patIccardRecNew == null) {
                                     header.addElement("code").setText("1");
                                     header.addElement("desc").setText("注册失败,注册表未插入信息");
-                                }else if(!(patMasterIndex.getIdNo()!=null&& patMasterIndex.getIdNo().length()>0)){
+                                } else if (!(patMasterIndex.getIdNo() != null && patMasterIndex.getIdNo().length() > 0)) {
                                     header.addElement("code").setText("1");
                                     header.addElement("desc").setText("身份证更新失败！！！");
-                                }else{
+                                } else {
                                     header.addElement("code").setText("0");
                                     header.addElement("desc").setText("成功");
                                     header.addElement("patientId").setText(patCardNo.getPatientId());
@@ -1911,20 +1985,21 @@ public class RegTreatmentImpl implements RegTreatment {
                                 PatIccardRecNew pirn = new PatIccardRecNew();
                                 pirn.setPatientId(patIdNo.getPatientId());
                                 pirn.setIccardNo(cardNo);
-                                pirn.setRegDatetime(new Timestamp(DateToWeek.formatDate(Util.getCurrentDate("yyyy-MM-dd"), "yyyy-MM-dd").getTime()));
+                                pirn.setRegDatetime(new Timestamp(DateToWeek.formatDate(Util.getCurrentDate("yyyy-MM" +
+                                        "-dd"), "yyyy-MM-dd").getTime()));
                                 //2.update patMasterIndex
                                 PatMasterIndex pmi = new PatMasterIndex();
                                 pmi.setPatientId(patIdNo.getPatientId());
 //                                pmi.setInpNo("");
-                                if(name.length()>4){
-                                    pmi.setName(StringUtil.Utf_Iso(name.substring(0,4)));
-                                }else{
+                                if (name.length() > 4) {
+                                    pmi.setName(StringUtil.Utf_Iso(name.substring(0, 4)));
+                                } else {
                                     pmi.setName(StringUtil.Utf_Iso(name));
                                 }
                                 logger.info("zjp----->" + namePhonetic);
-                                if (namePhonetic.length()>16){
-                                    pmi.setNamePhonetic(namePhonetic.substring(0,16)); //姓名拼音
-                                }else{
+                                if (namePhonetic.length() > 16) {
+                                    pmi.setNamePhonetic(namePhonetic.substring(0, 16)); //姓名拼音
+                                } else {
                                     pmi.setNamePhonetic(namePhonetic); //姓名拼音
                                 }
                                 String sexDecs = "";
@@ -1937,14 +2012,14 @@ public class RegTreatmentImpl implements RegTreatment {
                                 }
                                 pmi.setSex(StringUtil.Utf_Iso(sexDecs));
                                 pmi.setDateOfBirth(new Timestamp(DateToWeek.formatDate(birthday, "yyyy-MM-dd").getTime())); //出生日期
-                                pmi.setBirthPlace(idenNo.substring(0,6));
+                                pmi.setBirthPlace(idenNo.substring(0, 6));
                                 pmi.setCitizenship("CN");
-                                if(cardNoType!=null && cardNoType.length()>0 &&"1".equals(cardNoType)){
+                                if (cardNoType != null && cardNoType.length() > 0 && "1".equals(cardNoType)) {
                                     pmi.setNation(null);
                                     pmi.setMailingAddress(null);
-                                }else{
-                                    pmi.setNation(StringUtil.Utf_Iso(nation+"族"));
-                                    pmi.setMailingAddress(truncateStr(address,40));
+                                } else {
+                                    pmi.setNation(StringUtil.Utf_Iso(nation + "族"));
+                                    pmi.setMailingAddress(truncateStr(address, 40));
                                 }
                                 pmi.setIdNo(idenNo);
                                 pmi.setIdentity(StringUtil.Utf_Iso(identity));
@@ -1970,23 +2045,25 @@ public class RegTreatmentImpl implements RegTreatment {
 
                                 //重新校验是否插入,只需要检查cardNo
                                 PatIccardRecNew patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(cardNo);
-                                if(patIccardRecNew==null)
+                                if (patIccardRecNew == null)
                                     patIccardRecNewMapper.insert(pirn);
                                 patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(cardNo);
 
-                                PatMasterIndex patMasterIndex = patMasterIndexMapper.selectByPatientId(patIdNo.getPatientId()); //没有增加军队医改的限制
-                                if(!(patMasterIndex.getIdNo()!=null&& patMasterIndex.getIdNo().length()>0)){
+                                PatMasterIndex patMasterIndex =
+                                        patMasterIndexMapper.selectByPatientId(patIdNo.getPatientId()); //没有增加军队医改的限制
+                                if (!(patMasterIndex.getIdNo() != null && patMasterIndex.getIdNo().length() > 0)) {
                                     patMasterIndexMapper.updateByPrimaryKeySelective(pmi);
                                 }
-                                patMasterIndex = patMasterIndexMapper.selectByPatientId(patIdNo.getPatientId()); //没有增加军队医改的限制
+                                patMasterIndex = patMasterIndexMapper.selectByPatientId(patIdNo.getPatientId());
+                                //没有增加军队医改的限制
 
-                                if(patIccardRecNew==null){
+                                if (patIccardRecNew == null) {
                                     header.addElement("code").setText("1");
                                     header.addElement("desc").setText("注册失败,注册表未插入信息");
-                                }else if(!(patMasterIndex.getIdNo()!=null&& patMasterIndex.getIdNo().length()>0)){
+                                } else if (!(patMasterIndex.getIdNo() != null && patMasterIndex.getIdNo().length() > 0)) {
                                     header.addElement("code").setText("1");
                                     header.addElement("desc").setText("身份证更新失败！！！");
-                                }else{
+                                } else {
                                     header.addElement("code").setText("0");
                                     header.addElement("desc").setText("成功");
                                     header.addElement("patientId").setText(patIdNo.getPatientId());
@@ -2006,22 +2083,23 @@ public class RegTreatmentImpl implements RegTreatment {
                                 PatIccardRecNew pirnIdNo = new PatIccardRecNew();
                                 pirnIdNo.setPatientId(patientID);
                                 pirnIdNo.setIccardNo(idenNo);
-                                pirnIdNo.setRegDatetime(new Timestamp(DateToWeek.formatDate(Util.getCurrentDate("yyyy-MM-dd"), "yyyy-MM-dd").getTime()));
+                                pirnIdNo.setRegDatetime(new Timestamp(DateToWeek.formatDate(Util.getCurrentDate("yyyy" +
+                                        "-MM-dd"), "yyyy-MM-dd").getTime()));
                                 //1.2 插入身份证
 
                                 //2.insert  patMasterIndex
                                 PatMasterIndex pmi = new PatMasterIndex();
                                 pmi.setPatientId(patientID);
 //                                pmi.setInpNo("");
-                                if(name.length()>4){
-                                    pmi.setName(StringUtil.Utf_Iso(name.substring(0,4)));
-                                }else{
+                                if (name.length() > 4) {
+                                    pmi.setName(StringUtil.Utf_Iso(name.substring(0, 4)));
+                                } else {
                                     pmi.setName(StringUtil.Utf_Iso(name));
                                 }
                                 logger.info("zjp----->" + namePhonetic);
-                                if (namePhonetic.length()>16){
-                                    pmi.setNamePhonetic(namePhonetic.substring(0,16)); //姓名拼音
-                                }else{
+                                if (namePhonetic.length() > 16) {
+                                    pmi.setNamePhonetic(namePhonetic.substring(0, 16)); //姓名拼音
+                                } else {
                                     pmi.setNamePhonetic(namePhonetic); //姓名拼音
                                 }
                                 String sexDecs = "";
@@ -2034,14 +2112,14 @@ public class RegTreatmentImpl implements RegTreatment {
                                 }
                                 pmi.setSex(StringUtil.Utf_Iso(sexDecs));
                                 pmi.setDateOfBirth(new Timestamp(DateToWeek.formatDate(birthday, "yyyy-MM-dd").getTime())); //出生日期
-                                pmi.setBirthPlace(idenNo.substring(0,6));
+                                pmi.setBirthPlace(idenNo.substring(0, 6));
                                 pmi.setCitizenship("CN");
-                                pmi.setNation(StringUtil.Utf_Iso(nation+"族"));
+                                pmi.setNation(StringUtil.Utf_Iso(nation + "族"));
                                 pmi.setIdNo(idenNo);
                                 pmi.setIdentity(StringUtil.Utf_Iso(identity));
                                 pmi.setChargeType(StringUtil.Utf_Iso(chargeType));
                                 pmi.setUnitInContract("");
-                                pmi.setMailingAddress(truncateStr(address,40));
+                                pmi.setMailingAddress(truncateStr(address, 40));
                                 pmi.setZipCode("");
                                 pmi.setPhoneNumberHome(homeTel);
                                 pmi.setPhoneNumberBusiness("");
@@ -2073,10 +2151,11 @@ public class RegTreatmentImpl implements RegTreatment {
 //                                } else if (cCardNo != null && cCardNo.length() > 0) {
 //                                    patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(cCardNo);
 //                                }
-                                if(patIccardRecNew==null)
+                                if (patIccardRecNew == null)
                                     patIccardRecNewMapper.insert(pirnIdNo);
-                                PatMasterIndex patMasterIndex = patMasterIndexMapper.selectByPatientId(patientID); //没有增加军队医改的限制
-                                if(patMasterIndex==null)
+                                PatMasterIndex patMasterIndex = patMasterIndexMapper.selectByPatientId(patientID);
+                                //没有增加军队医改的限制
+                                if (patMasterIndex == null)
                                     patMasterIndexMapper.insertSelective(pmi);
 
 //                                if (cardNo != null && cardNo.length() > 0) {
@@ -2089,15 +2168,15 @@ public class RegTreatmentImpl implements RegTreatment {
                                 patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(idenNo);
                                 patMasterIndex = patMasterIndexMapper.selectByPatientId(patientID); //没有增加军队医改的限制
 
-                                if(patIccardRecNew==null){
+                                if (patIccardRecNew == null) {
                                     header.addElement("code").setText("1");
                                     header.addElement("desc").setText("注册失败,注册表未插入信息");
                                     header.addElement("patientId").setText(patientID);
-                                }else if(patMasterIndex==null){
+                                } else if (patMasterIndex == null) {
                                     header.addElement("code").setText("1");
                                     header.addElement("desc").setText("注册失败,主表未插入信息");
                                     header.addElement("patientId").setText(patientID);
-                                }else{
+                                } else {
                                     header.addElement("code").setText("0");
                                     header.addElement("desc").setText("成功");
                                     header.addElement("patientId").setText(patientID);
@@ -2110,15 +2189,15 @@ public class RegTreatmentImpl implements RegTreatment {
                             PatMasterIndex pmi = new PatMasterIndex();
                             pmi.setPatientId(patIdNo.getPatientId());
 //                            pmi.setInpNo("");
-                            if(name.length()>4){
-                                pmi.setName(StringUtil.Utf_Iso(name.substring(0,4)));
-                            }else{
+                            if (name.length() > 4) {
+                                pmi.setName(StringUtil.Utf_Iso(name.substring(0, 4)));
+                            } else {
                                 pmi.setName(StringUtil.Utf_Iso(name));
                             }
                             logger.info("zjp----->" + namePhonetic);
-                            if (namePhonetic.length()>16){
-                                pmi.setNamePhonetic(namePhonetic.substring(0,16)); //姓名拼音
-                            }else{
+                            if (namePhonetic.length() > 16) {
+                                pmi.setNamePhonetic(namePhonetic.substring(0, 16)); //姓名拼音
+                            } else {
                                 pmi.setNamePhonetic(namePhonetic); //姓名拼音
                             }
                             String sexDecs = "";
@@ -2131,14 +2210,14 @@ public class RegTreatmentImpl implements RegTreatment {
                             }
                             pmi.setSex(StringUtil.Utf_Iso(sexDecs));
                             pmi.setDateOfBirth(new Timestamp(DateToWeek.formatDate(birthday, "yyyy-MM-dd").getTime())); //出生日期
-                            pmi.setBirthPlace(idenNo.substring(0,6));
+                            pmi.setBirthPlace(idenNo.substring(0, 6));
                             pmi.setCitizenship("CN");
-                            if(cardNoType!=null && cardNoType.length()>0 &&"1".equals(cardNoType)){
+                            if (cardNoType != null && cardNoType.length() > 0 && "1".equals(cardNoType)) {
                                 pmi.setNation(null);
                                 pmi.setMailingAddress(null);
-                            }else{
-                                pmi.setNation(StringUtil.Utf_Iso(nation+"族"));
-                                pmi.setMailingAddress(truncateStr(address,40));
+                            } else {
+                                pmi.setNation(StringUtil.Utf_Iso(nation + "族"));
+                                pmi.setMailingAddress(truncateStr(address, 40));
                             }
                             pmi.setIdNo(idenNo);
                             pmi.setIdentity(StringUtil.Utf_Iso(identity));
@@ -2160,16 +2239,18 @@ public class RegTreatmentImpl implements RegTreatment {
                             pmi.setNameAlias(StringUtil.Utf_Iso(name));
 
                             patMasterIndexMapper.updateByPrimaryKeySelective(pmi);
-                            PatMasterIndex patMasterIndex = patMasterIndexMapper.selectByPatientId(patIdNo.getPatientId()); //没有增加军队医改的限制
-                            if(!(patMasterIndex.getIdNo()!=null&& patMasterIndex.getIdNo().length()>0)){
+                            PatMasterIndex patMasterIndex =
+                                    patMasterIndexMapper.selectByPatientId(patIdNo.getPatientId()); //没有增加军队医改的限制
+                            if (!(patMasterIndex.getIdNo() != null && patMasterIndex.getIdNo().length() > 0)) {
                                 patMasterIndexMapper.updateByPrimaryKeySelective(pmi);
                             }
-                            patMasterIndex = patMasterIndexMapper.selectByPatientId(patIdNo.getPatientId()); //没有增加军队医改的限制
+                            patMasterIndex = patMasterIndexMapper.selectByPatientId(patIdNo.getPatientId());
+                            //没有增加军队医改的限制
 
-                            if(!(patMasterIndex.getIdNo()!=null&& patMasterIndex.getIdNo().length()>0)){
+                            if (!(patMasterIndex.getIdNo() != null && patMasterIndex.getIdNo().length() > 0)) {
                                 header.addElement("code").setText("1");
                                 header.addElement("desc").setText("身份证更新失败！！！");
-                            }else{
+                            } else {
                                 header.addElement("code").setText("0");
                                 header.addElement("desc").setText("成功");
                                 header.addElement("patientId").setText(patIdNo.getPatientId());
@@ -2188,21 +2269,22 @@ public class RegTreatmentImpl implements RegTreatment {
                             PatIccardRecNew pirnIdNo = new PatIccardRecNew();
                             pirnIdNo.setPatientId(patientID);
                             pirnIdNo.setIccardNo(idenNo);
-                            pirnIdNo.setRegDatetime(new Timestamp(DateToWeek.formatDate(Util.getCurrentDate("yyyy-MM-dd"), "yyyy-MM-dd").getTime()));
+                            pirnIdNo.setRegDatetime(new Timestamp(DateToWeek.formatDate(Util.getCurrentDate("yyyy-MM" +
+                                    "-dd"), "yyyy-MM-dd").getTime()));
 
                             //2.insert  patMasterIndex
                             PatMasterIndex pmi = new PatMasterIndex();
                             pmi.setPatientId(patientID);
 //                            pmi.setInpNo("");
-                            if(name.length()>4){
-                                pmi.setName(StringUtil.Utf_Iso(name.substring(0,4)));
-                            }else{
+                            if (name.length() > 4) {
+                                pmi.setName(StringUtil.Utf_Iso(name.substring(0, 4)));
+                            } else {
                                 pmi.setName(StringUtil.Utf_Iso(name));
                             }
                             logger.info("zjp----->" + namePhonetic);
-                            if (namePhonetic.length()>16){
-                                pmi.setNamePhonetic(namePhonetic.substring(0,16)); //姓名拼音
-                            }else{
+                            if (namePhonetic.length() > 16) {
+                                pmi.setNamePhonetic(namePhonetic.substring(0, 16)); //姓名拼音
+                            } else {
                                 pmi.setNamePhonetic(namePhonetic); //姓名拼音
                             }
                             String sexDecs = "";
@@ -2215,14 +2297,14 @@ public class RegTreatmentImpl implements RegTreatment {
                             }
                             pmi.setSex(StringUtil.Utf_Iso(sexDecs));
                             pmi.setDateOfBirth(new Timestamp(DateToWeek.formatDate(birthday, "yyyy-MM-dd").getTime())); //出生日期
-                            pmi.setBirthPlace(idenNo.substring(0,6));
+                            pmi.setBirthPlace(idenNo.substring(0, 6));
                             pmi.setCitizenship("CN");
-                            pmi.setNation(StringUtil.Utf_Iso(nation+"族"));
+                            pmi.setNation(StringUtil.Utf_Iso(nation + "族"));
                             pmi.setIdNo(idenNo);
                             pmi.setIdentity(StringUtil.Utf_Iso(identity));
                             pmi.setChargeType(StringUtil.Utf_Iso(chargeType));
                             pmi.setUnitInContract("");
-                            pmi.setMailingAddress(truncateStr(address,40));
+                            pmi.setMailingAddress(truncateStr(address, 40));
                             pmi.setZipCode("");
                             pmi.setPhoneNumberHome(homeTel);
                             pmi.setPhoneNumberBusiness("");
@@ -2249,11 +2331,12 @@ public class RegTreatmentImpl implements RegTreatment {
                             } else if (cCardNo != null && cCardNo.length() > 0) {
                                 patIccardRecNew = patIccardRecNewMapper.selectByPrimaryKey(cCardNo);
                             }
-                            if(patIccardRecNew==null){
+                            if (patIccardRecNew == null) {
                                 patIccardRecNewMapper.insert(pirnIdNo);
                             }
-                            PatMasterIndex patMasterIndex = patMasterIndexMapper.selectByPatientId(patientID); //没有增加军队医改的限制
-                            if(patMasterIndex==null){
+                            PatMasterIndex patMasterIndex = patMasterIndexMapper.selectByPatientId(patientID);
+                            //没有增加军队医改的限制
+                            if (patMasterIndex == null) {
                                 patMasterIndexMapper.insertSelective(pmi);
                             }
 
@@ -2266,15 +2349,15 @@ public class RegTreatmentImpl implements RegTreatment {
                             }
                             patMasterIndex = patMasterIndexMapper.selectByPatientId(patientID); //没有增加军队医改的限制
 
-                            if(patIccardRecNew==null){
+                            if (patIccardRecNew == null) {
                                 header.addElement("code").setText("1");
                                 header.addElement("desc").setText("注册失败,注册表未插入信息");
                                 header.addElement("patientId").setText(patientID);
-                            }else if(patMasterIndex==null){
+                            } else if (patMasterIndex == null) {
                                 header.addElement("code").setText("1");
                                 header.addElement("desc").setText("注册失败,主表未插入信息");
                                 header.addElement("patientId").setText(patientID);
-                            }else{
+                            } else {
                                 header.addElement("code").setText("0");
                                 header.addElement("desc").setText("成功");
                                 header.addElement("patientId").setText(patientID);
@@ -2294,9 +2377,7 @@ public class RegTreatmentImpl implements RegTreatment {
     }
 
     /**
-     * 同步医生排班信息接口（用户查询今日号源和预约号源接口）
-     * 当日所有排班（数据源是星期，直接转换成星期查询）主键 用号别^星期^午别
-     * 通过排班数据查询号源信息。只能通过号类和星期查出对应的号源信息
+     * 同步医生排班信息接口（用户查询今日号源和预约号源接口） 当日所有排班（数据源是星期，直接转换成星期查询）主键 用号别^星期^午别 通过排班数据查询号源信息。只能通过号类和星期查出对应的号源信息
      *
      * @param xmlParam
      * @return
@@ -2319,14 +2400,30 @@ public class RegTreatmentImpl implements RegTreatment {
                 Element data = root.addElement("body");
                 header.addElement("code").setText("0");
                 header.addElement("desc").setText("成功");
-                List<ClinicForRegist> clinicForRegistList = clinicForRegistMapper.selectByDeptForRegistByTime(startDate,endDate);
-                if(clinicForRegistList!=null && clinicForRegistList.size()>0) {
+                List<ClinicForRegist> clinicForRegistList =
+                        clinicForRegistMapper.selectByDeptForRegistByTime(startDate, endDate);
+                if (clinicForRegistList != null && clinicForRegistList.size() > 0) {
                     for (ClinicForRegist clinicForRegist : clinicForRegistList) {
-                        if("石门坎门诊".equals(StringUtil.Iso_GBK(clinicForRegist.getClinicLabel())))
+                        if ("石门坎门诊".equals(StringUtil.Iso_GBK(clinicForRegist.getClinicLabel())))
                             continue;
-                        ClinicIndex clinicIndex = clinicIndexMapper.selectByPrimaryKey(clinicForRegist.getClinicLabel());
-                        if(clinicIndex!=null){
-                            String clinicDate = DateToWeek.formatDateString(clinicForRegist.getClinicDate(), "yyyy-MM-dd");
+
+                        ClinicIndex clinicIndex =
+                                clinicIndexMapper.selectByPrimaryKey(clinicForRegist.getClinicLabel());
+                        if (clinicIndex != null) {
+                            String clinicDate = DateToWeek.formatDateString(clinicForRegist.getClinicDate(), "yyyy-MM" +
+                                    "-dd");
+
+                            // 新增急诊儿科的过滤
+                            if ("急诊儿科".equals(StringUtil.Iso_GBK(clinicForRegist.getClinicLabel()))) {
+                                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                                Calendar cal = Calendar.getInstance(), now = Calendar.getInstance();
+                                cal.setTime(sdf.parse("2018-08-10"));
+                                now.setTime(clinicForRegist.getClinicDate());
+                                if (now.after(cal)) {
+                                    continue;
+                                }
+                            }
+
                             Element list = data.addElement("list");
                             list.addElement("clinicDate").setText(clinicDate);
                             list.addElement("departmentId").setText(clinicIndex.getClinicDept());
@@ -2370,7 +2467,7 @@ public class RegTreatmentImpl implements RegTreatment {
                     }
 
                 }
-                logger.info("[排班信息  出参 :]" +  doc.asXML());
+                logger.info("[排班信息  出参 :]" + doc.asXML());
                 return doc.asXML();
             } else {
                 return getErrorlMsg("输入参数有误！！！");
@@ -2413,7 +2510,8 @@ public class RegTreatmentImpl implements RegTreatment {
 //                                if (clinicIndex != null) {
 //                                    String clinicLabel = StringUtil.Iso_GBK(clinicSchedule.getClinicLabel()); //号别
 //                                    week = clinicSchedule.getDayOfWeek().toString();
-////                                    String timeDesc = getTimeDescEng(StringUtil.Iso_GBK(clinicSchedule.getTimeDesc()));
+////                                    String timeDesc = getTimeDescEng(StringUtil.Iso_GBK(clinicSchedule
+// .getTimeDesc()));
 //                                    String time = date;
 ////                                    if("am".equals(timeDesc)){
 ////                                        timeDesc = "1";
@@ -2424,45 +2522,61 @@ public class RegTreatmentImpl implements RegTreatment {
 ////                                    }else{
 ////                                        timeDesc = "4";
 ////                                    }
-//                                    DeptDict deptDict = deptDictMapper.selectByPrimaryKey(clinicIndex.getClinicDept());
-//                                    List<ClinicForRegist> clinicForRegistList = clinicForRegistMapper.selectByClinicLabel(StringUtil.Utf_Iso(clinicLabel), time);
+//                                    DeptDict deptDict = deptDictMapper.selectByPrimaryKey(clinicIndex.getClinicDept
+// ());
+//                                    List<ClinicForRegist> clinicForRegistList = clinicForRegistMapper
+// .selectByClinicLabel(StringUtil.Utf_Iso(clinicLabel), time);
 //                                    if (clinicForRegistList != null && clinicForRegistList.size() > 0) {
 //                                        for (ClinicForRegist clinicForRegist : clinicForRegistList) {
 //                                            String clinicWeek = DateToWeek.getWeek(clinicForRegist.getClinicDate());
 //                                            if (clinicWeek.equals(week)) {
-//                                                String clinicDate = DateToWeek.formatDateString(clinicForRegist.getClinicDate(), "yyyy-MM-dd");
+//                                                String clinicDate = DateToWeek.formatDateString(clinicForRegist
+// .getClinicDate(), "yyyy-MM-dd");
 //                                                Element list = data.addElement("list");
 //                                                list.addElement("clinicDate").setText(clinicDate);
 //                                                list.addElement("departmentId").setText(clinicIndex.getClinicDept());
-//                                                list.addElement("departmentName").setText(StringUtil.Iso_GBK(deptDict.getDeptName()));
-//                                                list.addElement("expertName").setText(StringUtil.Iso_GBK(clinicIndex.getDoctor()));
+//                                                list.addElement("departmentName").setText(StringUtil.Iso_GBK
+// (deptDict.getDeptName()));
+//                                                list.addElement("expertName").setText(StringUtil.Iso_GBK
+// (clinicIndex.getDoctor()));
 //                                                String docId = "";
-//                                                if (StringUtil.Iso_GBK(clinicIndex.getDoctor()) != null && StringUtil.Iso_GBK(clinicIndex.getDoctor()).length() > 0) {
-//                                                    Users users = usersMapper.selectUserName(StringUtil.Iso_GBK(clinicIndex.getDoctor()));
+//                                                if (StringUtil.Iso_GBK(clinicIndex.getDoctor()) != null &&
+// StringUtil.Iso_GBK(clinicIndex.getDoctor()).length() > 0) {
+//                                                    Users users = usersMapper.selectUserName(StringUtil.Iso_GBK
+// (clinicIndex.getDoctor()));
 //                                                    if (users != null) {
 //                                                        docId = users.getUserId();
 //                                                    }
 //                                                }
-//                                                list.addElement("expertId").setText(StringUtil.Iso_GBK(clinicIndex.getDoctor())); //给工号
+//                                                list.addElement("expertId").setText(StringUtil.Iso_GBK(clinicIndex
+// .getDoctor())); //给工号
 //                                                String classId = "";
 //                                                if (StringUtil.Iso_GBK(clinicIndex.getClinicType()).contains("普通")) {
 //                                                    classId = "pt";
-//                                                } else if (StringUtil.Iso_GBK(clinicIndex.getClinicType()).contains("专家")) {
+//                                                } else if (StringUtil.Iso_GBK(clinicIndex.getClinicType()).contains
+// ("专家")) {
 //                                                    classId = "zj";
-//                                                } else if (StringUtil.Iso_GBK(clinicIndex.getClinicType()).contains("急诊")) {
+//                                                } else if (StringUtil.Iso_GBK(clinicIndex.getClinicType()).contains
+// ("急诊")) {
 //                                                    classId = "jz";
 //                                                }
 //                                                list.addElement("registerClassId").setText(classId);
-//                                                list.addElement("clinicLabel").setText(StringUtil.Iso_GBK(clinicForRegist.getClinicLabel())); //挂号号别
+//                                                list.addElement("clinicLabel").setText(StringUtil.Iso_GBK
+// (clinicForRegist.getClinicLabel())); //挂号号别
 //                                                list.addElement("registerTypeId").setText("");
 //                                                list.addElement("registerCount").setText("");
-//                                                list.addElement("remainCount").setText(clinicForRegist.getCurrentNo().toString());
+//                                                list.addElement("remainCount").setText(clinicForRegist.getCurrentNo
+// ().toString());
 //                                                list.addElement("waitNo").setText("");
-//                                                list.addElement("seeTime").setText(StringUtil.Iso_GBK(clinicSchedule.getTimeDesc()));
-//                                                // list.addElement("totalFee").setText(clinicForRegist.getRegistPrice().toString());
+//                                                list.addElement("seeTime").setText(StringUtil.Iso_GBK
+// (clinicSchedule.getTimeDesc()));
+//                                                // list.addElement("totalFee").setText(clinicForRegist
+// .getRegistPrice().toString());
 //                                                if (clinicSchedule.getPrice() != null) {
-//                                                    list.addElement("totalFee").setText(clinicSchedule.getPrice().toString());
-//                                                    list.addElement("diagnoseFee").setText(clinicSchedule.getPrice().toString());
+//                                                    list.addElement("totalFee").setText(clinicSchedule.getPrice()
+// .toString());
+//                                                    list.addElement("diagnoseFee").setText(clinicSchedule.getPrice
+// ().toString());
 //                                                } else {
 //                                                    list.addElement("diagnoseFee").setText("0");
 //                                                    list.addElement("totalFee").setText("0");
@@ -2489,12 +2603,13 @@ public class RegTreatmentImpl implements RegTreatment {
 
     /**
      * 用户预约
+     *
      * @param xmlParam
      * @return
      */
     @Override
     @Transactional
-    public String reservateConfirm(String xmlParam){
+    public String reservateConfirm(String xmlParam) {
         logger.info("[用户预约  入参 :]" + xmlParam);
         Document document = null;
         try {
@@ -2507,40 +2622,42 @@ public class RegTreatmentImpl implements RegTreatment {
 
             Date nowdate = new Date();
             ClinicForRegistKey cfrk = new ClinicForRegistKey();
-            cfrk.setClinicDate(DateToWeek.formatDate(inClinicDate,"yyyy-MM-dd"));
+            cfrk.setClinicDate(DateToWeek.formatDate(inClinicDate, "yyyy-MM-dd"));
             cfrk.setClinicLabel(StringUtil.Utf_Iso(clinicLabel));
             cfrk.setTimeDesc(StringUtil.Utf_Iso(timeDesc));
             ClinicForRegist clinicForRegist = clinicForRegistMapper.selectByPrimaryKey(cfrk);
-            if(clinicForRegist==null){
+            if (clinicForRegist == null) {
                 return getErrorlMsg("未查询到号源信息");
             }
-            if(clinicForRegist.getAppointmentNum()!=null){
-                clinicForRegist.setAppointmentNum((short)(1+clinicForRegist.getAppointmentNum()));
-            }else{
-                clinicForRegist.setAppointmentNum((short)1);
+            if (clinicForRegist.getAppointmentNum() != null) {
+                clinicForRegist.setAppointmentNum((short) (1 + clinicForRegist.getAppointmentNum()));
+            } else {
+                clinicForRegist.setAppointmentNum((short) 1);
             }
             ClinicAppoints clinicAppoints = new ClinicAppoints();
             clinicAppoints.setClinicLabel(StringUtil.Utf_Iso(clinicLabel));
             clinicAppoints.setPatientId(patientId);
-            clinicAppoints.setVisitDateAppted(DateToWeek.formatDate(inClinicDate,"yyyy-MM-dd"));
+            clinicAppoints.setVisitDateAppted(DateToWeek.formatDate(inClinicDate, "yyyy-MM-dd"));
             clinicAppoints.setVisitTimeAppted(StringUtil.Utf_Iso(timeDesc));
             clinicAppoints.setApptMadeDate(nowdate);
             clinicAppoints.setClinicSource("ZZJ");
             clinicAppoints.setClinicAttr("0");
             //预约后当前号加一，当前号默认被预约
-            if(clinicForRegist.getCurrentNo()!=null){
+            if (clinicForRegist.getCurrentNo() != null) {
                 clinicAppoints.setSerialNo(clinicForRegist.getCurrentNo());
-                clinicForRegist.setCurrentNo((short)(1+clinicForRegist.getCurrentNo()));
-            }else{
-                clinicForRegist.setCurrentNo((short)1);
-                clinicAppoints.setSerialNo((short)1);
+                clinicForRegist.setCurrentNo((short) (1 + clinicForRegist.getCurrentNo()));
+            } else {
+                clinicForRegist.setCurrentNo((short) 1);
+                clinicAppoints.setSerialNo((short) 1);
             }
 
-            if(clinicForRegist.getAppointmentLimits()!=null && clinicForRegist.getAppointmentLimits()>0){
-                List<ClinicAppoints>  clinicAppointsList = clinicAppointsMapper.selectApponints(clinicAppoints.getVisitDateAppted(),clinicAppoints.getClinicLabel());
-                logger.info("[预约信息  入参 :]"+clinicForRegist.getAppointmentLimits());
-                if(clinicAppointsList!=null && clinicAppointsList.size()>0){
-                    if(clinicAppointsList.size()>= clinicForRegist.getAppointmentLimits()){
+            if (clinicForRegist.getAppointmentLimits() != null && clinicForRegist.getAppointmentLimits() > 0) {
+                List<ClinicAppoints> clinicAppointsList =
+                        clinicAppointsMapper.selectApponints(clinicAppoints.getVisitDateAppted(),
+                                clinicAppoints.getClinicLabel());
+                logger.info("[预约信息  入参 :]" + clinicForRegist.getAppointmentLimits());
+                if (clinicAppointsList != null && clinicAppointsList.size() > 0) {
+                    if (clinicAppointsList.size() >= clinicForRegist.getAppointmentLimits()) {
                         return getErrorlMsg("当前号源已被预约完！！！");
                     }
                 }
@@ -2552,7 +2669,7 @@ public class RegTreatmentImpl implements RegTreatment {
             clinicAppointsKey.setClinicLabel(clinicAppoints.getClinicLabel());
             clinicAppointsKey.setPatientId(clinicAppoints.getPatientId());
             ClinicAppoints clinicAppoints1 = clinicAppointsMapper.selectByPrimaryKey(clinicAppointsKey);
-            if(clinicAppoints1 != null){
+            if (clinicAppoints1 != null) {
                 return getErrorlMsg("已有预约信息，无法再次预约");
             }
             clinicForRegistMapper.updateByPrimaryKey(clinicForRegist);
@@ -2565,8 +2682,8 @@ public class RegTreatmentImpl implements RegTreatment {
             header.addElement("code").setText("0");
             header.addElement("desc").setText("成功");
             //预约订单号=主键：就诊日期、号别、病人标识号、午别。
-            data.addElement("orderId").setText(inClinicDate+"^"+clinicLabel+"^"+patientId+"^"+timeDesc);
-            data.addElement("orderNo").setText(clinicAppoints.getSerialNo()+"");
+            data.addElement("orderId").setText(inClinicDate + "^" + clinicLabel + "^" + patientId + "^" + timeDesc);
+            data.addElement("orderNo").setText(clinicAppoints.getSerialNo() + "");
             return doc.asXML();
         } catch (Exception e) {
             e.printStackTrace();
@@ -2575,8 +2692,7 @@ public class RegTreatmentImpl implements RegTreatment {
     }
 
     /**
-     * 判断当前号别是否可挂号
-     * 查询当前号别是否可挂号(由医院HIS系统告知当前号别是否可挂号，或者是否还有剩余号源。)
+     * 判断当前号别是否可挂号 查询当前号别是否可挂号(由医院HIS系统告知当前号别是否可挂号，或者是否还有剩余号源。)
      *
      * @param xmlParam
      * @return
@@ -2585,7 +2701,7 @@ public class RegTreatmentImpl implements RegTreatment {
     public String canRegisterType(String xmlParam) {
         logger.info("[判断当前号别  入参 :]" + xmlParam);
         Document document = null;
-        String result="";
+        String result = "";
         try {
             document = DocumentHelper.parseText(xmlParam);
             Element reroot = document.getRootElement();
@@ -2597,27 +2713,31 @@ public class RegTreatmentImpl implements RegTreatment {
             String patientId = reroot.element("data").element("patientId").getTextTrim();
             String orderId = time + "^" + clinicLabel + "^" + patientId + "^" + seeTime;
             if (clinicLabel != null && clinicLabel.length() > 0 && seeTime != null && seeTime.length() > 0 && time != null && time.length() > 0) {
-                //                PayOrderRecord payOrderRecord = payOrderRecordMapper.selectByPrimaryKey(StringUtil.Utf_Iso(orderId));
-                List<ClinicMaster> clinicMasters = clinicMasterMapper.selectByClinicLabel(time,patientId,StringUtil.Utf_Iso(clinicLabel),StringUtil.Utf_Iso(seeTime));
+                //                PayOrderRecord payOrderRecord = payOrderRecordMapper.selectByPrimaryKey(StringUtil
+                // .Utf_Iso(orderId));
+                List<ClinicMaster> clinicMasters = clinicMasterMapper.selectByClinicLabel(time, patientId,
+                        StringUtil.Utf_Iso(clinicLabel), StringUtil.Utf_Iso(seeTime));
                 ClinicForRegist cfr = new ClinicForRegist();
                 Date date = formatDate(time, "yyyy-MM-dd");
                 cfr.setClinicDate(date);
                 cfr.setClinicLabel(StringUtil.Utf_Iso(clinicLabel));
                 cfr.setTimeDesc(StringUtil.Utf_Iso(seeTime));
                 ClinicForRegist clinicForRegist = clinicForRegistMapper.selectByPrimaryKey(cfr);
-                if(clinicForRegist.getRegistrationLimits()!=null && clinicForRegist.getRegistrationLimits()>0){
-                    List<ClinicAppoints>  clinicAppointsList = clinicAppointsMapper.selectRegesters(cfr.getClinicDate(),cfr.getClinicLabel());// 状态为0
-                    List<ClinicMaster> clinicMasterList = clinicMasterMapper.selectRegesters(cfr.getClinicDate(),cfr.getClinicLabel());
-                    int num =clinicAppointsList.size()+clinicMasterList.size();
+                if (clinicForRegist.getRegistrationLimits() != null && clinicForRegist.getRegistrationLimits() > 0) {
+                    List<ClinicAppoints> clinicAppointsList =
+                            clinicAppointsMapper.selectRegesters(cfr.getClinicDate(), cfr.getClinicLabel());// 状态为0
+                    List<ClinicMaster> clinicMasterList = clinicMasterMapper.selectRegesters(cfr.getClinicDate(),
+                            cfr.getClinicLabel());
+                    int num = clinicAppointsList.size() + clinicMasterList.size();
                     logger.info("[当日号已挂 :]" + num);
-                    if(num>0){
-                        if(num >= (int)clinicForRegist.getRegistrationLimits()){
-                            logger.info("[当日号已挂 :]" +getErrorlMsg("当日号已挂完！！！"));
+                    if (num > 0) {
+                        if (num >= (int) clinicForRegist.getRegistrationLimits()) {
+                            logger.info("[当日号已挂 :]" + getErrorlMsg("当日号已挂完！！！"));
                             result = getErrorlMsg("当日号已挂完！！！");
                         }
                     }
-                }else if (clinicMasters != null && clinicMasters.size()>0 ) {
-                    result  = getErrorlMsg("当前科室已挂号，不可重复挂号！！！");
+                } else if (clinicMasters != null && clinicMasters.size() > 0) {
+                    result = getErrorlMsg("当前科室已挂号，不可重复挂号！！！");
                 } else {
                     Document doc = DocumentHelper.createDocument();
                     doc.setXMLEncoding("GBK");
@@ -2633,8 +2753,10 @@ public class RegTreatmentImpl implements RegTreatment {
 //                    cfr.setTimeDesc(StringUtil.Utf_Iso(seeTime));
 //                    ClinicForRegist clinicForRegist = clinicForRegistMapper.selectByPrimaryKey(cfr);
 //                    if(clinicForRegist.getRegistrationLimits()!=null && clinicForRegist.getRegistrationLimits()>0){
-//                        List<ClinicAppoints>  clinicAppointsList = clinicAppointsMapper.selectRegesters(cfr.getClinicDate(),cfr.getClinicLabel());// 状态为0
-//                        List<ClinicMaster> clinicMasterList = clinicMasterMapper.selectRegesters(cfr.getClinicDate(),cfr.getClinicLabel());
+//                        List<ClinicAppoints>  clinicAppointsList = clinicAppointsMapper.selectRegesters(cfr
+// .getClinicDate(),cfr.getClinicLabel());// 状态为0
+//                        List<ClinicMaster> clinicMasterList = clinicMasterMapper.selectRegesters(cfr.getClinicDate
+// (),cfr.getClinicLabel());
 //                        int num =clinicAppointsList.size()+clinicMasterList.size();
 //                        if(num>0){
 //                            if(num>= clinicForRegist.getAppointmentLimits()){
@@ -2651,9 +2773,9 @@ public class RegTreatmentImpl implements RegTreatment {
                     } else {
                         data.addElement("registerFlag").setText("0");
                     }
-                   result = doc.asXML();
+                    result = doc.asXML();
                 }
-                return  result;
+                return result;
             } else {
                 return getErrorlMsg("输入参数有误！！！");
             }
@@ -2664,8 +2786,7 @@ public class RegTreatmentImpl implements RegTreatment {
     }
 
     /**
-     * 挂号试算
-     * 用户挂号试算(查询“指定科室”、“挂号号别”、“指定医生”的挂号需要支付费用信息)
+     * 挂号试算 用户挂号试算(查询“指定科室”、“挂号号别”、“指定医生”的挂号需要支付费用信息)
      *
      * @param xmlParam
      * @return
@@ -2696,12 +2817,13 @@ public class RegTreatmentImpl implements RegTreatment {
                 PriceList priceList = null;
                 String price = null;
                 if (inExpertID != null && inExpertID.length() > 0) {
-                    priceList = priceListMapper.selectPriceListByDoctor(StringUtil.Utf_Iso(inExpertID), StringUtil.Utf_Iso(clinicLabel));
+                    priceList = priceListMapper.selectPriceListByDoctor(StringUtil.Utf_Iso(inExpertID),
+                            StringUtil.Utf_Iso(clinicLabel));
                 } else {
-                    priceList =  priceListMapper.selectPriceList(StringUtil.Utf_Iso(clinicLabel));
+                    priceList = priceListMapper.selectPriceList(StringUtil.Utf_Iso(clinicLabel));
                 }
 
-                if(priceList != null){
+                if (priceList != null) {
                     price = priceList.getPrice().toString();
                     if (price != null && price.length() > 0) {
                         if ("0".equals(inPersonnelType)) { //自费
@@ -2733,8 +2855,8 @@ public class RegTreatmentImpl implements RegTreatment {
                             } else if (300 == Integer.valueOf(price)) {
                                 data.addElement("outZLFZBM").setText("110200002a");
                                 data.addElement("outYBZLFZFJE").setText("300");
-                            }else{
-                                if(StringUtils.isEmpty(priceList.getItemCode()))
+                            } else {
+                                if (StringUtils.isEmpty(priceList.getItemCode()))
                                     data.addElement("outZLFZBM").setText("");
                                 else
                                     data.addElement("outZLFZBM").setText(priceList.getItemCode());
@@ -2745,7 +2867,7 @@ public class RegTreatmentImpl implements RegTreatment {
                             data.addElement("outYBKESIDB").setText(inDepartmentID);
                             data.addElement("outFee").setText(price);
 //                       String  rcptNo = "O" + recpNoMapper.selectRecpNo().getRecpNo();
-                            String rcptNo =Util.getCurrentDate("yyyyMMddHHmmss");
+                            String rcptNo = Util.getCurrentDate("yyyyMMddHHmmss");
                             data.addElement("mzNO").setText(rcptNo);
                             data.addElement("djh").setText(rcptNo);
                             data.addElement("cfh").setText(rcptNo);
@@ -2783,7 +2905,8 @@ public class RegTreatmentImpl implements RegTreatment {
                     String patientId = patIccardRecNew.getPatientId();
                     PatMasterIndex pmi = patMasterIndexMapper.selectByPatientId(patientId);
                     if (pmi != null) {
-                        List<ClinicAppoints> clinicAppoints = clinicAppointsMapper.selectByPatientId(patientId); //当日所有的预约列表
+                        List<ClinicAppoints> clinicAppoints = clinicAppointsMapper.selectByPatientId(patientId);
+                        //当日所有的预约列表
                         if (clinicAppoints != null && clinicAppoints.size() > 0) {
                             Document doc = DocumentHelper.createDocument();
                             doc.setXMLEncoding("GBK");
@@ -2797,9 +2920,11 @@ public class RegTreatmentImpl implements RegTreatment {
                                 ClinicAppoints ca = clinicAppoints.get(i);
                                 ClinicIndex clinicIndex = clinicIndexMapper.selectByPrimaryKey(ca.getClinicLabel());
                                 DeptDict deptDict = deptDictMapper.selectByPrimaryKey(clinicIndex.getClinicDept());
-                                PriceList priceList = priceListMapper.selectPriceListByClinicType(clinicIndex.getClinicType());
+                                PriceList priceList =
+                                        priceListMapper.selectPriceListByClinicType(clinicIndex.getClinicType());
 
-                                String orderId = DateToWeek.formatDateString(ca.getVisitDateAppted(), "yyyy-MM-dd") + "^" + ca.getClinicLabel() + "^" + patientId + "^" + ca.getVisitTimeAppted();
+                                String orderId =
+                                        DateToWeek.formatDateString(ca.getVisitDateAppted(), "yyyy-MM-dd") + "^" + ca.getClinicLabel() + "^" + patientId + "^" + ca.getVisitTimeAppted();
                                 Element payInfoElement = bodyElement.addElement("list");
                                 payInfoElement.addElement("reservateFlow").setText(StringUtil.Iso_GBK(orderId)); //预约流水号
                                 payInfoElement.addElement("patientId").setText(patientId);//
@@ -2844,8 +2969,7 @@ public class RegTreatmentImpl implements RegTreatment {
     }
 
     /**
-     * 划价单缴费试算
-     * 用户缴费（划价单）试算 (获取“指定划价单号”的费用明细)
+     * 划价单缴费试算 用户缴费（划价单）试算 (获取“指定划价单号”的费用明细)
      *
      * @param xmlParam
      * @return
@@ -2874,7 +2998,9 @@ public class RegTreatmentImpl implements RegTreatment {
                 // 1.是否存在，存在先删除(包含检验的辅材 和药品用法的辅材)，然后重新组织
                 List<OutpOrdersCosts> ordersCostsListForSGAndFC = new ArrayList<OutpOrdersCosts>();
                 for (int i = 0; i < outpOrdersTList.size(); i++) {
-                    ordersCostsListForSGAndFC = outpOrdersCostsMapper.selectOrdersCostsDeleteForSG(outpOrdersTList.get(i).getVisitNo(), outpOrdersTList.get(i).getVisitDate(), "s160", "ZZJ"); //查询是否已经插入采血费和药品的辅材费，已存在先删除
+                    ordersCostsListForSGAndFC =
+                            outpOrdersCostsMapper.selectOrdersCostsDeleteForSG(outpOrdersTList.get(i).getVisitNo(),
+                                    outpOrdersTList.get(i).getVisitDate(), "s160", "ZZJ"); //查询是否已经插入采血费和药品的辅材费，已存在先删除
                     if (!Util.isEmpty(ordersCostsListForSGAndFC)) {
                         for (int k = 0; k < ordersCostsListForSGAndFC.size(); k++) {
                             outpOrdersCostsMapper.deleteByPrimaryKey(ordersCostsListForSGAndFC.get(k));
@@ -2882,7 +3008,7 @@ public class RegTreatmentImpl implements RegTreatment {
                     }
                 }
                 //雾化吸入 只收一组
-                boolean flag =false;
+                boolean flag = false;
                 //组织支付项目
                 for (int i = 0; i < outpOrdersTList.size(); i++) {
                     OutpOrdersT outpOrdersT = outpOrdersTList.get(i);
@@ -2892,17 +3018,23 @@ public class RegTreatmentImpl implements RegTreatment {
                     clinicMaster = clinicMasterMapper.selectByPrimaryKey(clinicMaster);
 
                     if (!Util.isEmpty(outpOrdersT.getSerialNo())) {
-                        List<OutpOrdersCosts> outpOrdersCostsList = outpOrdersCostsMapper.selectOrdersCostsListBySerialNo(outpOrdersT.getSerialNo(), outpOrdersT.getVisitDate(), outpOrdersT.getVisitNo());
+                        List<OutpOrdersCosts> outpOrdersCostsList =
+                                outpOrdersCostsMapper.selectOrdersCostsListBySerialNo(outpOrdersT.getSerialNo(),
+                                        outpOrdersT.getVisitDate(), outpOrdersT.getVisitNo());
                         if (!(outpOrdersCostsList != null && outpOrdersCostsList.size() > 0)) {
                             continue;
                         }
 
                         // 只要有一次性末梢采血器，不收取任何辅助检查
-                        List<OutpOrdersCosts> ordersCostsListForCXQ  =outpOrdersCostsMapper.selectOrdersCostsListForCXQ(outpOrdersT.getVisitNo(),outpOrdersT.getVisitDate(),outpOrdersT.getPatientId());
-                        if(!(ordersCostsListForCXQ!=null&& ordersCostsListForCXQ.size()>0) ){
+                        List<OutpOrdersCosts> ordersCostsListForCXQ =
+                                outpOrdersCostsMapper.selectOrdersCostsListForCXQ(outpOrdersT.getVisitNo(),
+                                        outpOrdersT.getVisitDate(), outpOrdersT.getPatientId());
+                        if (!(ordersCostsListForCXQ != null && ordersCostsListForCXQ.size() > 0)) {
                             //查询试管
                             //2.如果是同一执行科室，只收一个管子,如果不是同一执行科室，每个科室收一个管子,同一批只收一个针头，一个静脉采血
-                            List<OutpOrdersCosts> ordersCostsListForSG = outpOrdersCostsMapper.selectOrdersCostsDeptForSG(outpOrdersT.getVisitNo(), outpOrdersT.getVisitDate(), "ZZJ","s160"); //查询是否已经插入采血费，已存在不需要插入
+                            List<OutpOrdersCosts> ordersCostsListForSG =
+                                    outpOrdersCostsMapper.selectOrdersCostsDeptForSG(outpOrdersT.getVisitNo(),
+                                            outpOrdersT.getVisitDate(), "ZZJ", "s160"); //查询是否已经插入采血费，已存在不需要插入
                             if (Util.isEmpty(ordersCostsListForSG)) {
                                 String serialNo = "";
                                 for (int j = 0; j < outpOrdersCostsList.size(); j++) {
@@ -2913,10 +3045,16 @@ public class RegTreatmentImpl implements RegTreatment {
                                     }
                                 }
                                 if (!Util.isEmpty(serialNo)) {
-                                    //  List<OutpOrdersCosts> outpOrdersDeptList =outpOrdersCostsMapper.selectOrdersCostsDeptForJY(outpOrdersT.getVisitNo(),outpOrdersT.getVisitDate());//查询执行科室 绑定试管数量
-                                    List<RecordNo> recorNoList = recordNoMapper.selectPerformedByListForSG(outpOrdersT.getVisitNo(), outpOrdersT.getVisitDate(), StringUtil.Utf_Iso("血%"));//查询执行科室 绑定试管数量
+                                    //  List<OutpOrdersCosts> outpOrdersDeptList =outpOrdersCostsMapper
+                                    // .selectOrdersCostsDeptForJY(outpOrdersT.getVisitNo(),outpOrdersT.getVisitDate
+                                    // ());//查询执行科室 绑定试管数量
+                                    List<RecordNo> recorNoList =
+                                            recordNoMapper.selectPerformedByListForSG(outpOrdersT.getVisitNo(),
+                                                    outpOrdersT.getVisitDate(), StringUtil.Utf_Iso("血%"));//查询执行科室 绑定试管数量
                                     if (!Util.isEmpty(recorNoList)) {
-                                        List<PriceList> priceLists = priceListMapper.selectPriceListForSG(StringUtil.Utf_Iso("7#南京德玥科"), StringUtil.Utf_Iso("进口南京浩谷"));
+                                        List<PriceList> priceLists =
+                                                priceListMapper.selectPriceListForSG(StringUtil.Utf_Iso("7#南京德玥科"),
+                                                        StringUtil.Utf_Iso("进口南京浩谷"));
                                         //将试管组织插入到医嘱表中
                                         for (int k = 0; k < priceLists.size(); k++) {
                                             PriceList priceList = priceLists.get(k);
@@ -2940,7 +3078,8 @@ public class RegTreatmentImpl implements RegTreatment {
                                                 int size = recorNoList.size();
                                                 outpOrdersCostsSG.setAmount(new BigDecimal(size));
                                                 BigDecimal amount = new BigDecimal(size);
-                                                BigDecimal costs = amount.multiply(new BigDecimal(String.valueOf(priceList.getPrice())));
+                                                BigDecimal costs =
+                                                        amount.multiply(new BigDecimal(String.valueOf(priceList.getPrice())));
                                                 outpOrdersCostsSG.setCosts(costs);
                                                 outpOrdersCostsSG.setCharges(costs);
                                             } else {
@@ -2966,17 +3105,20 @@ public class RegTreatmentImpl implements RegTreatment {
                             }
                         }
 
-                        boolean flagJC =false;//执行科室为 4701 单独收一个一次性大单
-                        boolean flag1 =false ;//执行科室为 1107 单独收一个一次性大单
-                        boolean flagDeptCode =false; //开单科室11开头的 并且 执行科室为 4701  单独收0.5 耦合剂
-                        if(!Util.isEmpty(outpOrdersCostsList)){
-                            for(int k=0;k<outpOrdersCostsList.size();k++){
+                        boolean flagJC = false;//执行科室为 4701 单独收一个一次性大单
+                        boolean flag1 = false;//执行科室为 1107 单独收一个一次性大单
+                        boolean flagDeptCode = false; //开单科室11开头的 并且 执行科室为 4701  单独收0.5 耦合剂
+                        if (!Util.isEmpty(outpOrdersCostsList)) {
+                            for (int k = 0; k < outpOrdersCostsList.size(); k++) {
                                 OutpOrdersCosts ordersCosts = outpOrdersCostsList.get(k);
-                                if(ordersCosts.getOrderClass().equals("D") ){
-                                    if(!flagJC) {
+                                if (ordersCosts.getOrderClass().equals("D")) {
+                                    if (!flagJC) {
                                         if (ordersCosts.getPerformedBy().equals("4701") || ordersCosts.getPerformedBy().equals("1107")) {
-                                            short num = outpOrdersCostsMapper.selectISOrdersCostsForMaxItemNo(ordersCosts.getVisitDate(), ordersCosts.getVisitNo(), ordersCosts.getSerialNo()).getItemNo();
-                                            CurrentPriceList currentPriceList = currentPriceListMapper.selectByPrimaryKey("I", "71AAC00006", StringUtil.Utf_Iso("60Cmx110Cm南京新中标"), StringUtil.Utf_Iso("条"));
+                                            short num =
+                                                    outpOrdersCostsMapper.selectISOrdersCostsForMaxItemNo(ordersCosts.getVisitDate(), ordersCosts.getVisitNo(), ordersCosts.getSerialNo()).getItemNo();
+                                            CurrentPriceList currentPriceList =
+                                                    currentPriceListMapper.selectByPrimaryKey("I", "71AAC00006",
+                                                            StringUtil.Utf_Iso("60Cmx110Cm南京新中标"), StringUtil.Utf_Iso("条"));
                                             if (currentPriceList != null) {
                                                 OutpOrdersCosts outpOrdersCostsJM = new OutpOrdersCosts();
                                                 outpOrdersCostsJM.setSerialNo(ordersCosts.getSerialNo());
@@ -3009,10 +3151,13 @@ public class RegTreatmentImpl implements RegTreatment {
                                             continue;
                                         }
                                     }
-                                    if(!flag1) {
+                                    if (!flag1) {
                                         if (ordersCosts.getPerformedBy().equals("1107")) {
-                                            short num = outpOrdersCostsMapper.selectISOrdersCostsForMaxItemNo(ordersCosts.getVisitDate(), ordersCosts.getVisitNo(), ordersCosts.getSerialNo()).getItemNo();
-                                            CurrentPriceList currentPriceList = currentPriceListMapper.selectByPrimaryKey("I","71AAC00006",StringUtil.Utf_Iso("60Cmx110Cm南京新中标"),StringUtil.Utf_Iso("条"));
+                                            short num =
+                                                    outpOrdersCostsMapper.selectISOrdersCostsForMaxItemNo(ordersCosts.getVisitDate(), ordersCosts.getVisitNo(), ordersCosts.getSerialNo()).getItemNo();
+                                            CurrentPriceList currentPriceList =
+                                                    currentPriceListMapper.selectByPrimaryKey("I", "71AAC00006",
+                                                            StringUtil.Utf_Iso("60Cmx110Cm南京新中标"), StringUtil.Utf_Iso("条"));
                                             if (currentPriceList != null) {
                                                 OutpOrdersCosts outpOrdersCostsJM = new OutpOrdersCosts();
                                                 outpOrdersCostsJM.setSerialNo(ordersCosts.getSerialNo());
@@ -3045,10 +3190,13 @@ public class RegTreatmentImpl implements RegTreatment {
                                             continue;
                                         }
                                     }
-                                    if(!flagDeptCode){
-                                        if(outpOrdersT.getOrderedBy().equals("1103") && ordersCosts.getPerformedBy().equals("4701") ){
-                                            short num = outpOrdersCostsMapper.selectISOrdersCostsForMaxItemNo(ordersCosts.getVisitDate(), ordersCosts.getVisitNo(), ordersCosts.getSerialNo()).getItemNo();
-                                            CurrentPriceList currentPriceList = currentPriceListMapper.selectByPrimaryKey("I", "71AAF00713", "0.5", StringUtil.Utf_Iso("支"));
+                                    if (!flagDeptCode) {
+                                        if (outpOrdersT.getOrderedBy().equals("1103") && ordersCosts.getPerformedBy().equals("4701")) {
+                                            short num =
+                                                    outpOrdersCostsMapper.selectISOrdersCostsForMaxItemNo(ordersCosts.getVisitDate(), ordersCosts.getVisitNo(), ordersCosts.getSerialNo()).getItemNo();
+                                            CurrentPriceList currentPriceList =
+                                                    currentPriceListMapper.selectByPrimaryKey("I", "71AAF00713", "0.5",
+                                                            StringUtil.Utf_Iso("支"));
                                             if (currentPriceList != null) {
                                                 OutpOrdersCosts outpOrdersCostsJM = new OutpOrdersCosts();
                                                 outpOrdersCostsJM.setSerialNo(ordersCosts.getSerialNo());
@@ -3094,12 +3242,15 @@ public class RegTreatmentImpl implements RegTreatment {
                                     for (int k = 0; k < itemRelationList.size(); k++) {
                                         ItemRelation itemRelation = itemRelationList.get(k);
                                         if (ordersCosts.getItemClass().equals(itemRelation.getItemClass()) && ordersCosts.getItemCode().equals(itemRelation.getItemCode()) && ordersCosts.getItemSpec().equals(itemRelation.getItemSpec()) && ordersCosts.getUnits().equals(itemRelation.getUnits())) {
-                                            List<ClinicVsCharge> clinicVsChargeList = clinicVsChargeMapper.selectByAdministration(ordersCosts.getAdministration());
+                                            List<ClinicVsCharge> clinicVsChargeList =
+                                                    clinicVsChargeMapper.selectByAdministration(ordersCosts.getAdministration());
                                             if (!Util.isEmpty(clinicVsChargeList)) {
-                                                short num = outpOrdersCostsMapper.selectISOrdersCostsForMaxItemNo(ordersCosts.getVisitDate(), ordersCosts.getVisitNo(), ordersCosts.getSerialNo()).getItemNo();
+                                                short num =
+                                                        outpOrdersCostsMapper.selectISOrdersCostsForMaxItemNo(ordersCosts.getVisitDate(), ordersCosts.getVisitNo(), ordersCosts.getSerialNo()).getItemNo();
                                                 for (int g = 0; g < clinicVsChargeList.size(); g++) {
                                                     ClinicVsCharge clinicVsCharge = clinicVsChargeList.get(g);
-                                                    PriceList priceList = priceListMapper.selectPriceListForAdministration(clinicVsCharge.getChargeItemClass(), clinicVsCharge.getChargeItemCode(), clinicVsCharge.getChargeItemSpec(), clinicVsCharge.getUnits());
+                                                    PriceList priceList =
+                                                            priceListMapper.selectPriceListForAdministration(clinicVsCharge.getChargeItemClass(), clinicVsCharge.getChargeItemCode(), clinicVsCharge.getChargeItemSpec(), clinicVsCharge.getUnits());
                                                     if (!(priceList == null)) {
                                                         OutpOrdersCosts outpOrdersCostsJM = new OutpOrdersCosts();
                                                         outpOrdersCostsJM.setSerialNo(ordersCosts.getSerialNo());
@@ -3117,11 +3268,19 @@ public class RegTreatmentImpl implements RegTreatment {
                                                         outpOrdersCostsJM.setItemCode(priceList.getItemCode());
                                                         outpOrdersCostsJM.setItemSpec(priceList.getItemSpec());
                                                         outpOrdersCostsJM.setUnits(priceList.getUnits());
-                                                        BigDecimal amount = new BigDecimal(clinicVsCharge.getAmount()).multiply(new BigDecimal(ordersCosts.getDays()));
+                                                        BigDecimal amount;
+                                                        if (ordersCosts.getDays() == null || ordersCosts.getDays() < 1) {
+                                                            amount = new BigDecimal(clinicVsCharge.getAmount());
+                                                        } else {
+                                                            amount =
+                                                                    new BigDecimal(clinicVsCharge.getAmount()).multiply(new BigDecimal(ordersCosts.getDays()));
+                                                        }
                                                         outpOrdersCostsJM.setAmount(amount);
                                                         outpOrdersCostsJM.setDays(ordersCosts.getDays());
-                                                        //BigDecimal amount = new BigDecimal(clinicVsCharge.getAmount());
-                                                        BigDecimal cost = amount.multiply(new BigDecimal(String.valueOf(priceList.getPrice())));
+                                                        //BigDecimal amount = new BigDecimal(clinicVsCharge.getAmount
+                                                        // ());
+                                                        BigDecimal cost =
+                                                                amount.multiply(new BigDecimal(String.valueOf(priceList.getPrice())));
                                                         outpOrdersCostsJM.setCosts(cost);
                                                         outpOrdersCostsJM.setCharges(cost);
                                                         outpOrdersCostsJM.setOrderedByDept(outpOrdersT.getOrderedBy());
@@ -3144,8 +3303,10 @@ public class RegTreatmentImpl implements RegTreatment {
                                                 }
                                             }
                                             if (ordersCosts.getOrderClass().equals("A") && (StringUtil.Iso_GBK(ordersCosts.getAdministration()).equals("静脉滴注"))) {
-                                                PriceList priceList = priceListMapper.selectPriceListForSY(StringUtil.Utf_Iso("20ml江苏苏云医"));
-                                                short num = outpOrdersCostsMapper.selectISOrdersCostsForMaxItemNo(ordersCosts.getVisitDate(), ordersCosts.getVisitNo(), ordersCosts.getSerialNo()).getItemNo();
+                                                PriceList priceList =
+                                                        priceListMapper.selectPriceListForSY(StringUtil.Utf_Iso("20ml江苏苏云医"));
+                                                short num =
+                                                        outpOrdersCostsMapper.selectISOrdersCostsForMaxItemNo(ordersCosts.getVisitDate(), ordersCosts.getVisitNo(), ordersCosts.getSerialNo()).getItemNo();
                                                 if (!(priceList == null)) {
                                                     OutpOrdersCosts outpOrdersCostsZS = new OutpOrdersCosts();
                                                     outpOrdersCostsZS.setSerialNo(ordersCosts.getSerialNo());
@@ -3163,9 +3324,18 @@ public class RegTreatmentImpl implements RegTreatment {
                                                     outpOrdersCostsZS.setItemCode(priceList.getItemCode());
                                                     outpOrdersCostsZS.setItemSpec(priceList.getItemSpec());
                                                     outpOrdersCostsZS.setUnits(priceList.getUnits());
-                                                    outpOrdersCostsZS.setAmount(new BigDecimal(ordersCosts.getDays()));
+
+                                                    BigDecimal cost;
+                                                    if (ordersCosts.getDays() == null || ordersCosts.getDays() < 1) {
+                                                        outpOrdersCostsZS.setAmount(BigDecimal.valueOf(1));
+                                                        cost = new BigDecimal(String.valueOf(priceList.getPrice()));
+                                                    } else {
+                                                        outpOrdersCostsZS.setAmount(new BigDecimal(ordersCosts.getDays()));
+                                                        cost =
+                                                                new BigDecimal(ordersCosts.getDays()).multiply(new BigDecimal(String.valueOf(priceList.getPrice())));
+                                                    }
+
                                                     outpOrdersCostsZS.setDays(ordersCosts.getDays());
-                                                    BigDecimal cost = new BigDecimal(ordersCosts.getDays()).multiply(new BigDecimal(String.valueOf(priceList.getPrice())));
                                                     outpOrdersCostsZS.setCosts(cost);
                                                     outpOrdersCostsZS.setCharges(cost);
                                                     outpOrdersCostsZS.setOrderedByDept(outpOrdersT.getOrderedBy());
@@ -3187,24 +3357,28 @@ public class RegTreatmentImpl implements RegTreatment {
                                 } else {
                                     if (!Util.isEmpty(ordersCosts.getAdministration())) {
                                         BigDecimal days = new BigDecimal(String.valueOf(ordersCosts.getDays()));
-                                        if(StringUtil.Iso_GBK(ordersCosts.getAdministration()).equals("雾化吸入")){
-                                            if(flag){
+                                        if (StringUtil.Iso_GBK(ordersCosts.getAdministration()).equals("雾化吸入")) {
+                                            if (flag) {
                                                 continue;
                                             }
-                                            flag =true;
-                                            days =  new BigDecimal(String.valueOf(outpOrdersCostsMapper.selectISOrdersCostsForMaxAmount(ordersCosts.getVisitDate(),ordersCosts.getVisitNo(), StringUtil.Utf_Iso("雾化吸入"),outpOrdersT.getPatientId()).getAmount()));
+                                            flag = true;
+                                            days =
+                                                    new BigDecimal(String.valueOf(outpOrdersCostsMapper.selectISOrdersCostsForMaxAmount(ordersCosts.getVisitDate(), ordersCosts.getVisitNo(), StringUtil.Utf_Iso("雾化吸入"), outpOrdersT.getPatientId()).getAmount()));
                                         }
                                         //配置中的代码不收辅材费
                                         File file = new File("C:\\configuration\\drugCode.txt");
                                         String drugCode = txt2String(file);
-                                        if(drugCode!=null && drugCode.length()>0) {
+                                        if (drugCode != null && drugCode.length() > 0) {
                                             if (!drugCode.contains(ordersCosts.getItemCode())) {
-                                                List<ClinicVsCharge> clinicVsChargeList = clinicVsChargeMapper.selectByAdministration(ordersCosts.getAdministration());
+                                                List<ClinicVsCharge> clinicVsChargeList =
+                                                        clinicVsChargeMapper.selectByAdministration(ordersCosts.getAdministration());
                                                 if (!Util.isEmpty(clinicVsChargeList)) {
-                                                    short num = outpOrdersCostsMapper.selectISOrdersCostsForMaxItemNo(ordersCosts.getVisitDate(), ordersCosts.getVisitNo(), ordersCosts.getSerialNo()).getItemNo();
+                                                    short num =
+                                                            outpOrdersCostsMapper.selectISOrdersCostsForMaxItemNo(ordersCosts.getVisitDate(), ordersCosts.getVisitNo(), ordersCosts.getSerialNo()).getItemNo();
                                                     for (int k = 0; k < clinicVsChargeList.size(); k++) {
                                                         ClinicVsCharge clinicVsCharge = clinicVsChargeList.get(k);
-                                                        PriceList priceList = priceListMapper.selectPriceListForAdministration(clinicVsCharge.getChargeItemClass(), clinicVsCharge.getChargeItemCode(), clinicVsCharge.getChargeItemSpec(), clinicVsCharge.getUnits());
+                                                        PriceList priceList =
+                                                                priceListMapper.selectPriceListForAdministration(clinicVsCharge.getChargeItemClass(), clinicVsCharge.getChargeItemCode(), clinicVsCharge.getChargeItemSpec(), clinicVsCharge.getUnits());
                                                         if (!(priceList == null)) {
                                                             OutpOrdersCosts outpOrdersCostsJM = new OutpOrdersCosts();
                                                             outpOrdersCostsJM.setSerialNo(ordersCosts.getSerialNo());
@@ -3222,11 +3396,20 @@ public class RegTreatmentImpl implements RegTreatment {
                                                             outpOrdersCostsJM.setItemCode(priceList.getItemCode());
                                                             outpOrdersCostsJM.setItemSpec(priceList.getItemSpec());
                                                             outpOrdersCostsJM.setUnits(priceList.getUnits());
-                                                            BigDecimal amount = new BigDecimal(clinicVsCharge.getAmount()).multiply(days);
+
+                                                            BigDecimal amount;
+                                                            if (days.compareTo(new BigDecimal(1)) < 0) {
+                                                                amount = new BigDecimal(clinicVsCharge.getAmount());
+                                                            } else {
+                                                                amount =
+                                                                        new BigDecimal(clinicVsCharge.getAmount()).multiply(days);
+                                                            }
                                                             outpOrdersCostsJM.setAmount(amount);
                                                             outpOrdersCostsJM.setDays(ordersCosts.getDays());
-                                                            //BigDecimal amount = new BigDecimal(clinicVsCharge.getAmount());
-                                                            BigDecimal cost = amount.multiply(new BigDecimal(String.valueOf(priceList.getPrice())));
+                                                            //BigDecimal amount = new BigDecimal(clinicVsCharge
+                                                            // .getAmount());
+                                                            BigDecimal cost =
+                                                                    amount.multiply(new BigDecimal(String.valueOf(priceList.getPrice())));
                                                             outpOrdersCostsJM.setCosts(cost);
                                                             outpOrdersCostsJM.setCharges(cost);
                                                             outpOrdersCostsJM.setOrderedByDept(outpOrdersT.getOrderedBy());
@@ -3259,13 +3442,16 @@ public class RegTreatmentImpl implements RegTreatment {
                                                     }
                                                 }
                                             }
-                                        }else{
-                                            List<ClinicVsCharge> clinicVsChargeList = clinicVsChargeMapper.selectByAdministration(ordersCosts.getAdministration());
+                                        } else {
+                                            List<ClinicVsCharge> clinicVsChargeList =
+                                                    clinicVsChargeMapper.selectByAdministration(ordersCosts.getAdministration());
                                             if (!Util.isEmpty(clinicVsChargeList)) {
-                                                short num = outpOrdersCostsMapper.selectISOrdersCostsForMaxItemNo(ordersCosts.getVisitDate(), ordersCosts.getVisitNo(), ordersCosts.getSerialNo()).getItemNo();
+                                                short num =
+                                                        outpOrdersCostsMapper.selectISOrdersCostsForMaxItemNo(ordersCosts.getVisitDate(), ordersCosts.getVisitNo(), ordersCosts.getSerialNo()).getItemNo();
                                                 for (int k = 0; k < clinicVsChargeList.size(); k++) {
                                                     ClinicVsCharge clinicVsCharge = clinicVsChargeList.get(k);
-                                                    PriceList priceList = priceListMapper.selectPriceListForAdministration(clinicVsCharge.getChargeItemClass(), clinicVsCharge.getChargeItemCode(), clinicVsCharge.getChargeItemSpec(), clinicVsCharge.getUnits());
+                                                    PriceList priceList =
+                                                            priceListMapper.selectPriceListForAdministration(clinicVsCharge.getChargeItemClass(), clinicVsCharge.getChargeItemCode(), clinicVsCharge.getChargeItemSpec(), clinicVsCharge.getUnits());
                                                     if (!(priceList == null)) {
                                                         OutpOrdersCosts outpOrdersCostsJM = new OutpOrdersCosts();
                                                         outpOrdersCostsJM.setSerialNo(ordersCosts.getSerialNo());
@@ -3283,11 +3469,19 @@ public class RegTreatmentImpl implements RegTreatment {
                                                         outpOrdersCostsJM.setItemCode(priceList.getItemCode());
                                                         outpOrdersCostsJM.setItemSpec(priceList.getItemSpec());
                                                         outpOrdersCostsJM.setUnits(priceList.getUnits());
-                                                        BigDecimal amount = new BigDecimal(clinicVsCharge.getAmount()).multiply(days);
+                                                        BigDecimal amount;
+                                                        if (days.compareTo(new BigDecimal(1)) < 0) {
+                                                            amount = new BigDecimal(clinicVsCharge.getAmount());
+                                                        } else {
+                                                            amount =
+                                                                    new BigDecimal(clinicVsCharge.getAmount()).multiply(days);
+                                                        }
                                                         outpOrdersCostsJM.setAmount(amount);
                                                         outpOrdersCostsJM.setDays(ordersCosts.getDays());
-                                                        //BigDecimal amount = new BigDecimal(clinicVsCharge.getAmount());
-                                                        BigDecimal cost = amount.multiply(new BigDecimal(String.valueOf(priceList.getPrice())));
+                                                        //BigDecimal amount = new BigDecimal(clinicVsCharge.getAmount
+                                                        // ());
+                                                        BigDecimal cost =
+                                                                amount.multiply(new BigDecimal(String.valueOf(priceList.getPrice())));
                                                         outpOrdersCostsJM.setCosts(cost);
                                                         outpOrdersCostsJM.setCharges(cost);
                                                         outpOrdersCostsJM.setOrderedByDept(outpOrdersT.getOrderedBy());
@@ -3326,14 +3520,17 @@ public class RegTreatmentImpl implements RegTreatment {
                             }
                         }
                         //重新查 看是否含有采血项目和静脉输液附加费
-                        outpOrdersCostsList = outpOrdersCostsMapper.selectOrdersCostsListBySerialNo(outpOrdersT.getSerialNo(), outpOrdersT.getVisitDate(), outpOrdersT.getVisitNo());
-                        String hisPayAmt = outpOrdersCostsMapper.selectCountBySerialNo(outpOrdersT.getSerialNo(), outpOrdersT.getVisitDate(), outpOrdersT.getVisitNo()).getCosts().toString();
+                        outpOrdersCostsList =
+                                outpOrdersCostsMapper.selectOrdersCostsListBySerialNo(outpOrdersT.getSerialNo(),
+                                        outpOrdersT.getVisitDate(), outpOrdersT.getVisitNo());
+                        String hisPayAmt = outpOrdersCostsMapper.selectCountBySerialNo(outpOrdersT.getSerialNo(),
+                                outpOrdersT.getVisitDate(), outpOrdersT.getVisitNo()).getCosts().toString();
                         String deptName = deptDictMapper.selectByPrimaryKey(outpOrdersT.getOrderedBy()).getDeptName();
                         for (int j = 0; j < outpOrdersCostsList.size(); j++) {
                             Element payInfoElement = bodyElement.addElement("pay_info");
                             OutpOrdersCosts outpOrdersCosts = outpOrdersCostsList.get(j);
                             payInfoElement.addElement("hisPayNo").setText(outpOrdersCosts.getSerialNo());//流水号
-                            payInfoElement.addElement("cflsh").setText(outpOrdersCosts.getSerialNo()+ outpOrdersCosts.getItemNo());//处方流水号
+                            payInfoElement.addElement("cflsh").setText(outpOrdersCosts.getSerialNo() + outpOrdersCosts.getItemNo());//处方流水号
                             payInfoElement.addElement("presNo").setText(StringUtil.Iso_GBK(outpOrdersCosts.getOrderNo() + ""));//医嘱序号
                             payInfoElement.addElement("hisPayNoSn").setText(StringUtil.Iso_GBK(outpOrdersCosts.getItemNo() + ""));//计价项目序号
                             payInfoElement.addElement("item_code_his").setText(StringUtil.Iso_GBK(outpOrdersCosts.getItemCode()));//计价项目代码
@@ -3346,17 +3543,24 @@ public class RegTreatmentImpl implements RegTreatment {
                             insuVsPrice = insuVsPriceMapper.selectByPrimaryKey(insuVsPrice);
 
                             payInfoElement.addElement("itemCodeYB").setText(insuVsPrice.getInsuItemsCode());
-                            payInfoElement.addElement("detail_item_name").setText(StringUtil.Iso_GBK(outpOrdersCosts.getItemName()));//计价项目名称
-                            payInfoElement.addElement("std").setText(StringUtil.Iso_GBK(outpOrdersCosts.getItemSpec()));//计价项目规格
-//                            payInfoElement.addElement("amt").setText(StringUtil.Iso_GBK(outpOrdersCosts.getAmount() + ""));//数量
+                            //计价项目名称
+                            payInfoElement.addElement("detail_item_name").setText(StringUtil.Iso_GBK(outpOrdersCosts.getItemName()));
+                            //计价项目规格
+                            payInfoElement.addElement("std").setText(StringUtil.Iso_GBK(outpOrdersCosts.getItemSpec()));
+                            //最小计价单位收费标志
+                            payInfoElement.addElement("zxjjbs").setText(processZxjjbs(outpOrdersCosts.getItemSpec()));
+//                            payInfoElement.addElement("amt").setText(StringUtil.Iso_GBK(outpOrdersCosts.getAmount()
+// + ""));//数量
                             payInfoElement.addElement("unit").setText(StringUtil.Iso_GBK(outpOrdersCosts.getUnits()));//计价单位
-                            PriceList priceList = priceListMapper.selectPriceListForAdministration(outpOrdersCosts.getItemClass(), outpOrdersCosts.getItemCode(), outpOrdersCosts.getItemSpec(), outpOrdersCosts.getUnits());
-                            if(priceList!=null ){
-                                payInfoElement.addElement("price").setText(priceList.getPrice()+""); //单价
-                            }else {
+                            PriceList priceList =
+                                    priceListMapper.selectPriceListForAdministration(outpOrdersCosts.getItemClass(),
+                                            outpOrdersCosts.getItemCode(), outpOrdersCosts.getItemSpec(), outpOrdersCosts.getUnits());
+                            if (priceList != null) {
+                                payInfoElement.addElement("price").setText(priceList.getPrice() + ""); //单价
+                            } else {
                                 payInfoElement.addElement("price").setText(outpOrdersCosts.getCosts().divide(outpOrdersCosts.getAmount(), 3, RoundingMode.HALF_UP) + ""); //单价
                             }
-                            payInfoElement.addElement("detailPayAmt").setText(outpOrdersCosts.getCosts()+"");//计价费用
+                            payInfoElement.addElement("detailPayAmt").setText(outpOrdersCosts.getCosts() + "");//计价费用
                             payInfoElement.addElement("phone").setText(Util.escapeInnerText(patMasterIndex.getPhoneNumberHome()));
                             payInfoElement.addElement("cardId").setText(Util.escapeInnerText(patMasterIndex.getIdNo()));
                             payInfoElement.addElement("healthyno").setText(DateToWeek.formatDateString(outpOrdersT.getVisitDate(), "yyyy-MM-dd") + "^" + outpOrdersT.getVisitNo()); //
@@ -3365,7 +3569,8 @@ public class RegTreatmentImpl implements RegTreatment {
                             payInfoElement.addElement("selfPayAmt").setText(hisPayAmt);
                             payInfoElement.addElement("socialPayAmt").setText("0");
                             payInfoElement.addElement("payType").setText("zizhuji");
-                            payInfoElement.addElement("creatTime").setText(Util.format(outpOrdersT.getOrderDate(), "yyyy-MM-dd HH:mm:ss"));
+                            payInfoElement.addElement("creatTime").setText(Util.format(outpOrdersT.getOrderDate(),
+                                    "yyyy-MM-dd HH:mm:ss"));
                             payInfoElement.addElement("regType").setText("0");
                             payInfoElement.addElement("depId").setText(outpOrdersT.getOrderedBy());
                             payInfoElement.addElement("dep_name").setText(StringUtil.Iso_GBK(deptName));
@@ -3378,11 +3583,12 @@ public class RegTreatmentImpl implements RegTreatment {
                                 payInfoElement.addElement("ybysbm").setText(outpOrdersT.getDoctor());
                             }
                             String itemClass = "1";  // 1 药品  2  诊疗   3 医疗器材
-                            if (outpOrdersCosts.getItemClass().equals("A") || outpOrdersCosts.getItemClass().equals("B")) {
+                            if (outpOrdersCosts.getItemClass().equals("A") || outpOrdersCosts.getItemClass().equals(
+                                    "B")) {
                                 itemClass = "1";
-                            } else if(outpOrdersCosts.getItemClass().equals("I")) {
+                            } else if (outpOrdersCosts.getItemClass().equals("I")) {
                                 itemClass = "3";
-                            }else{
+                            } else {
                                 itemClass = "2";
                             }
                             payInfoElement.addElement("itemClass").setText(itemClass);
@@ -3393,13 +3599,14 @@ public class RegTreatmentImpl implements RegTreatment {
                                 feeType = "1";
                             }
                             payInfoElement.addElement("feeType").setText(feeType);
-                            InsuVsHospitalDept ivhd = insuVsHospitalDeptMapper.selectByPrimaryByDeptCode(outpOrdersT.getOrderedBy());
+                            InsuVsHospitalDept ivhd =
+                                    insuVsHospitalDeptMapper.selectByPrimaryByDeptCode(outpOrdersT.getOrderedBy());
                             if (ivhd != null) {
                                 payInfoElement.addElement("ybksdm").setText(ivhd.getInsuDeptCode());
                             } else {
                                 payInfoElement.addElement("ybksdm").setText("");
                             }
-                            String rcptNo =Util.getCurrentDate("yyyyMMddHHmmss")+outpOrdersT.getVisitNo();//门诊流水号
+                            String rcptNo = Util.getCurrentDate("yyyyMMddHHmmss") + outpOrdersT.getVisitNo();//门诊流水号
                             String djh = "O" + recpNoMapper.selectRecpNo().getRecpNo(); //单据号
                             payInfoElement.addElement("mzNO").setText(rcptNo);//门诊流水号
                             payInfoElement.addElement("djh").setText(djh);
@@ -3408,30 +3615,35 @@ public class RegTreatmentImpl implements RegTreatment {
                             outpMrKey.setVisitNo(outpOrdersT.getVisitNo());
                             outpMrKey.setOrdinal((short) 1);
                             OutpMr outpMr = outpMrMapper.selectByPrimaryKey(outpMrKey);
-                            if(outpMr!=null){
-                                if(!Util.isEmpty(outpMr.getDiagCode())){
-                                    List<InsuranceVsDiagnosis> insuranceVsDiagnosisList = insuranceVsDiagnosisMapper.selectByDiagnosisCode(outpMr.getDiagCode());
-                                    if(insuranceVsDiagnosisList.size()>0){
-                                        payInfoElement.addElement("bzm").setText("20");
-//                                        payInfoElement.addElement("bzm").setText(insuranceVsDiagnosisList.get(0).getIcdCode());
-                                    }else{
-                                        payInfoElement.addElement("bzm").setText("20");
+                            if (outpMr != null) {
+                                if (!Util.isEmpty(outpMr.getDiagCode())) {
+                                    List<InsuranceVsDiagnosis> insuranceVsDiagnosisList =
+                                            insuranceVsDiagnosisMapper.selectByIcdCode(outpMr.getDiagCode());
+                                    if (insuranceVsDiagnosisList.size() > 0) {
+                                        payInfoElement.addElement("bzm").setText(insuranceVsDiagnosisList.get(0).getIcdCode());
+                                    } else {
+                                        insuranceVsDiagnosisList =
+                                                insuranceVsDiagnosisMapper.selectByDiagnosisCode(outpMr.getDiagCode());
+                                        if (insuranceVsDiagnosisList.size() > 0) {
+                                            payInfoElement.addElement("bzm").setText(insuranceVsDiagnosisList.get(0).getIcdCode());
+                                        } else {
+                                            payInfoElement.addElement("bzm").setText("20");
+                                        }
                                     }
-
-                                }else{
+                                } else {
                                     payInfoElement.addElement("bzm").setText("20");
                                 }
-                            }else{
+                            } else {
                                 payInfoElement.addElement("bzm").setText("20");
                             }
-                            if(outpOrdersCosts.getItemClass().equals("B")){
+                            if (outpOrdersCosts.getItemClass().equals("B")) {
                                 OutpPrescKey outpPrescKey = new OutpPrescKey();
                                 outpPrescKey.setSerialNo(outpOrdersCosts.getSerialNo());
                                 outpPrescKey.setItemNo(outpOrdersCosts.getItemNo());
-                                OutpPresc outpPresc =  outpPrescMapper.selectByPrimaryKey(outpPrescKey);
-                                payInfoElement.addElement("cfts").setText(outpPresc.getRepetition()+"");//处方帖数
+                                OutpPresc outpPresc = outpPrescMapper.selectByPrimaryKey(outpPrescKey);
+                                payInfoElement.addElement("cfts").setText(outpPresc.getRepetition() + "");//处方帖数
                                 payInfoElement.addElement("amt").setText(outpOrdersCosts.getAmount().multiply(new BigDecimal(outpPresc.getRepetition())).toString());//数量
-                            }else{
+                            } else {
                                 payInfoElement.addElement("cfts").setText("1");
                                 payInfoElement.addElement("amt").setText(StringUtil.Iso_GBK(outpOrdersCosts.getAmount() + ""));//数量
                             }
@@ -3450,24 +3662,24 @@ public class RegTreatmentImpl implements RegTreatment {
             throw new RuntimeException(e.getCause().getMessage());
         }
     }
-    public static String txt2String(File file){
+
+    public static String txt2String(File file) {
         StringBuilder result = new StringBuilder();
-        try{
+        try {
             BufferedReader br = new BufferedReader(new FileReader(file));//构造一个BufferedReader类来读取文件
             String s = null;
-            while((s = br.readLine())!=null){//使用readLine方法，一次读一行
+            while ((s = br.readLine()) != null) {//使用readLine方法，一次读一行
                 result.append(s);
             }
             br.close();
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return result.toString();
     }
 
     /**
-     * 划价单缴费
-     * 用户缴费（将单张、缴费完毕的划价单的缴费情况信息和缴费项目，提交给HIS系统进行相关记录）
+     * 划价单缴费 用户缴费（将单张、缴费完毕的划价单的缴费情况信息和缴费项目，提交给HIS系统进行相关记录）
      *
      * @param xmlParam
      * @return
@@ -3497,7 +3709,8 @@ public class RegTreatmentImpl implements RegTreatment {
             String payFromFund = reroot.element("body").element("payFromFund").getTextTrim();// 统筹支付
             String paymentSelf = reroot.element("body").element("paymentSelf").getTextTrim(); //自理费用
             String insuRangeTotal = reroot.element("body").element("insuRangeTotal").getTextTrim(); //医保范围费用
-            String largerDiagnosisPayment = reroot.element("body").element("largerDiagnosisPayment").getTextTrim(); //大病支付
+            String largerDiagnosisPayment = reroot.element("body").element("largerDiagnosisPayment").getTextTrim();
+            //大病支付
             String payFromInsured = reroot.element("body").element("payFromInsured").getTextTrim();//个人支付
             String accountInitialAmount = reroot.element("body").element("accountInitialAmount").getTextTrim();//期初个人账户
             String accountEndAmount = reroot.element("body").element("accountEndAmount").getTextTrim();//期末个人账号
@@ -3517,13 +3730,11 @@ public class RegTreatmentImpl implements RegTreatment {
             String czy = reroot.element("body").element("czy").getTextTrim();// 操作员
 
 
-
-
-            String  siDkOutParam = reroot.element("body").element("siDkOutParam").getTextTrim();// 读卡出参
-            String  siDjParam = reroot.element("body").element("siDjParam").getTextTrim(); //登记入参
-            String  siInParam = reroot.element("body").element("siInParam").getTextTrim(); //结算入参
-            String  siOutParam = reroot.element("body").element("siOutParam").getTextTrim(); //结算反参
-            String  mxsc = reroot.element("body").element("mxsc").getTextTrim(); //上传明细反参
+            String siDkOutParam = reroot.element("body").element("siDkOutParam").getTextTrim();// 读卡出参
+            String siDjParam = reroot.element("body").element("siDjParam").getTextTrim(); //登记入参
+            String siInParam = reroot.element("body").element("siInParam").getTextTrim(); //结算入参
+            String siOutParam = reroot.element("body").element("siOutParam").getTextTrim(); //结算反参
+            String mxsc = reroot.element("body").element("mxsc").getTextTrim(); //上传明细反参
 
             Document doc = DocumentHelper.createDocument();
             doc.setXMLEncoding("GBK");
@@ -3534,13 +3745,13 @@ public class RegTreatmentImpl implements RegTreatment {
             if (IPI == null) {
                 if (feeType != null && feeType.length() > 0) {
                     SiReadCardInfo siReadCardInfo = new SiReadCardInfo();
-                    SiInDJParamInfo siInDJParamInfo = new  SiInDJParamInfo();
+                    SiInDJParamInfo siInDJParamInfo = new SiInDJParamInfo();
                     SiSettlementInParamInfo siSettlementInParamInfo = new SiSettlementInParamInfo();
-                    SiSettlementOutParamInfo siSettlementOutParamInfo =  new SiSettlementOutParamInfo();
+                    SiSettlementOutParamInfo siSettlementOutParamInfo = new SiSettlementOutParamInfo();
                     List<SiPrenoOut> siPrenoOutList = new ArrayList<SiPrenoOut>();
                     if ("1".equals(feeType)) {
 
-                         siReadCardInfo = SiClassUtil.getSiReadCardInfo(siDkOutParam);
+                        siReadCardInfo = SiClassUtil.getSiReadCardInfo(siDkOutParam);
 
                         siInDJParamInfo = SiClassUtil.getSiInDjList(siDjParam);
                         //  siInParam  siOutParam
@@ -3556,7 +3767,8 @@ public class RegTreatmentImpl implements RegTreatment {
                     String hisPayAmt = outpOrdersCostsMapper.selectCountBySerialNo1(hisPayNo).getCosts().toString();
                     String rcptNo = "";
                     if (!Util.isEmpty(hisPayNo) && new BigDecimal(payAmt).compareTo(new BigDecimal(hisPayAmt)) == 0) {
-                        List<OutpOrdersCosts> outpOrdersCostsList = outpOrdersCostsMapper.selectOrdersCostsListBySerialNo1(hisPayNo);
+                        List<OutpOrdersCosts> outpOrdersCostsList =
+                                outpOrdersCostsMapper.selectOrdersCostsListBySerialNo1(hisPayNo);
                         OutpOrdersT outpOrdersT = outpOrdersTMapper.selectByPrimaryKey(hisPayNo);
                         if (!Util.isEmpty(outpOrdersCostsList)) {
 //                        PatMasterIndex patMasterIndex = patMasterIndexMapper.selectByPrimaryKey(cardNo);
@@ -3566,9 +3778,9 @@ public class RegTreatmentImpl implements RegTreatment {
                             clinicMaster.setVisitNo(outpOrdersT.getVisitNo());
                             clinicMaster = clinicMasterMapper.selectByPrimaryKey(clinicMaster);
 
-                            if("1".equals(feeType)){
+                            if ("1".equals(feeType)) {
                                 rcptNo = siSettlementInParamInfo.getDjh();
-                            }else{
+                            } else {
                                 rcptNo = "O" + recpNoMapper.selectRecpNo().getRecpNo();
                             }
                             //1.门诊医疗收据记录 OUTP_RCPT_MASTER
@@ -3577,16 +3789,17 @@ public class RegTreatmentImpl implements RegTreatment {
                             outpRcptMaster.setPatientId(clinicMaster.getPatientId());
                             outpRcptMaster.setName(clinicMaster.getName());
                             outpRcptMaster.setNamePhonetic(clinicMaster.getNamePhonetic());
-                            if("1".equals(feeType)){
+                            if ("1".equals(feeType)) {
                                 outpRcptMaster.setIdentity(clinicMaster.getIdentity());
                                 outpRcptMaster.setChargeType(clinicMaster.getChargeType());
-                            }else{
+                            } else {
                                 outpRcptMaster.setIdentity(StringUtil.Utf_Iso("地方人员"));
                                 outpRcptMaster.setChargeType(StringUtil.Utf_Iso("自费"));
                             }
 
                             outpRcptMaster.setUnitInContract(clinicMaster.getUnitInContract());
-                            outpRcptMaster.setVisitDate(new Timestamp(DateToWeek.formatDate(payTime, "yyyy-MM-dd HH:mm:ss").getTime()));
+                            outpRcptMaster.setVisitDate(new Timestamp(DateToWeek.formatDate(payTime, "yyyy-MM-dd " +
+                                    "HH:mm:ss").getTime()));
                             outpRcptMaster.setTotalCosts(new BigDecimal(payAmt));
                             outpRcptMaster.setTotalCharges(new BigDecimal(payAmt));
                             outpRcptMaster.setOperatorNo("ZZJ");
@@ -3608,7 +3821,7 @@ public class RegTreatmentImpl implements RegTreatment {
                             }
 
                             // add by tang 2018-05-14, 计算payment_no, start
-                            short paymentNo = (short)1;
+                            short paymentNo = (short) 1;
 //                            List<OutpPaymentsMoney> moneyList = outpPaymentsMoneyMapper.selectByRcptNo(rcptNo);
 //                            if(moneyList != null && !moneyList.isEmpty())
 //                                paymentNo = (short) (moneyList.get(0).getPaymentNo() + 1);
@@ -3666,11 +3879,13 @@ public class RegTreatmentImpl implements RegTreatment {
 
                             //3.开单记录 OUTP_ORDER_DESC
                             OutpOrderDesc outpOrderDesc = new OutpOrderDesc();
-                            outpOrderDesc.setVisitDate(new Timestamp(DateToWeek.formatDate(payTime, "yyyy-MM-dd HH:mm:ss").getTime()));
+                            outpOrderDesc.setVisitDate(new Timestamp(DateToWeek.formatDate(payTime, "yyyy-MM-dd " +
+                                    "HH:mm:ss").getTime()));
                             outpOrderDesc.setVisitNo(outpOrdersT.getVisitNo());
                             outpOrderDesc.setPatientId(clinicMaster.getPatientId());
                             //判断是否含药品处方
-                            List<OutpOrdersCosts> outpOrdersCostsForPresc = outpOrdersCostsMapper.selectOrdersCostsListForPresc(hisPayNo);
+                            List<OutpOrdersCosts> outpOrdersCostsForPresc =
+                                    outpOrdersCostsMapper.selectOrdersCostsListForPresc(hisPayNo);
                             if (Util.isEmpty(outpOrdersCostsForPresc)) {
                                 outpOrderDesc.setPrescIndicator((short) 0);
                             } else {
@@ -3689,7 +3904,8 @@ public class RegTreatmentImpl implements RegTreatment {
                             for (int i = 0; i < outpOrdersCostsList.size(); i++) {
                                 OutpOrdersCosts outpOrdersCosts = outpOrdersCostsList.get(i);
                                 OutpBillItems outpBillItems = new OutpBillItems();
-                                outpBillItems.setVisitDate(new Timestamp(DateToWeek.formatDate(payTime, "yyyy-MM-dd HH:mm:ss").getTime()));
+                                outpBillItems.setVisitDate(new Timestamp(DateToWeek.formatDate(payTime, "yyyy-MM-dd " +
+                                        "HH:mm:ss").getTime()));
                                 outpBillItems.setVisitNo(clinicMaster.getVisitNo());
                                 outpBillItems.setRcptNo(rcptNo);
                                 int k = i + 1;
@@ -3699,7 +3915,7 @@ public class RegTreatmentImpl implements RegTreatment {
                                 outpBillItems.setItemCode(outpOrdersCosts.getItemCode());
                                 outpBillItems.setItemName(outpOrdersCosts.getItemName());
                                 outpBillItems.setItemSpec(outpOrdersCosts.getItemSpec());
-                                if(outpOrdersCosts.getRepetition() > 1)
+                                if (outpOrdersCosts.getRepetition() > 1)
                                     outpBillItems.setAmount(outpOrdersCosts.getAmount()
                                             .multiply(new BigDecimal(outpOrdersCosts.getRepetition())));
                                 else
@@ -3708,13 +3924,13 @@ public class RegTreatmentImpl implements RegTreatment {
                                 //配置中的代码 走特定的执行地点
                                 File file = new File("C:\\configuration\\itemCode.txt");
                                 String itemCode = txt2String(file);
-                                if(itemCode!=null && itemCode.length()>0) {
+                                if (itemCode != null && itemCode.length() > 0) {
                                     if (itemCode.contains(outpOrdersCosts.getItemCode())) {
                                         outpBillItems.setPerformedBy("31");
-                                    }else{
+                                    } else {
                                         outpBillItems.setPerformedBy(outpOrdersCosts.getPerformedBy());
                                     }
-                                }else{
+                                } else {
                                     outpBillItems.setPerformedBy(outpOrdersCosts.getPerformedBy());
                                 }
                                 outpBillItems.setCosts(outpOrdersCosts.getCosts());
@@ -3748,14 +3964,15 @@ public class RegTreatmentImpl implements RegTreatment {
                                     iobd.setUnits(outpOrdersCosts.getUnits());//单位
                                     iobd.setPrice(outpOrdersCosts.getCosts());//价格
 //                                    iobd.setAmount(outpOrdersCosts.getAmount());//数量
-                                    if(outpOrdersCosts.getRepetition() > 1)
+                                    if (outpOrdersCosts.getRepetition() > 1)
                                         iobd.setAmount(outpOrdersCosts.getAmount()
                                                 .multiply(new BigDecimal(outpOrdersCosts.getRepetition())));
                                     else
                                         iobd.setAmount(outpOrdersCosts.getAmount());
                                     iobd.setOperatorNo("ZZJ"); //操作员
                                     iobd.setInsuPhamProducingArea(insuVsPrice.getInsuPhamProducingArea());//医保药品产地
-                                    iobd.setInsuPhamProducingAreaSign(insuVsPrice.getInsuPhamProducingAreaSign());//医保药品产地属性
+                                    iobd.setInsuPhamProducingAreaSign(insuVsPrice.getInsuPhamProducingAreaSign());
+                                    //医保药品产地属性
                                     iobd.setItemSpec(outpOrdersCosts.getItemSpec()); //项目规格
                                     iobd.setRcptNo(rcptNo); //收据号
                                     iobd.setInsuCardNo(inCardNo);//医保卡号
@@ -3769,13 +3986,14 @@ public class RegTreatmentImpl implements RegTreatment {
 //                            internetPayinfo.setTradeNo(tradeNo);
 //                            internetPayinfo.setRecptNo(rcptNo);
 //                            internetPayinfo.setPatientId(clinicMaster.getPatientId());
-//                            internetPayinfo.setChangeDateTime(new Timestamp(DateToWeek.formatDate(payTime, "yyyy-MM-dd HH:mm:ss").getTime()));
+//                            internetPayinfo.setChangeDateTime(new Timestamp(DateToWeek.formatDate(payTime,
+// "yyyy-MM-dd HH:mm:ss").getTime()));
 //                            internetPayinfo.setInoutFlag("o");
 //                            internetPayinfo.setPayMethod(StringUtil.Utf_Iso(moneyType));
 //                            internetPayinfo.setMchId(mchid);
 //                            internetPayinfoMapper.insert(internetPayinfo);
                             //5.门诊自助机交易记录 走刘冬的退费
-                            if (payMethod != null && payMethod.length() > 0&& (payMethod.equals("5") || payMethod.equals("6"))) {
+                            if (payMethod != null && payMethod.length() > 0 && (payMethod.equals("5") || payMethod.equals("6"))) {
                                 ScanPay scanPay = new ScanPay();
                                 String id = recpNoMapper.selectScanPay().getRecpNo();
                                 scanPay.setId(new BigDecimal(id));
@@ -3787,7 +4005,7 @@ public class RegTreatmentImpl implements RegTreatment {
                                 scanPay.setAmPm(clinicMaster.getVisitTimeDesc());
                                 BigDecimal casePay = new BigDecimal(inCashPay);
                                 BigDecimal b1 = new BigDecimal(100);
-                                scanPay.setTotalCosts(casePay.multiply(b1).intValue()+"");
+                                scanPay.setTotalCosts(casePay.multiply(b1).intValue() + "");
                                 scanPay.setChargeType(StringUtil.Utf_Iso("门诊收费"));
                                 scanPay.setPayWay(payMethod);
                                 scanPay.setHospitalMark(StringUtil.Utf_Iso("中国人民解放军81医院"));
@@ -3802,59 +4020,64 @@ public class RegTreatmentImpl implements RegTreatment {
                             // 6. 医保支付
                             if ("1".equals(feeType)) {
                                 //新医保
-                                AppConfigerParameter appConfigerParameter = appConfigerParameterMapper.selectByParameterName("NJJB_CONTROL");
+                                AppConfigerParameter appConfigerParameter =
+                                        appConfigerParameterMapper.selectByParameterName("NJJB_CONTROL");
 
-                                if(appConfigerParameter!=null && appConfigerParameter.getParameterValue().equals("Y")){
-                                    String visitDate =Util.format(outpOrdersT.getVisitDate(),"yyyy-MM-dd")+" "+Util.getCurrentDate("HH:mm:ss");
-                                    PatMasterIndex pmi = patMasterIndexMapper.selectByPatientId(clinicMaster.getPatientId());
+                                if (appConfigerParameter != null && appConfigerParameter.getParameterValue().equals(
+                                        "Y")) {
+                                    String visitDate =
+                                            Util.format(outpOrdersT.getVisitDate(), "yyyy-MM-dd") + " " + Util.getCurrentDate("HH:mm:ss");
+                                    PatMasterIndex pmi =
+                                            patMasterIndexMapper.selectByPatientId(clinicMaster.getPatientId());
 
                                     //统筹区属 转换
-                                    String  tcqh="";
-                                    if(siReadCardInfo.getTcqh().equals("320101")){
-                                        tcqh="本市级";
-                                    }else if(siReadCardInfo.getTcqh().equals("320102")){
-                                        tcqh="玄武区";
-                                    }else if(siReadCardInfo.getTcqh().equals("320104")){
-                                        tcqh="秦淮区";
-                                    }else if(siReadCardInfo.getTcqh().equals("320105")){
-                                        tcqh="建邺区";
-                                    }else if(siReadCardInfo.getTcqh().equals("320106")){
-                                        tcqh="鼓楼区";
-                                    }else if(siReadCardInfo.getTcqh().equals("320107")){
-                                        tcqh="雨花台区";
-                                    }else if(siReadCardInfo.getTcqh().equals("320108")){
-                                        tcqh="化学工业园区";
-                                    }else if(siReadCardInfo.getTcqh().equals("320111")){
-                                        tcqh="浦口区";
-                                    }else if(siReadCardInfo.getTcqh().equals("320113")){
-                                        tcqh="栖霞区";
-                                    }else if(siReadCardInfo.getTcqh().equals("320114")){
-                                        tcqh="雨花台区";
-                                    }else if(siReadCardInfo.getTcqh().equals("320115")){
-                                        tcqh="江宁区";
-                                    }else if(siReadCardInfo.getTcqh().equals("320116")){
-                                        tcqh="六合区";
-                                    }else if(siReadCardInfo.getTcqh().equals("320124")){
-                                        tcqh="溧水区";
-                                    }else if(siReadCardInfo.getTcqh().equals("320125")){
-                                        tcqh="高淳区";
-                                    }else if(siReadCardInfo.getTcqh().equals("320131")){
-                                        tcqh="经济管委会";
-                                    }else if(siReadCardInfo.getTcqh().equals("320132")){
-                                        tcqh="高新区管委会";
-                                    }else if(siReadCardInfo.getTcqh().equals("320133")){
-                                        tcqh="化工园区管委会";
-                                    }else {
-                                        tcqh="未知";
+                                    String tcqh = "";
+                                    if (siReadCardInfo.getTcqh().equals("320101")) {
+                                        tcqh = "本市级";
+                                    } else if (siReadCardInfo.getTcqh().equals("320102")) {
+                                        tcqh = "玄武区";
+                                    } else if (siReadCardInfo.getTcqh().equals("320104")) {
+                                        tcqh = "秦淮区";
+                                    } else if (siReadCardInfo.getTcqh().equals("320105")) {
+                                        tcqh = "建邺区";
+                                    } else if (siReadCardInfo.getTcqh().equals("320106")) {
+                                        tcqh = "鼓楼区";
+                                    } else if (siReadCardInfo.getTcqh().equals("320107")) {
+                                        tcqh = "雨花台区";
+                                    } else if (siReadCardInfo.getTcqh().equals("320108")) {
+                                        tcqh = "化学工业园区";
+                                    } else if (siReadCardInfo.getTcqh().equals("320111")) {
+                                        tcqh = "浦口区";
+                                    } else if (siReadCardInfo.getTcqh().equals("320113")) {
+                                        tcqh = "栖霞区";
+                                    } else if (siReadCardInfo.getTcqh().equals("320114")) {
+                                        tcqh = "雨花台区";
+                                    } else if (siReadCardInfo.getTcqh().equals("320115")) {
+                                        tcqh = "江宁区";
+                                    } else if (siReadCardInfo.getTcqh().equals("320116")) {
+                                        tcqh = "六合区";
+                                    } else if (siReadCardInfo.getTcqh().equals("320124")) {
+                                        tcqh = "溧水区";
+                                    } else if (siReadCardInfo.getTcqh().equals("320125")) {
+                                        tcqh = "高淳区";
+                                    } else if (siReadCardInfo.getTcqh().equals("320131")) {
+                                        tcqh = "经济管委会";
+                                    } else if (siReadCardInfo.getTcqh().equals("320132")) {
+                                        tcqh = "高新区管委会";
+                                    } else if (siReadCardInfo.getTcqh().equals("320133")) {
+                                        tcqh = "化工园区管委会";
+                                    } else {
+                                        tcqh = "未知";
                                     }
 
                                     InsuranceAccountsNjjbKey insuranceAccountsNjjbKey = new InsuranceAccountsNjjbKey();
                                     insuranceAccountsNjjbKey.setInsuranceNo(siReadCardInfo.getTbr());
                                     insuranceAccountsNjjbKey.setPatientId(clinicMaster.getPatientId());
                                     insuranceAccountsNjjbKey.setAccountStatus((short) 0);
-                                    InsuranceAccountsNjjb  insuranceAccountsNjjb  =  insuranceAccountsNjjbMapper.selectByPrimaryKey(insuranceAccountsNjjbKey);
+                                    InsuranceAccountsNjjb insuranceAccountsNjjb =
+                                            insuranceAccountsNjjbMapper.selectByPrimaryKey(insuranceAccountsNjjbKey);
 
-                                    InsuranceAccountsNjjb  insuranceAccountsNjjb1 = new InsuranceAccountsNjjb();
+                                    InsuranceAccountsNjjb insuranceAccountsNjjb1 = new InsuranceAccountsNjjb();
                                     insuranceAccountsNjjb1.setInsuranceNo(siReadCardInfo.getTbr());
                                     insuranceAccountsNjjb1.setPatientId(pmi.getPatientId());
                                     insuranceAccountsNjjb1.setName(pmi.getName());
@@ -3865,23 +4088,23 @@ public class RegTreatmentImpl implements RegTreatment {
                                     // insuranceAccountsNjjb1.setWorkingYears();
                                     insuranceAccountsNjjb1.setUnit(StringUtil.Utf_Iso(siReadCardInfo.getDwmc()));
                                     insuranceAccountsNjjb1.setIdentityClass(StringUtil.Utf_Iso("市医保"));
-                                    insuranceAccountsNjjb1.setAccountBalance( new BigDecimal(siReadCardInfo.getAccountBalance()));
+                                    insuranceAccountsNjjb1.setAccountBalance(new BigDecimal(siReadCardInfo.getAccountBalance()));
                                     insuranceAccountsNjjb1.setInsuranceLocation(StringUtil.Utf_Iso(tcqh));
                                     insuranceAccountsNjjb1.setInsuranceLocationCode(siReadCardInfo.getTcqh());
                                     insuranceAccountsNjjb1.setOperator("ZZJ");
                                     insuranceAccountsNjjb1.setAccountStatus((short) 0);
-                                    if(insuranceAccountsNjjb!=null){
+                                    if (insuranceAccountsNjjb != null) {
 
-                                        insuranceAccountsNjjb1.setUpdateDateTime(new Timestamp(new Date().getTime()));
+                                        insuranceAccountsNjjb1.setUpdateDateTime(new Timestamp(System.currentTimeMillis()));
                                         insuranceAccountsNjjbMapper.updateByPrimaryKeySelective(insuranceAccountsNjjb1);
-                                    }else{
-                                        insuranceAccountsNjjb1.setCreateDate(new Timestamp(new Date().getTime()));
+                                    } else {
+                                        insuranceAccountsNjjb1.setCreateDate(new Timestamp(System.currentTimeMillis()));
                                         insuranceAccountsNjjbMapper.insertSelective(insuranceAccountsNjjb1);
                                     }
 
-                                    Njjb2100 njjb2100  =   njjb2100Mapper.selectByPrimaryKey(siReadCardInfo.getTbr());
+                                    Njjb2100 njjb2100 = njjb2100Mapper.selectByPrimaryKey(siReadCardInfo.getTbr());
 
-                                    Njjb2100  njjb21001 = new Njjb2100();
+                                    Njjb2100 njjb21001 = new Njjb2100();
                                     njjb21001.setInsuranceNo(siReadCardInfo.getTbr());
                                     njjb21001.setReadName1(siReadCardInfo.getTbr());
                                     njjb21001.setReadName2(siReadCardInfo.getDwbh());
@@ -3936,15 +4159,16 @@ public class RegTreatmentImpl implements RegTreatment {
                                     njjb21001.setReadName51(siReadCardInfo.getDksykbje());
                                     njjb21001.setReadName52(siReadCardInfo.getMtsykbje());
                                     njjb21001.setReadName53(siReadCardInfo.getYbjczg());
-                                    if(njjb2100!=null){
+                                    if (njjb2100 != null) {
                                         njjb2100Mapper.updateByPrimaryKeySelective(njjb21001);
-                                    }else{
+                                    } else {
                                         njjb2100Mapper.insertSelective(njjb21001);
                                     }
 
                                     //1. NJJB_OUTP_2210(收费登记表)
                                     NjjbOutp2210 njjbOutp2210 = new NjjbOutp2210();
-                                    njjbOutp2210.setVisitDate(new Timestamp(DateToWeek.formatDate(visitDate, "yyyy-MM-dd HH:mm:ss").getTime()));
+                                    njjbOutp2210.setVisitDate(new Timestamp(DateToWeek.formatDate(visitDate, "yyyy-MM" +
+                                            "-dd HH:mm:ss").getTime()));
                                     njjbOutp2210.setVisitNo(Integer.valueOf(outpOrdersT.getVisitNo()));
                                     njjbOutp2210.setRcptNo(rcptNo);
                                     njjbOutp2210.setSign((short) 1);
@@ -4038,8 +4262,8 @@ public class RegTreatmentImpl implements RegTreatment {
                                     njjbOutp2210Mapper.insertSelective(njjbOutp2210);
 
                                     //  NJJB_OUTP_2310(收费明细表)
-                                    if(siPrenoOutList!=null && siPrenoOutList.size()>0){
-                                        for(int i=0;i<siPrenoOutList.size();i++){
+                                    if (siPrenoOutList != null && siPrenoOutList.size() > 0) {
+                                        for (int i = 0; i < siPrenoOutList.size(); i++) {
                                             SiPrenoOut siPrenoOut = siPrenoOutList.get(i);
                                             NjjbOutp2310 njjbOutp2310 = new NjjbOutp2310();
                                             njjbOutp2310.setVisitDate(new Timestamp(new Date().getTime()));
@@ -4047,13 +4271,15 @@ public class RegTreatmentImpl implements RegTreatment {
                                             njjbOutp2310.setItemNo(i);
                                             njjbOutp2310.setRcptNo(rcptNo);
                                             njjbOutp2310.setSign((short) 1);
-                                            njjbOutp2310.setCreated(DateToWeek.formatDate(Util.getCurrentDate("yyyy-MM-dd HH:mm:ss"),"yyyy-MM-dd HH:mm:ss"));
+                                            njjbOutp2310.setCreated(DateToWeek.formatDate(Util.getCurrentDate("yyyy" +
+                                                    "-MM-dd HH:mm:ss"), "yyyy-MM-dd HH:mm:ss"));
 
                                             njjbOutp2310.setInHeader1("2310");
                                             njjbOutp2310.setInHeader2(siSettlementInParamInfo.getYljgbh());//医疗机构编号(8位)
                                             njjbOutp2310.setInHeader3(siSettlementInParamInfo.getCzybh());//操作员编号(8位)
                                             njjbOutp2310.setInHeader4(siSettlementInParamInfo.getYwzqh());//业务周期号(最大34位)
-                                            njjbOutp2310.setInHeader5(siSettlementInParamInfo.getYyjylsh());//医院交易流水号(发送方交易流水号)(最大30位)
+                                            njjbOutp2310.setInHeader5(siSettlementInParamInfo.getYyjylsh());//医院交易流水号
+                                            // (发送方交易流水号)(最大30位)
                                             njjbOutp2310.setInHeader6(siSettlementInParamInfo.getJrfs());//接入方式
                                             njjbOutp2310.setInHeader7(siSettlementInParamInfo.getDklx());//读卡类型
 
@@ -4070,7 +4296,9 @@ public class RegTreatmentImpl implements RegTreatment {
                                             njjbOutp2310.setInName11(siSettlementInParamInfo.getYsbm()); //医生编码
                                             njjbOutp2310.setInName12(siSettlementInParamInfo.getKsbm());  //科室编码
                                             njjbOutp2310.setInName13(siSettlementInParamInfo.getJbr());  //经办人
-                                            njjbOutp2310.setInName14(""); //按最小计价单位收费标志
+
+                                            njjbOutp2310.setInName14(processInName14(outpOrdersCostsList,
+                                                    siPrenoOut.getYysfxmzbm())); //按最小计价单位收费标志
                                             njjbOutp2310.setInName15(siPrenoOut.getBy2());  //备用2
                                             njjbOutp2310.setInName16(siPrenoOut.getBy3());
                                             njjbOutp2310.setInName17(siPrenoOut.getBy4());
@@ -4111,7 +4339,8 @@ public class RegTreatmentImpl implements RegTreatment {
                                     njjbOutp2420.setInHeader2(siSettlementInParamInfo.getYljgbh());//医疗机构编号(8位)
                                     njjbOutp2420.setInHeader3(siSettlementInParamInfo.getCzybh());//操作员编号(8位)
                                     njjbOutp2420.setInHeader4(siSettlementInParamInfo.getYwzqh());//业务周期号(最大34位)
-                                    njjbOutp2420.setInHeader5(siSettlementInParamInfo.getYyjylsh());//医院交易流水号(发送方交易流水号)(最大30位)
+                                    njjbOutp2420.setInHeader5(siSettlementInParamInfo.getYyjylsh());//医院交易流水号
+                                    // (发送方交易流水号)(最大30位)
                                     njjbOutp2420.setInHeader6(siSettlementInParamInfo.getJrfs());//接入方式
                                     njjbOutp2420.setInHeader7(siSettlementInParamInfo.getDklx());//读卡类型
 
@@ -4168,14 +4397,16 @@ public class RegTreatmentImpl implements RegTreatment {
                                     njjbOutp2410.setVisitDate(Timestamp.valueOf(visitDate));
                                     njjbOutp2410.setVisitNo(Integer.valueOf(outpOrdersT.getVisitNo()));
                                     njjbOutp2410.setRcptNo(rcptNo);
-                                    njjbOutp2410.setSign((short)1);
-                                    njjbOutp2410.setCreated(DateToWeek.formatDate(Util.getCurrentDate("yyyy-MM-dd HH:mm:ss"),"yyyy-MM-dd HH:mm:ss"));
+                                    njjbOutp2410.setSign((short) 1);
+                                    njjbOutp2410.setCreated(DateToWeek.formatDate(Util.getCurrentDate("yyyy-MM-dd " +
+                                            "HH:mm:ss"), "yyyy-MM-dd HH:mm:ss"));
 
                                     njjbOutp2410.setInHeader1(siSettlementInParamInfo.getYwbh());
                                     njjbOutp2410.setInHeader2(siSettlementInParamInfo.getYljgbh());//医疗机构编号(8位)
                                     njjbOutp2410.setInHeader3(siSettlementInParamInfo.getCzybh());//操作员编号(8位)
                                     njjbOutp2410.setInHeader4(siSettlementInParamInfo.getYwzqh());//业务周期号(最大34位)
-                                    njjbOutp2410.setInHeader5(siSettlementInParamInfo.getYyjylsh());//医院交易流水号(发送方交易流水号)(最大30位)
+                                    njjbOutp2410.setInHeader5(siSettlementInParamInfo.getYyjylsh());//医院交易流水号
+                                    // (发送方交易流水号)(最大30位)
                                     njjbOutp2410.setInHeader6(siSettlementInParamInfo.getJrfs());//接入方式
                                     njjbOutp2410.setInHeader7(siSettlementInParamInfo.getDklx());//读卡类型
 
@@ -4227,14 +4458,15 @@ public class RegTreatmentImpl implements RegTreatment {
 
                                     njjbOutp2410Mapper.insertSelective(njjbOutp2410);
 
-                                }else{//老医保
+                                } else {//老医保
                                     //6.1 医保门诊就诊情况
                                     InsuOutpClinicMaster iocm = new InsuOutpClinicMaster();
                                     iocm.setInsuCardNo(inCardNo);// 医保卡号
                                     iocm.setVisitDate(Util.getCurrentDate("yyyyMMddHHmmss")); //就诊日期
                                     iocm.setPatientId(clinicMaster.getPatientId());// 病人标识
                                     iocm.setPatName(clinicMaster.getName());//病人姓名
-                                    List<InsuDoctorDict> idd = insuDoctorDictMapper.selectByDoctorName(outpOrdersT.getDoctor());
+                                    List<InsuDoctorDict> idd =
+                                            insuDoctorDictMapper.selectByDoctorName(outpOrdersT.getDoctor());
                                     if (idd != null && idd.size() > 0) {
                                         iocm.setOrderedByDoctorCode(idd.get(0).getDoctCode());//开单医生代码
                                     } else {
@@ -4243,7 +4475,8 @@ public class RegTreatmentImpl implements RegTreatment {
                                     iocm.setOrderedByDoctor(outpOrdersT.getDoctor()); //开单医生
                                     iocm.setDiagnosisCode("20");//病种编码
                                     iocm.setDiagnosisName(StringUtil.Utf_Iso("其他"));//病种名称
-                                    InsuVsHospitalDept ivhd = insuVsHospitalDeptMapper.selectByPrimaryByDeptCode(outpOrdersT.getOrderedBy());
+                                    InsuVsHospitalDept ivhd =
+                                            insuVsHospitalDeptMapper.selectByPrimaryByDeptCode(outpOrdersT.getOrderedBy());
                                     iocm.setVisitDeptInsuCode(ivhd.getInsuDeptCode());//就诊科室医保代码
                                     iocm.setVisitDeptInsuName(ivhd.getInsuDeptName());//就诊科室医保名称
                                     iocm.setOperatorNo("ZZJ");//操作员编码
@@ -4259,7 +4492,8 @@ public class RegTreatmentImpl implements RegTreatment {
 
                                     InsuOutpSettleRecord iosr = new InsuOutpSettleRecord();
                                     iosr.setInsuCardNo(inCardNo); //医保卡号
-                                    iosr.setInsuVisitDate(new Timestamp(DateToWeek.formatDate(Util.getCurrentDate("yyyy-MM-dd"), "yyyy-MM-dd").getTime()));//费用发生日期
+                                    iosr.setInsuVisitDate(new Timestamp(DateToWeek.formatDate(Util.getCurrentDate(
+                                            "yyyy-MM-dd"), "yyyy-MM-dd").getTime()));//费用发生日期
                                     iosr.setOutpFee(new BigDecimal(payAmt)); //门诊费用
                                     iosr.setDrugTotal(new BigDecimal(drugTotal));//药费合计
                                     iosr.setMedicalTotal(new BigDecimal(medicalTotal)); //治疗项目合计
@@ -4297,18 +4531,18 @@ public class RegTreatmentImpl implements RegTreatment {
                                 bankTradeLog.setTraNo(pzh);
                                 bankTradeLog.setTraFinalNo(zdh);
                                 bankTradeLog.setTraTotal(new BigDecimal(je));
-                                bankTradeLog.setTraStatus(1+"");
+                                bankTradeLog.setTraStatus(1 + "");
                                 bankTradeLog.setTraPcNo(pch);
                                 bankTradeLog.setTraTime(Util.getCurrentDate("yyyy-MM-dd HH:mm:ss"));
                                 bankTradeLog.setMerchantNo(shh);
 //                                bankTradeLog.setNote();
 //                                bankTradeLog.setTimes();
                                 bankTradeLog.setUserId(czy);
-                                bankTradeLog.setAcctNo(1+"");
+                                bankTradeLog.setAcctNo(1 + "");
 //                                bankTradeLog.setReturnTimes();
 //                                bankTradeLog.setReturnMoneyLimit();
 //                                bankTradeLog.setReturnType();
-                                bankTradeLog.setOprAppNameHis(1+"");
+                                bankTradeLog.setOprAppNameHis(1 + "");
                                 bankTradeLog.setAcctFlagHis(new BigDecimal(1));
                                 bankTradeLog.setOperTypeHis(StringUtil.Utf_Iso("银行卡"));
                                 bankTradeLog.setRcptFlagHis(new BigDecimal(1));
@@ -4372,14 +4606,14 @@ public class RegTreatmentImpl implements RegTreatment {
             Element reroot = document.getRootElement();
             String feePy = reroot.element("body").element("feePy").getText();//检索码
             String feeId = reroot.element("body").element("feeId").getText();// 0 药品 1 非药品
-            if (feePy != null && feePy.length() > 0 && feeId!=null &&feeId.length()>0) {
-                List<CurrentPriceList> cpls=null;
-                if("0".equals(feeId)){
-                    cpls = currentPriceListMapper.selectByInputCodeForDrug("%"+feePy+"%");
-                }else{
-                    cpls = currentPriceListMapper.selectByInputCode("%"+feePy+"%");
+            if (feePy != null && feePy.length() > 0 && feeId != null && feeId.length() > 0) {
+                List<CurrentPriceList> cpls = null;
+                if ("0".equals(feeId)) {
+                    cpls = currentPriceListMapper.selectByInputCodeForDrug("%" + feePy + "%");
+                } else {
+                    cpls = currentPriceListMapper.selectByInputCode("%" + feePy + "%");
                 }
-                if(cpls!=null && cpls.size()>0){
+                if (cpls != null && cpls.size() > 0) {
                     Document doc = DocumentHelper.createDocument();
                     doc.setXMLEncoding("GBK");
                     Element rootElement = doc.addElement("response");
@@ -4387,18 +4621,18 @@ public class RegTreatmentImpl implements RegTreatment {
                     headElement.addElement("code").setText("0");
                     headElement.addElement("desc").setText("查询成功");
                     Element bodyElement = rootElement.addElement("body");
-                    for(int i=0;i<cpls.size();i++){
+                    for (int i = 0; i < cpls.size(); i++) {
                         CurrentPriceList cpl = cpls.get(i);
-                        Element list =  bodyElement.addElement("list");
+                        Element list = bodyElement.addElement("list");
                         list.addElement("mFeeId").setText(cpl.getItemClass());
                         list.addElement("outItemCode").setText(StringUtil.Iso_GBK(cpl.getItemCode()));
                         list.addElement("outItemName").setText(StringUtil.Iso_GBK(cpl.getItemName()));
                         list.addElement("outItemSpec").setText(StringUtil.Iso_GBK(cpl.getItemSpec()));
                         list.addElement("outUnits").setText(StringUtil.Iso_GBK(cpl.getUnits()));
-                        list.addElement("outPrice").setText(cpl.getPrice()+"");
+                        list.addElement("outPrice").setText(cpl.getPrice() + "");
                     }
-                    return  doc.asXML();
-                }else {
+                    return doc.asXML();
+                } else {
                     return getErrorlMsg("未查询到信息！！！");
                 }
             } else {
@@ -4412,6 +4646,7 @@ public class RegTreatmentImpl implements RegTreatment {
 
     /**
      * 挂号对账
+     *
      * @param xmlParam
      * @return
      */
@@ -4422,9 +4657,10 @@ public class RegTreatmentImpl implements RegTreatment {
             document = DocumentHelper.parseText(xmlParam);
             Element reroot = document.getRootElement();
             String bgDate = reroot.element("body").element("BgDate").getText();//yyyy-MM-dd
-            if (bgDate != null && bgDate.length() > 0 && bgDate!=null &&bgDate.length()>0) {
-                List<PayOrderRecord> payOrderRecordList = payOrderRecordMapper.selectByRecordTime(DateToWeek.formatDate(bgDate,"yyyy-MM-dd"));
-                if(payOrderRecordList!=null && payOrderRecordList.size()>0){
+            if (bgDate != null && bgDate.length() > 0 && bgDate != null && bgDate.length() > 0) {
+                List<PayOrderRecord> payOrderRecordList =
+                        payOrderRecordMapper.selectByRecordTime(DateToWeek.formatDate(bgDate, "yyyy-MM-dd"));
+                if (payOrderRecordList != null && payOrderRecordList.size() > 0) {
                     Document doc = DocumentHelper.createDocument();
                     doc.setXMLEncoding("GBK");
                     Element rootElement = doc.addElement("response");
@@ -4432,24 +4668,25 @@ public class RegTreatmentImpl implements RegTreatment {
                     headElement.addElement("code").setText("0");
                     headElement.addElement("desc").setText("查询成功");
                     Element bodyElement = rootElement.addElement("body");
-                    for(int i=0;i<payOrderRecordList.size();i++){
+                    for (int i = 0; i < payOrderRecordList.size(); i++) {
                         PayOrderRecord payOrderRecord = payOrderRecordList.get(i);
                         ClinicMasterKey clinicMasterKey = new ClinicMasterKey();
                         clinicMasterKey.setVisitDate(payOrderRecord.getVisitDate());
                         clinicMasterKey.setVisitNo(payOrderRecord.getVisitNo());
-                        ClinicMaster clinicMaster  = clinicMasterMapper.selectByPrimaryKey(clinicMasterKey);
-                        String time = DateToWeek.formatDateString(payOrderRecord.getRecordTime(),"yyyy-MM-dd hh24:mi:ss");
-                        if(clinicMaster!=null){
-                            if("0".equals(clinicMaster.getRegistrationStatus())){ //退费的
-                                Element list =  bodyElement.addElement("item");
+                        ClinicMaster clinicMaster = clinicMasterMapper.selectByPrimaryKey(clinicMasterKey);
+                        String time = DateToWeek.formatDateString(payOrderRecord.getRecordTime(), "yyyy-MM-dd " +
+                                "hh24:mi:ss");
+                        if (clinicMaster != null) {
+                            if ("0".equals(clinicMaster.getRegistrationStatus())) { //退费的
+                                Element list = bodyElement.addElement("item");
                                 list.addElement("ID").setText("");
                                 list.addElement("RCPT_NO").setText(clinicMaster.getRcptNo());
                                 list.addElement("INVOICE_ID").setText("");
                                 list.addElement("ORDER_ID").setText(payOrderRecord.getTradeNo());
-                                list.addElement("ORDER_DATE").setText(time.substring(1,10));
-                                list.addElement("ORDER_TIME").setText(time.substring(12,19));
+                                list.addElement("ORDER_DATE").setText(time.substring(1, 10));
+                                list.addElement("ORDER_TIME").setText(time.substring(12, 19));
                                 list.addElement("PAY_NAME").setText(StringUtil.Iso_GBK("挂号费用"));
-                                list.addElement("COST").setText(clinicMaster.getClinicFee()+"");
+                                list.addElement("COST").setText(clinicMaster.getClinicFee() + "");
                                 list.addElement("STATUS").setText(StringUtil.Iso_GBK("收费"));
                                 list.addElement("PATIENT_ID").setText(clinicMaster.getPatientId());
                                 list.addElement("PATIENT_NAME").setText(StringUtil.Iso_GBK(clinicMaster.getName()));
@@ -4462,15 +4699,15 @@ public class RegTreatmentImpl implements RegTreatment {
                                 list.addElement("DEVICE_ID").setText("");
                                 list.addElement("REMARKS").setText("");
 
-                                list =  bodyElement.addElement("item");
+                                list = bodyElement.addElement("item");
                                 list.addElement("ID").setText("");
                                 list.addElement("RCPT_NO").setText(clinicMaster.getRcptNo());
                                 list.addElement("INVOICE_ID").setText("");
                                 list.addElement("ORDER_ID").setText(payOrderRecord.getTradeNo());
-                                list.addElement("ORDER_DATE").setText(time.substring(1,10));
-                                list.addElement("ORDER_TIME").setText(time.substring(12,19));
+                                list.addElement("ORDER_DATE").setText(time.substring(1, 10));
+                                list.addElement("ORDER_TIME").setText(time.substring(12, 19));
                                 list.addElement("PAY_NAME").setText(StringUtil.Iso_GBK("挂号费用"));
-                                list.addElement("COST").setText(clinicMaster.getClinicFee()+"");
+                                list.addElement("COST").setText(clinicMaster.getClinicFee() + "");
                                 list.addElement("STATUS").setText(StringUtil.Iso_GBK("退费"));
                                 list.addElement("PATIENT_ID").setText(clinicMaster.getPatientId());
                                 list.addElement("PATIENT_NAME").setText(StringUtil.Iso_GBK(clinicMaster.getName()));
@@ -4483,16 +4720,16 @@ public class RegTreatmentImpl implements RegTreatment {
                                 list.addElement("DEVICE_ID").setText("");
                                 list.addElement("REMARKS").setText("");
 
-                            }else{
-                                Element list =  bodyElement.addElement("item");
+                            } else {
+                                Element list = bodyElement.addElement("item");
                                 list.addElement("ID").setText("");
                                 list.addElement("RCPT_NO").setText(clinicMaster.getRcptNo());
                                 list.addElement("INVOICE_ID").setText("");
                                 list.addElement("ORDER_ID").setText(payOrderRecord.getTradeNo());
-                                list.addElement("ORDER_DATE").setText(time.substring(1,10));
-                                list.addElement("ORDER_TIME").setText(time.substring(12,19));
+                                list.addElement("ORDER_DATE").setText(time.substring(1, 10));
+                                list.addElement("ORDER_TIME").setText(time.substring(12, 19));
                                 list.addElement("PAY_NAME").setText(StringUtil.Iso_GBK("挂号费用"));
-                                list.addElement("COST").setText(clinicMaster.getClinicFee()+"");
+                                list.addElement("COST").setText(clinicMaster.getClinicFee() + "");
                                 list.addElement("STATUS").setText(StringUtil.Iso_GBK("收费"));
                                 list.addElement("PATIENT_ID").setText(clinicMaster.getPatientId());
                                 list.addElement("PATIENT_NAME").setText(StringUtil.Iso_GBK(clinicMaster.getName()));
@@ -4507,8 +4744,8 @@ public class RegTreatmentImpl implements RegTreatment {
                             }
                         }
                     }
-                    return  doc.asXML();
-                }else{
+                    return doc.asXML();
+                } else {
                     return getErrorlMsg("未查询到信息！！！");
                 }
             } else {
@@ -4519,15 +4756,17 @@ public class RegTreatmentImpl implements RegTreatment {
             return this.getErrorlMsg("数据出错");
         }
     }
+
     /**
      * String转Date
+     *
      * @param
      * @param formater
      * @return
      */
-    public static Date formatDate(String dateString,String formater){
+    public static Date formatDate(String dateString, String formater) {
         SimpleDateFormat format = new SimpleDateFormat(formater);
-        Date date1 =null;
+        Date date1 = null;
         try {
             date1 = format.parse(dateString);
         } catch (ParseException e) {
@@ -4536,17 +4775,18 @@ public class RegTreatmentImpl implements RegTreatment {
         return date1;
     }
 
-    private String getTimeDescEng(String timeDesc){
-        if(timeDesc.equals("上午")){
+    private String getTimeDescEng(String timeDesc) {
+        if (timeDesc.equals("上午")) {
             return "am";
-        }else if(timeDesc.equals("下午")){
+        } else if (timeDesc.equals("下午")) {
             return "pm";
-        }else if(timeDesc.equals("白天")){
+        } else if (timeDesc.equals("白天")) {
             return "day";
-        }else{
+        } else {
             return "all";
         }
     }
+
     private String getErrorlMsg(String desc) {
         Document document = DocumentHelper.createDocument();
         Element root = document.addElement("response");
@@ -4557,11 +4797,37 @@ public class RegTreatmentImpl implements RegTreatment {
         return document.asXML();
     }
 
-    private String truncateStr(String str, int maxLength){
+    private String truncateStr(String str, int maxLength) {
         String tmpStr = StringUtil.Utf_Iso(str);
-        if(tmpStr.toCharArray().length > maxLength)
+        if (tmpStr.toCharArray().length > maxLength)
             return new String(tmpStr.toCharArray(), 0, maxLength);
         return tmpStr;
     }
 
+    private String processInName14(List<OutpOrdersCosts> outpOrdersCostsList, String itemCode) {
+        if (outpOrdersCostsList == null || !outpOrdersCostsList.isEmpty() || StringUtils.isEmpty(itemCode))
+            return "1";
+        for (OutpOrdersCosts cost : outpOrdersCostsList) {
+            if (itemCode.equals(cost.getItemCode())) {
+                return processZxjjbs(cost.getItemSpec());
+            }
+        }
+        return "1";
+    }
+
+    /**
+     * 最小计价单位收费标识,0:大包装 1:小包装(默认)
+     *
+     * @param spec 规格
+     * @return 最小计价单位收费标识, 0:大包装 1:小包装
+     */
+    private String processZxjjbs(String spec) {
+        if (!StringUtils.isEmpty(spec)) {
+            spec = StringUtil.Iso_GBK(spec);
+            if (!StringUtils.isEmpty(spec) && spec.contains("*"))
+                return "0";
+            return "1";
+        }
+        return "1";
+    }
 }
